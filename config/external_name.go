@@ -24,6 +24,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_failover_ip_attach":     config.NameAsIdentifier,
 	"ovh_ip_reverse":                           config.NameAsIdentifier,
 	"ovh_ip_service":                           config.NameAsIdentifier,
+	"ovh_dedicated_ceph_acl":                   config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

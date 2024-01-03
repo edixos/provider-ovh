@@ -16,6 +16,7 @@ import (
 
 	v1alpha1 "github.com/edixos/provider-ovh/apis/accountmanagement/v1alpha1"
 	v1alpha1additionalip "github.com/edixos/provider-ovh/apis/additionalip/v1alpha1"
+	v1alpha1clouddiskarray "github.com/edixos/provider-ovh/apis/clouddiskarray/v1alpha1"
 	v1alpha1publiccloudnetwork "github.com/edixos/provider-ovh/apis/publiccloudnetwork/v1alpha1"
 	v1alpha1apis "github.com/edixos/provider-ovh/apis/v1alpha1"
 	v1beta1 "github.com/edixos/provider-ovh/apis/v1beta1"
@@ -27,6 +28,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1additionalip.SchemeBuilder.AddToScheme,
+		v1alpha1clouddiskarray.SchemeBuilder.AddToScheme,
 		v1alpha1publiccloudnetwork.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,

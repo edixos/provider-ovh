@@ -20,6 +20,7 @@ import (
 	projectfailoveripattach "github.com/edixos/provider-ovh/internal/controller/additionalip/projectfailoveripattach"
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
+	cephacl "github.com/edixos/provider-ovh/internal/controller/clouddiskarray/cephacl"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
@@ -41,6 +42,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectfailoveripattach.Setup,
 		reverse.Setup,
 		service.Setup,
+		cephacl.Setup,
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,
