@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectworkflowbackups.cloud.edixos.io
+  name: identitygroups.accountmanagement.ovh.edixos.io
 spec:
-  group: cloud.edixos.io
+  group: accountmanagement.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ProjectWorkflowBackup
-    listKind: ProjectWorkflowBackupList
-    plural: projectworkflowbackups
-    singular: projectworkflowbackup
+    kind: IdentityGroup
+    listKind: IdentityGroupList
+    plural: identitygroups
+    singular: identitygroup
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectWorkflowBackup is the Schema for the ProjectWorkflowBackups
-          API. <no value>
+        description: IdentityGroup is the Schema for the IdentityGroups API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +49,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectWorkflowBackupSpec defines the desired state of ProjectWorkflowBackup
+            description: IdentityGroupSpec defines the desired state of IdentityGroup
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,20 +66,9 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  backupName:
+                  description:
                     type: string
-                  cron:
-                    type: string
-                  instanceId:
-                    type: string
-                  maxExecutionCount:
-                    type: number
-                  regionName:
-                    description: Region name.
-                    type: string
-                  rotation:
-                    type: number
-                  serviceName:
+                  role:
                     type: string
                 type: object
               initProvider:
@@ -95,20 +83,9 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  backupName:
+                  description:
                     type: string
-                  cron:
-                    type: string
-                  instanceId:
-                    type: string
-                  maxExecutionCount:
-                    type: number
-                  regionName:
-                    description: Region name.
-                    type: string
-                  rotation:
-                    type: number
-                  serviceName:
+                  role:
                     type: string
                 type: object
               managementPolicies:
@@ -271,51 +248,24 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: spec.forProvider.cron is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.cron)
-                || (has(self.initProvider) && has(self.initProvider.cron))'
-            - message: spec.forProvider.instanceId is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.instanceId)
-                || (has(self.initProvider) && has(self.initProvider.instanceId))'
-            - message: spec.forProvider.regionName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.regionName)
-                || (has(self.initProvider) && has(self.initProvider.regionName))'
-            - message: spec.forProvider.rotation is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.rotation)
-                || (has(self.initProvider) && has(self.initProvider.rotation))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectWorkflowBackupStatus defines the observed state of
-              ProjectWorkflowBackup.
+            description: IdentityGroupStatus defines the observed state of IdentityGroup.
             properties:
               atProvider:
                 properties:
-                  backupName:
+                  creation:
                     type: string
-                  createdAt:
-                    type: string
-                  cron:
+                  defaultGroup:
+                    type: boolean
+                  description:
                     type: string
                   id:
                     type: string
-                  instanceId:
+                  lastUpdate:
                     type: string
-                  maxExecutionCount:
-                    type: number
-                  regionName:
-                    description: Region name.
+                  role:
                     type: string
-                  rotation:
-                    type: number
-                  serviceName:
+                  urn:
                     type: string
                 type: object
               conditions:

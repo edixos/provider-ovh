@@ -13,6 +13,17 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_network_private":        config.NameAsIdentifier,
 	"ovh_cloud_project_network_private_subnet": config.NameAsIdentifier,
 	"ovh_cloud_project_workflow_backup":        config.NameAsIdentifier,
+	"ovh_cloud_project":                        config.NameAsIdentifier,
+	"ovh_cloud_project_user":                   config.NameAsIdentifier,
+	"ovh_cloud_project_user_s3_credential":     config.NameAsIdentifier,
+	"ovh_cloud_project_user_s3_policy":         config.NameAsIdentifier,
+	"ovh_iam_policy":                           config.NameAsIdentifier,
+	"ovh_me_identity_group":                    config.NameAsIdentifier,
+	"ovh_me_identity_user":                     config.NameAsIdentifier,
+	"ovh_me_ssh_key":                           config.NameAsIdentifier,
+	"ovh_cloud_project_failover_ip_attach":     config.NameAsIdentifier,
+	"ovh_ip_reverse":                           config.NameAsIdentifier,
+	"ovh_ip_service":                           config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

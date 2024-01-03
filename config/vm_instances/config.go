@@ -7,5 +7,4 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_workflow_backup", func(r *config.Resource) {
 		r.ShortGroup = "vminstances"
 	})
-
 }
