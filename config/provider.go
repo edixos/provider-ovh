@@ -7,6 +7,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+	"github.com/edixos/provider-ovh/config/nas"
 
 	"github.com/edixos/provider-ovh/config/registry"
 
@@ -68,6 +69,7 @@ func GetProvider() *ujconfig.Provider {
 		databases.Configure,
 		kube.Configure,
 		registry.Configure,
+		nas.Configure,
 	} {
 		configure(pc)
 	}
