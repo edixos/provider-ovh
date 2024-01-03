@@ -53,6 +53,21 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_dbaas_logs_cluster":                                      config.NameAsIdentifier,
 	"ovh_dbaas_logs_graylog_output_stream":                        config.NameAsIdentifier,
 	"ovh_dbaas_logs_input":                                        config.NameAsIdentifier,
+	"ovh_cloud_project_database":                                  config.NameAsIdentifier,
+	"ovh_cloud_project_database_database":                         config.NameAsIdentifier,
+	"ovh_cloud_project_database_integration":                      config.NameAsIdentifier,
+	"ovh_cloud_project_database_ip_restriction":                   config.NameAsIdentifier,
+	"ovh_cloud_project_database_kafka_acl":                        config.NameAsIdentifier,
+	"ovh_cloud_project_database_kafka_schemaregistryacl":          config.NameAsIdentifier,
+	"ovh_cloud_project_database_kafka_topic":                      config.NameAsIdentifier,
+	"ovh_cloud_project_database_m3db_namespace":                   config.NameAsIdentifier,
+	"ovh_cloud_project_database_m3db_user":                        config.NameAsIdentifier,
+	"ovh_cloud_project_database_mongodb_user":                     config.NameAsIdentifier,
+	"ovh_cloud_project_database_opensearch_pattern":               config.NameAsIdentifier,
+	"ovh_cloud_project_database_opensearch_user":                  config.NameAsIdentifier,
+	"ovh_cloud_project_database_postgresql_user":                  config.NameAsIdentifier,
+	"ovh_cloud_project_database_redis_user":                       config.NameAsIdentifier,
+	"ovh_cloud_project_database_user":                             config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

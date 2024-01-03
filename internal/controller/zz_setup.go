@@ -21,6 +21,21 @@ import (
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
 	cephacl "github.com/edixos/provider-ovh/internal/controller/clouddiskarray/cephacl"
+	projectdatabase "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabase"
+	projectdatabasedatabase "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasedatabase"
+	projectdatabaseintegration "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseintegration"
+	projectdatabaseiprestriction "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseiprestriction"
+	projectdatabasekafkaacl "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasekafkaacl"
+	projectdatabasekafkaschemaregistryacl "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasekafkaschemaregistryacl"
+	projectdatabasekafkatopic "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasekafkatopic"
+	projectdatabasem3dbnamespace "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasem3dbnamespace"
+	projectdatabasem3dbuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasem3dbuser"
+	projectdatabasemongodbuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasemongodbuser"
+	projectdatabaseopensearchpattern "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseopensearchpattern"
+	projectdatabaseopensearchuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseopensearchuser"
+	projectdatabasepostgresqluser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasepostgresqluser"
+	projectdatabaseredisuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseredisuser"
+	projectdatabaseuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseuser"
 	installationtemplate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplate"
 	installationtemplatepartitionscheme "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionscheme"
 	installationtemplatepartitionschemehardwareraid "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemehardwareraid"
@@ -70,6 +85,21 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		reverse.Setup,
 		service.Setup,
 		cephacl.Setup,
+		projectdatabase.Setup,
+		projectdatabasedatabase.Setup,
+		projectdatabaseintegration.Setup,
+		projectdatabaseiprestriction.Setup,
+		projectdatabasekafkaacl.Setup,
+		projectdatabasekafkaschemaregistryacl.Setup,
+		projectdatabasekafkatopic.Setup,
+		projectdatabasem3dbnamespace.Setup,
+		projectdatabasem3dbuser.Setup,
+		projectdatabasemongodbuser.Setup,
+		projectdatabaseopensearchpattern.Setup,
+		projectdatabaseopensearchuser.Setup,
+		projectdatabasepostgresqluser.Setup,
+		projectdatabaseredisuser.Setup,
+		projectdatabaseuser.Setup,
 		installationtemplate.Setup,
 		installationtemplatepartitionscheme.Setup,
 		installationtemplatepartitionschemehardwareraid.Setup,
