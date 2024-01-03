@@ -90,30 +90,17 @@ linters-settings:
     range-loops: true # Report preallocation suggestions on range loops, true by default
     for-loops: false # Report preallocation suggestions on for loops, false by default
 
-  gocritic:
-    # Enable multiple checks by tags, run `GL_DEBUG=gocritic golangci-lint` run to see all tags and checks.
-    # Empty list by default. See https://github.com/go-critic/go-critic#usage -> section "Tags".
-    enabled-tags:
-      - performance
-
-    settings: # settings passed to gocritic
-      captLocal: # must be valid enabled check name
-        paramsOnly: true
-      rangeValCopy:
-        sizeThreshold: 32
 
 linters:
   enable:
     - megacheck
     - govet
     - gocyclo
-    - gocritic
     - interfacer
     - goconst
     - goimports
     - gofmt  # We enable this as well as goimports for its simplify mode.
     - prealloc
-    - golint
     - unconvert
     - misspell
     - nakedret
@@ -193,3 +180,6 @@ issues:
 
   # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
   max-same-issues: 0
+
+service:
+  golangci-lint-version: 1.52.2
