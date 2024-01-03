@@ -24,6 +24,7 @@ import (
 	v1alpha1lb "github.com/edixos/provider-ovh/apis/lb/v1alpha1"
 	v1alpha1logs "github.com/edixos/provider-ovh/apis/logs/v1alpha1"
 	v1alpha1publiccloudnetwork "github.com/edixos/provider-ovh/apis/publiccloudnetwork/v1alpha1"
+	v1alpha1registry "github.com/edixos/provider-ovh/apis/registry/v1alpha1"
 	v1alpha1apis "github.com/edixos/provider-ovh/apis/v1alpha1"
 	v1beta1 "github.com/edixos/provider-ovh/apis/v1beta1"
 	v1alpha1vminstances "github.com/edixos/provider-ovh/apis/vminstances/v1alpha1"
@@ -42,6 +43,7 @@ func init() {
 		v1alpha1lb.SchemeBuilder.AddToScheme,
 		v1alpha1logs.SchemeBuilder.AddToScheme,
 		v1alpha1publiccloudnetwork.SchemeBuilder.AddToScheme,
+		v1alpha1registry.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1alpha1vminstances.SchemeBuilder.AddToScheme,

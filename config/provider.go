@@ -8,6 +8,8 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/edixos/provider-ovh/config/registry"
+
 	"github.com/edixos/provider-ovh/config/kube"
 
 	"github.com/edixos/provider-ovh/config/databases"
@@ -65,6 +67,7 @@ func GetProvider() *ujconfig.Provider {
 		logs.Configure,
 		databases.Configure,
 		kube.Configure,
+		registry.Configure,
 	} {
 		configure(pc)
 	}

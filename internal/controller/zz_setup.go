@@ -70,6 +70,9 @@ import (
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
+	projectcontainerregistry "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistry"
+	projectcontainerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryoidc"
+	projectcontainerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryuser"
 	projectworkflowbackup "github.com/edixos/provider-ovh/internal/controller/vminstances/projectworkflowbackup"
 )
 
@@ -138,6 +141,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,
+		projectcontainerregistry.Setup,
+		projectcontainerregistryoidc.Setup,
+		projectcontainerregistryuser.Setup,
 		projectworkflowbackup.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
