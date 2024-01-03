@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectnetworkprivates.publiccloudnetwork.ovh.edixos.io
+  name: nashapartitions.nas.ovh.edixos.io
 spec:
-  group: publiccloudnetwork.ovh.edixos.io
+  group: nas.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ProjectNetworkPrivate
-    listKind: ProjectNetworkPrivateList
-    plural: projectnetworkprivates
-    singular: projectnetworkprivate
+    kind: NashaPartition
+    listKind: NashaPartitionList
+    plural: nashapartitions
+    singular: nashapartition
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectNetworkPrivate is the Schema for the ProjectNetworkPrivates
-          API. <no value>
+        description: NashaPartition is the Schema for the NashaPartitions API. <no
+          value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectNetworkPrivateSpec defines the desired state of ProjectNetworkPrivate
+            description: NashaPartitionSpec defines the desired state of NashaPartition
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,15 +67,13 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  regions:
-                    items:
-                      type: string
-                    type: array
-                  serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                  description:
                     type: string
-                  vlanId:
+                  protocol:
+                    type: string
+                  serviceName:
+                    type: string
+                  size:
                     type: number
                 type: object
               initProvider:
@@ -90,15 +88,13 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  regions:
-                    items:
-                      type: string
-                    type: array
-                  serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                  description:
                     type: string
-                  vlanId:
+                  protocol:
+                    type: string
+                  serviceName:
+                    type: string
+                  size:
                     type: number
                 type: object
               managementPolicies:
@@ -262,51 +258,36 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: spec.forProvider.protocol is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.protocol)
+                || (has(self.initProvider) && has(self.initProvider.protocol))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
+            - message: spec.forProvider.size is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.size)
+                || (has(self.initProvider) && has(self.initProvider.size))'
           status:
-            description: ProjectNetworkPrivateStatus defines the observed state of
-              ProjectNetworkPrivate.
+            description: NashaPartitionStatus defines the observed state of NashaPartition.
             properties:
               atProvider:
                 properties:
+                  capacity:
+                    type: number
+                  description:
+                    type: string
                   id:
                     type: string
-                  regions:
-                    items:
-                      type: string
-                    type: array
-                  regionsAttributes:
-                    items:
-                      properties:
-                        openstackid:
-                          type: string
-                        region:
-                          type: string
-                        status:
-                          type: string
-                      type: object
-                    type: array
-                  regionsStatus:
-                    items:
-                      properties:
-                        region:
-                          type: string
-                        status:
-                          type: string
-                      type: object
-                    type: array
+                  protocol:
+                    type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
                     type: string
-                  status:
-                    type: string
-                  type:
-                    type: string
-                  vlanId:
+                  size:
+                    type: number
+                  usedBySnapshots:
                     type: number
                 type: object
               conditions:

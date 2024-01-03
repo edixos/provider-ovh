@@ -67,9 +67,12 @@ import (
 	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
 	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
 	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
+	nashapartition "github.com/edixos/provider-ovh/internal/controller/nas/nashapartition"
+	nashapartitionaccess "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionaccess"
+	nashapartitionsnapshot "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionsnapshot"
+	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/pcn/projectnetworkprivate"
+	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/pcn/projectnetworkprivatesubnet"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
-	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
-	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
 	projectcontainerregistry "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistry"
 	projectcontainerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryoidc"
 	projectcontainerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryuser"
@@ -138,9 +141,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vracknetwork.Setup,
 		logscluster.Setup,
 		logsinput.Setup,
-		providerconfig.Setup,
+		nashapartition.Setup,
+		nashapartitionaccess.Setup,
+		nashapartitionsnapshot.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,
+		providerconfig.Setup,
 		projectcontainerregistry.Setup,
 		projectcontainerregistryoidc.Setup,
 		projectcontainerregistryuser.Setup,
