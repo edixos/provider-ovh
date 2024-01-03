@@ -33,6 +33,19 @@ import (
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
+	httpfarm "github.com/edixos/provider-ovh/internal/controller/lb/httpfarm"
+	httpfarmserver "github.com/edixos/provider-ovh/internal/controller/lb/httpfarmserver"
+	httpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/httpfrontend"
+	httproute "github.com/edixos/provider-ovh/internal/controller/lb/httproute"
+	httprouterule "github.com/edixos/provider-ovh/internal/controller/lb/httprouterule"
+	iploadbalancing "github.com/edixos/provider-ovh/internal/controller/lb/iploadbalancing"
+	refresh "github.com/edixos/provider-ovh/internal/controller/lb/refresh"
+	tcpfarm "github.com/edixos/provider-ovh/internal/controller/lb/tcpfarm"
+	tcpfarmserver "github.com/edixos/provider-ovh/internal/controller/lb/tcpfarmserver"
+	tcpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/tcpfrontend"
+	tcproute "github.com/edixos/provider-ovh/internal/controller/lb/tcproute"
+	tcprouterule "github.com/edixos/provider-ovh/internal/controller/lb/tcprouterule"
+	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
@@ -67,6 +80,19 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zone.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
+		httpfarm.Setup,
+		httpfarmserver.Setup,
+		httpfrontend.Setup,
+		httproute.Setup,
+		httprouterule.Setup,
+		iploadbalancing.Setup,
+		refresh.Setup,
+		tcpfarm.Setup,
+		tcpfarmserver.Setup,
+		tcpfrontend.Setup,
+		tcproute.Setup,
+		tcprouterule.Setup,
+		vracknetwork.Setup,
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,

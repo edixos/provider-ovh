@@ -37,6 +37,19 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_domain_zone":                                             config.NameAsIdentifier,
 	"ovh_domain_zone_record":                                      config.NameAsIdentifier,
 	"ovh_domain_zone_redirection":                                 config.NameAsIdentifier,
+	"ovh_iploadbalancing":                                         config.NameAsIdentifier,
+	"ovh_iploadbalancing_http_farm":                               config.NameAsIdentifier,
+	"ovh_iploadbalancing_http_farm_server":                        config.NameAsIdentifier,
+	"ovh_iploadbalancing_http_frontend":                           config.NameAsIdentifier,
+	"ovh_iploadbalancing_http_route":                              config.NameAsIdentifier,
+	"ovh_iploadbalancing_http_route_rule":                         config.NameAsIdentifier,
+	"ovh_iploadbalancing_refresh":                                 config.NameAsIdentifier,
+	"ovh_iploadbalancing_tcp_farm":                                config.NameAsIdentifier,
+	"ovh_iploadbalancing_tcp_farm_server":                         config.NameAsIdentifier,
+	"ovh_iploadbalancing_tcp_frontend":                            config.NameAsIdentifier,
+	"ovh_iploadbalancing_tcp_route":                               config.NameAsIdentifier,
+	"ovh_iploadbalancing_tcp_route_rule":                          config.NameAsIdentifier,
+	"ovh_iploadbalancing_vrack_network":                           config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

@@ -19,6 +19,7 @@ import (
 	v1alpha1clouddiskarray "github.com/edixos/provider-ovh/apis/clouddiskarray/v1alpha1"
 	v1alpha1dedicatedserver "github.com/edixos/provider-ovh/apis/dedicatedserver/v1alpha1"
 	v1alpha1dns "github.com/edixos/provider-ovh/apis/dns/v1alpha1"
+	v1alpha1lb "github.com/edixos/provider-ovh/apis/lb/v1alpha1"
 	v1alpha1publiccloudnetwork "github.com/edixos/provider-ovh/apis/publiccloudnetwork/v1alpha1"
 	v1alpha1apis "github.com/edixos/provider-ovh/apis/v1alpha1"
 	v1beta1 "github.com/edixos/provider-ovh/apis/v1beta1"
@@ -33,6 +34,7 @@ func init() {
 		v1alpha1clouddiskarray.SchemeBuilder.AddToScheme,
 		v1alpha1dedicatedserver.SchemeBuilder.AddToScheme,
 		v1alpha1dns.SchemeBuilder.AddToScheme,
+		v1alpha1lb.SchemeBuilder.AddToScheme,
 		v1alpha1publiccloudnetwork.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
