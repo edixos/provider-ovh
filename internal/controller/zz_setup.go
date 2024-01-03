@@ -72,11 +72,23 @@ import (
 	nashapartitionsnapshot "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionsnapshot"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/pcn/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/pcn/projectnetworkprivatesubnet"
+	privatedatabase "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabase"
+	privatedatabasedatabase "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabasedatabase"
+	privatedatabaseuser "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabaseuser"
+	privatedatabaseusergrant "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabaseusergrant"
+	privatedatabasewhitelist "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabasewhitelist"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectcontainerregistry "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistry"
 	projectcontainerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryoidc"
 	projectcontainerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryuser"
+	projectregionstoragepresign "github.com/edixos/provider-ovh/internal/controller/storage/projectregionstoragepresign"
 	projectworkflowbackup "github.com/edixos/provider-ovh/internal/controller/vminstances/projectworkflowbackup"
+	cloudproject "github.com/edixos/provider-ovh/internal/controller/vrack/cloudproject"
+	dedicatedserver "github.com/edixos/provider-ovh/internal/controller/vrack/dedicatedserver"
+	dedicatedserverinterface "github.com/edixos/provider-ovh/internal/controller/vrack/dedicatedserverinterface"
+	ip "github.com/edixos/provider-ovh/internal/controller/vrack/ip"
+	iploadbalancingvrack "github.com/edixos/provider-ovh/internal/controller/vrack/iploadbalancing"
+	vrack "github.com/edixos/provider-ovh/internal/controller/vrack/vrack"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -146,11 +158,23 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		nashapartitionsnapshot.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,
+		privatedatabase.Setup,
+		privatedatabasedatabase.Setup,
+		privatedatabaseuser.Setup,
+		privatedatabaseusergrant.Setup,
+		privatedatabasewhitelist.Setup,
 		providerconfig.Setup,
 		projectcontainerregistry.Setup,
 		projectcontainerregistryoidc.Setup,
 		projectcontainerregistryuser.Setup,
+		projectregionstoragepresign.Setup,
 		projectworkflowbackup.Setup,
+		cloudproject.Setup,
+		dedicatedserver.Setup,
+		dedicatedserverinterface.Setup,
+		ip.Setup,
+		iploadbalancingvrack.Setup,
+		vrack.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

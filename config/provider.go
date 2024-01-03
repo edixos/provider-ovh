@@ -8,6 +8,12 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/edixos/provider-ovh/config/vrack"
+
+	"github.com/edixos/provider-ovh/config/web_cloud_private_sql"
+
+	"github.com/edixos/provider-ovh/config/object_storage"
+
 	"github.com/edixos/provider-ovh/config/nas"
 
 	"github.com/edixos/provider-ovh/config/registry"
@@ -71,6 +77,9 @@ func GetProvider() *ujconfig.Provider {
 		kube.Configure,
 		registry.Configure,
 		nas.Configure,
+		object_storage.Configure,
+		web_cloud_private_sql.Configure,
+		vrack.Configure,
 	} {
 		configure(pc)
 	}

@@ -78,6 +78,18 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_dedicated_nasha_partition":                               config.NameAsIdentifier,
 	"ovh_dedicated_nasha_partition_access":                        config.NameAsIdentifier,
 	"ovh_dedicated_nasha_partition_snapshot":                      config.NameAsIdentifier,
+	"ovh_cloud_project_region_storage_presign":                    config.NameAsIdentifier,
+	"ovh_hosting_privatedatabase":                                 config.NameAsIdentifier,
+	"ovh_hosting_privatedatabase_database":                        config.NameAsIdentifier,
+	"ovh_hosting_privatedatabase_user":                            config.NameAsIdentifier,
+	"ovh_hosting_privatedatabase_user_grant":                      config.NameAsIdentifier,
+	"ovh_hosting_privatedatabase_whitelist":                       config.NameAsIdentifier,
+	"ovh_vrack":                                                   config.NameAsIdentifier,
+	"ovh_vrack_cloudproject":                                      config.NameAsIdentifier,
+	"ovh_vrack_dedicated_server":                                  config.NameAsIdentifier,
+	"ovh_vrack_dedicated_server_interface":                        config.NameAsIdentifier,
+	"ovh_vrack_ip":                                                config.NameAsIdentifier,
+	"ovh_vrack_iploadbalancing":                                   config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
