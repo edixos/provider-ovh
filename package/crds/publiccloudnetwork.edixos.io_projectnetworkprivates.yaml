@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: resources.null.template.upbound.io
+  name: projectnetworkprivates.publiccloudnetwork.edixos.io
 spec:
-  group: null.template.upbound.io
+  group: publiccloudnetwork.edixos.io
   names:
     categories:
     - crossplane
     - managed
-    - template
-    kind: Resource
-    listKind: ResourceList
-    plural: resources
-    singular: resource
+    - ovh
+    kind: ProjectNetworkPrivate
+    listKind: ProjectNetworkPrivateList
+    plural: projectnetworkprivates
+    singular: projectnetworkprivate
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,10 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Resource is the Schema for the Resources API. The null_resource
-          resource implements the standard resource lifecycle but takes no further
-          action. The triggers argument allows specifying an arbitrary set of values
-          that, when changed, will cause the resource to be replaced.
+        description: ProjectNetworkPrivate is the Schema for the ProjectNetworkPrivates
+          API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -52,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ResourceSpec defines the desired state of Resource
+            description: ProjectNetworkPrivateSpec defines the desired state of ProjectNetworkPrivate
             properties:
               deletionPolicy:
                 default: Delete
@@ -69,13 +67,16 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  triggers:
-                    additionalProperties:
+                  regions:
+                    items:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
-                    type: object
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project.
+                    type: string
+                  vlanId:
+                    type: number
                 type: object
               initProvider:
                 description: THIS IS A BETA FIELD. It will be honored unless the Management
@@ -89,13 +90,16 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  triggers:
-                    additionalProperties:
+                  regions:
+                    items:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
-                    type: object
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project.
+                    type: string
+                  vlanId:
+                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -257,20 +261,53 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.serviceName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
+                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ResourceStatus defines the observed state of Resource.
+            description: ProjectNetworkPrivateStatus defines the observed state of
+              ProjectNetworkPrivate.
             properties:
               atProvider:
                 properties:
                   id:
                     type: string
-                  triggers:
-                    additionalProperties:
+                  regions:
+                    items:
                       type: string
-                    description: A map of arbitrary strings that, when changed, will
-                      force the null resource to be replaced, re-running any associated
-                      provisioners.
-                    type: object
+                    type: array
+                  regionsAttributes:
+                    items:
+                      properties:
+                        openstackid:
+                          type: string
+                        region:
+                          type: string
+                        status:
+                          type: string
+                      type: object
+                    type: array
+                  regionsStatus:
+                    items:
+                      properties:
+                        region:
+                          type: string
+                        status:
+                          type: string
+                      type: object
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project.
+                    type: string
+                  status:
+                    type: string
+                  type:
+                    type: string
+                  vlanId:
+                    type: number
                 type: object
               conditions:
                 description: Conditions of the resource.

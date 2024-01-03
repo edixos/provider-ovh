@@ -1,0 +1,13 @@
+apiVersion: networkprivate.edixos.io/v1alpha1
+kind: ProjectNetworkPrivate
+metadata:
+  name: sample-1
+  labels:
+    managed-by: crossplane
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    regions:
+      - DE1
