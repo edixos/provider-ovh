@@ -11,6 +11,7 @@ import (
 
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
+	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -19,6 +20,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
+		projectnetworkprivatesubnet.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

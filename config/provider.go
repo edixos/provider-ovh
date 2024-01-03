@@ -7,6 +7,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+
 	"github.com/edixos/provider-ovh/config/public_cloud_network"
 
 	ujconfig "github.com/crossplane/upjet/pkg/config"

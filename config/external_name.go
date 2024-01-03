@@ -10,7 +10,8 @@ import "github.com/crossplane/upjet/pkg/config"
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"ovh_cloud_project_network_private": config.NameAsIdentifier,
+	"ovh_cloud_project_network_private":        config.NameAsIdentifier,
+	"ovh_cloud_project_network_private_subnet": config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
