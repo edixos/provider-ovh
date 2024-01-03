@@ -1,4 +1,4 @@
-apiVersion: networkprivate.edixos.io/v1alpha1
+apiVersion: publiccloudnetwork.edixos.io/v1alpha1
 kind: ProjectNetworkPrivate
 metadata:
   name: sample-1
