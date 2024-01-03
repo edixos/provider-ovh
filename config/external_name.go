@@ -68,6 +68,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_database_postgresql_user":                  config.NameAsIdentifier,
 	"ovh_cloud_project_database_redis_user":                       config.NameAsIdentifier,
 	"ovh_cloud_project_database_user":                             config.NameAsIdentifier,
+	"ovh_cloud_project_kube":                                      config.NameAsIdentifier,
+	"ovh_cloud_project_kube_iprestrictions":                       config.NameAsIdentifier,
+	"ovh_cloud_project_kube_nodepool":                             config.NameAsIdentifier,
+	"ovh_cloud_project_kube_oidc":                                 config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
