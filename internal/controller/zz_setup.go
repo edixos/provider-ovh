@@ -21,6 +21,15 @@ import (
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
 	cephacl "github.com/edixos/provider-ovh/internal/controller/clouddiskarray/cephacl"
+	installationtemplate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplate"
+	installationtemplatepartitionscheme "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionscheme"
+	installationtemplatepartitionschemehardwareraid "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemehardwareraid"
+	installationtemplatepartitionschemepartition "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemepartition"
+	ipxescript "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/ipxescript"
+	serverinstalltask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverinstalltask"
+	servernetworking "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/servernetworking"
+	serverreboottask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverreboottask"
+	serverupdate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverupdate"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
@@ -43,6 +52,15 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		reverse.Setup,
 		service.Setup,
 		cephacl.Setup,
+		installationtemplate.Setup,
+		installationtemplatepartitionscheme.Setup,
+		installationtemplatepartitionschemehardwareraid.Setup,
+		installationtemplatepartitionschemepartition.Setup,
+		ipxescript.Setup,
+		serverinstalltask.Setup,
+		servernetworking.Setup,
+		serverreboottask.Setup,
+		serverupdate.Setup,
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,

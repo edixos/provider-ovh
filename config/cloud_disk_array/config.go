@@ -7,5 +7,4 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_dedicated_ceph_acl", func(r *config.Resource) {
 		r.ShortGroup = "clouddiskarray"
 	})
-
 }
