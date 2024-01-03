@@ -30,6 +30,9 @@ import (
 	servernetworking "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/servernetworking"
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverreboottask"
 	serverupdate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverupdate"
+	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
+	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
+	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
@@ -61,6 +64,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		servernetworking.Setup,
 		serverreboottask.Setup,
 		serverupdate.Setup,
+		zone.Setup,
+		zonerecord.Setup,
+		zoneredirection.Setup,
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,

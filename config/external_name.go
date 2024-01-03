@@ -34,6 +34,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_me_installation_template_partition_scheme_partition":     config.NameAsIdentifier,
 	"ovh_me_ipxe_script":                                          config.NameAsIdentifier,
 	"ovh_dedicated_server_networking":                             config.NameAsIdentifier,
+	"ovh_domain_zone":                                             config.NameAsIdentifier,
+	"ovh_domain_zone_record":                                      config.NameAsIdentifier,
+	"ovh_domain_zone_redirection":                                 config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
