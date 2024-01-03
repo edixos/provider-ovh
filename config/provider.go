@@ -8,6 +8,8 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/edixos/provider-ovh/config/logs"
+
 	"github.com/edixos/provider-ovh/config/lb"
 
 	"github.com/edixos/provider-ovh/config/dns"
@@ -56,6 +58,7 @@ func GetProvider() *ujconfig.Provider {
 		dedicated_server.Configure,
 		dns.Configure,
 		lb.Configure,
+		logs.Configure,
 	} {
 		configure(pc)
 	}

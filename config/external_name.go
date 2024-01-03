@@ -50,6 +50,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_iploadbalancing_tcp_route":                               config.NameAsIdentifier,
 	"ovh_iploadbalancing_tcp_route_rule":                          config.NameAsIdentifier,
 	"ovh_iploadbalancing_vrack_network":                           config.NameAsIdentifier,
+	"ovh_dbaas_logs_cluster":                                      config.NameAsIdentifier,
+	"ovh_dbaas_logs_graylog_output_stream":                        config.NameAsIdentifier,
+	"ovh_dbaas_logs_input":                                        config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

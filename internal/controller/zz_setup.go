@@ -46,6 +46,8 @@ import (
 	tcproute "github.com/edixos/provider-ovh/internal/controller/lb/tcproute"
 	tcprouterule "github.com/edixos/provider-ovh/internal/controller/lb/tcprouterule"
 	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
+	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
+	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	projectnetworkprivate "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivate"
 	projectnetworkprivatesubnet "github.com/edixos/provider-ovh/internal/controller/publiccloudnetwork/projectnetworkprivatesubnet"
@@ -93,6 +95,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		tcproute.Setup,
 		tcprouterule.Setup,
 		vracknetwork.Setup,
+		logscluster.Setup,
+		logsinput.Setup,
 		providerconfig.Setup,
 		projectnetworkprivate.Setup,
 		projectnetworkprivatesubnet.Setup,
