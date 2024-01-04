@@ -2,3 +2,15 @@ apiVersion: meta.pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-ovh
+  annotations:
+    meta.crossplane.io/description: Crossplane Provider for OVH Cloud
+    meta.crossplane.io/license: Apache-2.0
+    meta.crossplane.io/maintainer: Edixos Maintainers
+    meta.crossplane.io/source: github.com/edixos/provider-ovh
+    meta.crossplane.io/readme: |
+      `provider-ovh` is the Crossplane infrastructure provider for [OVH Cloud](https://ovh.com/).
+      
+      If you encounter an issue please create an issue in
+      the
+      [Aviatrix/crossplane-provider-aviatrix](https://github.com/edixos/provider-ovh)
+      repo.
