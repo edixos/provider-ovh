@@ -140,6 +140,8 @@ spec:
                     type: array
                   kubeProxyMode:
                     type: string
+                  name:
+                    type: string
                   privateNetworkConfiguration:
                     items:
                       properties:
@@ -251,6 +253,8 @@ spec:
                       type: object
                     type: array
                   kubeProxyMode:
+                    type: string
+                  name:
                     type: string
                   privateNetworkConfiguration:
                     items:
@@ -531,6 +535,8 @@ spec:
                   isUpToDate:
                     type: boolean
                   kubeProxyMode:
+                    type: string
+                  name:
                     type: string
                   nextUpgradeVersions:
                     items:

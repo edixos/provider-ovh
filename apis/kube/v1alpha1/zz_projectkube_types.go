@@ -246,6 +246,8 @@ type ProjectKubeInitParameters struct {
 
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
 
 	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
@@ -273,6 +275,8 @@ type ProjectKubeObservation struct {
 	IsUpToDate *bool `json:"isUpToDate,omitempty" tf:"is_up_to_date,omitempty"`
 
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
+
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	NextUpgradeVersions []*string `json:"nextUpgradeVersions,omitempty" tf:"next_upgrade_versions,omitempty"`
 
@@ -308,6 +312,9 @@ type ProjectKubeParameters struct {
 
 	// +kubebuilder:validation:Optional
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`

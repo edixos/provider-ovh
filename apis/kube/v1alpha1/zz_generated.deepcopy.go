@@ -9,6 +9,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
+	"github.com/crossplane/crossplane-runtime/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -1099,6 +1100,11 @@ func (in *ProjectKubeInitParameters) DeepCopyInto(out *ProjectKubeInitParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PrivateNetworkConfiguration != nil {
 		in, out := &in.PrivateNetworkConfiguration, &out.PrivateNetworkConfiguration
 		*out = make([]PrivateNetworkConfigurationInitParameters, len(*in))
@@ -1183,11 +1189,6 @@ func (in *ProjectKubeIprestrictionsInitParameters) DeepCopyInto(out *ProjectKube
 				**out = **in
 			}
 		}
-	}
-	if in.KubeID != nil {
-		in, out := &in.KubeID, &out.KubeID
-		*out = new(string)
-		**out = **in
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
@@ -1297,6 +1298,16 @@ func (in *ProjectKubeIprestrictionsParameters) DeepCopyInto(out *ProjectKubeIpre
 		in, out := &in.KubeID, &out.KubeID
 		*out = new(string)
 		**out = **in
+	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
@@ -1429,11 +1440,6 @@ func (in *ProjectKubeNodepoolInitParameters) DeepCopyInto(out *ProjectKubeNodepo
 	}
 	if in.FlavorName != nil {
 		in, out := &in.FlavorName, &out.FlavorName
-		*out = new(string)
-		**out = **in
-	}
-	if in.KubeID != nil {
-		in, out := &in.KubeID, &out.KubeID
 		*out = new(string)
 		**out = **in
 	}
@@ -1653,6 +1659,16 @@ func (in *ProjectKubeNodepoolParameters) DeepCopyInto(out *ProjectKubeNodepoolPa
 		*out = new(string)
 		**out = **in
 	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.MaxNodes != nil {
 		in, out := &in.MaxNodes, &out.MaxNodes
 		*out = new(float64)
@@ -1771,6 +1787,11 @@ func (in *ProjectKubeObservation) DeepCopyInto(out *ProjectKubeObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NextUpgradeVersions != nil {
 		in, out := &in.NextUpgradeVersions, &out.NextUpgradeVersions
 		*out = make([]*string, len(*in))
@@ -1878,11 +1899,6 @@ func (in *ProjectKubeOidcInitParameters) DeepCopyInto(out *ProjectKubeOidcInitPa
 	}
 	if in.IssuerURL != nil {
 		in, out := &in.IssuerURL, &out.IssuerURL
-		*out = new(string)
-		**out = **in
-	}
-	if in.KubeID != nil {
-		in, out := &in.KubeID, &out.KubeID
 		*out = new(string)
 		**out = **in
 	}
@@ -2099,6 +2115,16 @@ func (in *ProjectKubeOidcParameters) DeepCopyInto(out *ProjectKubeOidcParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.OidcCAContent != nil {
 		in, out := &in.OidcCAContent, &out.OidcCAContent
 		*out = new(string)
@@ -2230,6 +2256,11 @@ func (in *ProjectKubeParameters) DeepCopyInto(out *ProjectKubeParameters) {
 	}
 	if in.KubeProxyMode != nil {
 		in, out := &in.KubeProxyMode, &out.KubeProxyMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

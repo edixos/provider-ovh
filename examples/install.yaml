@@ -3,4 +3,21 @@ kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: edixos/provider-ovh:v0.1.0
+  package: xpkg.upbound.io/edixos/provider-ovh:v0.1.0
+  runtimeConfigRef:
+    name: provider-ovh
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
+metadata:
+  name: provider-ovh
+spec:
+  deploymentTemplate:
+    spec:
+      selector: {}
+      template:
+        spec:
+          containers:
+            - name: package-runtime
+              args:
+                - --debug

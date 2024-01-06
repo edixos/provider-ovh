@@ -70,9 +70,6 @@ type ProjectKubeNodepoolInitParameters struct {
 	// Flavor name
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
-	// Kube ID
-	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
-
 	// Number of nodes you desire in the pool
 	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
@@ -170,8 +167,17 @@ type ProjectKubeNodepoolParameters struct {
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
 	// Kube ID
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.ProjectKube
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
+
+	// Reference to a ProjectKube in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
+
+	// Selector for a ProjectKube in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
@@ -288,7 +294,6 @@ type ProjectKubeNodepool struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.flavorName) || (has(self.initProvider) && has(self.initProvider.flavorName))",message="spec.forProvider.flavorName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.kubeId) || (has(self.initProvider) && has(self.initProvider.kubeId))",message="spec.forProvider.kubeId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectKubeNodepoolSpec   `json:"spec"`
 	Status ProjectKubeNodepoolStatus `json:"status,omitempty"`
