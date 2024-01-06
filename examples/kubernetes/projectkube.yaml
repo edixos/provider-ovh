@@ -1,0 +1,12 @@
+apiVersion: kube.ovh.edixos.io/v1alpha1
+kind: ProjectKube
+metadata:
+  name: hello-edixos
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: "hello-edixos"
+    region: DE1
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    version: "1.28"

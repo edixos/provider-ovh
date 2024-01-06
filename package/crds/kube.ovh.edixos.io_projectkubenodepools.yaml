@@ -82,6 +82,79 @@ spec:
                   kubeId:
                     description: Kube ID
                     type: string
+                  kubeIdRef:
+                    description: Reference to a ProjectKube in kube to populate kubeId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  kubeIdSelector:
+                    description: Selector for a ProjectKube in kube to populate kubeId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   maxNodes:
                     description: Number of nodes you desire in the pool
                     type: number
@@ -91,6 +164,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   serviceName:
                     description: Service name
                     type: string
@@ -162,9 +238,6 @@ spec:
                   flavorName:
                     description: Flavor name
                     type: string
-                  kubeId:
-                    description: Kube ID
-                    type: string
                   maxNodes:
                     description: Number of nodes you desire in the pool
                     type: number
@@ -174,6 +247,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   serviceName:
                     description: Service name
                     type: string
@@ -386,10 +462,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.flavorName)
                 || (has(self.initProvider) && has(self.initProvider.flavorName))'
-            - message: spec.forProvider.kubeId is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.kubeId)
-                || (has(self.initProvider) && has(self.initProvider.kubeId))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
@@ -437,6 +509,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   projectId:
                     description: Project id
                     type: string

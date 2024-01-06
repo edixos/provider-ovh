@@ -22,8 +22,6 @@ type ProjectKubeOidcInitParameters struct {
 
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
-	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
-
 	OidcCAContent *string `json:"oidcCaContent,omitempty" tf:"oidc_ca_content,omitempty"`
 
 	OidcGroupsClaim []*string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
@@ -75,8 +73,17 @@ type ProjectKubeOidcParameters struct {
 	// +kubebuilder:validation:Optional
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.ProjectKube
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
+
+	// Reference to a ProjectKube in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
+
+	// Selector for a ProjectKube in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	OidcCAContent *string `json:"oidcCaContent,omitempty" tf:"oidc_ca_content,omitempty"`
@@ -140,7 +147,6 @@ type ProjectKubeOidc struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clientId) || (has(self.initProvider) && has(self.initProvider.clientId))",message="spec.forProvider.clientId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.issuerUrl) || (has(self.initProvider) && has(self.initProvider.issuerUrl))",message="spec.forProvider.issuerUrl is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.kubeId) || (has(self.initProvider) && has(self.initProvider.kubeId))",message="spec.forProvider.kubeId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectKubeOidcSpec   `json:"spec"`
 	Status ProjectKubeOidcStatus `json:"status,omitempty"`

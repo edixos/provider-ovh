@@ -4,7 +4,69 @@ Copyright 2022 Upbound Inc.
 
 package config
 
-import "github.com/crossplane/upjet/pkg/config"
+import (
+	"context"
+	"fmt"
+
+	"github.com/crossplane/crossplane-runtime/pkg/errors"
+	"github.com/crossplane/upjet/pkg/config"
+)
+
+const (
+	// ErrFmtNoAttribute is an error string for not-found attributes
+	ErrFmtNoAttribute = `"attribute not found: %s`
+	// ErrFmtUnexpectedType is an error string for attribute map values of unexpected type
+	ErrFmtUnexpectedType = `unexpected type for attribute %s: Expecting a string`
+)
+
+func serviceName(parameters map[string]any) (string, error) {
+	serviceName, ok := parameters["service_name"]
+	if !ok {
+		return "", errors.Errorf(ErrFmtNoAttribute, "service_name")
+	}
+	serviceNameStr, ok := serviceName.(string)
+	if !ok {
+		return "", errors.Errorf(ErrFmtUnexpectedType, "service_name")
+	}
+	return serviceNameStr, nil
+}
+
+var kubePoolIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		kubeID, ok := parameters["kube_id"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "kube_id")
+		}
+		kubeIDStr, ok := kubeID.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "kube_id")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, kubeIDStr, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var kubeIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
 
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
@@ -68,9 +130,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_database_postgresql_user":                  config.NameAsIdentifier,
 	"ovh_cloud_project_database_redis_user":                       config.NameAsIdentifier,
 	"ovh_cloud_project_database_user":                             config.NameAsIdentifier,
-	"ovh_cloud_project_kube":                                      config.NameAsIdentifier,
-	"ovh_cloud_project_kube_iprestrictions":                       config.NameAsIdentifier,
-	"ovh_cloud_project_kube_nodepool":                             config.NameAsIdentifier,
+	"ovh_cloud_project_kube":                                      kubeIdentifierFromProvider,
+	"ovh_cloud_project_kube_iprestrictions":                       kubeIdentifierFromProvider,
+	"ovh_cloud_project_kube_nodepool":                             kubePoolIdentifierFromProvider,
 	"ovh_cloud_project_kube_oidc":                                 config.NameAsIdentifier,
 	"ovh_cloud_project_containerregistry":                         config.NameAsIdentifier,
 	"ovh_cloud_project_containerregistry_oidc":                    config.NameAsIdentifier,

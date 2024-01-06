@@ -11,5 +11,4 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_region_storage_presign", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
-
 }
