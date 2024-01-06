@@ -7,6 +7,7 @@ package config
 import (
 	"context"
 	"fmt"
+
 	"github.com/crossplane/crossplane-runtime/pkg/errors"
 	"github.com/crossplane/upjet/pkg/config"
 )
@@ -28,6 +29,29 @@ func serviceName(parameters map[string]any) (string, error) {
 		return "", errors.Errorf(ErrFmtUnexpectedType, "service_name")
 	}
 	return serviceNameStr, nil
+}
+
+var kubePoolIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		kubeID, ok := parameters["kube_id"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "kube_id")
+		}
+		kubeIDStr, ok := kubeID.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "kube_id")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, kubeIDStr, externalName), nil
+	},
+	DisableNameInitializer: true,
 }
 
 var kubeIdentifierFromProvider = config.ExternalName{
@@ -108,7 +132,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_database_user":                             config.NameAsIdentifier,
 	"ovh_cloud_project_kube":                                      kubeIdentifierFromProvider,
 	"ovh_cloud_project_kube_iprestrictions":                       kubeIdentifierFromProvider,
-	"ovh_cloud_project_kube_nodepool":                             config.NameAsIdentifier,
+	"ovh_cloud_project_kube_nodepool":                             kubePoolIdentifierFromProvider,
 	"ovh_cloud_project_kube_oidc":                                 config.NameAsIdentifier,
 	"ovh_cloud_project_containerregistry":                         config.NameAsIdentifier,
 	"ovh_cloud_project_containerregistry_oidc":                    config.NameAsIdentifier,

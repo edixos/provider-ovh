@@ -79,6 +79,9 @@ type ProjectKubeNodepoolInitParameters struct {
 	// Enable monthly billing on all nodes in the pool
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
 
+	// NodePool resource name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -125,6 +128,9 @@ type ProjectKubeNodepoolObservation struct {
 
 	// Enable monthly billing on all nodes in the pool
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
+
+	// NodePool resource name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Project id
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -190,6 +196,10 @@ type ProjectKubeNodepoolParameters struct {
 	// Enable monthly billing on all nodes in the pool
 	// +kubebuilder:validation:Optional
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
+
+	// NodePool resource name
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Service name
 	// +kubebuilder:validation:Optional

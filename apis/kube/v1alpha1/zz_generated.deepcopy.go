@@ -1458,6 +1458,11 @@ func (in *ProjectKubeNodepoolInitParameters) DeepCopyInto(out *ProjectKubeNodepo
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -1582,6 +1587,11 @@ func (in *ProjectKubeNodepoolObservation) DeepCopyInto(out *ProjectKubeNodepoolO
 		*out = new(bool)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
@@ -1682,6 +1692,11 @@ func (in *ProjectKubeNodepoolParameters) DeepCopyInto(out *ProjectKubeNodepoolPa
 	if in.MonthlyBilled != nil {
 		in, out := &in.MonthlyBilled, &out.MonthlyBilled
 		*out = new(bool)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
 		**out = **in
 	}
 	if in.ServiceName != nil {

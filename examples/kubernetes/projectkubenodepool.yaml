@@ -1,5 +1,5 @@
 apiVersion: kube.ovh.edixos.io/v1alpha1
-kind: ProjectKubeIprestrictions
+kind: ProjectKubeNodepool
 metadata:
   name: hello-edixos
 spec:
@@ -7,7 +7,11 @@ spec:
     name: default
   forProvider:
     serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
-    ips:
-      - 86.245.54.92/32
+    name: hello-crossplane
+    flavorName: b2-7
+    desiredNodes: 1
+    maxNodes: 1
+    minNodes: 1
+    monthlyBilled: false
     kubeIdRef:
       name: hello-edixos

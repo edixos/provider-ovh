@@ -164,6 +164,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   serviceName:
                     description: Service name
                     type: string
@@ -244,6 +247,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   serviceName:
                     description: Service name
                     type: string
@@ -503,6 +509,9 @@ spec:
                   monthlyBilled:
                     description: Enable monthly billing on all nodes in the pool
                     type: boolean
+                  name:
+                    description: NodePool resource name
+                    type: string
                   projectId:
                     description: Project id
                     type: string
