@@ -7,8 +7,8 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/pkg/resource"
 
-// GetItems of this ProjectContainerregistryList.
-func (l *ProjectContainerregistryList) GetItems() []resource.Managed {
+// GetItems of this ContainerRegistryList.
+func (l *ContainerRegistryList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -16,8 +16,8 @@ func (l *ProjectContainerregistryList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectContainerregistryOidcList.
-func (l *ProjectContainerregistryOidcList) GetItems() []resource.Managed {
+// GetItems of this ContainerRegistryOIDCList.
+func (l *ContainerRegistryOIDCList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -25,8 +25,8 @@ func (l *ProjectContainerregistryOidcList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectContainerregistryUserList.
-func (l *ProjectContainerregistryUserList) GetItems() []resource.Managed {
+// GetItems of this ContainerRegistryUserList.
+func (l *ContainerRegistryUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

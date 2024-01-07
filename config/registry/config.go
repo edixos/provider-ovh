@@ -10,11 +10,30 @@ const (
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "ContainerRegistry"
+		r.UseAsync = true
+
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_oidc", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "ContainerRegistryOIDC"
+		r.References["registry_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry",
+		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "ContainerRegistryUser"
+		r.References["registry_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry",
+		}
+		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
+			conn := map[string][]byte{}
+			if a, ok := attr["login"].(string); ok {
+				conn["login"] = []byte(a)
+			}
+			return conn, nil
+		}
 	})
+
 }

@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectcontainerregistries.registry.ovh.edixos.io
+  name: containerregistries.registry.ovh.edixos.io
 spec:
   group: registry.ovh.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: ProjectContainerregistry
-    listKind: ProjectContainerregistryList
-    plural: projectcontainerregistries
-    singular: projectcontainerregistry
+    kind: ContainerRegistry
+    listKind: ContainerRegistryList
+    plural: containerregistries
+    singular: containerregistry
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectContainerregistry is the Schema for the ProjectContainerregistrys
-          API. <no value>
+        description: ContainerRegistry is the Schema for the ContainerRegistrys API.
+          <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,8 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectContainerregistrySpec defines the desired state of
-              ProjectContainerregistry
+            description: ContainerRegistrySpec defines the desired state of ContainerRegistry
             properties:
               deletionPolicy:
                 default: Delete
@@ -68,6 +67,9 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  name:
+                    description: Registry name
+                    type: string
                   planId:
                     description: Plan ID of the registry.
                     type: string
@@ -89,6 +91,9 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
+                  name:
+                    description: Registry name
+                    type: string
                   planId:
                     description: Plan ID of the registry.
                     type: string
@@ -259,6 +264,10 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
@@ -268,8 +277,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectContainerregistryStatus defines the observed state
-              of ProjectContainerregistry.
+            description: ContainerRegistryStatus defines the observed state of ContainerRegistry.
             properties:
               atProvider:
                 properties:
@@ -277,6 +285,9 @@ spec:
                     description: Registry creation date
                     type: string
                   id:
+                    type: string
+                  name:
+                    description: Registry name
                     type: string
                   plan:
                     description: Plan of the registry
