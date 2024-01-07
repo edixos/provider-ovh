@@ -17,7 +17,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ProjectContainerregistryUserInitParameters struct {
+type ContainerRegistryUserInitParameters struct {
 
 	// User email.
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
@@ -25,14 +25,11 @@ type ProjectContainerregistryUserInitParameters struct {
 	// Registry name
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
-	// RegistryID
-	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
-
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-type ProjectContainerregistryUserObservation struct {
+type ContainerRegistryUserObservation struct {
 
 	// User email.
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
@@ -52,7 +49,7 @@ type ProjectContainerregistryUserObservation struct {
 	User *string `json:"user,omitempty" tf:"user,omitempty"`
 }
 
-type ProjectContainerregistryUserParameters struct {
+type ContainerRegistryUserParameters struct {
 
 	// User email.
 	// +kubebuilder:validation:Optional
@@ -63,18 +60,27 @@ type ProjectContainerregistryUserParameters struct {
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
 	// RegistryID
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	// +kubebuilder:validation:Optional
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+
+	// Reference to a ContainerRegistry in registry to populate registryId.
+	// +kubebuilder:validation:Optional
+	RegistryIDRef *v1.Reference `json:"registryIdRef,omitempty" tf:"-"`
+
+	// Selector for a ContainerRegistry in registry to populate registryId.
+	// +kubebuilder:validation:Optional
+	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-// ProjectContainerregistryUserSpec defines the desired state of ProjectContainerregistryUser
-type ProjectContainerregistryUserSpec struct {
+// ContainerRegistryUserSpec defines the desired state of ContainerRegistryUser
+type ContainerRegistryUserSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectContainerregistryUserParameters `json:"forProvider"`
+	ForProvider     ContainerRegistryUserParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -85,52 +91,51 @@ type ProjectContainerregistryUserSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectContainerregistryUserInitParameters `json:"initProvider,omitempty"`
+	InitProvider ContainerRegistryUserInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectContainerregistryUserStatus defines the observed state of ProjectContainerregistryUser.
-type ProjectContainerregistryUserStatus struct {
+// ContainerRegistryUserStatus defines the observed state of ContainerRegistryUser.
+type ContainerRegistryUserStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectContainerregistryUserObservation `json:"atProvider,omitempty"`
+	AtProvider        ContainerRegistryUserObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectContainerregistryUser is the Schema for the ProjectContainerregistryUsers API. <no value>
+// ContainerRegistryUser is the Schema for the ContainerRegistryUsers API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectContainerregistryUser struct {
+type ContainerRegistryUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.email) || (has(self.initProvider) && has(self.initProvider.email))",message="spec.forProvider.email is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.login) || (has(self.initProvider) && has(self.initProvider.login))",message="spec.forProvider.login is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.registryId) || (has(self.initProvider) && has(self.initProvider.registryId))",message="spec.forProvider.registryId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectContainerregistryUserSpec   `json:"spec"`
-	Status ProjectContainerregistryUserStatus `json:"status,omitempty"`
+	Spec   ContainerRegistryUserSpec   `json:"spec"`
+	Status ContainerRegistryUserStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectContainerregistryUserList contains a list of ProjectContainerregistryUsers
-type ProjectContainerregistryUserList struct {
+// ContainerRegistryUserList contains a list of ContainerRegistryUsers
+type ContainerRegistryUserList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectContainerregistryUser `json:"items"`
+	Items           []ContainerRegistryUser `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectContainerregistryUser_Kind             = "ProjectContainerregistryUser"
-	ProjectContainerregistryUser_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectContainerregistryUser_Kind}.String()
-	ProjectContainerregistryUser_KindAPIVersion   = ProjectContainerregistryUser_Kind + "." + CRDGroupVersion.String()
-	ProjectContainerregistryUser_GroupVersionKind = CRDGroupVersion.WithKind(ProjectContainerregistryUser_Kind)
+	ContainerRegistryUser_Kind             = "ContainerRegistryUser"
+	ContainerRegistryUser_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ContainerRegistryUser_Kind}.String()
+	ContainerRegistryUser_KindAPIVersion   = ContainerRegistryUser_Kind + "." + CRDGroupVersion.String()
+	ContainerRegistryUser_GroupVersionKind = CRDGroupVersion.WithKind(ContainerRegistryUser_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectContainerregistryUser{}, &ProjectContainerregistryUserList{})
+	SchemeBuilder.Register(&ContainerRegistryUser{}, &ContainerRegistryUserList{})
 }

@@ -1,0 +1,16 @@
+apiVersion: registry.ovh.edixos.io/v1alpha1
+kind: ContainerRegistryUser
+metadata:
+  name: hello-edixos
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    email: ikaboubi@edixos.com
+    login: ismail
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    registryIdRef:
+      name: hello-edixos
+  writeConnectionSecretToRef:
+    name: registry-password
+    namespace: default

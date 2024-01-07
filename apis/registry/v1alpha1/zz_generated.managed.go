@@ -7,182 +7,182 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 
-// GetCondition of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ContainerRegistry.
+func (mg *ContainerRegistry) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this ContainerRegistry.
+func (mg *ContainerRegistry) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ContainerRegistry.
+func (mg *ContainerRegistry) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this ContainerRegistry.
+func (mg *ContainerRegistry) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetPublishConnectionDetailsTo of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this ContainerRegistry.
+func (mg *ContainerRegistry) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this ContainerRegistry.
+func (mg *ContainerRegistry) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ContainerRegistry.
+func (mg *ContainerRegistry) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this ContainerRegistry.
+func (mg *ContainerRegistry) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ContainerRegistry.
+func (mg *ContainerRegistry) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this ContainerRegistry.
+func (mg *ContainerRegistry) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetPublishConnectionDetailsTo of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this ContainerRegistry.
+func (mg *ContainerRegistry) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this ProjectContainerregistry.
-func (mg *ProjectContainerregistry) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this ContainerRegistry.
+func (mg *ContainerRegistry) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetPublishConnectionDetailsTo of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetPublishConnectionDetailsTo of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this ProjectContainerregistryOidc.
-func (mg *ProjectContainerregistryOidc) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this ContainerRegistryOIDC.
+func (mg *ContainerRegistryOIDC) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetPublishConnectionDetailsTo of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetPublishConnectionDetailsTo of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this ProjectContainerregistryUser.
-func (mg *ProjectContainerregistryUser) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this ContainerRegistryUser.
+func (mg *ContainerRegistryUser) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

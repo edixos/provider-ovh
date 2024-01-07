@@ -78,9 +78,9 @@ import (
 	privatedatabaseusergrant "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabaseusergrant"
 	privatedatabasewhitelist "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabasewhitelist"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
-	projectcontainerregistry "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistry"
-	projectcontainerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryoidc"
-	projectcontainerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/projectcontainerregistryuser"
+	containerregistry "github.com/edixos/provider-ovh/internal/controller/registry/containerregistry"
+	containerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryoidc"
+	containerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryuser"
 	projectregionstoragepresign "github.com/edixos/provider-ovh/internal/controller/storage/projectregionstoragepresign"
 	projectworkflowbackup "github.com/edixos/provider-ovh/internal/controller/vminstances/projectworkflowbackup"
 	cloudproject "github.com/edixos/provider-ovh/internal/controller/vrack/cloudproject"
@@ -164,9 +164,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		privatedatabaseusergrant.Setup,
 		privatedatabasewhitelist.Setup,
 		providerconfig.Setup,
-		projectcontainerregistry.Setup,
-		projectcontainerregistryoidc.Setup,
-		projectcontainerregistryuser.Setup,
+		containerregistry.Setup,
+		containerregistryoidc.Setup,
+		containerregistryuser.Setup,
 		projectregionstoragepresign.Setup,
 		projectworkflowbackup.Setup,
 		cloudproject.Setup,

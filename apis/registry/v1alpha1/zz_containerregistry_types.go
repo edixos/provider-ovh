@@ -17,6 +17,78 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type ContainerRegistryInitParameters struct {
+
+	// Registry name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Plan ID of the registry.
+	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+
+	// Region of the registry.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+}
+
+type ContainerRegistryObservation struct {
+
+	// Registry creation date
+	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
+
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Registry name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Plan of the registry
+	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
+
+	// Plan ID of the registry.
+	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+
+	// Project ID of your registry
+	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Region of the registry.
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Current size of the registry (bytes)
+	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+
+	// Registry status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	// Access url of the registry
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+
+	// Registry last update date
+	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+
+	// Version of your registry
+	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type ContainerRegistryParameters struct {
+
+	// Registry name
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// Plan ID of the registry.
+	// +kubebuilder:validation:Optional
+	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+
+	// Region of the registry.
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+}
+
 type FeaturesInitParameters struct {
 }
 
@@ -49,68 +121,6 @@ type PlanObservation struct {
 type PlanParameters struct {
 }
 
-type ProjectContainerregistryInitParameters struct {
-
-	// Plan ID of the registry.
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
-
-	// Region of the registry.
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-}
-
-type ProjectContainerregistryObservation struct {
-
-	// Registry creation date
-	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
-
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// Plan of the registry
-	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
-
-	// Plan ID of the registry.
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
-
-	// Project ID of your registry
-	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
-
-	// Region of the registry.
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-
-	// Current size of the registry (bytes)
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
-
-	// Registry status
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
-
-	// Access url of the registry
-	URL *string `json:"url,omitempty" tf:"url,omitempty"`
-
-	// Registry last update date
-	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
-
-	// Version of your registry
-	Version *string `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-type ProjectContainerregistryParameters struct {
-
-	// Plan ID of the registry.
-	// +kubebuilder:validation:Optional
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
-
-	// Region of the registry.
-	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-}
-
 type RegistryLimitsInitParameters struct {
 }
 
@@ -123,10 +133,10 @@ type RegistryLimitsObservation struct {
 type RegistryLimitsParameters struct {
 }
 
-// ProjectContainerregistrySpec defines the desired state of ProjectContainerregistry
-type ProjectContainerregistrySpec struct {
+// ContainerRegistrySpec defines the desired state of ContainerRegistry
+type ContainerRegistrySpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectContainerregistryParameters `json:"forProvider"`
+	ForProvider     ContainerRegistryParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -137,50 +147,51 @@ type ProjectContainerregistrySpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectContainerregistryInitParameters `json:"initProvider,omitempty"`
+	InitProvider ContainerRegistryInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectContainerregistryStatus defines the observed state of ProjectContainerregistry.
-type ProjectContainerregistryStatus struct {
+// ContainerRegistryStatus defines the observed state of ContainerRegistry.
+type ContainerRegistryStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectContainerregistryObservation `json:"atProvider,omitempty"`
+	AtProvider        ContainerRegistryObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectContainerregistry is the Schema for the ProjectContainerregistrys API. <no value>
+// ContainerRegistry is the Schema for the ContainerRegistrys API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectContainerregistry struct {
+type ContainerRegistry struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectContainerregistrySpec   `json:"spec"`
-	Status ProjectContainerregistryStatus `json:"status,omitempty"`
+	Spec   ContainerRegistrySpec   `json:"spec"`
+	Status ContainerRegistryStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectContainerregistryList contains a list of ProjectContainerregistrys
-type ProjectContainerregistryList struct {
+// ContainerRegistryList contains a list of ContainerRegistrys
+type ContainerRegistryList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectContainerregistry `json:"items"`
+	Items           []ContainerRegistry `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectContainerregistry_Kind             = "ProjectContainerregistry"
-	ProjectContainerregistry_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectContainerregistry_Kind}.String()
-	ProjectContainerregistry_KindAPIVersion   = ProjectContainerregistry_Kind + "." + CRDGroupVersion.String()
-	ProjectContainerregistry_GroupVersionKind = CRDGroupVersion.WithKind(ProjectContainerregistry_Kind)
+	ContainerRegistry_Kind             = "ContainerRegistry"
+	ContainerRegistry_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ContainerRegistry_Kind}.String()
+	ContainerRegistry_KindAPIVersion   = ContainerRegistry_Kind + "." + CRDGroupVersion.String()
+	ContainerRegistry_GroupVersionKind = CRDGroupVersion.WithKind(ContainerRegistry_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectContainerregistry{}, &ProjectContainerregistryList{})
+	SchemeBuilder.Register(&ContainerRegistry{}, &ContainerRegistryList{})
 }
