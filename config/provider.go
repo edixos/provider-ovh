@@ -7,6 +7,9 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+	"github.com/edixos/provider-ovh/config/cloud"
+	"github.com/edixos/provider-ovh/config/iam"
+	"github.com/edixos/provider-ovh/config/me"
 
 	"github.com/edixos/provider-ovh/config/vrack"
 
@@ -32,7 +35,6 @@ import (
 
 	"github.com/edixos/provider-ovh/config/cloud_disk_array"
 
-	"github.com/edixos/provider-ovh/config/account_management"
 	"github.com/edixos/provider-ovh/config/additional_ip"
 	"github.com/edixos/provider-ovh/config/vm_instances"
 
@@ -65,7 +67,9 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		public_cloud_network.Configure,
-		account_management.Configure,
+		iam.Configure,
+		me.Configure,
+		cloud.Configure,
 		additional_ip.Configure,
 		vm_instances.Configure,
 		cloud_disk_array.Configure,
