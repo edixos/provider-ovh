@@ -17,7 +17,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ProjectKubeOidcInitParameters struct {
+type OIDCConfigurationInitParameters struct {
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
@@ -39,7 +39,7 @@ type ProjectKubeOidcInitParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-type ProjectKubeOidcObservation struct {
+type OIDCConfigurationObservation struct {
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -65,7 +65,7 @@ type ProjectKubeOidcObservation struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-type ProjectKubeOidcParameters struct {
+type OIDCConfigurationParameters struct {
 
 	// +kubebuilder:validation:Optional
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
@@ -73,15 +73,15 @@ type ProjectKubeOidcParameters struct {
 	// +kubebuilder:validation:Optional
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.ProjectKube
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
-	// Reference to a ProjectKube in kube to populate kubeId.
+	// Reference to a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
 
-	// Selector for a ProjectKube in kube to populate kubeId.
+	// Selector for a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
@@ -110,10 +110,10 @@ type ProjectKubeOidcParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-// ProjectKubeOidcSpec defines the desired state of ProjectKubeOidc
-type ProjectKubeOidcSpec struct {
+// OIDCConfigurationSpec defines the desired state of OIDCConfiguration
+type OIDCConfigurationSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectKubeOidcParameters `json:"forProvider"`
+	ForProvider     OIDCConfigurationParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -124,51 +124,51 @@ type ProjectKubeOidcSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectKubeOidcInitParameters `json:"initProvider,omitempty"`
+	InitProvider OIDCConfigurationInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectKubeOidcStatus defines the observed state of ProjectKubeOidc.
-type ProjectKubeOidcStatus struct {
+// OIDCConfigurationStatus defines the observed state of OIDCConfiguration.
+type OIDCConfigurationStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectKubeOidcObservation `json:"atProvider,omitempty"`
+	AtProvider        OIDCConfigurationObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeOidc is the Schema for the ProjectKubeOidcs API. <no value>
+// OIDCConfiguration is the Schema for the OIDCConfigurations API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectKubeOidc struct {
+type OIDCConfiguration struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clientId) || (has(self.initProvider) && has(self.initProvider.clientId))",message="spec.forProvider.clientId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.issuerUrl) || (has(self.initProvider) && has(self.initProvider.issuerUrl))",message="spec.forProvider.issuerUrl is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectKubeOidcSpec   `json:"spec"`
-	Status ProjectKubeOidcStatus `json:"status,omitempty"`
+	Spec   OIDCConfigurationSpec   `json:"spec"`
+	Status OIDCConfigurationStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeOidcList contains a list of ProjectKubeOidcs
-type ProjectKubeOidcList struct {
+// OIDCConfigurationList contains a list of OIDCConfigurations
+type OIDCConfigurationList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectKubeOidc `json:"items"`
+	Items           []OIDCConfiguration `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectKubeOidc_Kind             = "ProjectKubeOidc"
-	ProjectKubeOidc_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectKubeOidc_Kind}.String()
-	ProjectKubeOidc_KindAPIVersion   = ProjectKubeOidc_Kind + "." + CRDGroupVersion.String()
-	ProjectKubeOidc_GroupVersionKind = CRDGroupVersion.WithKind(ProjectKubeOidc_Kind)
+	OIDCConfiguration_Kind             = "OIDCConfiguration"
+	OIDCConfiguration_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: OIDCConfiguration_Kind}.String()
+	OIDCConfiguration_KindAPIVersion   = OIDCConfiguration_Kind + "." + CRDGroupVersion.String()
+	OIDCConfiguration_GroupVersionKind = CRDGroupVersion.WithKind(OIDCConfiguration_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectKubeOidc{}, &ProjectKubeOidcList{})
+	SchemeBuilder.Register(&OIDCConfiguration{}, &OIDCConfigurationList{})
 }

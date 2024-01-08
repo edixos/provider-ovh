@@ -48,10 +48,10 @@ import (
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
-	projectkube "github.com/edixos/provider-ovh/internal/controller/kube/projectkube"
-	projectkubeiprestrictions "github.com/edixos/provider-ovh/internal/controller/kube/projectkubeiprestrictions"
-	projectkubenodepool "github.com/edixos/provider-ovh/internal/controller/kube/projectkubenodepool"
-	projectkubeoidc "github.com/edixos/provider-ovh/internal/controller/kube/projectkubeoidc"
+	cluster "github.com/edixos/provider-ovh/internal/controller/kube/cluster"
+	iprestriction "github.com/edixos/provider-ovh/internal/controller/kube/iprestriction"
+	nodepool "github.com/edixos/provider-ovh/internal/controller/kube/nodepool"
+	oidcconfiguration "github.com/edixos/provider-ovh/internal/controller/kube/oidcconfiguration"
 	httpfarm "github.com/edixos/provider-ovh/internal/controller/lb/httpfarm"
 	httpfarmserver "github.com/edixos/provider-ovh/internal/controller/lb/httpfarmserver"
 	httpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/httpfrontend"
@@ -134,10 +134,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zone.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
-		projectkube.Setup,
-		projectkubeiprestrictions.Setup,
-		projectkubenodepool.Setup,
-		projectkubeoidc.Setup,
+		cluster.Setup,
+		iprestriction.Setup,
+		nodepool.Setup,
+		oidcconfiguration.Setup,
 		httpfarm.Setup,
 		httpfarmserver.Setup,
 		httpfrontend.Setup,

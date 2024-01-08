@@ -7,8 +7,8 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/pkg/resource"
 
-// GetItems of this ProjectKubeIprestrictionsList.
-func (l *ProjectKubeIprestrictionsList) GetItems() []resource.Managed {
+// GetItems of this ClusterList.
+func (l *ClusterList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -16,8 +16,8 @@ func (l *ProjectKubeIprestrictionsList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectKubeList.
-func (l *ProjectKubeList) GetItems() []resource.Managed {
+// GetItems of this IpRestrictionList.
+func (l *IpRestrictionList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -25,8 +25,8 @@ func (l *ProjectKubeList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectKubeNodepoolList.
-func (l *ProjectKubeNodepoolList) GetItems() []resource.Managed {
+// GetItems of this NodePoolList.
+func (l *NodePoolList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -34,8 +34,8 @@ func (l *ProjectKubeNodepoolList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectKubeOidcList.
-func (l *ProjectKubeOidcList) GetItems() []resource.Managed {
+// GetItems of this OIDCConfigurationList.
+func (l *OIDCConfigurationList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
