@@ -1,5 +1,5 @@
 apiVersion: kube.ovh.edixos.io/v1alpha1
-kind: ProjectKube
+kind: Cluster
 metadata:
   name: hello-edixos
 spec:

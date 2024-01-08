@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectkubes.kube.ovh.edixos.io
+  name: clusters.kube.ovh.edixos.io
 spec:
   group: kube.ovh.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: ProjectKube
-    listKind: ProjectKubeList
-    plural: projectkubes
-    singular: projectkube
+    kind: Cluster
+    listKind: ClusterList
+    plural: clusters
+    singular: cluster
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectKube is the Schema for the ProjectKubes API. <no value>
+        description: Cluster is the Schema for the Clusters API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -49,7 +49,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectKubeSpec defines the desired state of ProjectKube
+            description: ClusterSpec defines the desired state of Cluster
             properties:
               deletionPolicy:
                 default: Delete
@@ -452,7 +452,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectKubeStatus defines the observed state of ProjectKube.
+            description: ClusterStatus defines the observed state of Cluster.
             properties:
               atProvider:
                 properties:

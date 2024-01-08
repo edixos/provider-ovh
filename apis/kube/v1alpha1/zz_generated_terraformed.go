@@ -17,18 +17,18 @@ import (
 	"github.com/crossplane/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectKube
-func (mg *ProjectKube) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Cluster
+func (mg *Cluster) GetTerraformResourceType() string {
 	return "ovh_cloud_project_kube"
 }
 
-// GetConnectionDetailsMapping for this ProjectKube
-func (tr *ProjectKube) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Cluster
+func (tr *Cluster) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"kubeconfig": "status.atProvider.kubeconfig", "kubeconfig_attributes[*]": "status.atProvider.kubeconfigAttributes[*]"}
 }
 
-// GetObservation of this ProjectKube
-func (tr *ProjectKube) GetObservation() (map[string]any, error) {
+// GetObservation of this Cluster
+func (tr *Cluster) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -37,8 +37,8 @@ func (tr *ProjectKube) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectKube
-func (tr *ProjectKube) SetObservation(obs map[string]any) error {
+// SetObservation for this Cluster
+func (tr *Cluster) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -46,16 +46,16 @@ func (tr *ProjectKube) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectKube
-func (tr *ProjectKube) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Cluster
+func (tr *Cluster) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectKube
-func (tr *ProjectKube) GetParameters() (map[string]any, error) {
+// GetParameters of this Cluster
+func (tr *Cluster) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -64,8 +64,8 @@ func (tr *ProjectKube) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectKube
-func (tr *ProjectKube) SetParameters(params map[string]any) error {
+// SetParameters for this Cluster
+func (tr *Cluster) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -73,8 +73,8 @@ func (tr *ProjectKube) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectKube
-func (tr *ProjectKube) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this Cluster
+func (tr *Cluster) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -83,10 +83,10 @@ func (tr *ProjectKube) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectKube using its observed tfState.
+// LateInitialize this Cluster using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectKube) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectKubeParameters{}
+func (tr *Cluster) LateInitialize(attrs []byte) (bool, error) {
+	params := &ClusterParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -97,22 +97,22 @@ func (tr *ProjectKube) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectKube) GetTerraformSchemaVersion() int {
+func (tr *Cluster) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectKubeIprestrictions
-func (mg *ProjectKubeIprestrictions) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this IpRestriction
+func (mg *IpRestriction) GetTerraformResourceType() string {
 	return "ovh_cloud_project_kube_iprestrictions"
 }
 
-// GetConnectionDetailsMapping for this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this IpRestriction
+func (tr *IpRestriction) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) GetObservation() (map[string]any, error) {
+// GetObservation of this IpRestriction
+func (tr *IpRestriction) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -121,8 +121,8 @@ func (tr *ProjectKubeIprestrictions) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) SetObservation(obs map[string]any) error {
+// SetObservation for this IpRestriction
+func (tr *IpRestriction) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -130,16 +130,16 @@ func (tr *ProjectKubeIprestrictions) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) GetID() string {
+// GetID returns ID of underlying Terraform resource of this IpRestriction
+func (tr *IpRestriction) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) GetParameters() (map[string]any, error) {
+// GetParameters of this IpRestriction
+func (tr *IpRestriction) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -148,8 +148,8 @@ func (tr *ProjectKubeIprestrictions) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) SetParameters(params map[string]any) error {
+// SetParameters for this IpRestriction
+func (tr *IpRestriction) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -157,8 +157,8 @@ func (tr *ProjectKubeIprestrictions) SetParameters(params map[string]any) error 
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectKubeIprestrictions
-func (tr *ProjectKubeIprestrictions) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this IpRestriction
+func (tr *IpRestriction) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -167,10 +167,10 @@ func (tr *ProjectKubeIprestrictions) GetInitParameters() (map[string]any, error)
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectKubeIprestrictions using its observed tfState.
+// LateInitialize this IpRestriction using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectKubeIprestrictions) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectKubeIprestrictionsParameters{}
+func (tr *IpRestriction) LateInitialize(attrs []byte) (bool, error) {
+	params := &IpRestrictionParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -181,22 +181,22 @@ func (tr *ProjectKubeIprestrictions) LateInitialize(attrs []byte) (bool, error) 
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectKubeIprestrictions) GetTerraformSchemaVersion() int {
+func (tr *IpRestriction) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectKubeNodepool
-func (mg *ProjectKubeNodepool) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this NodePool
+func (mg *NodePool) GetTerraformResourceType() string {
 	return "ovh_cloud_project_kube_nodepool"
 }
 
-// GetConnectionDetailsMapping for this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this NodePool
+func (tr *NodePool) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) GetObservation() (map[string]any, error) {
+// GetObservation of this NodePool
+func (tr *NodePool) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -205,8 +205,8 @@ func (tr *ProjectKubeNodepool) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) SetObservation(obs map[string]any) error {
+// SetObservation for this NodePool
+func (tr *NodePool) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -214,16 +214,16 @@ func (tr *ProjectKubeNodepool) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) GetID() string {
+// GetID returns ID of underlying Terraform resource of this NodePool
+func (tr *NodePool) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) GetParameters() (map[string]any, error) {
+// GetParameters of this NodePool
+func (tr *NodePool) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -232,8 +232,8 @@ func (tr *ProjectKubeNodepool) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) SetParameters(params map[string]any) error {
+// SetParameters for this NodePool
+func (tr *NodePool) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -241,8 +241,8 @@ func (tr *ProjectKubeNodepool) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectKubeNodepool
-func (tr *ProjectKubeNodepool) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this NodePool
+func (tr *NodePool) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -251,10 +251,10 @@ func (tr *ProjectKubeNodepool) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectKubeNodepool using its observed tfState.
+// LateInitialize this NodePool using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectKubeNodepool) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectKubeNodepoolParameters{}
+func (tr *NodePool) LateInitialize(attrs []byte) (bool, error) {
+	params := &NodePoolParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -265,22 +265,22 @@ func (tr *ProjectKubeNodepool) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectKubeNodepool) GetTerraformSchemaVersion() int {
+func (tr *NodePool) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectKubeOidc
-func (mg *ProjectKubeOidc) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this OIDCConfiguration
+func (mg *OIDCConfiguration) GetTerraformResourceType() string {
 	return "ovh_cloud_project_kube_oidc"
 }
 
-// GetConnectionDetailsMapping for this ProjectKubeOidc
-func (tr *ProjectKubeOidc) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this OIDCConfiguration
+func (tr *OIDCConfiguration) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this ProjectKubeOidc
-func (tr *ProjectKubeOidc) GetObservation() (map[string]any, error) {
+// GetObservation of this OIDCConfiguration
+func (tr *OIDCConfiguration) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -289,8 +289,8 @@ func (tr *ProjectKubeOidc) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectKubeOidc
-func (tr *ProjectKubeOidc) SetObservation(obs map[string]any) error {
+// SetObservation for this OIDCConfiguration
+func (tr *OIDCConfiguration) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -298,16 +298,16 @@ func (tr *ProjectKubeOidc) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectKubeOidc
-func (tr *ProjectKubeOidc) GetID() string {
+// GetID returns ID of underlying Terraform resource of this OIDCConfiguration
+func (tr *OIDCConfiguration) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectKubeOidc
-func (tr *ProjectKubeOidc) GetParameters() (map[string]any, error) {
+// GetParameters of this OIDCConfiguration
+func (tr *OIDCConfiguration) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -316,8 +316,8 @@ func (tr *ProjectKubeOidc) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectKubeOidc
-func (tr *ProjectKubeOidc) SetParameters(params map[string]any) error {
+// SetParameters for this OIDCConfiguration
+func (tr *OIDCConfiguration) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -325,8 +325,8 @@ func (tr *ProjectKubeOidc) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectKubeOidc
-func (tr *ProjectKubeOidc) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this OIDCConfiguration
+func (tr *OIDCConfiguration) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -335,10 +335,10 @@ func (tr *ProjectKubeOidc) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectKubeOidc using its observed tfState.
+// LateInitialize this OIDCConfiguration using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectKubeOidc) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectKubeOidcParameters{}
+func (tr *OIDCConfiguration) LateInitialize(attrs []byte) (bool, error) {
+	params := &OIDCConfigurationParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -349,6 +349,6 @@ func (tr *ProjectKubeOidc) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectKubeOidc) GetTerraformSchemaVersion() int {
+func (tr *OIDCConfiguration) GetTerraformSchemaVersion() int {
 	return 0
 }

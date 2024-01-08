@@ -12,8 +12,8 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// ResolveReferences of this ProjectKubeIprestrictions.
-func (mg *ProjectKubeIprestrictions) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this IpRestriction.
+func (mg *IpRestriction) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -25,8 +25,8 @@ func (mg *ProjectKubeIprestrictions) ResolveReferences(ctx context.Context, c cl
 		Reference:    mg.Spec.ForProvider.KubeIDRef,
 		Selector:     mg.Spec.ForProvider.KubeIDSelector,
 		To: reference.To{
-			List:    &ProjectKubeList{},
-			Managed: &ProjectKube{},
+			List:    &ClusterList{},
+			Managed: &Cluster{},
 		},
 	})
 	if err != nil {
@@ -38,8 +38,8 @@ func (mg *ProjectKubeIprestrictions) ResolveReferences(ctx context.Context, c cl
 	return nil
 }
 
-// ResolveReferences of this ProjectKubeNodepool.
-func (mg *ProjectKubeNodepool) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this NodePool.
+func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -51,8 +51,8 @@ func (mg *ProjectKubeNodepool) ResolveReferences(ctx context.Context, c client.R
 		Reference:    mg.Spec.ForProvider.KubeIDRef,
 		Selector:     mg.Spec.ForProvider.KubeIDSelector,
 		To: reference.To{
-			List:    &ProjectKubeList{},
-			Managed: &ProjectKube{},
+			List:    &ClusterList{},
+			Managed: &Cluster{},
 		},
 	})
 	if err != nil {
@@ -64,8 +64,8 @@ func (mg *ProjectKubeNodepool) ResolveReferences(ctx context.Context, c client.R
 	return nil
 }
 
-// ResolveReferences of this ProjectKubeOidc.
-func (mg *ProjectKubeOidc) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this OIDCConfiguration.
+func (mg *OIDCConfiguration) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse
@@ -77,8 +77,8 @@ func (mg *ProjectKubeOidc) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.KubeIDRef,
 		Selector:     mg.Spec.ForProvider.KubeIDSelector,
 		To: reference.To{
-			List:    &ProjectKubeList{},
-			Managed: &ProjectKube{},
+			List:    &ClusterList{},
+			Managed: &Cluster{},
 		},
 	})
 	if err != nil {

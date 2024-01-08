@@ -17,7 +17,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ProjectKubeIprestrictionsInitParameters struct {
+type IpRestrictionInitParameters struct {
 
 	// List of IP restrictions for the cluster
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
@@ -26,7 +26,7 @@ type ProjectKubeIprestrictionsInitParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-type ProjectKubeIprestrictionsObservation struct {
+type IpRestrictionObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// List of IP restrictions for the cluster
@@ -39,22 +39,22 @@ type ProjectKubeIprestrictionsObservation struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-type ProjectKubeIprestrictionsParameters struct {
+type IpRestrictionParameters struct {
 
 	// List of IP restrictions for the cluster
 	// +kubebuilder:validation:Optional
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
 	// Kube ID
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.ProjectKube
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
-	// Reference to a ProjectKube in kube to populate kubeId.
+	// Reference to a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
 
-	// Selector for a ProjectKube in kube to populate kubeId.
+	// Selector for a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
@@ -63,10 +63,10 @@ type ProjectKubeIprestrictionsParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
-// ProjectKubeIprestrictionsSpec defines the desired state of ProjectKubeIprestrictions
-type ProjectKubeIprestrictionsSpec struct {
+// IpRestrictionSpec defines the desired state of IpRestriction
+type IpRestrictionSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectKubeIprestrictionsParameters `json:"forProvider"`
+	ForProvider     IpRestrictionParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -77,50 +77,50 @@ type ProjectKubeIprestrictionsSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectKubeIprestrictionsInitParameters `json:"initProvider,omitempty"`
+	InitProvider IpRestrictionInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectKubeIprestrictionsStatus defines the observed state of ProjectKubeIprestrictions.
-type ProjectKubeIprestrictionsStatus struct {
+// IpRestrictionStatus defines the observed state of IpRestriction.
+type IpRestrictionStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectKubeIprestrictionsObservation `json:"atProvider,omitempty"`
+	AtProvider        IpRestrictionObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeIprestrictions is the Schema for the ProjectKubeIprestrictionss API. <no value>
+// IpRestriction is the Schema for the IpRestrictions API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectKubeIprestrictions struct {
+type IpRestriction struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ips) || (has(self.initProvider) && has(self.initProvider.ips))",message="spec.forProvider.ips is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectKubeIprestrictionsSpec   `json:"spec"`
-	Status ProjectKubeIprestrictionsStatus `json:"status,omitempty"`
+	Spec   IpRestrictionSpec   `json:"spec"`
+	Status IpRestrictionStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeIprestrictionsList contains a list of ProjectKubeIprestrictionss
-type ProjectKubeIprestrictionsList struct {
+// IpRestrictionList contains a list of IpRestrictions
+type IpRestrictionList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectKubeIprestrictions `json:"items"`
+	Items           []IpRestriction `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectKubeIprestrictions_Kind             = "ProjectKubeIprestrictions"
-	ProjectKubeIprestrictions_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectKubeIprestrictions_Kind}.String()
-	ProjectKubeIprestrictions_KindAPIVersion   = ProjectKubeIprestrictions_Kind + "." + CRDGroupVersion.String()
-	ProjectKubeIprestrictions_GroupVersionKind = CRDGroupVersion.WithKind(ProjectKubeIprestrictions_Kind)
+	IpRestriction_Kind             = "IpRestriction"
+	IpRestriction_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: IpRestriction_Kind}.String()
+	IpRestriction_KindAPIVersion   = IpRestriction_Kind + "." + CRDGroupVersion.String()
+	IpRestriction_GroupVersionKind = CRDGroupVersion.WithKind(IpRestriction_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectKubeIprestrictions{}, &ProjectKubeIprestrictionsList{})
+	SchemeBuilder.Register(&IpRestriction{}, &IpRestrictionList{})
 }

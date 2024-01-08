@@ -56,7 +56,7 @@ type MetadataParameters struct {
 	Labels map[string]*string `json:"labels" tf:"labels,omitempty"`
 }
 
-type ProjectKubeNodepoolInitParameters struct {
+type NodePoolInitParameters struct {
 
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
@@ -89,7 +89,7 @@ type ProjectKubeNodepoolInitParameters struct {
 	Template []TemplateInitParameters `json:"template,omitempty" tf:"template,omitempty"`
 }
 
-type ProjectKubeNodepoolObservation struct {
+type NodePoolObservation struct {
 
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
@@ -154,7 +154,7 @@ type ProjectKubeNodepoolObservation struct {
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
-type ProjectKubeNodepoolParameters struct {
+type NodePoolParameters struct {
 
 	// Enable anti affinity groups for nodes in the pool
 	// +kubebuilder:validation:Optional
@@ -173,15 +173,15 @@ type ProjectKubeNodepoolParameters struct {
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
 	// Kube ID
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.ProjectKube
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
-	// Reference to a ProjectKube in kube to populate kubeId.
+	// Reference to a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
 
-	// Selector for a ProjectKube in kube to populate kubeId.
+	// Selector for a Cluster in kube to populate kubeId.
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
@@ -268,10 +268,10 @@ type TemplateParameters struct {
 	Spec []SpecParameters `json:"spec" tf:"spec,omitempty"`
 }
 
-// ProjectKubeNodepoolSpec defines the desired state of ProjectKubeNodepool
-type ProjectKubeNodepoolSpec struct {
+// NodePoolSpec defines the desired state of NodePool
+type NodePoolSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectKubeNodepoolParameters `json:"forProvider"`
+	ForProvider     NodePoolParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -282,50 +282,50 @@ type ProjectKubeNodepoolSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectKubeNodepoolInitParameters `json:"initProvider,omitempty"`
+	InitProvider NodePoolInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectKubeNodepoolStatus defines the observed state of ProjectKubeNodepool.
-type ProjectKubeNodepoolStatus struct {
+// NodePoolStatus defines the observed state of NodePool.
+type NodePoolStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectKubeNodepoolObservation `json:"atProvider,omitempty"`
+	AtProvider        NodePoolObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeNodepool is the Schema for the ProjectKubeNodepools API. <no value>
+// NodePool is the Schema for the NodePools API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectKubeNodepool struct {
+type NodePool struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.flavorName) || (has(self.initProvider) && has(self.initProvider.flavorName))",message="spec.forProvider.flavorName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectKubeNodepoolSpec   `json:"spec"`
-	Status ProjectKubeNodepoolStatus `json:"status,omitempty"`
+	Spec   NodePoolSpec   `json:"spec"`
+	Status NodePoolStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeNodepoolList contains a list of ProjectKubeNodepools
-type ProjectKubeNodepoolList struct {
+// NodePoolList contains a list of NodePools
+type NodePoolList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectKubeNodepool `json:"items"`
+	Items           []NodePool `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectKubeNodepool_Kind             = "ProjectKubeNodepool"
-	ProjectKubeNodepool_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectKubeNodepool_Kind}.String()
-	ProjectKubeNodepool_KindAPIVersion   = ProjectKubeNodepool_Kind + "." + CRDGroupVersion.String()
-	ProjectKubeNodepool_GroupVersionKind = CRDGroupVersion.WithKind(ProjectKubeNodepool_Kind)
+	NodePool_Kind             = "NodePool"
+	NodePool_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: NodePool_Kind}.String()
+	NodePool_KindAPIVersion   = NodePool_Kind + "." + CRDGroupVersion.String()
+	NodePool_GroupVersionKind = CRDGroupVersion.WithKind(NodePool_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectKubeNodepool{}, &ProjectKubeNodepoolList{})
+	SchemeBuilder.Register(&NodePool{}, &NodePoolList{})
 }

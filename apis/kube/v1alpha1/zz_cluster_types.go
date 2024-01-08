@@ -52,6 +52,104 @@ type ApiserverParameters struct {
 	Admissionplugins []AdmissionpluginsParameters `json:"admissionplugins,omitempty" tf:"admissionplugins,omitempty"`
 }
 
+type ClusterInitParameters struct {
+	Customization []CustomizationInitParameters `json:"customization,omitempty" tf:"customization,omitempty"`
+
+	CustomizationApiserver []CustomizationApiserverInitParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
+
+	CustomizationKubeProxy []CustomizationKubeProxyInitParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
+
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
+
+	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
+
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
+
+	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type ClusterObservation struct {
+	ControlPlaneIsUpToDate *bool `json:"controlPlaneIsUpToDate,omitempty" tf:"control_plane_is_up_to_date,omitempty"`
+
+	Customization []CustomizationObservation `json:"customization,omitempty" tf:"customization,omitempty"`
+
+	CustomizationApiserver []CustomizationApiserverObservation `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
+
+	CustomizationKubeProxy []CustomizationKubeProxyObservation `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	IsUpToDate *bool `json:"isUpToDate,omitempty" tf:"is_up_to_date,omitempty"`
+
+	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
+
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	NextUpgradeVersions []*string `json:"nextUpgradeVersions,omitempty" tf:"next_upgrade_versions,omitempty"`
+
+	NodesURL *string `json:"nodesUrl,omitempty" tf:"nodes_url,omitempty"`
+
+	PrivateNetworkConfiguration []PrivateNetworkConfigurationObservation `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
+
+	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
+
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
+	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+
+	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
+
+	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type ClusterParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Customization []CustomizationParameters `json:"customization,omitempty" tf:"customization,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	CustomizationApiserver []CustomizationApiserverParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	CustomizationKubeProxy []CustomizationKubeProxyParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PrivateNetworkConfiguration []PrivateNetworkConfigurationParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+}
+
 type CustomizationApiserverAdmissionpluginsInitParameters struct {
 	Disabled []*string `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
@@ -237,108 +335,10 @@ type PrivateNetworkConfigurationParameters struct {
 	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault" tf:"private_network_routing_as_default,omitempty"`
 }
 
-type ProjectKubeInitParameters struct {
-	Customization []CustomizationInitParameters `json:"customization,omitempty" tf:"customization,omitempty"`
-
-	CustomizationApiserver []CustomizationApiserverInitParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
-
-	CustomizationKubeProxy []CustomizationKubeProxyInitParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
-
-	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
-
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
-
-	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
-
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-
-	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
-
-	Version *string `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-type ProjectKubeObservation struct {
-	ControlPlaneIsUpToDate *bool `json:"controlPlaneIsUpToDate,omitempty" tf:"control_plane_is_up_to_date,omitempty"`
-
-	Customization []CustomizationObservation `json:"customization,omitempty" tf:"customization,omitempty"`
-
-	CustomizationApiserver []CustomizationApiserverObservation `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
-
-	CustomizationKubeProxy []CustomizationKubeProxyObservation `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
-
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	IsUpToDate *bool `json:"isUpToDate,omitempty" tf:"is_up_to_date,omitempty"`
-
-	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
-
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	NextUpgradeVersions []*string `json:"nextUpgradeVersions,omitempty" tf:"next_upgrade_versions,omitempty"`
-
-	NodesURL *string `json:"nodesUrl,omitempty" tf:"nodes_url,omitempty"`
-
-	PrivateNetworkConfiguration []PrivateNetworkConfigurationObservation `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
-
-	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
-
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
-
-	URL *string `json:"url,omitempty" tf:"url,omitempty"`
-
-	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
-
-	Version *string `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-type ProjectKubeParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Customization []CustomizationParameters `json:"customization,omitempty" tf:"customization,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	CustomizationApiserver []CustomizationApiserverParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	CustomizationKubeProxy []CustomizationKubeProxyParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	PrivateNetworkConfiguration []PrivateNetworkConfigurationParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	UpdatePolicy *string `json:"updatePolicy,omitempty" tf:"update_policy,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Version *string `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-// ProjectKubeSpec defines the desired state of ProjectKube
-type ProjectKubeSpec struct {
+// ClusterSpec defines the desired state of Cluster
+type ClusterSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectKubeParameters `json:"forProvider"`
+	ForProvider     ClusterParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -349,50 +349,50 @@ type ProjectKubeSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectKubeInitParameters `json:"initProvider,omitempty"`
+	InitProvider ClusterInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectKubeStatus defines the observed state of ProjectKube.
-type ProjectKubeStatus struct {
+// ClusterStatus defines the observed state of Cluster.
+type ClusterStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectKubeObservation `json:"atProvider,omitempty"`
+	AtProvider        ClusterObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKube is the Schema for the ProjectKubes API. <no value>
+// Cluster is the Schema for the Clusters API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectKube struct {
+type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectKubeSpec   `json:"spec"`
-	Status ProjectKubeStatus `json:"status,omitempty"`
+	Spec   ClusterSpec   `json:"spec"`
+	Status ClusterStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectKubeList contains a list of ProjectKubes
-type ProjectKubeList struct {
+// ClusterList contains a list of Clusters
+type ClusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectKube `json:"items"`
+	Items           []Cluster `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectKube_Kind             = "ProjectKube"
-	ProjectKube_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectKube_Kind}.String()
-	ProjectKube_KindAPIVersion   = ProjectKube_Kind + "." + CRDGroupVersion.String()
-	ProjectKube_GroupVersionKind = CRDGroupVersion.WithKind(ProjectKube_Kind)
+	Cluster_Kind             = "Cluster"
+	Cluster_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Cluster_Kind}.String()
+	Cluster_KindAPIVersion   = Cluster_Kind + "." + CRDGroupVersion.String()
+	Cluster_GroupVersionKind = CRDGroupVersion.WithKind(Cluster_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectKube{}, &ProjectKubeList{})
+	SchemeBuilder.Register(&Cluster{}, &ClusterList{})
 }

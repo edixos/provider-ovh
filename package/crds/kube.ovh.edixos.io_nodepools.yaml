@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectkubenodepools.kube.ovh.edixos.io
+  name: nodepools.kube.ovh.edixos.io
 spec:
   group: kube.ovh.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: ProjectKubeNodepool
-    listKind: ProjectKubeNodepoolList
-    plural: projectkubenodepools
-    singular: projectkubenodepool
+    kind: NodePool
+    listKind: NodePoolList
+    plural: nodepools
+    singular: nodepool
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectKubeNodepool is the Schema for the ProjectKubeNodepools
-          API. <no value>
+        description: NodePool is the Schema for the NodePools API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +49,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectKubeNodepoolSpec defines the desired state of ProjectKubeNodepool
+            description: NodePoolSpec defines the desired state of NodePool
             properties:
               deletionPolicy:
                 default: Delete
@@ -83,7 +82,7 @@ spec:
                     description: Kube ID
                     type: string
                   kubeIdRef:
-                    description: Reference to a ProjectKube in kube to populate kubeId.
+                    description: Reference to a Cluster in kube to populate kubeId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -117,7 +116,7 @@ spec:
                     - name
                     type: object
                   kubeIdSelector:
-                    description: Selector for a ProjectKube in kube to populate kubeId.
+                    description: Selector for a Cluster in kube to populate kubeId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -467,7 +466,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectKubeNodepoolStatus defines the observed state of ProjectKubeNodepool.
+            description: NodePoolStatus defines the observed state of NodePool.
             properties:
               atProvider:
                 properties:

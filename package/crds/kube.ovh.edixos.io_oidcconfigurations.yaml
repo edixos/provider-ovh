@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectkubeoidcs.kube.ovh.edixos.io
+  name: oidcconfigurations.kube.ovh.edixos.io
 spec:
   group: kube.ovh.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: ProjectKubeOidc
-    listKind: ProjectKubeOidcList
-    plural: projectkubeoidcs
-    singular: projectkubeoidc
+    kind: OIDCConfiguration
+    listKind: OIDCConfigurationList
+    plural: oidcconfigurations
+    singular: oidcconfiguration
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectKubeOidc is the Schema for the ProjectKubeOidcs API. <no
-          value>
+        description: OIDCConfiguration is the Schema for the OIDCConfigurations API.
+          <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectKubeOidcSpec defines the desired state of ProjectKubeOidc
+            description: OIDCConfigurationSpec defines the desired state of OIDCConfiguration
             properties:
               deletionPolicy:
                 default: Delete
@@ -74,7 +74,7 @@ spec:
                   kubeId:
                     type: string
                   kubeIdRef:
-                    description: Reference to a ProjectKube in kube to populate kubeId.
+                    description: Reference to a Cluster in kube to populate kubeId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -108,7 +108,7 @@ spec:
                     - name
                     type: object
                   kubeIdSelector:
-                    description: Selector for a ProjectKube in kube to populate kubeId.
+                    description: Selector for a Cluster in kube to populate kubeId.
                     properties:
                       matchControllerRef:
                         description: MatchControllerRef ensures an object with the
@@ -382,7 +382,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectKubeOidcStatus defines the observed state of ProjectKubeOidc.
+            description: OIDCConfigurationStatus defines the observed state of OIDCConfiguration.
             properties:
               atProvider:
                 properties:
