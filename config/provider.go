@@ -7,6 +7,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+
 	"github.com/edixos/provider-ovh/config/cloud"
 	"github.com/edixos/provider-ovh/config/iam"
 	"github.com/edixos/provider-ovh/config/me"

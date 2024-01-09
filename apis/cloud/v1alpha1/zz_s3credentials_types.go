@@ -21,9 +21,6 @@ type S3CredentialsInitParameters struct {
 
 	// Service name of the resource representing the ID of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-
-	// The user ID
-	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type S3CredentialsObservation struct {
@@ -47,8 +44,17 @@ type S3CredentialsParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// The user ID
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/cloud/v1alpha1.User
 	// +kubebuilder:validation:Optional
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
+
+	// Reference to a User in cloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDRef *v1.Reference `json:"userIdRef,omitempty" tf:"-"`
+
+	// Selector for a User in cloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDSelector *v1.Selector `json:"userIdSelector,omitempty" tf:"-"`
 }
 
 // S3CredentialsSpec defines the desired state of S3Credentials
@@ -87,7 +93,6 @@ type S3Credentials struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.userId) || (has(self.initProvider) && has(self.initProvider.userId))",message="spec.forProvider.userId is a required parameter"
 	Spec   S3CredentialsSpec   `json:"spec"`
 	Status S3CredentialsStatus `json:"status,omitempty"`
 }
