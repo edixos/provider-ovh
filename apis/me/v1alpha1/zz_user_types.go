@@ -25,9 +25,6 @@ type UserInitParameters struct {
 	// User's email
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
-	// User's group
-	Group *string `json:"group,omitempty" tf:"group,omitempty"`
-
 	// User's login suffix
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 }
@@ -74,8 +71,17 @@ type UserParameters struct {
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
 	// User's group
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/me/v1alpha1.Group
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
+	// Reference to a Group in me to populate group.
+	// +kubebuilder:validation:Optional
+	GroupRef *v1.Reference `json:"groupRef,omitempty" tf:"-"`
+
+	// Selector for a Group in me to populate group.
+	// +kubebuilder:validation:Optional
+	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
 	// User's login suffix
 	// +kubebuilder:validation:Optional

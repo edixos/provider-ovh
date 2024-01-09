@@ -15,6 +15,9 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_me_identity_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "User"
+		r.References["group"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/me/v1alpha1.Group",
+		}
 	})
 	p.AddResourceConfigurator("ovh_me_ssh_key", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
