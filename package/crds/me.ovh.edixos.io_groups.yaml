@@ -68,6 +68,8 @@ spec:
                 properties:
                   description:
                     type: string
+                  name:
+                    type: string
                   role:
                     type: string
                 type: object
@@ -84,6 +86,8 @@ spec:
                   like an autoscaler.
                 properties:
                   description:
+                    type: string
+                  name:
                     type: string
                   role:
                     type: string
@@ -248,6 +252,11 @@ spec:
             required:
             - forProvider
             type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
           status:
             description: GroupStatus defines the observed state of Group.
             properties:
@@ -262,6 +271,8 @@ spec:
                   id:
                     type: string
                   lastUpdate:
+                    type: string
+                  name:
                     type: string
                   role:
                     type: string

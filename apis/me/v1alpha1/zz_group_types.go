@@ -20,6 +20,8 @@ import (
 type GroupInitParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 }
 
@@ -34,6 +36,8 @@ type GroupObservation struct {
 
 	LastUpdate *string `json:"lastUpdate,omitempty" tf:"last_update,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
@@ -43,6 +47,9 @@ type GroupParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
@@ -83,8 +90,9 @@ type GroupStatus struct {
 type Group struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	Spec              GroupSpec   `json:"spec"`
-	Status            GroupStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
+	Spec   GroupSpec   `json:"spec"`
+	Status GroupStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
