@@ -1,0 +1,11 @@
+apiVersion: me.ovh.edixos.io/v1alpha1
+kind: SSHKey
+metadata:
+  name: sshkey-sample
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    keyName: sshkey-sample
+    key: |
+      ssh-rsa sample ssh public key

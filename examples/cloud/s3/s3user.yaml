@@ -1,0 +1,14 @@
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: User
+metadata:
+  name: s3-user
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    roleNames:
+      - objectstore_operator
+  writeConnectionSecretToRef:
+    name: user-credentials
+    namespace: default

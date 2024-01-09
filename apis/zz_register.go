@@ -14,15 +14,17 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/edixos/provider-ovh/apis/accountmanagement/v1alpha1"
-	v1alpha1additionalip "github.com/edixos/provider-ovh/apis/additionalip/v1alpha1"
+	v1alpha1 "github.com/edixos/provider-ovh/apis/additionalip/v1alpha1"
+	v1alpha1cloud "github.com/edixos/provider-ovh/apis/cloud/v1alpha1"
 	v1alpha1clouddiskarray "github.com/edixos/provider-ovh/apis/clouddiskarray/v1alpha1"
 	v1alpha1databases "github.com/edixos/provider-ovh/apis/databases/v1alpha1"
 	v1alpha1dedicatedserver "github.com/edixos/provider-ovh/apis/dedicatedserver/v1alpha1"
 	v1alpha1dns "github.com/edixos/provider-ovh/apis/dns/v1alpha1"
+	v1alpha1iam "github.com/edixos/provider-ovh/apis/iam/v1alpha1"
 	v1alpha1kube "github.com/edixos/provider-ovh/apis/kube/v1alpha1"
 	v1alpha1lb "github.com/edixos/provider-ovh/apis/lb/v1alpha1"
 	v1alpha1logs "github.com/edixos/provider-ovh/apis/logs/v1alpha1"
+	v1alpha1me "github.com/edixos/provider-ovh/apis/me/v1alpha1"
 	v1alpha1nas "github.com/edixos/provider-ovh/apis/nas/v1alpha1"
 	v1alpha1pcn "github.com/edixos/provider-ovh/apis/pcn/v1alpha1"
 	v1alpha1privatesql "github.com/edixos/provider-ovh/apis/privatesql/v1alpha1"
@@ -38,14 +40,16 @@ func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
-		v1alpha1additionalip.SchemeBuilder.AddToScheme,
+		v1alpha1cloud.SchemeBuilder.AddToScheme,
 		v1alpha1clouddiskarray.SchemeBuilder.AddToScheme,
 		v1alpha1databases.SchemeBuilder.AddToScheme,
 		v1alpha1dedicatedserver.SchemeBuilder.AddToScheme,
 		v1alpha1dns.SchemeBuilder.AddToScheme,
+		v1alpha1iam.SchemeBuilder.AddToScheme,
 		v1alpha1kube.SchemeBuilder.AddToScheme,
 		v1alpha1lb.SchemeBuilder.AddToScheme,
 		v1alpha1logs.SchemeBuilder.AddToScheme,
+		v1alpha1me.SchemeBuilder.AddToScheme,
 		v1alpha1nas.SchemeBuilder.AddToScheme,
 		v1alpha1pcn.SchemeBuilder.AddToScheme,
 		v1alpha1privatesql.SchemeBuilder.AddToScheme,

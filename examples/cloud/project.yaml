@@ -1,0 +1,18 @@
+# Project creation still not working, need to find out the root cause.
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: Project
+metadata:
+  name: hello-edixos
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    description: "Hello Crossplane"
+    ovhSubsidiary: "FR"
+    paymentMean: "fidelity" # default-payment-mean, fidelity, ovh-account
+
+    plan:
+      - planCode: "project.2018"
+        duration: "P1M"
+        pricingMode: "default"
+

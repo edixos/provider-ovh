@@ -1,0 +1,18 @@
+apiVersion: me.ovh.edixos.io/v1alpha1
+kind: User
+metadata:
+  name: ikaboubi
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    description: "edixos administrators"
+    email: ikaboubi@gmail.com
+    group: DEFAULT
+    login: ikaboubi
+#    groupRef:
+#      name: edixos-admins
+    passwordSecretRef:
+      key: password
+      name: ikaboubi-password
+      namespace: default

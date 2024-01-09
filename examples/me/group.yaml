@@ -1,0 +1,11 @@
+apiVersion: me.ovh.edixos.io/v1alpha1
+kind: Group
+metadata:
+  name: edixos-admins
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    description: "edixos administrators"
+    name: "edixos-admins"
+    role: ADMIN  # Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.

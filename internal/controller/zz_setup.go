@@ -9,17 +9,13 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
-	identitygroup "github.com/edixos/provider-ovh/internal/controller/accountmanagement/identitygroup"
-	identityuser "github.com/edixos/provider-ovh/internal/controller/accountmanagement/identityuser"
-	policy "github.com/edixos/provider-ovh/internal/controller/accountmanagement/policy"
-	project "github.com/edixos/provider-ovh/internal/controller/accountmanagement/project"
-	projectuser "github.com/edixos/provider-ovh/internal/controller/accountmanagement/projectuser"
-	projectusers3credential "github.com/edixos/provider-ovh/internal/controller/accountmanagement/projectusers3credential"
-	projectusers3policy "github.com/edixos/provider-ovh/internal/controller/accountmanagement/projectusers3policy"
-	sshkey "github.com/edixos/provider-ovh/internal/controller/accountmanagement/sshkey"
 	projectfailoveripattach "github.com/edixos/provider-ovh/internal/controller/additionalip/projectfailoveripattach"
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
+	project "github.com/edixos/provider-ovh/internal/controller/cloud/project"
+	s3credentials "github.com/edixos/provider-ovh/internal/controller/cloud/s3credentials"
+	s3policy "github.com/edixos/provider-ovh/internal/controller/cloud/s3policy"
+	user "github.com/edixos/provider-ovh/internal/controller/cloud/user"
 	cephacl "github.com/edixos/provider-ovh/internal/controller/clouddiskarray/cephacl"
 	projectdatabase "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabase"
 	projectdatabasedatabase "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasedatabase"
@@ -48,6 +44,7 @@ import (
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
+	iampolicy "github.com/edixos/provider-ovh/internal/controller/iam/iampolicy"
 	cluster "github.com/edixos/provider-ovh/internal/controller/kube/cluster"
 	iprestriction "github.com/edixos/provider-ovh/internal/controller/kube/iprestriction"
 	nodepool "github.com/edixos/provider-ovh/internal/controller/kube/nodepool"
@@ -67,6 +64,9 @@ import (
 	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
 	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
 	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
+	group "github.com/edixos/provider-ovh/internal/controller/me/group"
+	sshkey "github.com/edixos/provider-ovh/internal/controller/me/sshkey"
+	userme "github.com/edixos/provider-ovh/internal/controller/me/user"
 	nashapartition "github.com/edixos/provider-ovh/internal/controller/nas/nashapartition"
 	nashapartitionaccess "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionaccess"
 	nashapartitionsnapshot "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionsnapshot"
@@ -95,17 +95,13 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		identitygroup.Setup,
-		identityuser.Setup,
-		policy.Setup,
-		project.Setup,
-		projectuser.Setup,
-		projectusers3credential.Setup,
-		projectusers3policy.Setup,
-		sshkey.Setup,
 		projectfailoveripattach.Setup,
 		reverse.Setup,
 		service.Setup,
+		project.Setup,
+		s3credentials.Setup,
+		s3policy.Setup,
+		user.Setup,
 		cephacl.Setup,
 		projectdatabase.Setup,
 		projectdatabasedatabase.Setup,
@@ -134,6 +130,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zone.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
+		iampolicy.Setup,
 		cluster.Setup,
 		iprestriction.Setup,
 		nodepool.Setup,
@@ -153,6 +150,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vracknetwork.Setup,
 		logscluster.Setup,
 		logsinput.Setup,
+		group.Setup,
+		sshkey.Setup,
+		userme.Setup,
 		nashapartition.Setup,
 		nashapartitionaccess.Setup,
 		nashapartitionsnapshot.Setup,
