@@ -79,7 +79,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_user":                                      config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_credential":                        config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_policy":                            config.IdentifierFromProvider,
-	"ovh_iam_policy":                                              config.NameAsIdentifier,
+	"ovh_iam_policy":                                              config.IdentifierFromProvider,
 	"ovh_me_identity_group":                                       config.IdentifierFromProvider,
 	"ovh_me_identity_user":                                        config.IdentifierFromProvider,
 	"ovh_me_ssh_key":                                              config.IdentifierFromProvider,

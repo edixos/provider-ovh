@@ -7,62 +7,62 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 
-// GetCondition of this IamPolicy.
-func (mg *IamPolicy) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this IAMPolicy.
+func (mg *IAMPolicy) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this IamPolicy.
-func (mg *IamPolicy) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this IAMPolicy.
+func (mg *IAMPolicy) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this IamPolicy.
-func (mg *IamPolicy) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this IAMPolicy.
+func (mg *IAMPolicy) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this IamPolicy.
-func (mg *IamPolicy) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this IAMPolicy.
+func (mg *IAMPolicy) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetPublishConnectionDetailsTo of this IamPolicy.
-func (mg *IamPolicy) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+// GetPublishConnectionDetailsTo of this IAMPolicy.
+func (mg *IAMPolicy) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
 	return mg.Spec.PublishConnectionDetailsTo
 }
 
-// GetWriteConnectionSecretToReference of this IamPolicy.
-func (mg *IamPolicy) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this IAMPolicy.
+func (mg *IAMPolicy) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this IamPolicy.
-func (mg *IamPolicy) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this IAMPolicy.
+func (mg *IAMPolicy) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this IamPolicy.
-func (mg *IamPolicy) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this IAMPolicy.
+func (mg *IAMPolicy) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this IamPolicy.
-func (mg *IamPolicy) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this IAMPolicy.
+func (mg *IAMPolicy) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this IamPolicy.
-func (mg *IamPolicy) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this IAMPolicy.
+func (mg *IAMPolicy) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetPublishConnectionDetailsTo of this IamPolicy.
-func (mg *IamPolicy) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+// SetPublishConnectionDetailsTo of this IAMPolicy.
+func (mg *IAMPolicy) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
 	mg.Spec.PublishConnectionDetailsTo = r
 }
 
-// SetWriteConnectionSecretToReference of this IamPolicy.
-func (mg *IamPolicy) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this IAMPolicy.
+func (mg *IAMPolicy) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

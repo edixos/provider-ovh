@@ -17,18 +17,18 @@ import (
 	"github.com/crossplane/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this IamPolicy
-func (mg *IamPolicy) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this IAMPolicy
+func (mg *IAMPolicy) GetTerraformResourceType() string {
 	return "ovh_iam_policy"
 }
 
-// GetConnectionDetailsMapping for this IamPolicy
-func (tr *IamPolicy) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this IAMPolicy
+func (tr *IAMPolicy) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this IamPolicy
-func (tr *IamPolicy) GetObservation() (map[string]any, error) {
+// GetObservation of this IAMPolicy
+func (tr *IAMPolicy) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -37,8 +37,8 @@ func (tr *IamPolicy) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this IamPolicy
-func (tr *IamPolicy) SetObservation(obs map[string]any) error {
+// SetObservation for this IAMPolicy
+func (tr *IAMPolicy) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -46,16 +46,16 @@ func (tr *IamPolicy) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this IamPolicy
-func (tr *IamPolicy) GetID() string {
+// GetID returns ID of underlying Terraform resource of this IAMPolicy
+func (tr *IAMPolicy) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this IamPolicy
-func (tr *IamPolicy) GetParameters() (map[string]any, error) {
+// GetParameters of this IAMPolicy
+func (tr *IAMPolicy) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -64,8 +64,8 @@ func (tr *IamPolicy) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this IamPolicy
-func (tr *IamPolicy) SetParameters(params map[string]any) error {
+// SetParameters for this IAMPolicy
+func (tr *IAMPolicy) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -73,8 +73,8 @@ func (tr *IamPolicy) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this IamPolicy
-func (tr *IamPolicy) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this IAMPolicy
+func (tr *IAMPolicy) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -83,10 +83,10 @@ func (tr *IamPolicy) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this IamPolicy using its observed tfState.
+// LateInitialize this IAMPolicy using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *IamPolicy) LateInitialize(attrs []byte) (bool, error) {
-	params := &IamPolicyParameters{}
+func (tr *IAMPolicy) LateInitialize(attrs []byte) (bool, error) {
+	params := &IAMPolicyParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -97,6 +97,6 @@ func (tr *IamPolicy) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *IamPolicy) GetTerraformSchemaVersion() int {
+func (tr *IAMPolicy) GetTerraformSchemaVersion() int {
 	return 0
 }

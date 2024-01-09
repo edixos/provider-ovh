@@ -1,0 +1,18 @@
+# This example does not work, I got an error from the ovh api as shown
+# OVHcloud API error (status code 400): Client::BadRequest: \\\"policy cannot delegate resources to an account\\\"
+apiVersion: iam.ovh.edixos.io/v1alpha1
+kind: IAMPolicy
+metadata:
+  name: edixos-admins
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    description: "Users are allowed to use the OVH manager"
+    name: "allow-ovh-manager"
+    identities:
+      - "urn:v1:eu:identity:account:ki70225-ovh"
+    resources:
+      - "urn:v1:eu:resource:publicCloudProject:980cbcf06e6a4e6e8a91a7d125b26bba"
+    allow:
+      - "publicCloudProject:openstack:infrastructureSupervisor"
