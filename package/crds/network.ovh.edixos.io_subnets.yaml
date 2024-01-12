@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectnetworkprivatesubnets.pcn.ovh.edixos.io
+  name: subnets.network.ovh.edixos.io
 spec:
-  group: pcn.ovh.edixos.io
+  group: network.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ProjectNetworkPrivateSubnet
-    listKind: ProjectNetworkPrivateSubnetList
-    plural: projectnetworkprivatesubnets
-    singular: projectnetworkprivatesubnet
+    kind: Subnet
+    listKind: SubnetList
+    plural: subnets
+    singular: subnet
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectNetworkPrivateSubnet is the Schema for the ProjectNetworkPrivateSubnets
-          API. <no value>
+        description: Subnet is the Schema for the Subnets API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,8 +49,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectNetworkPrivateSubnetSpec defines the desired state
-              of ProjectNetworkPrivateSubnet
+            description: SubnetSpec defines the desired state of Subnet
             properties:
               deletionPolicy:
                 default: Delete
@@ -76,6 +74,81 @@ spec:
                     type: string
                   networkId:
                     type: string
+                  networkIdRef:
+                    description: Reference to a PrivateNetwork in network to populate
+                      networkId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  networkIdSelector:
+                    description: Selector for a PrivateNetwork in network to populate
+                      networkId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
                   noGateway:
                     type: boolean
                   region:
@@ -104,8 +177,6 @@ spec:
                   end:
                     type: string
                   network:
-                    type: string
-                  networkId:
                     type: string
                   noGateway:
                     type: boolean
@@ -287,10 +358,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.network)
                 || (has(self.initProvider) && has(self.initProvider.network))'
-            - message: spec.forProvider.networkId is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.networkId)
-                || (has(self.initProvider) && has(self.initProvider.networkId))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
@@ -304,8 +371,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.start)
                 || (has(self.initProvider) && has(self.initProvider.start))'
           status:
-            description: ProjectNetworkPrivateSubnetStatus defines the observed state
-              of ProjectNetworkPrivateSubnet.
+            description: SubnetStatus defines the observed state of Subnet.
             properties:
               atProvider:
                 properties:

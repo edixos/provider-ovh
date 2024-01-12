@@ -17,18 +17,18 @@ import (
 	"github.com/crossplane/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectNetworkPrivate
-func (mg *ProjectNetworkPrivate) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this PrivateNetwork
+func (mg *PrivateNetwork) GetTerraformResourceType() string {
 	return "ovh_cloud_project_network_private"
 }
 
-// GetConnectionDetailsMapping for this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this PrivateNetwork
+func (tr *PrivateNetwork) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) GetObservation() (map[string]any, error) {
+// GetObservation of this PrivateNetwork
+func (tr *PrivateNetwork) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -37,8 +37,8 @@ func (tr *ProjectNetworkPrivate) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) SetObservation(obs map[string]any) error {
+// SetObservation for this PrivateNetwork
+func (tr *PrivateNetwork) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -46,16 +46,16 @@ func (tr *ProjectNetworkPrivate) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) GetID() string {
+// GetID returns ID of underlying Terraform resource of this PrivateNetwork
+func (tr *PrivateNetwork) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) GetParameters() (map[string]any, error) {
+// GetParameters of this PrivateNetwork
+func (tr *PrivateNetwork) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -64,8 +64,8 @@ func (tr *ProjectNetworkPrivate) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) SetParameters(params map[string]any) error {
+// SetParameters for this PrivateNetwork
+func (tr *PrivateNetwork) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -73,8 +73,8 @@ func (tr *ProjectNetworkPrivate) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectNetworkPrivate
-func (tr *ProjectNetworkPrivate) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this PrivateNetwork
+func (tr *PrivateNetwork) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -83,10 +83,10 @@ func (tr *ProjectNetworkPrivate) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectNetworkPrivate using its observed tfState.
+// LateInitialize this PrivateNetwork using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectNetworkPrivate) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectNetworkPrivateParameters{}
+func (tr *PrivateNetwork) LateInitialize(attrs []byte) (bool, error) {
+	params := &PrivateNetworkParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -97,22 +97,22 @@ func (tr *ProjectNetworkPrivate) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectNetworkPrivate) GetTerraformSchemaVersion() int {
+func (tr *PrivateNetwork) GetTerraformSchemaVersion() int {
 	return 0
 }
 
-// GetTerraformResourceType returns Terraform resource type for this ProjectNetworkPrivateSubnet
-func (mg *ProjectNetworkPrivateSubnet) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this Subnet
+func (mg *Subnet) GetTerraformResourceType() string {
 	return "ovh_cloud_project_network_private_subnet"
 }
 
-// GetConnectionDetailsMapping for this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this Subnet
+func (tr *Subnet) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) GetObservation() (map[string]any, error) {
+// GetObservation of this Subnet
+func (tr *Subnet) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -121,8 +121,8 @@ func (tr *ProjectNetworkPrivateSubnet) GetObservation() (map[string]any, error) 
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) SetObservation(obs map[string]any) error {
+// SetObservation for this Subnet
+func (tr *Subnet) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -130,16 +130,16 @@ func (tr *ProjectNetworkPrivateSubnet) SetObservation(obs map[string]any) error 
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) GetID() string {
+// GetID returns ID of underlying Terraform resource of this Subnet
+func (tr *Subnet) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) GetParameters() (map[string]any, error) {
+// GetParameters of this Subnet
+func (tr *Subnet) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -148,8 +148,8 @@ func (tr *ProjectNetworkPrivateSubnet) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) SetParameters(params map[string]any) error {
+// SetParameters for this Subnet
+func (tr *Subnet) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -157,8 +157,8 @@ func (tr *ProjectNetworkPrivateSubnet) SetParameters(params map[string]any) erro
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this ProjectNetworkPrivateSubnet
-func (tr *ProjectNetworkPrivateSubnet) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this Subnet
+func (tr *Subnet) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -167,10 +167,10 @@ func (tr *ProjectNetworkPrivateSubnet) GetInitParameters() (map[string]any, erro
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// LateInitialize this ProjectNetworkPrivateSubnet using its observed tfState.
+// LateInitialize this Subnet using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *ProjectNetworkPrivateSubnet) LateInitialize(attrs []byte) (bool, error) {
-	params := &ProjectNetworkPrivateSubnetParameters{}
+func (tr *Subnet) LateInitialize(attrs []byte) (bool, error) {
+	params := &SubnetParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -181,6 +181,6 @@ func (tr *ProjectNetworkPrivateSubnet) LateInitialize(attrs []byte) (bool, error
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *ProjectNetworkPrivateSubnet) GetTerraformSchemaVersion() int {
+func (tr *Subnet) GetTerraformSchemaVersion() int {
 	return 0
 }

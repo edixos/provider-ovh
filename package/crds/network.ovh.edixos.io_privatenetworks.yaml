@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: projectnetworkprivates.pcn.ovh.edixos.io
+  name: privatenetworks.network.ovh.edixos.io
 spec:
-  group: pcn.ovh.edixos.io
+  group: network.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ProjectNetworkPrivate
-    listKind: ProjectNetworkPrivateList
-    plural: projectnetworkprivates
-    singular: projectnetworkprivate
+    kind: PrivateNetwork
+    listKind: PrivateNetworkList
+    plural: privatenetworks
+    singular: privatenetwork
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectNetworkPrivate is the Schema for the ProjectNetworkPrivates
-          API. <no value>
+        description: PrivateNetwork is the Schema for the PrivateNetworks API. <no
+          value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectNetworkPrivateSpec defines the desired state of ProjectNetworkPrivate
+            description: PrivateNetworkSpec defines the desired state of PrivateNetwork
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,6 +67,8 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  name:
+                    type: string
                   regions:
                     items:
                       type: string
@@ -90,6 +92,8 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
+                  name:
+                    type: string
                   regions:
                     items:
                       type: string
@@ -262,17 +266,22 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: ProjectNetworkPrivateStatus defines the observed state of
-              ProjectNetworkPrivate.
+            description: PrivateNetworkStatus defines the observed state of PrivateNetwork.
             properties:
               atProvider:
                 properties:
                   id:
+                    type: string
+                  name:
                     type: string
                   regions:
                     items:

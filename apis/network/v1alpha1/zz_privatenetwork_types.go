@@ -17,7 +17,9 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type ProjectNetworkPrivateInitParameters struct {
+type PrivateNetworkInitParameters struct {
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
 	// Service name of the resource representing the id of the cloud project.
@@ -26,8 +28,10 @@ type ProjectNetworkPrivateInitParameters struct {
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
-type ProjectNetworkPrivateObservation struct {
+type PrivateNetworkObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
@@ -45,7 +49,10 @@ type ProjectNetworkPrivateObservation struct {
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
-type ProjectNetworkPrivateParameters struct {
+type PrivateNetworkParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
@@ -84,10 +91,10 @@ type RegionsStatusObservation struct {
 type RegionsStatusParameters struct {
 }
 
-// ProjectNetworkPrivateSpec defines the desired state of ProjectNetworkPrivate
-type ProjectNetworkPrivateSpec struct {
+// PrivateNetworkSpec defines the desired state of PrivateNetwork
+type PrivateNetworkSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectNetworkPrivateParameters `json:"forProvider"`
+	ForProvider     PrivateNetworkParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -98,49 +105,50 @@ type ProjectNetworkPrivateSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectNetworkPrivateInitParameters `json:"initProvider,omitempty"`
+	InitProvider PrivateNetworkInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectNetworkPrivateStatus defines the observed state of ProjectNetworkPrivate.
-type ProjectNetworkPrivateStatus struct {
+// PrivateNetworkStatus defines the observed state of PrivateNetwork.
+type PrivateNetworkStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectNetworkPrivateObservation `json:"atProvider,omitempty"`
+	AtProvider        PrivateNetworkObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectNetworkPrivate is the Schema for the ProjectNetworkPrivates API. <no value>
+// PrivateNetwork is the Schema for the PrivateNetworks API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectNetworkPrivate struct {
+type PrivateNetwork struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ProjectNetworkPrivateSpec   `json:"spec"`
-	Status ProjectNetworkPrivateStatus `json:"status,omitempty"`
+	Spec   PrivateNetworkSpec   `json:"spec"`
+	Status PrivateNetworkStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectNetworkPrivateList contains a list of ProjectNetworkPrivates
-type ProjectNetworkPrivateList struct {
+// PrivateNetworkList contains a list of PrivateNetworks
+type PrivateNetworkList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectNetworkPrivate `json:"items"`
+	Items           []PrivateNetwork `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectNetworkPrivate_Kind             = "ProjectNetworkPrivate"
-	ProjectNetworkPrivate_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectNetworkPrivate_Kind}.String()
-	ProjectNetworkPrivate_KindAPIVersion   = ProjectNetworkPrivate_Kind + "." + CRDGroupVersion.String()
-	ProjectNetworkPrivate_GroupVersionKind = CRDGroupVersion.WithKind(ProjectNetworkPrivate_Kind)
+	PrivateNetwork_Kind             = "PrivateNetwork"
+	PrivateNetwork_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: PrivateNetwork_Kind}.String()
+	PrivateNetwork_KindAPIVersion   = PrivateNetwork_Kind + "." + CRDGroupVersion.String()
+	PrivateNetwork_GroupVersionKind = CRDGroupVersion.WithKind(PrivateNetwork_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectNetworkPrivate{}, &ProjectNetworkPrivateList{})
+	SchemeBuilder.Register(&PrivateNetwork{}, &PrivateNetworkList{})
 }
