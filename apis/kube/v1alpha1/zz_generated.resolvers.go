@@ -8,9 +8,36 @@ package v1alpha1
 import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
+	v1alpha1 "github.com/edixos/provider-ovh/apis/network/v1alpha1"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
+
+// ResolveReferences of this Cluster.
+func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrivateNetworkID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.PrivateNetworkIDRef,
+		Selector:     mg.Spec.ForProvider.PrivateNetworkIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.PrivateNetworkList{},
+			Managed: &v1alpha1.PrivateNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.PrivateNetworkID")
+	}
+	mg.Spec.ForProvider.PrivateNetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.PrivateNetworkIDRef = rsp.ResolvedReference
+
+	return nil
+}
 
 // ResolveReferences of this IpRestriction.
 func (mg *IpRestriction) ResolveReferences(ctx context.Context, c client.Reader) error {

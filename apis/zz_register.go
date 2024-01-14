@@ -26,7 +26,7 @@ import (
 	v1alpha1logs "github.com/edixos/provider-ovh/apis/logs/v1alpha1"
 	v1alpha1me "github.com/edixos/provider-ovh/apis/me/v1alpha1"
 	v1alpha1nas "github.com/edixos/provider-ovh/apis/nas/v1alpha1"
-	v1alpha1pcn "github.com/edixos/provider-ovh/apis/pcn/v1alpha1"
+	v1alpha1network "github.com/edixos/provider-ovh/apis/network/v1alpha1"
 	v1alpha1privatesql "github.com/edixos/provider-ovh/apis/privatesql/v1alpha1"
 	v1alpha1registry "github.com/edixos/provider-ovh/apis/registry/v1alpha1"
 	v1alpha1storage "github.com/edixos/provider-ovh/apis/storage/v1alpha1"
@@ -51,7 +51,7 @@ func init() {
 		v1alpha1logs.SchemeBuilder.AddToScheme,
 		v1alpha1me.SchemeBuilder.AddToScheme,
 		v1alpha1nas.SchemeBuilder.AddToScheme,
-		v1alpha1pcn.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1privatesql.SchemeBuilder.AddToScheme,
 		v1alpha1registry.SchemeBuilder.AddToScheme,
 		v1alpha1storage.SchemeBuilder.AddToScheme,

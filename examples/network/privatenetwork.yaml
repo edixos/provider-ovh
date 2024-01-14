@@ -1,5 +1,5 @@
-apiVersion: publiccloudnetwork.edixos.io/v1alpha1
-kind: ProjectNetworkPrivate
+apiVersion: network.ovh.edixos.io/v1alpha1
+kind: PrivateNetwork
 metadata:
   name: sample-1
   labels:
@@ -8,6 +8,7 @@ spec:
   providerConfigRef:
     name: default
   forProvider:
+    name: sample-1
     serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
     regions:
       - DE1

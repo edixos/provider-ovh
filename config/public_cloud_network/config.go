@@ -3,15 +3,20 @@ package public_cloud_network
 import "github.com/crossplane/upjet/pkg/config"
 
 const (
-	shortGroup = "pcn"
+	shortGroup = "network"
 )
 
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_network_private", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "PrivateNetwork"
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_network_private_subnet", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "Subnet"
+		r.References["network_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
+		}
 	})
 }

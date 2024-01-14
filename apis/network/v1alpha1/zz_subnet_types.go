@@ -35,14 +35,12 @@ type IPPoolsObservation struct {
 type IPPoolsParameters struct {
 }
 
-type ProjectNetworkPrivateSubnetInitParameters struct {
+type SubnetInitParameters struct {
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
-
-	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	NoGateway *bool `json:"noGateway,omitempty" tf:"no_gateway,omitempty"`
 
@@ -54,7 +52,7 @@ type ProjectNetworkPrivateSubnetInitParameters struct {
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
-type ProjectNetworkPrivateSubnetObservation struct {
+type SubnetObservation struct {
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
@@ -81,7 +79,7 @@ type ProjectNetworkPrivateSubnetObservation struct {
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
-type ProjectNetworkPrivateSubnetParameters struct {
+type SubnetParameters struct {
 
 	// +kubebuilder:validation:Optional
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
@@ -92,8 +90,17 @@ type ProjectNetworkPrivateSubnetParameters struct {
 	// +kubebuilder:validation:Optional
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
+
+	// Reference to a PrivateNetwork in network to populate networkId.
+	// +kubebuilder:validation:Optional
+	NetworkIDRef *v1.Reference `json:"networkIdRef,omitempty" tf:"-"`
+
+	// Selector for a PrivateNetwork in network to populate networkId.
+	// +kubebuilder:validation:Optional
+	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	NoGateway *bool `json:"noGateway,omitempty" tf:"no_gateway,omitempty"`
@@ -109,10 +116,10 @@ type ProjectNetworkPrivateSubnetParameters struct {
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
-// ProjectNetworkPrivateSubnetSpec defines the desired state of ProjectNetworkPrivateSubnet
-type ProjectNetworkPrivateSubnetSpec struct {
+// SubnetSpec defines the desired state of Subnet
+type SubnetSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ProjectNetworkPrivateSubnetParameters `json:"forProvider"`
+	ForProvider     SubnetParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -123,54 +130,53 @@ type ProjectNetworkPrivateSubnetSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ProjectNetworkPrivateSubnetInitParameters `json:"initProvider,omitempty"`
+	InitProvider SubnetInitParameters `json:"initProvider,omitempty"`
 }
 
-// ProjectNetworkPrivateSubnetStatus defines the observed state of ProjectNetworkPrivateSubnet.
-type ProjectNetworkPrivateSubnetStatus struct {
+// SubnetStatus defines the observed state of Subnet.
+type SubnetStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ProjectNetworkPrivateSubnetObservation `json:"atProvider,omitempty"`
+	AtProvider        SubnetObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectNetworkPrivateSubnet is the Schema for the ProjectNetworkPrivateSubnets API. <no value>
+// Subnet is the Schema for the Subnets API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type ProjectNetworkPrivateSubnet struct {
+type Subnet struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.end) || (has(self.initProvider) && has(self.initProvider.end))",message="spec.forProvider.end is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.networkId) || (has(self.initProvider) && has(self.initProvider.networkId))",message="spec.forProvider.networkId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.start) || (has(self.initProvider) && has(self.initProvider.start))",message="spec.forProvider.start is a required parameter"
-	Spec   ProjectNetworkPrivateSubnetSpec   `json:"spec"`
-	Status ProjectNetworkPrivateSubnetStatus `json:"status,omitempty"`
+	Spec   SubnetSpec   `json:"spec"`
+	Status SubnetStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ProjectNetworkPrivateSubnetList contains a list of ProjectNetworkPrivateSubnets
-type ProjectNetworkPrivateSubnetList struct {
+// SubnetList contains a list of Subnets
+type SubnetList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ProjectNetworkPrivateSubnet `json:"items"`
+	Items           []Subnet `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	ProjectNetworkPrivateSubnet_Kind             = "ProjectNetworkPrivateSubnet"
-	ProjectNetworkPrivateSubnet_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ProjectNetworkPrivateSubnet_Kind}.String()
-	ProjectNetworkPrivateSubnet_KindAPIVersion   = ProjectNetworkPrivateSubnet_Kind + "." + CRDGroupVersion.String()
-	ProjectNetworkPrivateSubnet_GroupVersionKind = CRDGroupVersion.WithKind(ProjectNetworkPrivateSubnet_Kind)
+	Subnet_Kind             = "Subnet"
+	Subnet_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Subnet_Kind}.String()
+	Subnet_KindAPIVersion   = Subnet_Kind + "." + CRDGroupVersion.String()
+	Subnet_GroupVersionKind = CRDGroupVersion.WithKind(Subnet_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&ProjectNetworkPrivateSubnet{}, &ProjectNetworkPrivateSubnetList{})
+	SchemeBuilder.Register(&Subnet{}, &SubnetList{})
 }

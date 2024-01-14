@@ -65,8 +65,6 @@ type ClusterInitParameters struct {
 
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
 
-	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
-
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -134,8 +132,17 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
 	// +kubebuilder:validation:Optional
 	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
+
+	// Reference to a PrivateNetwork in network to populate privateNetworkId.
+	// +kubebuilder:validation:Optional
+	PrivateNetworkIDRef *v1.Reference `json:"privateNetworkIdRef,omitempty" tf:"-"`
+
+	// Selector for a PrivateNetwork in network to populate privateNetworkId.
+	// +kubebuilder:validation:Optional
+	PrivateNetworkIDSelector *v1.Selector `json:"privateNetworkIdSelector,omitempty" tf:"-"`
 
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`

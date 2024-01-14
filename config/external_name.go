@@ -72,8 +72,8 @@ var kubeIdentifierFromProvider = config.ExternalName{
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"ovh_cloud_project_network_private":                           config.NameAsIdentifier,
-	"ovh_cloud_project_network_private_subnet":                    config.NameAsIdentifier,
+	"ovh_cloud_project_network_private":                           config.IdentifierFromProvider,
+	"ovh_cloud_project_network_private_subnet":                    config.IdentifierFromProvider,
 	"ovh_cloud_project_workflow_backup":                           config.NameAsIdentifier,
 	"ovh_cloud_project":                                           config.IdentifierFromProvider,
 	"ovh_cloud_project_user":                                      config.IdentifierFromProvider,

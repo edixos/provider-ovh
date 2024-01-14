@@ -12,6 +12,9 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.UseAsync = true
 		r.Kind = "Cluster"
+		r.References["private_network_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
+		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_kube_iprestrictions", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
