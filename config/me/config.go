@@ -23,4 +23,9 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "SSHKey"
 	})
+	p.AddResourceConfigurator("ovh_me_api_oauth2_client", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "Oauth2Client"
+	})
+
 }

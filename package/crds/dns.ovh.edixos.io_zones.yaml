@@ -83,18 +83,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
@@ -117,18 +121,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
@@ -172,18 +180,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
@@ -206,18 +218,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
@@ -476,18 +492,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
@@ -510,18 +530,22 @@ spec:
                           description: Catalog name Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product Representation of a configuration
-                            item for personalizing product
+                          description: 'Representation of a configuration item for
+                            personalizing product. 2 configurations are required :
+                            one for zone and one for template Representation of a
+                            configuration item for personalizing product'
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource Identifier
-                                  of the resource
+                                description: 'Identifier of the resource : zone or
+                                  template Identifier of the resource'
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM Path
-                                  to the resource in API.OVH.COM
+                                description: For zone, the value is the zone name
+                                  myzone.example.com. For template, the value can
+                                  be basic, minimized or  redirect which is the same
+                                  as minimized with additional entries for a redirect
+                                  configuration. Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array

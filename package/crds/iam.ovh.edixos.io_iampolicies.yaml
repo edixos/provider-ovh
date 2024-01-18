@@ -70,6 +70,10 @@ spec:
                     items:
                       type: string
                     type: array
+                  deny:
+                    items:
+                      type: string
+                    type: array
                   description:
                     type: string
                   except:
@@ -100,6 +104,10 @@ spec:
                   like an autoscaler.
                 properties:
                   allow:
+                    items:
+                      type: string
+                    type: array
+                  deny:
                     items:
                       type: string
                     type: array
@@ -304,6 +312,10 @@ spec:
                     type: array
                   createdAt:
                     type: string
+                  deny:
+                    items:
+                      type: string
+                    type: array
                   description:
                     type: string
                   except:

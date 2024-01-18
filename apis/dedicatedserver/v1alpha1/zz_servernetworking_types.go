@@ -19,34 +19,28 @@ import (
 
 type InterfacesInitParameters struct {
 
-	// (List of String) List of mac addresses to bind together.
 	// Interface Mac address
 	Macs []*string `json:"macs,omitempty" tf:"macs,omitempty"`
 
-	// (String) Type of bonding to create.
 	// Interface type
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type InterfacesObservation struct {
 
-	// (List of String) List of mac addresses to bind together.
 	// Interface Mac address
 	Macs []*string `json:"macs,omitempty" tf:"macs,omitempty"`
 
-	// (String) Type of bonding to create.
 	// Interface type
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type InterfacesParameters struct {
 
-	// (List of String) List of mac addresses to bind together.
 	// Interface Mac address
 	// +kubebuilder:validation:Optional
 	Macs []*string `json:"macs" tf:"macs,omitempty"`
 
-	// (String) Type of bonding to create.
 	// Interface type
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
@@ -54,44 +48,36 @@ type InterfacesParameters struct {
 
 type ServerNetworkingInitParameters struct {
 
-	// (Block List, Min: 1, Max: 2) Interface or interfaces aggregation.
 	// Interface or interfaces aggregation.
 	Interfaces []InterfacesInitParameters `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
-	// (String) The service_name of your dedicated server. The full list of available dedicated servers can be found using the ovh_dedicated_servers datasource.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ServerNetworkingObservation struct {
 
-	// Operation description.
 	// Operation description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (Block List, Min: 1, Max: 2) Interface or interfaces aggregation.
 	// Interface or interfaces aggregation.
 	Interfaces []InterfacesObservation `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
-	// (String) The service_name of your dedicated server. The full list of available dedicated servers can be found using the ovh_dedicated_servers datasource.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// status of the networking configuration (should be active).
 	// Operation status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ServerNetworkingParameters struct {
 
-	// (Block List, Min: 1, Max: 2) Interface or interfaces aggregation.
 	// Interface or interfaces aggregation.
 	// +kubebuilder:validation:Optional
 	Interfaces []InterfacesParameters `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
-	// (String) The service_name of your dedicated server. The full list of available dedicated servers can be found using the ovh_dedicated_servers datasource.
 	// The internal name of your dedicated server.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -122,7 +108,7 @@ type ServerNetworkingStatus struct {
 
 // +kubebuilder:object:root=true
 
-// ServerNetworking is the Schema for the ServerNetworkings API. ovh_dedicated_server_networking.html.markdownsubcategory : "Dedicated Server"
+// ServerNetworking is the Schema for the ServerNetworkings API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

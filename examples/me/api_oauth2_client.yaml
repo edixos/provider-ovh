@@ -1,0 +1,18 @@
+apiVersion: me.ovh.edixos.io/v1alpha1
+kind: Oauth2Client
+metadata:
+  name: sample-user
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: "sample-user"
+    flow: "AUTHORIZATION_CODE"
+    description: "An OAuth2 client using the authorization code flow for my-app.com"
+    callbackUrls:
+    - "https://my-app.com/callback"
+  writeConnectionSecretToRef:
+    name: oauth2
+    namespace: default
+
+

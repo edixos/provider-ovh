@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: servernetworkings.dedicatedserver.ovh.edixos.io
+  name: iamresourcegroups.iam.ovh.edixos.io
 spec:
-  group: dedicatedserver.ovh.edixos.io
+  group: iam.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ServerNetworking
-    listKind: ServerNetworkingList
-    plural: servernetworkings
-    singular: servernetworking
+    kind: IAMResourceGroup
+    listKind: IAMResourceGroupList
+    plural: iamresourcegroups
+    singular: iamresourcegroup
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ServerNetworking is the Schema for the ServerNetworkings API.
+        description: IAMResourceGroup is the Schema for the IAMResourceGroups API.
           <no value>
         properties:
           apiVersion:
@@ -50,7 +50,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ServerNetworkingSpec defines the desired state of ServerNetworking
+            description: IAMResourceGroupSpec defines the desired state of IAMResourceGroup
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,23 +67,12 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  interfaces:
-                    description: Interface or interfaces aggregation.
-                    items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
-                    type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  name:
                     type: string
+                  resources:
+                    items:
+                      type: string
+                    type: array
                 type: object
               initProvider:
                 description: THIS IS A BETA FIELD. It will be honored unless the Management
@@ -97,23 +86,12 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  interfaces:
-                    description: Interface or interfaces aggregation.
-                    items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
-                    type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  name:
                     type: string
+                  resources:
+                    items:
+                      type: string
+                    type: array
                 type: object
               managementPolicies:
                 default:
@@ -276,43 +254,32 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.interfaces is a required parameter
+            - message: spec.forProvider.name is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.interfaces)
-                || (has(self.initProvider) && has(self.initProvider.interfaces))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
           status:
-            description: ServerNetworkingStatus defines the observed state of ServerNetworking.
+            description: IAMResourceGroupStatus defines the observed state of IAMResourceGroup.
             properties:
               atProvider:
                 properties:
-                  description:
-                    description: Operation description
+                  createdAt:
                     type: string
                   id:
                     type: string
-                  interfaces:
-                    description: Interface or interfaces aggregation.
-                    items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
-                    type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  name:
                     type: string
-                  status:
-                    description: Operation status
+                  owner:
+                    type: string
+                  readOnly:
+                    type: boolean
+                  resources:
+                    items:
+                      type: string
+                    type: array
+                  updatedAt:
+                    type: string
+                  urn:
                     type: string
                 type: object
               conditions:
