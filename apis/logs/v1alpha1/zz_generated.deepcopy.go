@@ -215,6 +215,11 @@ func (in *LogsClusterInitParameters) DeepCopyInto(out *LogsClusterInitParameters
 			}
 		}
 	}
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
 	if in.DirectInputAllowedNetworks != nil {
 		in, out := &in.DirectInputAllowedNetworks, &out.DirectInputAllowedNetworks
 		*out = make([]*string, len(*in))
@@ -300,6 +305,11 @@ func (in *LogsClusterObservation) DeepCopyInto(out *LogsClusterObservation) {
 			}
 		}
 	}
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
 	if in.ClusterType != nil {
 		in, out := &in.ClusterType, &out.ClusterType
 		*out = new(string)
@@ -382,6 +392,11 @@ func (in *LogsClusterParameters) DeepCopyInto(out *LogsClusterParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
 	}
 	if in.DirectInputAllowedNetworks != nil {
 		in, out := &in.DirectInputAllowedNetworks, &out.DirectInputAllowedNetworks

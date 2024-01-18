@@ -8,10 +8,10 @@ export TERRAFORM_VERSION ?= 1.2.1
 
 export TERRAFORM_PROVIDER_SOURCE ?= ovh/ovh
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/ovh/terraform-provider-ovh
-export TERRAFORM_PROVIDER_VERSION ?= 0.35.0
+export TERRAFORM_PROVIDER_VERSION ?= 0.36.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-ovh
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://releases.hashicorp.com/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
-export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v0.35.0
+export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v0.36.1
 export TERRAFORM_DOCS_PATH ?= website/docs
 
 

@@ -17,36 +17,16 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type IAMPolicyInitParameters struct {
-	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
-
-	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
-
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
-
-	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
-
+type IAMResourceGroupInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 }
 
-type IAMPolicyObservation struct {
-	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
-
+type IAMResourceGroupObservation struct {
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
-
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
-
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -57,24 +37,11 @@ type IAMPolicyObservation struct {
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+
+	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
-type IAMPolicyParameters struct {
-
-	// +kubebuilder:validation:Optional
-	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
+type IAMResourceGroupParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -83,10 +50,10 @@ type IAMPolicyParameters struct {
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 }
 
-// IAMPolicySpec defines the desired state of IAMPolicy
-type IAMPolicySpec struct {
+// IAMResourceGroupSpec defines the desired state of IAMResourceGroup
+type IAMResourceGroupSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     IAMPolicyParameters `json:"forProvider"`
+	ForProvider     IAMResourceGroupParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -97,51 +64,49 @@ type IAMPolicySpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider IAMPolicyInitParameters `json:"initProvider,omitempty"`
+	InitProvider IAMResourceGroupInitParameters `json:"initProvider,omitempty"`
 }
 
-// IAMPolicyStatus defines the observed state of IAMPolicy.
-type IAMPolicyStatus struct {
+// IAMResourceGroupStatus defines the observed state of IAMResourceGroup.
+type IAMResourceGroupStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        IAMPolicyObservation `json:"atProvider,omitempty"`
+	AtProvider        IAMResourceGroupObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// IAMPolicy is the Schema for the IAMPolicys API. <no value>
+// IAMResourceGroup is the Schema for the IAMResourceGroups API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
-type IAMPolicy struct {
+type IAMResourceGroup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.identities) || (has(self.initProvider) && has(self.initProvider.identities))",message="spec.forProvider.identities is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.resources) || (has(self.initProvider) && has(self.initProvider.resources))",message="spec.forProvider.resources is a required parameter"
-	Spec   IAMPolicySpec   `json:"spec"`
-	Status IAMPolicyStatus `json:"status,omitempty"`
+	Spec   IAMResourceGroupSpec   `json:"spec"`
+	Status IAMResourceGroupStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// IAMPolicyList contains a list of IAMPolicys
-type IAMPolicyList struct {
+// IAMResourceGroupList contains a list of IAMResourceGroups
+type IAMResourceGroupList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []IAMPolicy `json:"items"`
+	Items           []IAMResourceGroup `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	IAMPolicy_Kind             = "IAMPolicy"
-	IAMPolicy_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: IAMPolicy_Kind}.String()
-	IAMPolicy_KindAPIVersion   = IAMPolicy_Kind + "." + CRDGroupVersion.String()
-	IAMPolicy_GroupVersionKind = CRDGroupVersion.WithKind(IAMPolicy_Kind)
+	IAMResourceGroup_Kind             = "IAMResourceGroup"
+	IAMResourceGroup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: IAMResourceGroup_Kind}.String()
+	IAMResourceGroup_KindAPIVersion   = IAMResourceGroup_Kind + "." + CRDGroupVersion.String()
+	IAMResourceGroup_GroupVersionKind = CRDGroupVersion.WithKind(IAMResourceGroup_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&IAMPolicy{}, &IAMPolicyList{})
+	SchemeBuilder.Register(&IAMResourceGroup{}, &IAMResourceGroupList{})
 }

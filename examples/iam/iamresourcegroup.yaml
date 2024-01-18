@@ -1,0 +1,13 @@
+apiVersion: iam.ovh.edixos.io/v1alpha1
+kind: IAMResourceGroup
+metadata:
+  name: vps-allow-all
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: "vps-allow-all"
+    resources:
+      - urn:v1:eu:resource:publicCloudProject:980cbcf06e6a4e6e8a91a7d125b26bba
+
+

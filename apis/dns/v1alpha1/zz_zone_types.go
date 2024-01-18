@@ -19,34 +19,34 @@ import (
 
 type ConfigurationInitParameters struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type ConfigurationObservation struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type ConfigurationParameters struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -100,7 +100,7 @@ type PlanInitParameters struct {
 	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
@@ -123,7 +123,7 @@ type PlanObservation struct {
 	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
@@ -142,34 +142,34 @@ type PlanObservation struct {
 
 type PlanOptionConfigurationInitParameters struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type PlanOptionConfigurationObservation struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type PlanOptionConfigurationParameters struct {
 
-	// Identifier of the resource
+	// Identifier of the resource : zone or template
 	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
-	// Path to the resource in API.OVH.COM
+	// For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -181,7 +181,7 @@ type PlanOptionInitParameters struct {
 	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
@@ -204,7 +204,7 @@ type PlanOptionObservation struct {
 	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
@@ -228,7 +228,7 @@ type PlanOptionParameters struct {
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []PlanOptionConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
@@ -256,7 +256,7 @@ type PlanParameters struct {
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
-	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`

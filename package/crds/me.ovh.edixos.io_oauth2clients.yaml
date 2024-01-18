@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.13.0
-  name: servernetworkings.dedicatedserver.ovh.edixos.io
+  name: oauth2clients.me.ovh.edixos.io
 spec:
-  group: dedicatedserver.ovh.edixos.io
+  group: me.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: ServerNetworking
-    listKind: ServerNetworkingList
-    plural: servernetworkings
-    singular: servernetworking
+    kind: Oauth2Client
+    listKind: Oauth2ClientList
+    plural: oauth2clients
+    singular: oauth2client
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ServerNetworking is the Schema for the ServerNetworkings API.
-          <no value>
+        description: Oauth2Client is the Schema for the Oauth2Clients API. <no value>
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -50,7 +49,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ServerNetworkingSpec defines the desired state of ServerNetworking
+            description: Oauth2ClientSpec defines the desired state of Oauth2Client
             properties:
               deletionPolicy:
                 default: Delete
@@ -67,22 +66,20 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  interfaces:
-                    description: Interface or interfaces aggregation.
+                  callbackUrls:
+                    description: Callback URLs of the applications using this oauth2
+                      client. Required if using the AUTHORIZATION_CODE flow.
                     items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
+                      type: string
                     type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  description:
+                    description: A description of your oauth2 client.
+                    type: string
+                  flow:
+                    description: OAuth2 flow type implemented for this oauth2 client.
+                      Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
+                    type: string
+                  name:
                     type: string
                 type: object
               initProvider:
@@ -97,22 +94,20 @@ spec:
                   for example because of an external controller is managing them,
                   like an autoscaler.
                 properties:
-                  interfaces:
-                    description: Interface or interfaces aggregation.
+                  callbackUrls:
+                    description: Callback URLs of the applications using this oauth2
+                      client. Required if using the AUTHORIZATION_CODE flow.
                     items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
+                      type: string
                     type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  description:
+                    description: A description of your oauth2 client.
+                    type: string
+                  flow:
+                    description: OAuth2 flow type implemented for this oauth2 client.
+                      Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
+                    type: string
+                  name:
                     type: string
                 type: object
               managementPolicies:
@@ -276,43 +271,47 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.interfaces is a required parameter
+            - message: spec.forProvider.description is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.interfaces)
-                || (has(self.initProvider) && has(self.initProvider.interfaces))'
-            - message: spec.forProvider.serviceName is a required parameter
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.description)
+                || (has(self.initProvider) && has(self.initProvider.description))'
+            - message: spec.forProvider.flow is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.flow)
+                || (has(self.initProvider) && has(self.initProvider.flow))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
           status:
-            description: ServerNetworkingStatus defines the observed state of ServerNetworking.
+            description: Oauth2ClientStatus defines the observed state of Oauth2Client.
             properties:
               atProvider:
                 properties:
+                  callbackUrls:
+                    description: Callback URLs of the applications using this oauth2
+                      client. Required if using the AUTHORIZATION_CODE flow.
+                    items:
+                      type: string
+                    type: array
+                  clientId:
+                    description: Client ID for the oauth2 client, generated during
+                      the resource creation.
+                    type: string
                   description:
-                    description: Operation description
+                    description: A description of your oauth2 client.
+                    type: string
+                  flow:
+                    description: OAuth2 flow type implemented for this oauth2 client.
+                      Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
                     type: string
                   id:
                     type: string
-                  interfaces:
-                    description: Interface or interfaces aggregation.
-                    items:
-                      properties:
-                        macs:
-                          description: Interface Mac address
-                          items:
-                            type: string
-                          type: array
-                        type:
-                          description: Interface type
-                          type: string
-                      type: object
-                    type: array
-                  serviceName:
-                    description: The internal name of your dedicated server.
+                  identity:
+                    description: URN that will allow you to associate this oauth2
+                      client with an access policy
                     type: string
-                  status:
-                    description: Operation status
+                  name:
                     type: string
                 type: object
               conditions:

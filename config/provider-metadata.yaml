@@ -45,10 +45,8 @@ resources:
             OVH_IPLB_IPFO_TEST: '- An array of FailOver IPs (also known as Additional IPs) that shall be associated with the IPLB Service'
             OVH_IPLB_SERVICE_TEST: '- The ID of the IP Load Balancer to use'
             OVH_NASHA_SERVICE_TEST: '- The name of your HA-NAS service.'
-            OVH_TESTACC_IP: '- set this variable to "yes" will order public ip blocks.'
             OVH_TESTACC_ORDER_CLOUDPROJECT: '- set this variable to "yes" will order cloud projects.'
             OVH_TESTACC_ORDER_DOMAIN: '- set this variable to "mydomain.ovh" to run tests for domain zones.'
-            OVH_TESTACC_ORDER_IPLOADBALANCING: '- set this variable to "yes" will order ip loadbalancing.'
             OVH_TESTACC_ORDER_VRACK: '- set this variable to "yes" will order vracks.'
             OVH_VRACK_SERVICE_TEST: '- The ID of the vRack to use.'
             OVH_ZONE_TEST: '- The domain you own to test the domain_zone resource.'
@@ -1189,6 +1187,19 @@ resources:
                 the Openstack API.
             users: '- The list of users of a public cloud project.'
         importStatements: []
+    cloud_project_vrack.html.markdown:
+        subCategory: ""
+        description: 'cloud_project_vrack.html.markdownsubcategory : "Public Cloud Network"'
+        name: cloud_project_vrack.html.markdown
+        title: cloud_project_vrack.html.markdown
+        argumentDocs:
+            decription: '- The description of the vrack'
+            id: '- The id of the vrack'
+            name: '- The name of the vrack'
+            service_name: |-
+                - The id of the public cloud project. If omitted,
+                the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+        importStatements: []
     cloud_project_workflow_backup.html.markdown:
         subCategory: ""
         description: 'cloud_project_workflow_backup.html.markdownsubcategory : "VM Instances"'
@@ -1211,6 +1222,7 @@ resources:
         title: dbaas_logs_cluster.html.markdown
         argumentDocs:
             archive_allowed_networks: '- List of IP blocks'
+            cluster_id: '- Cluster ID. If not provided, the default cluster_id is used'
             cluster_type: '- type of cluster (DEDICATED, PRO or TRIAL)'
             dedicated_input_pem: '- PEM for dedicated inputs'
             direct_input_allowed_networks: '- List of IP blocks'
@@ -1220,7 +1232,17 @@ resources:
             is_unlocked: '- true if given service can perform advanced operations on cluster'
             query_allowed_networks: '- List of IP blocks'
             region: '- datacenter localization'
+            service_name: '- (Required) The service name'
             urn: '- URN of the DBaaS'
+        importStatements: []
+    dbaas_logs_clusters.html.markdown:
+        subCategory: ""
+        description: 'dbaas_logs_clusters.html.markdownsubcategory : "Logs Data Platform"'
+        name: dbaas_logs_clusters.html.markdown
+        title: dbaas_logs_clusters.html.markdown
+        argumentDocs:
+            service_name: '- The service name. It''s the ID of your Logs Data Platform instance.'
+            uuids: is the cluster id
         importStatements: []
     dbaas_logs_graylog_output_stream.html.markdown:
         subCategory: ""
@@ -1647,6 +1669,7 @@ resources:
         argumentDocs:
             allow: '- List of actions allowed on resources by identities'
             created_at: '- Creation date of this group.'
+            deny: '- List of actions that will be denied no matter what policy exists.'
             description: '- Description of the policy'
             except: '- List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.'
             identities: '- List of identities affected by the policy'
@@ -1677,6 +1700,30 @@ resources:
         argumentDocs:
             id: '- hash of the list of the resource types'
             types: '- List of resource types'
+        importStatements: []
+    iam_resource_group.html.markdown:
+        subCategory: ""
+        description: 'iam_resource_group.html.markdownsubcategory : "Account Management"'
+        name: iam_resource_group.html.markdown
+        title: iam_resource_group.html.markdown
+        argumentDocs:
+            created_at: '- Date of the creation of the resource group'
+            id: '- Id of the resource group'
+            name: '- Name of the resource group'
+            owner: '- Name of the account owning the resource group'
+            read_only: '- Marks that the resource group is not editable. Usually means that this is a default resource group created by OVHcloud'
+            resources: '- Set of the URNs of the resources contained in the resource group. All urns must be ones of valid resources'
+            updated_at: '- Date of the last modification of the resource group'
+            urn: '- URN of the resource group, used when writing policies'
+        importStatements: []
+    iam_resource_groups.html.markdown:
+        subCategory: ""
+        description: 'iam_resource_groups.html.markdownsubcategory : "Account Management"'
+        name: iam_resource_groups.html.markdown
+        title: iam_resource_groups.html.markdown
+        argumentDocs:
+            id: '- Hash of the list of the resource groups IDs.'
+            resource_groups: '- List of the resource groups IDs.'
         importStatements: []
     ip_reverse.html.markdown:
         subCategory: ""
@@ -2039,6 +2086,39 @@ resources:
             urn: ': The resource URN of the account, to be used when writing IAM policies'
             vat: ': VAT number'
             zip: ': Zipcode of the address'
+        importStatements: []
+    me_api_oauth2_client.html.markdown:
+        subCategory: ""
+        description: 'me_api_oauth2_client.html.markdownsubcategory : "Account Management"'
+        name: me_api_oauth2_client.html.markdown
+        title: me_api_oauth2_client.html.markdown
+        argumentDocs:
+            callback_urls: '- List of callback urls when configuring the AUTHORIZATION_CODE flow.'
+            client_id: '- Client ID of the created service account.'
+            client_secret: '- Client secret of the created service account.'
+            description: '- OAuth2 client description.'
+            flow: '- The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.'
+            name: '- OAuth2 client name.'
+        importStatements: []
+    me_api_oauth2_client.markdown:
+        subCategory: ""
+        description: 'me_api_oauth2_client.markdownsubcategory : "Account Management"'
+        name: me_api_oauth2_client.markdown
+        title: me_api_oauth2_client.markdown
+        argumentDocs:
+            callback_urls: '- List of callback urls when configuring the AUTHORIZATION_CODE flow.'
+            client_id: '- Client ID of an existing OAuth2 service account.'
+            description: '- OAuth2 client description.'
+            flow: '- The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.'
+            name: '- OAuth2 client name.'
+        importStatements: []
+    me_api_oauth2_clients.markdown:
+        subCategory: ""
+        description: 'me_api_oauth2_clients.markdownsubcategory : "Account Management"'
+        name: me_api_oauth2_clients.markdown
+        title: me_api_oauth2_clients.markdown
+        argumentDocs:
+            client_ids: '- The list of all the existing client IDs.'
         importStatements: []
     me_identity_group.html.markdown:
         subCategory: ""
@@ -2435,50 +2515,6 @@ resources:
             text: '- Textual representation'
             value: '- The effective price'
         importStatements: []
-    ovh_dedicated_server_networking:
-        subCategory: ""
-        description: 'ovh_dedicated_server_networking.html.markdownsubcategory : "Dedicated Server"'
-        name: ovh_dedicated_server_networking
-        title: ovh_dedicated_server_networking.html.markdown
-        examples:
-            - name: server
-              manifest: |-
-                {
-                  "interfaces": [
-                    {
-                      "macs": "${sort(flatten(data.ovh_dedicated_server.server.vnis.*.nics))}",
-                      "type": "vrack"
-                    }
-                  ],
-                  "service_name": "${local.dedicated_server}"
-                }
-              references:
-                service_name: local.dedicated_server
-            - name: server
-              manifest: |-
-                {
-                  "interfaces": [
-                    {
-                      "macs": "${slice(sort(flatten(data.ovh_dedicated_server.server.vnis.*.nics)), 0, 2)}",
-                      "type": "vrack"
-                    },
-                    {
-                      "macs": "${slice(sort(flatten(data.ovh_dedicated_server.server.vnis.*.nics)), 2, 4)}",
-                      "type": "vrack"
-                    }
-                  ],
-                  "service_name": "${local.dedicated_server}"
-                }
-              references:
-                service_name: local.dedicated_server
-        argumentDocs:
-            description: '- Operation description.'
-            interfaces: '- (Block List, Min: 1, Max: 2) Interface or interfaces aggregation.'
-            macs: (List of String) List of mac addresses to bind together.
-            service_name: '- (String) The service_name of your dedicated server. The full list of available dedicated servers can be found using the ovh_dedicated_servers datasource.'
-            status: '- status of the networking configuration (should be active).'
-            type: (String) Type of bonding to create.
-        importStatements: []
     ovh_domain_zone:
         subCategory: ""
         description: 'ovh_domain_zone.html.markdownsubcategory : "Domain names"'
@@ -2514,7 +2550,7 @@ resources:
                 plan.pricing_mode: data.ovh_order_cart_product_plan.zone.selected_price.0.pricing_mode
         argumentDocs:
             catalog_name: '- Catalog name'
-            configuration: '- (Optional) Representation of a configuration item for personalizing product'
+            configuration: '- (Required) Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template'
             date: '- date'
             description: '- description'
             details: '- Information about a Bill entry'
@@ -2523,7 +2559,7 @@ resources:
             duration: '- (Required) duration'
             expiration_date: '- expiration date'
             has_dns_anycast: '- hasDnsAnycast flag of the DNS zone'
-            label: '- (Required) Identifier of the resource'
+            label: '- (Required) Identifier of the resource : zone or template'
             last_update: '- Last update date of the DNS zone'
             name: '- Zone name'
             name_servers: '- Name servers that host the DNS zone'
@@ -2536,7 +2572,7 @@ resources:
             plan_option: '- (Optional) Product Plan to order'
             pricing_mode: '- (Required) Pricing model identifier'
             quantity: '- quantity'
-            value: '- (Required) Path to the resource in API.OVH.COM'
+            value: '- (Required) For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or  redirect which is the same as minimized with additional entries for a redirect configuration.'
         importStatements: []
     ovh_domain_zone_record:
         subCategory: ""

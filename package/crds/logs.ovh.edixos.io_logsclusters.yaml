@@ -71,6 +71,8 @@ spec:
                     items:
                       type: string
                     type: array
+                  clusterId:
+                    type: string
                   directInputAllowedNetworks:
                     description: Allowed networks for DIRECT_INPUT flow type
                     items:
@@ -101,6 +103,8 @@ spec:
                     items:
                       type: string
                     type: array
+                  clusterId:
+                    type: string
                   directInputAllowedNetworks:
                     description: Allowed networks for DIRECT_INPUT flow type
                     items:
@@ -289,6 +293,8 @@ spec:
                     items:
                       type: string
                     type: array
+                  clusterId:
+                    type: string
                   clusterType:
                     description: Cluster type
                     type: string

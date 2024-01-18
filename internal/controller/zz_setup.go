@@ -45,6 +45,7 @@ import (
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/iam/iampolicy"
+	iamresourcegroup "github.com/edixos/provider-ovh/internal/controller/iam/iamresourcegroup"
 	cluster "github.com/edixos/provider-ovh/internal/controller/kube/cluster"
 	iprestriction "github.com/edixos/provider-ovh/internal/controller/kube/iprestriction"
 	nodepool "github.com/edixos/provider-ovh/internal/controller/kube/nodepool"
@@ -65,6 +66,7 @@ import (
 	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
 	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
 	group "github.com/edixos/provider-ovh/internal/controller/me/group"
+	oauth2client "github.com/edixos/provider-ovh/internal/controller/me/oauth2client"
 	sshkey "github.com/edixos/provider-ovh/internal/controller/me/sshkey"
 	userme "github.com/edixos/provider-ovh/internal/controller/me/user"
 	nashapartition "github.com/edixos/provider-ovh/internal/controller/nas/nashapartition"
@@ -131,6 +133,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zonerecord.Setup,
 		zoneredirection.Setup,
 		iampolicy.Setup,
+		iamresourcegroup.Setup,
 		cluster.Setup,
 		iprestriction.Setup,
 		nodepool.Setup,
@@ -151,6 +154,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		logscluster.Setup,
 		logsinput.Setup,
 		group.Setup,
+		oauth2client.Setup,
 		sshkey.Setup,
 		userme.Setup,
 		nashapartition.Setup,

@@ -22,6 +22,8 @@ type LogsClusterInitParameters struct {
 	// Allowed networks for ARCHIVE flow type
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
 
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
 	// Allowed networks for DIRECT_INPUT flow type
 	DirectInputAllowedNetworks []*string `json:"directInputAllowedNetworks,omitempty" tf:"direct_input_allowed_networks,omitempty"`
 
@@ -35,6 +37,8 @@ type LogsClusterObservation struct {
 
 	// Allowed networks for ARCHIVE flow type
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
+
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Cluster type
 	ClusterType *string `json:"clusterType,omitempty" tf:"cluster_type,omitempty"`
@@ -67,6 +71,9 @@ type LogsClusterParameters struct {
 	// Allowed networks for ARCHIVE flow type
 	// +kubebuilder:validation:Optional
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Allowed networks for DIRECT_INPUT flow type
 	// +kubebuilder:validation:Optional
