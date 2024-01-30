@@ -1,4 +1,4 @@
-apiVersion: ovh.upbound.io/v1alpha1
+apiVersion: ovh.edixos.io/v1alpha1
 kind: StoreConfig
 metadata:
   name: vault

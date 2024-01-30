@@ -1,0 +1,16 @@
+apiVersion: workloads.edixos.io/v1alpha1
+kind: EdixosCluster
+metadata:
+  name: dev-cluster-2
+  namespace: default
+spec:
+  serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+  region: DE1
+  version: "1.28"
+  nodePool:
+    flavorName: b2-7
+    desiredNodes: 1
+    maxNodes: 1
+    minNodes: 1
+  masterAuthorizedNetworks:
+    - 86.245.54.92/32
