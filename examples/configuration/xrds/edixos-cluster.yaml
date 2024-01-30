@@ -1,0 +1,94 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xedixosclusters.workloads.edixos.io
+spec:
+  defaultCompositionRef:
+    name: edixos-cluster
+  group: workloads.edixos.io
+  names:
+    kind: XEdixosCluster
+    plural: xedixosclusters
+  claimNames:
+    kind: EdixosCluster
+    plural: edixosclusters
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      additionalPrinterColumns:
+        - name: ID
+          type: string
+          description: The Cluster ID from the OVH API.
+          jsonPath: .status.clusterID
+        - name: URL
+          type: string
+          description: The control plane URL.
+          jsonPath: .status.url
+        - name: sizeStatus
+          type: string
+          description: The status about the Kubernetes cluster's capacity.
+          jsonPath: .status.sizeStatus
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                serviceName:
+                  description: The id of the OVH Public Cloud Project.
+                  type: string
+                region:
+                  description: The region where the cluster will be created.
+                  type: string
+                version:
+                  description: The version of the kubernetes cluster.
+                  type: string
+                nodePool:
+                  type: object
+                  properties:
+                    flavorName:
+                      description: The machine flavor name to be used.
+                      type: string
+                    desiredNodes:
+                      description: Number of nodes you desire in the pool
+                      type: number
+                    maxNodes:
+                      description: Number of max nodes you desire in the pool
+                      type: number
+                    minNodes:
+                      description: Number of min nodes you desire in the pool
+                      type: number
+                  required:
+                    - flavorName
+                    - desiredNodes
+                masterAuthorizedNetworks:
+                  type: array
+                  items:
+                    type: string
+                    description: The IP ranges to be authorized in the Kubernetes api-server.
+              required:
+                - serviceName
+                - region
+                - version
+                - nodePool
+
+            status:
+              type: object
+              properties:
+                clusterID:
+                  type: string
+                  description: The identifier of the cluster from OVH API.
+                kubeProxyMode:
+                  type: string
+                  description: KubeProxyMode, for example iptables
+                url:
+                  type: string
+                  description: url of the masters
+                nodePoolId:
+                  type: string
+                  description: The identifier of the nodepool from OVH API.
+                sizeStatus:
+                  type: string
+                  description: The status about the Kubernetes cluster's capacity.

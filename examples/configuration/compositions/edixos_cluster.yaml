@@ -1,0 +1,151 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: edixos-cluster
+  labels:
+    purpose: demo
+spec:
+  compositeTypeRef:
+    apiVersion: workloads.edixos.io/v1alpha1
+    kind: XEdixosCluster
+  patchSets:
+    - name: metadata
+      patches:
+        - fromFieldPath: metadata.labels
+  resources:
+    # Cluster.kube.ovh.edixos.io
+    - name: Cluster
+      base:
+        apiVersion: kube.ovh.edixos.io/v1alpha1
+        kind: Cluster
+        spec:
+          providerConfigRef:
+            name: default
+      patches:
+        ########################################
+        ## From composite to managed resource ##
+        ########################################
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: metadata.name
+        - fromFieldPath: spec.serviceName
+          toFieldPath: spec.forProvider.serviceName
+        - fromFieldPath: spec.version
+          toFieldPath: spec.forProvider.version
+        - fromFieldPath: spec.region
+          toFieldPath: spec.forProvider.region
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: spec.forProvider.name
+        ########################################
+        ## From managed resource to composite ##
+        ########################################
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.url
+          toFieldPath: status.url
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.kubeProxyMode
+          toFieldPath: status.kubeProxyMode
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.id
+          toFieldPath: status.clusterID
+
+    # NodePool.kube.ovh.edixos.io
+    - name: nodePool
+      base:
+        apiVersion: kube.ovh.edixos.io/v1alpha1
+        kind: NodePool
+        spec:
+          providerConfigRef:
+            name: default
+          forProvider:
+            maxNodes: 1
+            minNodes: 1
+            monthlyBilled: false
+      patches:
+        ########################################
+        ## From composite to managed resource ##
+        ########################################
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: spec.forProvider.name
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: metadata.name
+        - fromFieldPath: spec.serviceName
+          toFieldPath: spec.forProvider.serviceName
+        - fromFieldPath: spec.nodePool.flavorName
+          toFieldPath: spec.forProvider.flavorName
+        - fromFieldPath: spec.nodePool.desiredNodes
+          toFieldPath: spec.forProvider.desiredNodes
+        - fromFieldPath: spec.nodePool.maxNodes
+          toFieldPath: spec.forProvider.maxNodes
+        - fromFieldPath: spec.nodePool.minNodes
+          toFieldPath: spec.forProvider.minNodes
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: spec.forProvider.kubeIdRef.name
+        ########################################
+        ## From managed resource to composite ##
+        ########################################
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.id
+          toFieldPath: status.nodePoolId
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.sizeStatus
+          toFieldPath: status.sizeStatus
+    # IpRestriction.kube.ovh.edixos.io
+    - name: ipRestriction
+      base:
+        apiVersion: kube.ovh.edixos.io/v1alpha1
+        kind: IpRestriction
+        spec:
+          providerConfigRef:
+            name: default
+          forProvider:
+            ips:
+              - 0.0.0.0/0
+      patches:
+        - fromFieldPath: spec.serviceName
+          toFieldPath: spec.forProvider.serviceName
+        - fromFieldPath: spec.masterAuthorizedNetworks
+          toFieldPath: spec.forProvider.ips
+        - type: CombineFromComposite
+          combine:
+            variables:
+              - fromFieldPath: metadata.labels[crossplane.io/claim-name]
+              - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+            strategy: string
+            string:
+              fmt: "%s-%s"
+          toFieldPath: spec.forProvider.kubeIdRef.name
