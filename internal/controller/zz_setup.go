@@ -29,6 +29,7 @@ import (
 	projectdatabasemongodbuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasemongodbuser"
 	projectdatabaseopensearchpattern "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseopensearchpattern"
 	projectdatabaseopensearchuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseopensearchuser"
+	projectdatabasepostgresqlconnectionpool "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasepostgresqlconnectionpool"
 	projectdatabasepostgresqluser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasepostgresqluser"
 	projectdatabaseredisuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseredisuser"
 	projectdatabaseuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseuser"
@@ -44,6 +45,7 @@ import (
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
+	iampermissionsgroup "github.com/edixos/provider-ovh/internal/controller/iam/iampermissionsgroup"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/iam/iampolicy"
 	iamresourcegroup "github.com/edixos/provider-ovh/internal/controller/iam/iamresourcegroup"
 	cluster "github.com/edixos/provider-ovh/internal/controller/kube/cluster"
@@ -81,6 +83,8 @@ import (
 	privatedatabasewhitelist "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabasewhitelist"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/providerconfig"
 	containerregistry "github.com/edixos/provider-ovh/internal/controller/registry/containerregistry"
+	containerregistryiprestrictionsmanagement "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryiprestrictionsmanagement"
+	containerregistryiprestrictionsregistry "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryiprestrictionsregistry"
 	containerregistryoidc "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryoidc"
 	containerregistryuser "github.com/edixos/provider-ovh/internal/controller/registry/containerregistryuser"
 	projectregionstoragepresign "github.com/edixos/provider-ovh/internal/controller/storage/projectregionstoragepresign"
@@ -117,6 +121,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabasemongodbuser.Setup,
 		projectdatabaseopensearchpattern.Setup,
 		projectdatabaseopensearchuser.Setup,
+		projectdatabasepostgresqlconnectionpool.Setup,
 		projectdatabasepostgresqluser.Setup,
 		projectdatabaseredisuser.Setup,
 		projectdatabaseuser.Setup,
@@ -132,6 +137,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zone.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
+		iampermissionsgroup.Setup,
 		iampolicy.Setup,
 		iamresourcegroup.Setup,
 		cluster.Setup,
@@ -169,6 +175,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		privatedatabasewhitelist.Setup,
 		providerconfig.Setup,
 		containerregistry.Setup,
+		containerregistryiprestrictionsmanagement.Setup,
+		containerregistryiprestrictionsregistry.Setup,
 		containerregistryoidc.Setup,
 		containerregistryuser.Setup,
 		projectregionstoragepresign.Setup,

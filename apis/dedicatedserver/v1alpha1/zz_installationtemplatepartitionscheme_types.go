@@ -19,6 +19,9 @@ import (
 
 type InstallationTemplatePartitionSchemeInitParameters struct {
 
+	// name of this partitioning scheme
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications)
 	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
 
@@ -29,6 +32,9 @@ type InstallationTemplatePartitionSchemeInitParameters struct {
 type InstallationTemplatePartitionSchemeObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// name of this partitioning scheme
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications)
 	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
 
@@ -37,6 +43,10 @@ type InstallationTemplatePartitionSchemeObservation struct {
 }
 
 type InstallationTemplatePartitionSchemeParameters struct {
+
+	// name of this partitioning scheme
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications)
 	// +kubebuilder:validation:Optional
@@ -82,6 +92,7 @@ type InstallationTemplatePartitionSchemeStatus struct {
 type InstallationTemplatePartitionScheme struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.priority) || (has(self.initProvider) && has(self.initProvider.priority))",message="spec.forProvider.priority is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.templateName) || (has(self.initProvider) && has(self.initProvider.templateName))",message="spec.forProvider.templateName is a required parameter"
 	Spec   InstallationTemplatePartitionSchemeSpec   `json:"spec"`

@@ -67,6 +67,126 @@ func (mg *ContainerRegistry) SetWriteConnectionSecretToReference(r *xpv1.SecretR
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this ContainerRegistryOIDC.
 func (mg *ContainerRegistryOIDC) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

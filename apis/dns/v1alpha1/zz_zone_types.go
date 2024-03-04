@@ -311,6 +311,10 @@ type ZoneObservation struct {
 	// Last update date of the DNS zone
 	LastUpdate *string `json:"lastUpdate,omitempty" tf:"last_update,omitempty"`
 
+	// Zone name
+	// Zone name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Name servers that host the DNS zone
 	// Name servers that host the DNS zone
 	NameServers []*string `json:"nameServers,omitempty" tf:"name_servers,omitempty"`

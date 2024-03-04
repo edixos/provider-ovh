@@ -25,6 +25,9 @@ type InstallationTemplatePartitionSchemeHardwareRaidInitParameters struct {
 	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
+	// Hardware RAID name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// name of this partitioning scheme
 	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
 
@@ -45,6 +48,9 @@ type InstallationTemplatePartitionSchemeHardwareRaidObservation struct {
 	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
+	// Hardware RAID name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// name of this partitioning scheme
 	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
 
@@ -64,6 +70,10 @@ type InstallationTemplatePartitionSchemeHardwareRaidParameters struct {
 	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
 	// +kubebuilder:validation:Optional
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// Hardware RAID name
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// name of this partitioning scheme
 	// +kubebuilder:validation:Optional
@@ -115,6 +125,7 @@ type InstallationTemplatePartitionSchemeHardwareRaid struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.disks) || (has(self.initProvider) && has(self.initProvider.disks))",message="spec.forProvider.disks is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.mode) || (has(self.initProvider) && has(self.initProvider.mode))",message="spec.forProvider.mode is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.schemeName) || (has(self.initProvider) && has(self.initProvider.schemeName))",message="spec.forProvider.schemeName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.step) || (has(self.initProvider) && has(self.initProvider.step))",message="spec.forProvider.step is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.templateName) || (has(self.initProvider) && has(self.initProvider.templateName))",message="spec.forProvider.templateName is a required parameter"

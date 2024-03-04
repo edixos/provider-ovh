@@ -72,6 +72,17 @@ spec:
                       type: string
                     description: Advanced configuration key / value
                     type: object
+                  backupRegions:
+                    description: List of region where backups are pushed. Not more
+                      than 1 regions for MongoDB. Not more than 2 regions for the
+                      other engines with one being the same as the nodes[].region
+                      field
+                    items:
+                      type: string
+                    type: array
+                  backupTime:
+                    description: Time on which backups start every day
+                    type: string
                   description:
                     description: Description of the cluster
                     type: string
@@ -134,6 +145,17 @@ spec:
                       type: string
                     description: Advanced configuration key / value
                     type: object
+                  backupRegions:
+                    description: List of region where backups are pushed. Not more
+                      than 1 regions for MongoDB. Not more than 2 regions for the
+                      other engines with one being the same as the nodes[].region
+                      field
+                    items:
+                      type: string
+                    type: array
+                  backupTime:
+                    description: Time on which backups start every day
+                    type: string
                   description:
                     description: Description of the cluster
                     type: string
@@ -374,6 +396,14 @@ spec:
                       type: string
                     description: Advanced configuration key / value
                     type: object
+                  backupRegions:
+                    description: List of region where backups are pushed. Not more
+                      than 1 regions for MongoDB. Not more than 2 regions for the
+                      other engines with one being the same as the nodes[].region
+                      field
+                    items:
+                      type: string
+                    type: array
                   backupTime:
                     description: Time on which backups start every day
                     type: string

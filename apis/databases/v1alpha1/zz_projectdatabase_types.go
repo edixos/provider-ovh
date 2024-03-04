@@ -85,6 +85,12 @@ type ProjectDatabaseInitParameters struct {
 	// Advanced configuration key / value
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
+
+	// Time on which backups start every day
+	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
+
 	// Description of the cluster
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -119,6 +125,9 @@ type ProjectDatabaseObservation struct {
 
 	// Advanced configuration key / value
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
+
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
 
 	// Time on which backups start every day
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
@@ -178,6 +187,14 @@ type ProjectDatabaseParameters struct {
 	// Advanced configuration key / value
 	// +kubebuilder:validation:Optional
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
+
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	// +kubebuilder:validation:Optional
+	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
+
+	// Time on which backups start every day
+	// +kubebuilder:validation:Optional
+	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
 
 	// Description of the cluster
 	// +kubebuilder:validation:Optional

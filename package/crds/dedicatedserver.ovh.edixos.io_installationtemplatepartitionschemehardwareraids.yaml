@@ -79,6 +79,9 @@ spec:
                     description: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6,
                       raid60)
                     type: string
+                  name:
+                    description: Hardware RAID name
+                    type: string
                   schemeName:
                     description: name of this partitioning scheme
                     type: string
@@ -111,6 +114,9 @@ spec:
                   mode:
                     description: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6,
                       raid60)
+                    type: string
+                  name:
+                    description: Hardware RAID name
                     type: string
                   schemeName:
                     description: name of this partitioning scheme
@@ -291,6 +297,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.mode)
                 || (has(self.initProvider) && has(self.initProvider.mode))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.schemeName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.schemeName)
@@ -321,6 +331,9 @@ spec:
                   mode:
                     description: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6,
                       raid60)
+                    type: string
+                  name:
+                    description: Hardware RAID name
                     type: string
                   schemeName:
                     description: name of this partitioning scheme

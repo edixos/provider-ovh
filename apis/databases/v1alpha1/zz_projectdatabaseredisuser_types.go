@@ -34,6 +34,9 @@ type ProjectDatabaseRedisUserInitParameters struct {
 	// Keys of the user
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
@@ -61,6 +64,9 @@ type ProjectDatabaseRedisUserObservation struct {
 
 	// Keys of the user
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
+
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
@@ -92,6 +98,10 @@ type ProjectDatabaseRedisUserParameters struct {
 	// Keys of the user
 	// +kubebuilder:validation:Optional
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
+
+	// Name of the user
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
@@ -137,6 +147,7 @@ type ProjectDatabaseRedisUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterId) || (has(self.initProvider) && has(self.initProvider.clusterId))",message="spec.forProvider.clusterId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectDatabaseRedisUserSpec   `json:"spec"`
 	Status ProjectDatabaseRedisUserStatus `json:"status,omitempty"`

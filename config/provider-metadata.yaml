@@ -189,6 +189,30 @@ resources:
             version: '- Version of your registry'
             vulnerability: '- Vulnerability scanning'
         importStatements: []
+    cloud_project_containerregistry_ip_restrictions_management.html.markdown:
+        subCategory: ""
+        description: 'cloud_project_containerregistry_ip_restrictions_management.html.markdownsubcategory : "Managed Private Registry"'
+        name: cloud_project_containerregistry_ip_restrictions_management.html.markdown
+        title: cloud_project_containerregistry_ip_restrictions_management.html.markdown
+        argumentDocs:
+            description: '- The Description of Whitelisted IpBlock.'
+            ip_block: '- Whitelisted IpBlock (CIDR format).'
+            ip_restrictions: '- IP restrictions applied on Harbor UI and API.'
+            registry_id: '- The id of the Managed Private Registry.'
+            service_name: '- (Optional) The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.'
+        importStatements: []
+    cloud_project_containerregistry_ip_restrictions_registry.html.markdown:
+        subCategory: ""
+        description: 'cloud_project_containerregistry_ip_restrictions_registry.html.markdownsubcategory : "Managed Private Registry"'
+        name: cloud_project_containerregistry_ip_restrictions_registry.html.markdown
+        title: cloud_project_containerregistry_ip_restrictions_registry.html.markdown
+        argumentDocs:
+            description: '- The Description of Whitelisted IpBlock.'
+            ip_block: '- Whitelisted IpBlock (CIDR format).'
+            ip_restrictions: '- IP restrictions applied on artifact manager component.'
+            registry_id: '- The id of the Managed Private Registry.'
+            service_name: '- (Optional) The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.'
+        importStatements: []
     cloud_project_containerregistry_oidc.html.markdown:
         subCategory: ""
         description: 'cloud_project_containerregistry_oidc.html.markdownsubcategory : "Managed Private Registry"'
@@ -249,6 +273,7 @@ resources:
         title: cloud_project_database.html.markdown
         argumentDocs:
             advanced_configuration: '-  (Optional) Advanced configuration key / value.'
+            backup_regions: '- List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field'
             backup_time: '- Time on which backups start every day.'
             component: '- Type of component the URI relates to.'
             create: '- (Default 20m)'
@@ -627,7 +652,7 @@ resources:
             password: '- (Sensitive) Password of the user.'
             password_reset: '- (Optional) Arbitrary string to change to trigger a password update. Use the terraform refresh command after executing terraform apply to update the output with the new password.'
             roles: |-
-                - (Optional: if omit, default role) Roles the user belongs to.
+                - (Optional: if omit, default role) Roles the user belongs to. Since version 0.37.0, the authentication database must be indicated for all roles
                 Available roles:
             service_name: |-
                 - (Required, Forces new resource) The id of the public cloud project. If omitted,
@@ -687,6 +712,30 @@ resources:
                 the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
             status: '- Current status of the user.'
             update: '- (Default 20m)'
+        importStatements: []
+    cloud_project_database_postgresql_connection_pool.html.markdown:
+        subCategory: ""
+        description: 'cloud_project_database_postgresql_connection_pool.html.markdownsubcategory : "Managed Databases"'
+        name: cloud_project_database_postgresql_connection_pool.html.markdown
+        title: cloud_project_database_postgresql_connection_pool.html.markdown
+        argumentDocs:
+            cluster_id: '- (Required, Forces new resource) Cluster ID.'
+            create: '- (Default 20m)'
+            database_id: '- (Required, Forces new resource) Database ID for a database that belongs to the Database cluster given above.'
+            delete: '- (Default 20m)'
+            mode: |-
+                - (Required) Connection mode to the connection pool
+                Available modes:
+            name: '- (Required, Forces new resource) Name of the connection pool.'
+            port: '- Port of the connection pool.'
+            service_name: |-
+                - (Required, Forces new resource) The id of the public cloud project. If omitted,
+                the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+            size: '- (Required) Size of the connection pool.'
+            ssl_mode: '- Ssl connection mode for the pool.'
+            update: '- (Default 20m)'
+            uri: '- Connection URI to the pool.'
+            user_id: '- (Optional) Database user authorized to connect to the pool, if none all the users are allowed.'
         importStatements: []
     cloud_project_database_postgresql_user.html.markdown:
         subCategory: ""
@@ -878,17 +927,28 @@ resources:
             annotations: '- Annotations to apply to each node'
             anti_affinity: '- (Optional) should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.'
             autoscale: '- (Optional) Enable auto-scaling for the pool. Default to false.'
+            autoscaling_scale_down_unneeded_time_seconds: |-
+                - (Optional) scaleDownUnneededTimeSeconds autoscaling parameter
+                How long a node should be unneeded before it is eligible for scale down
+            autoscaling_scale_down_unready_time_seconds: |-
+                - (Optional) scaleDownUnreadyTimeSeconds autoscaling parameter
+                How long an unready node should be unneeded before it is eligible for scale down
+            autoscaling_scale_down_utilization_threshold: |-
+                - (Optional) scaleDownUtilizationThreshold autoscaling parameter
+                Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
             available_nodes: '- Number of nodes which are actually ready in the pool'
             create: '- (Default 20m)'
             created_at: '- Creation date'
             current_nodes: '- Number of nodes present in the pool'
             delete: '- (Default 10m)'
             desired_nodes: '- number of nodes to start.'
+            effect: '- mandatory possible values: NoExecute, NoSchedule, PreferNoSchedule'
             finalizers: '- Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.'
             flavor: '- Flavor name'
             flavor_name: |-
                 - a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
                 Changing this value recreates the resource.
+            key: '- mandatory'
             kube_id: '- The id of the managed kubernetes cluster. Changing this value recreates the resource.'
             labels: '- Labels to apply to each node'
             max_nodes: '- maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.'
@@ -901,12 +961,13 @@ resources:
             size_status: '- Status describing the state between number of nodes wanted and available ones'
             spec: '- Spec of each node in the pool'
             status: '- Current status'
-            taints: '- Taints to apply to each node'
+            taints: '- Taints to apply to each node NodeSpec kubernetes documentation'
             'template ': '- (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:'
             unschedulable: '- If true, set nodes as un-schedulable'
             up_to_date_nodes: '- Number of nodes with the latest version installed in the pool'
             update: '- (Default 10m)'
             updated_at: '- Last update date'
+            value: '- (Optional)'
         importStatements: []
     cloud_project_kube_nodepool_nodes.html.markdown:
         subCategory: ""
@@ -1442,6 +1503,7 @@ resources:
         title: dedicated_server.html.markdown
         argumentDocs:
             boot_id: '- boot id of the server'
+            boot_script: '- boot script of the server'
             commercial_range: '- dedicated server commercial range'
             datacenter: '- dedicated datacenter localisation (bhs1,bhs2,...)'
             enabled: '- VirtualNetworkInterface activation state'
@@ -1538,6 +1600,7 @@ resources:
         title: dedicated_server_update.html.markdown
         argumentDocs:
             boot_id: '- boot id of the server'
+            boot_script: '- boot script of the server'
             monitoring: '- Icmp monitoring state'
             service_name: '- (Required) The service_name of your dedicated server.'
             state: '- error, hacked, hackedBlocked, ok'
@@ -1652,6 +1715,40 @@ resources:
             service_name: '- The internal name of your private database.'
             sftp: '- (Required) Authorize this IP to access SFTP port. Values can be true or false'
         importStatements: []
+    iam_permissions_group.html.markdown:
+        subCategory: ""
+        description: 'iam_permissions_group.html.markdownsubcategory : "Account Management"'
+        name: iam_permissions_group.html.markdown
+        title: iam_permissions_group.html.markdown
+        argumentDocs:
+            allow: '- Set of actions allowed by the permissions group.'
+            created_at: '- Creation date of this group.'
+            deny: '- Set of actions that will be denied no matter what permissions group exists.'
+            description: '- Group description.'
+            except: '- Set of actions that will be subtracted from the allow list.'
+            name: '- Name of the permissions group.'
+            owner: '- Owner of the permissions group.'
+            read_only: '- Indicates that the permissions group is a default one.'
+            updated_at: '- Date of the last update of this group.'
+            urn: '- URN of the permissions group.'
+        importStatements: []
+    iam_permissions_groups.markdown:
+        subCategory: ""
+        description: 'iam_permissions_groups.markdownsubcategory : "Account Management"'
+        name: iam_permissions_groups.markdown
+        title: iam_permissions_groups.markdown
+        argumentDocs:
+            allow: '- Set of actions allowed by the permissions group.'
+            created_at: '- Creation date of this group.'
+            deny: '- Set of actions that will always be denied even if it is explicitly allowed by a policy.'
+            description: '- Group description.'
+            except: '- Set of actions that will be subtracted from the allow list.'
+            name: '- Name of the permissions group.'
+            owner: '- Owner of the permissions group.'
+            read_only: '- Indicates that this is a default permissions group, managed by OVHcloud.'
+            updated_at: '- Date of the last update of this group.'
+            urn: '- URN of the permissions group.'
+        importStatements: []
     iam_policies.html.markdown:
         subCategory: ""
         description: 'iam_policies.html.markdownsubcategory : "Account Management"'
@@ -1669,12 +1766,13 @@ resources:
         argumentDocs:
             allow: '- List of actions allowed on resources by identities'
             created_at: '- Creation date of this group.'
-            deny: '- List of actions that will be denied no matter what policy exists.'
+            deny: '- List of actions that will always be denied even if also allowed by this policy or another one.'
             description: '- Description of the policy'
             except: '- List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.'
             identities: '- List of identities affected by the policy'
             name: '- Name of the policy, must be unique'
             owner: '- Owner of the policy.'
+            permissions_groups: '- Set of permissions groups included in the policy. At evaluation, these permissions groups are each evaluated independently (notably, excepts actions only affect actions in the same permission group).'
             read_only: '- Indicates that the policy is a default one.'
             resources: '- List of resources affected by the policy'
             updated_at: '- Date of the last update of this group.'

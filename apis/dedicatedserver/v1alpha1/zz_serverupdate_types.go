@@ -22,6 +22,9 @@ type ServerUpdateInitParameters struct {
 	// The boot id of your dedicated server.
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
+	// The boot script of your dedicated server.
+	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
+
 	// Icmp monitoring state
 	Monitoring *bool `json:"monitoring,omitempty" tf:"monitoring,omitempty"`
 
@@ -36,6 +39,9 @@ type ServerUpdateObservation struct {
 
 	// The boot id of your dedicated server.
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
+
+	// The boot script of your dedicated server.
+	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -54,6 +60,10 @@ type ServerUpdateParameters struct {
 	// The boot id of your dedicated server.
 	// +kubebuilder:validation:Optional
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
+
+	// The boot script of your dedicated server.
+	// +kubebuilder:validation:Optional
+	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
 	// Icmp monitoring state
 	// +kubebuilder:validation:Optional

@@ -22,6 +22,9 @@ type PrivatedatabaseWhitelistInitParameters struct {
 	// The whitelisted IP in your instance
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Custom name for your Whitelisted IP
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Authorize this IP to access service port
 	Service *bool `json:"service,omitempty" tf:"service,omitempty"`
 
@@ -38,6 +41,9 @@ type PrivatedatabaseWhitelistObservation struct {
 	// The whitelisted IP in your instance
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Custom name for your Whitelisted IP
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Authorize this IP to access service port
 	Service *bool `json:"service,omitempty" tf:"service,omitempty"`
 
@@ -53,6 +59,10 @@ type PrivatedatabaseWhitelistParameters struct {
 	// The whitelisted IP in your instance
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+	// Custom name for your Whitelisted IP
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Authorize this IP to access service port
 	// +kubebuilder:validation:Optional
@@ -103,6 +113,7 @@ type PrivatedatabaseWhitelist struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ip) || (has(self.initProvider) && has(self.initProvider.ip))",message="spec.forProvider.ip is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.service) || (has(self.initProvider) && has(self.initProvider.service))",message="spec.forProvider.service is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.sftp) || (has(self.initProvider) && has(self.initProvider.sftp))",message="spec.forProvider.sftp is a required parameter"

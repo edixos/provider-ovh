@@ -437,6 +437,9 @@ spec:
                     description: Last update date of the DNS zone Last update date
                       of the DNS zone
                     type: string
+                  name:
+                    description: Zone name Zone name
+                    type: string
                   nameServers:
                     description: Name servers that host the DNS zone Name servers
                       that host the DNS zone

@@ -69,6 +69,9 @@ spec:
                   bootId:
                     description: The boot id of your dedicated server.
                     type: number
+                  bootScript:
+                    description: The boot script of your dedicated server.
+                    type: string
                   monitoring:
                     description: Icmp monitoring state
                     type: boolean
@@ -94,6 +97,9 @@ spec:
                   bootId:
                     description: The boot id of your dedicated server.
                     type: number
+                  bootScript:
+                    description: The boot script of your dedicated server.
+                    type: string
                   monitoring:
                     description: Icmp monitoring state
                     type: boolean
@@ -277,6 +283,9 @@ spec:
                   bootId:
                     description: The boot id of your dedicated server.
                     type: number
+                  bootScript:
+                    description: The boot script of your dedicated server.
+                    type: string
                   id:
                     type: string
                   monitoring:

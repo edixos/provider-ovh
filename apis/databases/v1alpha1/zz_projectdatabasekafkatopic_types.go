@@ -25,6 +25,9 @@ type ProjectDatabaseKafkaTopicInitParameters struct {
 	// Minimum insync replica accepted for this topic
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
+	// Name of the topic
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Number of partitions for this topic
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
@@ -50,6 +53,9 @@ type ProjectDatabaseKafkaTopicObservation struct {
 	// Minimum insync replica accepted for this topic
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
+	// Name of the topic
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Number of partitions for this topic
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
@@ -74,6 +80,10 @@ type ProjectDatabaseKafkaTopicParameters struct {
 	// Minimum insync replica accepted for this topic
 	// +kubebuilder:validation:Optional
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
+
+	// Name of the topic
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Number of partitions for this topic
 	// +kubebuilder:validation:Optional
@@ -131,6 +141,7 @@ type ProjectDatabaseKafkaTopic struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterId) || (has(self.initProvider) && has(self.initProvider.clusterId))",message="spec.forProvider.clusterId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectDatabaseKafkaTopicSpec   `json:"spec"`
 	Status ProjectDatabaseKafkaTopicStatus `json:"status,omitempty"`

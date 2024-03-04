@@ -251,6 +251,11 @@ func (in *NashaPartitionInitParameters) DeepCopyInto(out *NashaPartitionInitPara
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
 		*out = new(string)
@@ -328,6 +333,11 @@ func (in *NashaPartitionObservation) DeepCopyInto(out *NashaPartitionObservation
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Protocol != nil {
 		in, out := &in.Protocol, &out.Protocol
 		*out = new(string)
@@ -365,6 +375,11 @@ func (in *NashaPartitionParameters) DeepCopyInto(out *NashaPartitionParameters) 
 	*out = *in
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

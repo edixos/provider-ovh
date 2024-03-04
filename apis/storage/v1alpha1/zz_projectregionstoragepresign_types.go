@@ -24,6 +24,9 @@ type ProjectRegionStoragePresignInitParameters struct {
 
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// The S3 storage container's name.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Name of the object to download or upload.
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
@@ -42,6 +45,9 @@ type ProjectRegionStoragePresignObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
+
+	// The S3 storage container's name.
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Name of the object to download or upload.
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
@@ -64,6 +70,10 @@ type ProjectRegionStoragePresignParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
+
+	// The S3 storage container's name.
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Name of the object to download or upload.
 	// +kubebuilder:validation:Optional
@@ -115,6 +125,7 @@ type ProjectRegionStoragePresign struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.expire) || (has(self.initProvider) && has(self.initProvider.expire))",message="spec.forProvider.expire is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.method) || (has(self.initProvider) && has(self.initProvider.method))",message="spec.forProvider.method is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.object) || (has(self.initProvider) && has(self.initProvider.object))",message="spec.forProvider.object is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"

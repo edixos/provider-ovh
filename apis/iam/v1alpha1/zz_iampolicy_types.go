@@ -30,6 +30,8 @@ type IAMPolicyInitParameters struct {
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
+
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 }
 
@@ -51,6 +53,8 @@ type IAMPolicyObservation struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
+
+	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
 
 	ReadOnly *bool `json:"readOnly,omitempty" tf:"read_only,omitempty"`
 
@@ -78,6 +82,9 @@ type IAMPolicyParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`

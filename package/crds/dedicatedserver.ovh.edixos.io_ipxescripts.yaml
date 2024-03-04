@@ -72,6 +72,9 @@ spec:
                       a fake description ('$name auto description') is passed at creation
                       time.
                     type: string
+                  name:
+                    description: Name of your script
+                    type: string
                   script:
                     description: Content of your IPXE script
                     type: string
@@ -93,6 +96,9 @@ spec:
                       not passed to the OVH API as it cannot be retrieved back. Instead
                       a fake description ('$name auto description') is passed at creation
                       time.
+                    type: string
+                  name:
+                    description: Name of your script
                     type: string
                   script:
                     description: Content of your IPXE script
@@ -259,6 +265,10 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.script is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.script)
@@ -275,6 +285,9 @@ spec:
                       time.
                     type: string
                   id:
+                    type: string
+                  name:
+                    description: Name of your script
                     type: string
                   script:
                     description: Content of your IPXE script

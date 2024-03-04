@@ -25,6 +25,9 @@ type ProjectDatabaseM3DbUserInitParameters struct {
 	// Group of the user
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
@@ -44,6 +47,9 @@ type ProjectDatabaseM3DbUserObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
@@ -62,6 +68,10 @@ type ProjectDatabaseM3DbUserParameters struct {
 	// Group of the user
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
+
+	// Name of the user
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
@@ -107,6 +117,7 @@ type ProjectDatabaseM3DbUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterId) || (has(self.initProvider) && has(self.initProvider.clusterId))",message="spec.forProvider.clusterId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectDatabaseM3DbUserSpec   `json:"spec"`
 	Status ProjectDatabaseM3DbUserStatus `json:"status,omitempty"`

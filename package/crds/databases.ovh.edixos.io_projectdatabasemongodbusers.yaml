@@ -71,13 +71,16 @@ spec:
                   clusterId:
                     description: Id of the database cluster
                     type: string
+                  name:
+                    description: Name of the user
+                    type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password
                       update
                     type: string
                   roles:
-                    description: Roles the user belongs to (without authentication
-                      database)
+                    description: Roles the user belongs to with the authentication
+                      database
                     items:
                       type: string
                     type: array
@@ -99,13 +102,16 @@ spec:
                   clusterId:
                     description: Id of the database cluster
                     type: string
+                  name:
+                    description: Name of the user
+                    type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password
                       update
                     type: string
                   roles:
-                    description: Roles the user belongs to (without authentication
-                      database)
+                    description: Roles the user belongs to with the authentication
+                      database
                     items:
                       type: string
                     type: array
@@ -277,6 +283,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.clusterId)
                 || (has(self.initProvider) && has(self.initProvider.clusterId))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
@@ -295,13 +305,16 @@ spec:
                     type: string
                   id:
                     type: string
+                  name:
+                    description: Name of the user
+                    type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password
                       update
                     type: string
                   roles:
-                    description: Roles the user belongs to (without authentication
-                      database)
+                    description: Roles the user belongs to with the authentication
+                      database
                     items:
                       type: string
                     type: array

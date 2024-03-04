@@ -74,6 +74,9 @@ spec:
                   engine:
                     description: Name of the engine of the service
                     type: string
+                  name:
+                    description: Database name
+                    type: string
                   serviceName:
                     type: string
                 type: object
@@ -94,6 +97,9 @@ spec:
                     type: string
                   engine:
                     description: Name of the engine of the service
+                    type: string
+                  name:
+                    description: Database name
                     type: string
                   serviceName:
                     type: string
@@ -267,6 +273,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.engine)
                 || (has(self.initProvider) && has(self.initProvider.engine))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
@@ -287,6 +297,9 @@ spec:
                     description: Name of the engine of the service
                     type: string
                   id:
+                    type: string
+                  name:
+                    description: Database name
                     type: string
                   serviceName:
                     type: string

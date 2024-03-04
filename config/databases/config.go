@@ -47,6 +47,9 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_database_postgresql_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_postgresql_connection_pool", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 	p.AddResourceConfigurator("ovh_cloud_project_database_redis_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
