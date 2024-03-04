@@ -71,6 +71,9 @@ spec:
                   ip:
                     description: The whitelisted IP in your instance
                     type: string
+                  name:
+                    description: Custom name for your Whitelisted IP
+                    type: string
                   service:
                     description: Authorize this IP to access service port
                     type: boolean
@@ -95,6 +98,9 @@ spec:
                 properties:
                   ip:
                     description: The whitelisted IP in your instance
+                    type: string
+                  name:
+                    description: Custom name for your Whitelisted IP
                     type: string
                   service:
                     description: Authorize this IP to access service port
@@ -271,6 +277,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.ip)
                 || (has(self.initProvider) && has(self.initProvider.ip))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.service is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.service)
@@ -293,6 +303,9 @@ spec:
                     type: string
                   ip:
                     description: The whitelisted IP in your instance
+                    type: string
+                  name:
+                    description: Custom name for your Whitelisted IP
                     type: string
                   service:
                     description: Authorize this IP to access service port

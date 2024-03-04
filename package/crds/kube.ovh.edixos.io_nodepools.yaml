@@ -72,6 +72,15 @@ spec:
                   autoscale:
                     description: Enable auto-scaling for the pool
                     type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: scaleDownUtilizationThreshold for autoscaling
+                    type: number
                   desiredNodes:
                     description: Number of nodes you desire in the pool
                     type: number
@@ -231,6 +240,15 @@ spec:
                   autoscale:
                     description: Enable auto-scaling for the pool
                     type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: scaleDownUtilizationThreshold for autoscaling
+                    type: number
                   desiredNodes:
                     description: Number of nodes you desire in the pool
                     type: number
@@ -476,6 +494,15 @@ spec:
                   autoscale:
                     description: Enable auto-scaling for the pool
                     type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: scaleDownUtilizationThreshold for autoscaling
+                    type: number
                   availableNodes:
                     description: Number of nodes which are actually ready in the pool
                     type: number

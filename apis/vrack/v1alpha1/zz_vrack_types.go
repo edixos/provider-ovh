@@ -230,6 +230,9 @@ type VrackInitParameters struct {
 	// yourvrackdescription
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// yourvrackname
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -249,6 +252,9 @@ type VrackObservation struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// yourvrackname
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Details about an Order
 	Order []OrderObservation `json:"order,omitempty" tf:"order,omitempty"`
@@ -276,6 +282,10 @@ type VrackParameters struct {
 	// yourvrackdescription
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// yourvrackname
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Ovh Subsidiary
 	// +kubebuilder:validation:Optional

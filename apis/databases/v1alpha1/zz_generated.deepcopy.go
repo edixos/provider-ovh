@@ -329,6 +329,11 @@ func (in *ProjectDatabaseDatabaseInitParameters) DeepCopyInto(out *ProjectDataba
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -401,6 +406,11 @@ func (in *ProjectDatabaseDatabaseObservation) DeepCopyInto(out *ProjectDatabaseD
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -428,6 +438,11 @@ func (in *ProjectDatabaseDatabaseParameters) DeepCopyInto(out *ProjectDatabaseDa
 	}
 	if in.Engine != nil {
 		in, out := &in.Engine, &out.Engine
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -725,6 +740,22 @@ func (in *ProjectDatabaseInitParameters) DeepCopyInto(out *ProjectDatabaseInitPa
 			}
 			(*out)[key] = outVal
 		}
+	}
+	if in.BackupRegions != nil {
+		in, out := &in.BackupRegions, &out.BackupRegions
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.BackupTime != nil {
+		in, out := &in.BackupTime, &out.BackupTime
+		*out = new(string)
+		**out = **in
 	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
@@ -1555,6 +1586,11 @@ func (in *ProjectDatabaseKafkaTopicInitParameters) DeepCopyInto(out *ProjectData
 		*out = new(float64)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Partitions != nil {
 		in, out := &in.Partitions, &out.Partitions
 		*out = new(float64)
@@ -1642,6 +1678,11 @@ func (in *ProjectDatabaseKafkaTopicObservation) DeepCopyInto(out *ProjectDatabas
 		*out = new(float64)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Partitions != nil {
 		in, out := &in.Partitions, &out.Partitions
 		*out = new(float64)
@@ -1690,6 +1731,11 @@ func (in *ProjectDatabaseKafkaTopicParameters) DeepCopyInto(out *ProjectDatabase
 	if in.MinInsyncReplicas != nil {
 		in, out := &in.MinInsyncReplicas, &out.MinInsyncReplicas
 		*out = new(float64)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
 		**out = **in
 	}
 	if in.Partitions != nil {
@@ -1831,6 +1877,11 @@ func (in *ProjectDatabaseM3DbNamespaceInitParameters) DeepCopyInto(out *ProjectD
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Resolution != nil {
 		in, out := &in.Resolution, &out.Resolution
 		*out = new(string)
@@ -1933,6 +1984,11 @@ func (in *ProjectDatabaseM3DbNamespaceObservation) DeepCopyInto(out *ProjectData
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Resolution != nil {
 		in, out := &in.Resolution, &out.Resolution
 		*out = new(string)
@@ -2000,6 +2056,11 @@ func (in *ProjectDatabaseM3DbNamespaceParameters) DeepCopyInto(out *ProjectDatab
 	*out = *in
 	if in.ClusterID != nil {
 		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -2135,6 +2196,11 @@ func (in *ProjectDatabaseM3DbUserInitParameters) DeepCopyInto(out *ProjectDataba
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -2212,6 +2278,11 @@ func (in *ProjectDatabaseM3DbUserObservation) DeepCopyInto(out *ProjectDatabaseM
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -2249,6 +2320,11 @@ func (in *ProjectDatabaseM3DbUserParameters) DeepCopyInto(out *ProjectDatabaseM3
 	}
 	if in.Group != nil {
 		in, out := &in.Group, &out.Group
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -2344,6 +2420,11 @@ func (in *ProjectDatabaseMongodbUserInitParameters) DeepCopyInto(out *ProjectDat
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -2427,6 +2508,11 @@ func (in *ProjectDatabaseMongodbUserObservation) DeepCopyInto(out *ProjectDataba
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -2470,6 +2556,11 @@ func (in *ProjectDatabaseMongodbUserParameters) DeepCopyInto(out *ProjectDatabas
 	*out = *in
 	if in.ClusterID != nil {
 		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -2558,6 +2649,17 @@ func (in *ProjectDatabaseObservation) DeepCopyInto(out *ProjectDatabaseObservati
 				**out = **in
 			}
 			(*out)[key] = outVal
+		}
+	}
+	if in.BackupRegions != nil {
+		in, out := &in.BackupRegions, &out.BackupRegions
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
 		}
 	}
 	if in.BackupTime != nil {
@@ -2912,6 +3014,11 @@ func (in *ProjectDatabaseOpensearchUserInitParameters) DeepCopyInto(out *Project
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -2991,6 +3098,11 @@ func (in *ProjectDatabaseOpensearchUserObservation) DeepCopyInto(out *ProjectDat
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3030,6 +3142,11 @@ func (in *ProjectDatabaseOpensearchUserParameters) DeepCopyInto(out *ProjectData
 	}
 	if in.ClusterID != nil {
 		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -3109,6 +3226,22 @@ func (in *ProjectDatabaseParameters) DeepCopyInto(out *ProjectDatabaseParameters
 			(*out)[key] = outVal
 		}
 	}
+	if in.BackupRegions != nil {
+		in, out := &in.BackupRegions, &out.BackupRegions
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
+	if in.BackupTime != nil {
+		in, out := &in.BackupTime, &out.BackupTime
+		*out = new(string)
+		**out = **in
+	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
@@ -3174,6 +3307,270 @@ func (in *ProjectDatabaseParameters) DeepCopy() *ProjectDatabaseParameters {
 }
 
 // DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPool) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPool) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
+	in.Spec.DeepCopyInto(&out.Spec)
+	in.Status.DeepCopyInto(&out.Status)
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPool.
+func (in *ProjectDatabasePostgresqlConnectionPool) DeepCopy() *ProjectDatabasePostgresqlConnectionPool {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPool)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyObject is an autogenerated deepcopy function, copying the receiver, creating a new runtime.Object.
+func (in *ProjectDatabasePostgresqlConnectionPool) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolInitParameters) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolInitParameters) {
+	*out = *in
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseID != nil {
+		in, out := &in.DatabaseID, &out.DatabaseID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Mode != nil {
+		in, out := &in.Mode, &out.Mode
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.ServiceName != nil {
+		in, out := &in.ServiceName, &out.ServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Size != nil {
+		in, out := &in.Size, &out.Size
+		*out = new(float64)
+		**out = **in
+	}
+	if in.UserID != nil {
+		in, out := &in.UserID, &out.UserID
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolInitParameters.
+func (in *ProjectDatabasePostgresqlConnectionPoolInitParameters) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolInitParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolInitParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolList) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolList) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
+	if in.Items != nil {
+		in, out := &in.Items, &out.Items
+		*out = make([]ProjectDatabasePostgresqlConnectionPool, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolList.
+func (in *ProjectDatabasePostgresqlConnectionPoolList) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolList {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolList)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyObject is an autogenerated deepcopy function, copying the receiver, creating a new runtime.Object.
+func (in *ProjectDatabasePostgresqlConnectionPoolList) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolObservation) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolObservation) {
+	*out = *in
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseID != nil {
+		in, out := &in.DatabaseID, &out.DatabaseID
+		*out = new(string)
+		**out = **in
+	}
+	if in.ID != nil {
+		in, out := &in.ID, &out.ID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Mode != nil {
+		in, out := &in.Mode, &out.Mode
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.Port != nil {
+		in, out := &in.Port, &out.Port
+		*out = new(float64)
+		**out = **in
+	}
+	if in.SSLMode != nil {
+		in, out := &in.SSLMode, &out.SSLMode
+		*out = new(string)
+		**out = **in
+	}
+	if in.ServiceName != nil {
+		in, out := &in.ServiceName, &out.ServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Size != nil {
+		in, out := &in.Size, &out.Size
+		*out = new(float64)
+		**out = **in
+	}
+	if in.URI != nil {
+		in, out := &in.URI, &out.URI
+		*out = new(string)
+		**out = **in
+	}
+	if in.UserID != nil {
+		in, out := &in.UserID, &out.UserID
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolObservation.
+func (in *ProjectDatabasePostgresqlConnectionPoolObservation) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolObservation {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolObservation)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolParameters) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolParameters) {
+	*out = *in
+	if in.ClusterID != nil {
+		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.DatabaseID != nil {
+		in, out := &in.DatabaseID, &out.DatabaseID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Mode != nil {
+		in, out := &in.Mode, &out.Mode
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.ServiceName != nil {
+		in, out := &in.ServiceName, &out.ServiceName
+		*out = new(string)
+		**out = **in
+	}
+	if in.Size != nil {
+		in, out := &in.Size, &out.Size
+		*out = new(float64)
+		**out = **in
+	}
+	if in.UserID != nil {
+		in, out := &in.UserID, &out.UserID
+		*out = new(string)
+		**out = **in
+	}
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolParameters.
+func (in *ProjectDatabasePostgresqlConnectionPoolParameters) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolParameters {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolParameters)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolSpec) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolSpec) {
+	*out = *in
+	in.ResourceSpec.DeepCopyInto(&out.ResourceSpec)
+	in.ForProvider.DeepCopyInto(&out.ForProvider)
+	in.InitProvider.DeepCopyInto(&out.InitProvider)
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolSpec.
+func (in *ProjectDatabasePostgresqlConnectionPoolSpec) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolSpec {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolSpec)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
+func (in *ProjectDatabasePostgresqlConnectionPoolStatus) DeepCopyInto(out *ProjectDatabasePostgresqlConnectionPoolStatus) {
+	*out = *in
+	in.ResourceStatus.DeepCopyInto(&out.ResourceStatus)
+	in.AtProvider.DeepCopyInto(&out.AtProvider)
+}
+
+// DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ProjectDatabasePostgresqlConnectionPoolStatus.
+func (in *ProjectDatabasePostgresqlConnectionPoolStatus) DeepCopy() *ProjectDatabasePostgresqlConnectionPoolStatus {
+	if in == nil {
+		return nil
+	}
+	out := new(ProjectDatabasePostgresqlConnectionPoolStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto is an autogenerated deepcopy function, copying the receiver, writing into out. in must be non-nil.
 func (in *ProjectDatabasePostgresqlUser) DeepCopyInto(out *ProjectDatabasePostgresqlUser) {
 	*out = *in
 	out.TypeMeta = in.TypeMeta
@@ -3205,6 +3602,11 @@ func (in *ProjectDatabasePostgresqlUserInitParameters) DeepCopyInto(out *Project
 	*out = *in
 	if in.ClusterID != nil {
 		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -3291,6 +3693,11 @@ func (in *ProjectDatabasePostgresqlUserObservation) DeepCopyInto(out *ProjectDat
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3334,6 +3741,11 @@ func (in *ProjectDatabasePostgresqlUserParameters) DeepCopyInto(out *ProjectData
 	*out = *in
 	if in.ClusterID != nil {
 		in, out := &in.ClusterID, &out.ClusterID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}
@@ -3484,6 +3896,11 @@ func (in *ProjectDatabaseRedisUserInitParameters) DeepCopyInto(out *ProjectDatab
 			}
 		}
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3600,6 +4017,11 @@ func (in *ProjectDatabaseRedisUserObservation) DeepCopyInto(out *ProjectDatabase
 			}
 		}
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3678,6 +4100,11 @@ func (in *ProjectDatabaseRedisUserParameters) DeepCopyInto(out *ProjectDatabaseR
 				**out = **in
 			}
 		}
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
 	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
@@ -3811,6 +4238,11 @@ func (in *ProjectDatabaseUserInitParameters) DeepCopyInto(out *ProjectDatabaseUs
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3888,6 +4320,11 @@ func (in *ProjectDatabaseUserObservation) DeepCopyInto(out *ProjectDatabaseUserO
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.PasswordReset != nil {
 		in, out := &in.PasswordReset, &out.PasswordReset
 		*out = new(string)
@@ -3925,6 +4362,11 @@ func (in *ProjectDatabaseUserParameters) DeepCopyInto(out *ProjectDatabaseUserPa
 	}
 	if in.Engine != nil {
 		in, out := &in.Engine, &out.Engine
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

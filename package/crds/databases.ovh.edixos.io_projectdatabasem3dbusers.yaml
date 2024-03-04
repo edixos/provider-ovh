@@ -74,6 +74,9 @@ spec:
                   group:
                     description: Group of the user
                     type: string
+                  name:
+                    description: Name of the user
+                    type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password
                       update
@@ -98,6 +101,9 @@ spec:
                     type: string
                   group:
                     description: Group of the user
+                    type: string
+                  name:
+                    description: Name of the user
                     type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password
@@ -271,6 +277,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.clusterId)
                 || (has(self.initProvider) && has(self.initProvider.clusterId))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
@@ -291,6 +301,9 @@ spec:
                     description: Group of the user
                     type: string
                   id:
+                    type: string
+                  name:
+                    description: Name of the user
                     type: string
                   passwordReset:
                     description: Arbitrary string to change to trigger a password

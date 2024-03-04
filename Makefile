@@ -8,10 +8,10 @@ export TERRAFORM_VERSION ?= 1.2.1
 
 export TERRAFORM_PROVIDER_SOURCE ?= ovh/ovh
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/ovh/terraform-provider-ovh
-export TERRAFORM_PROVIDER_VERSION ?= 0.36.1
+export TERRAFORM_PROVIDER_VERSION ?= 0.37.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-ovh
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://releases.hashicorp.com/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
-export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v0.36.1
+export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v0.37.0
 export TERRAFORM_DOCS_PATH ?= website/docs
 
 
@@ -41,7 +41,7 @@ NPROCS ?= 1
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
 GO_REQUIRED_VERSION ?= 1.19
-GOLANGCILINT_VERSION ?= 1.52.2
+GOLANGCILINT_VERSION ?= 1.56.2
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis

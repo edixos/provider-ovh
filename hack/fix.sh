@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing the files
-DIRECTORY="./.work/ovh/ovh/website/docs/d"
+DIRECTORY="./.work/ovh/ovh/website/docs/r"
 
 # Iterate over each file in the directory
 for file in "$DIRECTORY"/*

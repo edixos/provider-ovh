@@ -21,6 +21,20 @@ func Configure(p *config.Provider) {
 			Type: "github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_ip_restrictions_management", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "ContainerRegistryIPRestrictionsManagement"
+		r.References["registry_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_ip_restrictions_registry", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "ContainerRegistryIPRestrictionsRegistry"
+		r.References["registry_id"] = config.Reference{
+			Type: "github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry",
+		}
+	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistryUser"

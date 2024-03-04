@@ -52,6 +52,11 @@ func (in *ProjectRegionStoragePresignInitParameters) DeepCopyInto(out *ProjectRe
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Object != nil {
 		in, out := &in.Object, &out.Object
 		*out = new(string)
@@ -129,6 +134,11 @@ func (in *ProjectRegionStoragePresignObservation) DeepCopyInto(out *ProjectRegio
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Object != nil {
 		in, out := &in.Object, &out.Object
 		*out = new(string)
@@ -171,6 +181,11 @@ func (in *ProjectRegionStoragePresignParameters) DeepCopyInto(out *ProjectRegion
 	}
 	if in.Method != nil {
 		in, out := &in.Method, &out.Method
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

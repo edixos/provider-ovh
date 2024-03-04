@@ -69,6 +69,8 @@ spec:
                 properties:
                   description:
                     type: string
+                  name:
+                    type: string
                   protocol:
                     type: string
                   serviceName:
@@ -89,6 +91,8 @@ spec:
                   like an autoscaler.
                 properties:
                   description:
+                    type: string
+                  name:
                     type: string
                   protocol:
                     type: string
@@ -258,6 +262,10 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.protocol is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.protocol)
@@ -280,6 +288,8 @@ spec:
                   description:
                     type: string
                   id:
+                    type: string
+                  name:
                     type: string
                   protocol:
                     type: string

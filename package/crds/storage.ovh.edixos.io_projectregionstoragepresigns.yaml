@@ -73,6 +73,9 @@ spec:
                     type: number
                   method:
                     type: string
+                  name:
+                    description: The S3 storage container's name.
+                    type: string
                   object:
                     description: Name of the object to download or upload.
                     type: string
@@ -100,6 +103,9 @@ spec:
                     description: How long (in seconds) the URL will be valid.
                     type: number
                   method:
+                    type: string
+                  name:
+                    description: The S3 storage container's name.
                     type: string
                   object:
                     description: Name of the object to download or upload.
@@ -281,6 +287,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.method)
                 || (has(self.initProvider) && has(self.initProvider.method))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.object is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.object)
@@ -305,6 +315,9 @@ spec:
                   id:
                     type: string
                   method:
+                    type: string
+                  name:
+                    description: The S3 storage container's name.
                     type: string
                   object:
                     description: Name of the object to download or upload.

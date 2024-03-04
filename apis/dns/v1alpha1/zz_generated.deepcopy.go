@@ -667,6 +667,11 @@ func (in *ZoneObservation) DeepCopyInto(out *ZoneObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.NameServers != nil {
 		in, out := &in.NameServers, &out.NameServers
 		*out = make([]*string, len(*in))

@@ -101,6 +101,174 @@ func (tr *ContainerRegistry) GetTerraformSchemaVersion() int {
 	return 0
 }
 
+// GetTerraformResourceType returns Terraform resource type for this ContainerRegistryIPRestrictionsManagement
+func (mg *ContainerRegistryIPRestrictionsManagement) GetTerraformResourceType() string {
+	return "ovh_cloud_project_containerregistry_ip_restrictions_management"
+}
+
+// GetConnectionDetailsMapping for this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this ContainerRegistryIPRestrictionsManagement
+func (tr *ContainerRegistryIPRestrictionsManagement) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this ContainerRegistryIPRestrictionsManagement using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *ContainerRegistryIPRestrictionsManagement) LateInitialize(attrs []byte) (bool, error) {
+	params := &ContainerRegistryIPRestrictionsManagementParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *ContainerRegistryIPRestrictionsManagement) GetTerraformSchemaVersion() int {
+	return 0
+}
+
+// GetTerraformResourceType returns Terraform resource type for this ContainerRegistryIPRestrictionsRegistry
+func (mg *ContainerRegistryIPRestrictionsRegistry) GetTerraformResourceType() string {
+	return "ovh_cloud_project_containerregistry_ip_restrictions_registry"
+}
+
+// GetConnectionDetailsMapping for this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this ContainerRegistryIPRestrictionsRegistry
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this ContainerRegistryIPRestrictionsRegistry using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *ContainerRegistryIPRestrictionsRegistry) LateInitialize(attrs []byte) (bool, error) {
+	params := &ContainerRegistryIPRestrictionsRegistryParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *ContainerRegistryIPRestrictionsRegistry) GetTerraformSchemaVersion() int {
+	return 0
+}
+
 // GetTerraformResourceType returns Terraform resource type for this ContainerRegistryOIDC
 func (mg *ContainerRegistryOIDC) GetTerraformResourceType() string {
 	return "ovh_cloud_project_containerregistry_oidc"

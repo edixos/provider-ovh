@@ -22,6 +22,9 @@ type ProjectDatabaseM3DbNamespaceInitParameters struct {
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Name of the namespace
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Resolution for an aggregated namespace
 	Resolution *string `json:"resolution,omitempty" tf:"resolution,omitempty"`
 
@@ -55,6 +58,9 @@ type ProjectDatabaseM3DbNamespaceObservation struct {
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Name of the namespace
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Resolution for an aggregated namespace
 	Resolution *string `json:"resolution,omitempty" tf:"resolution,omitempty"`
@@ -91,6 +97,10 @@ type ProjectDatabaseM3DbNamespaceParameters struct {
 	// Id of the database cluster
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Name of the namespace
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Resolution for an aggregated namespace
 	// +kubebuilder:validation:Optional
@@ -164,6 +174,7 @@ type ProjectDatabaseM3DbNamespace struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterId) || (has(self.initProvider) && has(self.initProvider.clusterId))",message="spec.forProvider.clusterId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.resolution) || (has(self.initProvider) && has(self.initProvider.resolution))",message="spec.forProvider.resolution is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.retentionPeriodDuration) || (has(self.initProvider) && has(self.initProvider.retentionPeriodDuration))",message="spec.forProvider.retentionPeriodDuration is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"

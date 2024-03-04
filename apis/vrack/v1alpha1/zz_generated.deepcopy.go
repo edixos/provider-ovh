@@ -1466,6 +1466,11 @@ func (in *VrackInitParameters) DeepCopyInto(out *VrackInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.OvhSubsidiary != nil {
 		in, out := &in.OvhSubsidiary, &out.OvhSubsidiary
 		*out = new(string)
@@ -1547,6 +1552,11 @@ func (in *VrackObservation) DeepCopyInto(out *VrackObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Order != nil {
 		in, out := &in.Order, &out.Order
 		*out = make([]OrderObservation, len(*in))
@@ -1605,6 +1615,11 @@ func (in *VrackParameters) DeepCopyInto(out *VrackParameters) {
 	*out = *in
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

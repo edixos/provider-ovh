@@ -69,6 +69,9 @@ spec:
                   description:
                     description: yourvrackdescription
                     type: string
+                  name:
+                    description: yourvrackname
+                    type: string
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -152,6 +155,9 @@ spec:
                 properties:
                   description:
                     description: yourvrackdescription
+                    type: string
+                  name:
+                    description: yourvrackname
                     type: string
                   ovhSubsidiary:
                     description: Ovh Subsidiary
@@ -400,6 +406,9 @@ spec:
                     description: yourvrackdescription
                     type: string
                   id:
+                    type: string
+                  name:
+                    description: yourvrackname
                     type: string
                   order:
                     description: Details about an Order

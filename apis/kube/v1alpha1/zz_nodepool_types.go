@@ -64,6 +64,15 @@ type NodePoolInitParameters struct {
 	// Enable auto-scaling for the pool
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
 
+	// scaleDownUnneededTimeSeconds for autoscaling
+	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+
+	// scaleDownUnreadyTimeSeconds for autoscaling
+	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+
+	// scaleDownUtilizationThreshold for autoscaling
+	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
+
 	// Number of nodes you desire in the pool
 	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
@@ -96,6 +105,15 @@ type NodePoolObservation struct {
 
 	// Enable auto-scaling for the pool
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
+
+	// scaleDownUnneededTimeSeconds for autoscaling
+	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+
+	// scaleDownUnreadyTimeSeconds for autoscaling
+	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+
+	// scaleDownUtilizationThreshold for autoscaling
+	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
 
 	// Number of nodes which are actually ready in the pool
 	AvailableNodes *float64 `json:"availableNodes,omitempty" tf:"available_nodes,omitempty"`
@@ -163,6 +181,18 @@ type NodePoolParameters struct {
 	// Enable auto-scaling for the pool
 	// +kubebuilder:validation:Optional
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
+
+	// scaleDownUnneededTimeSeconds for autoscaling
+	// +kubebuilder:validation:Optional
+	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+
+	// scaleDownUnreadyTimeSeconds for autoscaling
+	// +kubebuilder:validation:Optional
+	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+
+	// scaleDownUtilizationThreshold for autoscaling
+	// +kubebuilder:validation:Optional
+	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
 
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional

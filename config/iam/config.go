@@ -16,4 +16,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "IAMResourceGroup"
 	})
+	p.AddResourceConfigurator("ovh_iam_permissions_group", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "IAMPermissionsGroup"
+	})
 }

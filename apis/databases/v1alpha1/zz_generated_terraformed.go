@@ -1025,6 +1025,90 @@ func (tr *ProjectDatabaseOpensearchUser) GetTerraformSchemaVersion() int {
 	return 0
 }
 
+// GetTerraformResourceType returns Terraform resource type for this ProjectDatabasePostgresqlConnectionPool
+func (mg *ProjectDatabasePostgresqlConnectionPool) GetTerraformResourceType() string {
+	return "ovh_cloud_project_database_postgresql_connection_pool"
+}
+
+// GetConnectionDetailsMapping for this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetConnectionDetailsMapping() map[string]string {
+	return nil
+}
+
+// GetObservation of this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetObservation() (map[string]any, error) {
+	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(o, &base)
+}
+
+// SetObservation for this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) SetObservation(obs map[string]any) error {
+	p, err := json.TFParser.Marshal(obs)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
+}
+
+// GetID returns ID of underlying Terraform resource of this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetID() string {
+	if tr.Status.AtProvider.ID == nil {
+		return ""
+	}
+	return *tr.Status.AtProvider.ID
+}
+
+// GetParameters of this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// SetParameters for this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) SetParameters(params map[string]any) error {
+	p, err := json.TFParser.Marshal(params)
+	if err != nil {
+		return err
+	}
+	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
+}
+
+// GetInitParameters of this ProjectDatabasePostgresqlConnectionPool
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetInitParameters() (map[string]any, error) {
+	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
+	if err != nil {
+		return nil, err
+	}
+	base := map[string]any{}
+	return base, json.TFParser.Unmarshal(p, &base)
+}
+
+// LateInitialize this ProjectDatabasePostgresqlConnectionPool using its observed tfState.
+// returns True if there are any spec changes for the resource.
+func (tr *ProjectDatabasePostgresqlConnectionPool) LateInitialize(attrs []byte) (bool, error) {
+	params := &ProjectDatabasePostgresqlConnectionPoolParameters{}
+	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
+		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
+	}
+	opts := []resource.GenericLateInitializerOption{resource.WithZeroValueJSONOmitEmptyFilter(resource.CNameWildcard)}
+
+	li := resource.NewGenericLateInitializer(opts...)
+	return li.LateInitialize(&tr.Spec.ForProvider, params)
+}
+
+// GetTerraformSchemaVersion returns the associated Terraform schema version
+func (tr *ProjectDatabasePostgresqlConnectionPool) GetTerraformSchemaVersion() int {
+	return 0
+}
+
 // GetTerraformResourceType returns Terraform resource type for this ProjectDatabasePostgresqlUser
 func (mg *ProjectDatabasePostgresqlUser) GetTerraformResourceType() string {
 	return "ovh_cloud_project_database_postgresql_user"

@@ -20,6 +20,8 @@ import (
 type NashaPartitionInitParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -34,6 +36,8 @@ type NashaPartitionObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -47,6 +51,9 @@ type NashaPartitionParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
@@ -93,6 +100,7 @@ type NashaPartitionStatus struct {
 type NashaPartition struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.protocol) || (has(self.initProvider) && has(self.initProvider.protocol))",message="spec.forProvider.protocol is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.size) || (has(self.initProvider) && has(self.initProvider.size))",message="spec.forProvider.size is a required parameter"

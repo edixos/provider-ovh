@@ -1477,6 +1477,11 @@ func (in *PrivatedatabaseWhitelistInitParameters) DeepCopyInto(out *Privatedatab
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Service != nil {
 		in, out := &in.Service, &out.Service
 		*out = new(bool)
@@ -1549,6 +1554,11 @@ func (in *PrivatedatabaseWhitelistObservation) DeepCopyInto(out *Privatedatabase
 		*out = new(string)
 		**out = **in
 	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
 	if in.Service != nil {
 		in, out := &in.Service, &out.Service
 		*out = new(bool)
@@ -1581,6 +1591,11 @@ func (in *PrivatedatabaseWhitelistParameters) DeepCopyInto(out *PrivatedatabaseW
 	*out = *in
 	if in.IP != nil {
 		in, out := &in.IP, &out.IP
+		*out = new(string)
+		**out = **in
+	}
+	if in.Name != nil {
+		in, out := &in.Name, &out.Name
 		*out = new(string)
 		**out = **in
 	}

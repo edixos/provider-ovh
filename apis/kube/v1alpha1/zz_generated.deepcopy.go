@@ -1595,6 +1595,21 @@ func (in *NodePoolInitParameters) DeepCopyInto(out *NodePoolInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.AutoscalingScaleDownUnneededTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnneededTimeSeconds, &out.AutoscalingScaleDownUnneededTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUnreadyTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnreadyTimeSeconds, &out.AutoscalingScaleDownUnreadyTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUtilizationThreshold != nil {
+		in, out := &in.AutoscalingScaleDownUtilizationThreshold, &out.AutoscalingScaleDownUtilizationThreshold
+		*out = new(float64)
+		**out = **in
+	}
 	if in.DesiredNodes != nil {
 		in, out := &in.DesiredNodes, &out.DesiredNodes
 		*out = new(float64)
@@ -1692,6 +1707,21 @@ func (in *NodePoolObservation) DeepCopyInto(out *NodePoolObservation) {
 	if in.Autoscale != nil {
 		in, out := &in.Autoscale, &out.Autoscale
 		*out = new(bool)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUnneededTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnneededTimeSeconds, &out.AutoscalingScaleDownUnneededTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUnreadyTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnreadyTimeSeconds, &out.AutoscalingScaleDownUnreadyTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUtilizationThreshold != nil {
+		in, out := &in.AutoscalingScaleDownUtilizationThreshold, &out.AutoscalingScaleDownUtilizationThreshold
+		*out = new(float64)
 		**out = **in
 	}
 	if in.AvailableNodes != nil {
@@ -1814,6 +1844,21 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 	if in.Autoscale != nil {
 		in, out := &in.Autoscale, &out.Autoscale
 		*out = new(bool)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUnneededTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnneededTimeSeconds, &out.AutoscalingScaleDownUnneededTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUnreadyTimeSeconds != nil {
+		in, out := &in.AutoscalingScaleDownUnreadyTimeSeconds, &out.AutoscalingScaleDownUnreadyTimeSeconds
+		*out = new(float64)
+		**out = **in
+	}
+	if in.AutoscalingScaleDownUtilizationThreshold != nil {
+		in, out := &in.AutoscalingScaleDownUtilizationThreshold, &out.AutoscalingScaleDownUtilizationThreshold
+		*out = new(float64)
 		**out = **in
 	}
 	if in.DesiredNodes != nil {

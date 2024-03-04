@@ -12,6 +12,58 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// ResolveReferences of this ContainerRegistryIPRestrictionsManagement.
+func (mg *ContainerRegistryIPRestrictionsManagement) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.RegistryIDRef,
+		Selector:     mg.Spec.ForProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.RegistryID")
+	}
+	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this ContainerRegistryIPRestrictionsRegistry.
+func (mg *ContainerRegistryIPRestrictionsRegistry) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.RegistryIDRef,
+		Selector:     mg.Spec.ForProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.RegistryID")
+	}
+	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this ContainerRegistryOIDC.
 func (mg *ContainerRegistryOIDC) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

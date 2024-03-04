@@ -22,10 +22,13 @@ type ProjectDatabaseMongodbUserInitParameters struct {
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
-	// Roles the user belongs to (without authentication database)
+	// Roles the user belongs to with the authentication database
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -41,10 +44,13 @@ type ProjectDatabaseMongodbUserObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the user
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
-	// Roles the user belongs to (without authentication database)
+	// Roles the user belongs to with the authentication database
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -59,11 +65,15 @@ type ProjectDatabaseMongodbUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Name of the user
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
-	// Roles the user belongs to (without authentication database)
+	// Roles the user belongs to with the authentication database
 	// +kubebuilder:validation:Optional
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
@@ -107,6 +117,7 @@ type ProjectDatabaseMongodbUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.clusterId) || (has(self.initProvider) && has(self.initProvider.clusterId))",message="spec.forProvider.clusterId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectDatabaseMongodbUserSpec   `json:"spec"`
 	Status ProjectDatabaseMongodbUserStatus `json:"status,omitempty"`
