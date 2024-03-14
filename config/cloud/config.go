@@ -13,6 +13,10 @@ func Configure(p *config.Provider) {
 		r.Kind = "Project"
 		r.UseAsync = true
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_alerting", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "ProjectAlerting"
+	})
 	p.AddResourceConfigurator("ovh_cloud_project_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "User"

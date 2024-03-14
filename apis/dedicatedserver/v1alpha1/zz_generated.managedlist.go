@@ -43,15 +43,6 @@ func (l *InstallationTemplatePartitionSchemePartitionList) GetItems() []resource
 	return items
 }
 
-// GetItems of this IpxeScriptList.
-func (l *IpxeScriptList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
 // GetItems of this ServerInstallTaskList.
 func (l *ServerInstallTaskList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

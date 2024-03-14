@@ -15,42 +15,53 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+
 )
 
+
+
+
 type ReverseInitParameters struct {
-	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
 
-	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
+IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
+
+Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
+
 
 type ReverseObservation struct {
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
+IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
+
+Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
+
 
 type ReverseParameters struct {
 
-	// +kubebuilder:validation:Optional
-	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
+// +kubebuilder:validation:Optional
+IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
+// +kubebuilder:validation:Optional
+IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
+
+// +kubebuilder:validation:Optional
+Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
 
 // ReverseSpec defines the desired state of Reverse
 type ReverseSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ReverseParameters `json:"forProvider"`
+	ForProvider       ReverseParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -61,13 +72,13 @@ type ReverseSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ReverseInitParameters `json:"initProvider,omitempty"`
+	InitProvider       ReverseInitParameters `json:"initProvider,omitempty"`
 }
 
 // ReverseStatus defines the observed state of Reverse.
 type ReverseStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ReverseObservation `json:"atProvider,omitempty"`
+	AtProvider          ReverseObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -82,11 +93,11 @@ type ReverseStatus struct {
 type Reverse struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ip) || (has(self.initProvider) && has(self.initProvider.ip))",message="spec.forProvider.ip is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipReverse) || (has(self.initProvider) && has(self.initProvider.ipReverse))",message="spec.forProvider.ipReverse is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.reverse) || (has(self.initProvider) && has(self.initProvider.reverse))",message="spec.forProvider.reverse is a required parameter"
-	Spec   ReverseSpec   `json:"spec"`
-	Status ReverseStatus `json:"status,omitempty"`
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ip) || (has(self.initProvider) && has(self.initProvider.ip))",message="spec.forProvider.ip is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipReverse) || (has(self.initProvider) && has(self.initProvider.ipReverse))",message="spec.forProvider.ipReverse is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.reverse) || (has(self.initProvider) && has(self.initProvider.reverse))",message="spec.forProvider.reverse is a required parameter"
+	Spec              ReverseSpec   `json:"spec"`
+	Status            ReverseStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

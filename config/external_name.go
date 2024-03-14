@@ -76,6 +76,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_network_private_subnet":                       config.IdentifierFromProvider,
 	"ovh_cloud_project_workflow_backup":                              config.NameAsIdentifier,
 	"ovh_cloud_project":                                              config.IdentifierFromProvider,
+	"ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
 	"ovh_cloud_project_user":                                         config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_credential":                           config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_policy":                               config.IdentifierFromProvider,

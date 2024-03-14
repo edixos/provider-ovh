@@ -15,128 +15,158 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+
 )
+
+
+
 
 type ContainerRegistryInitParameters struct {
 
-	// Registry name
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Plan ID of the registry.
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+// Registry name
+Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Region of the registry.
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+// Plan ID of the registry.
+PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Region of the registry.
+Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type ContainerRegistryObservation struct {
 
-	// Registry creation date
-	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+// Registry creation date
+CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	// Registry name
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Plan of the registry
-	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
+// Registry name
+Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Plan ID of the registry.
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+// Plan of the registry
+Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
 
-	// Project ID of your registry
-	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+// Plan ID of the registry.
+PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
-	// Region of the registry.
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+// Project ID of your registry
+ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Region of the registry.
+Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Current size of the registry (bytes)
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// Registry status
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+// Current size of the registry (bytes)
+Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
-	// Access url of the registry
-	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+// Registry status
+Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// Registry last update date
-	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+// Access url of the registry
+URL *string `json:"url,omitempty" tf:"url,omitempty"`
 
-	// Version of your registry
-	Version *string `json:"version,omitempty" tf:"version,omitempty"`
+// Registry last update date
+UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+
+// Version of your registry
+Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
+
 
 type ContainerRegistryParameters struct {
 
-	// Registry name
-	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Plan ID of the registry.
-	// +kubebuilder:validation:Optional
-	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
+// Registry name
+// +kubebuilder:validation:Optional
+Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Region of the registry.
-	// +kubebuilder:validation:Optional
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+// Plan ID of the registry.
+// +kubebuilder:validation:Optional
+PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Region of the registry.
+// +kubebuilder:validation:Optional
+Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+// +kubebuilder:validation:Optional
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type FeaturesInitParameters struct {
+
 }
+
 
 type FeaturesObservation struct {
-	Vulnerability *bool `json:"vulnerability,omitempty" tf:"vulnerability,omitempty"`
+
+
+Vulnerability *bool `json:"vulnerability,omitempty" tf:"vulnerability,omitempty"`
 }
+
 
 type FeaturesParameters struct {
+
 }
+
 
 type PlanInitParameters struct {
+
 }
+
 
 type PlanObservation struct {
-	Code *string `json:"code,omitempty" tf:"code,omitempty"`
 
-	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	Features []FeaturesObservation `json:"features,omitempty" tf:"features,omitempty"`
+Code *string `json:"code,omitempty" tf:"code,omitempty"`
 
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+Features []FeaturesObservation `json:"features,omitempty" tf:"features,omitempty"`
 
-	RegistryLimits []RegistryLimitsObservation `json:"registryLimits,omitempty" tf:"registry_limits,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+RegistryLimits []RegistryLimitsObservation `json:"registryLimits,omitempty" tf:"registry_limits,omitempty"`
+
+UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
+
 
 type PlanParameters struct {
+
 }
+
 
 type RegistryLimitsInitParameters struct {
+
 }
+
 
 type RegistryLimitsObservation struct {
-	ImageStorage *float64 `json:"imageStorage,omitempty" tf:"image_storage,omitempty"`
 
-	ParallelRequest *float64 `json:"parallelRequest,omitempty" tf:"parallel_request,omitempty"`
+
+ImageStorage *float64 `json:"imageStorage,omitempty" tf:"image_storage,omitempty"`
+
+ParallelRequest *float64 `json:"parallelRequest,omitempty" tf:"parallel_request,omitempty"`
 }
 
+
 type RegistryLimitsParameters struct {
+
 }
 
 // ContainerRegistrySpec defines the desired state of ContainerRegistry
 type ContainerRegistrySpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ContainerRegistryParameters `json:"forProvider"`
+	ForProvider       ContainerRegistryParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -147,13 +177,13 @@ type ContainerRegistrySpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ContainerRegistryInitParameters `json:"initProvider,omitempty"`
+	InitProvider       ContainerRegistryInitParameters `json:"initProvider,omitempty"`
 }
 
 // ContainerRegistryStatus defines the observed state of ContainerRegistry.
 type ContainerRegistryStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ContainerRegistryObservation `json:"atProvider,omitempty"`
+	AtProvider          ContainerRegistryObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -168,11 +198,11 @@ type ContainerRegistryStatus struct {
 type ContainerRegistry struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ContainerRegistrySpec   `json:"spec"`
-	Status ContainerRegistryStatus `json:"status,omitempty"`
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
+	Spec              ContainerRegistrySpec   `json:"spec"`
+	Status            ContainerRegistryStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

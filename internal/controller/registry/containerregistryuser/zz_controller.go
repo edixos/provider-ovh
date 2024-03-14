@@ -18,13 +18,14 @@ import (
 	"github.com/crossplane/crossplane-runtime/pkg/ratelimiter"
 	"github.com/crossplane/crossplane-runtime/pkg/reconciler/managed"
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
-	tjcontroller "github.com/crossplane/upjet/pkg/controller"
 	"github.com/crossplane/upjet/pkg/controller/handler"
+	tjcontroller "github.com/crossplane/upjet/pkg/controller"
 	"github.com/crossplane/upjet/pkg/terraform"
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	v1alpha1 "github.com/edixos/provider-ovh/apis/registry/v1alpha1"
 	features "github.com/edixos/provider-ovh/internal/features"
+v1alpha1 "github.com/edixos/provider-ovh/apis/registry/v1alpha1"
+
 )
 
 // Setup adds a controller that reconciles ContainerRegistryUser managed resources.
@@ -44,13 +45,13 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		managed.WithLogger(o.Logger.WithValues("controller", name)),
 		managed.WithRecorder(event.NewAPIRecorder(mgr.GetEventRecorderFor(name))),
 		managed.WithFinalizer(terraform.NewWorkspaceFinalizer(o.WorkspaceStore, xpresource.NewAPIFinalizer(mgr.GetClient(), managed.FinalizerName))),
-		managed.WithTimeout(3 * time.Minute),
+		managed.WithTimeout(3*time.Minute),
 		managed.WithInitializers(initializers),
 		managed.WithConnectionPublishers(cps...),
 		managed.WithPollInterval(o.PollInterval),
 	}
 	if o.PollJitter != 0 {
-		opts = append(opts, managed.WithPollJitterHook(o.PollJitter))
+	    opts = append(opts, managed.WithPollJitterHook(o.PollJitter))
 	}
 	if o.Features.Enabled(features.EnableBetaManagementPolicies) {
 		opts = append(opts, managed.WithManagementPolicies())

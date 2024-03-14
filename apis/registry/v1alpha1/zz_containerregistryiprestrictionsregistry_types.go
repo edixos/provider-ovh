@@ -15,58 +15,68 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+
 )
+
+
+
 
 type ContainerRegistryIPRestrictionsRegistryInitParameters struct {
 
-	// List your IP restrictions applied on artifact manager component
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
-	// Service name
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// List your IP restrictions applied on artifact manager component
+IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+
+// Service name
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type ContainerRegistryIPRestrictionsRegistryObservation struct {
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// List your IP restrictions applied on artifact manager component
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
-	// RegistryID
-	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Service name
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// List your IP restrictions applied on artifact manager component
+IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+
+// RegistryID
+RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+
+// Service name
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type ContainerRegistryIPRestrictionsRegistryParameters struct {
 
-	// List your IP restrictions applied on artifact manager component
-	// +kubebuilder:validation:Optional
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
-	// RegistryID
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
-	// +kubebuilder:validation:Optional
-	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+// List your IP restrictions applied on artifact manager component
+// +kubebuilder:validation:Optional
+IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
-	// Reference to a ContainerRegistry in registry to populate registryId.
-	// +kubebuilder:validation:Optional
-	RegistryIDRef *v1.Reference `json:"registryIdRef,omitempty" tf:"-"`
+// RegistryID
+// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
+// +kubebuilder:validation:Optional
+RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
-	// Selector for a ContainerRegistry in registry to populate registryId.
-	// +kubebuilder:validation:Optional
-	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
+// Reference to a ContainerRegistry in registry to populate registryId.
+// +kubebuilder:validation:Optional
+RegistryIDRef *v1.Reference `json:"registryIdRef,omitempty" tf:"-"`
 
-	// Service name
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Selector for a ContainerRegistry in registry to populate registryId.
+// +kubebuilder:validation:Optional
+RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
+
+// Service name
+// +kubebuilder:validation:Optional
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 // ContainerRegistryIPRestrictionsRegistrySpec defines the desired state of ContainerRegistryIPRestrictionsRegistry
 type ContainerRegistryIPRestrictionsRegistrySpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ContainerRegistryIPRestrictionsRegistryParameters `json:"forProvider"`
+	ForProvider       ContainerRegistryIPRestrictionsRegistryParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -77,13 +87,13 @@ type ContainerRegistryIPRestrictionsRegistrySpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ContainerRegistryIPRestrictionsRegistryInitParameters `json:"initProvider,omitempty"`
+	InitProvider       ContainerRegistryIPRestrictionsRegistryInitParameters `json:"initProvider,omitempty"`
 }
 
 // ContainerRegistryIPRestrictionsRegistryStatus defines the observed state of ContainerRegistryIPRestrictionsRegistry.
 type ContainerRegistryIPRestrictionsRegistryStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ContainerRegistryIPRestrictionsRegistryObservation `json:"atProvider,omitempty"`
+	AtProvider          ContainerRegistryIPRestrictionsRegistryObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -98,10 +108,10 @@ type ContainerRegistryIPRestrictionsRegistryStatus struct {
 type ContainerRegistryIPRestrictionsRegistry struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipRestrictions) || (has(self.initProvider) && has(self.initProvider.ipRestrictions))",message="spec.forProvider.ipRestrictions is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ContainerRegistryIPRestrictionsRegistrySpec   `json:"spec"`
-	Status ContainerRegistryIPRestrictionsRegistryStatus `json:"status,omitempty"`
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ipRestrictions) || (has(self.initProvider) && has(self.initProvider.ipRestrictions))",message="spec.forProvider.ipRestrictions is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
+	Spec              ContainerRegistryIPRestrictionsRegistrySpec   `json:"spec"`
+	Status            ContainerRegistryIPRestrictionsRegistryStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

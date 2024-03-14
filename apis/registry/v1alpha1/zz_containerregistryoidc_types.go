@@ -15,115 +15,126 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+
 )
 
+
+
+
 type ContainerRegistryOIDCInitParameters struct {
-	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
-	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
+DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
+OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
-	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
+OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
-	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
+OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
-	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
+OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
-	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
+OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
-	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
+OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
-	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
+OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
+
+OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
+
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type ContainerRegistryOIDCObservation struct {
-	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
+DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
+OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
-	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
+OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
-	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
+OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
-	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
+OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
-	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
+OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
-	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
+OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
-	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
+OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
-	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
+
+RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
+
 
 type ContainerRegistryOIDCParameters struct {
 
-	// +kubebuilder:validation:Optional
-	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
+// +kubebuilder:validation:Optional
+DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
+// +kubebuilder:validation:Optional
+OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
+// +kubebuilder:validation:Optional
+OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcClientSecretSecretRef v1.SecretKeySelector `json:"oidcClientSecretSecretRef" tf:"-"`
+// +kubebuilder:validation:Optional
+OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
+// +kubebuilder:validation:Optional
+OidcClientSecretSecretRef v1.SecretKeySelector `json:"oidcClientSecretSecretRef" tf:"-"`
 
-	// +kubebuilder:validation:Optional
-	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
+// +kubebuilder:validation:Optional
+OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
+// +kubebuilder:validation:Optional
+OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
+// +kubebuilder:validation:Optional
+OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
+// +kubebuilder:validation:Optional
+OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
+// +kubebuilder:validation:Optional
+OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
-	// +kubebuilder:validation:Optional
-	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
+// +kubebuilder:validation:Optional
+OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
 
-	// Reference to a ContainerRegistry in registry to populate registryId.
-	// +kubebuilder:validation:Optional
-	RegistryIDRef *v1.Reference `json:"registryIdRef,omitempty" tf:"-"`
+// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
+// +kubebuilder:validation:Optional
+RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
-	// Selector for a ContainerRegistry in registry to populate registryId.
-	// +kubebuilder:validation:Optional
-	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
+// Reference to a ContainerRegistry in registry to populate registryId.
+// +kubebuilder:validation:Optional
+RegistryIDRef *v1.Reference `json:"registryIdRef,omitempty" tf:"-"`
 
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Selector for a ContainerRegistry in registry to populate registryId.
+// +kubebuilder:validation:Optional
+RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
+
+// +kubebuilder:validation:Optional
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 // ContainerRegistryOIDCSpec defines the desired state of ContainerRegistryOIDC
 type ContainerRegistryOIDCSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     ContainerRegistryOIDCParameters `json:"forProvider"`
+	ForProvider       ContainerRegistryOIDCParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -134,13 +145,13 @@ type ContainerRegistryOIDCSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ContainerRegistryOIDCInitParameters `json:"initProvider,omitempty"`
+	InitProvider       ContainerRegistryOIDCInitParameters `json:"initProvider,omitempty"`
 }
 
 // ContainerRegistryOIDCStatus defines the observed state of ContainerRegistryOIDC.
 type ContainerRegistryOIDCStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ContainerRegistryOIDCObservation `json:"atProvider,omitempty"`
+	AtProvider          ContainerRegistryOIDCObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -155,14 +166,14 @@ type ContainerRegistryOIDCStatus struct {
 type ContainerRegistryOIDC struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcClientId) || (has(self.initProvider) && has(self.initProvider.oidcClientId))",message="spec.forProvider.oidcClientId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcClientSecretSecretRef)",message="spec.forProvider.oidcClientSecretSecretRef is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcEndpoint) || (has(self.initProvider) && has(self.initProvider.oidcEndpoint))",message="spec.forProvider.oidcEndpoint is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcName) || (has(self.initProvider) && has(self.initProvider.oidcName))",message="spec.forProvider.oidcName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcScope) || (has(self.initProvider) && has(self.initProvider.oidcScope))",message="spec.forProvider.oidcScope is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec   ContainerRegistryOIDCSpec   `json:"spec"`
-	Status ContainerRegistryOIDCStatus `json:"status,omitempty"`
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcClientId) || (has(self.initProvider) && has(self.initProvider.oidcClientId))",message="spec.forProvider.oidcClientId is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcClientSecretSecretRef)",message="spec.forProvider.oidcClientSecretSecretRef is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcEndpoint) || (has(self.initProvider) && has(self.initProvider.oidcEndpoint))",message="spec.forProvider.oidcEndpoint is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcName) || (has(self.initProvider) && has(self.initProvider.oidcName))",message="spec.forProvider.oidcName is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.oidcScope) || (has(self.initProvider) && has(self.initProvider.oidcScope))",message="spec.forProvider.oidcScope is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
+	Spec              ContainerRegistryOIDCSpec   `json:"spec"`
+	Status            ContainerRegistryOIDCStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

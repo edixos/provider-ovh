@@ -15,228 +15,255 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
+
 )
+
+
+
 
 type ConfigurationInitParameters struct {
 
-	// Flowgger configuration
-	Flowgger []FlowggerInitParameters `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
 
-	// Logstash configuration
-	Logstash []LogstashInitParameters `json:"logstash,omitempty" tf:"logstash,omitempty"`
+// Flowgger configuration
+Flowgger []FlowggerInitParameters `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
+
+// Logstash configuration
+Logstash []LogstashInitParameters `json:"logstash,omitempty" tf:"logstash,omitempty"`
 }
+
 
 type ConfigurationObservation struct {
 
-	// Flowgger configuration
-	Flowgger []FlowggerObservation `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
 
-	// Logstash configuration
-	Logstash []LogstashObservation `json:"logstash,omitempty" tf:"logstash,omitempty"`
+// Flowgger configuration
+Flowgger []FlowggerObservation `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
+
+// Logstash configuration
+Logstash []LogstashObservation `json:"logstash,omitempty" tf:"logstash,omitempty"`
 }
+
 
 type ConfigurationParameters struct {
 
-	// Flowgger configuration
-	// +kubebuilder:validation:Optional
-	Flowgger []FlowggerParameters `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
 
-	// Logstash configuration
-	// +kubebuilder:validation:Optional
-	Logstash []LogstashParameters `json:"logstash,omitempty" tf:"logstash,omitempty"`
+// Flowgger configuration
+// +kubebuilder:validation:Optional
+Flowgger []FlowggerParameters `json:"flowgger,omitempty" tf:"flowgger,omitempty"`
+
+// Logstash configuration
+// +kubebuilder:validation:Optional
+Logstash []LogstashParameters `json:"logstash,omitempty" tf:"logstash,omitempty"`
 }
+
 
 type FlowggerInitParameters struct {
 
-	// Type of format to decode
-	LogFormat *string `json:"logFormat,omitempty" tf:"log_format,omitempty"`
 
-	// Indicates how messages are delimited
-	LogFraming *string `json:"logFraming,omitempty" tf:"log_framing,omitempty"`
+// Type of format to decode
+LogFormat *string `json:"logFormat,omitempty" tf:"log_format,omitempty"`
+
+// Indicates how messages are delimited
+LogFraming *string `json:"logFraming,omitempty" tf:"log_framing,omitempty"`
 }
+
 
 type FlowggerObservation struct {
 
-	// Type of format to decode
-	LogFormat *string `json:"logFormat,omitempty" tf:"log_format,omitempty"`
 
-	// Indicates how messages are delimited
-	LogFraming *string `json:"logFraming,omitempty" tf:"log_framing,omitempty"`
+// Type of format to decode
+LogFormat *string `json:"logFormat,omitempty" tf:"log_format,omitempty"`
+
+// Indicates how messages are delimited
+LogFraming *string `json:"logFraming,omitempty" tf:"log_framing,omitempty"`
 }
+
 
 type FlowggerParameters struct {
 
-	// Type of format to decode
-	// +kubebuilder:validation:Optional
-	LogFormat *string `json:"logFormat" tf:"log_format,omitempty"`
 
-	// Indicates how messages are delimited
-	// +kubebuilder:validation:Optional
-	LogFraming *string `json:"logFraming" tf:"log_framing,omitempty"`
+// Type of format to decode
+// +kubebuilder:validation:Optional
+LogFormat *string `json:"logFormat" tf:"log_format,omitempty"`
+
+// Indicates how messages are delimited
+// +kubebuilder:validation:Optional
+LogFraming *string `json:"logFraming" tf:"log_framing,omitempty"`
 }
+
 
 type LogsInputInitParameters struct {
 
-	// IP blocks
-	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input configuration
-	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
+// IP blocks
+AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input description
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+// Input configuration
+Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// Input engine ID
-	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
+// Input description
+Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// Port
-	ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
+// Input engine ID
+EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// Number of instance running
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+// Port
+ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Number of instance running
+NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
-	// Associated Graylog stream
-	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// Input title
-	Title *string `json:"title,omitempty" tf:"title,omitempty"`
+// Associated Graylog stream
+StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
+
+// Input title
+Title *string `json:"title,omitempty" tf:"title,omitempty"`
 }
+
 
 type LogsInputObservation struct {
 
-	// IP blocks
-	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input configuration
-	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
+// IP blocks
+AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input creation
-	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
+// Input configuration
+Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// Input description
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+// Input creation
+CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
-	// Input engine ID
-	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
+// Input description
+Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// Port
-	ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
+// Input engine ID
+EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// Hostname
-	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+// Port
+ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
 
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+// Hostname
+Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
-	// Input ID
-	InputID *string `json:"inputId,omitempty" tf:"input_id,omitempty"`
+ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Indicate if input need to be restarted
-	IsRestartRequired *bool `json:"isRestartRequired,omitempty" tf:"is_restart_required,omitempty"`
+// Input ID
+InputID *string `json:"inputId,omitempty" tf:"input_id,omitempty"`
 
-	// Number of instance running
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+// Indicate if input need to be restarted
+IsRestartRequired *bool `json:"isRestartRequired,omitempty" tf:"is_restart_required,omitempty"`
 
-	// Input IP address
-	PublicAddress *string `json:"publicAddress,omitempty" tf:"public_address,omitempty"`
+// Number of instance running
+NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Input IP address
+PublicAddress *string `json:"publicAddress,omitempty" tf:"public_address,omitempty"`
 
-	// init: configuration required, pending: ready to start, running: available
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// Associated Graylog stream
-	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
+// init: configuration required, pending: ready to start, running: available
+Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-	// Input title
-	Title *string `json:"title,omitempty" tf:"title,omitempty"`
+// Associated Graylog stream
+StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
 
-	// Input last update
-	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
+// Input title
+Title *string `json:"title,omitempty" tf:"title,omitempty"`
+
+// Input last update
+UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
+
 
 type LogsInputParameters struct {
 
-	// IP blocks
-	// +kubebuilder:validation:Optional
-	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input configuration
-	// +kubebuilder:validation:Optional
-	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
+// IP blocks
+// +kubebuilder:validation:Optional
+AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
-	// Input description
-	// +kubebuilder:validation:Optional
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+// Input configuration
+// +kubebuilder:validation:Optional
+Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// Input engine ID
-	// +kubebuilder:validation:Optional
-	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
+// Input description
+// +kubebuilder:validation:Optional
+Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// Port
-	// +kubebuilder:validation:Optional
-	ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
+// Input engine ID
+// +kubebuilder:validation:Optional
+EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// Number of instance running
-	// +kubebuilder:validation:Optional
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+// Port
+// +kubebuilder:validation:Optional
+ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+// Number of instance running
+// +kubebuilder:validation:Optional
+NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
-	// Associated Graylog stream
-	// +kubebuilder:validation:Optional
-	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
+// +kubebuilder:validation:Optional
+ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// Input title
-	// +kubebuilder:validation:Optional
-	Title *string `json:"title,omitempty" tf:"title,omitempty"`
+// Associated Graylog stream
+// +kubebuilder:validation:Optional
+StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
+
+// Input title
+// +kubebuilder:validation:Optional
+Title *string `json:"title,omitempty" tf:"title,omitempty"`
 }
+
 
 type LogstashInitParameters struct {
 
-	// The filter section of logstash.conf
-	FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The filter section of logstash.conf
-	InputSection *string `json:"inputSection,omitempty" tf:"input_section,omitempty"`
+// The filter section of logstash.conf
+FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The list of customs Grok patterns
-	PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
+// The filter section of logstash.conf
+InputSection *string `json:"inputSection,omitempty" tf:"input_section,omitempty"`
+
+// The list of customs Grok patterns
+PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
 }
+
 
 type LogstashObservation struct {
 
-	// The filter section of logstash.conf
-	FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The filter section of logstash.conf
-	InputSection *string `json:"inputSection,omitempty" tf:"input_section,omitempty"`
+// The filter section of logstash.conf
+FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The list of customs Grok patterns
-	PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
+// The filter section of logstash.conf
+InputSection *string `json:"inputSection,omitempty" tf:"input_section,omitempty"`
+
+// The list of customs Grok patterns
+PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
 }
+
 
 type LogstashParameters struct {
 
-	// The filter section of logstash.conf
-	// +kubebuilder:validation:Optional
-	FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The filter section of logstash.conf
-	// +kubebuilder:validation:Optional
-	InputSection *string `json:"inputSection" tf:"input_section,omitempty"`
+// The filter section of logstash.conf
+// +kubebuilder:validation:Optional
+FilterSection *string `json:"filterSection,omitempty" tf:"filter_section,omitempty"`
 
-	// The list of customs Grok patterns
-	// +kubebuilder:validation:Optional
-	PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
+// The filter section of logstash.conf
+// +kubebuilder:validation:Optional
+InputSection *string `json:"inputSection" tf:"input_section,omitempty"`
+
+// The list of customs Grok patterns
+// +kubebuilder:validation:Optional
+PatternSection *string `json:"patternSection,omitempty" tf:"pattern_section,omitempty"`
 }
 
 // LogsInputSpec defines the desired state of LogsInput
 type LogsInputSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     LogsInputParameters `json:"forProvider"`
+	ForProvider       LogsInputParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -247,13 +274,13 @@ type LogsInputSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider LogsInputInitParameters `json:"initProvider,omitempty"`
+	InitProvider       LogsInputInitParameters `json:"initProvider,omitempty"`
 }
 
 // LogsInputStatus defines the observed state of LogsInput.
 type LogsInputStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        LogsInputObservation `json:"atProvider,omitempty"`
+	AtProvider          LogsInputObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
@@ -268,14 +295,14 @@ type LogsInputStatus struct {
 type LogsInput struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.configuration) || (has(self.initProvider) && has(self.initProvider.configuration))",message="spec.forProvider.configuration is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.description) || (has(self.initProvider) && has(self.initProvider.description))",message="spec.forProvider.description is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.engineId) || (has(self.initProvider) && has(self.initProvider.engineId))",message="spec.forProvider.engineId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.streamId) || (has(self.initProvider) && has(self.initProvider.streamId))",message="spec.forProvider.streamId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.title) || (has(self.initProvider) && has(self.initProvider.title))",message="spec.forProvider.title is a required parameter"
-	Spec   LogsInputSpec   `json:"spec"`
-	Status LogsInputStatus `json:"status,omitempty"`
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.configuration) || (has(self.initProvider) && has(self.initProvider.configuration))",message="spec.forProvider.configuration is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.description) || (has(self.initProvider) && has(self.initProvider.description))",message="spec.forProvider.description is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.engineId) || (has(self.initProvider) && has(self.initProvider.engineId))",message="spec.forProvider.engineId is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.streamId) || (has(self.initProvider) && has(self.initProvider.streamId))",message="spec.forProvider.streamId is a required parameter"
+// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.title) || (has(self.initProvider) && has(self.initProvider.title))",message="spec.forProvider.title is a required parameter"
+	Spec              LogsInputSpec   `json:"spec"`
+	Status            LogsInputStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
