@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -15,101 +11,92 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
-
 )
-
-
-
 
 type ProjectFailoverIPAttachInitParameters struct {
 
+	// IP block
+	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
-// IP block
-Block *string `json:"block,omitempty" tf:"block,omitempty"`
+	// Ip continent
+	ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
 
-// Ip continent
-ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
+	// Ip location
+	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
-// Ip location
-GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
+	// Ip
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-// Ip
-IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+	// Instance where ip is routed to
+	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
-// Instance where ip is routed to
-RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
-
-// The service name
-ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+	// The service name
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
-
 
 type ProjectFailoverIPAttachObservation struct {
 
+	// IP block
+	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
-// IP block
-Block *string `json:"block,omitempty" tf:"block,omitempty"`
+	// Ip continent
+	ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
 
-// Ip continent
-ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
+	// Ip location
+	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
-// Ip location
-GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-ID *string `json:"id,omitempty" tf:"id,omitempty"`
+	// Ip
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-// Ip
-IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+	// Current operation progress in percent
+	Progress *float64 `json:"progress,omitempty" tf:"progress,omitempty"`
 
-// Current operation progress in percent
-Progress *float64 `json:"progress,omitempty" tf:"progress,omitempty"`
+	// Instance where ip is routed to
+	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
-// Instance where ip is routed to
-RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
+	// The service name
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-// The service name
-ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+	// Ip status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
-// Ip status
-Status *string `json:"status,omitempty" tf:"status,omitempty"`
-
-// IP sub type
-SubType *string `json:"subType,omitempty" tf:"sub_type,omitempty"`
+	// IP sub type
+	SubType *string `json:"subType,omitempty" tf:"sub_type,omitempty"`
 }
-
 
 type ProjectFailoverIPAttachParameters struct {
 
+	// IP block
+	// +kubebuilder:validation:Optional
+	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
-// IP block
-// +kubebuilder:validation:Optional
-Block *string `json:"block,omitempty" tf:"block,omitempty"`
+	// Ip continent
+	// +kubebuilder:validation:Optional
+	ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
 
-// Ip continent
-// +kubebuilder:validation:Optional
-ContinentCode *string `json:"continentCode,omitempty" tf:"continent_code,omitempty"`
+	// Ip location
+	// +kubebuilder:validation:Optional
+	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
-// Ip location
-// +kubebuilder:validation:Optional
-GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
+	// Ip
+	// +kubebuilder:validation:Optional
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
-// Ip
-// +kubebuilder:validation:Optional
-IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+	// Instance where ip is routed to
+	// +kubebuilder:validation:Optional
+	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
-// Instance where ip is routed to
-// +kubebuilder:validation:Optional
-RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
-
-// The service name
-// +kubebuilder:validation:Optional
-ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+	// The service name
+	// +kubebuilder:validation:Optional
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 // ProjectFailoverIPAttachSpec defines the desired state of ProjectFailoverIPAttach
 type ProjectFailoverIPAttachSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider       ProjectFailoverIPAttachParameters `json:"forProvider"`
+	ForProvider     ProjectFailoverIPAttachParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -120,30 +107,31 @@ type ProjectFailoverIPAttachSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider       ProjectFailoverIPAttachInitParameters `json:"initProvider,omitempty"`
+	InitProvider ProjectFailoverIPAttachInitParameters `json:"initProvider,omitempty"`
 }
 
 // ProjectFailoverIPAttachStatus defines the observed state of ProjectFailoverIPAttach.
 type ProjectFailoverIPAttachStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider          ProjectFailoverIPAttachObservation `json:"atProvider,omitempty"`
+	AtProvider        ProjectFailoverIPAttachObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // ProjectFailoverIPAttach is the Schema for the ProjectFailoverIPAttachs API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type ProjectFailoverIPAttach struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	Spec              ProjectFailoverIPAttachSpec   `json:"spec"`
-	Status            ProjectFailoverIPAttachStatus `json:"status,omitempty"`
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
+	Spec   ProjectFailoverIPAttachSpec   `json:"spec"`
+	Status ProjectFailoverIPAttachStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

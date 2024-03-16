@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -18,14 +14,14 @@ import (
 	"github.com/crossplane/crossplane-runtime/pkg/ratelimiter"
 	"github.com/crossplane/crossplane-runtime/pkg/reconciler/managed"
 	xpresource "github.com/crossplane/crossplane-runtime/pkg/resource"
-	"github.com/crossplane/upjet/pkg/controller/handler"
 	tjcontroller "github.com/crossplane/upjet/pkg/controller"
+	"github.com/crossplane/upjet/pkg/controller/handler"
 	"github.com/crossplane/upjet/pkg/terraform"
+	"github.com/pkg/errors"
 	ctrl "sigs.k8s.io/controller-runtime"
 
 	v1alpha1 "github.com/edixos/provider-ovh/apis/logs/v1alpha1"
-features "github.com/edixos/provider-ovh/internal/features"
-
+	features "github.com/edixos/provider-ovh/internal/features"
 )
 
 // Setup adds a controller that reconciles LogsCluster managed resources.
@@ -45,17 +41,28 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		managed.WithLogger(o.Logger.WithValues("controller", name)),
 		managed.WithRecorder(event.NewAPIRecorder(mgr.GetEventRecorderFor(name))),
 		managed.WithFinalizer(terraform.NewWorkspaceFinalizer(o.WorkspaceStore, xpresource.NewAPIFinalizer(mgr.GetClient(), managed.FinalizerName))),
-		managed.WithTimeout(3*time.Minute),
+		managed.WithTimeout(3 * time.Minute),
 		managed.WithInitializers(initializers),
 		managed.WithConnectionPublishers(cps...),
 		managed.WithPollInterval(o.PollInterval),
 	}
 	if o.PollJitter != 0 {
-	    opts = append(opts, managed.WithPollJitterHook(o.PollJitter))
+		opts = append(opts, managed.WithPollJitterHook(o.PollJitter))
 	}
 	if o.Features.Enabled(features.EnableBetaManagementPolicies) {
 		opts = append(opts, managed.WithManagementPolicies())
 	}
+
+	// register webhooks for the kind v1alpha1.LogsCluster
+	// if they're enabled.
+	if o.StartWebhooks {
+		if err := ctrl.NewWebhookManagedBy(mgr).
+			For(&v1alpha1.LogsCluster{}).
+			Complete(); err != nil {
+			return errors.Wrap(err, "cannot register webhook for the kind v1alpha1.LogsCluster")
+		}
+	}
+
 	r := managed.NewReconciler(mgr, xpresource.ManagedKind(v1alpha1.LogsCluster_GroupVersionKind), opts...)
 
 	return ctrl.NewControllerManagedBy(mgr).
