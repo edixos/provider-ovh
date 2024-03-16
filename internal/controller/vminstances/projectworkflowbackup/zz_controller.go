@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -21,6 +17,7 @@ import (
 	tjcontroller "github.com/crossplane/upjet/pkg/controller"
 	"github.com/crossplane/upjet/pkg/controller/handler"
 	"github.com/crossplane/upjet/pkg/terraform"
+	"github.com/pkg/errors"
 	ctrl "sigs.k8s.io/controller-runtime"
 
 	v1alpha1 "github.com/edixos/provider-ovh/apis/vminstances/v1alpha1"
@@ -56,6 +53,17 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 	if o.Features.Enabled(features.EnableBetaManagementPolicies) {
 		opts = append(opts, managed.WithManagementPolicies())
 	}
+
+	// register webhooks for the kind v1alpha1.ProjectWorkflowBackup
+	// if they're enabled.
+	if o.StartWebhooks {
+		if err := ctrl.NewWebhookManagedBy(mgr).
+			For(&v1alpha1.ProjectWorkflowBackup{}).
+			Complete(); err != nil {
+			return errors.Wrap(err, "cannot register webhook for the kind v1alpha1.ProjectWorkflowBackup")
+		}
+	}
+
 	r := managed.NewReconciler(mgr, xpresource.ManagedKind(v1alpha1.ProjectWorkflowBackup_GroupVersionKind), opts...)
 
 	return ctrl.NewControllerManagedBy(mgr).

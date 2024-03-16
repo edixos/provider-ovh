@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -65,6 +61,17 @@ type ClusterInitParameters struct {
 
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
 
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	PrivateNetworkID *string `json:"privateNetworkId,omitempty" tf:"private_network_id,omitempty"`
+
+	// Reference to a PrivateNetwork in network to populate privateNetworkId.
+	// +kubebuilder:validation:Optional
+	PrivateNetworkIDRef *v1.Reference `json:"privateNetworkIdRef,omitempty" tf:"-"`
+
+	// Selector for a PrivateNetwork in network to populate privateNetworkId.
+	// +kubebuilder:validation:Optional
+	PrivateNetworkIDSelector *v1.Selector `json:"privateNetworkIdSelector,omitempty" tf:"-"`
+
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -91,6 +98,7 @@ type ClusterObservation struct {
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// +listType=set
 	NextUpgradeVersions []*string `json:"nextUpgradeVersions,omitempty" tf:"next_upgrade_versions,omitempty"`
 
 	NodesURL *string `json:"nodesUrl,omitempty" tf:"nodes_url,omitempty"`
@@ -366,13 +374,14 @@ type ClusterStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // Cluster is the Schema for the Clusters API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`

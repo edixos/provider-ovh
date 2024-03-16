@@ -1,6 +1,6 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
+/*
+Copyright 2022 Upbound Inc.
+*/
 
 package controller
 
@@ -37,7 +37,6 @@ import (
 	installationtemplatepartitionscheme "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionscheme"
 	installationtemplatepartitionschemehardwareraid "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemehardwareraid"
 	installationtemplatepartitionschemepartition "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemepartition"
-	ipxescript "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/ipxescript"
 	serverinstalltask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverinstalltask"
 	servernetworking "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/servernetworking"
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverreboottask"
@@ -129,7 +128,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		installationtemplatepartitionscheme.Setup,
 		installationtemplatepartitionschemehardwareraid.Setup,
 		installationtemplatepartitionschemepartition.Setup,
-		ipxescript.Setup,
 		serverinstalltask.Setup,
 		servernetworking.Setup,
 		serverreboottask.Setup,

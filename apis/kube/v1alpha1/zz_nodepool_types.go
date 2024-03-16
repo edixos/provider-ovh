@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,24 +16,28 @@ import (
 type MetadataInitParameters struct {
 
 	// annotations
+	// +mapType=granular
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
 	// finalizers
 	Finalizers []*string `json:"finalizers,omitempty" tf:"finalizers,omitempty"`
 
 	// labels
+	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 }
 
 type MetadataObservation struct {
 
 	// annotations
+	// +mapType=granular
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
 	// finalizers
 	Finalizers []*string `json:"finalizers,omitempty" tf:"finalizers,omitempty"`
 
 	// labels
+	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
 }
 
@@ -45,6 +45,7 @@ type MetadataParameters struct {
 
 	// annotations
 	// +kubebuilder:validation:Optional
+	// +mapType=granular
 	Annotations map[string]*string `json:"annotations" tf:"annotations,omitempty"`
 
 	// finalizers
@@ -53,6 +54,7 @@ type MetadataParameters struct {
 
 	// labels
 	// +kubebuilder:validation:Optional
+	// +mapType=granular
 	Labels map[string]*string `json:"labels" tf:"labels,omitempty"`
 }
 
@@ -78,6 +80,18 @@ type NodePoolInitParameters struct {
 
 	// Flavor name
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
+
+	// Kube ID
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
+	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
+
+	// Reference to a Cluster in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
 	// Number of nodes you desire in the pool
 	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
@@ -322,13 +336,14 @@ type NodePoolStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // NodePool is the Schema for the NodePools API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type NodePool struct {
 	metav1.TypeMeta   `json:",inline"`

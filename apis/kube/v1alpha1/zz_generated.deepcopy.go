@@ -258,6 +258,21 @@ func (in *ClusterInitParameters) DeepCopyInto(out *ClusterInitParameters) {
 			(*in)[i].DeepCopyInto(&(*out)[i])
 		}
 	}
+	if in.PrivateNetworkID != nil {
+		in, out := &in.PrivateNetworkID, &out.PrivateNetworkID
+		*out = new(string)
+		**out = **in
+	}
+	if in.PrivateNetworkIDRef != nil {
+		in, out := &in.PrivateNetworkIDRef, &out.PrivateNetworkIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PrivateNetworkIDSelector != nil {
+		in, out := &in.PrivateNetworkIDSelector, &out.PrivateNetworkIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
@@ -934,6 +949,21 @@ func (in *IpRestrictionInitParameters) DeepCopyInto(out *IpRestrictionInitParame
 				**out = **in
 			}
 		}
+	}
+	if in.KubeID != nil {
+		in, out := &in.KubeID, &out.KubeID
+		*out = new(string)
+		**out = **in
+	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
@@ -1620,6 +1650,21 @@ func (in *NodePoolInitParameters) DeepCopyInto(out *NodePoolInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.KubeID != nil {
+		in, out := &in.KubeID, &out.KubeID
+		*out = new(string)
+		**out = **in
+	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.MaxNodes != nil {
 		in, out := &in.MaxNodes, &out.MaxNodes
 		*out = new(float64)
@@ -2004,6 +2049,21 @@ func (in *OIDCConfigurationInitParameters) DeepCopyInto(out *OIDCConfigurationIn
 		in, out := &in.IssuerURL, &out.IssuerURL
 		*out = new(string)
 		**out = **in
+	}
+	if in.KubeID != nil {
+		in, out := &in.KubeID, &out.KubeID
+		*out = new(string)
+		**out = **in
+	}
+	if in.KubeIDRef != nil {
+		in, out := &in.KubeIDRef, &out.KubeIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KubeIDSelector != nil {
+		in, out := &in.KubeIDSelector, &out.KubeIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.OidcCAContent != nil {
 		in, out := &in.OidcCAContent, &out.OidcCAContent

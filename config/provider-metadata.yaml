@@ -95,6 +95,25 @@ resources:
             urn: '- The URN of the cloud project'
             value: '- (Required) Path to the resource in API.OVH.COM'
         importStatements: []
+    cloud_project_alerting.html.markdown:
+        subCategory: ""
+        description: 'cloud_project_alerting.html.markdownsubcategory : "Account Management"'
+        name: cloud_project_alerting.html.markdown
+        title: cloud_project_alerting.html.markdown
+        argumentDocs:
+            creationDate: '- Alerting creation date'
+            currency_code: '- Currency of the monthly threshold'
+            delay: '- Delay between two alerts in seconds'
+            email: '- Email to contact'
+            formatted_monthly_threshold: '- Formatted monthly threshold for this alerting'
+            id: '- Alert ID'
+            monthly_threshold: '- Monthly threshold for this alerting in currency'
+            service_name: |-
+                - The id of the public cloud project. If omitted,
+                the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+            text: ': Text representation of the monthly threshold'
+            value: ': Value of the monthly threshold'
+        importStatements: []
     cloud_project_capabilities_containerregistry.html.markdown:
         subCategory: ""
         description: 'cloud_project_capabilities_containerregistry.html.markdownsubcategory : "Managed Private Registry"'
@@ -301,9 +320,7 @@ resources:
                 Multi region cluster are not yet available, all node should be identical.
             opensearch_acls_enabled: '-  (Optional) Defines whether the ACLs are enabled on an OpenSearch cluster'
             path: '- Path of the endpoint.'
-            plan: |-
-                - (Required) Plan of the cluster.
-                Enum: "essential", "business", "enterprise".
+            plan: '- (Required) Plan of the cluster.'
             port: '- Connection port for the endpoint.'
             region: |-
                 - (Required, Forces new resource) Public cloud region in which the node should be deployed.
@@ -2379,24 +2396,6 @@ resources:
         title: me_installation_templates.html.markdown
         argumentDocs:
             result: '- The list of custom installation templates IDs available for dedicated servers.'
-        importStatements: []
-    me_ipxe_script.html.markdown:
-        subCategory: ""
-        description: 'me_ipxe_script.html.markdownsubcategory : "Dedicated Server"'
-        name: me_ipxe_script.html.markdown
-        title: me_ipxe_script.html.markdown
-        argumentDocs:
-            description: '- For documentation purpose only. This attribute is not passed to the OVHcloud API as it cannot be retrieved back. Instead a fake description (''$name auto description'') is passed at creation time.'
-            name: '- (Required) The name of the IPXE Script.'
-            script: '- (Required) The content of the script.'
-        importStatements: []
-    me_ipxe_scripts.html.markdown:
-        subCategory: ""
-        description: 'me_ipxe_scripts.html.markdownsubcategory : "Dedicated Server"'
-        name: me_ipxe_scripts.html.markdown
-        title: me_ipxe_scripts.html.markdown
-        argumentDocs:
-            result: '- The list of the names of all the IPXE Scripts.'
         importStatements: []
     me_paymentmean_bankaccount.markdown:
         subCategory: ""
