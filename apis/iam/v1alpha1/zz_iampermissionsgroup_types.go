@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -18,12 +14,16 @@ import (
 )
 
 type IAMPermissionsGroupInitParameters struct {
+
+	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -32,14 +32,18 @@ type IAMPermissionsGroupInitParameters struct {
 }
 
 type IAMPermissionsGroupObservation struct {
+
+	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -56,15 +60,18 @@ type IAMPermissionsGroupObservation struct {
 type IAMPermissionsGroupParameters struct {
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -98,13 +105,14 @@ type IAMPermissionsGroupStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // IAMPermissionsGroup is the Schema for the IAMPermissionsGroups API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type IAMPermissionsGroup struct {
 	metav1.TypeMeta   `json:",inline"`

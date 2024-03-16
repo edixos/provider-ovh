@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,7 +16,20 @@ import (
 type IpRestrictionInitParameters struct {
 
 	// List of IP restrictions for the cluster
+	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
+
+	// Kube ID
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
+	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
+
+	// Reference to a Cluster in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDRef *v1.Reference `json:"kubeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Cluster in kube to populate kubeId.
+	// +kubebuilder:validation:Optional
+	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -30,6 +39,7 @@ type IpRestrictionObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// List of IP restrictions for the cluster
+	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
 	// Kube ID
@@ -43,6 +53,7 @@ type IpRestrictionParameters struct {
 
 	// List of IP restrictions for the cluster
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
 	// Kube ID
@@ -87,13 +98,14 @@ type IpRestrictionStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // IpRestriction is the Schema for the IpRestrictions API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type IpRestriction struct {
 	metav1.TypeMeta   `json:",inline"`

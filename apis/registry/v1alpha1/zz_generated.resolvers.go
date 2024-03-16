@@ -35,6 +35,22 @@ func (mg *ContainerRegistryIPRestrictionsManagement) ResolveReferences(ctx conte
 	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.RegistryIDRef,
+		Selector:     mg.Spec.InitProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.RegistryID")
+	}
+	mg.Spec.InitProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.RegistryIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -60,6 +76,22 @@ func (mg *ContainerRegistryIPRestrictionsRegistry) ResolveReferences(ctx context
 	}
 	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.RegistryIDRef,
+		Selector:     mg.Spec.InitProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.RegistryID")
+	}
+	mg.Spec.InitProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.RegistryIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -87,6 +119,22 @@ func (mg *ContainerRegistryOIDC) ResolveReferences(ctx context.Context, c client
 	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.RegistryIDRef,
+		Selector:     mg.Spec.InitProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.RegistryID")
+	}
+	mg.Spec.InitProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.RegistryIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -112,6 +160,22 @@ func (mg *ContainerRegistryUser) ResolveReferences(ctx context.Context, c client
 	}
 	mg.Spec.ForProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.RegistryIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.RegistryID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.RegistryIDRef,
+		Selector:     mg.Spec.InitProvider.RegistryIDSelector,
+		To: reference.To{
+			List:    &ContainerRegistryList{},
+			Managed: &ContainerRegistry{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.RegistryID")
+	}
+	mg.Spec.InitProvider.RegistryID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.RegistryIDRef = rsp.ResolvedReference
 
 	return nil
 }

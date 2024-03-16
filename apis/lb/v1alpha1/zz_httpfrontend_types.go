@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,6 +16,7 @@ import (
 type HTTPFrontendInitParameters struct {
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
@@ -48,6 +45,7 @@ type HTTPFrontendInitParameters struct {
 type HTTPFrontendObservation struct {
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
@@ -81,6 +79,7 @@ type HTTPFrontendParameters struct {
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -141,13 +140,14 @@ type HTTPFrontendStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // HTTPFrontend is the Schema for the HTTPFrontends API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type HTTPFrontend struct {
 	metav1.TypeMeta   `json:",inline"`

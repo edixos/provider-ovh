@@ -92,6 +92,21 @@ func (in *ContainerRegistryIPRestrictionsManagementInitParameters) DeepCopyInto(
 			}
 		}
 	}
+	if in.RegistryID != nil {
+		in, out := &in.RegistryID, &out.RegistryID
+		*out = new(string)
+		**out = **in
+	}
+	if in.RegistryIDRef != nil {
+		in, out := &in.RegistryIDRef, &out.RegistryIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RegistryIDSelector != nil {
+		in, out := &in.RegistryIDSelector, &out.RegistryIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -336,6 +351,21 @@ func (in *ContainerRegistryIPRestrictionsRegistryInitParameters) DeepCopyInto(ou
 				}
 			}
 		}
+	}
+	if in.RegistryID != nil {
+		in, out := &in.RegistryID, &out.RegistryID
+		*out = new(string)
+		**out = **in
+	}
+	if in.RegistryIDRef != nil {
+		in, out := &in.RegistryIDRef, &out.RegistryIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RegistryIDSelector != nil {
+		in, out := &in.RegistryIDSelector, &out.RegistryIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
@@ -676,6 +706,21 @@ func (in *ContainerRegistryOIDCInitParameters) DeepCopyInto(out *ContainerRegist
 		in, out := &in.OidcVerifyCert, &out.OidcVerifyCert
 		*out = new(bool)
 		**out = **in
+	}
+	if in.RegistryID != nil {
+		in, out := &in.RegistryID, &out.RegistryID
+		*out = new(string)
+		**out = **in
+	}
+	if in.RegistryIDRef != nil {
+		in, out := &in.RegistryIDRef, &out.RegistryIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RegistryIDSelector != nil {
+		in, out := &in.RegistryIDSelector, &out.RegistryIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
@@ -1118,6 +1163,21 @@ func (in *ContainerRegistryUserInitParameters) DeepCopyInto(out *ContainerRegist
 		in, out := &in.Login, &out.Login
 		*out = new(string)
 		**out = **in
+	}
+	if in.RegistryID != nil {
+		in, out := &in.RegistryID, &out.RegistryID
+		*out = new(string)
+		**out = **in
+	}
+	if in.RegistryIDRef != nil {
+		in, out := &in.RegistryIDRef, &out.RegistryIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.RegistryIDSelector != nil {
+		in, out := &in.RegistryIDSelector, &out.RegistryIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName

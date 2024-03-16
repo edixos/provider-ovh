@@ -36,6 +36,22 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 	mg.Spec.ForProvider.PrivateNetworkID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.PrivateNetworkIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.PrivateNetworkID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.PrivateNetworkIDRef,
+		Selector:     mg.Spec.InitProvider.PrivateNetworkIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.PrivateNetworkList{},
+			Managed: &v1alpha1.PrivateNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.PrivateNetworkID")
+	}
+	mg.Spec.InitProvider.PrivateNetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.PrivateNetworkIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -61,6 +77,22 @@ func (mg *IpRestriction) ResolveReferences(ctx context.Context, c client.Reader)
 	}
 	mg.Spec.ForProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.KubeIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.KubeID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.KubeIDRef,
+		Selector:     mg.Spec.InitProvider.KubeIDSelector,
+		To: reference.To{
+			List:    &ClusterList{},
+			Managed: &Cluster{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.KubeID")
+	}
+	mg.Spec.InitProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.KubeIDRef = rsp.ResolvedReference
 
 	return nil
 }
@@ -88,6 +120,22 @@ func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) erro
 	mg.Spec.ForProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.KubeIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.KubeID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.KubeIDRef,
+		Selector:     mg.Spec.InitProvider.KubeIDSelector,
+		To: reference.To{
+			List:    &ClusterList{},
+			Managed: &Cluster{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.KubeID")
+	}
+	mg.Spec.InitProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.KubeIDRef = rsp.ResolvedReference
+
 	return nil
 }
 
@@ -113,6 +161,22 @@ func (mg *OIDCConfiguration) ResolveReferences(ctx context.Context, c client.Rea
 	}
 	mg.Spec.ForProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.KubeIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.KubeID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.KubeIDRef,
+		Selector:     mg.Spec.InitProvider.KubeIDSelector,
+		To: reference.To{
+			List:    &ClusterList{},
+			Managed: &Cluster{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.KubeID")
+	}
+	mg.Spec.InitProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.KubeIDRef = rsp.ResolvedReference
 
 	return nil
 }

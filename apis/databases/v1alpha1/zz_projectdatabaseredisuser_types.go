@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,18 +16,22 @@ import (
 type ProjectDatabaseRedisUserInitParameters struct {
 
 	// Categories of the user
+	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
 	// Channels of the user
+	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Commands of the user
+	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
 	// Keys of the user
+	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
 	// Name of the user
@@ -46,15 +46,18 @@ type ProjectDatabaseRedisUserInitParameters struct {
 type ProjectDatabaseRedisUserObservation struct {
 
 	// Categories of the user
+	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
 	// Channels of the user
+	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Commands of the user
+	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
 	// Date of the creation of the user
@@ -63,6 +66,7 @@ type ProjectDatabaseRedisUserObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Keys of the user
+	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
 	// Name of the user
@@ -81,10 +85,12 @@ type ProjectDatabaseRedisUserParameters struct {
 
 	// Categories of the user
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
 	// Channels of the user
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
 	// Id of the database cluster
@@ -93,10 +99,12 @@ type ProjectDatabaseRedisUserParameters struct {
 
 	// Commands of the user
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
 	// Keys of the user
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
 	// Name of the user
@@ -135,13 +143,14 @@ type ProjectDatabaseRedisUserStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // ProjectDatabaseRedisUser is the Schema for the ProjectDatabaseRedisUsers API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type ProjectDatabaseRedisUser struct {
 	metav1.TypeMeta   `json:",inline"`

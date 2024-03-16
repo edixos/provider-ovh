@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,6 +16,7 @@ import (
 type PrivateNetworkInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
 	// Service name of the resource representing the id of the cloud project.
@@ -33,6 +30,7 @@ type PrivateNetworkObservation struct {
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
 	RegionsAttributes []RegionsAttributesObservation `json:"regionsAttributes,omitempty" tf:"regions_attributes,omitempty"`
@@ -55,6 +53,7 @@ type PrivateNetworkParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
 	// Service name of the resource representing the id of the cloud project.
@@ -115,13 +114,14 @@ type PrivateNetworkStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // PrivateNetwork is the Schema for the PrivateNetworks API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type PrivateNetwork struct {
 	metav1.TypeMeta   `json:",inline"`

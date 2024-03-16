@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 The Crossplane Authors <https://crossplane.io>
-//
-// SPDX-License-Identifier: Apache-2.0
-
 /*
 Copyright 2022 Upbound Inc.
 */
@@ -20,14 +16,17 @@ import (
 type LogsClusterInitParameters struct {
 
 	// Allowed networks for ARCHIVE flow type
+	// +listType=set
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
 
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Allowed networks for DIRECT_INPUT flow type
+	// +listType=set
 	DirectInputAllowedNetworks []*string `json:"directInputAllowedNetworks,omitempty" tf:"direct_input_allowed_networks,omitempty"`
 
 	// Allowed networks for QUERY flow type
+	// +listType=set
 	QueryAllowedNetworks []*string `json:"queryAllowedNetworks,omitempty" tf:"query_allowed_networks,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -36,6 +35,7 @@ type LogsClusterInitParameters struct {
 type LogsClusterObservation struct {
 
 	// Allowed networks for ARCHIVE flow type
+	// +listType=set
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
 
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -44,6 +44,7 @@ type LogsClusterObservation struct {
 	ClusterType *string `json:"clusterType,omitempty" tf:"cluster_type,omitempty"`
 
 	// Allowed networks for DIRECT_INPUT flow type
+	// +listType=set
 	DirectInputAllowedNetworks []*string `json:"directInputAllowedNetworks,omitempty" tf:"direct_input_allowed_networks,omitempty"`
 
 	// hostname
@@ -58,6 +59,7 @@ type LogsClusterObservation struct {
 	IsUnlocked *bool `json:"isUnlocked,omitempty" tf:"is_unlocked,omitempty"`
 
 	// Allowed networks for QUERY flow type
+	// +listType=set
 	QueryAllowedNetworks []*string `json:"queryAllowedNetworks,omitempty" tf:"query_allowed_networks,omitempty"`
 
 	// Data center localization
@@ -70,6 +72,7 @@ type LogsClusterParameters struct {
 
 	// Allowed networks for ARCHIVE flow type
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	ArchiveAllowedNetworks []*string `json:"archiveAllowedNetworks,omitempty" tf:"archive_allowed_networks,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -77,10 +80,12 @@ type LogsClusterParameters struct {
 
 	// Allowed networks for DIRECT_INPUT flow type
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	DirectInputAllowedNetworks []*string `json:"directInputAllowedNetworks,omitempty" tf:"direct_input_allowed_networks,omitempty"`
 
 	// Allowed networks for QUERY flow type
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	QueryAllowedNetworks []*string `json:"queryAllowedNetworks,omitempty" tf:"query_allowed_networks,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -111,13 +116,14 @@ type LogsClusterStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:subresource:status
+// +kubebuilder:storageversion
 
 // LogsCluster is the Schema for the LogsClusters API. <no value>
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type LogsCluster struct {
 	metav1.TypeMeta   `json:",inline"`
