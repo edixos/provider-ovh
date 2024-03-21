@@ -41,6 +41,7 @@ resources:
             OVH_HOSTING_PRIVATEDATABASE_WHITELIST_NAME_TEST: '- Set a custom label to your whitelisted IP address'
             OVH_HOSTING_PRIVATEDATABASE_WHITELIST_SERVICE_TEST: '- Set this variable to true to authorize service access the whitelisted IP address'
             OVH_HOSTING_PRIVATEDATABASE_WHITELIST_SFTP_TEST: '- Set this variable to true to authorize SFTP access to a whitelisted IP address'
+            OVH_IP_MOVE_SERVICE_NAME_TEST: '- The value you have to set for testing ip move resources.'
             OVH_IP_TEST: ', OVH_IP_BLOCK_TEST, OVH_IP_REVERSE_TEST - The values you have to set for testing ip reverse resources.'
             OVH_IPLB_IPFO_TEST: '- An array of FailOver IPs (also known as Additional IPs) that shall be associated with the IPLB Service'
             OVH_IPLB_SERVICE_TEST: '- The ID of the IP Load Balancer to use'
@@ -60,9 +61,16 @@ resources:
                 - (Optional) The API Consumer key. If omitted,
                 the OVH_CONSUMER_KEY environment variable is used.
             endpoint: |-
-                - (Required) Specify which API endpoint to use.
+                - (Optional) Specify which API endpoint to use.
                 It can be set using the OVH_ENDPOINT environment
                 variable. e.g. ovh-eu or ovh-ca.
+            kimsufi-ca: for Kimsufi Canada API
+            kimsufi-eu: for Kimsufi Europe API
+            ovh-ca: for OVHcloud Canada API
+            ovh-eu: for OVHcloud Europe API
+            ovh-us: for OVHcloud US API
+            soyoustart-ca: for So you Start Canada API
+            soyoustart-eu: for So you Start Europe API
         importStatements: []
     cloud_project.html.markdown:
         subCategory: ""
@@ -873,6 +881,20 @@ resources:
             status: '- Ip status, can be ok or operationPending'
             subType: '- IP sub type, can be cloud or ovh'
         importStatements: []
+    cloud_project_gateway.html.markdown:
+        subCategory: Gateway
+        description: 'cloud_project_gateway.html.markdownsubcategory: "Gateway"'
+        name: cloud_project_gateway.html.markdown
+        title: cloud_project_gateway.html.markdown
+        argumentDocs:
+            model: '- (Required) The model of the gateway.'
+            name: '- (Required) The name of the gateway.'
+            network_id: '- (Required) The ID of the private network.'
+            region: '- (Required) The region of the gateway.'
+            service_name: '- (Required) The ID of the private network.'
+            status: '- The status of the gateway.'
+            subnet_id: '- (Required) The ID of the subnet.'
+        importStatements: []
     cloud_project_kube.html.markdown:
         subCategory: ""
         description: 'cloud_project_kube.html.markdownsubcategory : "Managed Kubernetes Service"'
@@ -906,7 +928,7 @@ resources:
             name: '- (Optional) The name of the kubernetes cluster.'
             next_upgrade_versions: '- Kubernetes versions available for upgrade.'
             nodes_url: '- Cluster nodes URL.'
-            private_network_configuration: '- (Optional) The private network configuration'
+            private_network_configuration: '- (Optional) The private network configuration. If this is set then the 2 parameters below shall be defined.'
             private_network_id: '- (Optional) OpenStack private network (or vRack) ID to use. Changing this value recreates the resource, including ETCD user data. Defaults - not use private network.'
             private_network_routing_as_default: '- Defines whether routing should default to using the nodes'' private interface, instead of their public interface. Default is false.'
             region: '- a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. Changing this value recreates the resource.'
@@ -1519,35 +1541,36 @@ resources:
         name: dedicated_server.html.markdown
         title: dedicated_server.html.markdown
         argumentDocs:
-            boot_id: '- boot id of the server'
-            boot_script: '- boot script of the server'
-            commercial_range: '- dedicated server commercial range'
-            datacenter: '- dedicated datacenter localisation (bhs1,bhs2,...)'
+            boot_id: '- Boot id of the server'
+            boot_script: '- Boot script of the server'
+            commercial_range: '- Dedicated server commercial range'
+            datacenter: '- Dedicated datacenter localisation (bhs1,bhs2,...)'
+            display_name: '- Dedicated server display name'
             enabled: '- VirtualNetworkInterface activation state'
             enabled_public_vnis: '- List of enabled public VNI uuids'
             enabled_vrack_aggregation_vnis: '- List of enabled vrack_aggregation VNI uuids'
             enabled_vrack_vnis: '- List of enabled vrack VNI uuids'
-            ip: '- dedicated server ip (IPv4)'
-            ips: '- dedicated server ip blocks'
-            link_speed: '- link speed of the server'
+            ip: '- Dedicated server ip (IPv4)'
+            ips: '- Dedicated server ip blocks'
+            link_speed: '- Link speed of the server'
             mode: '- VirtualNetworkInterface mode (public,vrack,vrack_aggregation)'
             monitoring: '- Icmp monitoring state'
-            name: '- dedicated server name'
+            name: '- Dedicated server name'
             nics: '- NetworkInterfaceControllers bound to this VirtualNetworkInterface'
             os: '- Operating system'
             professional_use: '- Does this server have professional use option'
-            rack: '- rack id of the server'
-            rescue_mail: '- rescue mail of the server'
-            reverse: '- dedicated server reverse'
-            root_device: '- root device of the server'
-            server_id: '- your server id'
+            rack: '- Rack id of the server'
+            rescue_mail: '- Rescue mail of the server'
+            reverse: '- Dedicated server reverse'
+            root_device: '- Root device of the server'
+            server_id: '- Server id'
             server_name: '- Server bound to this VirtualNetworkInterface'
             service_name: '- (Required) The service_name of your dedicated server.'
-            state: '- error, hacked, hackedBlocked, ok'
+            state: '- Error, hacked, hackedBlocked, ok'
             support_level: '- Dedicated server support level (critical, fastpath, gs, pro)'
             urn: '- URN of the dedicated server instance'
             uuid: '- VirtualNetworkInterface unique id'
-            vnis: '- the list of Virtualnetworkinterface assiociated with this server'
+            vnis: '- The list of Virtualnetworkinterface associated with this server'
             vrack: '- vRack name'
         importStatements: []
     dedicated_server_boots.html.markdown:
@@ -1609,6 +1632,35 @@ resources:
             service_name: '- (Required) The service_name of your dedicated server.'
             start_date: '- Task creation date in RFC3339 format.'
             status: '- Task status (should be done)'
+        importStatements: []
+    dedicated_server_specifications_hardware.html.markdown:
+        subCategory: ""
+        description: 'dedicated_server_specifications_hardware.html.markdownsubcategory : "Dedicated Server"'
+        name: dedicated_server_specifications_hardware.html.markdown
+        title: dedicated_server_specifications_hardware.html.markdown
+        argumentDocs:
+            boot_mode: '- Server boot mode'
+            cores_per_processor: '- Number of cores per processor'
+            default_hardware_raid_size: '- Default hardware raid size for this server'
+            default_hardware_raid_type: '- Default hardware raid type configured on this server'
+            description: '- Commercial name of this server'
+            disk_group_id: '- Identifier of this disk group'
+            disk_groups: '- Details about the groups of disks in the server'
+            disk_size: '- Disk capacity'
+            disk_type: '- Type of the disk (SSD, SATA, SAS, ...)'
+            expansion_cards: '- Details about the server''s expansion cards'
+            form_factor: '- Server form factor'
+            memory_size: '- RAM capacity'
+            motherboard: '- Server motherboard'
+            number_of_disks: '- Number of disks in this group'
+            number_of_processors: '- Number of processors in this dedicated server'
+            processor_architecture: '- Processor architecture bit'
+            processor_name: '- Processor name'
+            raid_controller: '- Raid controller, if any, managing this group of disks'
+            service_name: '- (Required) The internal name of your dedicated server.'
+            threads_per_processor: '- Number of threads per processor'
+            type: '- Expansion card type enum'
+            usb_keys: '- Capacity of the USB keys installed on your server, if any'
         importStatements: []
     dedicated_server_update.html.markdown:
         subCategory: ""
@@ -1839,6 +1891,25 @@ resources:
         argumentDocs:
             id: '- Hash of the list of the resource groups IDs.'
             resource_groups: '- List of the resource groups IDs.'
+        importStatements: []
+    ip_move.html.markdown:
+        subCategory: ""
+        description: 'ip_move.html.markdownsubcategory : "Additional IP"'
+        name: ip_move.html.markdown
+        title: ip_move.html.markdown
+        argumentDocs:
+            can_be_terminated: '- Whether IP service can be terminated'
+            country: '- Country'
+            description: '- Description attached to the IP'
+            ip: '- (Required) IP block that we want to attach to a different service'
+            organisation_id: '- IP block organisation Id'
+            routed_to: |-
+                - (Required) Service to route the IP to. If null, the IP will be parked
+                instead of moved
+            service_name: '- (Required) Name of the service to route the IP to. IP will be parked if this value is an empty string'
+            task_start_date: '- Starting date and time field of the current IP task that is in charge of changing the service the IP is attached to'
+            task_status: '- Status field of the current IP task that is in charge of changing the service the IP is attached to'
+            type: '- Possible values for ip type'
         importStatements: []
     ip_reverse.html.markdown:
         subCategory: ""

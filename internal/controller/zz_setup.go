@@ -9,6 +9,7 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
+	move "github.com/edixos/provider-ovh/internal/controller/additionalip/move"
 	projectfailoveripattach "github.com/edixos/provider-ovh/internal/controller/additionalip/projectfailoveripattach"
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
@@ -44,6 +45,7 @@ import (
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
+	projectgateway "github.com/edixos/provider-ovh/internal/controller/gateway/projectgateway"
 	iampermissionsgroup "github.com/edixos/provider-ovh/internal/controller/iam/iampermissionsgroup"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/iam/iampolicy"
 	iamresourcegroup "github.com/edixos/provider-ovh/internal/controller/iam/iamresourcegroup"
@@ -100,6 +102,7 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		move.Setup,
 		projectfailoveripattach.Setup,
 		reverse.Setup,
 		service.Setup,
@@ -135,6 +138,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zone.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
+		projectgateway.Setup,
 		iampermissionsgroup.Setup,
 		iampolicy.Setup,
 		iamresourcegroup.Setup,

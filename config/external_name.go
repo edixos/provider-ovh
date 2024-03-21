@@ -91,6 +91,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_me_api_oauth2_client":                                       config.IdentifierFromProvider,
 	"ovh_cloud_project_failover_ip_attach":                           config.IdentifierFromProvider,
 	"ovh_ip_reverse":                                                 config.IdentifierFromProvider,
+	"ovh_ip_move":                                                    config.IdentifierFromProvider,
 	"ovh_ip_service":                                                 config.IdentifierFromProvider,
 	"ovh_dedicated_ceph_acl":                                         config.IdentifierFromProvider,
 	"ovh_dedicated_server_install_task":                              config.IdentifierFromProvider,
@@ -161,6 +162,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_vrack_dedicated_server_interface":                           config.IdentifierFromProvider,
 	"ovh_vrack_ip":                                                   config.IdentifierFromProvider,
 	"ovh_vrack_iploadbalancing":                                      config.IdentifierFromProvider,
+	"ovh_cloud_project_gateway":                                      config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
