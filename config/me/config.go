@@ -27,5 +27,4 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Oauth2Client"
 	})
-
 }

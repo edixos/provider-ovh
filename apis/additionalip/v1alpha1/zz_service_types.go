@@ -221,16 +221,6 @@ type PlanParameters struct {
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
 }
 
-type RoutedToInitParameters struct {
-}
-
-type RoutedToObservation struct {
-	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
-}
-
-type RoutedToParameters struct {
-}
-
 type ServiceInitParameters struct {
 
 	// Custom description on your ip
@@ -279,7 +269,7 @@ type ServiceObservation struct {
 	PlanOption []PlanOptionObservation `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
 	// Routage information
-	RoutedTo []RoutedToObservation `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
+	RoutedTo []ServiceRoutedToObservation `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -308,6 +298,16 @@ type ServiceParameters struct {
 	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	PlanOption []PlanOptionParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
+}
+
+type ServiceRoutedToInitParameters struct {
+}
+
+type ServiceRoutedToObservation struct {
+	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+}
+
+type ServiceRoutedToParameters struct {
 }
 
 // ServiceSpec defines the desired state of Service

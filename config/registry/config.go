@@ -12,7 +12,6 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistry"
 		r.UseAsync = true
-
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_oidc", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
@@ -49,5 +48,4 @@ func Configure(p *config.Provider) {
 			return conn, nil
 		}
 	})
-
 }

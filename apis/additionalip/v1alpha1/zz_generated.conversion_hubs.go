@@ -10,6 +10,9 @@ package v1alpha1
 func (tr *ProjectFailoverIPAttach) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Move) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Reverse) Hub() {}
 
 // Hub marks this type as a conversion hub.

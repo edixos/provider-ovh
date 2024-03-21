@@ -8,6 +8,8 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/edixos/provider-ovh/config/gateway"
+
 	"github.com/edixos/provider-ovh/config/cloud"
 	"github.com/edixos/provider-ovh/config/iam"
 	"github.com/edixos/provider-ovh/config/me"
@@ -85,6 +87,7 @@ func GetProvider() *ujconfig.Provider {
 		object_storage.Configure,
 		web_cloud_private_sql.Configure,
 		vrack.Configure,
+		gateway.Configure,
 	} {
 		configure(pc)
 	}

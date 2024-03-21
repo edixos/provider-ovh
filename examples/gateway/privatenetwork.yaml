@@ -1,0 +1,14 @@
+apiVersion: network.ovh.edixos.io/v1alpha1
+kind: PrivateNetwork
+metadata:
+  name: gateway-sample-1
+  labels:
+    managed-by: crossplane
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: gateway-sample-1
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    regions:
+      - DE1
