@@ -13,6 +13,46 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
+type ExternalInformationInitParameters struct {
+}
+
+type ExternalInformationObservation struct {
+	Ips []IpsObservation `json:"ips,omitempty" tf:"ips,omitempty"`
+
+	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
+}
+
+type ExternalInformationParameters struct {
+}
+
+type InterfacesInitParameters struct {
+}
+
+type InterfacesObservation struct {
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
+
+	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+}
+
+type InterfacesParameters struct {
+}
+
+type IpsInitParameters struct {
+}
+
+type IpsObservation struct {
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
+}
+
+type IpsParameters struct {
+}
+
 type ProjectGatewayInitParameters struct {
 	Model *string `json:"model,omitempty" tf:"model,omitempty"`
 
@@ -47,7 +87,14 @@ type ProjectGatewayInitParameters struct {
 }
 
 type ProjectGatewayObservation struct {
+
+	// External information of the gateway
+	ExternalInformation []ExternalInformationObservation `json:"externalInformation,omitempty" tf:"external_information,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Interfaces list of the gateway
+	Interfaces []InterfacesObservation `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
 	Model *string `json:"model,omitempty" tf:"model,omitempty"`
 
@@ -133,11 +180,11 @@ type ProjectGatewayStatus struct {
 // +kubebuilder:storageversion
 
 // ProjectGateway is the Schema for the ProjectGateways API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type ProjectGateway struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

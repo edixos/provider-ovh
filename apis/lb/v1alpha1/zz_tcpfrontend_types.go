@@ -14,13 +14,19 @@ import (
 )
 
 type TCPFrontendInitParameters struct {
+
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+
+	// +listType=set
+	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
@@ -36,13 +42,19 @@ type TCPFrontendInitParameters struct {
 }
 
 type TCPFrontendObservation struct {
+
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+
+	// +listType=set
+	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
@@ -62,9 +74,11 @@ type TCPFrontendObservation struct {
 type TCPFrontendParameters struct {
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -72,6 +86,10 @@ type TCPFrontendParameters struct {
 
 	// +kubebuilder:validation:Optional
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	// +listType=set
+	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
@@ -120,11 +138,11 @@ type TCPFrontendStatus struct {
 // +kubebuilder:storageversion
 
 // TCPFrontend is the Schema for the TCPFrontends API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type TCPFrontend struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

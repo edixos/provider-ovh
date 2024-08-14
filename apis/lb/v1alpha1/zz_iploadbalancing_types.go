@@ -63,6 +63,9 @@ type IploadbalancingInitParameters struct {
 	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Details about an Order
+	Order []OrderInitParameters `json:"order,omitempty" tf:"order,omitempty"`
+
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -143,6 +146,10 @@ type IploadbalancingParameters struct {
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Details about an Order
+	// +kubebuilder:validation:Optional
+	Order []OrderParameters `json:"order,omitempty" tf:"order,omitempty"`
+
 	// Ovh Subsidiary
 	// +kubebuilder:validation:Optional
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
@@ -168,12 +175,17 @@ type OrderInitParameters struct {
 }
 
 type OrderObservation struct {
+
+	// date
 	Date *string `json:"date,omitempty" tf:"date,omitempty"`
 
+	// Information about a Bill entry
 	Details []DetailsObservation `json:"details,omitempty" tf:"details,omitempty"`
 
+	// expiration date
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
+	// order id
 	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
 
@@ -367,11 +379,11 @@ type IploadbalancingStatus struct {
 // +kubebuilder:storageversion
 
 // Iploadbalancing is the Schema for the Iploadbalancings API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type Iploadbalancing struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

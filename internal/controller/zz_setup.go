@@ -9,11 +9,15 @@ import (
 
 	"github.com/crossplane/upjet/pkg/controller"
 
+	firewall "github.com/edixos/provider-ovh/internal/controller/additionalip/firewall"
+	firewallrule "github.com/edixos/provider-ovh/internal/controller/additionalip/firewallrule"
+	mitigation "github.com/edixos/provider-ovh/internal/controller/additionalip/mitigation"
 	move "github.com/edixos/provider-ovh/internal/controller/additionalip/move"
 	projectfailoveripattach "github.com/edixos/provider-ovh/internal/controller/additionalip/projectfailoveripattach"
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
 	project "github.com/edixos/provider-ovh/internal/controller/cloud/project"
+	projectregionloadbalancerlogsubscription "github.com/edixos/provider-ovh/internal/controller/cloud/projectregionloadbalancerlogsubscription"
 	s3credentials "github.com/edixos/provider-ovh/internal/controller/cloud/s3credentials"
 	s3policy "github.com/edixos/provider-ovh/internal/controller/cloud/s3policy"
 	user "github.com/edixos/provider-ovh/internal/controller/cloud/user"
@@ -43,6 +47,7 @@ import (
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverreboottask"
 	serverupdate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverupdate"
 	zone "github.com/edixos/provider-ovh/internal/controller/dns/zone"
+	zonednssec "github.com/edixos/provider-ovh/internal/controller/dns/zonednssec"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/dns/zoneredirection"
 	projectgateway "github.com/edixos/provider-ovh/internal/controller/gateway/projectgateway"
@@ -65,12 +70,13 @@ import (
 	tcpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/tcpfrontend"
 	tcproute "github.com/edixos/provider-ovh/internal/controller/lb/tcproute"
 	tcprouterule "github.com/edixos/provider-ovh/internal/controller/lb/tcprouterule"
+	udpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/udpfrontend"
 	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
 	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
 	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
+	logstoken "github.com/edixos/provider-ovh/internal/controller/logs/logstoken"
 	group "github.com/edixos/provider-ovh/internal/controller/me/group"
 	oauth2client "github.com/edixos/provider-ovh/internal/controller/me/oauth2client"
-	sshkey "github.com/edixos/provider-ovh/internal/controller/me/sshkey"
 	userme "github.com/edixos/provider-ovh/internal/controller/me/user"
 	nashapartition "github.com/edixos/provider-ovh/internal/controller/nas/nashapartition"
 	nashapartitionaccess "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionaccess"
@@ -102,11 +108,15 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		firewall.Setup,
+		firewallrule.Setup,
+		mitigation.Setup,
 		move.Setup,
 		projectfailoveripattach.Setup,
 		reverse.Setup,
 		service.Setup,
 		project.Setup,
+		projectregionloadbalancerlogsubscription.Setup,
 		s3credentials.Setup,
 		s3policy.Setup,
 		user.Setup,
@@ -136,6 +146,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		serverreboottask.Setup,
 		serverupdate.Setup,
 		zone.Setup,
+		zonednssec.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
 		projectgateway.Setup,
@@ -158,12 +169,13 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		tcpfrontend.Setup,
 		tcproute.Setup,
 		tcprouterule.Setup,
+		udpfrontend.Setup,
 		vracknetwork.Setup,
 		logscluster.Setup,
 		logsinput.Setup,
+		logstoken.Setup,
 		group.Setup,
 		oauth2client.Setup,
-		sshkey.Setup,
 		userme.Setup,
 		nashapartition.Setup,
 		nashapartitionaccess.Setup,

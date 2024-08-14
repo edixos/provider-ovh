@@ -21,6 +21,9 @@ type ServerUpdateInitParameters struct {
 	// The boot script of your dedicated server.
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
+	// Display name of the dedicated server
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
 	// Icmp monitoring state
 	Monitoring *bool `json:"monitoring,omitempty" tf:"monitoring,omitempty"`
 
@@ -38,6 +41,9 @@ type ServerUpdateObservation struct {
 
 	// The boot script of your dedicated server.
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
+
+	// Display name of the dedicated server
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -60,6 +66,10 @@ type ServerUpdateParameters struct {
 	// The boot script of your dedicated server.
 	// +kubebuilder:validation:Optional
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
+
+	// Display name of the dedicated server
+	// +kubebuilder:validation:Optional
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Icmp monitoring state
 	// +kubebuilder:validation:Optional
@@ -102,11 +112,11 @@ type ServerUpdateStatus struct {
 // +kubebuilder:storageversion
 
 // ServerUpdate is the Schema for the ServerUpdates API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type ServerUpdate struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

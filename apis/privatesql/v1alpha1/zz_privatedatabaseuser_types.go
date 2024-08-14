@@ -15,6 +15,9 @@ import (
 
 type PrivatedatabaseUserInitParameters struct {
 
+	// Password for the new user ( alphanumeric and 8 characters minimum )
+	PasswordSecretRef v1.SecretKeySelector `json:"passwordSecretRef" tf:"-"`
+
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -75,11 +78,11 @@ type PrivatedatabaseUserStatus struct {
 // +kubebuilder:storageversion
 
 // PrivatedatabaseUser is the Schema for the PrivatedatabaseUsers API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type PrivatedatabaseUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

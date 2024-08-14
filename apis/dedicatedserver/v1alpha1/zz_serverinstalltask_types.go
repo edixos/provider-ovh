@@ -15,20 +15,10 @@ import (
 
 type DetailsInitParameters struct {
 
-	// Template change log details
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
 
 	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
-
-	InstallRtm *bool `json:"installRtm,omitempty" tf:"install_rtm,omitempty"`
-
-	InstallSQLServer *bool `json:"installSqlServer,omitempty" tf:"install_sql_server,omitempty"`
-
-	// language
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
 
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
 
@@ -38,35 +28,15 @@ type DetailsInitParameters struct {
 	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 
-	ResetHwRaid *bool `json:"resetHwRaid,omitempty" tf:"reset_hw_raid,omitempty"`
-
-	// Name of the ssh key that should be installed. Password login will be disabled
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`
-
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	UseDistribKernel *bool `json:"useDistribKernel,omitempty" tf:"use_distrib_kernel,omitempty"`
-
-	UseSpla *bool `json:"useSpla,omitempty" tf:"use_spla,omitempty"`
 }
 
 type DetailsObservation struct {
 
-	// Template change log details
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
 
 	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
-
-	InstallRtm *bool `json:"installRtm,omitempty" tf:"install_rtm,omitempty"`
-
-	InstallSQLServer *bool `json:"installSqlServer,omitempty" tf:"install_sql_server,omitempty"`
-
-	// language
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
 
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
 
@@ -76,41 +46,17 @@ type DetailsObservation struct {
 	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 
-	ResetHwRaid *bool `json:"resetHwRaid,omitempty" tf:"reset_hw_raid,omitempty"`
-
-	// Name of the ssh key that should be installed. Password login will be disabled
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`
-
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	UseDistribKernel *bool `json:"useDistribKernel,omitempty" tf:"use_distrib_kernel,omitempty"`
-
-	UseSpla *bool `json:"useSpla,omitempty" tf:"use_spla,omitempty"`
 }
 
 type DetailsParameters struct {
 
-	// Template change log details
-	// +kubebuilder:validation:Optional
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	// +kubebuilder:validation:Optional
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	InstallRtm *bool `json:"installRtm,omitempty" tf:"install_rtm,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	InstallSQLServer *bool `json:"installSqlServer,omitempty" tf:"install_sql_server,omitempty"`
-
-	// language
-	// +kubebuilder:validation:Optional
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
@@ -124,21 +70,7 @@ type DetailsParameters struct {
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 
 	// +kubebuilder:validation:Optional
-	ResetHwRaid *bool `json:"resetHwRaid,omitempty" tf:"reset_hw_raid,omitempty"`
-
-	// Name of the ssh key that should be installed. Password login will be disabled
-	// +kubebuilder:validation:Optional
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// +kubebuilder:validation:Optional
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`
-
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	// +kubebuilder:validation:Optional
-	UseDistribKernel *bool `json:"useDistribKernel,omitempty" tf:"use_distrib_kernel,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	UseSpla *bool `json:"useSpla,omitempty" tf:"use_spla,omitempty"`
 }
 
 type ServerInstallTaskInitParameters struct {
@@ -156,6 +88,8 @@ type ServerInstallTaskInitParameters struct {
 
 	// Template name
 	TemplateName *string `json:"templateName,omitempty" tf:"template_name,omitempty"`
+
+	UserMetadata []UserMetadataInitParameters `json:"userMetadata,omitempty" tf:"user_metadata,omitempty"`
 }
 
 type ServerInstallTaskObservation struct {
@@ -193,6 +127,8 @@ type ServerInstallTaskObservation struct {
 
 	// Template name
 	TemplateName *string `json:"templateName,omitempty" tf:"template_name,omitempty"`
+
+	UserMetadata []UserMetadataObservation `json:"userMetadata,omitempty" tf:"user_metadata,omitempty"`
 }
 
 type ServerInstallTaskParameters struct {
@@ -215,6 +151,38 @@ type ServerInstallTaskParameters struct {
 	// Template name
 	// +kubebuilder:validation:Optional
 	TemplateName *string `json:"templateName,omitempty" tf:"template_name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	UserMetadata []UserMetadataParameters `json:"userMetadata,omitempty" tf:"user_metadata,omitempty"`
+}
+
+type UserMetadataInitParameters struct {
+
+	// The key for the user_metadata
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The value for the user_metadata
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type UserMetadataObservation struct {
+
+	// The key for the user_metadata
+	Key *string `json:"key,omitempty" tf:"key,omitempty"`
+
+	// The value for the user_metadata
+	Value *string `json:"value,omitempty" tf:"value,omitempty"`
+}
+
+type UserMetadataParameters struct {
+
+	// The key for the user_metadata
+	// +kubebuilder:validation:Optional
+	Key *string `json:"key" tf:"key,omitempty"`
+
+	// The value for the user_metadata
+	// +kubebuilder:validation:Optional
+	Value *string `json:"value" tf:"value,omitempty"`
 }
 
 // ServerInstallTaskSpec defines the desired state of ServerInstallTask
@@ -245,11 +213,11 @@ type ServerInstallTaskStatus struct {
 // +kubebuilder:storageversion
 
 // ServerInstallTask is the Schema for the ServerInstallTasks API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type ServerInstallTask struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

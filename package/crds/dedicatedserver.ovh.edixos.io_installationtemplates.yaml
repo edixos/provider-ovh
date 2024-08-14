@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: InstallationTemplate
     listKind: InstallationTemplateList
     plural: installationtemplates
@@ -19,11 +19,11 @@ spec:
   scope: Cluster
   versions:
   - additionalPrinterColumns:
-    - jsonPath: .status.conditions[?(@.type=='Ready')].status
-      name: READY
-      type: string
     - jsonPath: .status.conditions[?(@.type=='Synced')].status
       name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
       type: string
     - jsonPath: .metadata.annotations.crossplane\.io/external-name
       name: EXTERNAL-NAME
@@ -80,9 +80,6 @@ spec:
                   customization:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
@@ -98,21 +95,8 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        rating:
-                          type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistributionKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
                       type: object
                     type: array
-                  defaultLanguage:
-                    description: The default language of this template
-                    type: string
                   removeDefaultPartitionSchemes:
                     description: Remove default partition schemes at creation
                     type: boolean
@@ -140,9 +124,6 @@ spec:
                   customization:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
@@ -158,21 +139,8 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        rating:
-                          type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistributionKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
                       type: object
                     type: array
-                  defaultLanguage:
-                    description: The default language of this template
-                    type: string
                   removeDefaultPartitionSchemes:
                     description: Remove default partition schemes at creation
                     type: boolean
@@ -352,10 +320,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.baseTemplateName)
                 || (has(self.initProvider) && has(self.initProvider.baseTemplateName))'
-            - message: spec.forProvider.defaultLanguage is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.defaultLanguage)
-                || (has(self.initProvider) && has(self.initProvider.defaultLanguage))'
             - message: spec.forProvider.templateName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.templateName)
@@ -366,19 +330,10 @@ spec:
             properties:
               atProvider:
                 properties:
-                  availableLanguages:
-                    description: List of all language available for this template
-                    items:
-                      type: string
-                    type: array
                   baseTemplateName:
                     description: OVH template name yours will be based on, choose
                       one among the list given by compatibleTemplates function
                     type: string
-                  beta:
-                    description: This distribution is new and, although tested and
-                      functional, may still display odd behaviour
-                    type: boolean
                   bitFormat:
                     description: This template bit format (32 or 64)
                     type: number
@@ -389,9 +344,6 @@ spec:
                   customization:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
@@ -407,35 +359,23 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        rating:
-                          type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistributionKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
                       type: object
                     type: array
-                  defaultLanguage:
-                    description: The default language of this template
-                    type: string
-                  deprecated:
-                    description: is this distribution deprecated
-                    type: boolean
                   description:
                     description: information about this template
                     type: string
                   distribution:
                     description: the distribution this template is based on
                     type: string
+                  endOfInstall:
+                    description: after this date, install of this template will not
+                      be possible at OVH
+                    type: string
                   family:
-                    description: this template family type (bsd,linux,solaris,windows)
+                    description: this template family type
                     type: string
                   filesystems:
-                    description: Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+                    description: Filesystems available
                     items:
                       type: string
                     type: array
@@ -445,27 +385,43 @@ spec:
                     type: boolean
                   id:
                     type: string
-                  lastModification:
-                    description: Date of last modification of the base image
-                    type: string
+                  inputs:
+                    items:
+                      properties:
+                        default:
+                          type: string
+                        description:
+                          type: string
+                        enum:
+                          items:
+                            type: string
+                          type: array
+                        mandatory:
+                          type: boolean
+                        name:
+                          type: string
+                        type:
+                          type: string
+                      type: object
+                    type: array
                   lvmReady:
-                    description: This distribution supports Logical Volumes (Linux
-                      LVM)
+                    description: Whether this distribution supports Logical Volumes
+                      (Linux LVM)
+                    type: boolean
+                  noPartitioning:
+                    description: Partitioning customization is not available for this
+                      OS template
                     type: boolean
                   removeDefaultPartitionSchemes:
                     description: Remove default partition schemes at creation
                     type: boolean
-                  supportsDistributionKernel:
-                    description: This distribution supports installation using the
-                      distribution's native kernel instead of the recommended OVH
-                      kernel
+                  softRaidOnlyMirroring:
+                    description: Partitioning customization is available but limited
+                      to mirroring for this OS template
                     type: boolean
-                  supportsRtm:
-                    description: This distribution supports RTM software
-                    type: boolean
-                  supportsSqlServer:
-                    description: This distribution supports the microsoft SQL server
-                    type: boolean
+                  subfamily:
+                    description: this template subfamily type
+                    type: string
                   templateName:
                     description: This template name
                     type: string
@@ -486,6 +442,13 @@ spec:
                         A Message containing details about this condition's last transition from
                         one status to another, if any.
                       type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
                     reason:
                       description: A Reason for this condition's last transition from
                         one status to another.
@@ -509,6 +472,13 @@ spec:
                 x-kubernetes-list-map-keys:
                 - type
                 x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
             type: object
         required:
         - spec

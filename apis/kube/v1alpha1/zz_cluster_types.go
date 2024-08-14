@@ -57,7 +57,11 @@ type ClusterInitParameters struct {
 
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
 
+	LoadBalancersSubnetID *string `json:"loadBalancersSubnetId,omitempty" tf:"load_balancers_subnet_id,omitempty"`
+
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	NodesSubnetID *string `json:"nodesSubnetId,omitempty" tf:"nodes_subnet_id,omitempty"`
 
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationInitParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
 
@@ -96,10 +100,14 @@ type ClusterObservation struct {
 
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
 
+	LoadBalancersSubnetID *string `json:"loadBalancersSubnetId,omitempty" tf:"load_balancers_subnet_id,omitempty"`
+
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// +listType=set
 	NextUpgradeVersions []*string `json:"nextUpgradeVersions,omitempty" tf:"next_upgrade_versions,omitempty"`
+
+	NodesSubnetID *string `json:"nodesSubnetId,omitempty" tf:"nodes_subnet_id,omitempty"`
 
 	NodesURL *string `json:"nodesUrl,omitempty" tf:"nodes_url,omitempty"`
 
@@ -135,7 +143,13 @@ type ClusterParameters struct {
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
 
 	// +kubebuilder:validation:Optional
+	LoadBalancersSubnetID *string `json:"loadBalancersSubnetId,omitempty" tf:"load_balancers_subnet_id,omitempty"`
+
+	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	NodesSubnetID *string `json:"nodesSubnetId,omitempty" tf:"nodes_subnet_id,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	PrivateNetworkConfiguration []PrivateNetworkConfigurationParameters `json:"privateNetworkConfiguration,omitempty" tf:"private_network_configuration,omitempty"`
@@ -378,11 +392,11 @@ type ClusterStatus struct {
 // +kubebuilder:storageversion
 
 // Cluster is the Schema for the Clusters API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

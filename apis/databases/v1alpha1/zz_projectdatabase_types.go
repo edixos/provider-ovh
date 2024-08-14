@@ -37,6 +37,38 @@ type EndpointsObservation struct {
 type EndpointsParameters struct {
 }
 
+type IPRestrictionsInitParameters struct {
+
+	// Description of the IP restriction
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// Authorized IP
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+}
+
+type IPRestrictionsObservation struct {
+
+	// Description of the IP restriction
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// Authorized IP
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+	// Current status of the IP restriction
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type IPRestrictionsParameters struct {
+
+	// Description of the IP restriction
+	// +kubebuilder:validation:Optional
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// Authorized IP
+	// +kubebuilder:validation:Optional
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+}
+
 type NodesInitParameters struct {
 
 	// Private network ID in which the node is. It's the regional openstackId of the private network.
@@ -100,8 +132,14 @@ type ProjectDatabaseInitParameters struct {
 	// The node flavor used for this cluster
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// IP Blocks authorized to access to the cluster
+	IPRestrictions []IPRestrictionsInitParameters `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+
 	// Defines whether the REST API is enabled on a Kafka cluster
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
+
+	// Defines whether the schema registry is enabled on a Kafka cluster
+	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
 	// List of nodes composing the service
 	Nodes []NodesInitParameters `json:"nodes,omitempty" tf:"nodes,omitempty"`
@@ -153,8 +191,14 @@ type ProjectDatabaseObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// IP Blocks authorized to access to the cluster
+	IPRestrictions []IPRestrictionsObservation `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+
 	// Defines whether the REST API is enabled on a Kafka cluster
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
+
+	// Defines whether the schema registry is enabled on a Kafka cluster
+	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
 	// Time on which maintenances can start every day
 	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
@@ -211,9 +255,17 @@ type ProjectDatabaseParameters struct {
 	// +kubebuilder:validation:Optional
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// IP Blocks authorized to access to the cluster
+	// +kubebuilder:validation:Optional
+	IPRestrictions []IPRestrictionsParameters `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+
 	// Defines whether the REST API is enabled on a Kafka cluster
 	// +kubebuilder:validation:Optional
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
+
+	// Defines whether the schema registry is enabled on a Kafka cluster
+	// +kubebuilder:validation:Optional
+	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
 	// List of nodes composing the service
 	// +kubebuilder:validation:Optional
@@ -263,11 +315,11 @@ type ProjectDatabaseStatus struct {
 // +kubebuilder:storageversion
 
 // ProjectDatabase is the Schema for the ProjectDatabases API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type ProjectDatabase struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

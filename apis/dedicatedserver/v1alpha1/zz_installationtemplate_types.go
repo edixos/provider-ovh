@@ -15,9 +15,6 @@ import (
 
 type CustomizationInitParameters struct {
 
-	// Template change log details
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
 
@@ -26,21 +23,10 @@ type CustomizationInitParameters struct {
 
 	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
-
-	Rating *float64 `json:"rating,omitempty" tf:"rating,omitempty"`
-
-	// Name of the ssh key that should be installed. Password login will be disabled
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	UseDistributionKernel *bool `json:"useDistributionKernel,omitempty" tf:"use_distribution_kernel,omitempty"`
 }
 
 type CustomizationObservation struct {
 
-	// Template change log details
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
 
@@ -49,22 +35,10 @@ type CustomizationObservation struct {
 
 	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
-
-	Rating *float64 `json:"rating,omitempty" tf:"rating,omitempty"`
-
-	// Name of the ssh key that should be installed. Password login will be disabled
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
-
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	UseDistributionKernel *bool `json:"useDistributionKernel,omitempty" tf:"use_distribution_kernel,omitempty"`
 }
 
 type CustomizationParameters struct {
 
-	// Template change log details
-	// +kubebuilder:validation:Optional
-	ChangeLog *string `json:"changeLog,omitempty" tf:"change_log,omitempty"`
-
 	// Set up the server using the provided hostname instead of the default hostname
 	// +kubebuilder:validation:Optional
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
@@ -76,17 +50,26 @@ type CustomizationParameters struct {
 	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
 	// +kubebuilder:validation:Optional
 	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
+}
 
-	// +kubebuilder:validation:Optional
-	Rating *float64 `json:"rating,omitempty" tf:"rating,omitempty"`
+type InputsInitParameters struct {
+}
 
-	// Name of the ssh key that should be installed. Password login will be disabled
-	// +kubebuilder:validation:Optional
-	SSHKeyName *string `json:"sshKeyName,omitempty" tf:"ssh_key_name,omitempty"`
+type InputsObservation struct {
+	Default *string `json:"default,omitempty" tf:"default,omitempty"`
 
-	// Use the distribution's native kernel instead of the recommended OVH Kernel
-	// +kubebuilder:validation:Optional
-	UseDistributionKernel *bool `json:"useDistributionKernel,omitempty" tf:"use_distribution_kernel,omitempty"`
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	Enum []*string `json:"enum,omitempty" tf:"enum,omitempty"`
+
+	Mandatory *bool `json:"mandatory,omitempty" tf:"mandatory,omitempty"`
+
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	Type *string `json:"type,omitempty" tf:"type,omitempty"`
+}
+
+type InputsParameters struct {
 }
 
 type InstallationTemplateInitParameters struct {
@@ -95,9 +78,6 @@ type InstallationTemplateInitParameters struct {
 	BaseTemplateName *string `json:"baseTemplateName,omitempty" tf:"base_template_name,omitempty"`
 
 	Customization []CustomizationInitParameters `json:"customization,omitempty" tf:"customization,omitempty"`
-
-	// The default language of this template
-	DefaultLanguage *string `json:"defaultLanguage,omitempty" tf:"default_language,omitempty"`
 
 	// Remove default partition schemes at creation
 	RemoveDefaultPartitionSchemes *bool `json:"removeDefaultPartitionSchemes,omitempty" tf:"remove_default_partition_schemes,omitempty"`
@@ -108,14 +88,8 @@ type InstallationTemplateInitParameters struct {
 
 type InstallationTemplateObservation struct {
 
-	// List of all language available for this template
-	AvailableLanguages []*string `json:"availableLanguages,omitempty" tf:"available_languages,omitempty"`
-
 	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
 	BaseTemplateName *string `json:"baseTemplateName,omitempty" tf:"base_template_name,omitempty"`
-
-	// This distribution is new and, although tested and functional, may still display odd behaviour
-	Beta *bool `json:"beta,omitempty" tf:"beta,omitempty"`
 
 	// This template bit format (32 or 64)
 	BitFormat *float64 `json:"bitFormat,omitempty" tf:"bit_format,omitempty"`
@@ -125,22 +99,19 @@ type InstallationTemplateObservation struct {
 
 	Customization []CustomizationObservation `json:"customization,omitempty" tf:"customization,omitempty"`
 
-	// The default language of this template
-	DefaultLanguage *string `json:"defaultLanguage,omitempty" tf:"default_language,omitempty"`
-
-	// is this distribution deprecated
-	Deprecated *bool `json:"deprecated,omitempty" tf:"deprecated,omitempty"`
-
 	// information about this template
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// the distribution this template is based on
 	Distribution *string `json:"distribution,omitempty" tf:"distribution,omitempty"`
 
-	// this template family type (bsd,linux,solaris,windows)
+	// after this date, install of this template will not be possible at OVH
+	EndOfInstall *string `json:"endOfInstall,omitempty" tf:"end_of_install,omitempty"`
+
+	// this template family type
 	Family *string `json:"family,omitempty" tf:"family,omitempty"`
 
-	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+	// Filesystems available
 	Filesystems []*string `json:"filesystems,omitempty" tf:"filesystems,omitempty"`
 
 	// This distribution supports hardware raid configuration through the OVH API
@@ -148,23 +119,22 @@ type InstallationTemplateObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Date of last modification of the base image
-	LastModification *string `json:"lastModification,omitempty" tf:"last_modification,omitempty"`
+	Inputs []InputsObservation `json:"inputs,omitempty" tf:"inputs,omitempty"`
 
-	// This distribution supports Logical Volumes (Linux LVM)
+	// Whether this distribution supports Logical Volumes (Linux LVM)
 	LvmReady *bool `json:"lvmReady,omitempty" tf:"lvm_ready,omitempty"`
+
+	// Partitioning customization is not available for this OS template
+	NoPartitioning *bool `json:"noPartitioning,omitempty" tf:"no_partitioning,omitempty"`
 
 	// Remove default partition schemes at creation
 	RemoveDefaultPartitionSchemes *bool `json:"removeDefaultPartitionSchemes,omitempty" tf:"remove_default_partition_schemes,omitempty"`
 
-	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
-	SupportsDistributionKernel *bool `json:"supportsDistributionKernel,omitempty" tf:"supports_distribution_kernel,omitempty"`
+	// Partitioning customization is available but limited to mirroring for this OS template
+	SoftRaidOnlyMirroring *bool `json:"softRaidOnlyMirroring,omitempty" tf:"soft_raid_only_mirroring,omitempty"`
 
-	// This distribution supports RTM software
-	SupportsRtm *bool `json:"supportsRtm,omitempty" tf:"supports_rtm,omitempty"`
-
-	// This distribution supports the microsoft SQL server
-	SupportsSQLServer *bool `json:"supportsSqlServer,omitempty" tf:"supports_sql_server,omitempty"`
+	// this template subfamily type
+	Subfamily *string `json:"subfamily,omitempty" tf:"subfamily,omitempty"`
 
 	// This template name
 	TemplateName *string `json:"templateName,omitempty" tf:"template_name,omitempty"`
@@ -178,10 +148,6 @@ type InstallationTemplateParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Customization []CustomizationParameters `json:"customization,omitempty" tf:"customization,omitempty"`
-
-	// The default language of this template
-	// +kubebuilder:validation:Optional
-	DefaultLanguage *string `json:"defaultLanguage,omitempty" tf:"default_language,omitempty"`
 
 	// Remove default partition schemes at creation
 	// +kubebuilder:validation:Optional
@@ -220,16 +186,15 @@ type InstallationTemplateStatus struct {
 // +kubebuilder:storageversion
 
 // InstallationTemplate is the Schema for the InstallationTemplates API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type InstallationTemplate struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.baseTemplateName) || (has(self.initProvider) && has(self.initProvider.baseTemplateName))",message="spec.forProvider.baseTemplateName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.defaultLanguage) || (has(self.initProvider) && has(self.initProvider.defaultLanguage))",message="spec.forProvider.defaultLanguage is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.templateName) || (has(self.initProvider) && has(self.initProvider.templateName))",message="spec.forProvider.templateName is a required parameter"
 	Spec   InstallationTemplateSpec   `json:"spec"`
 	Status InstallationTemplateStatus `json:"status,omitempty"`

@@ -11,3 +11,6 @@ func (tr *LogsCluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *LogsInput) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LogsToken) Hub() {}

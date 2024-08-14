@@ -16,6 +16,15 @@ func (l *ProjectList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ProjectRegionLoadbalancerLogSubscriptionList.
+func (l *ProjectRegionLoadbalancerLogSubscriptionList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this S3CredentialsList.
 func (l *S3CredentialsList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

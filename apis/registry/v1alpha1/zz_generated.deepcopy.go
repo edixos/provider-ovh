@@ -677,6 +677,7 @@ func (in *ContainerRegistryOIDCInitParameters) DeepCopyInto(out *ContainerRegist
 		*out = new(string)
 		**out = **in
 	}
+	out.OidcClientSecretSecretRef = in.OidcClientSecretSecretRef
 	if in.OidcEndpoint != nil {
 		in, out := &in.OidcEndpoint, &out.OidcEndpoint
 		*out = new(string)

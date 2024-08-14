@@ -21,7 +21,7 @@ func (mg *ContainerRegistryOIDC) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this ContainerRegistryOIDC
 func (tr *ContainerRegistryOIDC) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"oidc_client_secret": "spec.forProvider.oidcClientSecretSecretRef"}
+	return map[string]string{"oidc_client_secret": "oidcClientSecretSecretRef"}
 }
 
 // GetObservation of this ContainerRegistryOIDC

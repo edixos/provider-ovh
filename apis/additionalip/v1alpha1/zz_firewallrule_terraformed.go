@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this SSHKey
-func (mg *SSHKey) GetTerraformResourceType() string {
-	return "ovh_me_ssh_key"
+// GetTerraformResourceType returns Terraform resource type for this FirewallRule
+func (mg *FirewallRule) GetTerraformResourceType() string {
+	return "ovh_ip_firewall_rule"
 }
 
-// GetConnectionDetailsMapping for this SSHKey
-func (tr *SSHKey) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this FirewallRule
+func (tr *FirewallRule) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this SSHKey
-func (tr *SSHKey) GetObservation() (map[string]any, error) {
+// GetObservation of this FirewallRule
+func (tr *FirewallRule) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *SSHKey) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this SSHKey
-func (tr *SSHKey) SetObservation(obs map[string]any) error {
+// SetObservation for this FirewallRule
+func (tr *FirewallRule) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *SSHKey) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this SSHKey
-func (tr *SSHKey) GetID() string {
+// GetID returns ID of underlying Terraform resource of this FirewallRule
+func (tr *FirewallRule) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this SSHKey
-func (tr *SSHKey) GetParameters() (map[string]any, error) {
+// GetParameters of this FirewallRule
+func (tr *FirewallRule) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *SSHKey) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this SSHKey
-func (tr *SSHKey) SetParameters(params map[string]any) error {
+// SetParameters for this FirewallRule
+func (tr *FirewallRule) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *SSHKey) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this SSHKey
-func (tr *SSHKey) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this FirewallRule
+func (tr *FirewallRule) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *SSHKey) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this SSHKey
-func (tr *SSHKey) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this FirewallRule
+func (tr *FirewallRule) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource '%q'", tr.GetName())
@@ -110,10 +110,10 @@ func (tr *SSHKey) GetMergedParameters(shouldMergeInitProvider bool) (map[string]
 	return params, nil
 }
 
-// LateInitialize this SSHKey using its observed tfState.
+// LateInitialize this FirewallRule using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *SSHKey) LateInitialize(attrs []byte) (bool, error) {
-	params := &SSHKeyParameters{}
+func (tr *FirewallRule) LateInitialize(attrs []byte) (bool, error) {
+	params := &FirewallRuleParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *SSHKey) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *SSHKey) GetTerraformSchemaVersion() int {
+func (tr *FirewallRule) GetTerraformSchemaVersion() int {
 	return 0
 }

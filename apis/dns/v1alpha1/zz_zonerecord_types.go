@@ -14,63 +14,45 @@ import (
 )
 
 type ZoneRecordInitParameters struct {
-
-	// The type of the record
 	Fieldtype *string `json:"fieldtype,omitempty" tf:"fieldtype,omitempty"`
 
-	// The name of the record. It can be an empty string.
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
-	// The TTL of the record, it shall be >= to 60.
 	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
-	// The value of the record
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
-	// The domain to add the record to
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type ZoneRecordObservation struct {
-
-	// The type of the record
 	Fieldtype *string `json:"fieldtype,omitempty" tf:"fieldtype,omitempty"`
 
-	// The record ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// The name of the record. It can be an empty string.
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
-	// The TTL of the record, it shall be >= to 60.
 	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
-	// The value of the record
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
-	// The domain to add the record to
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type ZoneRecordParameters struct {
 
-	// The type of the record
 	// +kubebuilder:validation:Optional
 	Fieldtype *string `json:"fieldtype,omitempty" tf:"fieldtype,omitempty"`
 
-	// The name of the record. It can be an empty string.
 	// +kubebuilder:validation:Optional
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
-	// The TTL of the record, it shall be >= to 60.
 	// +kubebuilder:validation:Optional
 	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
-	// The value of the record
 	// +kubebuilder:validation:Optional
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
-	// The domain to add the record to
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -102,12 +84,12 @@ type ZoneRecordStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ZoneRecord is the Schema for the ZoneRecords API. ovh_domain_zone_record.html.markdownsubcategory : "Domain names"
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
+// ZoneRecord is the Schema for the ZoneRecords API. <no value>
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type ZoneRecord struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

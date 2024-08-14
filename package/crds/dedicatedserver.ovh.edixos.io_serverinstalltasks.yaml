@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ServerInstallTask
     listKind: ServerInstallTaskList
     plural: serverinstalltasks
@@ -19,11 +19,11 @@ spec:
   scope: Cluster
   versions:
   - additionalPrinterColumns:
-    - jsonPath: .status.conditions[?(@.type=='Ready')].status
-      name: READY
-      type: string
     - jsonPath: .status.conditions[?(@.type=='Synced')].status
       name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
       type: string
     - jsonPath: .metadata.annotations.crossplane\.io/external-name
       name: EXTERNAL-NAME
@@ -80,22 +80,12 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
                           type: boolean
                         postInstallationScriptLink:
@@ -109,20 +99,8 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        resetHwRaid:
-                          type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   partitionSchemeName:
@@ -134,6 +112,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               initProvider:
                 description: |-
@@ -155,22 +144,12 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
                           type: boolean
                         postInstallationScriptLink:
@@ -184,20 +163,8 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        resetHwRaid:
-                          type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   partitionSchemeName:
@@ -209,6 +176,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               managementPolicies:
                 default:
@@ -401,22 +379,12 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
                           type: boolean
                         postInstallationScriptLink:
@@ -430,20 +398,8 @@ spec:
                             case of succes. A good example is ''loh1Xee7eo OK OK OK
                             UGh8Ang1Gu'''
                           type: string
-                        resetHwRaid:
-                          type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   doneDate:
@@ -472,6 +428,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.
@@ -489,6 +456,13 @@ spec:
                         A Message containing details about this condition's last transition from
                         one status to another, if any.
                       type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
                     reason:
                       description: A Reason for this condition's last transition from
                         one status to another.
@@ -512,6 +486,13 @@ spec:
                 x-kubernetes-list-map-keys:
                 - type
                 x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
             type: object
         required:
         - spec

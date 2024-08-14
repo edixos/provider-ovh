@@ -14,6 +14,8 @@ import (
 )
 
 type HTTPFrontendInitParameters struct {
+
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
 	// +listType=set
@@ -43,6 +45,8 @@ type HTTPFrontendInitParameters struct {
 }
 
 type HTTPFrontendObservation struct {
+
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
 	// +listType=set
@@ -76,6 +80,7 @@ type HTTPFrontendObservation struct {
 type HTTPFrontendParameters struct {
 
 	// +kubebuilder:validation:Optional
+	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
 	// +kubebuilder:validation:Optional
@@ -144,11 +149,11 @@ type HTTPFrontendStatus struct {
 // +kubebuilder:storageversion
 
 // HTTPFrontend is the Schema for the HTTPFrontends API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type HTTPFrontend struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

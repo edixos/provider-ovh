@@ -7,13 +7,10 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
-func (tr *Oauth2Client) Hub() {}
-
-// Hub marks this type as a conversion hub.
 func (tr *Group) Hub() {}
 
 // Hub marks this type as a conversion hub.
-func (tr *User) Hub() {}
+func (tr *Oauth2Client) Hub() {}
 
 // Hub marks this type as a conversion hub.
-func (tr *SSHKey) Hub() {}
+func (tr *User) Hub() {}

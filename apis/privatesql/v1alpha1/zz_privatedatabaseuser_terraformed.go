@@ -21,7 +21,7 @@ func (mg *PrivatedatabaseUser) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this PrivatedatabaseUser
 func (tr *PrivatedatabaseUser) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"password": "spec.forProvider.passwordSecretRef"}
+	return map[string]string{"password": "passwordSecretRef"}
 }
 
 // GetObservation of this PrivatedatabaseUser

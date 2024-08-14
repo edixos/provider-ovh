@@ -14,6 +14,10 @@ import (
 )
 
 type NashaPartitionAccessInitParameters struct {
+
+	// A brief description of the ACL
+	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
+
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
@@ -24,6 +28,10 @@ type NashaPartitionAccessInitParameters struct {
 }
 
 type NashaPartitionAccessObservation struct {
+
+	// A brief description of the ACL
+	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
+
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
@@ -36,6 +44,10 @@ type NashaPartitionAccessObservation struct {
 }
 
 type NashaPartitionAccessParameters struct {
+
+	// A brief description of the ACL
+	// +kubebuilder:validation:Optional
+	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
@@ -78,11 +90,11 @@ type NashaPartitionAccessStatus struct {
 // +kubebuilder:storageversion
 
 // NashaPartitionAccess is the Schema for the NashaPartitionAccesss API. <no value>
-// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
+// +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
 type NashaPartitionAccess struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
