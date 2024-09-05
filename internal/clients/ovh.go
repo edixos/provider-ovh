@@ -25,7 +25,17 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal ovh credentials as JSON"
+	errNoValidCredentials   = "cannot find valid credentials"
 )
+
+type OVHCredentials struct {
+	Endpoint          string `json:"endpoint"`
+	ApplicationKey    string `json:"application_key,omitempty"`
+	ApplicationSecret string `json:"application_secret,omitempty"`
+	ConsumerKey       string `json:"consumer_key,omitempty"`
+	ClientID          string `json:"client_id,omitempty"`
+	ClientSecret      string `json:"client_secret,omitempty"`
+}
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
@@ -53,22 +63,45 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errTrackUsage)
 		}
 
-		data, err := resource.CommonCredentialExtractor(ctx, pc.Spec.Credentials.Source, client, pc.Spec.Credentials.CommonCredentialSelectors)
+		cfg, err := configureClient(ctx, pc, client)
 		if err != nil {
-			return ps, errors.Wrap(err, errExtractCredentials)
-		}
-		creds := map[string]string{}
-		if err := json.Unmarshal(data, &creds); err != nil {
-			return ps, errors.Wrap(err, errUnmarshalCredentials)
+			return ps, err
 		}
 
-		// Set credentials in Terraform provider configuration.
-		ps.Configuration = map[string]any{
-			"endpoint":           creds["endpoint"],
-			"application_key":    creds["application_key"],
-			"application_secret": creds["application_secret"],
-			"consumer_key":       creds["consumer_key"],
-		}
+		ps.Configuration = cfg
+
 		return ps, nil
 	}
+}
+
+func configureClient(ctx context.Context, pc *v1beta1.ProviderConfig, client client.Client) (map[string]any, error) {
+	data, err := resource.CommonCredentialExtractor(ctx, pc.Spec.Credentials.Source, client, pc.Spec.Credentials.CommonCredentialSelectors)
+	if err != nil {
+		return nil, errors.Wrap(err, errExtractCredentials)
+	}
+
+	var creds OVHCredentials
+	if err := json.Unmarshal(data, &creds); err != nil {
+		return nil, errors.Wrap(err, errUnmarshalCredentials)
+	}
+
+	// Set credentials in Terraform provider configuration.
+	cfg := map[string]any{
+		"endpoint": creds.Endpoint,
+	}
+
+	if creds.ApplicationKey != "" && creds.ApplicationSecret != "" && creds.ConsumerKey != "" {
+		cfg["application_key"] = creds.ApplicationKey
+		cfg["application_secret"] = creds.ApplicationSecret
+		cfg["consumer_key"] = creds.ConsumerKey
+		return cfg, nil
+	}
+
+	if creds.ClientID != "" && creds.ClientSecret != "" {
+		cfg["client_id"] = creds.ClientID
+		cfg["client_secret"] = creds.ClientSecret
+		return cfg, nil
+	}
+
+	return cfg, errors.New(errNoValidCredentials)
 }
