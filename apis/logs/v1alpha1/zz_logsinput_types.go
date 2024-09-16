@@ -76,6 +76,9 @@ type LogsInputInitParameters struct {
 	// IP blocks
 	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
+	// Whether the workload is auto-scaled
+	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
+
 	// Input configuration
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
@@ -87,6 +90,12 @@ type LogsInputInitParameters struct {
 
 	// Port
 	ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
+
+	// Maximum number of instances in auto-scaled mode
+	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+
+	// Minimum number of instances in auto-scaled mode
+	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running
 	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
@@ -105,11 +114,17 @@ type LogsInputObservation struct {
 	// IP blocks
 	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
+	// Whether the workload is auto-scaled
+	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
+
 	// Input configuration
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// Input creation
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
+
+	// Number of instance running (returned by the API)
+	CurrentNbInstance *float64 `json:"currentNbInstance,omitempty" tf:"current_nb_instance,omitempty"`
 
 	// Input description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -130,6 +145,12 @@ type LogsInputObservation struct {
 
 	// Indicate if input need to be restarted
 	IsRestartRequired *bool `json:"isRestartRequired,omitempty" tf:"is_restart_required,omitempty"`
+
+	// Maximum number of instances in auto-scaled mode
+	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+
+	// Minimum number of instances in auto-scaled mode
+	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running
 	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
@@ -158,6 +179,10 @@ type LogsInputParameters struct {
 	// +kubebuilder:validation:Optional
 	AllowedNetworks []*string `json:"allowedNetworks,omitempty" tf:"allowed_networks,omitempty"`
 
+	// Whether the workload is auto-scaled
+	// +kubebuilder:validation:Optional
+	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
+
 	// Input configuration
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
@@ -173,6 +198,14 @@ type LogsInputParameters struct {
 	// Port
 	// +kubebuilder:validation:Optional
 	ExposedPort *string `json:"exposedPort,omitempty" tf:"exposed_port,omitempty"`
+
+	// Maximum number of instances in auto-scaled mode
+	// +kubebuilder:validation:Optional
+	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+
+	// Minimum number of instances in auto-scaled mode
+	// +kubebuilder:validation:Optional
+	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running
 	// +kubebuilder:validation:Optional

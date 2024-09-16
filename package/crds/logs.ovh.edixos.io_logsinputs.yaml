@@ -77,6 +77,9 @@ spec:
                     items:
                       type: string
                     type: array
+                  autoscale:
+                    description: Whether the workload is auto-scaled
+                    type: boolean
                   configuration:
                     description: Input configuration
                     items:
@@ -119,6 +122,12 @@ spec:
                   exposedPort:
                     description: Port
                     type: string
+                  maxScaleInstance:
+                    description: Maximum number of instances in auto-scaled mode
+                    type: number
+                  minScaleInstance:
+                    description: Minimum number of instances in auto-scaled mode
+                    type: number
                   nbInstance:
                     description: Number of instance running
                     type: number
@@ -149,6 +158,9 @@ spec:
                     items:
                       type: string
                     type: array
+                  autoscale:
+                    description: Whether the workload is auto-scaled
+                    type: boolean
                   configuration:
                     description: Input configuration
                     items:
@@ -191,6 +203,12 @@ spec:
                   exposedPort:
                     description: Port
                     type: string
+                  maxScaleInstance:
+                    description: Maximum number of instances in auto-scaled mode
+                    type: number
+                  minScaleInstance:
+                    description: Minimum number of instances in auto-scaled mode
+                    type: number
                   nbInstance:
                     description: Number of instance running
                     type: number
@@ -405,6 +423,9 @@ spec:
                     items:
                       type: string
                     type: array
+                  autoscale:
+                    description: Whether the workload is auto-scaled
+                    type: boolean
                   configuration:
                     description: Input configuration
                     items:
@@ -441,6 +462,9 @@ spec:
                   createdAt:
                     description: Input creation
                     type: string
+                  currentNbInstance:
+                    description: Number of instance running (returned by the API)
+                    type: number
                   description:
                     description: Input description
                     type: string
@@ -461,6 +485,12 @@ spec:
                   isRestartRequired:
                     description: Indicate if input need to be restarted
                     type: boolean
+                  maxScaleInstance:
+                    description: Maximum number of instances in auto-scaled mode
+                    type: number
+                  minScaleInstance:
+                    description: Minimum number of instances in auto-scaled mode
+                    type: number
                   nbInstance:
                     description: Number of instance running
                     type: number

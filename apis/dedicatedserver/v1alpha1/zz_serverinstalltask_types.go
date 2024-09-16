@@ -22,12 +22,6 @@ type DetailsInitParameters struct {
 
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
 
-	// Indicate the URL where your postinstall customisation script is located
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
-
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`
 }
 
@@ -39,12 +33,6 @@ type DetailsObservation struct {
 	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
 
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
-
-	// Indicate the URL where your postinstall customisation script is located
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`
 }
@@ -60,14 +48,6 @@ type DetailsParameters struct {
 
 	// +kubebuilder:validation:Optional
 	NoRaid *bool `json:"noRaid,omitempty" tf:"no_raid,omitempty"`
-
-	// Indicate the URL where your postinstall customisation script is located
-	// +kubebuilder:validation:Optional
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	// +kubebuilder:validation:Optional
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	SoftRaidDevices *float64 `json:"softRaidDevices,omitempty" tf:"soft_raid_devices,omitempty"`

@@ -17,24 +17,12 @@ type CustomizationInitParameters struct {
 
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
-
-	// Indicate the URL where your postinstall customisation script is located
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 }
 
 type CustomizationObservation struct {
 
 	// Set up the server using the provided hostname instead of the default hostname
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
-
-	// Indicate the URL where your postinstall customisation script is located
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 }
 
 type CustomizationParameters struct {
@@ -42,14 +30,6 @@ type CustomizationParameters struct {
 	// Set up the server using the provided hostname instead of the default hostname
 	// +kubebuilder:validation:Optional
 	CustomHostname *string `json:"customHostname,omitempty" tf:"custom_hostname,omitempty"`
-
-	// Indicate the URL where your postinstall customisation script is located
-	// +kubebuilder:validation:Optional
-	PostInstallationScriptLink *string `json:"postInstallationScriptLink,omitempty" tf:"post_installation_script_link,omitempty"`
-
-	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'
-	// +kubebuilder:validation:Optional
-	PostInstallationScriptReturn *string `json:"postInstallationScriptReturn,omitempty" tf:"post_installation_script_return,omitempty"`
 }
 
 type InputsInitParameters struct {

@@ -88,17 +88,6 @@ spec:
                           type: number
                         noRaid:
                           type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
                         softRaidDevices:
                           type: number
                       type: object
@@ -152,17 +141,6 @@ spec:
                           type: number
                         noRaid:
                           type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
                         softRaidDevices:
                           type: number
                       type: object
@@ -387,17 +365,6 @@ spec:
                           type: number
                         noRaid:
                           type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
                         softRaidDevices:
                           type: number
                       type: object

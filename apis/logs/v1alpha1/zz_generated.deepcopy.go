@@ -513,6 +513,11 @@ func (in *LogsInputInitParameters) DeepCopyInto(out *LogsInputInitParameters) {
 			}
 		}
 	}
+	if in.Autoscale != nil {
+		in, out := &in.Autoscale, &out.Autoscale
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Configuration != nil {
 		in, out := &in.Configuration, &out.Configuration
 		*out = make([]ConfigurationInitParameters, len(*in))
@@ -533,6 +538,16 @@ func (in *LogsInputInitParameters) DeepCopyInto(out *LogsInputInitParameters) {
 	if in.ExposedPort != nil {
 		in, out := &in.ExposedPort, &out.ExposedPort
 		*out = new(string)
+		**out = **in
+	}
+	if in.MaxScaleInstance != nil {
+		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinScaleInstance != nil {
+		in, out := &in.MinScaleInstance, &out.MinScaleInstance
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
@@ -613,6 +628,11 @@ func (in *LogsInputObservation) DeepCopyInto(out *LogsInputObservation) {
 			}
 		}
 	}
+	if in.Autoscale != nil {
+		in, out := &in.Autoscale, &out.Autoscale
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Configuration != nil {
 		in, out := &in.Configuration, &out.Configuration
 		*out = make([]ConfigurationObservation, len(*in))
@@ -623,6 +643,11 @@ func (in *LogsInputObservation) DeepCopyInto(out *LogsInputObservation) {
 	if in.CreatedAt != nil {
 		in, out := &in.CreatedAt, &out.CreatedAt
 		*out = new(string)
+		**out = **in
+	}
+	if in.CurrentNbInstance != nil {
+		in, out := &in.CurrentNbInstance, &out.CurrentNbInstance
+		*out = new(float64)
 		**out = **in
 	}
 	if in.Description != nil {
@@ -658,6 +683,16 @@ func (in *LogsInputObservation) DeepCopyInto(out *LogsInputObservation) {
 	if in.IsRestartRequired != nil {
 		in, out := &in.IsRestartRequired, &out.IsRestartRequired
 		*out = new(bool)
+		**out = **in
+	}
+	if in.MaxScaleInstance != nil {
+		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinScaleInstance != nil {
+		in, out := &in.MinScaleInstance, &out.MinScaleInstance
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
@@ -721,6 +756,11 @@ func (in *LogsInputParameters) DeepCopyInto(out *LogsInputParameters) {
 			}
 		}
 	}
+	if in.Autoscale != nil {
+		in, out := &in.Autoscale, &out.Autoscale
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Configuration != nil {
 		in, out := &in.Configuration, &out.Configuration
 		*out = make([]ConfigurationParameters, len(*in))
@@ -741,6 +781,16 @@ func (in *LogsInputParameters) DeepCopyInto(out *LogsInputParameters) {
 	if in.ExposedPort != nil {
 		in, out := &in.ExposedPort, &out.ExposedPort
 		*out = new(string)
+		**out = **in
+	}
+	if in.MaxScaleInstance != nil {
+		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
+		*out = new(float64)
+		**out = **in
+	}
+	if in.MinScaleInstance != nil {
+		in, out := &in.MinScaleInstance, &out.MinScaleInstance
+		*out = new(float64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
