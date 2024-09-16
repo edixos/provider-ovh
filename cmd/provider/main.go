@@ -16,6 +16,7 @@ import (
 	xpcontroller "github.com/crossplane/crossplane-runtime/pkg/controller"
 	"github.com/crossplane/crossplane-runtime/pkg/feature"
 	"github.com/crossplane/crossplane-runtime/pkg/logging"
+	"github.com/crossplane/crossplane-runtime/pkg/ratelimiter"
 	"github.com/crossplane/crossplane-runtime/pkg/resource"
 	tjcontroller "github.com/crossplane/upjet/pkg/controller"
 	"github.com/crossplane/upjet/pkg/terraform"
@@ -83,8 +84,8 @@ func main() {
 	kingpin.FatalIfError(apis.AddToScheme(mgr.GetScheme()), "Cannot add OVH APIs to scheme")
 	o := tjcontroller.Options{
 		Options: xpcontroller.Options{
-			Logger: log,
-			// GlobalRateLimiter:       ratelimiter.NewGlobal(*maxReconcileRate),
+			Logger:                  log,
+			GlobalRateLimiter:       ratelimiter.NewGlobal(*maxReconcileRate),
 			PollInterval:            *pollInterval,
 			MaxConcurrentReconciles: *maxReconcileRate,
 			Features:                &feature.Flags{},
