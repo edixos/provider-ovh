@@ -640,24 +640,6 @@ resources:
         title: domain_zone_dnssec.html Resource - terraform-provider-ovh
         argumentDocs: {}
         importStatements: []
-    domain_zone_import.html Resource - terraform-provider-ovh:
-        subCategory: ""
-        name: domain_zone_import.html Resource - terraform-provider-ovh
-        title: domain_zone_import.html Resource - terraform-provider-ovh
-        argumentDocs: {}
-        importStatements: []
-    domain_zone_record.html Resource - terraform-provider-ovh:
-        subCategory: ""
-        name: domain_zone_record.html Resource - terraform-provider-ovh
-        title: domain_zone_record.html Resource - terraform-provider-ovh
-        argumentDocs: {}
-        importStatements: []
-    domain_zone_redirection.html Resource - terraform-provider-ovh:
-        subCategory: ""
-        name: domain_zone_redirection.html Resource - terraform-provider-ovh
-        title: domain_zone_redirection.html Resource - terraform-provider-ovh
-        argumentDocs: {}
-        importStatements: []
     hosting_privatedatabase.html Resource - terraform-provider-ovh:
         subCategory: ""
         name: hosting_privatedatabase.html Resource - terraform-provider-ovh
@@ -992,6 +974,24 @@ resources:
         subCategory: ""
         name: order_cart_product_plan.html Resource - terraform-provider-ovh
         title: order_cart_product_plan.html Resource - terraform-provider-ovh
+        argumentDocs: {}
+        importStatements: []
+    ovh_domain_zone.html Resource - terraform-provider-ovh:
+        subCategory: ""
+        name: ovh_domain_zone.html Resource - terraform-provider-ovh
+        title: ovh_domain_zone.html Resource - terraform-provider-ovh
+        argumentDocs: {}
+        importStatements: []
+    ovh_domain_zone_record.html Resource - terraform-provider-ovh:
+        subCategory: ""
+        name: ovh_domain_zone_record.html Resource - terraform-provider-ovh
+        title: ovh_domain_zone_record.html Resource - terraform-provider-ovh
+        argumentDocs: {}
+        importStatements: []
+    ovh_domain_zone_redirection.html Resource - terraform-provider-ovh:
+        subCategory: ""
+        name: ovh_domain_zone_redirection.html Resource - terraform-provider-ovh
+        title: ovh_domain_zone_redirection.html Resource - terraform-provider-ovh
         argumentDocs: {}
         importStatements: []
     vps.html Resource - terraform-provider-ovh:
