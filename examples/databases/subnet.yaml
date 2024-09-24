@@ -1,0 +1,19 @@
+apiVersion: network.ovh.edixos.io/v1alpha1
+kind: Subnet
+metadata:
+  name: subnet-1
+  labels:
+    managed-by: crossplane
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    serviceName: 21658141411b4c9bb0bf863be8e8c369
+    networkIdRef:
+      name: sample-1
+    region: GRA11
+    start: 192.168.168.100
+    end: 192.168.168.200
+    network: 192.168.168.0/24
+    dhcp: true
+    noGateway: false
