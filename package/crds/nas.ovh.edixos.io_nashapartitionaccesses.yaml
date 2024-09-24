@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: NashaPartitionAccess
     listKind: NashaPartitionAccessList
     plural: nashapartitionaccesses
@@ -73,6 +73,9 @@ spec:
                 type: string
               forProvider:
                 properties:
+                  aclDescription:
+                    description: A brief description of the ACL
+                    type: string
                   ip:
                     type: string
                   partitionName:
@@ -95,6 +98,9 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  aclDescription:
+                    description: A brief description of the ACL
+                    type: string
                   ip:
                     type: string
                   partitionName:
@@ -290,6 +296,9 @@ spec:
             properties:
               atProvider:
                 properties:
+                  aclDescription:
+                    description: A brief description of the ACL
+                    type: string
                   id:
                     type: string
                   ip:

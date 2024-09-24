@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: sshkeys.me.ovh.edixos.io
+  name: firewallrules.additionalip.ovh.edixos.io
 spec:
-  group: me.ovh.edixos.io
+  group: additionalip.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
-    - ovh
-    kind: SSHKey
-    listKind: SSHKeyList
-    plural: sshkeys
-    singular: sshkey
+    - lb
+    kind: FirewallRule
+    listKind: FirewallRuleList
+    plural: firewallrules
+    singular: firewallrule
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: SSHKey is the Schema for the SSHKeys API. <no value>
+        description: FirewallRule is the Schema for the FirewallRules API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -54,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SSHKeySpec defines the desired state of SSHKey
+            description: FirewallRuleSpec defines the desired state of FirewallRule
             properties:
               deletionPolicy:
                 default: Delete
@@ -72,15 +72,36 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  default:
-                    description: True when this public Ssh key is used for rescue
-                      mode and reinstallations
-                    type: boolean
-                  key:
-                    description: ASCII encoded public Ssh key
+                  action:
+                    description: Possible values for action
                     type: string
-                  keyName:
-                    description: Name of this public Ssh key
+                  destinationPort:
+                    description: Destination port for your rule. Only with TCP/UDP
+                      protocol
+                    type: number
+                  fragments:
+                    description: Fragments option
+                    type: boolean
+                  ip:
+                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    type: string
+                  ipOnFirewall:
+                    description: IPv4 address (e.g., 192.0.2.0)
+                    type: string
+                  protocol:
+                    description: Possible values for protocol
+                    type: string
+                  sequence:
+                    description: Possible values for action
+                    type: number
+                  source:
+                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    type: string
+                  sourcePort:
+                    description: Source port for your rule. Only with TCP/UDP protocol
+                    type: number
+                  tcpOption:
+                    description: TCP option on your rule
                     type: string
                 type: object
               initProvider:
@@ -96,15 +117,36 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  default:
-                    description: True when this public Ssh key is used for rescue
-                      mode and reinstallations
-                    type: boolean
-                  key:
-                    description: ASCII encoded public Ssh key
+                  action:
+                    description: Possible values for action
                     type: string
-                  keyName:
-                    description: Name of this public Ssh key
+                  destinationPort:
+                    description: Destination port for your rule. Only with TCP/UDP
+                      protocol
+                    type: number
+                  fragments:
+                    description: Fragments option
+                    type: boolean
+                  ip:
+                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    type: string
+                  ipOnFirewall:
+                    description: IPv4 address (e.g., 192.0.2.0)
+                    type: string
+                  protocol:
+                    description: Possible values for protocol
+                    type: string
+                  sequence:
+                    description: Possible values for action
+                    type: number
+                  source:
+                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    type: string
+                  sourcePort:
+                    description: Source port for your rule. Only with TCP/UDP protocol
+                    type: number
+                  tcpOption:
+                    description: TCP option on your rule
                     type: string
                 type: object
               managementPolicies:
@@ -275,30 +317,80 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.key is a required parameter
+            - message: spec.forProvider.action is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.key)
-                || (has(self.initProvider) && has(self.initProvider.key))'
-            - message: spec.forProvider.keyName is a required parameter
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.action)
+                || (has(self.initProvider) && has(self.initProvider.action))'
+            - message: spec.forProvider.ip is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.keyName)
-                || (has(self.initProvider) && has(self.initProvider.keyName))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.ip)
+                || (has(self.initProvider) && has(self.initProvider.ip))'
+            - message: spec.forProvider.ipOnFirewall is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.ipOnFirewall)
+                || (has(self.initProvider) && has(self.initProvider.ipOnFirewall))'
+            - message: spec.forProvider.protocol is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.protocol)
+                || (has(self.initProvider) && has(self.initProvider.protocol))'
+            - message: spec.forProvider.sequence is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.sequence)
+                || (has(self.initProvider) && has(self.initProvider.sequence))'
           status:
-            description: SSHKeyStatus defines the observed state of SSHKey.
+            description: FirewallRuleStatus defines the observed state of FirewallRule.
             properties:
               atProvider:
                 properties:
-                  default:
-                    description: True when this public Ssh key is used for rescue
-                      mode and reinstallations
+                  action:
+                    description: Possible values for action
+                    type: string
+                  creationDate:
+                    type: string
+                  destination:
+                    description: Destination ip for your rule
+                    type: string
+                  destinationPort:
+                    description: Destination port for your rule. Only with TCP/UDP
+                      protocol
+                    type: number
+                  destinationPortDesc:
+                    description: Destination port range for your rule. Only with TCP/UDP
+                      protocol
+                    type: string
+                  fragments:
+                    description: Fragments option
                     type: boolean
                   id:
                     type: string
-                  key:
-                    description: ASCII encoded public Ssh key
+                  ip:
+                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
-                  keyName:
-                    description: Name of this public Ssh key
+                  ipOnFirewall:
+                    description: IPv4 address (e.g., 192.0.2.0)
+                    type: string
+                  protocol:
+                    description: Possible values for protocol
+                    type: string
+                  rule:
+                    type: string
+                  sequence:
+                    description: Possible values for action
+                    type: number
+                  source:
+                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    type: string
+                  sourcePort:
+                    description: Source port for your rule. Only with TCP/UDP protocol
+                    type: number
+                  sourcePortDesc:
+                    description: Source port for your rule. Only with TCP/UDP protocol
+                    type: string
+                  state:
+                    description: Current state of your rule
+                    type: string
+                  tcpOption:
+                    description: TCP option on your rule
                     type: string
                 type: object
               conditions:

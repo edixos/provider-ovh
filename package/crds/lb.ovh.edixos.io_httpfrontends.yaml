@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: HTTPFrontend
     listKind: HTTPFrontendList
     plural: httpfrontends
@@ -76,6 +76,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string
@@ -123,6 +124,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string
@@ -342,6 +344,7 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string

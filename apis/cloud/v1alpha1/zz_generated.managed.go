@@ -67,6 +67,66 @@ func (mg *Project) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) 
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectRegionLoadbalancerLogSubscription.
+func (mg *ProjectRegionLoadbalancerLogSubscription) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this S3Credentials.
 func (mg *S3Credentials) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

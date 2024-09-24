@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: HTTPRoute
     listKind: HTTPRouteList
     plural: httproutes

@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ProjectGateway
     listKind: ProjectGatewayList
     plural: projectgateways
@@ -605,8 +605,39 @@ spec:
             properties:
               atProvider:
                 properties:
+                  externalInformation:
+                    description: External information of the gateway
+                    items:
+                      properties:
+                        ips:
+                          items:
+                            properties:
+                              ip:
+                                type: string
+                              subnetId:
+                                type: string
+                            type: object
+                          type: array
+                        networkId:
+                          type: string
+                      type: object
+                    type: array
                   id:
                     type: string
+                  interfaces:
+                    description: Interfaces list of the gateway
+                    items:
+                      properties:
+                        id:
+                          type: string
+                        ip:
+                          type: string
+                        networkId:
+                          type: string
+                        subnetId:
+                          type: string
+                      type: object
+                    type: array
                   model:
                     type: string
                   name:

@@ -43,4 +43,7 @@ func (tr *TCPRoute) Hub() {}
 func (tr *TCPRouteRule) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *UDPFrontend) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *VrackNetwork) Hub() {}

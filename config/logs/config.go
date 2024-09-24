@@ -17,4 +17,8 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_dbaas_logs_input", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_dbaas_logs_token", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+
 }

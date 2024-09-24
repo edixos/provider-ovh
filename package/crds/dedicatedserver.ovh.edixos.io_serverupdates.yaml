@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ServerUpdate
     listKind: ServerUpdateList
     plural: serverupdates
@@ -78,6 +78,9 @@ spec:
                   bootScript:
                     description: The boot script of your dedicated server.
                     type: string
+                  displayName:
+                    description: Display name of the dedicated server
+                    type: string
                   monitoring:
                     description: Icmp monitoring state
                     type: boolean
@@ -106,6 +109,9 @@ spec:
                     type: number
                   bootScript:
                     description: The boot script of your dedicated server.
+                    type: string
+                  displayName:
+                    description: Display name of the dedicated server
                     type: string
                   monitoring:
                     description: Icmp monitoring state
@@ -299,6 +305,9 @@ spec:
                     type: number
                   bootScript:
                     description: The boot script of your dedicated server.
+                    type: string
+                  displayName:
+                    description: Display name of the dedicated server
                     type: string
                   id:
                     type: string

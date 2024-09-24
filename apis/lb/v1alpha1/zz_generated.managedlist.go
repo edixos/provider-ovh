@@ -115,6 +115,15 @@ func (l *TCPRouteRuleList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this UDPFrontendList.
+func (l *UDPFrontendList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this VrackNetworkList.
 func (l *VrackNetworkList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

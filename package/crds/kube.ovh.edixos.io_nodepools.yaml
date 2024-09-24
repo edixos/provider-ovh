@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: NodePool
     listKind: NodePoolList
     plural: nodepools

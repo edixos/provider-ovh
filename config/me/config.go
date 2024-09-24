@@ -19,10 +19,6 @@ func Configure(p *config.Provider) {
 			Type: "github.com/edixos/provider-ovh/apis/me/v1alpha1.Group",
 		}
 	})
-	p.AddResourceConfigurator("ovh_me_ssh_key", func(r *config.Resource) {
-		r.ShortGroup = shortGroup
-		r.Kind = "SSHKey"
-	})
 	p.AddResourceConfigurator("ovh_me_api_oauth2_client", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Oauth2Client"

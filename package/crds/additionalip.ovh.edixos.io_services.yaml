@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: Service
     listKind: ServiceList
     plural: services
@@ -75,6 +75,11 @@ spec:
                   description:
                     description: Custom description on your ip
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -160,6 +165,11 @@ spec:
                   description:
                     description: Custom description on your ip
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -426,8 +436,10 @@ spec:
                     items:
                       properties:
                         date:
+                          description: date
                           type: string
                         details:
+                          description: Information about a Bill entry
                           items:
                             properties:
                               description:
@@ -441,8 +453,10 @@ spec:
                             type: object
                           type: array
                         expirationDate:
+                          description: expiration date
                           type: string
                         orderId:
+                          description: order id
                           type: number
                       type: object
                     type: array

@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ProjectDatabaseM3DbNamespace
     listKind: ProjectDatabaseM3DbNamespaceList
     plural: projectdatabasem3dbnamespaces

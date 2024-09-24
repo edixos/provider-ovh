@@ -14,6 +14,3 @@ func (tr *Group) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *User) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *SSHKey) Hub() {}

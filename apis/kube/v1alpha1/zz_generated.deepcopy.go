@@ -246,8 +246,18 @@ func (in *ClusterInitParameters) DeepCopyInto(out *ClusterInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.LoadBalancersSubnetID != nil {
+		in, out := &in.LoadBalancersSubnetID, &out.LoadBalancersSubnetID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.NodesSubnetID != nil {
+		in, out := &in.NodesSubnetID, &out.NodesSubnetID
 		*out = new(string)
 		**out = **in
 	}
@@ -381,6 +391,11 @@ func (in *ClusterObservation) DeepCopyInto(out *ClusterObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.LoadBalancersSubnetID != nil {
+		in, out := &in.LoadBalancersSubnetID, &out.LoadBalancersSubnetID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -396,6 +411,11 @@ func (in *ClusterObservation) DeepCopyInto(out *ClusterObservation) {
 				**out = **in
 			}
 		}
+	}
+	if in.NodesSubnetID != nil {
+		in, out := &in.NodesSubnetID, &out.NodesSubnetID
+		*out = new(string)
+		**out = **in
 	}
 	if in.NodesURL != nil {
 		in, out := &in.NodesURL, &out.NodesURL
@@ -485,8 +505,18 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.LoadBalancersSubnetID != nil {
+		in, out := &in.LoadBalancersSubnetID, &out.LoadBalancersSubnetID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
+		*out = new(string)
+		**out = **in
+	}
+	if in.NodesSubnetID != nil {
+		in, out := &in.NodesSubnetID, &out.NodesSubnetID
 		*out = new(string)
 		**out = **in
 	}

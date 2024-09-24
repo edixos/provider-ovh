@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: TCPFrontend
     listKind: TCPFrontendList
     plural: tcpfrontends
@@ -76,14 +76,21 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   defaultFarmId:
                     type: number
                   defaultSslId:
                     type: number
+                  deniedSource:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   disabled:
                     type: boolean
                   displayName:
@@ -114,14 +121,21 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   defaultFarmId:
                     type: number
                   defaultSslId:
                     type: number
+                  deniedSource:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   disabled:
                     type: boolean
                   displayName:
@@ -324,14 +338,21 @@ spec:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   dedicatedIpfo:
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   defaultFarmId:
                     type: number
                   defaultSslId:
                     type: number
+                  deniedSource:
+                    items:
+                      type: string
+                    type: array
+                    x-kubernetes-list-type: set
                   disabled:
                     type: boolean
                   displayName:

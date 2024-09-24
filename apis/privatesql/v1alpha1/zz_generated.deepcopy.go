@@ -755,6 +755,11 @@ func (in *PrivatedatabaseInitParameters) DeepCopyInto(out *PrivatedatabaseInitPa
 		*out = new(string)
 		**out = **in
 	}
+	if in.Order != nil {
+		in, out := &in.Order, &out.Order
+		*out = make([]OrderInitParameters, len(*in))
+		copy(*out, *in)
+	}
 	if in.OvhSubsidiary != nil {
 		in, out := &in.OvhSubsidiary, &out.OvhSubsidiary
 		*out = new(string)
@@ -986,6 +991,11 @@ func (in *PrivatedatabaseParameters) DeepCopyInto(out *PrivatedatabaseParameters
 		in, out := &in.DisplayName, &out.DisplayName
 		*out = new(string)
 		**out = **in
+	}
+	if in.Order != nil {
+		in, out := &in.Order, &out.Order
+		*out = make([]OrderParameters, len(*in))
+		copy(*out, *in)
 	}
 	if in.OvhSubsidiary != nil {
 		in, out := &in.OvhSubsidiary, &out.OvhSubsidiary

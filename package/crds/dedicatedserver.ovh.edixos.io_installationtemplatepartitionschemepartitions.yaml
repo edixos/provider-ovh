@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: InstallationTemplatePartitionSchemePartition
     listKind: InstallationTemplatePartitionSchemePartitionList
     plural: installationtemplatepartitionschemepartitions

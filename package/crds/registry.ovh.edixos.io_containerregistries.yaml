@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ContainerRegistry
     listKind: ContainerRegistryList
     plural: containerregistries

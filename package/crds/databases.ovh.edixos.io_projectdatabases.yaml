@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ProjectDatabase
     listKind: ProjectDatabaseList
     plural: projectdatabases
@@ -102,9 +102,25 @@ spec:
                   flavor:
                     description: The node flavor used for this cluster
                     type: string
+                  ipRestrictions:
+                    description: IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: Description of the IP restriction
+                          type: string
+                        ip:
+                          description: Authorized IP
+                          type: string
+                      type: object
+                    type: array
                   kafkaRestApi:
                     description: Defines whether the REST API is enabled on a Kafka
                       cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: Defines whether the schema registry is enabled on
+                      a Kafka cluster
                     type: boolean
                   nodes:
                     description: List of nodes composing the service
@@ -177,9 +193,25 @@ spec:
                   flavor:
                     description: The node flavor used for this cluster
                     type: string
+                  ipRestrictions:
+                    description: IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: Description of the IP restriction
+                          type: string
+                        ip:
+                          description: Authorized IP
+                          type: string
+                      type: object
+                    type: array
                   kafkaRestApi:
                     description: Defines whether the REST API is enabled on a Kafka
                       cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: Defines whether the schema registry is enabled on
+                      a Kafka cluster
                     type: boolean
                   nodes:
                     description: List of nodes composing the service
@@ -466,9 +498,28 @@ spec:
                     type: string
                   id:
                     type: string
+                  ipRestrictions:
+                    description: IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: Description of the IP restriction
+                          type: string
+                        ip:
+                          description: Authorized IP
+                          type: string
+                        status:
+                          description: Current status of the IP restriction
+                          type: string
+                      type: object
+                    type: array
                   kafkaRestApi:
                     description: Defines whether the REST API is enabled on a Kafka
                       cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: Defines whether the schema registry is enabled on
+                      a Kafka cluster
                     type: boolean
                   maintenanceTime:
                     description: Time on which maintenances can start every day

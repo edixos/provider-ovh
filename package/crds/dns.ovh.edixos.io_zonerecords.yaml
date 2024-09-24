@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ZoneRecord
     listKind: ZoneRecordList
     plural: zonerecords
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: 'ZoneRecord is the Schema for the ZoneRecords API. ovh_domain_zone_record.html.markdownsubcategory
-          : "Domain names"'
+        description: ZoneRecord is the Schema for the ZoneRecords API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -74,19 +73,14 @@ spec:
               forProvider:
                 properties:
                   fieldtype:
-                    description: The type of the record
                     type: string
                   subdomain:
-                    description: The name of the record. It can be an empty string.
                     type: string
                   target:
-                    description: The value of the record
                     type: string
                   ttl:
-                    description: The TTL of the record, it shall be >= to 60.
                     type: number
                   zone:
-                    description: The domain to add the record to
                     type: string
                 type: object
               initProvider:
@@ -103,19 +97,14 @@ spec:
                   autoscaler.
                 properties:
                   fieldtype:
-                    description: The type of the record
                     type: string
                   subdomain:
-                    description: The name of the record. It can be an empty string.
                     type: string
                   target:
-                    description: The value of the record
                     type: string
                   ttl:
-                    description: The TTL of the record, it shall be >= to 60.
                     type: number
                   zone:
-                    description: The domain to add the record to
                     type: string
                 type: object
               managementPolicies:
@@ -304,22 +293,16 @@ spec:
               atProvider:
                 properties:
                   fieldtype:
-                    description: The type of the record
                     type: string
                   id:
-                    description: The record ID
                     type: string
                   subdomain:
-                    description: The name of the record. It can be an empty string.
                     type: string
                   target:
-                    description: The value of the record
                     type: string
                   ttl:
-                    description: The TTL of the record, it shall be >= to 60.
                     type: number
                   zone:
-                    description: The domain to add the record to
                     type: string
                 type: object
               conditions:

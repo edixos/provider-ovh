@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: Cluster
     listKind: ClusterList
     plural: clusters
@@ -146,7 +146,11 @@ spec:
                     type: array
                   kubeProxyMode:
                     type: string
+                  loadBalancersSubnetId:
+                    type: string
                   name:
+                    type: string
+                  nodesSubnetId:
                     type: string
                   privateNetworkConfiguration:
                     items:
@@ -337,7 +341,11 @@ spec:
                     type: array
                   kubeProxyMode:
                     type: string
+                  loadBalancersSubnetId:
+                    type: string
                   name:
+                    type: string
+                  nodesSubnetId:
                     type: string
                   privateNetworkConfiguration:
                     items:
@@ -702,6 +710,8 @@ spec:
                     type: boolean
                   kubeProxyMode:
                     type: string
+                  loadBalancersSubnetId:
+                    type: string
                   name:
                     type: string
                   nextUpgradeVersions:
@@ -709,6 +719,8 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  nodesSubnetId:
+                    type: string
                   nodesUrl:
                     type: string
                   privateNetworkConfiguration:

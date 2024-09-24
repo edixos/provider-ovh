@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: ServerInstallTask
     listKind: ServerInstallTaskList
     plural: serverinstalltasks
@@ -80,49 +80,16 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
-                          type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
-                        resetHwRaid:
                           type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   partitionSchemeName:
@@ -134,6 +101,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               initProvider:
                 description: |-
@@ -155,49 +133,16 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
-                          type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
-                        resetHwRaid:
                           type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   partitionSchemeName:
@@ -209,6 +154,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               managementPolicies:
                 default:
@@ -401,49 +357,16 @@ spec:
                   details:
                     items:
                       properties:
-                        changeLog:
-                          description: Template change log details
-                          type: string
                         customHostname:
                           description: Set up the server using the provided hostname
                             instead of the default hostname
                           type: string
                         diskGroupId:
                           type: number
-                        installRtm:
-                          type: boolean
-                        installSqlServer:
-                          type: boolean
-                        language:
-                          description: language
-                          type: string
                         noRaid:
-                          type: boolean
-                        postInstallationScriptLink:
-                          description: Indicate the URL where your postinstall customisation
-                            script is located
-                          type: string
-                        postInstallationScriptReturn:
-                          description: 'indicate the string returned by your postinstall
-                            customisation script on successful execution. Advice:
-                            your script should return a unique validation string in
-                            case of succes. A good example is ''loh1Xee7eo OK OK OK
-                            UGh8Ang1Gu'''
-                          type: string
-                        resetHwRaid:
                           type: boolean
                         softRaidDevices:
                           type: number
-                        sshKeyName:
-                          description: Name of the ssh key that should be installed.
-                            Password login will be disabled
-                          type: string
-                        useDistribKernel:
-                          description: Use the distribution's native kernel instead
-                            of the recommended OVH Kernel
-                          type: boolean
-                        useSpla:
-                          type: boolean
                       type: object
                     type: array
                   doneDate:
@@ -472,6 +395,17 @@ spec:
                   templateName:
                     description: Template name
                     type: string
+                  userMetadata:
+                    items:
+                      properties:
+                        key:
+                          description: The key for the user_metadata
+                          type: string
+                        value:
+                          description: The value for the user_metadata
+                          type: string
+                      type: object
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: Vrack
     listKind: VrackList
     plural: vracks
@@ -78,6 +78,11 @@ spec:
                   name:
                     description: yourvrackname
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -166,6 +171,11 @@ spec:
                   name:
                     description: yourvrackname
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -429,8 +439,10 @@ spec:
                     items:
                       properties:
                         date:
+                          description: date
                           type: string
                         details:
+                          description: Information about a Bill entry
                           items:
                             properties:
                               description:
@@ -444,8 +456,10 @@ spec:
                             type: object
                           type: array
                         expirationDate:
+                          description: expiration date
                           type: string
                         orderId:
+                          description: order id
                           type: number
                       type: object
                     type: array

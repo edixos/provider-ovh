@@ -10,6 +10,15 @@ package v1alpha1
 func (tr *ProjectFailoverIPAttach) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Firewall) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *FirewallRule) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Mitigation) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Move) Hub() {}
 
 // Hub marks this type as a conversion hub.

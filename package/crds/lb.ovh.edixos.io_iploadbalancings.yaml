@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - ovh
+    - lb
     kind: Iploadbalancing
     listKind: IploadbalancingList
     plural: iploadbalancings
@@ -77,6 +77,11 @@ spec:
                     description: Set the name displayed in ManagerV6 for your iplb
                       (max 50 chars)
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -170,6 +175,11 @@ spec:
                     description: Set the name displayed in ManagerV6 for your iplb
                       (max 50 chars)
                     type: string
+                  order:
+                    description: Details about an Order
+                    items:
+                      type: object
+                    type: array
                   ovhSubsidiary:
                     description: Ovh Subsidiary
                     type: string
@@ -450,8 +460,10 @@ spec:
                     items:
                       properties:
                         date:
+                          description: date
                           type: string
                         details:
+                          description: Information about a Bill entry
                           items:
                             properties:
                               description:
@@ -465,8 +477,10 @@ spec:
                             type: object
                           type: array
                         expirationDate:
+                          description: expiration date
                           type: string
                         orderId:
+                          description: order id
                           type: number
                       type: object
                     type: array
