@@ -3,7 +3,7 @@ kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: xpkg.upbound.io/edixos/provider-ovh:v0.1.4
+  package: xpkg.upbound.io/edixos/provider-ovh:v0.40.0
   runtimeConfigRef:
     name: provider-ovh
 ---
@@ -21,3 +21,6 @@ spec:
             - name: package-runtime
               args:
                 - --debug
+                - --enable-management-policies
+                - --enable-external-secret-stores
+

@@ -1,0 +1,35 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseRedisUser
+metadata:
+  name: user-1
+  labels:
+    managed-by: crossplane
+spec:
+  forProvider:
+    serviceName: 21658141411b4c9bb0bf863be8e8c369
+    clusterId: e6d531ef-acb5-4a73-b0b6-9205a729f8f5
+    channels:
+      - "*"
+    commands:
+      - +get
+      - -set
+    keys:
+      - data
+      - properties
+    name: user-1
+  publishConnectionDetailsTo:
+    name: user-1
+    metadata:
+      labels:
+        managed-by: crossplane
+    configRef:
+      name: staging-01
+---
+apiVersion: ovh.edixos.io/v1alpha1
+kind: StoreConfig
+metadata:
+  name: staging-01
+spec:
+  defaultScope: default
+  type: Kubernetes
+
