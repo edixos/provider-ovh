@@ -7,6 +7,9 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *Vrack) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Cloudproject) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -20,6 +23,3 @@ func (tr *IP) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Iploadbalancing) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *Vrack) Hub() {}

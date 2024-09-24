@@ -13,10 +13,10 @@ func (tr *Project) Hub() {}
 func (tr *ProjectRegionLoadbalancerLogSubscription) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *User) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *S3Credentials) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *S3Policy) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *User) Hub() {}
