@@ -1,15 +1,53 @@
 package databases
 
-import "github.com/crossplane/upjet/pkg/config"
+import (
+	"errors"
+	"fmt"
+	"reflect"
+
+	"github.com/crossplane/upjet/pkg/config"
+)
 
 const (
 	shortGroup = "databases"
 )
 
+var ErrTransformEndpointToConnection = errors.New("Error enriching Connection Details")
+
+func addConnectionInfo(attr map[string]any) (map[string][]byte, error) {
+	conn := map[string][]byte{}
+
+	if endpoints, ok := attr["endpoints"]; ok {
+		fmt.Printf("Type is: %s\n", reflect.TypeOf(endpoints))
+
+		if endpointItems, ok := endpoints.([]map[string]interface{}); ok {
+			fmt.Printf("Decoded %+v", endpoints)
+
+			for idx, endpoint := range endpointItems {
+				for key, value := range endpoint {
+					endpointKey := fmt.Sprintf("endpoint_%d_%s", idx, key)
+
+					val := fmt.Sprintf("%s", value)
+					attr[endpointKey] = val
+					fmt.Printf("Endpoint %s -> %s", endpointKey, val)
+				}
+			}
+		} else {
+			return nil, fmt.Errorf("Could not decode endpoints: %w", ErrTransformEndpointToConnection)
+		}
+	} else {
+		return nil, fmt.Errorf("Could not find endpoints: %w", ErrTransformEndpointToConnection)
+	}
+
+	return conn, nil
+}
+
 // Configure configures individual resources by adding custom ResourceConfigurators.
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_database", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Sensitive.AdditionalConnectionDetailsFn = addConnectionInfo
+		r.UseAsync = true
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_database_database", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
@@ -94,7 +132,16 @@ func Configure(p *config.Provider) {
 		r.References["cluster_id"] = config.Reference{
 			TerraformName: "ovh_cloud_project_database",
 		}
+
+		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
+			conn := map[string][]byte{}
+
+			conn["username"] = []byte(attr["name"].(string))
+
+			return conn, nil
+		}
 	})
+
 	p.AddResourceConfigurator("ovh_cloud_project_database_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.References["cluster_id"] = config.Reference{
