@@ -3,7 +3,6 @@ package databases
 import (
 	"errors"
 	"fmt"
-	"reflect"
 
 	"github.com/crossplane/upjet/pkg/config"
 )
@@ -18,18 +17,17 @@ func addConnectionInfo(attr map[string]any) (map[string][]byte, error) {
 	conn := map[string][]byte{}
 
 	if endpoints, ok := attr["endpoints"]; ok {
-		fmt.Printf("Type is: %s\n", reflect.TypeOf(endpoints))
+		if endpointList, ok := endpoints.([]any); ok {
+			for idx, item := range endpointList {
+				if endpoint, ok := item.(map[string]any); ok {
+					for key, value := range endpoint {
+						endpointKey := fmt.Sprintf("endpoint_%d_%s", idx, key)
 
-		if endpointItems, ok := endpoints.([]map[string]interface{}); ok {
-			fmt.Printf("Decoded %+v", endpoints)
+						val := fmt.Sprintf("%s", value)
+						attr[endpointKey] = val
 
-			for idx, endpoint := range endpointItems {
-				for key, value := range endpoint {
-					endpointKey := fmt.Sprintf("endpoint_%d_%s", idx, key)
-
-					val := fmt.Sprintf("%s", value)
-					attr[endpointKey] = val
-					fmt.Printf("Endpoint %s -> %s", endpointKey, val)
+						fmt.Printf("Endpoint %s -> %s\n", endpointKey, val)
+					}
 				}
 			}
 		} else {

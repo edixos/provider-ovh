@@ -7,14 +7,15 @@ import (
 )
 
 func TestAddEndpointInformation(t *testing.T) {
-	attrs := map[string]any{
-		"endpoints": []map[string]any{
-			{
-				"uri":    "rediss://<username>:<password>@redis-526fe66a-od8a8be8e.database.cloud.ovh.net:20185",
-				"domain": "redis-526fe66a-od8a8be8e.database.cloud.ovh.net",
-				"port":   20185,
-			},
+	endpoints := []map[string]any{
+		{
+			"uri":    "rediss://<username>:<password>@redis-526fe66a-od8a8be8e.database.cloud.ovh.net:20185",
+			"domain": "redis-526fe66a-od8a8be8e.database.cloud.ovh.net",
+			"port":   20185,
 		},
+	}
+	attrs := map[string]any{
+		"endpoints": endpoints,
 	}
 
 	conn, err := addConnectionInfo(attrs)
