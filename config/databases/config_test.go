@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestAddEndpointInformation(t *testing.T) {
@@ -20,7 +21,7 @@ func TestAddEndpointInformation(t *testing.T) {
 
 	conn, err := addConnectionInfo(attrs)
 
-	assert.Nil(t, err)
+	require.NoError(t, err)
 	assert.NotNil(t, conn)
 
 	assert.Len(t, conn, 3)
@@ -42,6 +43,6 @@ func TestAddEndpointInformationFailedDecode(t *testing.T) {
 
 	conn, err := addConnectionInfo(attrs)
 
-	assert.NotNil(t, err)
+	require.Error(t, err)
 	assert.Nil(t, conn)
 }
