@@ -23,10 +23,19 @@ func addConnectionInfo(attr map[string]any) (map[string][]byte, error) {
 					for key, value := range endpoint {
 						endpointKey := fmt.Sprintf("endpoint_%d_%s", idx, key)
 
-						val := fmt.Sprintf("%s", value)
-						attr[endpointKey] = val
+						var val []byte
+						switch value.(type) {
+						case float64:
+							val = []byte(fmt.Sprintf("%.0f", value))
+						case bool:
+							val = []byte(fmt.Sprintf("%b", value))
+						case string:
+							val = []byte(fmt.Sprintf("%s", value))
+						default:
+							continue
+						}
 
-						fmt.Printf("Endpoint %s -> %s\n", endpointKey, val)
+						conn[endpointKey] = val
 					}
 				}
 			}
