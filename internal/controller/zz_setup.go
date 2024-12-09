@@ -88,6 +88,7 @@ import (
 	nashapartitionsnapshot "github.com/edixos/provider-ovh/internal/controller/nas/nashapartitionsnapshot"
 	privatenetwork "github.com/edixos/provider-ovh/internal/controller/network/privatenetwork"
 	subnet "github.com/edixos/provider-ovh/internal/controller/network/subnet"
+	subnetv2 "github.com/edixos/provider-ovh/internal/controller/network/subnetv2"
 	privatedatabase "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabase"
 	privatedatabasedatabase "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabasedatabase"
 	privatedatabaseuser "github.com/edixos/provider-ovh/internal/controller/privatesql/privatedatabaseuser"
@@ -192,7 +193,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		nashapartitionsnapshot.Setup,
 		privatenetwork.Setup,
 		subnet.Setup,
-		subnet.Setup,
+		subnetv2.Setup,
 		privatedatabase.Setup,
 		privatedatabasedatabase.Setup,
 		privatedatabaseuser.Setup,

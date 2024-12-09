@@ -53,3 +53,45 @@ func (mg *Subnet) ResolveReferences(ctx context.Context, c client.Reader) error 
 
 	return nil
 }
+
+// ResolveReferences of this SubnetV2.
+func (mg *SubnetV2) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.NetworkIDRef,
+		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
+		To: reference.To{
+			List:    &PrivateNetworkList{},
+			Managed: &PrivateNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.NetworkID")
+	}
+	mg.Spec.ForProvider.NetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.NetworkIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.NetworkID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.NetworkIDRef,
+		Selector:     mg.Spec.InitProvider.NetworkIDSelector,
+		To: reference.To{
+			List:    &PrivateNetworkList{},
+			Managed: &PrivateNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.NetworkID")
+	}
+	mg.Spec.InitProvider.NetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.NetworkIDRef = rsp.ResolvedReference
+
+	return nil
+}

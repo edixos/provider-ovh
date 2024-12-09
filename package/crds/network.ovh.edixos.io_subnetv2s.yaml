@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: subnets.network.ovh.edixos.io
+  name: subnetv2s.network.ovh.edixos.io
 spec:
   group: network.ovh.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: Subnet
-    listKind: SubnetList
-    plural: subnets
-    singular: subnet
+    kind: SubnetV2
+    listKind: SubnetV2List
+    plural: subnetv2s
+    singular: subnetv2
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Subnet is the Schema for the Subnets API. <no value>
+        description: SubnetV2 is the Schema for the SubnetV2s API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -54,7 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SubnetSpec defines the desired state of Subnet
+            description: SubnetV2Spec defines the desired state of SubnetV2
             properties:
               deletionPolicy:
                 default: Delete
@@ -72,13 +72,48 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  dhcp:
-                    type: boolean
-                  end:
+                  allocationPool:
+                    description: DHCP allocation pools of subnet
+                    items:
+                      properties:
+                        end:
+                          type: string
+                        start:
+                          type: string
+                      type: object
+                    type: array
+                  cidr:
+                    description: CIDR of subnet
                     type: string
-                  network:
+                  dhcp:
+                    description: Enable DHCP in subnet
+                    type: boolean
+                  dnsNameservers:
+                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    items:
+                      type: string
+                    type: array
+                  enableGatewayIp:
+                    description: Enable gateway IP in subnet
+                    type: boolean
+                  gatewayIp:
+                    description: Gateway IP of subnet
+                    type: string
+                  hostRoute:
+                    description: Static host routes of subnet
+                    items:
+                      properties:
+                        destination:
+                          type: string
+                        nexthop:
+                          type: string
+                      type: object
+                    type: array
+                  name:
+                    description: Name of subnet
                     type: string
                   networkId:
+                    description: Network ID of subnet
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -156,15 +191,12 @@ spec:
                             type: string
                         type: object
                     type: object
-                  noGateway:
-                    type: boolean
                   region:
+                    description: Region of network/subnet
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project.
-                    type: string
-                  start:
                     type: string
                 type: object
               initProvider:
@@ -180,13 +212,48 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  dhcp:
-                    type: boolean
-                  end:
+                  allocationPool:
+                    description: DHCP allocation pools of subnet
+                    items:
+                      properties:
+                        end:
+                          type: string
+                        start:
+                          type: string
+                      type: object
+                    type: array
+                  cidr:
+                    description: CIDR of subnet
                     type: string
-                  network:
+                  dhcp:
+                    description: Enable DHCP in subnet
+                    type: boolean
+                  dnsNameservers:
+                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    items:
+                      type: string
+                    type: array
+                  enableGatewayIp:
+                    description: Enable gateway IP in subnet
+                    type: boolean
+                  gatewayIp:
+                    description: Gateway IP of subnet
+                    type: string
+                  hostRoute:
+                    description: Static host routes of subnet
+                    items:
+                      properties:
+                        destination:
+                          type: string
+                        nexthop:
+                          type: string
+                      type: object
+                    type: array
+                  name:
+                    description: Name of subnet
                     type: string
                   networkId:
+                    description: Network ID of subnet
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -264,15 +331,12 @@ spec:
                             type: string
                         type: object
                     type: object
-                  noGateway:
-                    type: boolean
                   region:
+                    description: Region of network/subnet
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project.
-                    type: string
-                  start:
                     type: string
                 type: object
               managementPolicies:
@@ -443,14 +507,14 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.end is a required parameter
+            - message: spec.forProvider.cidr is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.end)
-                || (has(self.initProvider) && has(self.initProvider.end))'
-            - message: spec.forProvider.network is a required parameter
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.cidr)
+                || (has(self.initProvider) && has(self.initProvider.cidr))'
+            - message: spec.forProvider.name is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.network)
-                || (has(self.initProvider) && has(self.initProvider.network))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
@@ -459,53 +523,62 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
-            - message: spec.forProvider.start is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.start)
-                || (has(self.initProvider) && has(self.initProvider.start))'
           status:
-            description: SubnetStatus defines the observed state of Subnet.
+            description: SubnetV2Status defines the observed state of SubnetV2.
             properties:
               atProvider:
                 properties:
-                  cidr:
-                    type: string
-                  dhcp:
-                    type: boolean
-                  end:
-                    type: string
-                  gatewayIp:
-                    type: string
-                  id:
-                    type: string
-                  ipPools:
+                  allocationPool:
+                    description: DHCP allocation pools of subnet
                     items:
                       properties:
-                        dhcp:
-                          type: boolean
                         end:
-                          type: string
-                        network:
-                          type: string
-                        region:
                           type: string
                         start:
                           type: string
                       type: object
                     type: array
-                  network:
+                  cidr:
+                    description: CIDR of subnet
+                    type: string
+                  dhcp:
+                    description: Enable DHCP in subnet
+                    type: boolean
+                  dnsNameservers:
+                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    items:
+                      type: string
+                    type: array
+                  enableGatewayIp:
+                    description: Enable gateway IP in subnet
+                    type: boolean
+                  gatewayIp:
+                    description: Gateway IP of subnet
+                    type: string
+                  hostRoute:
+                    description: Static host routes of subnet
+                    items:
+                      properties:
+                        destination:
+                          type: string
+                        nexthop:
+                          type: string
+                      type: object
+                    type: array
+                  id:
+                    type: string
+                  name:
+                    description: Name of subnet
                     type: string
                   networkId:
+                    description: Network ID of subnet
                     type: string
-                  noGateway:
-                    type: boolean
                   region:
+                    description: Region of network/subnet
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project.
-                    type: string
-                  start:
                     type: string
                 type: object
               conditions:
