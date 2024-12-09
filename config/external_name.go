@@ -72,10 +72,12 @@ var kubeIdentifierFromProvider = config.ExternalName{
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"ovh_cloud_project_network_private":        config.IdentifierFromProvider,
-	"ovh_cloud_project_network_private_subnet": config.IdentifierFromProvider,
-	"ovh_cloud_project_workflow_backup":        config.NameAsIdentifier,
-	"ovh_cloud_project":                        config.IdentifierFromProvider,
+	"ovh_cloud_project_network_private":           config.IdentifierFromProvider,
+	"ovh_cloud_project_network_private_subnet":    config.IdentifierFromProvider,
+	"ovh_cloud_project_network_private_subnet_v2": config.IdentifierFromProvider,
+
+	"ovh_cloud_project_workflow_backup": config.NameAsIdentifier,
+	"ovh_cloud_project":                 config.IdentifierFromProvider,
 	// The ovh_cloud_project_alerting resource uses a nested type which is not supported yet in upjet.
 	// there is an open issue in upjet regarding this issue: https://github.com/crossplane/upjet/issues/372
 	// "ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
@@ -124,10 +126,15 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_iploadbalancing_tcp_route":                                  config.IdentifierFromProvider,
 	"ovh_iploadbalancing_tcp_route_rule":                             config.IdentifierFromProvider,
 	"ovh_iploadbalancing_vrack_network":                              config.IdentifierFromProvider,
+	"ovh_iploadbalancing_udp_farm_server":                            config.IdentifierFromProvider,
+	"ovh_iploadbalancing_udp_farm":                                   config.IdentifierFromProvider,
+	"ovh_iploadbalancing_ssl":                                        config.IdentifierFromProvider,
 	"ovh_dbaas_logs_cluster":                                         config.IdentifierFromProvider,
 	"ovh_dbaas_logs_graylog_output_stream":                           config.IdentifierFromProvider,
 	"ovh_dbaas_logs_input":                                           config.IdentifierFromProvider,
 	"ovh_dbaas_logs_token":                                           config.IdentifierFromProvider,
+	"ovh_dbaas_logs_output_opensearch_alias":                         config.IdentifierFromProvider,
+	"ovh_dbaas_logs_output_opensearch_index":                         config.IdentifierFromProvider,
 	"ovh_cloud_project_database":                                     config.IdentifierFromProvider,
 	"ovh_cloud_project_database_database":                            config.IdentifierFromProvider,
 	"ovh_cloud_project_database_integration":                         config.IdentifierFromProvider,
@@ -171,6 +178,12 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_vrack_iploadbalancing":                                      config.IdentifierFromProvider,
 	// "ovh_vps":                                                        config.IdentifierFromProvider,
 	"ovh_cloud_project_gateway": config.IdentifierFromProvider,
+	// ovh_okms, ovh_okms_credential, ovh_okms_service_key are not supported yet in upjet. because they uses nested types.
+	// this is an open issue in upjet regarding this issue:
+	// https://github.com/crossplane/upjet/issues/372
+	//"ovh_okms":                  config.IdentifierFromProvider,
+	//"ovh_okms_credential":       config.IdentifierFromProvider,
+	//"ovh_okms_service_key":      config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

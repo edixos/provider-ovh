@@ -11,3 +11,6 @@ func (tr *PrivateNetwork) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Subnet) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *SubnetV2) Hub() {}

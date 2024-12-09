@@ -61,8 +61,26 @@ func (l *IploadbalancingList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ProjectRegionLoadbalancerLogSubscriptionList.
+func (l *ProjectRegionLoadbalancerLogSubscriptionList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this RefreshList.
 func (l *RefreshList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this SSLList.
+func (l *SSLList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -108,6 +126,24 @@ func (l *TCPRouteList) GetItems() []resource.Managed {
 
 // GetItems of this TCPRouteRuleList.
 func (l *TCPRouteRuleList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this UDPFarmList.
+func (l *UDPFarmList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this UDPFarmServerList.
+func (l *UDPFarmServerList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

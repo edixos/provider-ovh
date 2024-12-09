@@ -51,6 +51,15 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_region_loadbalancer_log_subscription", func(r *config.Resource) {
-		p.ShortName = shortGroup
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_iploadbalancing_ssl", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_iploadbalancing_udp_farm", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_iploadbalancing_udp_farm_server", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
 	})
 }

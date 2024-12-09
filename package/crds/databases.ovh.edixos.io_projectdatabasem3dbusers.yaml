@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ProjectDatabaseM3DbUser
     listKind: ProjectDatabaseM3DbUserList
     plural: projectdatabasem3dbusers

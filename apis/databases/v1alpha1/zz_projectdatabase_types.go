@@ -141,6 +141,9 @@ type ProjectDatabaseInitParameters struct {
 	// Defines whether the schema registry is enabled on a Kafka cluster
 	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
+	// Time on which maintenances can start every day
+	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
+
 	// List of nodes composing the service
 	Nodes []NodesInitParameters `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
@@ -267,6 +270,10 @@ type ProjectDatabaseParameters struct {
 	// +kubebuilder:validation:Optional
 	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
+	// Time on which maintenances can start every day
+	// +kubebuilder:validation:Optional
+	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
+
 	// List of nodes composing the service
 	// +kubebuilder:validation:Optional
 	Nodes []NodesParameters `json:"nodes,omitempty" tf:"nodes,omitempty"`
@@ -319,7 +326,7 @@ type ProjectDatabaseStatus struct {
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type ProjectDatabase struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

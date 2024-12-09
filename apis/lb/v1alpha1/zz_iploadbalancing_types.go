@@ -383,14 +383,12 @@ type IploadbalancingStatus struct {
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type Iploadbalancing struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.ovhSubsidiary) || (has(self.initProvider) && has(self.initProvider.ovhSubsidiary))",message="spec.forProvider.ovhSubsidiary is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.plan) || (has(self.initProvider) && has(self.initProvider.plan))",message="spec.forProvider.plan is a required parameter"
-	Spec   IploadbalancingSpec   `json:"spec"`
-	Status IploadbalancingStatus `json:"status,omitempty"`
+	Spec              IploadbalancingSpec   `json:"spec"`
+	Status            IploadbalancingStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true

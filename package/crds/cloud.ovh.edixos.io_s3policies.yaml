@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: S3Policy
     listKind: S3PolicyList
     plural: s3policies

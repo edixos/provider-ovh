@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: Oauth2Client
     listKind: Oauth2ClientList
     plural: oauth2clients

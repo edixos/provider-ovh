@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ProjectRegionStoragePresign
     listKind: ProjectRegionStoragePresignList
     plural: projectregionstoragepresigns
@@ -75,22 +75,22 @@ spec:
               forProvider:
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid.
+                    description: How long (in seconds) the URL will be valid
                     type: number
                   method:
                     type: string
                   name:
-                    description: The S3 storage container's name.
+                    description: The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload.
+                    description: Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name.
+                    description: Region name
                     type: string
                   serviceName:
                     description: Service name of the resource representing the ID
-                      of the cloud project.
+                      of the cloud project
                     type: string
                 type: object
               initProvider:
@@ -107,22 +107,22 @@ spec:
                   autoscaler.
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid.
+                    description: How long (in seconds) the URL will be valid
                     type: number
                   method:
                     type: string
                   name:
-                    description: The S3 storage container's name.
+                    description: The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload.
+                    description: Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name.
+                    description: Region name
                     type: string
                   serviceName:
                     description: Service name of the resource representing the ID
-                      of the cloud project.
+                      of the cloud project
                     type: string
                 type: object
               managementPolicies:
@@ -324,27 +324,27 @@ spec:
               atProvider:
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid.
+                    description: How long (in seconds) the URL will be valid
                     type: number
                   id:
                     type: string
                   method:
                     type: string
                   name:
-                    description: The S3 storage container's name.
+                    description: The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload.
+                    description: Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name.
+                    description: Region name
                     type: string
                   serviceName:
                     description: Service name of the resource representing the ID
-                      of the cloud project.
+                      of the cloud project
                     type: string
                   url:
-                    description: Presigned URL.
+                    description: Presigned URL
                     type: string
                 type: object
               conditions:

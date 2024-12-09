@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ZoneDNSSEC
     listKind: ZoneDNSSECList
     plural: zonednssecs

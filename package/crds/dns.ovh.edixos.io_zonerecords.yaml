@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ZoneRecord
     listKind: ZoneRecordList
     plural: zonerecords
