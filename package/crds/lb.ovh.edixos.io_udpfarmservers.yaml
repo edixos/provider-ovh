@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: projectregionloadbalancerlogsubscriptions.cloud.ovh.edixos.io
+  name: udpfarmservers.lb.ovh.edixos.io
 spec:
-  group: cloud.ovh.edixos.io
+  group: lb.ovh.edixos.io
   names:
     categories:
     - crossplane
     - managed
-    - lb
-    kind: ProjectRegionLoadbalancerLogSubscription
-    listKind: ProjectRegionLoadbalancerLogSubscriptionList
-    plural: projectregionloadbalancerlogsubscriptions
-    singular: projectregionloadbalancerlogsubscription
+    - ovh
+    kind: UDPFarmServer
+    listKind: UDPFarmServerList
+    plural: udpfarmservers
+    singular: udpfarmserver
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectRegionLoadbalancerLogSubscription is the Schema for the
-          ProjectRegionLoadbalancerLogSubscriptions API. <no value>
+        description: UDPFarmServer is the Schema for the UDPFarmServers API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -55,8 +54,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ProjectRegionLoadbalancerLogSubscriptionSpec defines the
-              desired state of ProjectRegionLoadbalancerLogSubscription
+            description: UDPFarmServerSpec defines the desired state of UDPFarmServer
             properties:
               deletionPolicy:
                 default: Delete
@@ -74,22 +72,25 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  kind:
-                    description: Log kind name of this subscription
+                  address:
+                    description: IPv4 address (e.g., 192.0.2.0)
                     type: string
-                  loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
+                  displayName:
+                    description: Human readable name for your server, this field is
+                      for you
                     type: string
-                  regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
-                    type: string
+                  farmId:
+                    description: Id of your farm
+                    type: number
+                  port:
+                    description: Port attached to your server ([1..49151]). Inherited
+                      from farm if null
+                    type: number
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: The internal name of your IP load balancing
                     type: string
-                  streamId:
-                    description: ID representing the stream of the resource
+                  status:
+                    description: Possible values for server status
                     type: string
                 type: object
               initProvider:
@@ -105,22 +106,25 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  kind:
-                    description: Log kind name of this subscription
+                  address:
+                    description: IPv4 address (e.g., 192.0.2.0)
                     type: string
-                  loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
+                  displayName:
+                    description: Human readable name for your server, this field is
+                      for you
                     type: string
-                  regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
-                    type: string
+                  farmId:
+                    description: Id of your farm
+                    type: number
+                  port:
+                    description: Port attached to your server ([1..49151]). Inherited
+                      from farm if null
+                    type: number
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: The internal name of your IP load balancing
                     type: string
-                  streamId:
-                    description: ID representing the stream of the resource
+                  status:
+                    description: Possible values for server status
                     type: string
                 type: object
               managementPolicies:
@@ -291,73 +295,54 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.kind is a required parameter
+            - message: spec.forProvider.address is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.kind)
-                || (has(self.initProvider) && has(self.initProvider.kind))'
-            - message: spec.forProvider.loadbalancerId is a required parameter
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.address)
+                || (has(self.initProvider) && has(self.initProvider.address))'
+            - message: spec.forProvider.farmId is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.loadbalancerId)
-                || (has(self.initProvider) && has(self.initProvider.loadbalancerId))'
-            - message: spec.forProvider.regionName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.regionName)
-                || (has(self.initProvider) && has(self.initProvider.regionName))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.farmId)
+                || (has(self.initProvider) && has(self.initProvider.farmId))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
-            - message: spec.forProvider.streamId is a required parameter
+            - message: spec.forProvider.status is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.streamId)
-                || (has(self.initProvider) && has(self.initProvider.streamId))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.status)
+                || (has(self.initProvider) && has(self.initProvider.status))'
           status:
-            description: ProjectRegionLoadbalancerLogSubscriptionStatus defines the
-              observed state of ProjectRegionLoadbalancerLogSubscription.
+            description: UDPFarmServerStatus defines the observed state of UDPFarmServer.
             properties:
               atProvider:
                 properties:
-                  createdAt:
-                    description: Creation date of the subscription
+                  address:
+                    description: IPv4 address (e.g., 192.0.2.0)
                     type: string
+                  backendId:
+                    description: Synonym for farm_id
+                    type: number
+                  displayName:
+                    description: Human readable name for your server, this field is
+                      for you
+                    type: string
+                  farmId:
+                    description: Id of your farm
+                    type: number
                   id:
                     type: string
-                  kind:
-                    description: Log kind name of this subscription
-                    type: string
-                  ldpServiceName:
-                    description: Name of the destination log service
-                    type: string
-                  loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
-                    type: string
-                  operationId:
-                    description: Identifier of the operation
-                    type: string
-                  regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
-                    type: string
-                  resourceName:
-                    description: Name of subscribed resource, where the logs come
-                      from
-                    type: string
-                  resourceType:
-                    description: Type of subscribed resource, where the logs come
-                      from
-                    type: string
+                  port:
+                    description: Port attached to your server ([1..49151]). Inherited
+                      from farm if null
+                    type: number
+                  serverId:
+                    description: Id of your server
+                    type: number
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: The internal name of your IP load balancing
                     type: string
-                  streamId:
-                    description: ID representing the stream of the resource
-                    type: string
-                  subscriptionId:
-                    description: Id of the subscription
-                    type: string
-                  updatedAt:
-                    description: Last update date of the subscription
+                  status:
+                    description: Possible values for server status
                     type: string
                 type: object
               conditions:

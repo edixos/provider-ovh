@@ -25,6 +25,24 @@ func (l *LogsInputList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this LogsOutputOpensearchAliasList.
+func (l *LogsOutputOpensearchAliasList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LogsOutputOpensearchIndexList.
+func (l *LogsOutputOpensearchIndexList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this LogsTokenList.
 func (l *LogsTokenList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

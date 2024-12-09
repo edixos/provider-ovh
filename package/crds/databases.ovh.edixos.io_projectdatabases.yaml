@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ProjectDatabase
     listKind: ProjectDatabaseList
     plural: projectdatabases
@@ -122,6 +122,9 @@ spec:
                     description: Defines whether the schema registry is enabled on
                       a Kafka cluster
                     type: boolean
+                  maintenanceTime:
+                    description: Time on which maintenances can start every day
+                    type: string
                   nodes:
                     description: List of nodes composing the service
                     items:
@@ -213,6 +216,9 @@ spec:
                     description: Defines whether the schema registry is enabled on
                       a Kafka cluster
                     type: boolean
+                  maintenanceTime:
+                    description: Time on which maintenances can start every day
+                    type: string
                   nodes:
                     description: List of nodes composing the service
                     items:

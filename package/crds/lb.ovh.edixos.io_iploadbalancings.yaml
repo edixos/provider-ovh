@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: Iploadbalancing
     listKind: IploadbalancingList
     plural: iploadbalancings
@@ -423,15 +423,6 @@ spec:
             required:
             - forProvider
             type: object
-            x-kubernetes-validations:
-            - message: spec.forProvider.ovhSubsidiary is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.ovhSubsidiary)
-                || (has(self.initProvider) && has(self.initProvider.ovhSubsidiary))'
-            - message: spec.forProvider.plan is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.plan)
-                || (has(self.initProvider) && has(self.initProvider.plan))'
           status:
             description: IploadbalancingStatus defines the observed state of Iploadbalancing.
             properties:

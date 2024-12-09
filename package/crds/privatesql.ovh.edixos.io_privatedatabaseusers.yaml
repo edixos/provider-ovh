@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: PrivatedatabaseUser
     listKind: PrivatedatabaseUserList
     plural: privatedatabaseusers

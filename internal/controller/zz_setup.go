@@ -17,7 +17,6 @@ import (
 	reverse "github.com/edixos/provider-ovh/internal/controller/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/additionalip/service"
 	project "github.com/edixos/provider-ovh/internal/controller/cloud/project"
-	projectregionloadbalancerlogsubscription "github.com/edixos/provider-ovh/internal/controller/cloud/projectregionloadbalancerlogsubscription"
 	s3credentials "github.com/edixos/provider-ovh/internal/controller/cloud/s3credentials"
 	s3policy "github.com/edixos/provider-ovh/internal/controller/cloud/s3policy"
 	user "github.com/edixos/provider-ovh/internal/controller/cloud/user"
@@ -64,16 +63,22 @@ import (
 	httproute "github.com/edixos/provider-ovh/internal/controller/lb/httproute"
 	httprouterule "github.com/edixos/provider-ovh/internal/controller/lb/httprouterule"
 	iploadbalancing "github.com/edixos/provider-ovh/internal/controller/lb/iploadbalancing"
+	projectregionloadbalancerlogsubscription "github.com/edixos/provider-ovh/internal/controller/lb/projectregionloadbalancerlogsubscription"
 	refresh "github.com/edixos/provider-ovh/internal/controller/lb/refresh"
+	ssl "github.com/edixos/provider-ovh/internal/controller/lb/ssl"
 	tcpfarm "github.com/edixos/provider-ovh/internal/controller/lb/tcpfarm"
 	tcpfarmserver "github.com/edixos/provider-ovh/internal/controller/lb/tcpfarmserver"
 	tcpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/tcpfrontend"
 	tcproute "github.com/edixos/provider-ovh/internal/controller/lb/tcproute"
 	tcprouterule "github.com/edixos/provider-ovh/internal/controller/lb/tcprouterule"
+	udpfarm "github.com/edixos/provider-ovh/internal/controller/lb/udpfarm"
+	udpfarmserver "github.com/edixos/provider-ovh/internal/controller/lb/udpfarmserver"
 	udpfrontend "github.com/edixos/provider-ovh/internal/controller/lb/udpfrontend"
 	vracknetwork "github.com/edixos/provider-ovh/internal/controller/lb/vracknetwork"
 	logscluster "github.com/edixos/provider-ovh/internal/controller/logs/logscluster"
 	logsinput "github.com/edixos/provider-ovh/internal/controller/logs/logsinput"
+	logsoutputopensearchalias "github.com/edixos/provider-ovh/internal/controller/logs/logsoutputopensearchalias"
+	logsoutputopensearchindex "github.com/edixos/provider-ovh/internal/controller/logs/logsoutputopensearchindex"
 	logstoken "github.com/edixos/provider-ovh/internal/controller/logs/logstoken"
 	group "github.com/edixos/provider-ovh/internal/controller/me/group"
 	oauth2client "github.com/edixos/provider-ovh/internal/controller/me/oauth2client"
@@ -116,7 +121,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		reverse.Setup,
 		service.Setup,
 		project.Setup,
-		projectregionloadbalancerlogsubscription.Setup,
 		s3credentials.Setup,
 		s3policy.Setup,
 		user.Setup,
@@ -163,16 +167,22 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		httproute.Setup,
 		httprouterule.Setup,
 		iploadbalancing.Setup,
+		projectregionloadbalancerlogsubscription.Setup,
 		refresh.Setup,
+		ssl.Setup,
 		tcpfarm.Setup,
 		tcpfarmserver.Setup,
 		tcpfrontend.Setup,
 		tcproute.Setup,
 		tcprouterule.Setup,
+		udpfarm.Setup,
+		udpfarmserver.Setup,
 		udpfrontend.Setup,
 		vracknetwork.Setup,
 		logscluster.Setup,
 		logsinput.Setup,
+		logsoutputopensearchalias.Setup,
+		logsoutputopensearchindex.Setup,
 		logstoken.Setup,
 		group.Setup,
 		oauth2client.Setup,
@@ -181,6 +191,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		nashapartitionaccess.Setup,
 		nashapartitionsnapshot.Setup,
 		privatenetwork.Setup,
+		subnet.Setup,
 		subnet.Setup,
 		privatedatabase.Setup,
 		privatedatabasedatabase.Setup,

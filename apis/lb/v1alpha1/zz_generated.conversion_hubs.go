@@ -7,6 +7,9 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectRegionLoadbalancerLogSubscription) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Iploadbalancing) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -28,6 +31,9 @@ func (tr *HTTPRouteRule) Hub() {}
 func (tr *Refresh) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *SSL) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *TCPFarm) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -41,6 +47,12 @@ func (tr *TCPRoute) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *TCPRouteRule) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *UDPFarm) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *UDPFarmServer) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *UDPFrontend) Hub() {}

@@ -127,6 +127,126 @@ func (mg *LogsInput) SetWriteConnectionSecretToReference(r *xpv1.SecretReference
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this LogsOutputOpensearchAlias.
+func (mg *LogsOutputOpensearchAlias) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetPublishConnectionDetailsTo of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetPublishConnectionDetailsTo of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this LogsOutputOpensearchIndex.
+func (mg *LogsOutputOpensearchIndex) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this LogsToken.
 func (mg *LogsToken) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

@@ -7,6 +7,7 @@ package config
 import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
+	"github.com/edixos/provider-ovh/config/kms"
 
 	"github.com/edixos/provider-ovh/config/gateway"
 	"github.com/edixos/provider-ovh/config/vps"
@@ -90,6 +91,7 @@ func GetProvider() *ujconfig.Provider {
 		vrack.Configure,
 		vps.Configure,
 		gateway.Configure,
+		kms.Configure,
 	} {
 		configure(pc)
 	}

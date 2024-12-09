@@ -15,71 +15,71 @@ import (
 
 type ProjectRegionStoragePresignInitParameters struct {
 
-	// How long (in seconds) the URL will be valid.
+	// How long (in seconds) the URL will be valid
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
-	// The S3 storage container's name.
+	// The S3 storage container's name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Name of the object to download or upload.
+	// Name of the object to download or upload
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
-	// Region name.
+	// Region name
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
-	// Service name of the resource representing the ID of the cloud project.
+	// Service name of the resource representing the ID of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectRegionStoragePresignObservation struct {
 
-	// How long (in seconds) the URL will be valid.
+	// How long (in seconds) the URL will be valid
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
-	// The S3 storage container's name.
+	// The S3 storage container's name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Name of the object to download or upload.
+	// Name of the object to download or upload
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
-	// Region name.
+	// Region name
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
-	// Service name of the resource representing the ID of the cloud project.
+	// Service name of the resource representing the ID of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// Presigned URL.
+	// Presigned URL
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
 type ProjectRegionStoragePresignParameters struct {
 
-	// How long (in seconds) the URL will be valid.
+	// How long (in seconds) the URL will be valid
 	// +kubebuilder:validation:Optional
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
-	// The S3 storage container's name.
+	// The S3 storage container's name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// Name of the object to download or upload.
+	// Name of the object to download or upload
 	// +kubebuilder:validation:Optional
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
-	// Region name.
+	// Region name
 	// +kubebuilder:validation:Optional
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
-	// Service name of the resource representing the ID of the cloud project.
+	// Service name of the resource representing the ID of the cloud project
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -116,7 +116,7 @@ type ProjectRegionStoragePresignStatus struct {
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,lb}
+// +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,ovh}
 type ProjectRegionStoragePresign struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

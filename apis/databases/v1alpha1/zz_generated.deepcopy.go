@@ -915,6 +915,11 @@ func (in *ProjectDatabaseInitParameters) DeepCopyInto(out *ProjectDatabaseInitPa
 		*out = new(bool)
 		**out = **in
 	}
+	if in.MaintenanceTime != nil {
+		in, out := &in.MaintenanceTime, &out.MaintenanceTime
+		*out = new(string)
+		**out = **in
+	}
 	if in.Nodes != nil {
 		in, out := &in.Nodes, &out.Nodes
 		*out = make([]NodesInitParameters, len(*in))
@@ -3602,6 +3607,11 @@ func (in *ProjectDatabaseParameters) DeepCopyInto(out *ProjectDatabaseParameters
 	if in.KafkaSchemaRegistry != nil {
 		in, out := &in.KafkaSchemaRegistry, &out.KafkaSchemaRegistry
 		*out = new(bool)
+		**out = **in
+	}
+	if in.MaintenanceTime != nil {
+		in, out := &in.MaintenanceTime, &out.MaintenanceTime
+		*out = new(string)
 		**out = **in
 	}
 	if in.Nodes != nil {

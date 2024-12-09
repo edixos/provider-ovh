@@ -11,7 +11,7 @@ spec:
     categories:
     - crossplane
     - managed
-    - lb
+    - ovh
     kind: ProjectDatabaseM3DbNamespace
     listKind: ProjectDatabaseM3DbNamespaceList
     plural: projectdatabasem3dbnamespaces
@@ -493,10 +493,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.resolution)
                 || (has(self.initProvider) && has(self.initProvider.resolution))'
-            - message: spec.forProvider.retentionPeriodDuration is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.retentionPeriodDuration)
-                || (has(self.initProvider) && has(self.initProvider.retentionPeriodDuration))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
