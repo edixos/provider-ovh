@@ -15,48 +15,61 @@ import (
 
 type ServerRebootTaskInitParameters struct {
 
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	// Change this value to recreate a reboot task.
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ServerRebootTaskObservation struct {
 
+	// Details of this task. (should be Reboot asked)
 	// Details of this task
 	Comment *string `json:"comment,omitempty" tf:"comment,omitempty"`
 
+	// Completion date in RFC3339 format.
 	// Completion date
 	DoneDate *string `json:"doneDate,omitempty" tf:"done_date,omitempty"`
 
+	// Function name (should be hardReboot).
 	// Function name
 	Function *string `json:"function,omitempty" tf:"function,omitempty"`
 
+	// The task id
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	// Change this value to recreate a reboot task.
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// Last update in RFC3339 format.
 	// Last update
 	LastUpdate *string `json:"lastUpdate,omitempty" tf:"last_update,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Task creation date in RFC3339 format.
 	// Task Creation date
 	StartDate *string `json:"startDate,omitempty" tf:"start_date,omitempty"`
 
+	// Task status (should be done)
 	// Task status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ServerRebootTaskParameters struct {
 
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	// Change this value to recreate a reboot task.
 	// +kubebuilder:validation:Optional
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -89,7 +102,7 @@ type ServerRebootTaskStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ServerRebootTask is the Schema for the ServerRebootTasks API. <no value>
+// ServerRebootTask is the Schema for the ServerRebootTasks API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

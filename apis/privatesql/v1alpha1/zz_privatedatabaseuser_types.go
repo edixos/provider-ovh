@@ -15,9 +15,11 @@ import (
 
 type PrivatedatabaseUserInitParameters struct {
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases
 	// User name used to connect on your databases
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
 }
@@ -25,23 +27,28 @@ type PrivatedatabaseUserInitParameters struct {
 type PrivatedatabaseUserObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases
 	// User name used to connect on your databases
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
 }
 
 type PrivatedatabaseUserParameters struct {
 
+	// Password for the new user (alphanumeric, minimum one number and 8 characters minimum)
 	// Password for the new user ( alphanumeric and 8 characters minimum )
 	// +kubebuilder:validation:Optional
 	PasswordSecretRef v1.SecretKeySelector `json:"passwordSecretRef" tf:"-"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases
 	// User name used to connect on your databases
 	// +kubebuilder:validation:Optional
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
@@ -74,7 +81,7 @@ type PrivatedatabaseUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// PrivatedatabaseUser is the Schema for the PrivatedatabaseUsers API. <no value>
+// PrivatedatabaseUser is the Schema for the PrivatedatabaseUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

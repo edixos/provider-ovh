@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectWorkflowBackup is the Schema for the ProjectWorkflowBackups
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -74,19 +74,31 @@ spec:
               forProvider:
                 properties:
                   backupName:
+                    description: The name of the backup files that are created. If
+                      empty, the name attribute is used.
                     type: string
                   cron:
+                    description: (Mandatory) The cron periodicity at which the backup
+                      workflow is scheduled
                     type: string
                   instanceId:
                     type: string
                   maxExecutionCount:
+                    description: The number of times the worflow is run. Default value
+                      is 0 which means that the workflow will be scheduled continously
+                      until its deletion
                     type: number
                   regionName:
-                    description: Region name.
+                    description: |-
+                      (Mandatory) The name of the openstack region.
+                      Region name.
                     type: string
                   rotation:
+                    description: (Mandatory) The number of backup that are retained.
                     type: number
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -103,19 +115,31 @@ spec:
                   autoscaler.
                 properties:
                   backupName:
+                    description: The name of the backup files that are created. If
+                      empty, the name attribute is used.
                     type: string
                   cron:
+                    description: (Mandatory) The cron periodicity at which the backup
+                      workflow is scheduled
                     type: string
                   instanceId:
                     type: string
                   maxExecutionCount:
+                    description: The number of times the worflow is run. Default value
+                      is 0 which means that the workflow will be scheduled continously
+                      until its deletion
                     type: number
                   regionName:
-                    description: Region name.
+                    description: |-
+                      (Mandatory) The name of the openstack region.
+                      Region name.
                     type: string
                   rotation:
+                    description: (Mandatory) The number of backup that are retained.
                     type: number
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -313,23 +337,35 @@ spec:
               atProvider:
                 properties:
                   backupName:
+                    description: The name of the backup files that are created. If
+                      empty, the name attribute is used.
                     type: string
                   createdAt:
                     type: string
                   cron:
+                    description: (Mandatory) The cron periodicity at which the backup
+                      workflow is scheduled
                     type: string
                   id:
                     type: string
                   instanceId:
                     type: string
                   maxExecutionCount:
+                    description: The number of times the worflow is run. Default value
+                      is 0 which means that the workflow will be scheduled continously
+                      until its deletion
                     type: number
                   regionName:
-                    description: Region name.
+                    description: |-
+                      (Mandatory) The name of the openstack region.
+                      Region name.
                     type: string
                   rotation:
+                    description: (Mandatory) The number of backup that are retained.
                     type: number
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               conditions:

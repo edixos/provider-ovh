@@ -15,49 +15,61 @@ import (
 
 type LogsTokenInitParameters struct {
 
+	// Cluster ID. If not provided, the default cluster_id is used
 	// Cluster ID
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Name of the token
 	// Token name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The LDP service name
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type LogsTokenObservation struct {
 
+	// Cluster ID. If not provided, the default cluster_id is used
 	// Cluster ID
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Token creation date
 	// Token creation
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the token
 	// Token name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The LDP service name
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// ID of the token
 	// Token used
 	TokenID *string `json:"tokenId,omitempty" tf:"token_id,omitempty"`
 
+	// Token last update date
 	// Token last update
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type LogsTokenParameters struct {
 
+	// Cluster ID. If not provided, the default cluster_id is used
 	// Cluster ID
 	// +kubebuilder:validation:Optional
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Name of the token
 	// Token name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The LDP service name
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -90,7 +102,7 @@ type LogsTokenStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// LogsToken is the Schema for the LogsTokens API. <no value>
+// LogsToken is the Schema for the LogsTokens API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

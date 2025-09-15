@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: TCPFarmServer is the Schema for the TCPFarmServers API. <no value>
+        description: TCPFarmServer is the Schema for the TCPFarmServers API.
         properties:
           apiVersion:
             description: |-
@@ -73,30 +73,47 @@ spec:
               forProvider:
                 properties:
                   address:
+                    description: Address of the backend server (IP from either internal
+                      or OVHcloud network)
                     type: string
                   backup:
+                    description: is it a backup server used in case of failure of
+                      all the non-backup backends
                     type: boolean
                   chain:
                     type: string
                   displayName:
+                    description: Label for the server
                     type: string
                   farmId:
+                    description: ID of the farm this server is attached to
                     type: number
                   onMarkedDown:
+                    description: enable action when backend marked down. (shutdown-sessions)
                     type: string
                   port:
+                    description: Port that backend will respond on
                     type: number
                   probe:
+                    description: defines if backend will be probed to determine health
+                      and keep as active in farm if healthy
                     type: boolean
                   proxyProtocolVersion:
+                    description: version of the PROXY protocol used to pass origin
+                      connection information from loadbalancer to receiving service
+                      (v1, v2, v2-ssl, v2-ssl-cn)
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: is the connection ciphered with SSL (TLS)
                     type: boolean
                   status:
+                    description: backend status - active or inactive
                     type: string
                   weight:
+                    description: used in loadbalancing algorithm
                     type: number
                 type: object
               initProvider:
@@ -113,30 +130,47 @@ spec:
                   autoscaler.
                 properties:
                   address:
+                    description: Address of the backend server (IP from either internal
+                      or OVHcloud network)
                     type: string
                   backup:
+                    description: is it a backup server used in case of failure of
+                      all the non-backup backends
                     type: boolean
                   chain:
                     type: string
                   displayName:
+                    description: Label for the server
                     type: string
                   farmId:
+                    description: ID of the farm this server is attached to
                     type: number
                   onMarkedDown:
+                    description: enable action when backend marked down. (shutdown-sessions)
                     type: string
                   port:
+                    description: Port that backend will respond on
                     type: number
                   probe:
+                    description: defines if backend will be probed to determine health
+                      and keep as active in farm if healthy
                     type: boolean
                   proxyProtocolVersion:
+                    description: version of the PROXY protocol used to pass origin
+                      connection information from loadbalancer to receiving service
+                      (v1, v2, v2-ssl, v2-ssl-cn)
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: is the connection ciphered with SSL (TLS)
                     type: boolean
                   status:
+                    description: backend status - active or inactive
                     type: string
                   weight:
+                    description: used in loadbalancing algorithm
                     type: number
                 type: object
               managementPolicies:
@@ -329,32 +363,49 @@ spec:
               atProvider:
                 properties:
                   address:
+                    description: Address of the backend server (IP from either internal
+                      or OVHcloud network)
                     type: string
                   backup:
+                    description: is it a backup server used in case of failure of
+                      all the non-backup backends
                     type: boolean
                   chain:
                     type: string
                   displayName:
+                    description: Label for the server
                     type: string
                   farmId:
+                    description: ID of the farm this server is attached to
                     type: number
                   id:
                     type: string
                   onMarkedDown:
+                    description: enable action when backend marked down. (shutdown-sessions)
                     type: string
                   port:
+                    description: Port that backend will respond on
                     type: number
                   probe:
+                    description: defines if backend will be probed to determine health
+                      and keep as active in farm if healthy
                     type: boolean
                   proxyProtocolVersion:
+                    description: version of the PROXY protocol used to pass origin
+                      connection information from loadbalancer to receiving service
+                      (v1, v2, v2-ssl, v2-ssl-cn)
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: is the connection ciphered with SSL (TLS)
                     type: boolean
                   status:
+                    description: backend status - active or inactive
                     type: string
                   weight:
+                    description: used in loadbalancing algorithm
                     type: number
                 type: object
               conditions:

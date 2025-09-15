@@ -15,126 +15,162 @@ import (
 
 type FirewallRuleInitParameters struct {
 
+	// Possible values for action (deny|permit)
 	// Possible values for action
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// Destination port for your rule. Only with TCP/UDP protocol
+	// Destination port for your rule. Only with TCP/UDP protocol
 	DestinationPort *float64 `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 
 	// Fragments option
+	// Fragments option
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
+	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
 	// Possible values for protocol
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// Rule position in the rules array
 	// Possible values for action
 	Sequence *float64 `json:"sequence,omitempty" tf:"sequence,omitempty"`
 
 	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
+	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Source port for your rule. Only with TCP/UDP protocol
+	// Source port for your rule. Only with TCP/UDP protocol
 	SourcePort *float64 `json:"sourcePort,omitempty" tf:"source_port,omitempty"`
 
+	// TCP option on your rule (syn|established)
 	// TCP option on your rule
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
 }
 
 type FirewallRuleObservation struct {
 
+	// Possible values for action (deny|permit)
 	// Possible values for action
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
+	// Creation date of the rule
 	CreationDate *string `json:"creationDate,omitempty" tf:"creation_date,omitempty"`
 
+	// Destination IP for your rule
 	// Destination ip for your rule
 	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
 
 	// Destination port for your rule. Only with TCP/UDP protocol
+	// Destination port for your rule. Only with TCP/UDP protocol
 	DestinationPort *float64 `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 
+	// String description of field destination_port
 	// Destination port range for your rule. Only with TCP/UDP protocol
 	DestinationPortDesc *string `json:"destinationPortDesc,omitempty" tf:"destination_port_desc,omitempty"`
 
+	// Fragments option
 	// Fragments option
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
+	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
 	// Possible values for protocol
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// Description of the rule
 	Rule *string `json:"rule,omitempty" tf:"rule,omitempty"`
 
+	// Rule position in the rules array
 	// Possible values for action
 	Sequence *float64 `json:"sequence,omitempty" tf:"sequence,omitempty"`
 
 	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
+	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Source port for your rule. Only with TCP/UDP protocol
+	// Source port for your rule. Only with TCP/UDP protocol
 	SourcePort *float64 `json:"sourcePort,omitempty" tf:"source_port,omitempty"`
 
+	// String description of field source_port
 	// Source port for your rule. Only with TCP/UDP protocol
 	SourcePortDesc *string `json:"sourcePortDesc,omitempty" tf:"source_port_desc,omitempty"`
 
 	// Current state of your rule
+	// Current state of your rule
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 
+	// TCP option on your rule (syn|established)
 	// TCP option on your rule
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
 }
 
 type FirewallRuleParameters struct {
 
+	// Possible values for action (deny|permit)
 	// Possible values for action
 	// +kubebuilder:validation:Optional
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// Destination port for your rule. Only with TCP/UDP protocol
+	// Destination port for your rule. Only with TCP/UDP protocol
 	// +kubebuilder:validation:Optional
 	DestinationPort *float64 `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 
 	// Fragments option
+	// Fragments option
 	// +kubebuilder:validation:Optional
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	// +kubebuilder:validation:Optional
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
+	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
 	// Possible values for protocol
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// Rule position in the rules array
 	// Possible values for action
 	// +kubebuilder:validation:Optional
 	Sequence *float64 `json:"sequence,omitempty" tf:"sequence,omitempty"`
 
 	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
+	// IPv4 CIDR notation (e.g., 192.0.2.0/24)
 	// +kubebuilder:validation:Optional
 	Source *string `json:"source,omitempty" tf:"source,omitempty"`
 
 	// Source port for your rule. Only with TCP/UDP protocol
+	// Source port for your rule. Only with TCP/UDP protocol
 	// +kubebuilder:validation:Optional
 	SourcePort *float64 `json:"sourcePort,omitempty" tf:"source_port,omitempty"`
 
+	// TCP option on your rule (syn|established)
 	// TCP option on your rule
 	// +kubebuilder:validation:Optional
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
@@ -167,7 +203,7 @@ type FirewallRuleStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// FirewallRule is the Schema for the FirewallRules API. <no value>
+// FirewallRule is the Schema for the FirewallRules API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

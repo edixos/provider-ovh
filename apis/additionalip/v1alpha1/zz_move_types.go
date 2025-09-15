@@ -15,53 +15,70 @@ import (
 
 type MoveInitParameters struct {
 
+	// Description attached to the IP
 	// Custom description on your ip
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// IP block that we want to attach to a different service
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Service to route the IP to. If null, the IP will be parked instead of moved
 	// Routage information
 	RoutedTo []RoutedToInitParameters `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 }
 
 type MoveObservation struct {
+
+	// Whether IP service can be terminated
 	CanBeTerminated *bool `json:"canBeTerminated,omitempty" tf:"can_be_terminated,omitempty"`
 
+	// Country
 	Country *string `json:"country,omitempty" tf:"country,omitempty"`
 
+	// Description attached to the IP
 	// Custom description on your ip
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// IP block that we want to attach to a different service
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IP block organisation Id
 	OrganisationID *string `json:"organisationId,omitempty" tf:"organisation_id,omitempty"`
 
+	// Service to route the IP to. If null, the IP will be parked instead of moved
 	// Routage information
 	RoutedTo []RoutedToObservation `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
+	// Name of the service to route the IP to. IP will be parked if this value is an empty string
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Starting date and time field of the current IP task that is in charge of changing the service the IP is attached to
 	// Starting date and time field of the current IP task that is in charge of changing the service the IP is attached to
 	TaskStartDate *string `json:"taskStartDate,omitempty" tf:"task_start_date,omitempty"`
 
 	// Status field of the current IP task that is in charge of changing the service the IP is attached to
+	// Status field of the current IP task that is in charge of changing the service the IP is attached to
 	TaskStatus *string `json:"taskStatus,omitempty" tf:"task_status,omitempty"`
 
+	// Possible values for ip type
 	// Possible values for ip type
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type MoveParameters struct {
 
+	// Description attached to the IP
 	// Custom description on your ip
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// IP block that we want to attach to a different service
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Service to route the IP to. If null, the IP will be parked instead of moved
 	// Routage information
 	// +kubebuilder:validation:Optional
 	RoutedTo []RoutedToParameters `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
@@ -69,18 +86,21 @@ type MoveParameters struct {
 
 type RoutedToInitParameters struct {
 
+	// Name of the service to route the IP to. IP will be parked if this value is an empty string
 	// Service where ip is routed to
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type RoutedToObservation struct {
 
+	// Name of the service to route the IP to. IP will be parked if this value is an empty string
 	// Service where ip is routed to
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type RoutedToParameters struct {
 
+	// Name of the service to route the IP to. IP will be parked if this value is an empty string
 	// Service where ip is routed to
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName" tf:"service_name,omitempty"`
@@ -113,7 +133,7 @@ type MoveStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Move is the Schema for the Moves API. <no value>
+// Move is the Schema for the Moves API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

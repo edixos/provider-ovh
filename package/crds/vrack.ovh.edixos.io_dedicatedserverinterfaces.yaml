@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: DedicatedServerInterface is the Schema for the DedicatedServerInterfaces
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,9 +75,12 @@ spec:
               forProvider:
                 properties:
                   interfaceId:
+                    description: The id of dedicated server network interface.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               initProvider:
@@ -94,9 +97,12 @@ spec:
                   autoscaler.
                 properties:
                   interfaceId:
+                    description: The id of dedicated server network interface.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               managementPolicies:
@@ -284,9 +290,12 @@ spec:
                   id:
                     type: string
                   interfaceId:
+                    description: The id of dedicated server network interface.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               conditions:

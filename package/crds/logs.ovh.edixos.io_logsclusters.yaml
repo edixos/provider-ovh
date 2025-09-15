@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: LogsCluster is the Schema for the LogsClusters API. <no value>
+        description: LogsCluster is the Schema for the LogsClusters API.
         properties:
           apiVersion:
             description: |-
@@ -73,26 +73,35 @@ spec:
               forProvider:
                 properties:
                   archiveAllowedNetworks:
-                    description: Allowed networks for ARCHIVE flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for ARCHIVE flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
+                    description: Cluster ID. If not provided, the default cluster_id
+                      is used
                     type: string
                   directInputAllowedNetworks:
-                    description: Allowed networks for DIRECT_INPUT flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for DIRECT_INPUT flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   queryAllowedNetworks:
-                    description: Allowed networks for QUERY flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for QUERY flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
+                    description: The service name
                     type: string
                 type: object
               initProvider:
@@ -109,26 +118,35 @@ spec:
                   autoscaler.
                 properties:
                   archiveAllowedNetworks:
-                    description: Allowed networks for ARCHIVE flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for ARCHIVE flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
+                    description: Cluster ID. If not provided, the default cluster_id
+                      is used
                     type: string
                   directInputAllowedNetworks:
-                    description: Allowed networks for DIRECT_INPUT flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for DIRECT_INPUT flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   queryAllowedNetworks:
-                    description: Allowed networks for QUERY flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for QUERY flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
+                    description: The service name
                     type: string
                 type: object
               managementPolicies:
@@ -309,45 +327,62 @@ spec:
               atProvider:
                 properties:
                   archiveAllowedNetworks:
-                    description: Allowed networks for ARCHIVE flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for ARCHIVE flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
+                    description: Cluster ID. If not provided, the default cluster_id
+                      is used
                     type: string
                   clusterType:
-                    description: Cluster type
+                    description: |-
+                      type of cluster (DEDICATED, PRO or TRIAL)
+                      Cluster type
                     type: string
                   directInputAllowedNetworks:
-                    description: Allowed networks for DIRECT_INPUT flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for DIRECT_INPUT flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   hostname:
-                    description: hostname
+                    description: |-
+                      cluster hostname hosting tenant
+                      hostname
                     type: string
                   id:
                     type: string
                   isDefault:
-                    description: All content generated by given service will be placed
-                      on this cluster
+                    description: |-
+                      true if all content generated by given service will be placed on this cluster
+                      All content generated by given service will be placed on this cluster
                     type: boolean
                   isUnlocked:
-                    description: Allow given service to perform advanced operations
-                      on cluster
+                    description: |-
+                      true if given service can perform advanced operations on cluster
+                      Allow given service to perform advanced operations on cluster
                     type: boolean
                   queryAllowedNetworks:
-                    description: Allowed networks for QUERY flow type
+                    description: |-
+                      List of IP blocks
+                      Allowed networks for QUERY flow type
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   region:
-                    description: Data center localization
+                    description: |-
+                      datacenter localization
+                      Data center localization
                     type: string
                   serviceName:
+                    description: The service name
                     type: string
                 type: object
               conditions:

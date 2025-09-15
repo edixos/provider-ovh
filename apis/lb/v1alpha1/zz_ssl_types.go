@@ -16,14 +16,18 @@ import (
 type SSLInitParameters struct {
 
 	// Certificate
+	// Certificate
 	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
 
 	// Certificate chain
+	// Certificate chain
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Readable label for loadbalancer ssl
 	// Human readable name for your ssl certificate, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -31,34 +35,45 @@ type SSLInitParameters struct {
 type SSLObservation struct {
 
 	// Certificate
+	// Certificate
 	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
 
 	// Certificate chain
+	// Certificate chain
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Readable label for loadbalancer ssl
 	// Human readable name for your ssl certificate, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Expire date of your SSL certificate.
 	// Expire date of your SSL certificate
 	ExpireDate *string `json:"expireDate,omitempty" tf:"expire_date,omitempty"`
 
+	// Fingerprint of your SSL certificate.
 	// Fingerprint of your SSL certificate
 	Fingerprint *string `json:"fingerprint,omitempty" tf:"fingerprint,omitempty"`
 
+	// Id of your SSL certificate.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Subject Alternative Name of your SSL certificate.
 	// Subject Alternative Name of your SSL certificate
 	San []*string `json:"san,omitempty" tf:"san,omitempty"`
 
+	// Serial of your SSL certificate (Deprecated, use fingerprint instead !)
 	// Serial of your SSL certificate (Deprecated, use fingerprint instead!)
 	Serial *string `json:"serial,omitempty" tf:"serial,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Subject of your SSL certificate.
 	// Subject of your SSL certificate
 	Subject *string `json:"subject,omitempty" tf:"subject,omitempty"`
 
+	// Type of your SSL certificate. 'built' for SSL certificates managed by the IP Load Balancing. 'custom' for user manager certificates.
 	// Type of your SSL certificate.
 	// 'built' for SSL certificates managed by the IP Load Balancing. 'custom' for user manager certificates.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -67,21 +82,26 @@ type SSLObservation struct {
 type SSLParameters struct {
 
 	// Certificate
+	// Certificate
 	// +kubebuilder:validation:Optional
 	Certificate *string `json:"certificate,omitempty" tf:"certificate,omitempty"`
 
 	// Certificate chain
+	// Certificate chain
 	// +kubebuilder:validation:Optional
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Readable label for loadbalancer ssl
 	// Human readable name for your ssl certificate, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Certificate key
+	// Certificate key
 	// +kubebuilder:validation:Optional
 	KeySecretRef v1.SecretKeySelector `json:"keySecretRef" tf:"-"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -114,7 +134,7 @@ type SSLStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// SSL is the Schema for the SSLs API. <no value>
+// SSL is the Schema for the SSLs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

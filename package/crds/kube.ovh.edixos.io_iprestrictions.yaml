@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: IpRestriction is the Schema for the IpRestrictions API. <no value>
+        description: IpRestriction is the Schema for the IpRestrictions API.
         properties:
           apiVersion:
             description: |-
@@ -73,13 +73,17 @@ spec:
               forProvider:
                 properties:
                   ips:
-                    description: List of IP restrictions for the cluster
+                    description: |-
+                      List of CIDR authorized to interact with the managed Kubernetes cluster.
+                      List of IP restrictions for the cluster
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   kubeId:
-                    description: Kube ID
+                    description: |-
+                      The id of the managed Kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
                     type: string
                   kubeIdRef:
                     description: Reference to a Cluster in kube to populate kubeId.
@@ -156,7 +160,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
                     type: string
                 type: object
               initProvider:
@@ -173,13 +179,17 @@ spec:
                   autoscaler.
                 properties:
                   ips:
-                    description: List of IP restrictions for the cluster
+                    description: |-
+                      List of CIDR authorized to interact with the managed Kubernetes cluster.
+                      List of IP restrictions for the cluster
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   kubeId:
-                    description: Kube ID
+                    description: |-
+                      The id of the managed Kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
                     type: string
                   kubeIdRef:
                     description: Reference to a Cluster in kube to populate kubeId.
@@ -256,7 +266,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
                     type: string
                 type: object
               managementPolicies:
@@ -443,16 +455,22 @@ spec:
                   id:
                     type: string
                   ips:
-                    description: List of IP restrictions for the cluster
+                    description: |-
+                      List of CIDR authorized to interact with the managed Kubernetes cluster.
+                      List of IP restrictions for the cluster
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   kubeId:
-                    description: Kube ID
+                    description: |-
+                      The id of the managed Kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
                     type: string
                 type: object
               conditions:

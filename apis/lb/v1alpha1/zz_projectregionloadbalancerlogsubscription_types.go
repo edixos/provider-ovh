@@ -15,81 +15,103 @@ import (
 
 type ProjectRegionLoadbalancerLogSubscriptionInitParameters struct {
 
+	// haproxy Changing this value recreates the resource.
 	// Log kind name of this subscription
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
+	// Loadbalancer id to get the logs Changing this value recreates the resource.
 	// ID representing the loadbalancer of the resource
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`
 
+	// A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
 	// Region name of the resource representing the name of the region.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Data stream id to use for the subscription Changing this value recreates the resource.
 	// ID representing the stream of the resource
 	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
 }
 
 type ProjectRegionLoadbalancerLogSubscriptionObservation struct {
 
+	// The date of the subscription creation
 	// Creation date of the subscription
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// haproxy Changing this value recreates the resource.
 	// Log kind name of this subscription
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
+	// LDP service name
 	// Name of the destination log service
 	LdpServiceName *string `json:"ldpServiceName,omitempty" tf:"ldp_service_name,omitempty"`
 
+	// Loadbalancer id to get the logs Changing this value recreates the resource.
 	// ID representing the loadbalancer of the resource
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`
 
+	// The operation ID
 	// Identifier of the operation
 	OperationID *string `json:"operationId,omitempty" tf:"operation_id,omitempty"`
 
+	// A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
 	// Region name of the resource representing the name of the region.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The resource name
 	// Name of subscribed resource, where the logs come from
 	ResourceName *string `json:"resourceName,omitempty" tf:"resource_name,omitempty"`
 
+	// The resource type
 	// Type of subscribed resource, where the logs come from
 	ResourceType *string `json:"resourceType,omitempty" tf:"resource_type,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Data stream id to use for the subscription Changing this value recreates the resource.
 	// ID representing the stream of the resource
 	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
 
+	// The subscription id
 	// Id of the subscription
 	SubscriptionID *string `json:"subscriptionId,omitempty" tf:"subscription_id,omitempty"`
 
+	// The last update of the subscription
 	// Last update date of the subscription
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type ProjectRegionLoadbalancerLogSubscriptionParameters struct {
 
+	// haproxy Changing this value recreates the resource.
 	// Log kind name of this subscription
 	// +kubebuilder:validation:Optional
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
+	// Loadbalancer id to get the logs Changing this value recreates the resource.
 	// ID representing the loadbalancer of the resource
 	// +kubebuilder:validation:Optional
 	LoadbalancerID *string `json:"loadbalancerId,omitempty" tf:"loadbalancer_id,omitempty"`
 
+	// A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
 	// Region name of the resource representing the name of the region.
 	// +kubebuilder:validation:Optional
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Data stream id to use for the subscription Changing this value recreates the resource.
 	// ID representing the stream of the resource
 	// +kubebuilder:validation:Optional
 	StreamID *string `json:"streamId,omitempty" tf:"stream_id,omitempty"`
@@ -122,7 +144,7 @@ type ProjectRegionLoadbalancerLogSubscriptionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectRegionLoadbalancerLogSubscription is the Schema for the ProjectRegionLoadbalancerLogSubscriptions API. <no value>
+// ProjectRegionLoadbalancerLogSubscription is the Schema for the ProjectRegionLoadbalancerLogSubscriptions API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

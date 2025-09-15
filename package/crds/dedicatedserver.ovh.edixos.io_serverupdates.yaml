@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ServerUpdate is the Schema for the ServerUpdates API. <no value>
+        description: ServerUpdate is the Schema for the ServerUpdates API.
         properties:
           apiVersion:
             description: |-
@@ -73,22 +73,39 @@ spec:
               forProvider:
                 properties:
                   bootId:
-                    description: The boot id of your dedicated server.
+                    description: |-
+                      boot id of the server
+                      The boot id of your dedicated server.
                     type: number
                   bootScript:
-                    description: The boot script of your dedicated server.
+                    description: |-
+                      boot script of the server
+                      The boot script of your dedicated server.
                     type: string
                   displayName:
-                    description: Display name of the dedicated server
+                    description: |-
+                      display name of the dedicated server
+                      Display name of the dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      path of the EFI bootloader
+                      The path of the EFI bootloader.
                     type: string
                   monitoring:
-                    description: Icmp monitoring state
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
                     type: boolean
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                   state:
-                    description: error, hacked, hackedBlocked, ok
+                    description: |-
+                      error, hacked, hackedBlocked, ok
+                      error, hacked, hackedBlocked, ok
                     type: string
                 type: object
               initProvider:
@@ -105,22 +122,39 @@ spec:
                   autoscaler.
                 properties:
                   bootId:
-                    description: The boot id of your dedicated server.
+                    description: |-
+                      boot id of the server
+                      The boot id of your dedicated server.
                     type: number
                   bootScript:
-                    description: The boot script of your dedicated server.
+                    description: |-
+                      boot script of the server
+                      The boot script of your dedicated server.
                     type: string
                   displayName:
-                    description: Display name of the dedicated server
+                    description: |-
+                      display name of the dedicated server
+                      Display name of the dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      path of the EFI bootloader
+                      The path of the EFI bootloader.
                     type: string
                   monitoring:
-                    description: Icmp monitoring state
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
                     type: boolean
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                   state:
-                    description: error, hacked, hackedBlocked, ok
+                    description: |-
+                      error, hacked, hackedBlocked, ok
+                      error, hacked, hackedBlocked, ok
                     type: string
                 type: object
               managementPolicies:
@@ -301,24 +335,41 @@ spec:
               atProvider:
                 properties:
                   bootId:
-                    description: The boot id of your dedicated server.
+                    description: |-
+                      boot id of the server
+                      The boot id of your dedicated server.
                     type: number
                   bootScript:
-                    description: The boot script of your dedicated server.
+                    description: |-
+                      boot script of the server
+                      The boot script of your dedicated server.
                     type: string
                   displayName:
-                    description: Display name of the dedicated server
+                    description: |-
+                      display name of the dedicated server
+                      Display name of the dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      path of the EFI bootloader
+                      The path of the EFI bootloader.
                     type: string
                   id:
                     type: string
                   monitoring:
-                    description: Icmp monitoring state
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
                     type: boolean
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                   state:
-                    description: error, hacked, hackedBlocked, ok
+                    description: |-
+                      error, hacked, hackedBlocked, ok
+                      error, hacked, hackedBlocked, ok
                     type: string
                 type: object
               conditions:

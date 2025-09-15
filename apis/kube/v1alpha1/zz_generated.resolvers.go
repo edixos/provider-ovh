@@ -9,6 +9,7 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	v1alpha1 "github.com/edixos/provider-ovh/apis/network/v1alpha1"
+	common "github.com/edixos/provider-ovh/config/common"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -21,8 +22,24 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrivateNetworkID),
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NodesSubnetID),
 		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.NodesSubnetIDRef,
+		Selector:     mg.Spec.ForProvider.NodesSubnetIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.SubnetV2List{},
+			Managed: &v1alpha1.SubnetV2{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.NodesSubnetID")
+	}
+	mg.Spec.ForProvider.NodesSubnetID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.NodesSubnetIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.PrivateNetworkID),
+		Extract:      common.PrivateNetworkOpenStackIdExtractor(),
 		Reference:    mg.Spec.ForProvider.PrivateNetworkIDRef,
 		Selector:     mg.Spec.ForProvider.PrivateNetworkIDSelector,
 		To: reference.To{
@@ -37,8 +54,24 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 	mg.Spec.ForProvider.PrivateNetworkIDRef = rsp.ResolvedReference
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.PrivateNetworkID),
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.NodesSubnetID),
 		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.InitProvider.NodesSubnetIDRef,
+		Selector:     mg.Spec.InitProvider.NodesSubnetIDSelector,
+		To: reference.To{
+			List:    &v1alpha1.SubnetV2List{},
+			Managed: &v1alpha1.SubnetV2{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.NodesSubnetID")
+	}
+	mg.Spec.InitProvider.NodesSubnetID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.NodesSubnetIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.PrivateNetworkID),
+		Extract:      common.PrivateNetworkOpenStackIdExtractor(),
 		Reference:    mg.Spec.InitProvider.PrivateNetworkIDRef,
 		Selector:     mg.Spec.InitProvider.PrivateNetworkIDSelector,
 		To: reference.To{

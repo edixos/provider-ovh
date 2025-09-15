@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ZoneDNSSEC is the Schema for the ZoneDNSSECs API. <no value>
+        description: ZoneDNSSEC is the Schema for the ZoneDNSSECs API.
         properties:
           apiVersion:
             description: |-
@@ -73,7 +73,9 @@ spec:
               forProvider:
                 properties:
                   zoneName:
-                    description: The internal name of your zone
+                    description: |-
+                      The name of the domain zone
+                      The internal name of your zone
                     type: string
                 type: object
               initProvider:
@@ -90,7 +92,9 @@ spec:
                   autoscaler.
                 properties:
                   zoneName:
-                    description: The internal name of your zone
+                    description: |-
+                      The name of the domain zone
+                      The internal name of your zone
                     type: string
                 type: object
               managementPolicies:
@@ -273,10 +277,14 @@ spec:
                   id:
                     type: string
                   status:
-                    description: DNSSEC Status
+                    description: |-
+                      DNSSEC status (disableInProgress, disabled, enableInProgress or enabled)
+                      DNSSEC Status
                     type: string
                   zoneName:
-                    description: The internal name of your zone
+                    description: |-
+                      The name of the domain zone
+                      The internal name of your zone
                     type: string
                 type: object
               conditions:

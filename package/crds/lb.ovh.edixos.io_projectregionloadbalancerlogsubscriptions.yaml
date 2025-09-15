@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectRegionLoadbalancerLogSubscription is the Schema for the
-          ProjectRegionLoadbalancerLogSubscriptions API. <no value>
+          ProjectRegionLoadbalancerLogSubscriptions API.
         properties:
           apiVersion:
             description: |-
@@ -75,21 +75,29 @@ spec:
               forProvider:
                 properties:
                   kind:
-                    description: Log kind name of this subscription
+                    description: |-
+                      haproxy Changing this value recreates the resource.
+                      Log kind name of this subscription
                     type: string
                   loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
+                    description: |-
+                      Loadbalancer id to get the logs Changing this value recreates the resource.
+                      ID representing the loadbalancer of the resource
                     type: string
                   regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
+                    description: |-
+                      A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
+                      Region name of the resource representing the name of the region.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   streamId:
-                    description: ID representing the stream of the resource
+                    description: |-
+                      Data stream id to use for the subscription Changing this value recreates the resource.
+                      ID representing the stream of the resource
                     type: string
                 type: object
               initProvider:
@@ -106,21 +114,29 @@ spec:
                   autoscaler.
                 properties:
                   kind:
-                    description: Log kind name of this subscription
+                    description: |-
+                      haproxy Changing this value recreates the resource.
+                      Log kind name of this subscription
                     type: string
                   loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
+                    description: |-
+                      Loadbalancer id to get the logs Changing this value recreates the resource.
+                      ID representing the loadbalancer of the resource
                     type: string
                   regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
+                    description: |-
+                      A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
+                      Region name of the resource representing the name of the region.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   streamId:
-                    description: ID representing the stream of the resource
+                    description: |-
+                      Data stream id to use for the subscription Changing this value recreates the resource.
+                      ID representing the stream of the resource
                     type: string
                 type: object
               managementPolicies:
@@ -318,46 +334,66 @@ spec:
               atProvider:
                 properties:
                   createdAt:
-                    description: Creation date of the subscription
+                    description: |-
+                      The date of the subscription creation
+                      Creation date of the subscription
                     type: string
                   id:
                     type: string
                   kind:
-                    description: Log kind name of this subscription
+                    description: |-
+                      haproxy Changing this value recreates the resource.
+                      Log kind name of this subscription
                     type: string
                   ldpServiceName:
-                    description: Name of the destination log service
+                    description: |-
+                      LDP service name
+                      Name of the destination log service
                     type: string
                   loadbalancerId:
-                    description: ID representing the loadbalancer of the resource
+                    description: |-
+                      Loadbalancer id to get the logs Changing this value recreates the resource.
+                      ID representing the loadbalancer of the resource
                     type: string
                   operationId:
-                    description: Identifier of the operation
+                    description: |-
+                      The operation ID
+                      Identifier of the operation
                     type: string
                   regionName:
-                    description: Region name of the resource representing the name
-                      of the region.
+                    description: |-
+                      A valid OVHcloud public cloud region name in which the loadbalancer will be available. Ex.: "GRA11". Changing this value recreates the resource.
+                      Region name of the resource representing the name of the region.
                     type: string
                   resourceName:
-                    description: Name of subscribed resource, where the logs come
-                      from
+                    description: |-
+                      The resource name
+                      Name of subscribed resource, where the logs come from
                     type: string
                   resourceType:
-                    description: Type of subscribed resource, where the logs come
-                      from
+                    description: |-
+                      The resource type
+                      Type of subscribed resource, where the logs come from
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   streamId:
-                    description: ID representing the stream of the resource
+                    description: |-
+                      Data stream id to use for the subscription Changing this value recreates the resource.
+                      ID representing the stream of the resource
                     type: string
                   subscriptionId:
-                    description: Id of the subscription
+                    description: |-
+                      The subscription id
+                      Id of the subscription
                     type: string
                   updatedAt:
-                    description: Last update date of the subscription
+                    description: |-
+                      The last update of the subscription
+                      Last update date of the subscription
                     type: string
                 type: object
               conditions:

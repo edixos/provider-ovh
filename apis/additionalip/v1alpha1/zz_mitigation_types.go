@@ -15,9 +15,11 @@ import (
 
 type MitigationInitParameters struct {
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnMitigation *string `json:"ipOnMitigation,omitempty" tf:"ip_on_mitigation,omitempty"`
 
@@ -27,30 +29,36 @@ type MitigationInitParameters struct {
 
 type MitigationObservation struct {
 
+	// Set on true if the IP is on auto-mitigation
 	// Set on true if your ip is on auto-mitigation
 	Auto *bool `json:"auto,omitempty" tf:"auto,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnMitigation *string `json:"ipOnMitigation,omitempty" tf:"ip_on_mitigation,omitempty"`
 
 	// Set on true if your ip is on permanent mitigation
 	Permanent *bool `json:"permanent,omitempty" tf:"permanent,omitempty"`
 
+	// Current state of the IP on mitigation
 	// Current state of your ip on mitigation
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 }
 
 type MitigationParameters struct {
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	// +kubebuilder:validation:Optional
 	IPOnMitigation *string `json:"ipOnMitigation,omitempty" tf:"ip_on_mitigation,omitempty"`
@@ -87,7 +95,7 @@ type MitigationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Mitigation is the Schema for the Mitigations API. <no value>
+// Mitigation is the Schema for the Mitigations API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

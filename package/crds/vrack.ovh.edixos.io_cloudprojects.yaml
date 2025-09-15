@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cloudproject is the Schema for the Cloudprojects API. <no value>
+        description: Cloudproject is the Schema for the Cloudprojects API.
         properties:
           apiVersion:
             description: |-
@@ -73,9 +73,13 @@ spec:
               forProvider:
                 properties:
                   projectId:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               initProvider:
@@ -92,9 +96,13 @@ spec:
                   autoscaler.
                 properties:
                   projectId:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               managementPolicies:
@@ -277,9 +285,13 @@ spec:
                   id:
                     type: string
                   projectId:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   serviceName:
-                    description: Service name of the vrack resource.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the vrack resource.
                     type: string
                 type: object
               conditions:

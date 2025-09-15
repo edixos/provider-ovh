@@ -15,12 +15,15 @@ import (
 
 type UserInitParameters struct {
 
+	// User description.
 	// User description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// User's email.
 	// User's email
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// User's group.
 	// User's group
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/me/v1alpha1.Group
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
@@ -33,51 +36,64 @@ type UserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
+	// User's login suffix.
 	// User's login suffix
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 }
 
 type UserObservation struct {
 
+	// Creation date of this user.
 	// Creation date of this user
 	Creation *string `json:"creation,omitempty" tf:"creation,omitempty"`
 
+	// User description.
 	// User description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// User's email.
 	// User's email
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// User's group.
 	// User's group
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Last update of this user.
 	// Last update of this user
 	LastUpdate *string `json:"lastUpdate,omitempty" tf:"last_update,omitempty"`
 
+	// User's login suffix.
 	// User's login suffix
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
+	// When the user changed his password for the last time.
 	// When the user changed his password for the last time
 	PasswordLastUpdate *string `json:"passwordLastUpdate,omitempty" tf:"password_last_update,omitempty"`
 
+	// Current user's status.
 	// Current user's status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// URN of the user, used when writing IAM policies
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
 type UserParameters struct {
 
+	// User description.
 	// User description
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// User's email.
 	// User's email
 	// +kubebuilder:validation:Optional
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// User's group.
 	// User's group
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/me/v1alpha1.Group
 	// +kubebuilder:validation:Optional
@@ -91,10 +107,12 @@ type UserParameters struct {
 	// +kubebuilder:validation:Optional
 	GroupSelector *v1.Selector `json:"groupSelector,omitempty" tf:"-"`
 
+	// User's login suffix.
 	// User's login suffix
 	// +kubebuilder:validation:Optional
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
+	// User's password.
 	// User's password
 	// +kubebuilder:validation:Optional
 	PasswordSecretRef v1.SecretKeySelector `json:"passwordSecretRef" tf:"-"`
@@ -127,7 +145,7 @@ type UserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// User is the Schema for the Users API. <no value>
+// User is the Schema for the Users API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseUserInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,45 +28,58 @@ type ProjectDatabaseUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseUserObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Date of the creation of the user.
 	// Date of the creation of the user
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// ID of the user.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the user.
 	// Current status of the user
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseUserParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -79,18 +93,22 @@ type ProjectDatabaseUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	// +kubebuilder:validation:Optional
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	// Name of the user
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -122,7 +140,7 @@ type ProjectDatabaseUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseUser is the Schema for the ProjectDatabaseUsers API. <no value>
+// ProjectDatabaseUser is the Schema for the ProjectDatabaseUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

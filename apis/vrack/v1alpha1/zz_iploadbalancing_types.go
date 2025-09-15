@@ -15,9 +15,11 @@ import (
 
 type IploadbalancingInitParameters struct {
 
+	// The id of the IP Load Balancing.
 	// Your ipLoadbalancing
 	IPLoadbalancing *string `json:"ipLoadbalancing,omitempty" tf:"ip_loadbalancing,omitempty"`
 
+	// The id of the vrack.
 	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -25,19 +27,23 @@ type IploadbalancingInitParameters struct {
 type IploadbalancingObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The id of the IP Load Balancing.
 	// Your ipLoadbalancing
 	IPLoadbalancing *string `json:"ipLoadbalancing,omitempty" tf:"ip_loadbalancing,omitempty"`
 
+	// The id of the vrack.
 	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type IploadbalancingParameters struct {
 
+	// The id of the IP Load Balancing.
 	// Your ipLoadbalancing
 	// +kubebuilder:validation:Optional
 	IPLoadbalancing *string `json:"ipLoadbalancing,omitempty" tf:"ip_loadbalancing,omitempty"`
 
+	// The id of the vrack.
 	// The internal name of your vrack
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -70,7 +76,7 @@ type IploadbalancingStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Iploadbalancing is the Schema for the Iploadbalancings API. <no value>
+// Iploadbalancing is the Schema for the Iploadbalancings API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: SubnetV2 is the Schema for the SubnetV2s API. <no value>
+        description: SubnetV2 is the Schema for the SubnetV2s API.
         properties:
           apiVersion:
             description: |-
@@ -72,8 +72,10 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  allocationPool:
-                    description: DHCP allocation pools of subnet
+                  allocationPools:
+                    description: |-
+                      List of IP allocation pools Changing this value recreates the resource.
+                      DHCP allocation pools of subnet
                     items:
                       properties:
                         end:
@@ -83,24 +85,36 @@ spec:
                       type: object
                     type: array
                   cidr:
-                    description: CIDR of subnet
+                    description: |-
+                      IP range of the subnet Changing this value recreates the subnet.
+                      CIDR of subnet
                     type: string
                   dhcp:
-                    description: Enable DHCP in subnet
+                    description: |-
+                      Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
+                      Enable DHCP in subnet
                     type: boolean
                   dnsNameservers:
-                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    description: |-
+                      DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
+                      List of DNS nameservers, default: 213.186.33.99
                     items:
                       type: string
                     type: array
                   enableGatewayIp:
-                    description: Enable gateway IP in subnet
+                    description: |-
+                      Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
+                      Enable gateway IP in subnet
                     type: boolean
                   gatewayIp:
-                    description: Gateway IP of subnet
+                    description: |-
+                      See Argument Reference above.
+                      Gateway IP of subnet
                     type: string
                   hostRoute:
-                    description: Static host routes of subnet
+                    description: |-
+                      List of custom host routes. Changing this value recreates the resource.
+                      Static host routes of subnet
                     items:
                       properties:
                         destination:
@@ -110,10 +124,14 @@ spec:
                       type: object
                     type: array
                   name:
-                    description: Name of subnet
+                    description: |-
+                      Name of the subnet Changing this value recreates the subnet.
+                      Name of subnet
                     type: string
                   networkId:
-                    description: Network ID of subnet
+                    description: |-
+                      The id of the network. Changing this forces a new resource to be created.
+                      Network ID of subnet
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -192,12 +210,20 @@ spec:
                         type: object
                     type: object
                   region:
-                    description: Region of network/subnet
+                    description: |-
+                      The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
+                      Region of network/subnet
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
+                  useDefaultPublicDnsResolver:
+                    description: |-
+                      Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+                      Use OVH default DNS
+                    type: boolean
                 type: object
               initProvider:
                 description: |-
@@ -212,8 +238,10 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  allocationPool:
-                    description: DHCP allocation pools of subnet
+                  allocationPools:
+                    description: |-
+                      List of IP allocation pools Changing this value recreates the resource.
+                      DHCP allocation pools of subnet
                     items:
                       properties:
                         end:
@@ -223,24 +251,36 @@ spec:
                       type: object
                     type: array
                   cidr:
-                    description: CIDR of subnet
+                    description: |-
+                      IP range of the subnet Changing this value recreates the subnet.
+                      CIDR of subnet
                     type: string
                   dhcp:
-                    description: Enable DHCP in subnet
+                    description: |-
+                      Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
+                      Enable DHCP in subnet
                     type: boolean
                   dnsNameservers:
-                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    description: |-
+                      DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
+                      List of DNS nameservers, default: 213.186.33.99
                     items:
                       type: string
                     type: array
                   enableGatewayIp:
-                    description: Enable gateway IP in subnet
+                    description: |-
+                      Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
+                      Enable gateway IP in subnet
                     type: boolean
                   gatewayIp:
-                    description: Gateway IP of subnet
+                    description: |-
+                      See Argument Reference above.
+                      Gateway IP of subnet
                     type: string
                   hostRoute:
-                    description: Static host routes of subnet
+                    description: |-
+                      List of custom host routes. Changing this value recreates the resource.
+                      Static host routes of subnet
                     items:
                       properties:
                         destination:
@@ -250,10 +290,14 @@ spec:
                       type: object
                     type: array
                   name:
-                    description: Name of subnet
+                    description: |-
+                      Name of the subnet Changing this value recreates the subnet.
+                      Name of subnet
                     type: string
                   networkId:
-                    description: Network ID of subnet
+                    description: |-
+                      The id of the network. Changing this forces a new resource to be created.
+                      Network ID of subnet
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -332,12 +376,20 @@ spec:
                         type: object
                     type: object
                   region:
-                    description: Region of network/subnet
+                    description: |-
+                      The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
+                      Region of network/subnet
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
+                  useDefaultPublicDnsResolver:
+                    description: |-
+                      Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+                      Use OVH default DNS
+                    type: boolean
                 type: object
               managementPolicies:
                 default:
@@ -528,8 +580,10 @@ spec:
             properties:
               atProvider:
                 properties:
-                  allocationPool:
-                    description: DHCP allocation pools of subnet
+                  allocationPools:
+                    description: |-
+                      List of IP allocation pools Changing this value recreates the resource.
+                      DHCP allocation pools of subnet
                     items:
                       properties:
                         end:
@@ -539,24 +593,36 @@ spec:
                       type: object
                     type: array
                   cidr:
-                    description: CIDR of subnet
+                    description: |-
+                      IP range of the subnet Changing this value recreates the subnet.
+                      CIDR of subnet
                     type: string
                   dhcp:
-                    description: Enable DHCP in subnet
+                    description: |-
+                      Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
+                      Enable DHCP in subnet
                     type: boolean
                   dnsNameservers:
-                    description: 'List of DNS nameservers, default: 213.186.33.99'
+                    description: |-
+                      DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
+                      List of DNS nameservers, default: 213.186.33.99
                     items:
                       type: string
                     type: array
                   enableGatewayIp:
-                    description: Enable gateway IP in subnet
+                    description: |-
+                      Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
+                      Enable gateway IP in subnet
                     type: boolean
                   gatewayIp:
-                    description: Gateway IP of subnet
+                    description: |-
+                      See Argument Reference above.
+                      Gateway IP of subnet
                     type: string
                   hostRoute:
-                    description: Static host routes of subnet
+                    description: |-
+                      List of custom host routes. Changing this value recreates the resource.
+                      Static host routes of subnet
                     items:
                       properties:
                         destination:
@@ -568,18 +634,30 @@ spec:
                   id:
                     type: string
                   name:
-                    description: Name of subnet
+                    description: |-
+                      Name of the subnet Changing this value recreates the subnet.
+                      Name of subnet
                     type: string
                   networkId:
-                    description: Network ID of subnet
+                    description: |-
+                      The id of the network. Changing this forces a new resource to be created.
+                      Network ID of subnet
                     type: string
                   region:
-                    description: Region of network/subnet
+                    description: |-
+                      The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
+                      Region of network/subnet
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
+                  useDefaultPublicDnsResolver:
+                    description: |-
+                      Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+                      Use OVH default DNS
+                    type: boolean
                 type: object
               conditions:
                 description: Conditions of the resource.

@@ -16,8 +16,10 @@ import (
 type ConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -25,8 +27,10 @@ type ConfigurationInitParameters struct {
 type ConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -34,9 +38,11 @@ type ConfigurationObservation struct {
 type ConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -46,12 +52,17 @@ type DetailsInitParameters struct {
 }
 
 type DetailsObservation struct {
+
+	// description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
+	// order detail id
 	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
 
@@ -61,11 +72,14 @@ type DetailsParameters struct {
 type IploadbalancingInitParameters struct {
 
 	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
+	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Details about an Order
+	// Details about an Order
 	Order []OrderInitParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -73,11 +87,14 @@ type IploadbalancingInitParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanInitParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	PlanOption []PlanOptionInitParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
 	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null.
 	SSLConfiguration *string `json:"sslConfiguration,omitempty" tf:"ssl_configuration,omitempty"`
 }
@@ -85,28 +102,36 @@ type IploadbalancingInitParameters struct {
 type IploadbalancingObservation struct {
 
 	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
+	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Your IP load balancing
+	// Your IP load balancing
 	IPLoadbalancing *string `json:"ipLoadbalancing,omitempty" tf:"ip_loadbalancing,omitempty"`
 
+	// The IPV4 associated to your IP load balancing
 	// The IPV4 associated to your IP load balancing
 	IPv4 *string `json:"ipv4,omitempty" tf:"ipv4,omitempty"`
 
 	// The IPV6 associated to your IP load balancing. DEPRECATED.
+	// The IPV6 associated to your IP load balancing. DEPRECATED.
 	IPv6 *string `json:"ipv6,omitempty" tf:"ipv6,omitempty"`
 
+	// The offer of your IP load balancing
 	// The offer of your IP load balancing
 	Offer *string `json:"offer,omitempty" tf:"offer,omitempty"`
 
 	// Details about an Order
+	// Details about an Order
 	Order []OrderObservation `json:"order,omitempty" tf:"order,omitempty"`
 
 	// Available additional zone for your Load Balancer
+	// Available additional zone for your Load Balancer
 	OrderableZone []OrderableZoneObservation `json:"orderableZone,omitempty" tf:"orderable_zone,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -114,28 +139,37 @@ type IploadbalancingObservation struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	PlanOption []PlanOptionObservation `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
 	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null.
 	SSLConfiguration *string `json:"sslConfiguration,omitempty" tf:"ssl_configuration,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Current state of your IP
+	// Current state of your IP
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 
+	// URN of the load balancer, used when writing IAM policies
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 
+	// Vrack eligibility
 	// Vrack eligibility
 	VrackEligibility *bool `json:"vrackEligibility,omitempty" tf:"vrack_eligibility,omitempty"`
 
 	// Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
+	// Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
 	VrackName *string `json:"vrackName,omitempty" tf:"vrack_name,omitempty"`
 
+	// Location where your service is
 	// Location where your service is
 	Zone []*string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -143,13 +177,16 @@ type IploadbalancingObservation struct {
 type IploadbalancingParameters struct {
 
 	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
+	// Set the name displayed in ManagerV6 for your iplb (max 50 chars)
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Details about an Order
+	// Details about an Order
 	// +kubebuilder:validation:Optional
 	Order []OrderParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	// +kubebuilder:validation:Optional
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
@@ -159,13 +196,16 @@ type IploadbalancingParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	Plan []PlanParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	PlanOption []PlanOptionParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
 	// Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null.
 	// +kubebuilder:validation:Optional
 	SSLConfiguration *string `json:"sslConfiguration,omitempty" tf:"ssl_configuration,omitempty"`
@@ -177,14 +217,18 @@ type OrderInitParameters struct {
 type OrderObservation struct {
 
 	// date
+	// date
 	Date *string `json:"date,omitempty" tf:"date,omitempty"`
 
+	// Information about a Bill entry
 	// Information about a Bill entry
 	Details []DetailsObservation `json:"details,omitempty" tf:"details,omitempty"`
 
 	// expiration date
+	// expiration date
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
+	// order id
 	// order id
 	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
@@ -196,8 +240,11 @@ type OrderableZoneInitParameters struct {
 }
 
 type OrderableZoneObservation struct {
+
+	// The zone three letter code
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 }
 
@@ -207,17 +254,22 @@ type OrderableZoneParameters struct {
 type PlanInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -225,17 +277,22 @@ type PlanInitParameters struct {
 type PlanObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -243,8 +300,10 @@ type PlanObservation struct {
 type PlanOptionConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -252,8 +311,10 @@ type PlanOptionConfigurationInitParameters struct {
 type PlanOptionConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -261,9 +322,11 @@ type PlanOptionConfigurationObservation struct {
 type PlanOptionConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -272,17 +335,22 @@ type PlanOptionConfigurationParameters struct {
 type PlanOptionInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -290,17 +358,22 @@ type PlanOptionInitParameters struct {
 type PlanOptionObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -308,21 +381,26 @@ type PlanOptionObservation struct {
 type PlanOptionParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []PlanOptionConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
@@ -331,21 +409,26 @@ type PlanOptionParameters struct {
 type PlanParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
 	// Plan code
+	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
@@ -378,7 +461,7 @@ type IploadbalancingStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Iploadbalancing is the Schema for the Iploadbalancings API. <no value>
+// Iploadbalancing is the Schema for the Iploadbalancings API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

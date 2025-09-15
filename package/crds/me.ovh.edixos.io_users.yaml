@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: User is the Schema for the Users API. <no value>
+        description: User is the Schema for the Users API.
         properties:
           apiVersion:
             description: |-
@@ -73,13 +73,19 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: User description
+                    description: |-
+                      User description.
+                      User description
                     type: string
                   email:
-                    description: User's email
+                    description: |-
+                      User's email.
+                      User's email
                     type: string
                   group:
-                    description: User's group
+                    description: |-
+                      User's group.
+                      User's group
                     type: string
                   groupRef:
                     description: Reference to a Group in me to populate group.
@@ -156,10 +162,14 @@ spec:
                         type: object
                     type: object
                   login:
-                    description: User's login suffix
+                    description: |-
+                      User's login suffix.
+                      User's login suffix
                     type: string
                   passwordSecretRef:
-                    description: User's password
+                    description: |-
+                      User's password.
+                      User's password
                     properties:
                       key:
                         description: The key to select.
@@ -190,13 +200,19 @@ spec:
                   autoscaler.
                 properties:
                   description:
-                    description: User description
+                    description: |-
+                      User description.
+                      User description
                     type: string
                   email:
-                    description: User's email
+                    description: |-
+                      User's email.
+                      User's email
                     type: string
                   group:
-                    description: User's group
+                    description: |-
+                      User's group.
+                      User's group
                     type: string
                   groupRef:
                     description: Reference to a Group in me to populate group.
@@ -273,7 +289,9 @@ spec:
                         type: object
                     type: object
                   login:
-                    description: User's login suffix
+                    description: |-
+                      User's login suffix.
+                      User's login suffix
                     type: string
                 type: object
               managementPolicies:
@@ -461,32 +479,49 @@ spec:
               atProvider:
                 properties:
                   creation:
-                    description: Creation date of this user
+                    description: |-
+                      Creation date of this user.
+                      Creation date of this user
                     type: string
                   description:
-                    description: User description
+                    description: |-
+                      User description.
+                      User description
                     type: string
                   email:
-                    description: User's email
+                    description: |-
+                      User's email.
+                      User's email
                     type: string
                   group:
-                    description: User's group
+                    description: |-
+                      User's group.
+                      User's group
                     type: string
                   id:
                     type: string
                   lastUpdate:
-                    description: Last update of this user
+                    description: |-
+                      Last update of this user.
+                      Last update of this user
                     type: string
                   login:
-                    description: User's login suffix
+                    description: |-
+                      User's login suffix.
+                      User's login suffix
                     type: string
                   passwordLastUpdate:
-                    description: When the user changed his password for the last time
+                    description: |-
+                      When the user changed his password for the last time.
+                      When the user changed his password for the last time
                     type: string
                   status:
-                    description: Current user's status
+                    description: |-
+                      Current user's status.
+                      Current user's status
                     type: string
                   urn:
+                    description: URN of the user, used when writing IAM policies
                     type: string
                 type: object
               conditions:

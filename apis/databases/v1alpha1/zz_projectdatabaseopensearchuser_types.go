@@ -15,28 +15,34 @@ import (
 
 type AclsInitParameters struct {
 
+	// Pattern of the ACL.
 	// Pattern of the ACL
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Permission of the ACL Available permission:
 	// Permission of the ACL
 	Permission *string `json:"permission,omitempty" tf:"permission,omitempty"`
 }
 
 type AclsObservation struct {
 
+	// Pattern of the ACL.
 	// Pattern of the ACL
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Permission of the ACL Available permission:
 	// Permission of the ACL
 	Permission *string `json:"permission,omitempty" tf:"permission,omitempty"`
 }
 
 type AclsParameters struct {
 
+	// Pattern of the ACL.
 	// Pattern of the ACL
 	// +kubebuilder:validation:Optional
 	Pattern *string `json:"pattern" tf:"pattern,omitempty"`
 
+	// Permission of the ACL Available permission:
 	// Permission of the ACL
 	// +kubebuilder:validation:Optional
 	Permission *string `json:"permission" tf:"permission,omitempty"`
@@ -44,9 +50,11 @@ type AclsParameters struct {
 
 type ProjectDatabaseOpensearchUserInitParameters struct {
 
+	// Acls of the user.
 	// Acls of the user
 	Acls []AclsInitParameters `json:"acls,omitempty" tf:"acls,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -59,46 +67,59 @@ type ProjectDatabaseOpensearchUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseOpensearchUserObservation struct {
 
+	// Acls of the user.
 	// Acls of the user
 	Acls []AclsObservation `json:"acls,omitempty" tf:"acls,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Date of the creation of the user.
 	// Date of the creation of the user
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// ID of the user.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the user.
 	// Current status of the user
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseOpensearchUserParameters struct {
 
+	// Acls of the user.
 	// Acls of the user
 	// +kubebuilder:validation:Optional
 	Acls []AclsParameters `json:"acls,omitempty" tf:"acls,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -112,14 +133,17 @@ type ProjectDatabaseOpensearchUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
 	// Name of the user
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -151,7 +175,7 @@ type ProjectDatabaseOpensearchUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseOpensearchUser is the Schema for the ProjectDatabaseOpensearchUsers API. <no value>
+// ProjectDatabaseOpensearchUser is the Schema for the ProjectDatabaseOpensearchUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

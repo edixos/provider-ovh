@@ -15,50 +15,62 @@ import (
 
 type PrivatedatabaseUserGrantInitParameters struct {
 
+	// Database name where add grant.
 	// Database name where add grant
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// Database name where add grant. Values can be:
 	// Database name where add grant
 	Grant *string `json:"grant,omitempty" tf:"grant,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases.
 	// User name used to connect on your databases
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
 }
 
 type PrivatedatabaseUserGrantObservation struct {
 
+	// Database name where add grant.
 	// Database name where add grant
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// Database name where add grant. Values can be:
 	// Database name where add grant
 	Grant *string `json:"grant,omitempty" tf:"grant,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases.
 	// User name used to connect on your databases
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
 }
 
 type PrivatedatabaseUserGrantParameters struct {
 
+	// Database name where add grant.
 	// Database name where add grant
 	// +kubebuilder:validation:Optional
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// Database name where add grant. Values can be:
 	// Database name where add grant
 	// +kubebuilder:validation:Optional
 	Grant *string `json:"grant,omitempty" tf:"grant,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// User name used to connect on your databases.
 	// User name used to connect on your databases
 	// +kubebuilder:validation:Optional
 	UserName *string `json:"userName,omitempty" tf:"user_name,omitempty"`
@@ -91,7 +103,7 @@ type PrivatedatabaseUserGrantStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// PrivatedatabaseUserGrant is the Schema for the PrivatedatabaseUserGrants API. <no value>
+// PrivatedatabaseUserGrant is the Schema for the PrivatedatabaseUserGrants API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

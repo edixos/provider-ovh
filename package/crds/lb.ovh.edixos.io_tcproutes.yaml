@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: TCPRoute is the Schema for the TCPRoutes API. <no value>
+        description: TCPRoute is the Schema for the TCPRoutes API.
         properties:
           apiVersion:
             description: |-
@@ -73,32 +73,42 @@ spec:
               forProvider:
                 properties:
                   action:
-                    description: Action triggered when all rules match
+                    description: |-
+                      Action triggered when all rules match
+                      Action triggered when all rules match
                     items:
                       properties:
                         target:
-                          description: Farm ID for "farm" action type, empty for others
+                          description: |-
+                            Farm ID for "farm" action type, empty for others.
+                            Farm ID for "farm" action type, empty for others
                           type: string
                         type:
-                          description: Action to trigger if all the rules of this
-                            route matches
+                          description: |-
+                            Action to trigger if all the rules of this route matches
+                            Action to trigger if all the rules of this route matches
                           type: string
                       type: object
                     type: array
                   displayName:
-                    description: Human readable name for your route, this field is
-                      for you
+                    description: |-
+                      Human readable name for your route, this field is for you
+                      Human readable name for your route, this field is for you
                     type: string
                   frontendId:
-                    description: Route traffic for this frontend
+                    description: |-
+                      Route traffic for this frontend
+                      Route traffic for this frontend
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   weight:
-                    description: Route priority ([0..255]). 0 if null. Highest priority
-                      routes are evaluated last. Only the first matching route will
-                      trigger an action
+                    description: |-
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
                     type: number
                 type: object
               initProvider:
@@ -115,32 +125,42 @@ spec:
                   autoscaler.
                 properties:
                   action:
-                    description: Action triggered when all rules match
+                    description: |-
+                      Action triggered when all rules match
+                      Action triggered when all rules match
                     items:
                       properties:
                         target:
-                          description: Farm ID for "farm" action type, empty for others
+                          description: |-
+                            Farm ID for "farm" action type, empty for others.
+                            Farm ID for "farm" action type, empty for others
                           type: string
                         type:
-                          description: Action to trigger if all the rules of this
-                            route matches
+                          description: |-
+                            Action to trigger if all the rules of this route matches
+                            Action to trigger if all the rules of this route matches
                           type: string
                       type: object
                     type: array
                   displayName:
-                    description: Human readable name for your route, this field is
-                      for you
+                    description: |-
+                      Human readable name for your route, this field is for you
+                      Human readable name for your route, this field is for you
                     type: string
                   frontendId:
-                    description: Route traffic for this frontend
+                    description: |-
+                      Route traffic for this frontend
+                      Route traffic for this frontend
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   weight:
-                    description: Route priority ([0..255]). 0 if null. Highest priority
-                      routes are evaluated last. Only the first matching route will
-                      trigger an action
+                    description: |-
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
                     type: number
                 type: object
               managementPolicies:
@@ -325,55 +345,80 @@ spec:
               atProvider:
                 properties:
                   action:
-                    description: Action triggered when all rules match
+                    description: |-
+                      Action triggered when all rules match
+                      Action triggered when all rules match
                     items:
                       properties:
                         target:
-                          description: Farm ID for "farm" action type, empty for others
+                          description: |-
+                            Farm ID for "farm" action type, empty for others.
+                            Farm ID for "farm" action type, empty for others
                           type: string
                         type:
-                          description: Action to trigger if all the rules of this
-                            route matches
+                          description: |-
+                            Action to trigger if all the rules of this route matches
+                            Action to trigger if all the rules of this route matches
                           type: string
                       type: object
                     type: array
                   displayName:
-                    description: Human readable name for your route, this field is
-                      for you
+                    description: |-
+                      Human readable name for your route, this field is for you
+                      Human readable name for your route, this field is for you
                     type: string
                   frontendId:
-                    description: Route traffic for this frontend
+                    description: |-
+                      Route traffic for this frontend
+                      Route traffic for this frontend
                     type: number
                   id:
                     type: string
                   rules:
-                    description: List of rules to match to trigger action
+                    description: |-
+                      List of rules to match to trigger action
+                      List of rules to match to trigger action
                     items:
                       properties:
                         field:
+                          description: Name of the field to match like "protocol"
+                            or "host" "/ipLoadbalancing/{serviceName}/route/availableRules"
+                            for a list of available rules
                           type: string
                         match:
+                          description: Matching operator. Not all operators are available
+                            for all fields. See "availableRules"
                           type: string
                         negate:
+                          description: Invert the matching operator effect
                           type: boolean
                         pattern:
+                          description: Value to match against this match. Interpretation
+                            if this field depends on the match and field
                           type: string
                         ruleId:
+                          description: Id of your rule
                           type: number
                         subField:
+                          description: Name of sub-field, if applicable. This may
+                            be a Cookie or Header name for instance
                           type: string
                       type: object
                     type: array
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   status:
-                    description: Route status. Routes in "ok" state are ready to operate
+                    description: |-
+                      Route status. Routes in "ok" state are ready to operate
+                      Route status. Routes in "ok" state are ready to operate
                     type: string
                   weight:
-                    description: Route priority ([0..255]). 0 if null. Highest priority
-                      routes are evaluated last. Only the first matching route will
-                      trigger an action
+                    description: |-
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
+                      Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
                     type: number
                 type: object
               conditions:

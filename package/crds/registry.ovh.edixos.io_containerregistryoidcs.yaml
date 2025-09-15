@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ContainerRegistryOIDC is the Schema for the ContainerRegistryOIDCs
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -74,16 +74,26 @@ spec:
               forProvider:
                 properties:
                   deleteUsers:
+                    description: Delete existing users from Harbor. OIDC can't be
+                      enabled if there is at least one user already created. This
+                      parameter is only used at OIDC configuration creation. Changing
+                      this value recreates the resource.
                     type: boolean
                   oidcAdminGroup:
+                    description: Specify an OIDC admin group name. All OIDC users
+                      in this group will have harbor admin privilege. Keep it blank
+                      if you do not want to.
                     type: string
                   oidcAutoOnboard:
+                    description: Skip the onboarding screen, so user cannot change
+                      its username. Username is provided from ID Token.
                     type: boolean
                   oidcClientId:
+                    description: The client ID with which Harbor is registered as
+                      client application with the OIDC provider.
                     type: string
                   oidcClientSecretSecretRef:
-                    description: A SecretKeySelector is a reference to a secret key
-                      in an arbitrary namespace.
+                    description: The secret for the Harbor client application.
                     properties:
                       key:
                         description: The key to select.
@@ -100,18 +110,33 @@ spec:
                     - namespace
                     type: object
                   oidcEndpoint:
+                    description: The URL of an OIDC-compliant server.
                     type: string
                   oidcGroupsClaim:
+                    description: The name of Claim in the ID token whose value is
+                      the list of group names.
                     type: string
                   oidcName:
+                    description: The name of the OIDC provider.
                     type: string
                   oidcScope:
+                    description: The scope sent to OIDC server during authentication.
+                      It's a comma-separated string that must contain 'openid' and
+                      usually also contains 'profile' and 'email'. To obtain refresh
+                      tokens it should also contain 'offline_access'.
                     type: string
                   oidcUserClaim:
+                    description: The name of the claim in the ID Token where the username
+                      is retrieved from. If not specified, it will default to 'name'
+                      (only useful when automatic Onboarding is enabled).
                     type: string
                   oidcVerifyCert:
+                    description: Set it to false if your OIDC server is hosted via
+                      self-signed certificate.
                     type: boolean
                   registryId:
+                    description: The ID of the Managed Private Registry. Changing
+                      this value recreates the resource.
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -190,6 +215,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               initProvider:
@@ -206,26 +234,52 @@ spec:
                   autoscaler.
                 properties:
                   deleteUsers:
+                    description: Delete existing users from Harbor. OIDC can't be
+                      enabled if there is at least one user already created. This
+                      parameter is only used at OIDC configuration creation. Changing
+                      this value recreates the resource.
                     type: boolean
                   oidcAdminGroup:
+                    description: Specify an OIDC admin group name. All OIDC users
+                      in this group will have harbor admin privilege. Keep it blank
+                      if you do not want to.
                     type: string
                   oidcAutoOnboard:
+                    description: Skip the onboarding screen, so user cannot change
+                      its username. Username is provided from ID Token.
                     type: boolean
                   oidcClientId:
+                    description: The client ID with which Harbor is registered as
+                      client application with the OIDC provider.
                     type: string
                   oidcEndpoint:
+                    description: The URL of an OIDC-compliant server.
                     type: string
                   oidcGroupsClaim:
+                    description: The name of Claim in the ID token whose value is
+                      the list of group names.
                     type: string
                   oidcName:
+                    description: The name of the OIDC provider.
                     type: string
                   oidcScope:
+                    description: The scope sent to OIDC server during authentication.
+                      It's a comma-separated string that must contain 'openid' and
+                      usually also contains 'profile' and 'email'. To obtain refresh
+                      tokens it should also contain 'offline_access'.
                     type: string
                   oidcUserClaim:
+                    description: The name of the claim in the ID Token where the username
+                      is retrieved from. If not specified, it will default to 'name'
+                      (only useful when automatic Onboarding is enabled).
                     type: string
                   oidcVerifyCert:
+                    description: Set it to false if your OIDC server is hosted via
+                      self-signed certificate.
                     type: boolean
                   registryId:
+                    description: The ID of the Managed Private Registry. Changing
+                      this value recreates the resource.
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -304,6 +358,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               managementPolicies:
@@ -504,30 +561,59 @@ spec:
               atProvider:
                 properties:
                   deleteUsers:
+                    description: Delete existing users from Harbor. OIDC can't be
+                      enabled if there is at least one user already created. This
+                      parameter is only used at OIDC configuration creation. Changing
+                      this value recreates the resource.
                     type: boolean
                   id:
                     type: string
                   oidcAdminGroup:
+                    description: Specify an OIDC admin group name. All OIDC users
+                      in this group will have harbor admin privilege. Keep it blank
+                      if you do not want to.
                     type: string
                   oidcAutoOnboard:
+                    description: Skip the onboarding screen, so user cannot change
+                      its username. Username is provided from ID Token.
                     type: boolean
                   oidcClientId:
+                    description: The client ID with which Harbor is registered as
+                      client application with the OIDC provider.
                     type: string
                   oidcEndpoint:
+                    description: The URL of an OIDC-compliant server.
                     type: string
                   oidcGroupsClaim:
+                    description: The name of Claim in the ID token whose value is
+                      the list of group names.
                     type: string
                   oidcName:
+                    description: The name of the OIDC provider.
                     type: string
                   oidcScope:
+                    description: The scope sent to OIDC server during authentication.
+                      It's a comma-separated string that must contain 'openid' and
+                      usually also contains 'profile' and 'email'. To obtain refresh
+                      tokens it should also contain 'offline_access'.
                     type: string
                   oidcUserClaim:
+                    description: The name of the claim in the ID Token where the username
+                      is retrieved from. If not specified, it will default to 'name'
+                      (only useful when automatic Onboarding is enabled).
                     type: string
                   oidcVerifyCert:
+                    description: Set it to false if your OIDC server is hosted via
+                      self-signed certificate.
                     type: boolean
                   registryId:
+                    description: The ID of the Managed Private Registry. Changing
+                      this value recreates the resource.
                     type: string
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               conditions:

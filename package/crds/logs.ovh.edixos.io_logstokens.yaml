@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: LogsToken is the Schema for the LogsTokens API. <no value>
+        description: LogsToken is the Schema for the LogsTokens API.
         properties:
           apiVersion:
             description: |-
@@ -73,13 +73,19 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Cluster ID
+                    description: |-
+                      Cluster ID. If not provided, the default cluster_id is used
+                      Cluster ID
                     type: string
                   name:
-                    description: Token name
+                    description: |-
+                      Name of the token
+                      Token name
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The LDP service name
+                      Service name
                     type: string
                 type: object
               initProvider:
@@ -96,13 +102,19 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Cluster ID
+                    description: |-
+                      Cluster ID. If not provided, the default cluster_id is used
+                      Cluster ID
                     type: string
                   name:
-                    description: Token name
+                    description: |-
+                      Name of the token
+                      Token name
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The LDP service name
+                      Service name
                     type: string
                 type: object
               managementPolicies:
@@ -287,24 +299,36 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Cluster ID
+                    description: |-
+                      Cluster ID. If not provided, the default cluster_id is used
+                      Cluster ID
                     type: string
                   createdAt:
-                    description: Token creation
+                    description: |-
+                      Token creation date
+                      Token creation
                     type: string
                   id:
                     type: string
                   name:
-                    description: Token name
+                    description: |-
+                      Name of the token
+                      Token name
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The LDP service name
+                      Service name
                     type: string
                   tokenId:
-                    description: Token used
+                    description: |-
+                      ID of the token
+                      Token used
                     type: string
                   updatedAt:
-                    description: Token last update
+                    description: |-
+                      Token last update date
+                      Token last update
                     type: string
                 type: object
               conditions:

@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseIPRestrictionInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,42 +28,53 @@ type ProjectDatabaseIPRestrictionInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Description of the IP restriction.
 	// Description of the IP restriction
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The engine of the database cluster you want to add an IP restriction. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Authorized IP.
 	// Authorized IP
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseIPRestrictionObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Description of the IP restriction.
 	// Description of the IP restriction
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The engine of the database cluster you want to add an IP restriction. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Authorized IP.
 	// Authorized IP
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the IP restriction.
 	// Current status of the IP restriction
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseIPRestrictionParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -76,18 +88,22 @@ type ProjectDatabaseIPRestrictionParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Description of the IP restriction.
 	// Description of the IP restriction
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The engine of the database cluster you want to add an IP restriction. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	// +kubebuilder:validation:Optional
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Authorized IP.
 	// Authorized IP
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -119,7 +135,7 @@ type ProjectDatabaseIPRestrictionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseIPRestriction is the Schema for the ProjectDatabaseIPRestrictions API. <no value>
+// ProjectDatabaseIPRestriction is the Schema for the ProjectDatabaseIPRestrictions API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: DedicatedServer is the Schema for the DedicatedServers API. <no
-          value>
+        description: DedicatedServer is the Schema for the DedicatedServers API.
         properties:
           apiVersion:
             description: |-
@@ -74,10 +73,12 @@ spec:
               forProvider:
                 properties:
                   serverId:
+                    description: The id of the dedicated server.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                 type: object
               initProvider:
@@ -94,10 +95,12 @@ spec:
                   autoscaler.
                 properties:
                   serverId:
+                    description: The id of the dedicated server.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                 type: object
               managementPolicies:
@@ -284,10 +287,12 @@ spec:
                   id:
                     type: string
                   serverId:
+                    description: The id of the dedicated server.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                 type: object
               conditions:

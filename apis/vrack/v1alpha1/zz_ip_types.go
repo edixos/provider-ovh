@@ -18,6 +18,9 @@ type IPInitParameters struct {
 	// Your IP block.
 	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
+	// Where you want your block announced on the network
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
 	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -35,6 +38,9 @@ type IPObservation struct {
 	// Your IP block
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Where you want your block announced on the network
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
 	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -47,6 +53,10 @@ type IPParameters struct {
 	// Your IP block.
 	// +kubebuilder:validation:Optional
 	Block *string `json:"block,omitempty" tf:"block,omitempty"`
+
+	// Where you want your block announced on the network
+	// +kubebuilder:validation:Optional
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// The internal name of your vrack
 	// +kubebuilder:validation:Optional

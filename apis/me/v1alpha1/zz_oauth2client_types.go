@@ -15,54 +15,68 @@ import (
 
 type Oauth2ClientInitParameters struct {
 
+	// List of callback urls when configuring the AUTHORIZATION_CODE flow.
 	// Callback URLs of the applications using this oauth2 client. Required if using the AUTHORIZATION_CODE flow.
 	CallbackUrls []*string `json:"callbackUrls,omitempty" tf:"callback_urls,omitempty"`
 
+	// OAuth2 client description.
 	// A description of your oauth2 client.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
 	Flow *string `json:"flow,omitempty" tf:"flow,omitempty"`
 
+	// OAuth2 client name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
 type Oauth2ClientObservation struct {
 
+	// List of callback urls when configuring the AUTHORIZATION_CODE flow.
 	// Callback URLs of the applications using this oauth2 client. Required if using the AUTHORIZATION_CODE flow.
 	CallbackUrls []*string `json:"callbackUrls,omitempty" tf:"callback_urls,omitempty"`
 
+	// Client ID of the created service account.
 	// Client ID for the oauth2 client, generated during the resource creation.
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
+	// OAuth2 client description.
 	// A description of your oauth2 client.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
 	Flow *string `json:"flow,omitempty" tf:"flow,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Identity URN of the service account to be used inside an IAM policy.
 	// URN that will allow you to associate this oauth2 client with an access policy
 	Identity *string `json:"identity,omitempty" tf:"identity,omitempty"`
 
+	// OAuth2 client name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
 type Oauth2ClientParameters struct {
 
+	// List of callback urls when configuring the AUTHORIZATION_CODE flow.
 	// Callback URLs of the applications using this oauth2 client. Required if using the AUTHORIZATION_CODE flow.
 	// +kubebuilder:validation:Optional
 	CallbackUrls []*string `json:"callbackUrls,omitempty" tf:"callback_urls,omitempty"`
 
+	// OAuth2 client description.
 	// A description of your oauth2 client.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
 	// +kubebuilder:validation:Optional
 	Flow *string `json:"flow,omitempty" tf:"flow,omitempty"`
 
+	// OAuth2 client name.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
@@ -94,7 +108,7 @@ type Oauth2ClientStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Oauth2Client is the Schema for the Oauth2Clients API. <no value>
+// Oauth2Client is the Schema for the Oauth2Clients API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

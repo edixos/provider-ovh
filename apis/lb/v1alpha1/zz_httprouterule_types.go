@@ -14,66 +14,92 @@ import (
 )
 
 type HTTPRouteRuleInitParameters struct {
+
+	// Human readable name for your rule, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/availableRouteRules" for a list of available rules
 	Field *string `json:"field,omitempty" tf:"field,omitempty"`
 
+	// Matching operator. Not all operators are available for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// Invert the matching operator effect
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// The route to apply this rule
 	RouteID *string `json:"routeId,omitempty" tf:"route_id,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	SubField *string `json:"subField,omitempty" tf:"sub_field,omitempty"`
 }
 
 type HTTPRouteRuleObservation struct {
+
+	// Human readable name for your rule, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/availableRouteRules" for a list of available rules
 	Field *string `json:"field,omitempty" tf:"field,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Matching operator. Not all operators are available for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// Invert the matching operator effect
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// The route to apply this rule
 	RouteID *string `json:"routeId,omitempty" tf:"route_id,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	SubField *string `json:"subField,omitempty" tf:"sub_field,omitempty"`
 }
 
 type HTTPRouteRuleParameters struct {
 
+	// Human readable name for your rule, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/availableRouteRules" for a list of available rules
 	// +kubebuilder:validation:Optional
 	Field *string `json:"field,omitempty" tf:"field,omitempty"`
 
+	// Matching operator. Not all operators are available for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
 	// +kubebuilder:validation:Optional
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// Invert the matching operator effect
 	// +kubebuilder:validation:Optional
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Value to match against this match. Interpretation if this field depends on the match and field
 	// +kubebuilder:validation:Optional
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// The route to apply this rule
 	// +kubebuilder:validation:Optional
 	RouteID *string `json:"routeId,omitempty" tf:"route_id,omitempty"`
 
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	// +kubebuilder:validation:Optional
 	SubField *string `json:"subField,omitempty" tf:"sub_field,omitempty"`
 }
@@ -105,7 +131,7 @@ type HTTPRouteRuleStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// HTTPRouteRule is the Schema for the HTTPRouteRules API. <no value>
+// HTTPRouteRule is the Schema for the HTTPRouteRules API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

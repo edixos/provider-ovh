@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: LogsOutputOpensearchIndex is the Schema for the LogsOutputOpensearchIndexs
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,16 +75,24 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: Index description
+                    description: |-
+                      Index description
+                      Index description
                     type: string
                   nbShard:
-                    description: Number of shard
+                    description: |-
+                      Number of shards
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   suffix:
-                    description: Index suffix
+                    description: |-
+                      Index suffix
+                      Index suffix
                     type: string
                 type: object
               initProvider:
@@ -101,16 +109,24 @@ spec:
                   autoscaler.
                 properties:
                   description:
-                    description: Index description
+                    description: |-
+                      Index description
+                      Index description
                     type: string
                   nbShard:
-                    description: Number of shard
+                    description: |-
+                      Number of shards
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   suffix:
-                    description: Index suffix
+                    description: |-
+                      Index suffix
+                      Index suffix
                     type: string
                 type: object
               managementPolicies:
@@ -304,43 +320,66 @@ spec:
               atProvider:
                 properties:
                   alertNotifyEnabled:
-                    description: If set, notify when size is near 80, 90 or 100 %
-                      of its maximum capacity
+                    description: |-
+                      If set, notify when size is near 80, 90 or 100 % of its maximum capacity
+                      If set, notify when size is near 80, 90 or 100 % of its maximum capacity
                     type: boolean
                   createdAt:
-                    description: Operation creation
+                    description: |-
+                      Index creation
+                      Operation creation
                     type: string
                   currentSize:
-                    description: Current Index size (in bytes)
+                    description: |-
+                      Current index size (in bytes)
+                      Current Index size (in bytes)
                     type: number
                   description:
-                    description: Index description
+                    description: |-
+                      Index description
+                      Index description
                     type: string
                   id:
                     type: string
                   indexId:
-                    description: Index ID
+                    description: |-
+                      Index ID
+                      Index ID
                     type: string
                   isEditable:
-                    description: Indicates if you are allowed to edit entry
+                    description: |-
+                      Indicates if you are allowed to edit entry
+                      Indicates if you are allowed to edit entry
                     type: boolean
                   maxSize:
-                    description: Maximum index size (in bytes)
+                    description: |-
+                      Maximum index size (in bytes)
+                      Maximum index size (in bytes)
                     type: number
                   name:
-                    description: Index name
+                    description: |-
+                      Index name
+                      Index name
                     type: string
                   nbShard:
-                    description: Number of shard
+                    description: |-
+                      Number of shards
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   suffix:
-                    description: Index suffix
+                    description: |-
+                      Index suffix
+                      Index suffix
                     type: string
                   updatedAt:
-                    description: Operation last update
+                    description: |-
+                      Index last update
+                      Operation last update
                     type: string
                 type: object
               conditions:

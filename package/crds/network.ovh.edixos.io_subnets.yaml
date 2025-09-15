@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Subnet is the Schema for the Subnets API. <no value>
+        description: Subnet is the Schema for the Subnets API.
         properties:
           apiVersion:
             description: |-
@@ -73,12 +73,20 @@ spec:
               forProvider:
                 properties:
                   dhcp:
+                    description: Enable DHCP. Changing this forces a new resource
+                      to be created. Defaults to false.
                     type: boolean
                   end:
+                    description: Last ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                   network:
+                    description: Global network in CIDR format. Changing this value
+                      recreates the subnet
                     type: string
                   networkId:
+                    description: The id of the network. Changing this forces a new
+                      resource to be created.
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -157,14 +165,22 @@ spec:
                         type: object
                     type: object
                   noGateway:
+                    description: Set to true if you don't want to set a default gateway
+                      IP. Changing this value recreates the resource. Defaults to
+                      false.
                     type: boolean
                   region:
+                    description: 'The region in which the network subnet will be created.
+                      Ex.: "GRA1". Changing this value recreates the resource.'
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   start:
+                    description: First ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                 type: object
               initProvider:
@@ -181,12 +197,20 @@ spec:
                   autoscaler.
                 properties:
                   dhcp:
+                    description: Enable DHCP. Changing this forces a new resource
+                      to be created. Defaults to false.
                     type: boolean
                   end:
+                    description: Last ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                   network:
+                    description: Global network in CIDR format. Changing this value
+                      recreates the subnet
                     type: string
                   networkId:
+                    description: The id of the network. Changing this forces a new
+                      resource to be created.
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -265,14 +289,22 @@ spec:
                         type: object
                     type: object
                   noGateway:
+                    description: Set to true if you don't want to set a default gateway
+                      IP. Changing this value recreates the resource. Defaults to
+                      false.
                     type: boolean
                   region:
+                    description: 'The region in which the network subnet will be created.
+                      Ex.: "GRA1". Changing this value recreates the resource.'
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   start:
+                    description: First ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                 type: object
               managementPolicies:
@@ -469,43 +501,73 @@ spec:
               atProvider:
                 properties:
                   cidr:
+                    description: Ip Block representing the subnet cidr.
                     type: string
                   dhcp:
+                    description: Enable DHCP. Changing this forces a new resource
+                      to be created. Defaults to false.
                     type: boolean
                   end:
+                    description: Last ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                   gatewayIp:
+                    description: The IP of the gateway
                     type: string
                   id:
                     type: string
                   ipPools:
+                    description: List of ip pools allocated in the subnet.
                     items:
                       properties:
                         dhcp:
+                          description: Enable DHCP. Changing this forces a new resource
+                            to be created. Defaults to false.
                           type: boolean
                         end:
+                          description: Last ip for this region. Changing this value
+                            recreates the subnet.
                           type: string
                         network:
+                          description: Global network in CIDR format. Changing this
+                            value recreates the subnet
                           type: string
                         region:
+                          description: 'The region in which the network subnet will
+                            be created. Ex.: "GRA1". Changing this value recreates
+                            the resource.'
                           type: string
                         start:
+                          description: First ip for this region. Changing this value
+                            recreates the subnet.
                           type: string
                       type: object
                     type: array
                   network:
+                    description: Global network in CIDR format. Changing this value
+                      recreates the subnet
                     type: string
                   networkId:
+                    description: The id of the network. Changing this forces a new
+                      resource to be created.
                     type: string
                   noGateway:
+                    description: Set to true if you don't want to set a default gateway
+                      IP. Changing this value recreates the resource. Defaults to
+                      false.
                     type: boolean
                   region:
+                    description: 'The region in which the network subnet will be created.
+                      Ex.: "GRA1". Changing this value recreates the resource.'
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   start:
+                    description: First ip for this region. Changing this value recreates
+                      the subnet.
                     type: string
                 type: object
               conditions:

@@ -14,52 +14,75 @@ import (
 )
 
 type PrivateNetworkInitParameters struct {
+
+	// The name of the network.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// an array of valid OVHcloud public cloud region ID in which the network will be available. Ex.: "GRA1". Defaults to all public cloud regions.
 	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type PrivateNetworkObservation struct {
+
+	// The id of the network
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The name of the network.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// an array of valid OVHcloud public cloud region ID in which the network will be available. Ex.: "GRA1". Defaults to all public cloud regions.
 	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
+	// A map representing information about the region.
 	RegionsAttributes []RegionsAttributesObservation `json:"regionsAttributes,omitempty" tf:"regions_attributes,omitempty"`
 
+	// A map with region name as key, and region-specific openstack id as value
+	// +mapType=granular
+	RegionsOpenstackIds map[string]*string `json:"regionsOpenstackIds,omitempty" tf:"regions_openstack_ids,omitempty"`
+
+	// (Deprecated) A map representing the status of the network per region.
 	RegionsStatus []RegionsStatusObservation `json:"regionsStatus,omitempty" tf:"regions_status,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// the status of the network. should be normally set to 'ACTIVE'.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// the type of the network. Either 'private' or 'public'.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type PrivateNetworkParameters struct {
 
+	// The name of the network.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// an array of valid OVHcloud public cloud region ID in which the network will be available. Ex.: "GRA1". Defaults to all public cloud regions.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
 	// +kubebuilder:validation:Optional
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
@@ -68,10 +91,13 @@ type RegionsAttributesInitParameters struct {
 }
 
 type RegionsAttributesObservation struct {
+
+	// The id of the network
 	Openstackid *string `json:"openstackid,omitempty" tf:"openstackid,omitempty"`
 
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// the status of the network. should be normally set to 'ACTIVE'.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -84,6 +110,7 @@ type RegionsStatusInitParameters struct {
 type RegionsStatusObservation struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// the status of the network. should be normally set to 'ACTIVE'.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
@@ -117,7 +144,7 @@ type PrivateNetworkStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// PrivateNetwork is the Schema for the PrivateNetworks API. <no value>
+// PrivateNetwork is the Schema for the PrivateNetworks API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

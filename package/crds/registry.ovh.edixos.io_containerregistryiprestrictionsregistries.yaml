@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ContainerRegistryIPRestrictionsRegistry is the Schema for the
-          ContainerRegistryIPRestrictionsRegistrys API. <no value>
+          ContainerRegistryIPRestrictionsRegistrys API.
         properties:
           apiVersion:
             description: |-
@@ -75,15 +75,18 @@ spec:
               forProvider:
                 properties:
                   ipRestrictions:
-                    description: List your IP restrictions applied on artifact manager
-                      component
+                    description: |-
+                      IP restrictions applied on artifact manager component.
+                      List your IP restrictions applied on artifact manager component
                     items:
                       additionalProperties:
                         type: string
                       type: object
                     type: array
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      The id of the Managed Private Registry.
+                      RegistryID
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -162,7 +165,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                 type: object
               initProvider:
@@ -179,15 +184,18 @@ spec:
                   autoscaler.
                 properties:
                   ipRestrictions:
-                    description: List your IP restrictions applied on artifact manager
-                      component
+                    description: |-
+                      IP restrictions applied on artifact manager component.
+                      List your IP restrictions applied on artifact manager component
                     items:
                       additionalProperties:
                         type: string
                       type: object
                     type: array
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      The id of the Managed Private Registry.
+                      RegistryID
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -266,7 +274,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                 type: object
               managementPolicies:
@@ -454,18 +464,23 @@ spec:
                   id:
                     type: string
                   ipRestrictions:
-                    description: List your IP restrictions applied on artifact manager
-                      component
+                    description: |-
+                      IP restrictions applied on artifact manager component.
+                      List your IP restrictions applied on artifact manager component
                     items:
                       additionalProperties:
                         type: string
                       type: object
                     type: array
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      The id of the Managed Private Registry.
+                      RegistryID
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                 type: object
               conditions:

@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: LogsInput is the Schema for the LogsInputs API. <no value>
+        description: LogsInput is the Schema for the LogsInputs API.
         properties:
           apiVersion:
             description: |-
@@ -73,71 +73,109 @@ spec:
               forProvider:
                 properties:
                   allowedNetworks:
-                    description: IP blocks
+                    description: |-
+                      List of IP blocks
+                      IP blocks
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   autoscale:
-                    description: Whether the workload is auto-scaled
+                    description: |-
+                      Whether the workload is auto-scaled (mutually exclusive with parameter nb_instance)
+                      Whether the workload is auto-scaled
                     type: boolean
                   configuration:
-                    description: Input configuration
+                    description: |-
+                      Input configuration
+                      Input configuration
                     items:
                       properties:
                         flowgger:
-                          description: Flowgger configuration
+                          description: |-
+                            Flowgger configuration
+                            Flowgger configuration
                           items:
                             properties:
                               logFormat:
-                                description: Type of format to decode
+                                description: |-
+                                  Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"
+                                  Type of format to decode
                                 type: string
                               logFraming:
-                                description: Indicates how messages are delimited
+                                description: |-
+                                  Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"
+                                  Indicates how messages are delimited
                                 type: string
                             type: object
                           type: array
                         logstash:
-                          description: Logstash configuration
+                          description: |-
+                            Logstash configuration
+                            Logstash configuration
                           items:
                             properties:
                               filterSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               inputSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               patternSection:
-                                description: The list of customs Grok patterns
+                                description: |-
+                                  The list of customs Grok patterns
+                                  The list of customs Grok patterns
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   description:
-                    description: Input description
+                    description: |-
+                      Input description
+                      Input description
                     type: string
                   engineId:
-                    description: Input engine ID
+                    description: |-
+                      Input engine ID
+                      Input engine ID
                     type: string
                   exposedPort:
-                    description: Port
+                    description: |-
+                      Port
+                      Port
                     type: string
                   maxScaleInstance:
-                    description: Maximum number of instances in auto-scaled mode
+                    description: |-
+                      Maximum number of instances in auto-scaled mode
+                      Maximum number of instances in auto-scaled mode
                     type: number
                   minScaleInstance:
-                    description: Minimum number of instances in auto-scaled mode
+                    description: |-
+                      Minimum number of instances in auto-scaled mode
+                      Minimum number of instances in auto-scaled mode
                     type: number
                   nbInstance:
-                    description: Number of instance running
+                    description: |-
+                      Number of instance running (input, mutually exclusive with parameter autoscale)
+                      Number of instance running
                     type: number
                   serviceName:
+                    description: service name
                     type: string
                   streamId:
-                    description: Associated Graylog stream
+                    description: |-
+                      Associated Graylog stream
+                      Associated Graylog stream
                     type: string
                   title:
-                    description: Input title
+                    description: |-
+                      Input title
+                      Input title
                     type: string
                 type: object
               initProvider:
@@ -154,71 +192,109 @@ spec:
                   autoscaler.
                 properties:
                   allowedNetworks:
-                    description: IP blocks
+                    description: |-
+                      List of IP blocks
+                      IP blocks
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   autoscale:
-                    description: Whether the workload is auto-scaled
+                    description: |-
+                      Whether the workload is auto-scaled (mutually exclusive with parameter nb_instance)
+                      Whether the workload is auto-scaled
                     type: boolean
                   configuration:
-                    description: Input configuration
+                    description: |-
+                      Input configuration
+                      Input configuration
                     items:
                       properties:
                         flowgger:
-                          description: Flowgger configuration
+                          description: |-
+                            Flowgger configuration
+                            Flowgger configuration
                           items:
                             properties:
                               logFormat:
-                                description: Type of format to decode
+                                description: |-
+                                  Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"
+                                  Type of format to decode
                                 type: string
                               logFraming:
-                                description: Indicates how messages are delimited
+                                description: |-
+                                  Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"
+                                  Indicates how messages are delimited
                                 type: string
                             type: object
                           type: array
                         logstash:
-                          description: Logstash configuration
+                          description: |-
+                            Logstash configuration
+                            Logstash configuration
                           items:
                             properties:
                               filterSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               inputSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               patternSection:
-                                description: The list of customs Grok patterns
+                                description: |-
+                                  The list of customs Grok patterns
+                                  The list of customs Grok patterns
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   description:
-                    description: Input description
+                    description: |-
+                      Input description
+                      Input description
                     type: string
                   engineId:
-                    description: Input engine ID
+                    description: |-
+                      Input engine ID
+                      Input engine ID
                     type: string
                   exposedPort:
-                    description: Port
+                    description: |-
+                      Port
+                      Port
                     type: string
                   maxScaleInstance:
-                    description: Maximum number of instances in auto-scaled mode
+                    description: |-
+                      Maximum number of instances in auto-scaled mode
+                      Maximum number of instances in auto-scaled mode
                     type: number
                   minScaleInstance:
-                    description: Minimum number of instances in auto-scaled mode
+                    description: |-
+                      Minimum number of instances in auto-scaled mode
+                      Minimum number of instances in auto-scaled mode
                     type: number
                   nbInstance:
-                    description: Number of instance running
+                    description: |-
+                      Number of instance running (input, mutually exclusive with parameter autoscale)
+                      Number of instance running
                     type: number
                   serviceName:
+                    description: service name
                     type: string
                   streamId:
-                    description: Associated Graylog stream
+                    description: |-
+                      Associated Graylog stream
+                      Associated Graylog stream
                     type: string
                   title:
-                    description: Input title
+                    description: |-
+                      Input title
+                      Input title
                     type: string
                 type: object
               managementPolicies:
@@ -419,98 +495,151 @@ spec:
               atProvider:
                 properties:
                   allowedNetworks:
-                    description: IP blocks
+                    description: |-
+                      List of IP blocks
+                      IP blocks
                     items:
                       type: string
                     type: array
+                    x-kubernetes-list-type: set
                   autoscale:
-                    description: Whether the workload is auto-scaled
+                    description: |-
+                      Whether the workload is auto-scaled (mutually exclusive with parameter nb_instance)
+                      Whether the workload is auto-scaled
                     type: boolean
                   configuration:
-                    description: Input configuration
+                    description: |-
+                      Input configuration
+                      Input configuration
                     items:
                       properties:
                         flowgger:
-                          description: Flowgger configuration
+                          description: |-
+                            Flowgger configuration
+                            Flowgger configuration
                           items:
                             properties:
                               logFormat:
-                                description: Type of format to decode
+                                description: |-
+                                  Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"
+                                  Type of format to decode
                                 type: string
                               logFraming:
-                                description: Indicates how messages are delimited
+                                description: |-
+                                  Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"
+                                  Indicates how messages are delimited
                                 type: string
                             type: object
                           type: array
                         logstash:
-                          description: Logstash configuration
+                          description: |-
+                            Logstash configuration
+                            Logstash configuration
                           items:
                             properties:
                               filterSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               inputSection:
-                                description: The filter section of logstash.conf
+                                description: |-
+                                  The filter section of logstash.conf
+                                  The filter section of logstash.conf
                                 type: string
                               patternSection:
-                                description: The list of customs Grok patterns
+                                description: |-
+                                  The list of customs Grok patterns
+                                  The list of customs Grok patterns
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   createdAt:
-                    description: Input creation
+                    description: |-
+                      Input creation
+                      Input creation
                     type: string
                   currentNbInstance:
-                    description: Number of instance running (returned by the API)
+                    description: |-
+                      Number of instance running (returned by the API)
+                      Number of instance running (returned by the API)
                     type: number
                   description:
-                    description: Input description
+                    description: |-
+                      Input description
+                      Input description
                     type: string
                   engineId:
-                    description: Input engine ID
+                    description: |-
+                      Input engine ID
+                      Input engine ID
                     type: string
                   exposedPort:
-                    description: Port
+                    description: |-
+                      Port
+                      Port
                     type: string
                   hostname:
-                    description: Hostname
+                    description: |-
+                      Hostname
+                      Hostname
                     type: string
                   id:
                     type: string
                   inputId:
-                    description: Input ID
+                    description: |-
+                      Input ID
+                      Input ID
                     type: string
                   isRestartRequired:
-                    description: Indicate if input need to be restarted
+                    description: |-
+                      Indicate if input need to be restarted
+                      Indicate if input need to be restarted
                     type: boolean
                   maxScaleInstance:
-                    description: Maximum number of instances in auto-scaled mode
+                    description: |-
+                      Maximum number of instances in auto-scaled mode
+                      Maximum number of instances in auto-scaled mode
                     type: number
                   minScaleInstance:
-                    description: Minimum number of instances in auto-scaled mode
+                    description: |-
+                      Minimum number of instances in auto-scaled mode
+                      Minimum number of instances in auto-scaled mode
                     type: number
                   nbInstance:
-                    description: Number of instance running
+                    description: |-
+                      Number of instance running (input, mutually exclusive with parameter autoscale)
+                      Number of instance running
                     type: number
                   publicAddress:
-                    description: Input IP address
+                    description: |-
+                      Input IP address
+                      Input IP address
                     type: string
                   serviceName:
+                    description: service name
                     type: string
                   status:
-                    description: 'init: configuration required, pending: ready to
-                      start, running: available'
+                    description: |-
+                      init: configuration required, pending: ready to start, running: available
+                      init: configuration required, pending: ready to start, running: available
                     type: string
                   streamId:
-                    description: Associated Graylog stream
+                    description: |-
+                      Associated Graylog stream
+                      Associated Graylog stream
                     type: string
                   title:
-                    description: Input title
+                    description: |-
+                      Input title
+                      Input title
                     type: string
                   updatedAt:
-                    description: Input last update
+                    description: |-
+                      Input last update
+                      Input last update
                     type: string
                 type: object
               conditions:

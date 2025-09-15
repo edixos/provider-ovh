@@ -15,13 +15,16 @@ import (
 
 type MetadataInitParameters struct {
 
+	// Annotations to apply to each node
 	// annotations
 	// +mapType=granular
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
+	// Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
 	// finalizers
 	Finalizers []*string `json:"finalizers,omitempty" tf:"finalizers,omitempty"`
 
+	// Labels to apply to each node
 	// labels
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
@@ -29,13 +32,16 @@ type MetadataInitParameters struct {
 
 type MetadataObservation struct {
 
+	// Annotations to apply to each node
 	// annotations
 	// +mapType=granular
 	Annotations map[string]*string `json:"annotations,omitempty" tf:"annotations,omitempty"`
 
+	// Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
 	// finalizers
 	Finalizers []*string `json:"finalizers,omitempty" tf:"finalizers,omitempty"`
 
+	// Labels to apply to each node
 	// labels
 	// +mapType=granular
 	Labels map[string]*string `json:"labels,omitempty" tf:"labels,omitempty"`
@@ -43,15 +49,18 @@ type MetadataObservation struct {
 
 type MetadataParameters struct {
 
+	// Annotations to apply to each node
 	// annotations
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Annotations map[string]*string `json:"annotations" tf:"annotations,omitempty"`
 
+	// Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
 	// finalizers
 	// +kubebuilder:validation:Optional
 	Finalizers []*string `json:"finalizers" tf:"finalizers,omitempty"`
 
+	// Labels to apply to each node
 	// labels
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
@@ -60,27 +69,38 @@ type MetadataParameters struct {
 
 type NodePoolInitParameters struct {
 
+	// should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
 
+	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
 
+	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
 	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
+	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
 	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
+	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
 	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
 
+	// list of availability zones to associate the pool - mandatory for multi-zone cluster - only one zone is supported at the moment.
+	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
+
+	// number of nodes to start.
 	// Number of nodes you desire in the pool
 	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
+	// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
 	// Flavor name
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
+	// The id of the managed kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
@@ -93,18 +113,23 @@ type NodePoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
 	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
+	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
 	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
+	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
 
+	// The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
 	// NodePool resource name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -114,108 +139,145 @@ type NodePoolInitParameters struct {
 
 type NodePoolObservation struct {
 
+	// should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
 
+	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
 
+	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
 	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
+	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
 	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
+	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
 	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
 
+	// list of availability zones to associate the pool - mandatory for multi-zone cluster - only one zone is supported at the moment.
+	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
+
+	// Number of nodes which are actually ready in the pool
 	// Number of nodes which are actually ready in the pool
 	AvailableNodes *float64 `json:"availableNodes,omitempty" tf:"available_nodes,omitempty"`
 
 	// Creation date
+	// Creation date
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// Number of nodes present in the pool
+	// Number of nodes present in the pool
 	CurrentNodes *float64 `json:"currentNodes,omitempty" tf:"current_nodes,omitempty"`
 
+	// number of nodes to start.
 	// Number of nodes you desire in the pool
 	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
 	// Flavor name
+	// Flavor name
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
 	// Flavor name
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The id of the managed kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
+	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
 	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
+	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
 	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
+	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
 
+	// The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
 	// NodePool resource name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Project id
+	// Project id
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Status describing the state between number of nodes wanted and available ones
+	// Status describing the state between number of nodes wanted and available ones
 	SizeStatus *string `json:"sizeStatus,omitempty" tf:"size_status,omitempty"`
 
+	// Current status
 	// Current status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// Node pool template
 	Template []TemplateObservation `json:"template,omitempty" tf:"template,omitempty"`
 
+	// Number of nodes with the latest version installed in the pool
 	// Number of nodes with latest version installed in the pool
 	UpToDateNodes *float64 `json:"upToDateNodes,omitempty" tf:"up_to_date_nodes,omitempty"`
 
+	// Last update date
 	// Last update date
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type NodePoolParameters struct {
 
+	// should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
 	// Enable anti affinity groups for nodes in the pool
 	// +kubebuilder:validation:Optional
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
 
+	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool
 	// +kubebuilder:validation:Optional
 	Autoscale *bool `json:"autoscale,omitempty" tf:"autoscale,omitempty"`
 
+	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
 	// +kubebuilder:validation:Optional
 	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
+	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
 	// +kubebuilder:validation:Optional
 	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
+	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
 	// +kubebuilder:validation:Optional
 	AutoscalingScaleDownUtilizationThreshold *float64 `json:"autoscalingScaleDownUtilizationThreshold,omitempty" tf:"autoscaling_scale_down_utilization_threshold,omitempty"`
 
+	// list of availability zones to associate the pool - mandatory for multi-zone cluster - only one zone is supported at the moment.
+	// +kubebuilder:validation:Optional
+	AvailabilityZones []*string `json:"availabilityZones,omitempty" tf:"availability_zones,omitempty"`
+
+	// number of nodes to start.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
 	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
+	// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
 	// Flavor name
 	// +kubebuilder:validation:Optional
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
+	// The id of the managed kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
@@ -229,22 +291,27 @@ type NodePoolParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
 	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
+	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
 	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
+	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
 	// +kubebuilder:validation:Optional
 	MonthlyBilled *bool `json:"monthlyBilled,omitempty" tf:"monthly_billed,omitempty"`
 
+	// The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
 	// NodePool resource name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -256,28 +323,34 @@ type NodePoolParameters struct {
 
 type SpecInitParameters struct {
 
+	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
 	Taints []map[string]*string `json:"taints,omitempty" tf:"taints,omitempty"`
 
+	// If true, set nodes as un-schedulable
 	// unschedulable
 	Unschedulable *bool `json:"unschedulable,omitempty" tf:"unschedulable,omitempty"`
 }
 
 type SpecObservation struct {
 
+	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
 	Taints []map[string]*string `json:"taints,omitempty" tf:"taints,omitempty"`
 
+	// If true, set nodes as un-schedulable
 	// unschedulable
 	Unschedulable *bool `json:"unschedulable,omitempty" tf:"unschedulable,omitempty"`
 }
 
 type SpecParameters struct {
 
+	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
 	// +kubebuilder:validation:Optional
 	Taints []map[string]*string `json:"taints" tf:"taints,omitempty"`
 
+	// If true, set nodes as un-schedulable
 	// unschedulable
 	// +kubebuilder:validation:Optional
 	Unschedulable *bool `json:"unschedulable" tf:"unschedulable,omitempty"`
@@ -285,28 +358,34 @@ type SpecParameters struct {
 
 type TemplateInitParameters struct {
 
+	// Metadata of each node in the pool
 	// metadata
 	Metadata []MetadataInitParameters `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// Spec of each node in the pool
 	// spec
 	Spec []SpecInitParameters `json:"spec,omitempty" tf:"spec,omitempty"`
 }
 
 type TemplateObservation struct {
 
+	// Metadata of each node in the pool
 	// metadata
 	Metadata []MetadataObservation `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
+	// Spec of each node in the pool
 	// spec
 	Spec []SpecObservation `json:"spec,omitempty" tf:"spec,omitempty"`
 }
 
 type TemplateParameters struct {
 
+	// Metadata of each node in the pool
 	// metadata
 	// +kubebuilder:validation:Optional
 	Metadata []MetadataParameters `json:"metadata" tf:"metadata,omitempty"`
 
+	// Spec of each node in the pool
 	// spec
 	// +kubebuilder:validation:Optional
 	Spec []SpecParameters `json:"spec" tf:"spec,omitempty"`
@@ -339,7 +418,7 @@ type NodePoolStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NodePool is the Schema for the NodePools API. <no value>
+// NodePool is the Schema for the NodePools API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

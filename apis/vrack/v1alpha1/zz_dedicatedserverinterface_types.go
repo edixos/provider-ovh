@@ -14,8 +14,11 @@ import (
 )
 
 type DedicatedServerInterfaceInitParameters struct {
+
+	// The id of dedicated server network interface.
 	InterfaceID *string `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
+	// The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -23,17 +26,21 @@ type DedicatedServerInterfaceInitParameters struct {
 type DedicatedServerInterfaceObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The id of dedicated server network interface.
 	InterfaceID *string `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
+	// The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type DedicatedServerInterfaceParameters struct {
 
+	// The id of dedicated server network interface.
 	// +kubebuilder:validation:Optional
 	InterfaceID *string `json:"interfaceId,omitempty" tf:"interface_id,omitempty"`
 
+	// The id of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -66,7 +73,7 @@ type DedicatedServerInterfaceStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DedicatedServerInterface is the Schema for the DedicatedServerInterfaces API. <no value>
+// DedicatedServerInterface is the Schema for the DedicatedServerInterfaces API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

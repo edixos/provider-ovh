@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: UDPFrontend is the Schema for the UDPFrontends API. <no value>
+        description: UDPFrontend is the Schema for the UDPFrontends API.
         properties:
           apiVersion:
             description: |-
@@ -73,32 +73,41 @@ spec:
               forProvider:
                 properties:
                   dedicatedIpfo:
-                    description: Only attach frontend on these ip. No restriction
-                      if null
+                    description: |-
+                      Only attach frontend on these ip. No restriction if null. List of Ip blocks.
+                      Only attach frontend on these ip. No restriction if null
                     items:
                       type: string
                     type: array
                   defaultFarmId:
-                    description: Default UDP Farm of your frontend
+                    description: |-
+                      Default UDP Farm of your frontend
+                      Default UDP Farm of your frontend
                     type: number
                   disabled:
-                    description: 'Disable your frontend. Default: ''false'''
+                    description: |-
+                      Disable your frontend. Default: 'false'
+                      Disable your frontend. Default: 'false'
                     type: boolean
                   displayName:
-                    description: Human readable name for your frontend, this field
-                      is for you
+                    description: |-
+                      Human readable name for your frontend
+                      Human readable name for your frontend, this field is for you
                     type: string
                   port:
-                    description: Port(s) attached to your frontend. Supports single
-                      port (numerical value), range (2 dash-delimited increasing ports)
-                      and comma-separated list of 'single port' and/or 'range'. Each
-                      port must be in the [1;49151] range.
+                    description: |-
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
                     type: string
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   zone:
-                    description: Zone of your frontend. Use "all" for all owned zone.
+                    description: |-
+                      Zone where the frontend will be defined (ie. gra, bhs also supports all)
+                      Zone of your frontend. Use "all" for all owned zone.
                     type: string
                 type: object
               initProvider:
@@ -115,32 +124,41 @@ spec:
                   autoscaler.
                 properties:
                   dedicatedIpfo:
-                    description: Only attach frontend on these ip. No restriction
-                      if null
+                    description: |-
+                      Only attach frontend on these ip. No restriction if null. List of Ip blocks.
+                      Only attach frontend on these ip. No restriction if null
                     items:
                       type: string
                     type: array
                   defaultFarmId:
-                    description: Default UDP Farm of your frontend
+                    description: |-
+                      Default UDP Farm of your frontend
+                      Default UDP Farm of your frontend
                     type: number
                   disabled:
-                    description: 'Disable your frontend. Default: ''false'''
+                    description: |-
+                      Disable your frontend. Default: 'false'
+                      Disable your frontend. Default: 'false'
                     type: boolean
                   displayName:
-                    description: Human readable name for your frontend, this field
-                      is for you
+                    description: |-
+                      Human readable name for your frontend
+                      Human readable name for your frontend, this field is for you
                     type: string
                   port:
-                    description: Port(s) attached to your frontend. Supports single
-                      port (numerical value), range (2 dash-delimited increasing ports)
-                      and comma-separated list of 'single port' and/or 'range'. Each
-                      port must be in the [1;49151] range.
+                    description: |-
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
                     type: string
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   zone:
-                    description: Zone of your frontend. Use "all" for all owned zone.
+                    description: |-
+                      Zone where the frontend will be defined (ie. gra, bhs also supports all)
+                      Zone of your frontend. Use "all" for all owned zone.
                     type: string
                 type: object
               managementPolicies:
@@ -329,37 +347,48 @@ spec:
               atProvider:
                 properties:
                   dedicatedIpfo:
-                    description: Only attach frontend on these ip. No restriction
-                      if null
+                    description: |-
+                      Only attach frontend on these ip. No restriction if null. List of Ip blocks.
+                      Only attach frontend on these ip. No restriction if null
                     items:
                       type: string
                     type: array
                   defaultFarmId:
-                    description: Default UDP Farm of your frontend
+                    description: |-
+                      Default UDP Farm of your frontend
+                      Default UDP Farm of your frontend
                     type: number
                   disabled:
-                    description: 'Disable your frontend. Default: ''false'''
+                    description: |-
+                      Disable your frontend. Default: 'false'
+                      Disable your frontend. Default: 'false'
                     type: boolean
                   displayName:
-                    description: Human readable name for your frontend, this field
-                      is for you
+                    description: |-
+                      Human readable name for your frontend
+                      Human readable name for your frontend, this field is for you
                     type: string
                   frontendId:
-                    description: Id of your frontend
+                    description: |-
+                      Id of your frontend
+                      Id of your frontend
                     type: number
                   id:
                     type: string
                   port:
-                    description: Port(s) attached to your frontend. Supports single
-                      port (numerical value), range (2 dash-delimited increasing ports)
-                      and comma-separated list of 'single port' and/or 'range'. Each
-                      port must be in the [1;49151] range.
+                    description: |-
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
+                      Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
                     type: string
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   zone:
-                    description: Zone of your frontend. Use "all" for all owned zone.
+                    description: |-
+                      Zone where the frontend will be defined (ie. gra, bhs also supports all)
+                      Zone of your frontend. Use "all" for all owned zone.
                     type: string
                 type: object
               conditions:

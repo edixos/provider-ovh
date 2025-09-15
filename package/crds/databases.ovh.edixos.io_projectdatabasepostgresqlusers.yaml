@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabasePostgresqlUser is the Schema for the ProjectDatabasePostgresqlUsers
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,19 +156,26 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   roles:
-                    description: Roles the user belongs to
+                    description: |-
+                      Roles the user belongs to. Available roles:
+                      Roles the user belongs to
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -183,7 +192,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -262,19 +273,26 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   roles:
-                    description: Roles the user belongs to
+                    description: |-
+                      Roles the user belongs to. Available roles:
+                      Roles the user belongs to
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -460,30 +478,44 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   createdAt:
-                    description: Date of the creation of the user
+                    description: |-
+                      Date of the creation of the user.
+                      Date of the creation of the user
                     type: string
                   id:
+                    description: ID of the user.
                     type: string
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   roles:
-                    description: Roles the user belongs to
+                    description: |-
+                      Roles the user belongs to. Available roles:
+                      Roles the user belongs to
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   status:
-                    description: Current status of the user
+                    description: |-
+                      Current status of the user.
+                      Current status of the user
                     type: string
                 type: object
               conditions:

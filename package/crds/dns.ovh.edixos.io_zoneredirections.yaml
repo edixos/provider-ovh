@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ZoneRedirection is the Schema for the ZoneRedirections API. <no
-          value>
+        description: ZoneRedirection is the Schema for the ZoneRedirections API.
         properties:
           apiVersion:
             description: |-
@@ -74,18 +73,25 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: A description of this redirection
                     type: string
                   keywords:
+                    description: Keywords to describe this redirection
                     type: string
                   subdomain:
+                    description: The name of the redirection
                     type: string
                   target:
+                    description: The value of the redirection
                     type: string
                   title:
+                    description: Title of this redirection
                     type: string
                   type:
+                    description: 'The type of the redirection, with values:'
                     type: string
                   zone:
+                    description: The domain to add the redirection to
                     type: string
                 type: object
               initProvider:
@@ -102,18 +108,25 @@ spec:
                   autoscaler.
                 properties:
                   description:
+                    description: A description of this redirection
                     type: string
                   keywords:
+                    description: Keywords to describe this redirection
                     type: string
                   subdomain:
+                    description: The name of the redirection
                     type: string
                   target:
+                    description: The value of the redirection
                     type: string
                   title:
+                    description: Title of this redirection
                     type: string
                   type:
+                    description: 'The type of the redirection, with values:'
                     type: string
                   zone:
+                    description: The domain to add the redirection to
                     type: string
                 type: object
               managementPolicies:
@@ -302,20 +315,28 @@ spec:
               atProvider:
                 properties:
                   description:
+                    description: A description of this redirection
                     type: string
                   id:
+                    description: The redirection ID
                     type: string
                   keywords:
+                    description: Keywords to describe this redirection
                     type: string
                   subdomain:
+                    description: The name of the redirection
                     type: string
                   target:
+                    description: The value of the redirection
                     type: string
                   title:
+                    description: Title of this redirection
                     type: string
                   type:
+                    description: 'The type of the redirection, with values:'
                     type: string
                   zone:
+                    description: The domain to add the redirection to
                     type: string
                 type: object
               conditions:

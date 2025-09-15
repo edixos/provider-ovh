@@ -15,49 +15,64 @@ import (
 
 type NashaPartitionAccessInitParameters struct {
 
+	// A brief description of the acl
 	// A brief description of the ACL
 	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
 
+	// IP block in x.x.x.x/x format
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Name of the partition
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// One of "readwrite", "readonly"
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type NashaPartitionAccessObservation struct {
 
+	// A brief description of the acl
 	// A brief description of the ACL
 	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// IP block in x.x.x.x/x format
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Name of the partition
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// One of "readwrite", "readonly"
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type NashaPartitionAccessParameters struct {
 
+	// A brief description of the acl
 	// A brief description of the ACL
 	// +kubebuilder:validation:Optional
 	ACLDescription *string `json:"aclDescription,omitempty" tf:"acl_description,omitempty"`
 
+	// IP block in x.x.x.x/x format
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Name of the partition
 	// +kubebuilder:validation:Optional
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// One of "readwrite", "readonly"
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -89,7 +104,7 @@ type NashaPartitionAccessStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NashaPartitionAccess is the Schema for the NashaPartitionAccesss API. <no value>
+// NashaPartitionAccess is the Schema for the NashaPartitionAccesss API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

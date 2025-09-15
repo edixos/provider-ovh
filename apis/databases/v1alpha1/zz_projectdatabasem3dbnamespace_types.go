@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseM3DbNamespaceInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,78 +28,102 @@ type ProjectDatabaseM3DbNamespaceInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
 	// Name of the namespace
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Resolution for an aggregated namespace
 	Resolution *string `json:"resolution,omitempty" tf:"resolution,omitempty"`
 
+	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long we wait before expiring stale data
 	RetentionBlockDataExpirationDuration *string `json:"retentionBlockDataExpirationDuration,omitempty" tf:"retention_block_data_expiration_duration,omitempty"`
 
+	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long to keep a block in memory before flushing to a fileset on disk
 	RetentionBlockSizeDuration *string `json:"retentionBlockSizeDuration,omitempty" tf:"retention_block_size_duration,omitempty"`
 
+	// Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the future writes to the namespace will be accepted
 	RetentionBufferFutureDuration *string `json:"retentionBufferFutureDuration,omitempty" tf:"retention_buffer_future_duration,omitempty"`
 
+	// Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the past writes to the namespace will be accepted
 	RetentionBufferPastDuration *string `json:"retentionBufferPastDuration,omitempty" tf:"retention_buffer_past_duration,omitempty"`
 
+	// Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls the duration of time that M3DB will retain data for the namespace
 	RetentionPeriodDuration *string `json:"retentionPeriodDuration,omitempty" tf:"retention_period_duration,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Defines whether M3DB will create snapshot files for this namespace.
 	// Defines whether M3db will create snapshot files for this namespace
 	SnapshotEnabled *bool `json:"snapshotEnabled,omitempty" tf:"snapshot_enabled,omitempty"`
 
+	// Defines whether M3DB will include writes to this namespace in the commit log.
 	// Defines whether M3db will include writes to this namespace in the commit log
 	WritesToCommitLogEnabled *bool `json:"writesToCommitLogEnabled,omitempty" tf:"writes_to_commit_log_enabled,omitempty"`
 }
 
 type ProjectDatabaseM3DbNamespaceObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// ID of the namespace.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
 	// Name of the namespace
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Resolution for an aggregated namespace
 	Resolution *string `json:"resolution,omitempty" tf:"resolution,omitempty"`
 
+	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long we wait before expiring stale data
 	RetentionBlockDataExpirationDuration *string `json:"retentionBlockDataExpirationDuration,omitempty" tf:"retention_block_data_expiration_duration,omitempty"`
 
+	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long to keep a block in memory before flushing to a fileset on disk
 	RetentionBlockSizeDuration *string `json:"retentionBlockSizeDuration,omitempty" tf:"retention_block_size_duration,omitempty"`
 
+	// Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the future writes to the namespace will be accepted
 	RetentionBufferFutureDuration *string `json:"retentionBufferFutureDuration,omitempty" tf:"retention_buffer_future_duration,omitempty"`
 
+	// Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the past writes to the namespace will be accepted
 	RetentionBufferPastDuration *string `json:"retentionBufferPastDuration,omitempty" tf:"retention_buffer_past_duration,omitempty"`
 
+	// Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls the duration of time that M3DB will retain data for the namespace
 	RetentionPeriodDuration *string `json:"retentionPeriodDuration,omitempty" tf:"retention_period_duration,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Defines whether M3DB will create snapshot files for this namespace.
 	// Defines whether M3db will create snapshot files for this namespace
 	SnapshotEnabled *bool `json:"snapshotEnabled,omitempty" tf:"snapshot_enabled,omitempty"`
 
+	// Type of namespace.
 	// Type of namespace
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// Defines whether M3DB will include writes to this namespace in the commit log.
 	// Defines whether M3db will include writes to this namespace in the commit log
 	WritesToCommitLogEnabled *bool `json:"writesToCommitLogEnabled,omitempty" tf:"writes_to_commit_log_enabled,omitempty"`
 }
 
 type ProjectDatabaseM3DbNamespaceParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -112,41 +137,51 @@ type ProjectDatabaseM3DbNamespaceParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
 	// Name of the namespace
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Resolution for an aggregated namespace
 	// +kubebuilder:validation:Optional
 	Resolution *string `json:"resolution,omitempty" tf:"resolution,omitempty"`
 
+	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long we wait before expiring stale data
 	// +kubebuilder:validation:Optional
 	RetentionBlockDataExpirationDuration *string `json:"retentionBlockDataExpirationDuration,omitempty" tf:"retention_block_data_expiration_duration,omitempty"`
 
+	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how long to keep a block in memory before flushing to a fileset on disk
 	// +kubebuilder:validation:Optional
 	RetentionBlockSizeDuration *string `json:"retentionBlockSizeDuration,omitempty" tf:"retention_block_size_duration,omitempty"`
 
+	// Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the future writes to the namespace will be accepted
 	// +kubebuilder:validation:Optional
 	RetentionBufferFutureDuration *string `json:"retentionBufferFutureDuration,omitempty" tf:"retention_buffer_future_duration,omitempty"`
 
+	// Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls how far into the past writes to the namespace will be accepted
 	// +kubebuilder:validation:Optional
 	RetentionBufferPastDuration *string `json:"retentionBufferPastDuration,omitempty" tf:"retention_buffer_past_duration,omitempty"`
 
+	// Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
 	// Controls the duration of time that M3DB will retain data for the namespace
 	// +kubebuilder:validation:Optional
 	RetentionPeriodDuration *string `json:"retentionPeriodDuration,omitempty" tf:"retention_period_duration,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Defines whether M3DB will create snapshot files for this namespace.
 	// Defines whether M3db will create snapshot files for this namespace
 	// +kubebuilder:validation:Optional
 	SnapshotEnabled *bool `json:"snapshotEnabled,omitempty" tf:"snapshot_enabled,omitempty"`
 
+	// Defines whether M3DB will include writes to this namespace in the commit log.
 	// Defines whether M3db will include writes to this namespace in the commit log
 	// +kubebuilder:validation:Optional
 	WritesToCommitLogEnabled *bool `json:"writesToCommitLogEnabled,omitempty" tf:"writes_to_commit_log_enabled,omitempty"`
@@ -179,7 +214,7 @@ type ProjectDatabaseM3DbNamespaceStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseM3DbNamespace is the Schema for the ProjectDatabaseM3DbNamespaces API. <no value>
+// ProjectDatabaseM3DbNamespace is the Schema for the ProjectDatabaseM3DbNamespaces API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: S3Policy is the Schema for the S3Policys API. <no value>
+        description: S3Policy is the Schema for the S3Policys API.
         properties:
           apiVersion:
             description: |-
@@ -73,14 +73,19 @@ spec:
               forProvider:
                 properties:
                   policy:
-                    description: The policy document. This is a JSON formatted string.
+                    description: |-
+                      The policy document. This is a JSON formatted string. See examples of policies on public documentation.
+                      The policy document. This is a JSON formatted string.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project.
+                    description: |-
+                      The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project.
                     type: string
                   userId:
-                    description: The user ID
+                    description: |-
+                      The ID of a public cloud project's user.
+                      The user ID
                     type: string
                   userIdRef:
                     description: Reference to a User in cloud to populate userId.
@@ -171,14 +176,19 @@ spec:
                   autoscaler.
                 properties:
                   policy:
-                    description: The policy document. This is a JSON formatted string.
+                    description: |-
+                      The policy document. This is a JSON formatted string. See examples of policies on public documentation.
+                      The policy document. This is a JSON formatted string.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project.
+                    description: |-
+                      The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project.
                     type: string
                   userId:
-                    description: The user ID
+                    description: |-
+                      The ID of a public cloud project's user.
+                      The user ID
                     type: string
                   userIdRef:
                     description: Reference to a User in cloud to populate userId.
@@ -439,14 +449,19 @@ spec:
                   id:
                     type: string
                   policy:
-                    description: The policy document. This is a JSON formatted string.
+                    description: |-
+                      The policy document. This is a JSON formatted string. See examples of policies on public documentation.
+                      The policy document. This is a JSON formatted string.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project.
+                    description: |-
+                      The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project.
                     type: string
                   userId:
-                    description: The user ID
+                    description: |-
+                      The ID of a public cloud project's user.
+                      The user ID
                     type: string
                 type: object
               conditions:

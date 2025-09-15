@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: TCPFrontend is the Schema for the TCPFrontends API. <no value>
+        description: TCPFrontend is the Schema for the TCPFrontends API.
         properties:
           apiVersion:
             description: |-
@@ -73,35 +73,55 @@ spec:
               forProvider:
                 properties:
                   allowedSource:
+                    description: Restrict IP Load Balancing access to these ip block.
+                      No restriction if null. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   dedicatedIpfo:
+                    description: Only attach frontend on these ip. No restriction
+                      if null. List of Ip blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   defaultFarmId:
+                    description: Default TCP Farm of your frontend
                     type: number
                   defaultSslId:
+                    description: Default ssl served to your customer
                     type: number
                   deniedSource:
+                    description: Deny IP Load Balancing access to these ip block.
+                      No restriction if null. You cannot specify both allowed_source
+                      and denied_source at the same time. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   disabled:
+                    description: 'Disable your frontend. Default: ''false'''
                     type: boolean
                   displayName:
+                    description: Human readable name for your frontend, this field
+                      is for you
                     type: string
                   port:
+                    description: Port(s) attached to your frontend. Supports single
+                      port (numerical value), range (2 dash-delimited increasing ports)
+                      and comma-separated list of 'single port' and/or 'range'. Each
+                      port must be in the [1;49151] range
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: 'SSL deciphering. Default: ''false'''
                     type: boolean
                   zone:
+                    description: Zone where the frontend will be defined (ie. gra,
+                      bhs also supports all)
                     type: string
                 type: object
               initProvider:
@@ -118,35 +138,55 @@ spec:
                   autoscaler.
                 properties:
                   allowedSource:
+                    description: Restrict IP Load Balancing access to these ip block.
+                      No restriction if null. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   dedicatedIpfo:
+                    description: Only attach frontend on these ip. No restriction
+                      if null. List of Ip blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   defaultFarmId:
+                    description: Default TCP Farm of your frontend
                     type: number
                   defaultSslId:
+                    description: Default ssl served to your customer
                     type: number
                   deniedSource:
+                    description: Deny IP Load Balancing access to these ip block.
+                      No restriction if null. You cannot specify both allowed_source
+                      and denied_source at the same time. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   disabled:
+                    description: 'Disable your frontend. Default: ''false'''
                     type: boolean
                   displayName:
+                    description: Human readable name for your frontend, this field
+                      is for you
                     type: string
                   port:
+                    description: Port(s) attached to your frontend. Supports single
+                      port (numerical value), range (2 dash-delimited increasing ports)
+                      and comma-separated list of 'single port' and/or 'range'. Each
+                      port must be in the [1;49151] range
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: 'SSL deciphering. Default: ''false'''
                     type: boolean
                   zone:
+                    description: Zone where the frontend will be defined (ie. gra,
+                      bhs also supports all)
                     type: string
                 type: object
               managementPolicies:
@@ -335,37 +375,58 @@ spec:
               atProvider:
                 properties:
                   allowedSource:
+                    description: Restrict IP Load Balancing access to these ip block.
+                      No restriction if null. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   dedicatedIpfo:
+                    description: Only attach frontend on these ip. No restriction
+                      if null. List of Ip blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   defaultFarmId:
+                    description: Default TCP Farm of your frontend
                     type: number
                   defaultSslId:
+                    description: Default ssl served to your customer
                     type: number
                   deniedSource:
+                    description: Deny IP Load Balancing access to these ip block.
+                      No restriction if null. You cannot specify both allowed_source
+                      and denied_source at the same time. List of IP blocks.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   disabled:
+                    description: 'Disable your frontend. Default: ''false'''
                     type: boolean
                   displayName:
+                    description: Human readable name for your frontend, this field
+                      is for you
                     type: string
                   id:
+                    description: Id of your frontend
                     type: string
                   port:
+                    description: Port(s) attached to your frontend. Supports single
+                      port (numerical value), range (2 dash-delimited increasing ports)
+                      and comma-separated list of 'single port' and/or 'range'. Each
+                      port must be in the [1;49151] range
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   ssl:
+                    description: 'SSL deciphering. Default: ''false'''
                     type: boolean
                   zone:
+                    description: Zone where the frontend will be defined (ie. gra,
+                      bhs also supports all)
                     type: string
                 type: object
               conditions:

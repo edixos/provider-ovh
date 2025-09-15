@@ -17,7 +17,7 @@ func Configure(p *config.Provider) {
 			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 		r.References["nodes_subnet_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet",
+			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_kube_iprestrictions", func(r *config.Resource) {

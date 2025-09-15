@@ -16,53 +16,74 @@ import (
 type ContainerRegistryInitParameters struct {
 
 	// Registry name
+	// Registry name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Plan ID of the registry
 	// Plan ID of the registry.
 	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
+	// Region of the registry
 	// Region of the registry.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ContainerRegistryObservation struct {
 
 	// Registry creation date
+	// Registry creation date
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// OVHCloud IAM enabled
+	// OVHcloud IAM enabled
+	IAMEnabled *bool `json:"iamEnabled,omitempty" tf:"iam_enabled,omitempty"`
+
+	// Registry ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Registry name
 	// Registry name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Plan of the registry
+	// Plan of the registry
 	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// Plan ID of the registry
 	// Plan ID of the registry.
 	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
 	// Project ID of your registry
+	// Project ID of your registry
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// Region of the registry
 	// Region of the registry.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current size of the registry (bytes)
 	// Current size of the registry (bytes)
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Registry status
+	// Registry status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// Access url of the registry
+	// Access url of the registry
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 
+	// Plan last update date
 	// Registry last update date
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 
+	// Version of your registry
 	// Version of your registry
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
@@ -70,17 +91,21 @@ type ContainerRegistryObservation struct {
 type ContainerRegistryParameters struct {
 
 	// Registry name
+	// Registry name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Plan ID of the registry
 	// Plan ID of the registry.
 	// +kubebuilder:validation:Optional
 	PlanID *string `json:"planId,omitempty" tf:"plan_id,omitempty"`
 
+	// Region of the registry
 	// Region of the registry.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -89,6 +114,8 @@ type FeaturesInitParameters struct {
 }
 
 type FeaturesObservation struct {
+
+	// Vulnerability scanning
 	Vulnerability *bool `json:"vulnerability,omitempty" tf:"vulnerability,omitempty"`
 }
 
@@ -99,18 +126,26 @@ type PlanInitParameters struct {
 }
 
 type PlanObservation struct {
+
+	// Plan code from the catalog
 	Code *string `json:"code,omitempty" tf:"code,omitempty"`
 
+	// Registry creation date
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Features of the plan
 	Features []FeaturesObservation `json:"features,omitempty" tf:"features,omitempty"`
 
+	// Registry ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Registry name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Container registry limits
 	RegistryLimits []RegistryLimitsObservation `json:"registryLimits,omitempty" tf:"registry_limits,omitempty"`
 
+	// Plan last update date
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
@@ -121,8 +156,11 @@ type RegistryLimitsInitParameters struct {
 }
 
 type RegistryLimitsObservation struct {
+
+	// Docker image storage limits in bytes
 	ImageStorage *float64 `json:"imageStorage,omitempty" tf:"image_storage,omitempty"`
 
+	// Parallel requests on Docker image API (/v2 Docker registry API)
 	ParallelRequest *float64 `json:"parallelRequest,omitempty" tf:"parallel_request,omitempty"`
 }
 
@@ -156,7 +194,7 @@ type ContainerRegistryStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ContainerRegistry is the Schema for the ContainerRegistrys API. <no value>
+// ContainerRegistry is the Schema for the ContainerRegistrys API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

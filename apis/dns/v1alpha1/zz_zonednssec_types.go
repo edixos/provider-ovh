@@ -15,6 +15,7 @@ import (
 
 type ZoneDNSSECInitParameters struct {
 
+	// The name of the domain zone
 	// The internal name of your zone
 	ZoneName *string `json:"zoneName,omitempty" tf:"zone_name,omitempty"`
 }
@@ -22,15 +23,18 @@ type ZoneDNSSECInitParameters struct {
 type ZoneDNSSECObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// DNSSEC status (disableInProgress, disabled, enableInProgress or enabled)
 	// DNSSEC Status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The name of the domain zone
 	// The internal name of your zone
 	ZoneName *string `json:"zoneName,omitempty" tf:"zone_name,omitempty"`
 }
 
 type ZoneDNSSECParameters struct {
 
+	// The name of the domain zone
 	// The internal name of your zone
 	// +kubebuilder:validation:Optional
 	ZoneName *string `json:"zoneName,omitempty" tf:"zone_name,omitempty"`
@@ -63,7 +67,7 @@ type ZoneDNSSECStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ZoneDNSSEC is the Schema for the ZoneDNSSECs API. <no value>
+// ZoneDNSSEC is the Schema for the ZoneDNSSECs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

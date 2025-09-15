@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: LogsOutputOpensearchAlias is the Schema for the LogsOutputOpensearchAliass
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,31 +75,45 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: Alias description
+                    description: |-
+                      Index description
+                      Alias description
                     type: string
                   indexes:
-                    description: Indexes attached to alias
+                    description: |-
+                      List of attached indexes id
+                      Indexes attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   nbIndex:
-                    description: Number of index
+                    description: |-
+                      Number of indices linked
+                      Number of index
                     type: number
                   nbStream:
-                    description: Number of shard
+                    description: |-
+                      Number of streams linked
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   streams:
-                    description: Streams attached to alias
+                    description: |-
+                      List of attached streams id
+                      Streams attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   suffix:
-                    description: Alias suffix
+                    description: |-
+                      Index suffix
+                      Alias suffix
                     type: string
                 type: object
               initProvider:
@@ -116,31 +130,45 @@ spec:
                   autoscaler.
                 properties:
                   description:
-                    description: Alias description
+                    description: |-
+                      Index description
+                      Alias description
                     type: string
                   indexes:
-                    description: Indexes attached to alias
+                    description: |-
+                      List of attached indexes id
+                      Indexes attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   nbIndex:
-                    description: Number of index
+                    description: |-
+                      Number of indices linked
+                      Number of index
                     type: number
                   nbStream:
-                    description: Number of shard
+                    description: |-
+                      Number of streams linked
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   streams:
-                    description: Streams attached to alias
+                    description: |-
+                      List of attached streams id
+                      Streams attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   suffix:
-                    description: Alias suffix
+                    description: |-
+                      Index suffix
+                      Alias suffix
                     type: string
                 type: object
               managementPolicies:
@@ -330,51 +358,75 @@ spec:
               atProvider:
                 properties:
                   aliasId:
-                    description: Alias used
+                    description: |-
+                      Alias Id
+                      Alias used
                     type: string
                   createdAt:
-                    description: Operation creation
+                    description: |-
+                      Alias creation
+                      Operation creation
                     type: string
                   currentSize:
                     description: Current alias size (in bytes)
                     type: number
                   description:
-                    description: Alias description
+                    description: |-
+                      Index description
+                      Alias description
                     type: string
                   id:
                     type: string
                   indexes:
-                    description: Indexes attached to alias
+                    description: |-
+                      List of attached indexes id
+                      Indexes attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   isEditable:
-                    description: Indicates if you are allowed to edit entry
+                    description: |-
+                      Indicates if you are allowed to edit entry
+                      Indicates if you are allowed to edit entry
                     type: boolean
                   name:
-                    description: Alias name
+                    description: |-
+                      Alias name
+                      Alias name
                     type: string
                   nbIndex:
-                    description: Number of index
+                    description: |-
+                      Number of indices linked
+                      Number of index
                     type: number
                   nbStream:
-                    description: Number of shard
+                    description: |-
+                      Number of streams linked
+                      Number of shard
                     type: number
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The service name
+                      The service name
                     type: string
                   streams:
-                    description: Streams attached to alias
+                    description: |-
+                      List of attached streams id
+                      Streams attached to alias
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   suffix:
-                    description: Alias suffix
+                    description: |-
+                      Index suffix
+                      Alias suffix
                     type: string
                   updatedAt:
-                    description: Operation last update
+                    description: |-
+                      Input last update
+                      Operation last update
                     type: string
                 type: object
               conditions:

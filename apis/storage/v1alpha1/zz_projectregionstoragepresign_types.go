@@ -15,73 +15,110 @@ import (
 
 type ProjectRegionStoragePresignInitParameters struct {
 
+	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
+	// The method you want to use to interact with your object. Can be either 'GET' or 'PUT'.
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// The name of your S3 storage container/bucket.
 	// The S3 storage container's name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The name of the object in your S3 bucket.
 	// Name of the object to download or upload
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
+	// The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
 	// Region name
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Version ID of the object to download or delete
+	// Version ID of the object to download or delete
+	VersionID *string `json:"versionId,omitempty" tf:"version_id,omitempty"`
 }
 
 type ProjectRegionStoragePresignObservation struct {
 
+	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The method you want to use to interact with your object. Can be either 'GET' or 'PUT'.
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// The name of your S3 storage container/bucket.
 	// The S3 storage container's name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The name of the object in your S3 bucket.
 	// Name of the object to download or upload
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
+	// The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
 	// Region name
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Map of signed headers.
+	// Signed headers
+	// +mapType=granular
+	SignedHeaders map[string]*string `json:"signedHeaders,omitempty" tf:"signed_headers,omitempty"`
+
+	// Computed URL result.
 	// Presigned URL
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
+
+	// Version ID of the object to download or delete
+	// Version ID of the object to download or delete
+	VersionID *string `json:"versionId,omitempty" tf:"version_id,omitempty"`
 }
 
 type ProjectRegionStoragePresignParameters struct {
 
+	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
 	// +kubebuilder:validation:Optional
 	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
+	// The method you want to use to interact with your object. Can be either 'GET' or 'PUT'.
 	// +kubebuilder:validation:Optional
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// The name of your S3 storage container/bucket.
 	// The S3 storage container's name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The name of the object in your S3 bucket.
 	// Name of the object to download or upload
 	// +kubebuilder:validation:Optional
 	Object *string `json:"object,omitempty" tf:"object,omitempty"`
 
+	// The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
 	// Region name
 	// +kubebuilder:validation:Optional
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Version ID of the object to download or delete
+	// Version ID of the object to download or delete
+	// +kubebuilder:validation:Optional
+	VersionID *string `json:"versionId,omitempty" tf:"version_id,omitempty"`
 }
 
 // ProjectRegionStoragePresignSpec defines the desired state of ProjectRegionStoragePresign
@@ -111,7 +148,7 @@ type ProjectRegionStoragePresignStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectRegionStoragePresign is the Schema for the ProjectRegionStoragePresigns API. <no value>
+// ProjectRegionStoragePresign is the Schema for the ProjectRegionStoragePresigns API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

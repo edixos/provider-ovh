@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: PrivatedatabaseUser is the Schema for the PrivatedatabaseUsers
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -74,8 +74,9 @@ spec:
               forProvider:
                 properties:
                   passwordSecretRef:
-                    description: Password for the new user ( alphanumeric and 8 characters
-                      minimum )
+                    description: |-
+                      Password for the new user (alphanumeric, minimum one number and 8 characters minimum)
+                      Password for the new user ( alphanumeric and 8 characters minimum )
                     properties:
                       key:
                         description: The key to select.
@@ -92,10 +93,14 @@ spec:
                     - namespace
                     type: object
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   userName:
-                    description: User name used to connect on your databases
+                    description: |-
+                      User name used to connect on your databases
+                      User name used to connect on your databases
                     type: string
                 type: object
               initProvider:
@@ -112,10 +117,14 @@ spec:
                   autoscaler.
                 properties:
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   userName:
-                    description: User name used to connect on your databases
+                    description: |-
+                      User name used to connect on your databases
+                      User name used to connect on your databases
                     type: string
                 type: object
               managementPolicies:
@@ -305,10 +314,14 @@ spec:
                   id:
                     type: string
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   userName:
-                    description: User name used to connect on your databases
+                    description: |-
+                      User name used to connect on your databases
+                      User name used to connect on your databases
                     type: string
                 type: object
               conditions:

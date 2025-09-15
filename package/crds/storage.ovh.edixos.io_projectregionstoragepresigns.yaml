@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectRegionStoragePresign is the Schema for the ProjectRegionStoragePresigns
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,22 +75,38 @@ spec:
               forProvider:
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid
+                    description: |-
+                      Define, in seconds, for how long your URL will be valid.
+                      How long (in seconds) the URL will be valid
                     type: number
                   method:
+                    description: The method you want to use to interact with your
+                      object. Can be either 'GET' or 'PUT'.
                     type: string
                   name:
-                    description: The S3 storage container's name
+                    description: |-
+                      The name of your S3 storage container/bucket.
+                      The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload
+                    description: |-
+                      The name of the object in your S3 bucket.
+                      Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name
+                    description: |-
+                      The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
+                      Region name
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project
+                    type: string
+                  versionId:
+                    description: |-
+                      Version ID of the object to download or delete
+                      Version ID of the object to download or delete
                     type: string
                 type: object
               initProvider:
@@ -107,22 +123,38 @@ spec:
                   autoscaler.
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid
+                    description: |-
+                      Define, in seconds, for how long your URL will be valid.
+                      How long (in seconds) the URL will be valid
                     type: number
                   method:
+                    description: The method you want to use to interact with your
+                      object. Can be either 'GET' or 'PUT'.
                     type: string
                   name:
-                    description: The S3 storage container's name
+                    description: |-
+                      The name of your S3 storage container/bucket.
+                      The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload
+                    description: |-
+                      The name of the object in your S3 bucket.
+                      Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name
+                    description: |-
+                      The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
+                      Region name
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project
+                    type: string
+                  versionId:
+                    description: |-
+                      Version ID of the object to download or delete
+                      Version ID of the object to download or delete
                     type: string
                 type: object
               managementPolicies:
@@ -324,27 +356,53 @@ spec:
               atProvider:
                 properties:
                   expire:
-                    description: How long (in seconds) the URL will be valid
+                    description: |-
+                      Define, in seconds, for how long your URL will be valid.
+                      How long (in seconds) the URL will be valid
                     type: number
                   id:
                     type: string
                   method:
+                    description: The method you want to use to interact with your
+                      object. Can be either 'GET' or 'PUT'.
                     type: string
                   name:
-                    description: The S3 storage container's name
+                    description: |-
+                      The name of your S3 storage container/bucket.
+                      The S3 storage container's name
                     type: string
                   object:
-                    description: Name of the object to download or upload
+                    description: |-
+                      The name of the object in your S3 bucket.
+                      Name of the object to download or upload
                     type: string
                   regionName:
-                    description: Region name
+                    description: |-
+                      The region in which your storage is located. Must be in uppercase. Ex.: "GRA".
+                      Region name
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the ID
-                      of the cloud project
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the ID of the cloud project
                     type: string
+                  signedHeaders:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Map of signed headers.
+                      Signed headers
+                    type: object
+                    x-kubernetes-map-type: granular
                   url:
-                    description: Presigned URL
+                    description: |-
+                      Computed URL result.
+                      Presigned URL
+                    type: string
+                  versionId:
+                    description: |-
+                      Version ID of the object to download or delete
+                      Version ID of the object to download or delete
                     type: string
                 type: object
               conditions:

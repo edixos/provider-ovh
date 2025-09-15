@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: UDPFarmServer is the Schema for the UDPFarmServers API. <no value>
+        description: UDPFarmServer is the Schema for the UDPFarmServers API.
         properties:
           apiVersion:
             description: |-
@@ -73,24 +73,34 @@ spec:
               forProvider:
                 properties:
                   address:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      Address of the backend server (IP from either internal or OVHcloud network)
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   displayName:
-                    description: Human readable name for your server, this field is
-                      for you
+                    description: |-
+                      Label for the server
+                      Human readable name for your server, this field is for you
                     type: string
                   farmId:
-                    description: Id of your farm
+                    description: |-
+                      ID of the farm this server is attached to
+                      Id of your farm
                     type: number
                   port:
-                    description: Port attached to your server ([1..49151]). Inherited
-                      from farm if null
+                    description: |-
+                      Port that backend will respond on
+                      Port attached to your server ([1..49151]). Inherited from farm if null
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   status:
-                    description: Possible values for server status
+                    description: |-
+                      backend status - active or inactive
+                      Possible values for server status
                     type: string
                 type: object
               initProvider:
@@ -107,24 +117,34 @@ spec:
                   autoscaler.
                 properties:
                   address:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      Address of the backend server (IP from either internal or OVHcloud network)
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   displayName:
-                    description: Human readable name for your server, this field is
-                      for you
+                    description: |-
+                      Label for the server
+                      Human readable name for your server, this field is for you
                     type: string
                   farmId:
-                    description: Id of your farm
+                    description: |-
+                      ID of the farm this server is attached to
+                      Id of your farm
                     type: number
                   port:
-                    description: Port attached to your server ([1..49151]). Inherited
-                      from farm if null
+                    description: |-
+                      Port that backend will respond on
+                      Port attached to your server ([1..49151]). Inherited from farm if null
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   status:
-                    description: Possible values for server status
+                    description: |-
+                      backend status - active or inactive
+                      Possible values for server status
                     type: string
                 type: object
               managementPolicies:
@@ -317,32 +337,46 @@ spec:
               atProvider:
                 properties:
                   address:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      Address of the backend server (IP from either internal or OVHcloud network)
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   backendId:
-                    description: Synonym for farm_id
+                    description: |-
+                      Synonym for farm_id.
+                      Synonym for farm_id
                     type: number
                   displayName:
-                    description: Human readable name for your server, this field is
-                      for you
+                    description: |-
+                      Label for the server
+                      Human readable name for your server, this field is for you
                     type: string
                   farmId:
-                    description: Id of your farm
+                    description: |-
+                      ID of the farm this server is attached to
+                      Id of your farm
                     type: number
                   id:
                     type: string
                   port:
-                    description: Port attached to your server ([1..49151]). Inherited
-                      from farm if null
+                    description: |-
+                      Port that backend will respond on
+                      Port attached to your server ([1..49151]). Inherited from farm if null
                     type: number
                   serverId:
-                    description: Id of your server
+                    description: |-
+                      Id of your server.
+                      Id of your server
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   status:
-                    description: Possible values for server status
+                    description: |-
+                      backend status - active or inactive
+                      Possible values for server status
                     type: string
                 type: object
               conditions:

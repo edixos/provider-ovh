@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseM3DbUserInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,45 +28,58 @@ type ProjectDatabaseM3DbUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Group of the user.
 	// Group of the user
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseM3DbUserObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Date of the creation of the user.
 	// Date of the creation of the user
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Group of the user.
 	// Group of the user
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// ID of the user.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the user.
 	// Current status of the user
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseM3DbUserParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -79,18 +93,22 @@ type ProjectDatabaseM3DbUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Group of the user.
 	// Group of the user
 	// +kubebuilder:validation:Optional
 	Group *string `json:"group,omitempty" tf:"group,omitempty"`
 
+	// Name of the user. A user named "avnadmin" is mapped with already created admin user instead of creating a new user.
 	// Name of the user
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -122,7 +140,7 @@ type ProjectDatabaseM3DbUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseM3DbUser is the Schema for the ProjectDatabaseM3DbUsers API. <no value>
+// ProjectDatabaseM3DbUser is the Schema for the ProjectDatabaseM3DbUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

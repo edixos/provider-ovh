@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: CephACL is the Schema for the CephACLs API. <no value>
+        description: CephACL is the Schema for the CephACLs API.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +73,13 @@ spec:
               forProvider:
                 properties:
                   netmask:
+                    description: The network mask to apply
                     type: string
                   network:
+                    description: The network IP to authorize
                     type: string
                   serviceName:
+                    description: The internal name of your dedicated CEPH
                     type: string
                 type: object
               initProvider:
@@ -93,10 +96,13 @@ spec:
                   autoscaler.
                 properties:
                   netmask:
+                    description: The network mask to apply
                     type: string
                   network:
+                    description: The network IP to authorize
                     type: string
                   serviceName:
+                    description: The internal name of your dedicated CEPH
                     type: string
                 type: object
               managementPolicies:
@@ -285,14 +291,18 @@ spec:
               atProvider:
                 properties:
                   family:
+                    description: IP family. IPv4 or IPv6
                     type: string
                   id:
                     type: string
                   netmask:
+                    description: The network mask to apply
                     type: string
                   network:
+                    description: The network IP to authorize
                     type: string
                   serviceName:
+                    description: The internal name of your dedicated CEPH
                     type: string
                 type: object
               conditions:

@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Service is the Schema for the Services API. <no value>
+        description: Service is the Schema for the Services API.
         properties:
           apiVersion:
             description: |-
@@ -421,6 +421,7 @@ spec:
                   id:
                     type: string
                   ip:
+                    description: Your IP block
                     type: string
                   order:
                     description: Details about an Order
@@ -526,10 +527,12 @@ spec:
                     items:
                       properties:
                         serviceName:
+                          description: The internal name of your vrack
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: The internal name of your vrack
                     type: string
                   type:
                     description: Possible values for ip type

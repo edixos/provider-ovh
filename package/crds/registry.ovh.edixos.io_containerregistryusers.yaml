@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ContainerRegistryUser is the Schema for the ContainerRegistryUsers
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -74,13 +74,19 @@ spec:
               forProvider:
                 properties:
                   email:
-                    description: User email.
+                    description: |-
+                      User email
+                      User email
                     type: string
                   login:
-                    description: Registry name
+                    description: |-
+                      User name
+                      User login
                     type: string
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      Registry ID
+                      RegistryID
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -159,7 +165,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                 type: object
               initProvider:
@@ -176,13 +184,19 @@ spec:
                   autoscaler.
                 properties:
                   email:
-                    description: User email.
+                    description: |-
+                      User email
+                      User email
                     type: string
                   login:
-                    description: Registry name
+                    description: |-
+                      User name
+                      User login
                     type: string
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      Registry ID
+                      RegistryID
                     type: string
                   registryIdRef:
                     description: Reference to a ContainerRegistry in registry to populate
@@ -261,7 +275,9 @@ spec:
                         type: object
                     type: object
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                 type: object
               managementPolicies:
@@ -451,21 +467,32 @@ spec:
               atProvider:
                 properties:
                   email:
-                    description: User email.
+                    description: |-
+                      User email
+                      User email
                     type: string
                   id:
+                    description: User ID
                     type: string
                   login:
-                    description: Registry name
+                    description: |-
+                      User name
+                      User login
                     type: string
                   registryId:
-                    description: RegistryID
+                    description: |-
+                      Registry ID
+                      RegistryID
                     type: string
                   serviceName:
-                    description: Service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name
                     type: string
                   user:
-                    description: User name
+                    description: |-
+                      User name (same as login)
+                      User login
                     type: string
                 type: object
               conditions:

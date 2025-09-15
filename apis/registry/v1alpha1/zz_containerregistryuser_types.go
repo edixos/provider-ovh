@@ -15,12 +15,15 @@ import (
 
 type ContainerRegistryUserInitParameters struct {
 
-	// User email.
+	// User email
+	// User email
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
-	// Registry name
+	// User name
+	// User login
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
+	// Registry ID
 	// RegistryID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
@@ -33,40 +36,50 @@ type ContainerRegistryUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ContainerRegistryUserObservation struct {
 
-	// User email.
+	// User email
+	// User email
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
+	// User ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Registry name
+	// User name
+	// User login
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
+	// Registry ID
 	// RegistryID
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// User name
+	// User name (same as login)
+	// User login
 	User *string `json:"user,omitempty" tf:"user,omitempty"`
 }
 
 type ContainerRegistryUserParameters struct {
 
-	// User email.
+	// User email
+	// User email
 	// +kubebuilder:validation:Optional
 	Email *string `json:"email,omitempty" tf:"email,omitempty"`
 
-	// Registry name
+	// User name
+	// User login
 	// +kubebuilder:validation:Optional
 	Login *string `json:"login,omitempty" tf:"login,omitempty"`
 
+	// Registry ID
 	// RegistryID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	// +kubebuilder:validation:Optional
@@ -80,6 +93,7 @@ type ContainerRegistryUserParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -112,7 +126,7 @@ type ContainerRegistryUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ContainerRegistryUser is the Schema for the ContainerRegistryUsers API. <no value>
+// ContainerRegistryUser is the Schema for the ContainerRegistryUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

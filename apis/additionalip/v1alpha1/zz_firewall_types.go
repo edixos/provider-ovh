@@ -16,9 +16,11 @@ import (
 type FirewallInitParameters struct {
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 }
@@ -28,12 +30,15 @@ type FirewallObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
+	// Current state of your ip on firewall
 	// Current state of your ip on firewall
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 }
@@ -43,10 +48,12 @@ type FirewallParameters struct {
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
+	// The IP or the CIDR
 	// IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// IPv4 address
 	// IPv4 address (e.g., 192.0.2.0)
 	// +kubebuilder:validation:Optional
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
@@ -79,7 +86,7 @@ type FirewallStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Firewall is the Schema for the Firewalls API. <no value>
+// Firewall is the Schema for the Firewalls API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

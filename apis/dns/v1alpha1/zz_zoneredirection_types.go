@@ -14,59 +14,83 @@ import (
 )
 
 type ZoneRedirectionInitParameters struct {
+
+	// A description of this redirection
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Keywords to describe this redirection
 	Keywords *string `json:"keywords,omitempty" tf:"keywords,omitempty"`
 
+	// The name of the redirection
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
+	// The value of the redirection
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Title of this redirection
 	Title *string `json:"title,omitempty" tf:"title,omitempty"`
 
+	// The type of the redirection, with values:
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// The domain to add the redirection to
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type ZoneRedirectionObservation struct {
+
+	// A description of this redirection
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The redirection ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Keywords to describe this redirection
 	Keywords *string `json:"keywords,omitempty" tf:"keywords,omitempty"`
 
+	// The name of the redirection
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
+	// The value of the redirection
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Title of this redirection
 	Title *string `json:"title,omitempty" tf:"title,omitempty"`
 
+	// The type of the redirection, with values:
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// The domain to add the redirection to
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type ZoneRedirectionParameters struct {
 
+	// A description of this redirection
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Keywords to describe this redirection
 	// +kubebuilder:validation:Optional
 	Keywords *string `json:"keywords,omitempty" tf:"keywords,omitempty"`
 
+	// The name of the redirection
 	// +kubebuilder:validation:Optional
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
+	// The value of the redirection
 	// +kubebuilder:validation:Optional
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Title of this redirection
 	// +kubebuilder:validation:Optional
 	Title *string `json:"title,omitempty" tf:"title,omitempty"`
 
+	// The type of the redirection, with values:
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// The domain to add the redirection to
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -98,7 +122,7 @@ type ZoneRedirectionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ZoneRedirection is the Schema for the ZoneRedirections API. <no value>
+// ZoneRedirection is the Schema for the ZoneRedirections API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

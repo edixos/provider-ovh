@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseKafkaACL is the Schema for the ProjectDatabaseKafkaACLs
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,15 +156,23 @@ spec:
                         type: object
                     type: object
                   permission:
-                    description: Permission to give to this username on this topic
+                    description: |-
+                      Permission to give to this username on this topic. Available permissions:
+                      Permission to give to this username on this topic
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   topic:
-                    description: Topic affected by this acl
+                    description: |-
+                      Topic affected by this ACL.
+                      Topic affected by this acl
                     type: string
                   username:
-                    description: Username affected by this acl
+                    description: |-
+                      Username affected by this ACL.
+                      Username affected by this acl
                     type: string
                 type: object
               initProvider:
@@ -179,7 +189,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -258,15 +270,23 @@ spec:
                         type: object
                     type: object
                   permission:
-                    description: Permission to give to this username on this topic
+                    description: |-
+                      Permission to give to this username on this topic. Available permissions:
+                      Permission to give to this username on this topic
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   topic:
-                    description: Topic affected by this acl
+                    description: |-
+                      Topic affected by this ACL.
+                      Topic affected by this acl
                     type: string
                   username:
-                    description: Username affected by this acl
+                    description: |-
+                      Username affected by this ACL.
+                      Username affected by this acl
                     type: string
                 type: object
               managementPolicies:
@@ -460,20 +480,31 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   id:
+                    description: ID of the ACL.
                     type: string
                   permission:
-                    description: Permission to give to this username on this topic
+                    description: |-
+                      Permission to give to this username on this topic. Available permissions:
+                      Permission to give to this username on this topic
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   topic:
-                    description: Topic affected by this acl
+                    description: |-
+                      Topic affected by this ACL.
+                      Topic affected by this acl
                     type: string
                   username:
-                    description: Username affected by this acl
+                    description: |-
+                      Username affected by this ACL.
+                      Username affected by this acl
                     type: string
                 type: object
               conditions:

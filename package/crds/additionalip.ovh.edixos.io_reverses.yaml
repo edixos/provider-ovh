@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Reverse is the Schema for the Reverses API. <no value>
+        description: Reverse is the Schema for the Reverses API.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +73,19 @@ spec:
               forProvider:
                 properties:
                   ip:
+                    description: The IP block to which the IP belongs
                     type: string
                   ipReverse:
+                    description: The IP to set the reverse of
+                    type: string
+                  readinessTimeoutDuration:
+                    description: 'The maximum duration that the provider will wait
+                      for a successful response (while retrying every 5s). If the
+                      record cannot be verified within this timeout, the operation
+                      will fail (default value: 60s)'
                     type: string
                   reverse:
+                    description: The value of the reverse
                     type: string
                 type: object
               initProvider:
@@ -93,10 +102,19 @@ spec:
                   autoscaler.
                 properties:
                   ip:
+                    description: The IP block to which the IP belongs
                     type: string
                   ipReverse:
+                    description: The IP to set the reverse of
+                    type: string
+                  readinessTimeoutDuration:
+                    description: 'The maximum duration that the provider will wait
+                      for a successful response (while retrying every 5s). If the
+                      record cannot be verified within this timeout, the operation
+                      will fail (default value: 60s)'
                     type: string
                   reverse:
+                    description: The value of the reverse
                     type: string
                 type: object
               managementPolicies:
@@ -287,10 +305,19 @@ spec:
                   id:
                     type: string
                   ip:
+                    description: The IP block to which the IP belongs
                     type: string
                   ipReverse:
+                    description: The IP to set the reverse of
+                    type: string
+                  readinessTimeoutDuration:
+                    description: 'The maximum duration that the provider will wait
+                      for a successful response (while retrying every 5s). If the
+                      record cannot be verified within this timeout, the operation
+                      will fail (default value: 60s)'
                     type: string
                   reverse:
+                    description: The value of the reverse
                     type: string
                 type: object
               conditions:

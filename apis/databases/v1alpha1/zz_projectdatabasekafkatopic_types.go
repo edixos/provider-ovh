@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseKafkaTopicInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,57 +28,74 @@ type ProjectDatabaseKafkaTopicInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
+	// Name of the topic. No spaces allowed.
 	// Name of the topic
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
+	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
 	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
+	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
 	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
+	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
 	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseKafkaTopicObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// ID of the topic.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
+	// Name of the topic. No spaces allowed.
 	// Name of the topic
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
+	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
 	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
+	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
 	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
+	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
 	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseKafkaTopicParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -91,30 +109,37 @@ type ProjectDatabaseKafkaTopicParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
 	// +kubebuilder:validation:Optional
 	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
+	// Name of the topic. No spaces allowed.
 	// Name of the topic
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
 	// +kubebuilder:validation:Optional
 	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
+	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
 	// +kubebuilder:validation:Optional
 	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
+	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
 	// +kubebuilder:validation:Optional
 	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
+	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
 	// +kubebuilder:validation:Optional
 	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -146,7 +171,7 @@ type ProjectDatabaseKafkaTopicStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseKafkaTopic is the Schema for the ProjectDatabaseKafkaTopics API. <no value>
+// ProjectDatabaseKafkaTopic is the Schema for the ProjectDatabaseKafkaTopics API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

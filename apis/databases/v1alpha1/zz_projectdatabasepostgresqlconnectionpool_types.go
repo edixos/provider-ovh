@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabasePostgresqlConnectionPoolInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,60 +28,77 @@ type ProjectDatabasePostgresqlConnectionPoolInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Database ID for a database that belongs to the Database cluster given above.
 	// Database used for the connection pool
 	DatabaseID *string `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
+	// Connection mode to the connection pool Available modes:
 	// Connection mode to the connection pool
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
+	// Name of the connection pool.
 	// Name of the connection pool
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Size of the connection pool.
 	// Size of the connection pool
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// Database user authorized to connect to the pool, if none all the users are allowed.
 	// Database user authorized to connect to the pool, if none all the users are allowed
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type ProjectDatabasePostgresqlConnectionPoolObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Database ID for a database that belongs to the Database cluster given above.
 	// Database used for the connection pool
 	DatabaseID *string `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Connection mode to the connection pool Available modes:
 	// Connection mode to the connection pool
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
+	// Name of the connection pool.
 	// Name of the connection pool
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Port of the connection pool.
 	// Port of the connection pool
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Ssl connection mode for the pool.
 	// SSL connection mode for the pool
 	SSLMode *string `json:"sslMode,omitempty" tf:"ssl_mode,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Size of the connection pool.
 	// Size of the connection pool
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// Connection URI to the pool.
 	// Connection URI to the pool
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
+	// Database user authorized to connect to the pool, if none all the users are allowed.
 	// Database user authorized to connect to the pool, if none all the users are allowed
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type ProjectDatabasePostgresqlConnectionPoolParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -94,25 +112,31 @@ type ProjectDatabasePostgresqlConnectionPoolParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Database ID for a database that belongs to the Database cluster given above.
 	// Database used for the connection pool
 	// +kubebuilder:validation:Optional
 	DatabaseID *string `json:"databaseId,omitempty" tf:"database_id,omitempty"`
 
+	// Connection mode to the connection pool Available modes:
 	// Connection mode to the connection pool
 	// +kubebuilder:validation:Optional
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
+	// Name of the connection pool.
 	// Name of the connection pool
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Size of the connection pool.
 	// Size of the connection pool
 	// +kubebuilder:validation:Optional
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// Database user authorized to connect to the pool, if none all the users are allowed.
 	// Database user authorized to connect to the pool, if none all the users are allowed
 	// +kubebuilder:validation:Optional
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
@@ -145,7 +169,7 @@ type ProjectDatabasePostgresqlConnectionPoolStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabasePostgresqlConnectionPool is the Schema for the ProjectDatabasePostgresqlConnectionPools API. <no value>
+// ProjectDatabasePostgresqlConnectionPool is the Schema for the ProjectDatabasePostgresqlConnectionPools API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

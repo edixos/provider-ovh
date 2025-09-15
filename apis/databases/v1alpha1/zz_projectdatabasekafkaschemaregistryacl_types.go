@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseKafkaSchemaregistryaclInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,39 +28,50 @@ type ProjectDatabaseKafkaSchemaregistryaclInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Permission to give to this username on this resource. Available permissions:
 	// Permission to give to this username on this resource
 	Permission *string `json:"permission,omitempty" tf:"permission,omitempty"`
 
+	// Resource affected by this schema registry ACL.
 	// Resource affected by this acl
 	Resource *string `json:"resource,omitempty" tf:"resource,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Username affected by this schema registry ACL.
 	// Username affected by this acl
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type ProjectDatabaseKafkaSchemaregistryaclObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// ID of the ACL.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Permission to give to this username on this resource. Available permissions:
 	// Permission to give to this username on this resource
 	Permission *string `json:"permission,omitempty" tf:"permission,omitempty"`
 
+	// Resource affected by this schema registry ACL.
 	// Resource affected by this acl
 	Resource *string `json:"resource,omitempty" tf:"resource,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Username affected by this schema registry ACL.
 	// Username affected by this acl
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type ProjectDatabaseKafkaSchemaregistryaclParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -73,17 +85,21 @@ type ProjectDatabaseKafkaSchemaregistryaclParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Permission to give to this username on this resource. Available permissions:
 	// Permission to give to this username on this resource
 	// +kubebuilder:validation:Optional
 	Permission *string `json:"permission,omitempty" tf:"permission,omitempty"`
 
+	// Resource affected by this schema registry ACL.
 	// Resource affected by this acl
 	// +kubebuilder:validation:Optional
 	Resource *string `json:"resource,omitempty" tf:"resource,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Username affected by this schema registry ACL.
 	// Username affected by this acl
 	// +kubebuilder:validation:Optional
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
@@ -116,7 +132,7 @@ type ProjectDatabaseKafkaSchemaregistryaclStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseKafkaSchemaregistryacl is the Schema for the ProjectDatabaseKafkaSchemaregistryacls API. <no value>
+// ProjectDatabaseKafkaSchemaregistryacl is the Schema for the ProjectDatabaseKafkaSchemaregistryacls API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

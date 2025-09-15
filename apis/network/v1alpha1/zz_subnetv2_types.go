@@ -13,19 +13,19 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
 )
 
-type AllocationPoolInitParameters struct {
+type AllocationPoolsInitParameters struct {
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
-type AllocationPoolObservation struct {
+type AllocationPoolsObservation struct {
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
-type AllocationPoolParameters struct {
+type AllocationPoolsParameters struct {
 
 	// +kubebuilder:validation:Optional
 	End *string `json:"end" tf:"end,omitempty"`
@@ -57,32 +57,42 @@ type HostRouteParameters struct {
 
 type SubnetV2InitParameters struct {
 
+	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
-	AllocationPool []AllocationPoolInitParameters `json:"allocationPool,omitempty" tf:"allocation_pool,omitempty"`
+	AllocationPools []AllocationPoolsInitParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
+	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
 	// Enable DHCP in subnet
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
 	// List of DNS nameservers, default: 213.186.33.99
 	DNSNameservers []*string `json:"dnsNameservers,omitempty" tf:"dns_nameservers,omitempty"`
 
+	// Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
 	// Enable gateway IP in subnet
 	EnableGatewayIP *bool `json:"enableGatewayIp,omitempty" tf:"enable_gateway_ip,omitempty"`
 
+	// See Argument Reference above.
 	// Gateway IP of subnet
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
+	// List of custom host routes. Changing this value recreates the resource.
 	// Static host routes of subnet
 	HostRoute []HostRouteInitParameters `json:"hostRoute,omitempty" tf:"host_route,omitempty"`
 
+	// Name of the subnet Changing this value recreates the subnet.
 	// Name of subnet
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	// Network ID of subnet
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	// Reference to a PrivateNetwork in network to populate networkId.
@@ -93,87 +103,118 @@ type SubnetV2InitParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	// Region of network/subnet
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+	// Use OVH default DNS
+	UseDefaultPublicDNSResolver *bool `json:"useDefaultPublicDnsResolver,omitempty" tf:"use_default_public_dns_resolver,omitempty"`
 }
 
 type SubnetV2Observation struct {
 
+	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
-	AllocationPool []AllocationPoolObservation `json:"allocationPool,omitempty" tf:"allocation_pool,omitempty"`
+	AllocationPools []AllocationPoolsObservation `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
+	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
 	// Enable DHCP in subnet
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
 	// List of DNS nameservers, default: 213.186.33.99
 	DNSNameservers []*string `json:"dnsNameservers,omitempty" tf:"dns_nameservers,omitempty"`
 
+	// Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
 	// Enable gateway IP in subnet
 	EnableGatewayIP *bool `json:"enableGatewayIp,omitempty" tf:"enable_gateway_ip,omitempty"`
 
+	// See Argument Reference above.
 	// Gateway IP of subnet
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
+	// List of custom host routes. Changing this value recreates the resource.
 	// Static host routes of subnet
 	HostRoute []HostRouteObservation `json:"hostRoute,omitempty" tf:"host_route,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the subnet Changing this value recreates the subnet.
 	// Name of subnet
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	// Network ID of subnet
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	// Region of network/subnet
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+	// Use OVH default DNS
+	UseDefaultPublicDNSResolver *bool `json:"useDefaultPublicDnsResolver,omitempty" tf:"use_default_public_dns_resolver,omitempty"`
 }
 
 type SubnetV2Parameters struct {
 
+	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
 	// +kubebuilder:validation:Optional
-	AllocationPool []AllocationPoolParameters `json:"allocationPool,omitempty" tf:"allocation_pool,omitempty"`
+	AllocationPools []AllocationPoolsParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
+	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet
 	// +kubebuilder:validation:Optional
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to true.
 	// Enable DHCP in subnet
 	// +kubebuilder:validation:Optional
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// DNS nameservers used by DHCP Changing this value recreates the resource. Defaults to OVH default DNS nameserver.
 	// List of DNS nameservers, default: 213.186.33.99
 	// +kubebuilder:validation:Optional
 	DNSNameservers []*string `json:"dnsNameservers,omitempty" tf:"dns_nameservers,omitempty"`
 
+	// Set to true if you want to set a default gateway IP. Changing this value recreates the resource. Defaults to true.
 	// Enable gateway IP in subnet
 	// +kubebuilder:validation:Optional
 	EnableGatewayIP *bool `json:"enableGatewayIp,omitempty" tf:"enable_gateway_ip,omitempty"`
 
+	// See Argument Reference above.
 	// Gateway IP of subnet
 	// +kubebuilder:validation:Optional
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
+	// List of custom host routes. Changing this value recreates the resource.
 	// Static host routes of subnet
 	// +kubebuilder:validation:Optional
 	HostRoute []HostRouteParameters `json:"hostRoute,omitempty" tf:"host_route,omitempty"`
 
+	// Name of the subnet Changing this value recreates the subnet.
 	// Name of subnet
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	// Network ID of subnet
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -185,13 +226,20 @@ type SubnetV2Parameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	// Region of network/subnet
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// Set to false if you want to use your DNS resolver. Changing this value recreates the resource.
+	// Use OVH default DNS
+	// +kubebuilder:validation:Optional
+	UseDefaultPublicDNSResolver *bool `json:"useDefaultPublicDnsResolver,omitempty" tf:"use_default_public_dns_resolver,omitempty"`
 }
 
 // SubnetV2Spec defines the desired state of SubnetV2
@@ -221,7 +269,7 @@ type SubnetV2Status struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// SubnetV2 is the Schema for the SubnetV2s API. <no value>
+// SubnetV2 is the Schema for the SubnetV2s API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

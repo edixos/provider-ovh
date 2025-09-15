@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Mitigation is the Schema for the Mitigations API. <no value>
+        description: Mitigation is the Schema for the Mitigations API.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +73,14 @@ spec:
               forProvider:
                 properties:
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnMitigation:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   permanent:
                     description: Set on true if your ip is on permanent mitigation
@@ -96,10 +100,14 @@ spec:
                   autoscaler.
                 properties:
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnMitigation:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   permanent:
                     description: Set on true if your ip is on permanent mitigation
@@ -287,21 +295,29 @@ spec:
               atProvider:
                 properties:
                   auto:
-                    description: Set on true if your ip is on auto-mitigation
+                    description: |-
+                      Set on true if the IP is on auto-mitigation
+                      Set on true if your ip is on auto-mitigation
                     type: boolean
                   id:
                     type: string
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnMitigation:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   permanent:
                     description: Set on true if your ip is on permanent mitigation
                     type: boolean
                   state:
-                    description: Current state of your ip on mitigation
+                    description: |-
+                      Current state of the IP on mitigation
+                      Current state of your ip on mitigation
                     type: string
                 type: object
               conditions:

@@ -1782,6 +1782,11 @@ func (in *ReverseInitParameters) DeepCopyInto(out *ReverseInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ReadinessTimeoutDuration != nil {
+		in, out := &in.ReadinessTimeoutDuration, &out.ReadinessTimeoutDuration
+		*out = new(string)
+		**out = **in
+	}
 	if in.Reverse != nil {
 		in, out := &in.Reverse, &out.Reverse
 		*out = new(string)
@@ -1849,6 +1854,11 @@ func (in *ReverseObservation) DeepCopyInto(out *ReverseObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ReadinessTimeoutDuration != nil {
+		in, out := &in.ReadinessTimeoutDuration, &out.ReadinessTimeoutDuration
+		*out = new(string)
+		**out = **in
+	}
 	if in.Reverse != nil {
 		in, out := &in.Reverse, &out.Reverse
 		*out = new(string)
@@ -1876,6 +1886,11 @@ func (in *ReverseParameters) DeepCopyInto(out *ReverseParameters) {
 	}
 	if in.IPReverse != nil {
 		in, out := &in.IPReverse, &out.IPReverse
+		*out = new(string)
+		**out = **in
+	}
+	if in.ReadinessTimeoutDuration != nil {
+		in, out := &in.ReadinessTimeoutDuration, &out.ReadinessTimeoutDuration
 		*out = new(string)
 		**out = **in
 	}

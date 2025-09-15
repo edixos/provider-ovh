@@ -14,33 +14,45 @@ import (
 )
 
 type CephACLInitParameters struct {
+
+	// The network mask to apply
 	Netmask *string `json:"netmask,omitempty" tf:"netmask,omitempty"`
 
+	// The network IP to authorize
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The internal name of your dedicated CEPH
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type CephACLObservation struct {
+
+	// IP family. IPv4 or IPv6
 	Family *string `json:"family,omitempty" tf:"family,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The network mask to apply
 	Netmask *string `json:"netmask,omitempty" tf:"netmask,omitempty"`
 
+	// The network IP to authorize
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The internal name of your dedicated CEPH
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type CephACLParameters struct {
 
+	// The network mask to apply
 	// +kubebuilder:validation:Optional
 	Netmask *string `json:"netmask,omitempty" tf:"netmask,omitempty"`
 
+	// The network IP to authorize
 	// +kubebuilder:validation:Optional
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The internal name of your dedicated CEPH
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -72,7 +84,7 @@ type CephACLStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// CephACL is the Schema for the CephACLs API. <no value>
+// CephACL is the Schema for the CephACLs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

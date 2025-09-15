@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: IAMPolicy is the Schema for the IAMPolicys API. <no value>
+        description: IAMPolicy is the Schema for the IAMPolicys API.
         properties:
           apiVersion:
             description: |-
@@ -73,35 +73,49 @@ spec:
               forProvider:
                 properties:
                   allow:
+                    description: List of actions allowed on resources by identities
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   deny:
+                    description: List of actions that will always be denied even if
+                      also allowed by this policy or another one.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   description:
+                    description: Description of the policy
                     type: string
                   except:
+                    description: List of overrides of action that must not be allowed
+                      even if they are caught by allow. Only makes sens if allow contains
+                      wildcards.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   identities:
+                    description: List of identities affected by the policy
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
+                    description: Name of the policy, must be unique
                     type: string
                   permissionsGroups:
+                    description: Set of permissions groups included in the policy.
+                      At evaluation, these permissions groups are each evaluated independently
+                      (notably, excepts actions only affect actions in the same permission
+                      group).
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   resources:
+                    description: List of resources affected by the policy
                     items:
                       type: string
                     type: array
@@ -121,35 +135,49 @@ spec:
                   autoscaler.
                 properties:
                   allow:
+                    description: List of actions allowed on resources by identities
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   deny:
+                    description: List of actions that will always be denied even if
+                      also allowed by this policy or another one.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   description:
+                    description: Description of the policy
                     type: string
                   except:
+                    description: List of overrides of action that must not be allowed
+                      even if they are caught by allow. Only makes sens if allow contains
+                      wildcards.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   identities:
+                    description: List of identities affected by the policy
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
+                    description: Name of the policy, must be unique
                     type: string
                   permissionsGroups:
+                    description: Set of permissions groups included in the policy.
+                      At evaluation, these permissions groups are each evaluated independently
+                      (notably, excepts actions only affect actions in the same permission
+                      group).
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   resources:
+                    description: List of resources affected by the policy
                     items:
                       type: string
                     type: array
@@ -341,20 +369,28 @@ spec:
               atProvider:
                 properties:
                   allow:
+                    description: List of actions allowed on resources by identities
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   createdAt:
+                    description: Creation date of this group.
                     type: string
                   deny:
+                    description: List of actions that will always be denied even if
+                      also allowed by this policy or another one.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   description:
+                    description: Description of the policy
                     type: string
                   except:
+                    description: List of overrides of action that must not be allowed
+                      even if they are caught by allow. Only makes sens if allow contains
+                      wildcards.
                     items:
                       type: string
                     type: array
@@ -362,27 +398,37 @@ spec:
                   id:
                     type: string
                   identities:
+                    description: List of identities affected by the policy
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
+                    description: Name of the policy, must be unique
                     type: string
                   owner:
+                    description: Owner of the policy.
                     type: string
                   permissionsGroups:
+                    description: Set of permissions groups included in the policy.
+                      At evaluation, these permissions groups are each evaluated independently
+                      (notably, excepts actions only affect actions in the same permission
+                      group).
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   readOnly:
+                    description: Indicates that the policy is a default one.
                     type: boolean
                   resources:
+                    description: List of resources affected by the policy
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   updatedAt:
+                    description: Date of the last update of this group.
                     type: string
                 type: object
               conditions:

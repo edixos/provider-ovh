@@ -15,63 +15,79 @@ import (
 
 type UDPFarmInitParameters struct {
 
+	// Readable label for loadbalancer farm
 	// Human readable name for your backend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. gra, bhs also supports all)
 	// Zone of your farm
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type UDPFarmObservation struct {
 
+	// Readable label for loadbalancer farm
 	// Human readable name for your backend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Id of your farm.
 	// Id of your farm
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. gra, bhs also supports all)
 	// Zone of your farm
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type UDPFarmParameters struct {
 
+	// Readable label for loadbalancer farm
 	// Human readable name for your backend, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	// +kubebuilder:validation:Optional
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. gra, bhs also supports all)
 	// Zone of your farm
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
@@ -104,7 +120,7 @@ type UDPFarmStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// UDPFarm is the Schema for the UDPFarms API. <no value>
+// UDPFarm is the Schema for the UDPFarms API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

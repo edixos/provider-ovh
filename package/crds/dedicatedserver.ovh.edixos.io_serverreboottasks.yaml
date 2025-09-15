@@ -35,7 +35,6 @@ spec:
     schema:
       openAPIV3Schema:
         description: ServerRebootTask is the Schema for the ServerRebootTasks API.
-          <no value>
         properties:
           apiVersion:
             description: |-
@@ -74,12 +73,16 @@ spec:
               forProvider:
                 properties:
                   keepers:
-                    description: Change this value to recreate a reboot task.
+                    description: |-
+                      List of values tracked to trigger reboot, used also to form implicit dependencies.
+                      Change this value to recreate a reboot task.
                     items:
                       type: string
                     type: array
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                 type: object
               initProvider:
@@ -96,12 +99,16 @@ spec:
                   autoscaler.
                 properties:
                   keepers:
-                    description: Change this value to recreate a reboot task.
+                    description: |-
+                      List of values tracked to trigger reboot, used also to form implicit dependencies.
+                      Change this value to recreate a reboot task.
                     items:
                       type: string
                     type: array
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                 type: object
               managementPolicies:
@@ -286,32 +293,49 @@ spec:
               atProvider:
                 properties:
                   comment:
-                    description: Details of this task
+                    description: |-
+                      Details of this task. (should be Reboot asked)
+                      Details of this task
                     type: string
                   doneDate:
-                    description: Completion date
+                    description: |-
+                      Completion date in RFC3339 format.
+                      Completion date
                     type: string
                   function:
-                    description: Function name
+                    description: |-
+                      Function name (should be hardReboot).
+                      Function name
                     type: string
                   id:
+                    description: The task id
                     type: string
                   keepers:
-                    description: Change this value to recreate a reboot task.
+                    description: |-
+                      List of values tracked to trigger reboot, used also to form implicit dependencies.
+                      Change this value to recreate a reboot task.
                     items:
                       type: string
                     type: array
                   lastUpdate:
-                    description: Last update
+                    description: |-
+                      Last update in RFC3339 format.
+                      Last update
                     type: string
                   serviceName:
-                    description: The internal name of your dedicated server.
+                    description: |-
+                      The service_name of your dedicated server.
+                      The internal name of your dedicated server.
                     type: string
                   startDate:
-                    description: Task Creation date
+                    description: |-
+                      Task creation date in RFC3339 format.
+                      Task Creation date
                     type: string
                   status:
-                    description: Task status
+                    description: |-
+                      Task status (should be done)
+                      Task status
                     type: string
                 type: object
               conditions:

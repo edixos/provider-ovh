@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseOpensearchPattern is the Schema for the ProjectDatabaseOpensearchPatterns
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,12 +156,18 @@ spec:
                         type: object
                     type: object
                   maxIndexCount:
-                    description: Maximum number of index for this pattern
+                    description: |-
+                      Maximum number of index for this pattern.
+                      Maximum number of index for this pattern
                     type: number
                   pattern:
-                    description: Pattern format
+                    description: |-
+                      Pattern format.
+                      Pattern format
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -176,7 +184,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -255,12 +265,18 @@ spec:
                         type: object
                     type: object
                   maxIndexCount:
-                    description: Maximum number of index for this pattern
+                    description: |-
+                      Maximum number of index for this pattern.
+                      Maximum number of index for this pattern
                     type: number
                   pattern:
-                    description: Pattern format
+                    description: |-
+                      Pattern format.
+                      Pattern format
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -446,17 +462,26 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   id:
+                    description: ID of the pattern.
                     type: string
                   maxIndexCount:
-                    description: Maximum number of index for this pattern
+                    description: |-
+                      Maximum number of index for this pattern.
+                      Maximum number of index for this pattern
                     type: number
                   pattern:
-                    description: Pattern format
+                    description: |-
+                      Pattern format.
+                      Pattern format
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               conditions:

@@ -15,9 +15,11 @@ import (
 
 type S3CredentialsInitParameters struct {
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/cloud/v1alpha1.User
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
@@ -32,25 +34,32 @@ type S3CredentialsInitParameters struct {
 }
 
 type S3CredentialsObservation struct {
+
+	// the Access Key ID
 	AccessKeyID *string `json:"accessKeyId,omitempty" tf:"access_key_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The ID of a public cloud project's user.
 	InternalUserID *string `json:"internalUserId,omitempty" tf:"internal_user_id,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type S3CredentialsParameters struct {
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/cloud/v1alpha1.User
 	// +kubebuilder:validation:Optional
@@ -92,7 +101,7 @@ type S3CredentialsStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// S3Credentials is the Schema for the S3Credentialss API. <no value>
+// S3Credentials is the Schema for the S3Credentialss API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

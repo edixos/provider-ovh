@@ -14,64 +14,84 @@ import (
 )
 
 type ProjectWorkflowBackupInitParameters struct {
+
+	// The name of the backup files that are created. If empty, the name attribute is used.
 	BackupName *string `json:"backupName,omitempty" tf:"backup_name,omitempty"`
 
+	// (Mandatory) The cron periodicity at which the backup workflow is scheduled
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
+	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
 	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
+	// (Mandatory) The name of the openstack region.
 	// Region name.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// (Mandatory) The number of backup that are retained.
 	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectWorkflowBackupObservation struct {
+
+	// The name of the backup files that are created. If empty, the name attribute is used.
 	BackupName *string `json:"backupName,omitempty" tf:"backup_name,omitempty"`
 
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// (Mandatory) The cron periodicity at which the backup workflow is scheduled
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
+	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
 	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
+	// (Mandatory) The name of the openstack region.
 	// Region name.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// (Mandatory) The number of backup that are retained.
 	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectWorkflowBackupParameters struct {
 
+	// The name of the backup files that are created. If empty, the name attribute is used.
 	// +kubebuilder:validation:Optional
 	BackupName *string `json:"backupName,omitempty" tf:"backup_name,omitempty"`
 
+	// (Mandatory) The cron periodicity at which the backup workflow is scheduled
 	// +kubebuilder:validation:Optional
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
+	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
 	// +kubebuilder:validation:Optional
 	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
+	// (Mandatory) The name of the openstack region.
 	// Region name.
 	// +kubebuilder:validation:Optional
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
+	// (Mandatory) The number of backup that are retained.
 	// +kubebuilder:validation:Optional
 	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -103,7 +123,7 @@ type ProjectWorkflowBackupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectWorkflowBackup is the Schema for the ProjectWorkflowBackups API. <no value>
+// ProjectWorkflowBackup is the Schema for the ProjectWorkflowBackups API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

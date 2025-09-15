@@ -35,7 +35,6 @@ spec:
     schema:
       openAPIV3Schema:
         description: OIDCConfiguration is the Schema for the OIDCConfigurations API.
-          <no value>
         properties:
           apiVersion:
             description: |-
@@ -74,10 +73,14 @@ spec:
               forProvider:
                 properties:
                   clientId:
+                    description: The OIDC client ID.
                     type: string
                   issuerUrl:
+                    description: The OIDC issuer url.
                     type: string
                   kubeId:
+                    description: The ID of the managed kubernetes cluster. Changing
+                      this value recreates the resource.
                     type: string
                   kubeIdRef:
                     description: Reference to a Cluster in kube to populate kubeId.
@@ -154,26 +157,56 @@ spec:
                         type: object
                     type: object
                   oidcCaContent:
+                    description: Content of the certificate for the CA, in Base64
+                      format, that signed your identity provider's web certificate.
+                      Defaults to the host's root CAs.
                     type: string
                   oidcGroupsClaim:
+                    description: Array of JWT claim to use as the user's group. If
+                      the claim is present it must be an array of strings.
                     items:
                       type: string
                     type: array
                   oidcGroupsPrefix:
+                    description: 'Prefix prepended to group claims to prevent clashes
+                      with existing names (such as system:groups). For example, the
+                      value oidc: will create group names like oidc:engineering and
+                      oidc:infra.'
                     type: string
                   oidcRequiredClaim:
+                    description: Array of key=value pairs that describe required claims
+                      in the ID Token. If set, the claims are verified to be present
+                      in the ID Token with a matching value."
                     items:
                       type: string
                     type: array
                   oidcSigningAlgs:
+                    description: Array of signing algorithms accepted. Default is
+                      RS256.
                     items:
                       type: string
                     type: array
                   oidcUsernameClaim:
+                    description: JWT claim to use as the username. By default, sub,
+                      which is expected to be a unique identifier of the end user.
+                      Admins can choose other claims, such as email or name, depending
+                      on their provider. However, claims other than email will be
+                      prefixed with the issuer URL to prevent naming clashes with
+                      other plugins.
                     type: string
                   oidcUsernamePrefix:
+                    description: 'Prefix prepended to username claims to prevent clashes
+                      with existing names (such as system:users). For example, the
+                      value oidc: will create usernames like oidc:jane.doe. If this
+                      field isn''t set and oidc_username_claim is a value other than
+                      email the prefix defaults to issuer_url where issuer_url is
+                      the value of issuer_url. The value - can be used to disable
+                      all prefixing.'
                     type: string
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               initProvider:
@@ -190,10 +223,14 @@ spec:
                   autoscaler.
                 properties:
                   clientId:
+                    description: The OIDC client ID.
                     type: string
                   issuerUrl:
+                    description: The OIDC issuer url.
                     type: string
                   kubeId:
+                    description: The ID of the managed kubernetes cluster. Changing
+                      this value recreates the resource.
                     type: string
                   kubeIdRef:
                     description: Reference to a Cluster in kube to populate kubeId.
@@ -270,26 +307,56 @@ spec:
                         type: object
                     type: object
                   oidcCaContent:
+                    description: Content of the certificate for the CA, in Base64
+                      format, that signed your identity provider's web certificate.
+                      Defaults to the host's root CAs.
                     type: string
                   oidcGroupsClaim:
+                    description: Array of JWT claim to use as the user's group. If
+                      the claim is present it must be an array of strings.
                     items:
                       type: string
                     type: array
                   oidcGroupsPrefix:
+                    description: 'Prefix prepended to group claims to prevent clashes
+                      with existing names (such as system:groups). For example, the
+                      value oidc: will create group names like oidc:engineering and
+                      oidc:infra.'
                     type: string
                   oidcRequiredClaim:
+                    description: Array of key=value pairs that describe required claims
+                      in the ID Token. If set, the claims are verified to be present
+                      in the ID Token with a matching value."
                     items:
                       type: string
                     type: array
                   oidcSigningAlgs:
+                    description: Array of signing algorithms accepted. Default is
+                      RS256.
                     items:
                       type: string
                     type: array
                   oidcUsernameClaim:
+                    description: JWT claim to use as the username. By default, sub,
+                      which is expected to be a unique identifier of the end user.
+                      Admins can choose other claims, such as email or name, depending
+                      on their provider. However, claims other than email will be
+                      prefixed with the issuer URL to prevent naming clashes with
+                      other plugins.
                     type: string
                   oidcUsernamePrefix:
+                    description: 'Prefix prepended to username claims to prevent clashes
+                      with existing names (such as system:users). For example, the
+                      value oidc: will create usernames like oidc:jane.doe. If this
+                      field isn''t set and oidc_username_claim is a value other than
+                      email the prefix defaults to issuer_url where issuer_url is
+                      the value of issuer_url. The value - can be used to disable
+                      all prefixing.'
                     type: string
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               managementPolicies:
@@ -478,34 +545,68 @@ spec:
               atProvider:
                 properties:
                   clientId:
+                    description: The OIDC client ID.
                     type: string
                   id:
                     type: string
                   issuerUrl:
+                    description: The OIDC issuer url.
                     type: string
                   kubeId:
+                    description: The ID of the managed kubernetes cluster. Changing
+                      this value recreates the resource.
                     type: string
                   oidcCaContent:
+                    description: Content of the certificate for the CA, in Base64
+                      format, that signed your identity provider's web certificate.
+                      Defaults to the host's root CAs.
                     type: string
                   oidcGroupsClaim:
+                    description: Array of JWT claim to use as the user's group. If
+                      the claim is present it must be an array of strings.
                     items:
                       type: string
                     type: array
                   oidcGroupsPrefix:
+                    description: 'Prefix prepended to group claims to prevent clashes
+                      with existing names (such as system:groups). For example, the
+                      value oidc: will create group names like oidc:engineering and
+                      oidc:infra.'
                     type: string
                   oidcRequiredClaim:
+                    description: Array of key=value pairs that describe required claims
+                      in the ID Token. If set, the claims are verified to be present
+                      in the ID Token with a matching value."
                     items:
                       type: string
                     type: array
                   oidcSigningAlgs:
+                    description: Array of signing algorithms accepted. Default is
+                      RS256.
                     items:
                       type: string
                     type: array
                   oidcUsernameClaim:
+                    description: JWT claim to use as the username. By default, sub,
+                      which is expected to be a unique identifier of the end user.
+                      Admins can choose other claims, such as email or name, depending
+                      on their provider. However, claims other than email will be
+                      prefixed with the issuer URL to prevent naming clashes with
+                      other plugins.
                     type: string
                   oidcUsernamePrefix:
+                    description: 'Prefix prepended to username claims to prevent clashes
+                      with existing names (such as system:users). For example, the
+                      value oidc: will create usernames like oidc:jane.doe. If this
+                      field isn''t set and oidc_username_claim is a value other than
+                      email the prefix defaults to issuer_url where issuer_url is
+                      the value of issuer_url. The value - can be used to disable
+                      all prefixing.'
                     type: string
                   serviceName:
+                    description: The ID of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                 type: object
               conditions:

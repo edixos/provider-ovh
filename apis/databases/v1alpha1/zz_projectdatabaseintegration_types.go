@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseIntegrationInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,56 +28,72 @@ type ProjectDatabaseIntegrationInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// ID of the destination service.
 	// ID of the destination service
 	DestinationServiceID *string `json:"destinationServiceId,omitempty" tf:"destination_service_id,omitempty"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Parameters for the integration.
 	// Parameters for the integration
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// ID of the source service.
 	// ID of the source service
 	SourceServiceID *string `json:"sourceServiceId,omitempty" tf:"source_service_id,omitempty"`
 
+	// Type of the integration. Available types:
 	// Type of the integration
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type ProjectDatabaseIntegrationObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// ID of the destination service.
 	// ID of the destination service
 	DestinationServiceID *string `json:"destinationServiceId,omitempty" tf:"destination_service_id,omitempty"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// - ID of the integration.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Parameters for the integration.
 	// Parameters for the integration
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// ID of the source service.
 	// ID of the source service
 	SourceServiceID *string `json:"sourceServiceId,omitempty" tf:"source_service_id,omitempty"`
 
+	// Current status of the integration.
 	// Current status of the integration
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// Type of the integration. Available types:
 	// Type of the integration
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type ProjectDatabaseIntegrationParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -90,26 +107,32 @@ type ProjectDatabaseIntegrationParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// ID of the destination service.
 	// ID of the destination service
 	// +kubebuilder:validation:Optional
 	DestinationServiceID *string `json:"destinationServiceId,omitempty" tf:"destination_service_id,omitempty"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
 	// Name of the engine of the service
 	// +kubebuilder:validation:Optional
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Parameters for the integration.
 	// Parameters for the integration
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	Parameters map[string]*string `json:"parameters,omitempty" tf:"parameters,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// ID of the source service.
 	// ID of the source service
 	// +kubebuilder:validation:Optional
 	SourceServiceID *string `json:"sourceServiceId,omitempty" tf:"source_service_id,omitempty"`
 
+	// Type of the integration. Available types:
 	// Type of the integration
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -142,7 +165,7 @@ type ProjectDatabaseIntegrationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseIntegration is the Schema for the ProjectDatabaseIntegrations API. <no value>
+// ProjectDatabaseIntegration is the Schema for the ProjectDatabaseIntegrations API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

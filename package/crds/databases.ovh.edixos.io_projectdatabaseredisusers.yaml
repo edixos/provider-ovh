@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseRedisUser is the Schema for the ProjectDatabaseRedisUsers
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,19 +75,25 @@ spec:
               forProvider:
                 properties:
                   categories:
-                    description: Categories of the user
+                    description: |-
+                      Categories of the user.
+                      Categories of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   channels:
-                    description: Channels of the user
+                    description: |-
+                      Channels of the user.
+                      Channels of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -166,25 +172,34 @@ spec:
                         type: object
                     type: object
                   commands:
-                    description: Commands of the user
+                    description: |-
+                      Commands of the user.
+                      Commands of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   keys:
-                    description: Keys of the user
+                    description: |-
+                      Keys of the user.
+                      Keys of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -201,19 +216,25 @@ spec:
                   autoscaler.
                 properties:
                   categories:
-                    description: Categories of the user
+                    description: |-
+                      Categories of the user.
+                      Categories of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   channels:
-                    description: Channels of the user
+                    description: |-
+                      Channels of the user.
+                      Channels of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -292,25 +313,34 @@ spec:
                         type: object
                     type: object
                   commands:
-                    description: Commands of the user
+                    description: |-
+                      Commands of the user.
+                      Commands of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   keys:
-                    description: Keys of the user
+                    description: |-
+                      Keys of the user.
+                      Keys of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -496,48 +526,68 @@ spec:
               atProvider:
                 properties:
                   categories:
-                    description: Categories of the user
+                    description: |-
+                      Categories of the user.
+                      Categories of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   channels:
-                    description: Channels of the user
+                    description: |-
+                      Channels of the user.
+                      Channels of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   commands:
-                    description: Commands of the user
+                    description: |-
+                      Commands of the user.
+                      Commands of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   createdAt:
-                    description: Date of the creation of the user
+                    description: |-
+                      Date of the creation of the user.
+                      Date of the creation of the user
                     type: string
                   id:
+                    description: ID of the user.
                     type: string
                   keys:
-                    description: Keys of the user
+                    description: |-
+                      Keys of the user.
+                      Keys of the user
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   name:
-                    description: Name of the user
+                    description: |-
+                      Name of the user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   status:
-                    description: Current status of the user
+                    description: |-
+                      Current status of the user.
+                      Current status of the user
                     type: string
                 type: object
               conditions:

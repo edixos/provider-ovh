@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectGateway is the Schema for the ProjectGateways API. <no
-          value>
+        description: ProjectGateway is the Schema for the ProjectGateways API.
         properties:
           apiVersion:
             description: |-
@@ -74,10 +73,13 @@ spec:
               forProvider:
                 properties:
                   model:
+                    description: Model of the gateway.
                     type: string
                   name:
+                    description: Name of the gateway.
                     type: string
                   networkId:
+                    description: ID of the private network.
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -156,15 +158,18 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: Region of the gateway.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      ID of the private network.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   subnetId:
+                    description: ID of the subnet.
                     type: string
                   subnetIdRef:
-                    description: Reference to a Subnet in network to populate subnetId.
+                    description: Reference to a SubnetV2 in network to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -198,7 +203,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a Subnet in network to populate subnetId.
+                    description: Selector for a SubnetV2 in network to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -252,10 +257,13 @@ spec:
                   autoscaler.
                 properties:
                   model:
+                    description: Model of the gateway.
                     type: string
                   name:
+                    description: Name of the gateway.
                     type: string
                   networkId:
+                    description: ID of the private network.
                     type: string
                   networkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -334,15 +342,18 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: Region of the gateway.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      ID of the private network.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   subnetId:
+                    description: ID of the subnet.
                     type: string
                   subnetIdRef:
-                    description: Reference to a Subnet in network to populate subnetId.
+                    description: Reference to a SubnetV2 in network to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -376,7 +387,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a Subnet in network to populate subnetId.
+                    description: Selector for a SubnetV2 in network to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -606,53 +617,73 @@ spec:
               atProvider:
                 properties:
                   externalInformation:
-                    description: External information of the gateway
+                    description: |-
+                      List of External Information of the gateway.
+                      External information of the gateway
                     items:
                       properties:
                         ips:
+                          description: List of external ips of the gateway.
                           items:
                             properties:
                               ip:
+                                description: External IP of the gateway.
                                 type: string
                               subnetId:
+                                description: ID of the subnet.
                                 type: string
                             type: object
                           type: array
                         networkId:
+                          description: ID of the private network.
                           type: string
                       type: object
                     type: array
                   id:
+                    description: Identifier of the gateway.
                     type: string
                   interfaces:
-                    description: Interfaces list of the gateway
+                    description: |-
+                      Interfaces list of the gateway.
+                      Interfaces list of the gateway
                     items:
                       properties:
                         id:
+                          description: Identifier of the gateway.
                           type: string
                         ip:
+                          description: External IP of the gateway.
                           type: string
                         networkId:
+                          description: ID of the private network.
                           type: string
                         subnetId:
+                          description: ID of the subnet.
                           type: string
                       type: object
                     type: array
                   model:
+                    description: Model of the gateway.
                     type: string
                   name:
+                    description: Name of the gateway.
                     type: string
                   networkId:
+                    description: ID of the private network.
                     type: string
                   region:
+                    description: Region of the gateway.
                     type: string
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      ID of the private network.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   status:
+                    description: Status of the gateway.
                     type: string
                   subnetId:
+                    description: ID of the subnet.
                     type: string
                 type: object
               conditions:

@@ -7,9 +7,6 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
-func (tr *ServerInstallTask) Hub() {}
-
-// Hub marks this type as a conversion hub.
 func (tr *ServerNetworking) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -17,15 +14,3 @@ func (tr *ServerRebootTask) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ServerUpdate) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *InstallationTemplate) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *InstallationTemplatePartitionScheme) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *InstallationTemplatePartitionSchemeHardwareRaid) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *InstallationTemplatePartitionSchemePartition) Hub() {}

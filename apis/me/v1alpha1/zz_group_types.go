@@ -14,39 +14,54 @@ import (
 )
 
 type GroupInitParameters struct {
+
+	// Group description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Group name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 }
 
 type GroupObservation struct {
+
+	// Creation date of this group.
 	Creation *string `json:"creation,omitempty" tf:"creation,omitempty"`
 
+	// Is the group a default and immutable one.
 	DefaultGroup *bool `json:"defaultGroup,omitempty" tf:"default_group,omitempty"`
 
+	// Group description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Date of the last update of this group.
 	LastUpdate *string `json:"lastUpdate,omitempty" tf:"last_update,omitempty"`
 
+	// Group name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
+	// URN of the user group, used when writing IAM policies
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
 type GroupParameters struct {
 
+	// Group description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Group name.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.
 	// +kubebuilder:validation:Optional
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 }
@@ -78,7 +93,7 @@ type GroupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Group is the Schema for the Groups API. <no value>
+// Group is the Schema for the Groups API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -14,31 +14,41 @@ import (
 )
 
 type NashaPartitionSnapshotInitParameters struct {
+
+	// name of the partition
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Snapshot interval, allowed : day-1, day-2, day-3, day-7, hour-1, hour-6
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type NashaPartitionSnapshotObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// name of the partition
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Snapshot interval, allowed : day-1, day-2, day-3, day-7, hour-1, hour-6
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
 type NashaPartitionSnapshotParameters struct {
 
+	// name of the partition
 	// +kubebuilder:validation:Optional
 	PartitionName *string `json:"partitionName,omitempty" tf:"partition_name,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Snapshot interval, allowed : day-1, day-2, day-3, day-7, hour-1, hour-6
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -70,7 +80,7 @@ type NashaPartitionSnapshotStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NashaPartitionSnapshot is the Schema for the NashaPartitionSnapshots API. <no value>
+// NashaPartitionSnapshot is the Schema for the NashaPartitionSnapshots API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

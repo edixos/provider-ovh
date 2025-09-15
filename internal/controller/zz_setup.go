@@ -37,11 +37,6 @@ import (
 	projectdatabasepostgresqluser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabasepostgresqluser"
 	projectdatabaseredisuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseredisuser"
 	projectdatabaseuser "github.com/edixos/provider-ovh/internal/controller/databases/projectdatabaseuser"
-	installationtemplate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplate"
-	installationtemplatepartitionscheme "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionscheme"
-	installationtemplatepartitionschemehardwareraid "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemehardwareraid"
-	installationtemplatepartitionschemepartition "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/installationtemplatepartitionschemepartition"
-	serverinstalltask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverinstalltask"
 	servernetworking "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/servernetworking"
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverreboottask"
 	serverupdate "github.com/edixos/provider-ovh/internal/controller/dedicatedserver/serverupdate"
@@ -142,11 +137,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabasepostgresqluser.Setup,
 		projectdatabaseredisuser.Setup,
 		projectdatabaseuser.Setup,
-		installationtemplate.Setup,
-		installationtemplatepartitionscheme.Setup,
-		installationtemplatepartitionschemehardwareraid.Setup,
-		installationtemplatepartitionschemepartition.Setup,
-		serverinstalltask.Setup,
 		servernetworking.Setup,
 		serverreboottask.Setup,
 		serverupdate.Setup,

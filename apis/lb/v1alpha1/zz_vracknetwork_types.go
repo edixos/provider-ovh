@@ -16,20 +16,26 @@ import (
 type VrackNetworkInitParameters struct {
 
 	// Human readable name for your vrack network
+	// Human readable name for your vrack network
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
 	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
+	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
 	NATIP *string `json:"natIp,omitempty" tf:"nat_ip,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IPloadbalancer
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// IP block of the private network in the vRack
+	// IP block of the private network in the vRack
 	Subnet *string `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
+	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
 }
@@ -37,25 +43,32 @@ type VrackNetworkInitParameters struct {
 type VrackNetworkObservation struct {
 
 	// Human readable name for your vrack network
+	// Human readable name for your vrack network
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
 	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
+	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
 	NATIP *string `json:"natIp,omitempty" tf:"nat_ip,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IPloadbalancer
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// IP block of the private network in the vRack
+	// IP block of the private network in the vRack
 	Subnet *string `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
+	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
 
+	// Internal Load Balancer identifier of the vRack private network
 	// Internal Load Balancer identifier of the vRack private network
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 }
@@ -63,25 +76,31 @@ type VrackNetworkObservation struct {
 type VrackNetworkParameters struct {
 
 	// Human readable name for your vrack network
+	// Human readable name for your vrack network
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
 	// +kubebuilder:validation:Optional
 	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
+	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
 	// +kubebuilder:validation:Optional
 	NATIP *string `json:"natIp,omitempty" tf:"nat_ip,omitempty"`
 
+	// The internal name of your IP load balancing
 	// The internal name of your IPloadbalancer
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// IP block of the private network in the vRack
+	// IP block of the private network in the vRack
 	// +kubebuilder:validation:Optional
 	Subnet *string `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
+	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// +kubebuilder:validation:Optional
 	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
@@ -114,7 +133,7 @@ type VrackNetworkStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// VrackNetwork is the Schema for the VrackNetworks API. <no value>
+// VrackNetwork is the Schema for the VrackNetworks API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

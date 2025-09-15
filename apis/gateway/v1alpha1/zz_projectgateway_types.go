@@ -17,8 +17,11 @@ type ExternalInformationInitParameters struct {
 }
 
 type ExternalInformationObservation struct {
+
+	// List of external ips of the gateway.
 	Ips []IpsObservation `json:"ips,omitempty" tf:"ips,omitempty"`
 
+	// ID of the private network.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 }
 
@@ -29,12 +32,17 @@ type InterfacesInitParameters struct {
 }
 
 type InterfacesObservation struct {
+
+	// Identifier of the gateway.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// External IP of the gateway.
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// ID of the private network.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// ID of the subnet.
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
@@ -45,8 +53,11 @@ type IpsInitParameters struct {
 }
 
 type IpsObservation struct {
+
+	// External IP of the gateway.
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// ID of the subnet.
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
@@ -54,11 +65,16 @@ type IpsParameters struct {
 }
 
 type ProjectGatewayInitParameters struct {
+
+	// Model of the gateway.
 	Model *string `json:"model,omitempty" tf:"model,omitempty"`
 
+	// Name of the gateway.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// ID of the private network.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	// Reference to a PrivateNetwork in network to populate networkId.
@@ -69,58 +85,75 @@ type ProjectGatewayInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// Region of the gateway.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// ID of the private network.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
+	// ID of the subnet.
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a Subnet in network to populate subnetId.
+	// Reference to a SubnetV2 in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a Subnet in network to populate subnetId.
+	// Selector for a SubnetV2 in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
 
 type ProjectGatewayObservation struct {
 
+	// List of External Information of the gateway.
 	// External information of the gateway
 	ExternalInformation []ExternalInformationObservation `json:"externalInformation,omitempty" tf:"external_information,omitempty"`
 
+	// Identifier of the gateway.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Interfaces list of the gateway.
 	// Interfaces list of the gateway
 	Interfaces []InterfacesObservation `json:"interfaces,omitempty" tf:"interfaces,omitempty"`
 
+	// Model of the gateway.
 	Model *string `json:"model,omitempty" tf:"model,omitempty"`
 
+	// Name of the gateway.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// ID of the private network.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// Region of the gateway.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// ID of the private network.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Status of the gateway.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// ID of the subnet.
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type ProjectGatewayParameters struct {
 
+	// Model of the gateway.
 	// +kubebuilder:validation:Optional
 	Model *string `json:"model,omitempty" tf:"model,omitempty"`
 
+	// Name of the gateway.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// ID of the private network.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -132,22 +165,25 @@ type ProjectGatewayParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// Region of the gateway.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// ID of the private network.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
+	// ID of the subnet.
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a Subnet in network to populate subnetId.
+	// Reference to a SubnetV2 in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a Subnet in network to populate subnetId.
+	// Selector for a SubnetV2 in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
@@ -179,7 +215,7 @@ type ProjectGatewayStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectGateway is the Schema for the ProjectGateways API. <no value>
+// ProjectGateway is the Schema for the ProjectGateways API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

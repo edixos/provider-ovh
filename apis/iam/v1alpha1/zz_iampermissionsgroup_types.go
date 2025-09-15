@@ -15,68 +15,89 @@ import (
 
 type IAMPermissionsGroupInitParameters struct {
 
+	// Set of actions allowed by the permissions group.
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Set of actions that will be denied no matter what permissions group exists.
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Group description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Set of actions that will be subtracted from the allow list.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
+	// Name of the permissions group.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Date of the last update of this group.
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type IAMPermissionsGroupObservation struct {
 
+	// Set of actions allowed by the permissions group.
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Creation date of this group.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Set of actions that will be denied no matter what permissions group exists.
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Group description.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Set of actions that will be subtracted from the allow list.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the permissions group.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Owner of the permissions group.
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
+	// Date of the last update of this group.
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 
+	// URN of the permissions group.
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
 type IAMPermissionsGroupParameters struct {
 
+	// Set of actions allowed by the permissions group.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Set of actions that will be denied no matter what permissions group exists.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Group description.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Set of actions that will be subtracted from the allow list.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
+	// Name of the permissions group.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Date of the last update of this group.
 	// +kubebuilder:validation:Optional
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
@@ -108,7 +129,7 @@ type IAMPermissionsGroupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// IAMPermissionsGroup is the Schema for the IAMPermissionsGroups API. <no value>
+// IAMPermissionsGroup is the Schema for the IAMPermissionsGroups API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

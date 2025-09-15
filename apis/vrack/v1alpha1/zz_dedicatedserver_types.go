@@ -14,8 +14,11 @@ import (
 )
 
 type DedicatedServerInitParameters struct {
+
+	// The id of the dedicated server.
 	ServerID *string `json:"serverId,omitempty" tf:"server_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -23,17 +26,21 @@ type DedicatedServerInitParameters struct {
 type DedicatedServerObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The id of the dedicated server.
 	ServerID *string `json:"serverId,omitempty" tf:"server_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type DedicatedServerParameters struct {
 
+	// The id of the dedicated server.
 	// +kubebuilder:validation:Optional
 	ServerID *string `json:"serverId,omitempty" tf:"server_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -66,7 +73,7 @@ type DedicatedServerStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DedicatedServer is the Schema for the DedicatedServers API. <no value>
+// DedicatedServer is the Schema for the DedicatedServers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

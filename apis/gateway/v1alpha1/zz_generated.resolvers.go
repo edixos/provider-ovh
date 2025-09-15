@@ -9,6 +9,7 @@ import (
 	"context"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	v1alpha1 "github.com/edixos/provider-ovh/apis/network/v1alpha1"
+	common "github.com/edixos/provider-ovh/config/common"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
@@ -22,7 +23,7 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.PrivateNetworkOpenStackIdExtractor(),
 		Reference:    mg.Spec.ForProvider.NetworkIDRef,
 		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
 		To: reference.To{
@@ -42,8 +43,8 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetList{},
-			Managed: &v1alpha1.Subnet{},
+			List:    &v1alpha1.SubnetV2List{},
+			Managed: &v1alpha1.SubnetV2{},
 		},
 	})
 	if err != nil {
@@ -54,7 +55,7 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.NetworkID),
-		Extract:      reference.ExternalName(),
+		Extract:      common.PrivateNetworkOpenStackIdExtractor(),
 		Reference:    mg.Spec.InitProvider.NetworkIDRef,
 		Selector:     mg.Spec.InitProvider.NetworkIDSelector,
 		To: reference.To{
@@ -74,8 +75,8 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 		Reference:    mg.Spec.InitProvider.SubnetIDRef,
 		Selector:     mg.Spec.InitProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetList{},
-			Managed: &v1alpha1.Subnet{},
+			List:    &v1alpha1.SubnetV2List{},
+			Managed: &v1alpha1.SubnetV2{},
 		},
 	})
 	if err != nil {

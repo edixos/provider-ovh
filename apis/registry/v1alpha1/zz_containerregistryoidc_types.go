@@ -14,26 +14,38 @@ import (
 )
 
 type ContainerRegistryOIDCInitParameters struct {
+
+	// Delete existing users from Harbor. OIDC can't be enabled if there is at least one user already created. This parameter is only used at OIDC configuration creation. Changing this value recreates the resource.
 	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
+	// Specify an OIDC admin group name. All OIDC users in this group will have harbor admin privilege. Keep it blank if you do not want to.
 	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
+	// Skip the onboarding screen, so user cannot change its username. Username is provided from ID Token.
 	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
+	// The client ID with which Harbor is registered as client application with the OIDC provider.
 	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
+	// The URL of an OIDC-compliant server.
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
+	// The name of Claim in the ID token whose value is the list of group names.
 	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// The name of the OIDC provider.
 	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
+	// The scope sent to OIDC server during authentication. It's a comma-separated string that must contain 'openid' and usually also contains 'profile' and 'email'. To obtain refresh tokens it should also contain 'offline_access'.
 	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
+	// The name of the claim in the ID Token where the username is retrieved from. If not specified, it will default to 'name' (only useful when automatic Onboarding is enabled).
 	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
 
+	// Set it to false if your OIDC server is hosted via self-signed certificate.
 	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
 
+	// The ID of the Managed Private Registry. Changing this value recreates the resource.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
@@ -45,72 +57,98 @@ type ContainerRegistryOIDCInitParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ContainerRegistryOIDCObservation struct {
+
+	// Delete existing users from Harbor. OIDC can't be enabled if there is at least one user already created. This parameter is only used at OIDC configuration creation. Changing this value recreates the resource.
 	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Specify an OIDC admin group name. All OIDC users in this group will have harbor admin privilege. Keep it blank if you do not want to.
 	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
+	// Skip the onboarding screen, so user cannot change its username. Username is provided from ID Token.
 	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
+	// The client ID with which Harbor is registered as client application with the OIDC provider.
 	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
+	// The URL of an OIDC-compliant server.
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
+	// The name of Claim in the ID token whose value is the list of group names.
 	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// The name of the OIDC provider.
 	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
+	// The scope sent to OIDC server during authentication. It's a comma-separated string that must contain 'openid' and usually also contains 'profile' and 'email'. To obtain refresh tokens it should also contain 'offline_access'.
 	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
+	// The name of the claim in the ID Token where the username is retrieved from. If not specified, it will default to 'name' (only useful when automatic Onboarding is enabled).
 	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
 
+	// Set it to false if your OIDC server is hosted via self-signed certificate.
 	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
 
+	// The ID of the Managed Private Registry. Changing this value recreates the resource.
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ContainerRegistryOIDCParameters struct {
 
+	// Delete existing users from Harbor. OIDC can't be enabled if there is at least one user already created. This parameter is only used at OIDC configuration creation. Changing this value recreates the resource.
 	// +kubebuilder:validation:Optional
 	DeleteUsers *bool `json:"deleteUsers,omitempty" tf:"delete_users,omitempty"`
 
+	// Specify an OIDC admin group name. All OIDC users in this group will have harbor admin privilege. Keep it blank if you do not want to.
 	// +kubebuilder:validation:Optional
 	OidcAdminGroup *string `json:"oidcAdminGroup,omitempty" tf:"oidc_admin_group,omitempty"`
 
+	// Skip the onboarding screen, so user cannot change its username. Username is provided from ID Token.
 	// +kubebuilder:validation:Optional
 	OidcAutoOnboard *bool `json:"oidcAutoOnboard,omitempty" tf:"oidc_auto_onboard,omitempty"`
 
+	// The client ID with which Harbor is registered as client application with the OIDC provider.
 	// +kubebuilder:validation:Optional
 	OidcClientID *string `json:"oidcClientId,omitempty" tf:"oidc_client_id,omitempty"`
 
+	// The secret for the Harbor client application.
 	// +kubebuilder:validation:Optional
 	OidcClientSecretSecretRef v1.SecretKeySelector `json:"oidcClientSecretSecretRef" tf:"-"`
 
+	// The URL of an OIDC-compliant server.
 	// +kubebuilder:validation:Optional
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
+	// The name of Claim in the ID token whose value is the list of group names.
 	// +kubebuilder:validation:Optional
 	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// The name of the OIDC provider.
 	// +kubebuilder:validation:Optional
 	OidcName *string `json:"oidcName,omitempty" tf:"oidc_name,omitempty"`
 
+	// The scope sent to OIDC server during authentication. It's a comma-separated string that must contain 'openid' and usually also contains 'profile' and 'email'. To obtain refresh tokens it should also contain 'offline_access'.
 	// +kubebuilder:validation:Optional
 	OidcScope *string `json:"oidcScope,omitempty" tf:"oidc_scope,omitempty"`
 
+	// The name of the claim in the ID Token where the username is retrieved from. If not specified, it will default to 'name' (only useful when automatic Onboarding is enabled).
 	// +kubebuilder:validation:Optional
 	OidcUserClaim *string `json:"oidcUserClaim,omitempty" tf:"oidc_user_claim,omitempty"`
 
+	// Set it to false if your OIDC server is hosted via self-signed certificate.
 	// +kubebuilder:validation:Optional
 	OidcVerifyCert *bool `json:"oidcVerifyCert,omitempty" tf:"oidc_verify_cert,omitempty"`
 
+	// The ID of the Managed Private Registry. Changing this value recreates the resource.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	// +kubebuilder:validation:Optional
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
@@ -123,6 +161,7 @@ type ContainerRegistryOIDCParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -154,7 +193,7 @@ type ContainerRegistryOIDCStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ContainerRegistryOIDC is the Schema for the ContainerRegistryOIDCs API. <no value>
+// ContainerRegistryOIDC is the Schema for the ContainerRegistryOIDCs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

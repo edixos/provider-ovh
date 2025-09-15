@@ -15,97 +15,131 @@ import (
 
 type TCPFrontendInitParameters struct {
 
+	// Restrict IP Load Balancing access to these ip block. No restriction if null. List of IP blocks.
 	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
+	// Default TCP Farm of your frontend
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
+	// Default ssl served to your customer
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
+	// Deny IP Load Balancing access to these ip block. No restriction if null. You cannot specify both allowed_source and denied_source at the same time. List of IP blocks.
 	// +listType=set
 	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
+	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
+	// SSL deciphering. Default: 'false'
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type TCPFrontendObservation struct {
 
+	// Restrict IP Load Balancing access to these ip block. No restriction if null. List of IP blocks.
 	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
+	// Default TCP Farm of your frontend
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
+	// Default ssl served to your customer
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
+	// Deny IP Load Balancing access to these ip block. No restriction if null. You cannot specify both allowed_source and denied_source at the same time. List of IP blocks.
 	// +listType=set
 	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
+	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Id of your frontend
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
+	// SSL deciphering. Default: 'false'
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type TCPFrontendParameters struct {
 
+	// Restrict IP Load Balancing access to these ip block. No restriction if null. List of IP blocks.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	AllowedSource []*string `json:"allowedSource,omitempty" tf:"allowed_source,omitempty"`
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
+	// Default TCP Farm of your frontend
 	// +kubebuilder:validation:Optional
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
+	// Default ssl served to your customer
 	// +kubebuilder:validation:Optional
 	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
+	// Deny IP Load Balancing access to these ip block. No restriction if null. You cannot specify both allowed_source and denied_source at the same time. List of IP blocks.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	DeniedSource []*string `json:"deniedSource,omitempty" tf:"denied_source,omitempty"`
 
+	// Disable your frontend. Default: 'false'
 	// +kubebuilder:validation:Optional
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
+	// SSL deciphering. Default: 'false'
 	// +kubebuilder:validation:Optional
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -137,7 +171,7 @@ type TCPFrontendStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// TCPFrontend is the Schema for the TCPFrontends API. <no value>
+// TCPFrontend is the Schema for the TCPFrontends API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

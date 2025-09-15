@@ -257,6 +257,7 @@ type ServiceObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Your IP block
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	// Details about an Order
@@ -279,6 +280,7 @@ type ServiceObservation struct {
 	// Routage information
 	RoutedTo []ServiceRoutedToObservation `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
+	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Possible values for ip type
@@ -316,6 +318,8 @@ type ServiceRoutedToInitParameters struct {
 }
 
 type ServiceRoutedToObservation struct {
+
+	// The internal name of your vrack
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -349,7 +353,7 @@ type ServiceStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Service is the Schema for the Services API. <no value>
+// Service is the Schema for the Services API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -15,18 +15,23 @@ import (
 
 type PrivatedatabaseWhitelistInitParameters struct {
 
+	// The whitelisted IP in your instance.
 	// The whitelisted IP in your instance
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Custom name for your Whitelisted IP.
 	// Custom name for your Whitelisted IP
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Authorize this IP to access service port. Values can be true or false
 	// Authorize this IP to access service port
 	Service *bool `json:"service,omitempty" tf:"service,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Authorize this IP to access SFTP port. Values can be true or false
 	// Authorize this IP to access SFTP port
 	Sftp *bool `json:"sftp,omitempty" tf:"sftp,omitempty"`
 }
@@ -34,40 +39,50 @@ type PrivatedatabaseWhitelistInitParameters struct {
 type PrivatedatabaseWhitelistObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The whitelisted IP in your instance.
 	// The whitelisted IP in your instance
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Custom name for your Whitelisted IP.
 	// Custom name for your Whitelisted IP
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Authorize this IP to access service port. Values can be true or false
 	// Authorize this IP to access service port
 	Service *bool `json:"service,omitempty" tf:"service,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Authorize this IP to access SFTP port. Values can be true or false
 	// Authorize this IP to access SFTP port
 	Sftp *bool `json:"sftp,omitempty" tf:"sftp,omitempty"`
 }
 
 type PrivatedatabaseWhitelistParameters struct {
 
+	// The whitelisted IP in your instance.
 	// The whitelisted IP in your instance
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Custom name for your Whitelisted IP.
 	// Custom name for your Whitelisted IP
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Authorize this IP to access service port. Values can be true or false
 	// Authorize this IP to access service port
 	// +kubebuilder:validation:Optional
 	Service *bool `json:"service,omitempty" tf:"service,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Authorize this IP to access SFTP port. Values can be true or false
 	// Authorize this IP to access SFTP port
 	// +kubebuilder:validation:Optional
 	Sftp *bool `json:"sftp,omitempty" tf:"sftp,omitempty"`
@@ -100,7 +115,7 @@ type PrivatedatabaseWhitelistStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// PrivatedatabaseWhitelist is the Schema for the PrivatedatabaseWhitelists API. <no value>
+// PrivatedatabaseWhitelist is the Schema for the PrivatedatabaseWhitelists API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

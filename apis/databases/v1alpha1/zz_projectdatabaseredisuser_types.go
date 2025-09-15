@@ -15,14 +15,17 @@ import (
 
 type ProjectDatabaseRedisUserInitParameters struct {
 
+	// Categories of the user.
 	// Categories of the user
 	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
+	// Channels of the user.
 	// Channels of the user
 	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -35,73 +38,92 @@ type ProjectDatabaseRedisUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Commands of the user.
 	// Commands of the user
 	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
+	// Keys of the user.
 	// Keys of the user
 	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
+	// Name of the user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseRedisUserObservation struct {
 
+	// Categories of the user.
 	// Categories of the user
 	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
+	// Channels of the user.
 	// Channels of the user
 	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Commands of the user.
 	// Commands of the user
 	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
+	// Date of the creation of the user.
 	// Date of the creation of the user
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// ID of the user.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Keys of the user.
 	// Keys of the user
 	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
+	// Name of the user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the user.
 	// Current status of the user
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseRedisUserParameters struct {
 
+	// Categories of the user.
 	// Categories of the user
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Categories []*string `json:"categories,omitempty" tf:"categories,omitempty"`
 
+	// Channels of the user.
 	// Channels of the user
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Channels []*string `json:"channels,omitempty" tf:"channels,omitempty"`
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -115,24 +137,29 @@ type ProjectDatabaseRedisUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Commands of the user.
 	// Commands of the user
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Commands []*string `json:"commands,omitempty" tf:"commands,omitempty"`
 
+	// Keys of the user.
 	// Keys of the user
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Keys []*string `json:"keys,omitempty" tf:"keys,omitempty"`
 
+	// Name of the user.
 	// Name of the user
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -164,7 +191,7 @@ type ProjectDatabaseRedisUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseRedisUser is the Schema for the ProjectDatabaseRedisUsers API. <no value>
+// ProjectDatabaseRedisUser is the Schema for the ProjectDatabaseRedisUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -14,8 +14,11 @@ import (
 )
 
 type CloudprojectInitParameters struct {
+
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -23,17 +26,21 @@ type CloudprojectInitParameters struct {
 type CloudprojectObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type CloudprojectParameters struct {
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// The service name of the vrack. If omitted, the OVH_VRACK_SERVICE environment variable is used.
 	// Service name of the vrack resource.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -66,7 +73,7 @@ type CloudprojectStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Cloudproject is the Schema for the Cloudprojects API. <no value>
+// Cloudproject is the Schema for the Cloudprojects API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

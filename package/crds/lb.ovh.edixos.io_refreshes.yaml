@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Refresh is the Schema for the Refreshs API. <no value>
+        description: Refresh is the Schema for the Refreshs API.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +73,13 @@ spec:
               forProvider:
                 properties:
                   keepers:
+                    description: List of values tracked to trigger refresh, used also
+                      to form implicit dependencies
                     items:
                       type: string
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                 type: object
               initProvider:
@@ -93,10 +96,13 @@ spec:
                   autoscaler.
                 properties:
                   keepers:
+                    description: List of values tracked to trigger refresh, used also
+                      to form implicit dependencies
                     items:
                       type: string
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                 type: object
               managementPolicies:
@@ -283,10 +289,13 @@ spec:
                   id:
                     type: string
                   keepers:
+                    description: List of values tracked to trigger refresh, used also
+                      to form implicit dependencies
                     items:
                       type: string
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                 type: object
               conditions:

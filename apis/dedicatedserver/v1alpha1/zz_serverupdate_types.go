@@ -15,70 +15,101 @@ import (
 
 type ServerUpdateInitParameters struct {
 
+	// boot id of the server
 	// The boot id of your dedicated server.
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
+	// boot script of the server
 	// The boot script of your dedicated server.
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
+	// display name of the dedicated server
 	// Display name of the dedicated server
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// path of the EFI bootloader
+	// The path of the EFI bootloader.
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
+
+	// Icmp monitoring state
 	// Icmp monitoring state
 	Monitoring *bool `json:"monitoring,omitempty" tf:"monitoring,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// error, hacked, hackedBlocked, ok
 	// error, hacked, hackedBlocked, ok
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 }
 
 type ServerUpdateObservation struct {
 
+	// boot id of the server
 	// The boot id of your dedicated server.
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
+	// boot script of the server
 	// The boot script of your dedicated server.
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
+	// display name of the dedicated server
 	// Display name of the dedicated server
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
+	// path of the EFI bootloader
+	// The path of the EFI bootloader.
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Icmp monitoring state
+	// Icmp monitoring state
 	Monitoring *bool `json:"monitoring,omitempty" tf:"monitoring,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// error, hacked, hackedBlocked, ok
 	// error, hacked, hackedBlocked, ok
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 }
 
 type ServerUpdateParameters struct {
 
+	// boot id of the server
 	// The boot id of your dedicated server.
 	// +kubebuilder:validation:Optional
 	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
+	// boot script of the server
 	// The boot script of your dedicated server.
 	// +kubebuilder:validation:Optional
 	BootScript *string `json:"bootScript,omitempty" tf:"boot_script,omitempty"`
 
+	// display name of the dedicated server
 	// Display name of the dedicated server
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// path of the EFI bootloader
+	// The path of the EFI bootloader.
+	// +kubebuilder:validation:Optional
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
+
+	// Icmp monitoring state
 	// Icmp monitoring state
 	// +kubebuilder:validation:Optional
 	Monitoring *bool `json:"monitoring,omitempty" tf:"monitoring,omitempty"`
 
+	// The service_name of your dedicated server.
 	// The internal name of your dedicated server.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// error, hacked, hackedBlocked, ok
 	// error, hacked, hackedBlocked, ok
 	// +kubebuilder:validation:Optional
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
@@ -111,7 +142,7 @@ type ServerUpdateStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ServerUpdate is the Schema for the ServerUpdates API. <no value>
+// ServerUpdate is the Schema for the ServerUpdates API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

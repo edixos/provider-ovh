@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: TCPFarm is the Schema for the TCPFarms API. <no value>
+        description: TCPFarm is the Schema for the TCPFarms API.
         properties:
           apiVersion:
             description: |-
@@ -73,41 +73,67 @@ spec:
               forProvider:
                 properties:
                   balance:
+                    description: Load balancing algorithm. roundrobin if null (first,
+                      leastconn, roundrobin, source)
                     type: string
                   displayName:
+                    description: Readable label for loadbalancer farm
                     type: string
                   port:
+                    description: Port attached to your farm ([1..49151]). Inherited
+                      from frontend if null
                     type: number
                   probe:
+                    description: define a backend healthcheck probe
                     items:
                       properties:
                         forceSsl:
+                          description: Force use of SSL (TLS)
                           type: boolean
                         interval:
+                          description: probe interval, Value between 30 and 3600 seconds,
+                            default 30
                           type: number
                         match:
+                          description: What to match pattern against (contains, default,
+                            internal, matches, status)
                           type: string
                         method:
+                          description: HTTP probe method (GET, HEAD, OPTIONS, internal)
                           type: string
                         negate:
+                          description: Negate probe result
                           type: boolean
                         pattern:
+                          description: Pattern to match against match
                           type: string
                         port:
+                          description: Port attached to your farm ([1..49151]). Inherited
+                            from frontend if null
                           type: number
                         type:
+                          description: 'Valid values : http, internal, mysql, oco,
+                            pgsql, smtp, tcp'
                           type: string
                         url:
+                          description: URL for HTTP probe type.
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   stickiness:
+                    description: Stickiness type. No stickiness if null (sourceIp)
                     type: string
                   vrackNetworkId:
+                    description: Internal Load Balancer identifier of the vRack private
+                      network to attach to your farm, mandatory when your Load Balancer
+                      is attached to a vRack
                     type: number
                   zone:
+                    description: Zone where the farm will be defined (ie. GRA, BHS
+                      also supports ALL)
                     type: string
                 type: object
               initProvider:
@@ -124,41 +150,67 @@ spec:
                   autoscaler.
                 properties:
                   balance:
+                    description: Load balancing algorithm. roundrobin if null (first,
+                      leastconn, roundrobin, source)
                     type: string
                   displayName:
+                    description: Readable label for loadbalancer farm
                     type: string
                   port:
+                    description: Port attached to your farm ([1..49151]). Inherited
+                      from frontend if null
                     type: number
                   probe:
+                    description: define a backend healthcheck probe
                     items:
                       properties:
                         forceSsl:
+                          description: Force use of SSL (TLS)
                           type: boolean
                         interval:
+                          description: probe interval, Value between 30 and 3600 seconds,
+                            default 30
                           type: number
                         match:
+                          description: What to match pattern against (contains, default,
+                            internal, matches, status)
                           type: string
                         method:
+                          description: HTTP probe method (GET, HEAD, OPTIONS, internal)
                           type: string
                         negate:
+                          description: Negate probe result
                           type: boolean
                         pattern:
+                          description: Pattern to match against match
                           type: string
                         port:
+                          description: Port attached to your farm ([1..49151]). Inherited
+                            from frontend if null
                           type: number
                         type:
+                          description: 'Valid values : http, internal, mysql, oco,
+                            pgsql, smtp, tcp'
                           type: string
                         url:
+                          description: URL for HTTP probe type.
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   stickiness:
+                    description: Stickiness type. No stickiness if null (sourceIp)
                     type: string
                   vrackNetworkId:
+                    description: Internal Load Balancer identifier of the vRack private
+                      network to attach to your farm, mandatory when your Load Balancer
+                      is attached to a vRack
                     type: number
                   zone:
+                    description: Zone where the farm will be defined (ie. GRA, BHS
+                      also supports ALL)
                     type: string
                 type: object
               managementPolicies:
@@ -343,43 +395,69 @@ spec:
               atProvider:
                 properties:
                   balance:
+                    description: Load balancing algorithm. roundrobin if null (first,
+                      leastconn, roundrobin, source)
                     type: string
                   displayName:
+                    description: Readable label for loadbalancer farm
                     type: string
                   id:
                     type: string
                   port:
+                    description: Port attached to your farm ([1..49151]). Inherited
+                      from frontend if null
                     type: number
                   probe:
+                    description: define a backend healthcheck probe
                     items:
                       properties:
                         forceSsl:
+                          description: Force use of SSL (TLS)
                           type: boolean
                         interval:
+                          description: probe interval, Value between 30 and 3600 seconds,
+                            default 30
                           type: number
                         match:
+                          description: What to match pattern against (contains, default,
+                            internal, matches, status)
                           type: string
                         method:
+                          description: HTTP probe method (GET, HEAD, OPTIONS, internal)
                           type: string
                         negate:
+                          description: Negate probe result
                           type: boolean
                         pattern:
+                          description: Pattern to match against match
                           type: string
                         port:
+                          description: Port attached to your farm ([1..49151]). Inherited
+                            from frontend if null
                           type: number
                         type:
+                          description: 'Valid values : http, internal, mysql, oco,
+                            pgsql, smtp, tcp'
                           type: string
                         url:
+                          description: URL for HTTP probe type.
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   stickiness:
+                    description: Stickiness type. No stickiness if null (sourceIp)
                     type: string
                   vrackNetworkId:
+                    description: Internal Load Balancer identifier of the vRack private
+                      network to attach to your farm, mandatory when your Load Balancer
+                      is attached to a vRack
                     type: number
                   zone:
+                    description: Zone where the farm will be defined (ie. GRA, BHS
+                      also supports ALL)
                     type: string
                 type: object
               conditions:

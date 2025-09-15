@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: UDPFarm is the Schema for the UDPFarms API. <no value>
+        description: UDPFarm is the Schema for the UDPFarms API.
         properties:
           apiVersion:
             description: |-
@@ -73,23 +73,29 @@ spec:
               forProvider:
                 properties:
                   displayName:
-                    description: Human readable name for your backend, this field
-                      is for you
+                    description: |-
+                      Readable label for loadbalancer farm
+                      Human readable name for your backend, this field is for you
                     type: string
                   port:
-                    description: Port attached to your farm ([1..49151]). Inherited
-                      from frontend if null
+                    description: |-
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   vrackNetworkId:
-                    description: Internal Load Balancer identifier of the vRack private
-                      network to attach to your farm, mandatory when your Load Balancer
-                      is attached to a vRack
+                    description: |-
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
                     type: number
                   zone:
-                    description: Zone of your farm
+                    description: |-
+                      Zone where the farm will be defined (ie. gra, bhs also supports all)
+                      Zone of your farm
                     type: string
                 type: object
               initProvider:
@@ -106,23 +112,29 @@ spec:
                   autoscaler.
                 properties:
                   displayName:
-                    description: Human readable name for your backend, this field
-                      is for you
+                    description: |-
+                      Readable label for loadbalancer farm
+                      Human readable name for your backend, this field is for you
                     type: string
                   port:
-                    description: Port attached to your farm ([1..49151]). Inherited
-                      from frontend if null
+                    description: |-
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   vrackNetworkId:
-                    description: Internal Load Balancer identifier of the vRack private
-                      network to attach to your farm, mandatory when your Load Balancer
-                      is attached to a vRack
+                    description: |-
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
                     type: number
                   zone:
-                    description: Zone of your farm
+                    description: |-
+                      Zone where the farm will be defined (ie. gra, bhs also supports all)
+                      Zone of your farm
                     type: string
                 type: object
               managementPolicies:
@@ -311,28 +323,36 @@ spec:
               atProvider:
                 properties:
                   displayName:
-                    description: Human readable name for your backend, this field
-                      is for you
+                    description: |-
+                      Readable label for loadbalancer farm
+                      Human readable name for your backend, this field is for you
                     type: string
                   farmId:
-                    description: Id of your farm
+                    description: |-
+                      Id of your farm.
+                      Id of your farm
                     type: number
                   id:
                     type: string
                   port:
-                    description: Port attached to your farm ([1..49151]). Inherited
-                      from frontend if null
+                    description: |-
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
+                      Port attached to your farm ([1..49151]). Inherited from frontend if null
                     type: number
                   serviceName:
-                    description: The internal name of your IP load balancing
+                    description: |-
+                      The internal name of your IP load balancing
+                      The internal name of your IP load balancing
                     type: string
                   vrackNetworkId:
-                    description: Internal Load Balancer identifier of the vRack private
-                      network to attach to your farm, mandatory when your Load Balancer
-                      is attached to a vRack
+                    description: |-
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
+                      Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
                     type: number
                   zone:
-                    description: Zone of your farm
+                    description: |-
+                      Zone where the farm will be defined (ie. gra, bhs also supports all)
+                      Zone of your farm
                     type: string
                 type: object
               conditions:

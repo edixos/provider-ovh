@@ -14,31 +14,51 @@ import (
 )
 
 type ReverseInitParameters struct {
+
+	// The IP block to which the IP belongs
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The IP to set the reverse of
 	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
 
+	// The maximum duration that the provider will wait for a successful response (while retrying every 5s). If the record cannot be verified within this timeout, the operation will fail (default value: 60s)
+	ReadinessTimeoutDuration *string `json:"readinessTimeoutDuration,omitempty" tf:"readiness_timeout_duration,omitempty"`
+
+	// The value of the reverse
 	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
 
 type ReverseObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The IP block to which the IP belongs
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The IP to set the reverse of
 	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
 
+	// The maximum duration that the provider will wait for a successful response (while retrying every 5s). If the record cannot be verified within this timeout, the operation will fail (default value: 60s)
+	ReadinessTimeoutDuration *string `json:"readinessTimeoutDuration,omitempty" tf:"readiness_timeout_duration,omitempty"`
+
+	// The value of the reverse
 	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
 
 type ReverseParameters struct {
 
+	// The IP block to which the IP belongs
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The IP to set the reverse of
 	// +kubebuilder:validation:Optional
 	IPReverse *string `json:"ipReverse,omitempty" tf:"ip_reverse,omitempty"`
 
+	// The maximum duration that the provider will wait for a successful response (while retrying every 5s). If the record cannot be verified within this timeout, the operation will fail (default value: 60s)
+	// +kubebuilder:validation:Optional
+	ReadinessTimeoutDuration *string `json:"readinessTimeoutDuration,omitempty" tf:"readiness_timeout_duration,omitempty"`
+
+	// The value of the reverse
 	// +kubebuilder:validation:Optional
 	Reverse *string `json:"reverse,omitempty" tf:"reverse,omitempty"`
 }
@@ -70,7 +90,7 @@ type ReverseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Reverse is the Schema for the Reverses API. <no value>
+// Reverse is the Schema for the Reverses API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

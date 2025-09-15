@@ -15,6 +15,7 @@ import (
 
 type ProjectFailoverIPAttachInitParameters struct {
 
+	// The IP block
 	// IP block
 	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
@@ -24,18 +25,22 @@ type ProjectFailoverIPAttachInitParameters struct {
 	// Ip location
 	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
+	// The failover ip address to attach
 	// Ip
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The GUID of an instance to which the failover IP address is be attached
 	// Instance where ip is routed to
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectFailoverIPAttachObservation struct {
 
+	// The IP block
 	// IP block
 	Block *string `json:"block,omitempty" tf:"block,omitempty"`
 
@@ -45,20 +50,26 @@ type ProjectFailoverIPAttachObservation struct {
 	// Ip location
 	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
+	// The Ip id
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The failover ip address to attach
 	// Ip
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	// Current operation progress in percent
+	// Current operation progress in percent
 	Progress *float64 `json:"progress,omitempty" tf:"progress,omitempty"`
 
+	// The GUID of an instance to which the failover IP address is be attached
 	// Instance where ip is routed to
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Ip status, can be ok or operationPending
 	// Ip status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
@@ -68,6 +79,7 @@ type ProjectFailoverIPAttachObservation struct {
 
 type ProjectFailoverIPAttachParameters struct {
 
+	// The IP block
 	// IP block
 	// +kubebuilder:validation:Optional
 	Block *string `json:"block,omitempty" tf:"block,omitempty"`
@@ -80,14 +92,17 @@ type ProjectFailoverIPAttachParameters struct {
 	// +kubebuilder:validation:Optional
 	GeoLoc *string `json:"geoLoc,omitempty" tf:"geo_loc,omitempty"`
 
+	// The failover ip address to attach
 	// Ip
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// The GUID of an instance to which the failover IP address is be attached
 	// Instance where ip is routed to
 	// +kubebuilder:validation:Optional
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// The service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -120,7 +135,7 @@ type ProjectFailoverIPAttachStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectFailoverIPAttach is the Schema for the ProjectFailoverIPAttachs API. <no value>
+// ProjectFailoverIPAttach is the Schema for the ProjectFailoverIPAttachs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

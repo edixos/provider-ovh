@@ -15,76 +15,96 @@ import (
 
 type UDPFarmServerInitParameters struct {
 
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	// IPv4 address (e.g., 192.0.2.0)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// Label for the server
 	// Human readable name for your server, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	// Id of your farm
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
+	// Port that backend will respond on
 	// Port attached to your server ([1..49151]). Inherited from farm if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	// Possible values for server status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type UDPFarmServerObservation struct {
 
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	// IPv4 address (e.g., 192.0.2.0)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// Synonym for farm_id.
 	// Synonym for farm_id
 	BackendID *float64 `json:"backendId,omitempty" tf:"backend_id,omitempty"`
 
+	// Label for the server
 	// Human readable name for your server, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	// Id of your farm
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Port that backend will respond on
 	// Port attached to your server ([1..49151]). Inherited from farm if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Id of your server.
 	// Id of your server
 	ServerID *float64 `json:"serverId,omitempty" tf:"server_id,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	// Possible values for server status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type UDPFarmServerParameters struct {
 
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	// IPv4 address (e.g., 192.0.2.0)
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// Label for the server
 	// Human readable name for your server, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	// Id of your farm
 	// +kubebuilder:validation:Optional
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
+	// Port that backend will respond on
 	// Port attached to your server ([1..49151]). Inherited from farm if null
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	// Possible values for server status
 	// +kubebuilder:validation:Optional
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
@@ -117,7 +137,7 @@ type UDPFarmServerStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// UDPFarmServer is the Schema for the UDPFarmServers API. <no value>
+// UDPFarmServer is the Schema for the UDPFarmServers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

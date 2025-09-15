@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: HTTPRouteRule is the Schema for the HTTPRouteRules API. <no value>
+        description: HTTPRouteRule is the Schema for the HTTPRouteRules API.
         properties:
           apiVersion:
             description: |-
@@ -73,20 +73,34 @@ spec:
               forProvider:
                 properties:
                   displayName:
+                    description: Human readable name for your rule, this field is
+                      for you
                     type: string
                   field:
+                    description: Name of the field to match like "protocol" or "host".
+                      See "/ipLoadbalancing/{serviceName}/availableRouteRules" for
+                      a list of available rules
                     type: string
                   match:
+                    description: Matching operator. Not all operators are available
+                      for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
                     type: string
                   negate:
+                    description: Invert the matching operator effect
                     type: boolean
                   pattern:
+                    description: Value to match against this match. Interpretation
+                      if this field depends on the match and field
                     type: string
                   routeId:
+                    description: The route to apply this rule
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   subField:
+                    description: Name of sub-field, if applicable. This may be a Cookie
+                      or Header name for instance
                     type: string
                 type: object
               initProvider:
@@ -103,20 +117,34 @@ spec:
                   autoscaler.
                 properties:
                   displayName:
+                    description: Human readable name for your rule, this field is
+                      for you
                     type: string
                   field:
+                    description: Name of the field to match like "protocol" or "host".
+                      See "/ipLoadbalancing/{serviceName}/availableRouteRules" for
+                      a list of available rules
                     type: string
                   match:
+                    description: Matching operator. Not all operators are available
+                      for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
                     type: string
                   negate:
+                    description: Invert the matching operator effect
                     type: boolean
                   pattern:
+                    description: Value to match against this match. Interpretation
+                      if this field depends on the match and field
                     type: string
                   routeId:
+                    description: The route to apply this rule
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   subField:
+                    description: Name of sub-field, if applicable. This may be a Cookie
+                      or Header name for instance
                     type: string
                 type: object
               managementPolicies:
@@ -309,22 +337,36 @@ spec:
               atProvider:
                 properties:
                   displayName:
+                    description: Human readable name for your rule, this field is
+                      for you
                     type: string
                   field:
+                    description: Name of the field to match like "protocol" or "host".
+                      See "/ipLoadbalancing/{serviceName}/availableRouteRules" for
+                      a list of available rules
                     type: string
                   id:
                     type: string
                   match:
+                    description: Matching operator. Not all operators are available
+                      for all fields. See "/ipLoadbalancing/{serviceName}/availableRouteRules"
                     type: string
                   negate:
+                    description: Invert the matching operator effect
                     type: boolean
                   pattern:
+                    description: Value to match against this match. Interpretation
+                      if this field depends on the match and field
                     type: string
                   routeId:
+                    description: The route to apply this rule
                     type: string
                   serviceName:
+                    description: The internal name of your IP load balancing
                     type: string
                   subField:
+                    description: Name of sub-field, if applicable. This may be a Cookie
+                      or Header name for instance
                     type: string
                 type: object
               conditions:

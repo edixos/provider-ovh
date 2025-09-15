@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: PrivateNetwork is the Schema for the PrivateNetworks API. <no
-          value>
+        description: PrivateNetwork is the Schema for the PrivateNetworks API.
         properties:
           apiVersion:
             description: |-
@@ -74,17 +73,24 @@ spec:
               forProvider:
                 properties:
                   name:
+                    description: The name of the network.
                     type: string
                   regions:
+                    description: 'an array of valid OVHcloud public cloud region ID
+                      in which the network will be available. Ex.: "GRA1". Defaults
+                      to all public cloud regions.'
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   vlanId:
+                    description: a vlan id to associate with the network. Changing
+                      this value recreates the resource. Defaults to 0.
                     type: number
                 type: object
               initProvider:
@@ -101,17 +107,24 @@ spec:
                   autoscaler.
                 properties:
                   name:
+                    description: The name of the network.
                     type: string
                   regions:
+                    description: 'an array of valid OVHcloud public cloud region ID
+                      in which the network will be available. Ex.: "GRA1". Defaults
+                      to all public cloud regions.'
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   vlanId:
+                    description: a vlan id to associate with the network. Changing
+                      this value recreates the resource. Defaults to 0.
                     type: number
                 type: object
               managementPolicies:
@@ -296,43 +309,69 @@ spec:
               atProvider:
                 properties:
                   id:
+                    description: The id of the network
                     type: string
                   name:
+                    description: The name of the network.
                     type: string
                   regions:
+                    description: 'an array of valid OVHcloud public cloud region ID
+                      in which the network will be available. Ex.: "GRA1". Defaults
+                      to all public cloud regions.'
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   regionsAttributes:
+                    description: A map representing information about the region.
                     items:
                       properties:
                         openstackid:
+                          description: The id of the network
                           type: string
                         region:
                           type: string
                         status:
+                          description: the status of the network. should be normally
+                            set to 'ACTIVE'.
                           type: string
                       type: object
                     type: array
+                  regionsOpenstackIds:
+                    additionalProperties:
+                      type: string
+                    description: A map with region name as key, and region-specific
+                      openstack id as value
+                    type: object
+                    x-kubernetes-map-type: granular
                   regionsStatus:
+                    description: (Deprecated) A map representing the status of the
+                      network per region.
                     items:
                       properties:
                         region:
                           type: string
                         status:
+                          description: the status of the network. should be normally
+                            set to 'ACTIVE'.
                           type: string
                       type: object
                     type: array
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   status:
+                    description: the status of the network. should be normally set
+                      to 'ACTIVE'.
                     type: string
                   type:
+                    description: the type of the network. Either 'private' or 'public'.
                     type: string
                   vlanId:
+                    description: a vlan id to associate with the network. Changing
+                      this value recreates the resource. Defaults to 0.
                     type: number
                 type: object
               conditions:

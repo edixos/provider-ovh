@@ -35,7 +35,6 @@ spec:
     schema:
       openAPIV3Schema:
         description: IAMResourceGroup is the Schema for the IAMResourceGroups API.
-          <no value>
         properties:
           apiVersion:
             description: |-
@@ -74,8 +73,11 @@ spec:
               forProvider:
                 properties:
                   name:
+                    description: Name of the resource group
                     type: string
                   resources:
+                    description: Set of the URNs of the resources contained in the
+                      resource group. All urns must be ones of valid resources
                     items:
                       type: string
                     type: array
@@ -95,8 +97,11 @@ spec:
                   autoscaler.
                 properties:
                   name:
+                    description: Name of the resource group
                     type: string
                   resources:
+                    description: Set of the URNs of the resources contained in the
+                      resource group. All urns must be ones of valid resources
                     items:
                       type: string
                     type: array
@@ -280,23 +285,33 @@ spec:
               atProvider:
                 properties:
                   createdAt:
+                    description: Date of the creation of the resource group
                     type: string
                   id:
+                    description: Id of the resource group
                     type: string
                   name:
+                    description: Name of the resource group
                     type: string
                   owner:
+                    description: Name of the account owning the resource group
                     type: string
                   readOnly:
+                    description: Marks that the resource group is not editable. Usually
+                      means that this is a default resource group created by OVHcloud
                     type: boolean
                   resources:
+                    description: Set of the URNs of the resources contained in the
+                      resource group. All urns must be ones of valid resources
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   updatedAt:
+                    description: Date of the last modification of the resource group
                     type: string
                   urn:
+                    description: URN of the resource group, used when writing policies
                     type: string
                 type: object
               conditions:

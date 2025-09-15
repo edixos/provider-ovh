@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Privatedatabase is the Schema for the Privatedatabases API. <no
-          value>
+        description: Privatedatabase is the Schema for the Privatedatabases API.
         properties:
           apiVersion:
             description: |-
@@ -74,83 +73,119 @@ spec:
               forProvider:
                 properties:
                   displayName:
-                    description: Name displayed in customer panel for your private
-                      database
+                    description: |-
+                      Name displayed in customer panel for your private database
+                      Name displayed in customer panel for your private database
                     type: string
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about your Order
+                      Details about an Order
                     items:
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      : Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: ': Service name'
                     type: string
                 type: object
               initProvider:
@@ -167,83 +202,119 @@ spec:
                   autoscaler.
                 properties:
                   displayName:
-                    description: Name displayed in customer panel for your private
-                      database
+                    description: |-
+                      Name displayed in customer panel for your private database
+                      Name displayed in customer panel for your private database
                     type: string
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about your Order
+                      Details about an Order
                     items:
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      : Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: ': Service name'
                     type: string
                 type: object
               managementPolicies:
@@ -419,162 +490,248 @@ spec:
               atProvider:
                 properties:
                   cpu:
-                    description: Number of CPU on your private database
+                    description: |-
+                      Number of CPU on your private database
+                      Number of CPU on your private database
                     type: number
                   datacenter:
-                    description: Datacenter where this private database is located
+                    description: |-
+                      Datacenter where this private database is located
+                      Datacenter where this private database is located
                     type: string
                   displayName:
-                    description: Name displayed in customer panel for your private
-                      database
+                    description: |-
+                      Name displayed in customer panel for your private database
+                      Name displayed in customer panel for your private database
                     type: string
                   hostname:
-                    description: Private database hostname
+                    description: |-
+                      Private database hostname
+                      Private database hostname
                     type: string
                   hostnameFtp:
-                    description: Private database FTP hostname
+                    description: |-
+                      Private database FTP hostname
+                      Private database FTP hostname
                     type: string
                   id:
+                    description: Private database id
                     type: string
                   infrastructure:
-                    description: Infrastructure where service was stored
+                    description: |-
+                      Infrastructure where service was stored
+                      Infrastructure where service was stored
                     type: string
                   offer:
-                    description: Type of the private database offer
+                    description: |-
+                      Type of the private database offer
+                      Type of the private database offer
                     type: string
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about your Order
+                      Details about an Order
                     items:
                       properties:
                         date:
-                          description: date
+                          description: |-
+                            date
+                            date
                           type: string
                         details:
-                          description: Information about a Bill entry
+                          description: |-
+                            Information about a Bill entry
+                            Information about a Bill entry
                           items:
                             properties:
                               description:
+                                description: Custom description on your privatedatabase
+                                  order.
                                 type: string
                               domain:
+                                description: expiration date
                                 type: string
                               orderDetailId:
+                                description: order detail id
                                 type: number
                               quantity:
+                                description: quantity
                                 type: string
                             type: object
                           type: array
                         expirationDate:
-                          description: expiration date
+                          description: |-
+                            expiration date
+                            expiration date
                           type: string
                         orderId:
-                          description: order id
+                          description: |-
+                            order id
+                            order id
                           type: number
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      : Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration.
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code.
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   port:
-                    description: Private database service port
+                    description: |-
+                      : Private database service port
+                      Private database service port
                     type: number
                   portFtp:
-                    description: Private database FTP port
+                    description: |-
+                      : Private database FTP port
+                      Private database FTP port
                     type: number
                   quotaSize:
-                    description: Space allowed (in MB) on your private database
+                    description: |-
+                      : Space allowed (in MB) on your private database
+                      Space allowed (in MB) on your private database
                     type: number
                   quotaUsed:
-                    description: Sapce used (in MB) on your private database
+                    description: |-
+                      : Sapce used (in MB) on your private database
+                      Sapce used (in MB) on your private database
                     type: number
                   ram:
-                    description: Amount of ram (in MB) on your private database
+                    description: |-
+                      : Amount of ram (in MB) on your private database
+                      Amount of ram (in MB) on your private database
                     type: number
                   server:
-                    description: Private database server name
+                    description: |-
+                      : Private database server name
+                      Private database server name
                     type: string
                   serviceName:
+                    description: ': Service name'
                     type: string
                   state:
-                    description: Private database state
+                    description: |-
+                      : Private database state
+                      Private database state
                     type: string
                   type:
-                    description: Private database type
+                    description: |-
+                      : Private database type
+                      Private database type
                     type: string
                   urn:
+                    description: URN of the private database, used when writing IAM
+                      policies
                     type: string
                   version:
-                    description: Private database available versions
+                    description: |-
+                      : Private database available versions
+                      Private database available versions
                     type: string
                   versionLabel:
-                    description: Private database version label
+                    description: |-
+                      : Private database version label
+                      Private database version label
                     type: string
                   versionNumber:
-                    description: Private database version number
+                    description: |-
+                      : Private database version number
+                      Private database version number
                     type: number
                 type: object
               conditions:

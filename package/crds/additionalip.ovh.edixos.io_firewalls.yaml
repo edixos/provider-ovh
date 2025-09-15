@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Firewall is the Schema for the Firewalls API. <no value>
+        description: Firewall is the Schema for the Firewalls API.
         properties:
           apiVersion:
             description: |-
@@ -75,10 +75,14 @@ spec:
                   enabled:
                     type: boolean
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                 type: object
               initProvider:
@@ -97,10 +101,14 @@ spec:
                   enabled:
                     type: boolean
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                 type: object
               managementPolicies:
@@ -289,13 +297,19 @@ spec:
                   id:
                     type: string
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   state:
-                    description: Current state of your ip on firewall
+                    description: |-
+                      Current state of your ip on firewall
+                      Current state of your ip on firewall
                     type: string
                 type: object
               conditions:

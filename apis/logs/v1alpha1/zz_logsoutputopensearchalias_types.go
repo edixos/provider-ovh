@@ -15,104 +15,130 @@ import (
 
 type LogsOutputOpensearchAliasInitParameters struct {
 
+	// Index description
 	// Alias description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// List of attached indexes id
 	// Indexes attached to alias
 	// +listType=set
 	Indexes []*string `json:"indexes,omitempty" tf:"indexes,omitempty"`
 
+	// Number of indices linked
 	// Number of index
 	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
+	// Number of streams linked
 	// Number of shard
 	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
+	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// List of attached streams id
 	// Streams attached to alias
 	// +listType=set
 	Streams []*string `json:"streams,omitempty" tf:"streams,omitempty"`
 
+	// Index suffix
 	// Alias suffix
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
 }
 
 type LogsOutputOpensearchAliasObservation struct {
 
+	// Alias Id
 	// Alias used
 	AliasID *string `json:"aliasId,omitempty" tf:"alias_id,omitempty"`
 
+	// Alias creation
 	// Operation creation
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// Current alias size (in bytes)
 	CurrentSize *float64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
 
+	// Index description
 	// Alias description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of attached indexes id
 	// Indexes attached to alias
 	// +listType=set
 	Indexes []*string `json:"indexes,omitempty" tf:"indexes,omitempty"`
 
 	// Indicates if you are allowed to edit entry
+	// Indicates if you are allowed to edit entry
 	IsEditable *bool `json:"isEditable,omitempty" tf:"is_editable,omitempty"`
 
 	// Alias name
+	// Alias name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Number of indices linked
 	// Number of index
 	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
+	// Number of streams linked
 	// Number of shard
 	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
+	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// List of attached streams id
 	// Streams attached to alias
 	// +listType=set
 	Streams []*string `json:"streams,omitempty" tf:"streams,omitempty"`
 
+	// Index suffix
 	// Alias suffix
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
 
+	// Input last update
 	// Operation last update
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type LogsOutputOpensearchAliasParameters struct {
 
+	// Index description
 	// Alias description
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// List of attached indexes id
 	// Indexes attached to alias
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Indexes []*string `json:"indexes,omitempty" tf:"indexes,omitempty"`
 
+	// Number of indices linked
 	// Number of index
 	// +kubebuilder:validation:Optional
 	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
+	// Number of streams linked
 	// Number of shard
 	// +kubebuilder:validation:Optional
 	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
+	// The service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// List of attached streams id
 	// Streams attached to alias
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Streams []*string `json:"streams,omitempty" tf:"streams,omitempty"`
 
+	// Index suffix
 	// Alias suffix
 	// +kubebuilder:validation:Optional
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
@@ -145,7 +171,7 @@ type LogsOutputOpensearchAliasStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// LogsOutputOpensearchAlias is the Schema for the LogsOutputOpensearchAliass API. <no value>
+// LogsOutputOpensearchAlias is the Schema for the LogsOutputOpensearchAliass API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

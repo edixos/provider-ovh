@@ -35,7 +35,6 @@ spec:
     schema:
       openAPIV3Schema:
         description: ContainerRegistry is the Schema for the ContainerRegistrys API.
-          <no value>
         properties:
           apiVersion:
             description: |-
@@ -74,15 +73,23 @@ spec:
               forProvider:
                 properties:
                   name:
-                    description: Registry name
+                    description: |-
+                      Registry name
+                      Registry name
                     type: string
                   planId:
-                    description: Plan ID of the registry.
+                    description: |-
+                      Plan ID of the registry
+                      Plan ID of the registry.
                     type: string
                   region:
-                    description: Region of the registry.
+                    description: |-
+                      Region of the registry
+                      Region of the registry.
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -99,15 +106,23 @@ spec:
                   autoscaler.
                 properties:
                   name:
-                    description: Registry name
+                    description: |-
+                      Registry name
+                      Registry name
                     type: string
                   planId:
-                    description: Plan ID of the registry.
+                    description: |-
+                      Plan ID of the registry
+                      Plan ID of the registry.
                     type: string
                   region:
-                    description: Region of the registry.
+                    description: |-
+                      Region of the registry
+                      Region of the registry.
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -296,70 +311,111 @@ spec:
               atProvider:
                 properties:
                   createdAt:
-                    description: Registry creation date
+                    description: |-
+                      Registry creation date
+                      Registry creation date
                     type: string
+                  iamEnabled:
+                    description: |-
+                      OVHCloud IAM enabled
+                      OVHcloud IAM enabled
+                    type: boolean
                   id:
+                    description: Registry ID
                     type: string
                   name:
-                    description: Registry name
+                    description: |-
+                      Registry name
+                      Registry name
                     type: string
                   plan:
-                    description: Plan of the registry
+                    description: |-
+                      Plan of the registry
+                      Plan of the registry
                     items:
                       properties:
                         code:
+                          description: Plan code from the catalog
                           type: string
                         createdAt:
+                          description: Registry creation date
                           type: string
                         features:
+                          description: Features of the plan
                           items:
                             properties:
                               vulnerability:
+                                description: Vulnerability scanning
                                 type: boolean
                             type: object
                           type: array
                         id:
+                          description: Registry ID
                           type: string
                         name:
+                          description: Registry name
                           type: string
                         registryLimits:
+                          description: Container registry limits
                           items:
                             properties:
                               imageStorage:
+                                description: Docker image storage limits in bytes
                                 type: number
                               parallelRequest:
+                                description: Parallel requests on Docker image API
+                                  (/v2 Docker registry API)
                                 type: number
                             type: object
                           type: array
                         updatedAt:
+                          description: Plan last update date
                           type: string
                       type: object
                     type: array
                   planId:
-                    description: Plan ID of the registry.
+                    description: |-
+                      Plan ID of the registry
+                      Plan ID of the registry.
                     type: string
                   projectId:
-                    description: Project ID of your registry
+                    description: |-
+                      Project ID of your registry
+                      Project ID of your registry
                     type: string
                   region:
-                    description: Region of the registry.
+                    description: |-
+                      Region of the registry
+                      Region of the registry.
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   size:
-                    description: Current size of the registry (bytes)
+                    description: |-
+                      Current size of the registry (bytes)
+                      Current size of the registry (bytes)
                     type: number
                   status:
-                    description: Registry status
+                    description: |-
+                      Registry status
+                      Registry status
                     type: string
                   updatedAt:
-                    description: Registry last update date
+                    description: |-
+                      Plan last update date
+                      Registry last update date
                     type: string
                   url:
-                    description: Access url of the registry
+                    description: |-
+                      Access url of the registry
+                      Access url of the registry
                     type: string
                   version:
-                    description: Version of your registry
+                    description: |-
+                      Version of your registry
+                      Version of your registry
                     type: string
                 type: object
               conditions:

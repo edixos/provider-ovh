@@ -261,6 +261,21 @@ func (in *ClusterInitParameters) DeepCopyInto(out *ClusterInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.NodesSubnetIDRef != nil {
+		in, out := &in.NodesSubnetIDRef, &out.NodesSubnetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NodesSubnetIDSelector != nil {
+		in, out := &in.NodesSubnetIDSelector, &out.NodesSubnetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.Plan != nil {
+		in, out := &in.Plan, &out.Plan
+		*out = new(string)
+		**out = **in
+	}
 	if in.PrivateNetworkConfiguration != nil {
 		in, out := &in.PrivateNetworkConfiguration, &out.PrivateNetworkConfiguration
 		*out = make([]PrivateNetworkConfigurationInitParameters, len(*in))
@@ -422,6 +437,11 @@ func (in *ClusterObservation) DeepCopyInto(out *ClusterObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Plan != nil {
+		in, out := &in.Plan, &out.Plan
+		*out = new(string)
+		**out = **in
+	}
 	if in.PrivateNetworkConfiguration != nil {
 		in, out := &in.PrivateNetworkConfiguration, &out.PrivateNetworkConfiguration
 		*out = make([]PrivateNetworkConfigurationObservation, len(*in))
@@ -517,6 +537,21 @@ func (in *ClusterParameters) DeepCopyInto(out *ClusterParameters) {
 	}
 	if in.NodesSubnetID != nil {
 		in, out := &in.NodesSubnetID, &out.NodesSubnetID
+		*out = new(string)
+		**out = **in
+	}
+	if in.NodesSubnetIDRef != nil {
+		in, out := &in.NodesSubnetIDRef, &out.NodesSubnetIDRef
+		*out = new(v1.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.NodesSubnetIDSelector != nil {
+		in, out := &in.NodesSubnetIDSelector, &out.NodesSubnetIDSelector
+		*out = new(v1.Selector)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.Plan != nil {
+		in, out := &in.Plan, &out.Plan
 		*out = new(string)
 		**out = **in
 	}
@@ -1670,6 +1705,17 @@ func (in *NodePoolInitParameters) DeepCopyInto(out *NodePoolInitParameters) {
 		*out = new(float64)
 		**out = **in
 	}
+	if in.AvailabilityZones != nil {
+		in, out := &in.AvailabilityZones, &out.AvailabilityZones
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
+	}
 	if in.DesiredNodes != nil {
 		in, out := &in.DesiredNodes, &out.DesiredNodes
 		*out = new(float64)
@@ -1798,6 +1844,17 @@ func (in *NodePoolObservation) DeepCopyInto(out *NodePoolObservation) {
 		in, out := &in.AutoscalingScaleDownUtilizationThreshold, &out.AutoscalingScaleDownUtilizationThreshold
 		*out = new(float64)
 		**out = **in
+	}
+	if in.AvailabilityZones != nil {
+		in, out := &in.AvailabilityZones, &out.AvailabilityZones
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.AvailableNodes != nil {
 		in, out := &in.AvailableNodes, &out.AvailableNodes
@@ -1935,6 +1992,17 @@ func (in *NodePoolParameters) DeepCopyInto(out *NodePoolParameters) {
 		in, out := &in.AutoscalingScaleDownUtilizationThreshold, &out.AutoscalingScaleDownUtilizationThreshold
 		*out = new(float64)
 		**out = **in
+	}
+	if in.AvailabilityZones != nil {
+		in, out := &in.AvailabilityZones, &out.AvailabilityZones
+		*out = make([]*string, len(*in))
+		for i := range *in {
+			if (*in)[i] != nil {
+				in, out := &(*in)[i], &(*out)[i]
+				*out = new(string)
+				**out = **in
+			}
+		}
 	}
 	if in.DesiredNodes != nil {
 		in, out := &in.DesiredNodes, &out.DesiredNodes

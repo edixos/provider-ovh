@@ -17,12 +17,17 @@ type RolesInitParameters struct {
 }
 
 type RolesObservation struct {
+
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// id of the role
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// name of the role
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// list of permissions associated with the role
 	// +listType=set
 	Permissions []*string `json:"permissions,omitempty" tf:"permissions,omitempty"`
 }
@@ -31,58 +36,93 @@ type RolesParameters struct {
 }
 
 type UserInitParameters struct {
+
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
 	// +mapType=granular
 	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
+	// Arbitrary string to change to trigger a password update
+	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
+
+	// The name of a role. See role_names.
 	RoleName *string `json:"roleName,omitempty" tf:"role_name,omitempty"`
 
+	// A list of role names. Values can be:
 	RoleNames []*string `json:"roleNames,omitempty" tf:"role_names,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type UserObservation struct {
+
+	// the date the user was created.
 	CreationDate *string `json:"creationDate,omitempty" tf:"creation_date,omitempty"`
 
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// id of the role
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
 	// +mapType=granular
 	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
+	// Arbitrary string to change to trigger a password update
+	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
+
+	// The name of a role. See role_names.
 	RoleName *string `json:"roleName,omitempty" tf:"role_name,omitempty"`
 
+	// A list of role names. Values can be:
 	RoleNames []*string `json:"roleNames,omitempty" tf:"role_names,omitempty"`
 
+	// A list of roles associated with the user.
 	Roles []RolesObservation `json:"roles,omitempty" tf:"roles,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// the status of the user. should be normally set to 'ok'.
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// the username generated for the user. This username can be used with the Openstack API.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type UserParameters struct {
 
+	// A description associated with the user.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
+	// Arbitrary string to change to trigger a password update
+	// +kubebuilder:validation:Optional
+	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
+
+	// The name of a role. See role_names.
 	// +kubebuilder:validation:Optional
 	RoleName *string `json:"roleName,omitempty" tf:"role_name,omitempty"`
 
+	// A list of role names. Values can be:
 	// +kubebuilder:validation:Optional
 	RoleNames []*string `json:"roleNames,omitempty" tf:"role_names,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -115,7 +155,7 @@ type UserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// User is the Schema for the Users API. <no value>
+// User is the Schema for the Users API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

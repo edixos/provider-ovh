@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: ProjectDatabase is the Schema for the ProjectDatabases API. <no
-          value>
+        description: ProjectDatabase is the Schema for the ProjectDatabases API.
         properties:
           apiVersion:
             description: |-
@@ -76,82 +75,117 @@ spec:
                   advancedConfiguration:
                     additionalProperties:
                       type: string
-                    description: Advanced configuration key / value
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
                     type: object
                     x-kubernetes-map-type: granular
                   backupRegions:
-                    description: List of region where backups are pushed. Not more
-                      than 1 regions for MongoDB. Not more than 2 regions for the
-                      other engines with one being the same as the nodes[].region
-                      field
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
                     items:
                       type: string
                     type: array
                   backupTime:
-                    description: Time on which backups start every day
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
                     type: string
                   description:
-                    description: Description of the cluster
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
                     type: string
                   diskSize:
-                    description: Disk size attributes of the cluster
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
                     type: number
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
                     type: string
                   flavor:
-                    description: The node flavor used for this cluster
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
                     type: string
                   ipRestrictions:
-                    description: IP Blocks authorized to access to the cluster
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
                     items:
                       properties:
                         description:
-                          description: Description of the IP restriction
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
                           type: string
                         ip:
-                          description: Authorized IP
+                          description: |-
+                            Authorized IP
+                            Authorized IP
                           type: string
                       type: object
                     type: array
                   kafkaRestApi:
-                    description: Defines whether the REST API is enabled on a Kafka
-                      cluster
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
                     type: boolean
                   kafkaSchemaRegistry:
-                    description: Defines whether the schema registry is enabled on
-                      a Kafka cluster
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
                     type: boolean
                   maintenanceTime:
-                    description: Time on which maintenances can start every day
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
                     type: string
                   nodes:
-                    description: List of nodes composing the service
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
                     items:
                       properties:
                         networkId:
-                          description: Private network ID in which the node is. It's
-                            the regional openstackId of the private network.
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
                           type: string
                         region:
-                          description: Region of the node
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
                           type: string
                         subnetId:
-                          description: Private subnet ID in which the node is
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
                           type: string
                       type: object
                     type: array
                   opensearchAclsEnabled:
-                    description: Defines whether the ACLs are enabled on an Opensearch
-                      cluster
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
                     type: boolean
                   plan:
-                    description: Plan of the cluster
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   version:
-                    description: Version of the engine deployed on the cluster
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
                     type: string
                 type: object
               initProvider:
@@ -170,82 +204,117 @@ spec:
                   advancedConfiguration:
                     additionalProperties:
                       type: string
-                    description: Advanced configuration key / value
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
                     type: object
                     x-kubernetes-map-type: granular
                   backupRegions:
-                    description: List of region where backups are pushed. Not more
-                      than 1 regions for MongoDB. Not more than 2 regions for the
-                      other engines with one being the same as the nodes[].region
-                      field
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
                     items:
                       type: string
                     type: array
                   backupTime:
-                    description: Time on which backups start every day
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
                     type: string
                   description:
-                    description: Description of the cluster
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
                     type: string
                   diskSize:
-                    description: Disk size attributes of the cluster
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
                     type: number
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
                     type: string
                   flavor:
-                    description: The node flavor used for this cluster
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
                     type: string
                   ipRestrictions:
-                    description: IP Blocks authorized to access to the cluster
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
                     items:
                       properties:
                         description:
-                          description: Description of the IP restriction
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
                           type: string
                         ip:
-                          description: Authorized IP
+                          description: |-
+                            Authorized IP
+                            Authorized IP
                           type: string
                       type: object
                     type: array
                   kafkaRestApi:
-                    description: Defines whether the REST API is enabled on a Kafka
-                      cluster
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
                     type: boolean
                   kafkaSchemaRegistry:
-                    description: Defines whether the schema registry is enabled on
-                      a Kafka cluster
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
                     type: boolean
                   maintenanceTime:
-                    description: Time on which maintenances can start every day
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
                     type: string
                   nodes:
-                    description: List of nodes composing the service
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
                     items:
                       properties:
                         networkId:
-                          description: Private network ID in which the node is. It's
-                            the regional openstackId of the private network.
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
                           type: string
                         region:
-                          description: Region of the node
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
                           type: string
                         subnetId:
-                          description: Private subnet ID in which the node is
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
                           type: string
                       type: object
                     type: array
                   opensearchAclsEnabled:
-                    description: Defines whether the ACLs are enabled on an Opensearch
-                      cluster
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
                     type: boolean
                   plan:
-                    description: Plan of the cluster
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   version:
-                    description: Version of the engine deployed on the cluster
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
                     type: string
                 type: object
               managementPolicies:
@@ -448,121 +517,178 @@ spec:
                   advancedConfiguration:
                     additionalProperties:
                       type: string
-                    description: Advanced configuration key / value
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
                     type: object
                     x-kubernetes-map-type: granular
                   backupRegions:
-                    description: List of region where backups are pushed. Not more
-                      than 1 regions for MongoDB. Not more than 2 regions for the
-                      other engines with one being the same as the nodes[].region
-                      field
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
                     items:
                       type: string
                     type: array
                   backupTime:
-                    description: Time on which backups start every day
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
                     type: string
                   createdAt:
-                    description: Date of the creation of the cluster
+                    description: |-
+                      Date of the creation of the cluster.
+                      Date of the creation of the cluster
                     type: string
                   description:
-                    description: Description of the cluster
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
                     type: string
                   diskSize:
-                    description: Disk size attributes of the cluster
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
                     type: number
                   diskType:
-                    description: Disk type attributes of the cluster
+                    description: |-
+                      Defines the disk type of the database service.
+                      Disk type attributes of the cluster
                     type: string
                   endpoints:
-                    description: List of all endpoints of the service
+                    description: |-
+                      List of all endpoints objects of the service.
+                      List of all endpoints of the service
                     items:
                       properties:
                         component:
+                          description: Type of component the URI relates to.
                           type: string
                         domain:
+                          description: Domain of the cluster.
                           type: string
                         path:
+                          description: Path of the endpoint.
                           type: string
                         port:
+                          description: Connection port for the endpoint.
                           type: number
                         scheme:
+                          description: Scheme used to generate the URI.
                           type: string
                         ssl:
+                          description: Defines whether the endpoint uses SSL.
                           type: boolean
                         sslMode:
+                          description: SSL mode used to connect to the service if
+                            the SSL is enabled.
                           type: string
                         uri:
+                          description: URI of the endpoint.
                           type: string
                       type: object
                     type: array
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
                     type: string
                   flavor:
-                    description: The node flavor used for this cluster
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
                     type: string
                   id:
+                    description: Public Cloud Database Service ID
                     type: string
                   ipRestrictions:
-                    description: IP Blocks authorized to access to the cluster
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
                     items:
                       properties:
                         description:
-                          description: Description of the IP restriction
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
                           type: string
                         ip:
-                          description: Authorized IP
+                          description: |-
+                            Authorized IP
+                            Authorized IP
                           type: string
                         status:
-                          description: Current status of the IP restriction
+                          description: |-
+                            Current status of the IP restriction.
+                            Current status of the IP restriction
                           type: string
                       type: object
                     type: array
                   kafkaRestApi:
-                    description: Defines whether the REST API is enabled on a Kafka
-                      cluster
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
                     type: boolean
                   kafkaSchemaRegistry:
-                    description: Defines whether the schema registry is enabled on
-                      a Kafka cluster
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
                     type: boolean
                   maintenanceTime:
-                    description: Time on which maintenances can start every day
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
                     type: string
                   networkType:
-                    description: Type of network of the cluster
+                    description: |-
+                      Type of network of the cluster.
+                      Type of network of the cluster
                     type: string
                   nodes:
-                    description: List of nodes composing the service
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
                     items:
                       properties:
                         networkId:
-                          description: Private network ID in which the node is. It's
-                            the regional openstackId of the private network.
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
                           type: string
                         region:
-                          description: Region of the node
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
                           type: string
                         subnetId:
-                          description: Private subnet ID in which the node is
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
                           type: string
                       type: object
                     type: array
                   opensearchAclsEnabled:
-                    description: Defines whether the ACLs are enabled on an Opensearch
-                      cluster
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
                     type: boolean
                   plan:
-                    description: Plan of the cluster
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   status:
-                    description: Current status of the cluster
+                    description: |-
+                      Current status of the IP restriction.
+                      Current status of the cluster
                     type: string
                   version:
-                    description: Version of the engine deployed on the cluster
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
                     type: string
                 type: object
               conditions:

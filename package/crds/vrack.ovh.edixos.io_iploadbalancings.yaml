@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Iploadbalancing is the Schema for the Iploadbalancings API. <no
-          value>
+        description: Iploadbalancing is the Schema for the Iploadbalancings API.
         properties:
           apiVersion:
             description: |-
@@ -74,10 +73,14 @@ spec:
               forProvider:
                 properties:
                   ipLoadbalancing:
-                    description: Your ipLoadbalancing
+                    description: |-
+                      The id of the IP Load Balancing.
+                      Your ipLoadbalancing
                     type: string
                   serviceName:
-                    description: The internal name of your vrack
+                    description: |-
+                      The id of the vrack.
+                      The internal name of your vrack
                     type: string
                 type: object
               initProvider:
@@ -94,10 +97,14 @@ spec:
                   autoscaler.
                 properties:
                   ipLoadbalancing:
-                    description: Your ipLoadbalancing
+                    description: |-
+                      The id of the IP Load Balancing.
+                      Your ipLoadbalancing
                     type: string
                   serviceName:
-                    description: The internal name of your vrack
+                    description: |-
+                      The id of the vrack.
+                      The internal name of your vrack
                     type: string
                 type: object
               managementPolicies:
@@ -284,10 +291,14 @@ spec:
                   id:
                     type: string
                   ipLoadbalancing:
-                    description: Your ipLoadbalancing
+                    description: |-
+                      The id of the IP Load Balancing.
+                      Your ipLoadbalancing
                     type: string
                   serviceName:
-                    description: The internal name of your vrack
+                    description: |-
+                      The id of the vrack.
+                      The internal name of your vrack
                     type: string
                 type: object
               conditions:

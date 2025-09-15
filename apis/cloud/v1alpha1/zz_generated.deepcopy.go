@@ -1355,6 +1355,11 @@ func (in *UserInitParameters) DeepCopyInto(out *UserInitParameters) {
 			(*out)[key] = outVal
 		}
 	}
+	if in.PasswordReset != nil {
+		in, out := &in.PasswordReset, &out.PasswordReset
+		*out = new(string)
+		**out = **in
+	}
 	if in.RoleName != nil {
 		in, out := &in.RoleName, &out.RoleName
 		*out = new(string)
@@ -1454,6 +1459,11 @@ func (in *UserObservation) DeepCopyInto(out *UserObservation) {
 			(*out)[key] = outVal
 		}
 	}
+	if in.PasswordReset != nil {
+		in, out := &in.PasswordReset, &out.PasswordReset
+		*out = new(string)
+		**out = **in
+	}
 	if in.RoleName != nil {
 		in, out := &in.RoleName, &out.RoleName
 		*out = new(string)
@@ -1527,6 +1537,11 @@ func (in *UserParameters) DeepCopyInto(out *UserParameters) {
 			}
 			(*out)[key] = outVal
 		}
+	}
+	if in.PasswordReset != nil {
+		in, out := &in.PasswordReset, &out.PasswordReset
+		*out = new(string)
+		**out = **in
 	}
 	if in.RoleName != nil {
 		in, out := &in.RoleName, &out.RoleName

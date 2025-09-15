@@ -14,24 +14,31 @@ import (
 )
 
 type RefreshInitParameters struct {
+
+	// List of values tracked to trigger refresh, used also to form implicit dependencies
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type RefreshObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of values tracked to trigger refresh, used also to form implicit dependencies
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type RefreshParameters struct {
 
+	// List of values tracked to trigger refresh, used also to form implicit dependencies
 	// +kubebuilder:validation:Optional
 	Keepers []*string `json:"keepers,omitempty" tf:"keepers,omitempty"`
 
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -63,7 +70,7 @@ type RefreshStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Refresh is the Schema for the Refreshs API. <no value>
+// Refresh is the Schema for the Refreshs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

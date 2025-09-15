@@ -16,8 +16,10 @@ import (
 type ConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -25,8 +27,10 @@ type ConfigurationInitParameters struct {
 type ConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -34,9 +38,11 @@ type ConfigurationObservation struct {
 type ConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -46,12 +52,17 @@ type DetailsInitParameters struct {
 }
 
 type DetailsObservation struct {
+
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
+	// order detail id
 	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
 
@@ -64,14 +75,18 @@ type OrderInitParameters struct {
 type OrderObservation struct {
 
 	// date
+	// date
 	Date *string `json:"date,omitempty" tf:"date,omitempty"`
 
+	// Information about a Bill entry
 	// Information about a Bill entry
 	Details []DetailsObservation `json:"details,omitempty" tf:"details,omitempty"`
 
 	// expiration date
+	// expiration date
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
+	// order id, the same as the id
 	// order id
 	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
@@ -82,17 +97,22 @@ type OrderParameters struct {
 type PlanInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -100,17 +120,22 @@ type PlanInitParameters struct {
 type PlanObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -118,8 +143,10 @@ type PlanObservation struct {
 type PlanOptionConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -127,8 +154,10 @@ type PlanOptionConfigurationInitParameters struct {
 type PlanOptionConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -136,9 +165,11 @@ type PlanOptionConfigurationObservation struct {
 type PlanOptionConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -147,17 +178,22 @@ type PlanOptionConfigurationParameters struct {
 type PlanOptionInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -165,17 +201,22 @@ type PlanOptionInitParameters struct {
 type PlanOptionObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -183,21 +224,26 @@ type PlanOptionObservation struct {
 type PlanOptionParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []PlanOptionConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
@@ -206,32 +252,41 @@ type PlanOptionParameters struct {
 type PlanParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
+	// Representation of a configuration item for personalizing product
 	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
 	// duration
+	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
+	// Plan code. This value must be adapted depending on your OVH_ENDPOINT value. It's project.2018 for ovh-{eu,ca} and project when using ovh-us.
 	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
 }
 
 type ProjectInitParameters struct {
+
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Details about the order that was used to create the public cloud project
 	// Details about an Order
 	Order []OrderInitParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -239,8 +294,10 @@ type ProjectInitParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanInitParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// Product Plan to order
 	// Product Plan to order
 	PlanOption []PlanOptionInitParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 }
@@ -248,13 +305,16 @@ type ProjectInitParameters struct {
 type ProjectObservation struct {
 	Access *string `json:"access,omitempty" tf:"access,omitempty"`
 
+	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Details about the order that was used to create the public cloud project
 	// Details about an Order
 	Order []OrderObservation `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -262,29 +322,38 @@ type ProjectObservation struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	PlanOption []PlanOptionObservation `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// openstack project id
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
+	// openstack project name
 	ProjectName *string `json:"projectName,omitempty" tf:"project_name,omitempty"`
 
+	// project status
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The URN of the cloud project
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
 type ProjectParameters struct {
 
+	// A description associated with the user.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Details about the order that was used to create the public cloud project
 	// Details about an Order
 	// +kubebuilder:validation:Optional
 	Order []OrderParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	// +kubebuilder:validation:Optional
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
@@ -294,9 +363,11 @@ type ProjectParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	Plan []PlanParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// Product Plan to order
 	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	PlanOption []PlanOptionParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
@@ -329,7 +400,7 @@ type ProjectStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Project is the Schema for the Projects API. <no value>
+// Project is the Schema for the Projects API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

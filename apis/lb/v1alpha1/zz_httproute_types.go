@@ -16,11 +16,14 @@ import (
 type ActionInitParameters struct {
 
 	// HTTP status code for "redirect" and "reject" actions
+	// HTTP status code for "redirect" and "reject" actions
 	Status *float64 `json:"status,omitempty" tf:"status,omitempty"`
 
 	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
+	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Action to trigger if all the rules of this route matches
 	// Action to trigger if all the rules of this route matches
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -28,11 +31,14 @@ type ActionInitParameters struct {
 type ActionObservation struct {
 
 	// HTTP status code for "redirect" and "reject" actions
+	// HTTP status code for "redirect" and "reject" actions
 	Status *float64 `json:"status,omitempty" tf:"status,omitempty"`
 
 	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
+	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Action to trigger if all the rules of this route matches
 	// Action to trigger if all the rules of this route matches
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
@@ -40,13 +46,16 @@ type ActionObservation struct {
 type ActionParameters struct {
 
 	// HTTP status code for "redirect" and "reject" actions
+	// HTTP status code for "redirect" and "reject" actions
 	// +kubebuilder:validation:Optional
 	Status *float64 `json:"status,omitempty" tf:"status,omitempty"`
 
 	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
+	// Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
 	// +kubebuilder:validation:Optional
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
 
+	// Action to trigger if all the rules of this route matches
 	// Action to trigger if all the rules of this route matches
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
@@ -55,17 +64,22 @@ type ActionParameters struct {
 type HTTPRouteInitParameters struct {
 
 	// Action triggered when all rules match
+	// Action triggered when all rules match
 	Action []ActionInitParameters `json:"action,omitempty" tf:"action,omitempty"`
 
+	// Human readable name for your route, this field is for you
 	// Human readable name for your route, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Route traffic for this frontend
+	// Route traffic for this frontend
 	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
@@ -73,25 +87,32 @@ type HTTPRouteInitParameters struct {
 type HTTPRouteObservation struct {
 
 	// Action triggered when all rules match
+	// Action triggered when all rules match
 	Action []ActionObservation `json:"action,omitempty" tf:"action,omitempty"`
 
 	// Human readable name for your route, this field is for you
+	// Human readable name for your route, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Route traffic for this frontend
 	// Route traffic for this frontend
 	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// List of rules to match to trigger action
+	// List of rules to match to trigger action
 	Rules []RulesObservation `json:"rules,omitempty" tf:"rules,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// HTTP status code for "redirect" and "reject" actions
 	// Route status. Routes in "ok" state are ready to operate
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
@@ -99,21 +120,26 @@ type HTTPRouteObservation struct {
 type HTTPRouteParameters struct {
 
 	// Action triggered when all rules match
+	// Action triggered when all rules match
 	// +kubebuilder:validation:Optional
 	Action []ActionParameters `json:"action,omitempty" tf:"action,omitempty"`
 
+	// Human readable name for your route, this field is for you
 	// Human readable name for your route, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Route traffic for this frontend
+	// Route traffic for this frontend
 	// +kubebuilder:validation:Optional
 	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
 	// +kubebuilder:validation:Optional
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
@@ -123,16 +149,23 @@ type RulesInitParameters struct {
 }
 
 type RulesObservation struct {
+
+	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field *string `json:"field,omitempty" tf:"field,omitempty"`
 
+	// Matching operator. Not all operators are available for all fields. See "availableRules"
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// Invert the matching operator effect
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Id of your rule
 	RuleID *float64 `json:"ruleId,omitempty" tf:"rule_id,omitempty"`
 
+	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	SubField *string `json:"subField,omitempty" tf:"sub_field,omitempty"`
 }
 
@@ -166,7 +199,7 @@ type HTTPRouteStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// HTTPRoute is the Schema for the HTTPRoutes API. <no value>
+// HTTPRoute is the Schema for the HTTPRoutes API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -14,36 +14,50 @@ import (
 )
 
 type IAMResourceGroupInitParameters struct {
+
+	// Name of the resource group
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Set of the URNs of the resources contained in the resource group. All urns must be ones of valid resources
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 }
 
 type IAMResourceGroupObservation struct {
+
+	// Date of the creation of the resource group
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Id of the resource group
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the resource group
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Name of the account owning the resource group
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
+	// Marks that the resource group is not editable. Usually means that this is a default resource group created by OVHcloud
 	ReadOnly *bool `json:"readOnly,omitempty" tf:"read_only,omitempty"`
 
+	// Set of the URNs of the resources contained in the resource group. All urns must be ones of valid resources
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 
+	// Date of the last modification of the resource group
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 
+	// URN of the resource group, used when writing policies
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 }
 
 type IAMResourceGroupParameters struct {
 
+	// Name of the resource group
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Set of the URNs of the resources contained in the resource group. All urns must be ones of valid resources
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
@@ -76,7 +90,7 @@ type IAMResourceGroupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// IAMResourceGroup is the Schema for the IAMResourceGroups API. <no value>
+// IAMResourceGroup is the Schema for the IAMResourceGroups API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

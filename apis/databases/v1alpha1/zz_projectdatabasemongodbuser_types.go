@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseMongodbUserInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,47 +28,60 @@ type ProjectDatabaseMongodbUserInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Name of the user. A user named "admin" is mapped with already created admin@admin user instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// Roles the user belongs to. Since version 0.37.0, the authentication database must be indicated for all roles. Available roles:
 	// Roles the user belongs to with the authentication database
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseMongodbUserObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Date of the creation of the user.
 	// Date of the creation of the user
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// ID of the user.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the user. A user named "admin" is mapped with already created admin@admin user instead of creating a new user.
 	// Name of the user
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// Roles the user belongs to. Since version 0.37.0, the authentication database must be indicated for all roles. Available roles:
 	// Roles the user belongs to with the authentication database
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the user.
 	// Current status of the user
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type ProjectDatabaseMongodbUserParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -81,19 +95,23 @@ type ProjectDatabaseMongodbUserParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// Name of the user. A user named "admin" is mapped with already created admin@admin user instead of creating a new user.
 	// Name of the user
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
 	// +kubebuilder:validation:Optional
 	PasswordReset *string `json:"passwordReset,omitempty" tf:"password_reset,omitempty"`
 
+	// Roles the user belongs to. Since version 0.37.0, the authentication database must be indicated for all roles. Available roles:
 	// Roles the user belongs to with the authentication database
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Roles []*string `json:"roles,omitempty" tf:"roles,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -125,7 +143,7 @@ type ProjectDatabaseMongodbUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseMongodbUser is the Schema for the ProjectDatabaseMongodbUsers API. <no value>
+// ProjectDatabaseMongodbUser is the Schema for the ProjectDatabaseMongodbUsers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

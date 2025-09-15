@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Group is the Schema for the Groups API. <no value>
+        description: Group is the Schema for the Groups API.
         properties:
           apiVersion:
             description: |-
@@ -73,10 +73,14 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: Group description.
                     type: string
                   name:
+                    description: Group name.
                     type: string
                   role:
+                    description: Role associated with the group. Valid roles are ADMIN,
+                      REGULAR, UNPRIVILEGED, and NONE.
                     type: string
                 type: object
               initProvider:
@@ -93,10 +97,14 @@ spec:
                   autoscaler.
                 properties:
                   description:
+                    description: Group description.
                     type: string
                   name:
+                    description: Group name.
                     type: string
                   role:
+                    description: Role associated with the group. Valid roles are ADMIN,
+                      REGULAR, UNPRIVILEGED, and NONE.
                     type: string
                 type: object
               managementPolicies:
@@ -277,20 +285,28 @@ spec:
               atProvider:
                 properties:
                   creation:
+                    description: Creation date of this group.
                     type: string
                   defaultGroup:
+                    description: Is the group a default and immutable one.
                     type: boolean
                   description:
+                    description: Group description.
                     type: string
                   id:
                     type: string
                   lastUpdate:
+                    description: Date of the last update of this group.
                     type: string
                   name:
+                    description: Group name.
                     type: string
                   role:
+                    description: Role associated with the group. Valid roles are ADMIN,
+                      REGULAR, UNPRIVILEGED, and NONE.
                     type: string
                   urn:
+                    description: URN of the user group, used when writing IAM policies
                     type: string
                 type: object
               conditions:

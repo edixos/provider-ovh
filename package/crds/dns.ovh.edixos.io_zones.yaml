@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Zone is the Schema for the Zones API. <no value>
+        description: Zone is the Schema for the Zones API.
         properties:
           apiVersion:
             description: |-
@@ -73,75 +73,109 @@ spec:
               forProvider:
                 properties:
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about an Order
+                      Details about an Order
                     items:
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
@@ -160,75 +194,109 @@ spec:
                   autoscaler.
                 properties:
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about an Order
+                      Details about an Order
                     items:
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
@@ -406,122 +474,179 @@ spec:
               atProvider:
                 properties:
                   dnssecSupported:
-                    description: Is DNSSEC supported by this zone
+                    description: |-
+                      Is DNSSEC supported by this zone
+                      Is DNSSEC supported by this zone
                     type: boolean
                   hasDnsAnycast:
-                    description: hasDnsAnycast flag of the DNS zone
+                    description: |-
+                      hasDnsAnycast flag of the DNS zone
+                      hasDnsAnycast flag of the DNS zone
                     type: boolean
                   id:
                     type: string
                   lastUpdate:
-                    description: Last update date of the DNS zone
+                    description: |-
+                      Last update date of the DNS zone
+                      Last update date of the DNS zone
                     type: string
                   name:
-                    description: Zone name
+                    description: |-
+                      Zone name
+                      Zone name
                     type: string
                   nameServers:
-                    description: Name servers that host the DNS zone
+                    description: |-
+                      Name servers that host the DNS zone
+                      Name servers that host the DNS zone
                     items:
                       type: string
                     type: array
                   order:
-                    description: Details about an Order
+                    description: |-
+                      Details about an Order
+                      Details about an Order
                     items:
                       properties:
                         date:
-                          description: date
+                          description: |-
+                            date
+                            date
                           type: string
                         details:
-                          description: Information about a Bill entry
+                          description: |-
+                            Information about a Bill entry
+                            Information about a Bill entry
                           items:
                             properties:
                               description:
+                                description: description
                                 type: string
                               domain:
+                                description: expiration date
                                 type: string
                               orderDetailId:
+                                description: order detail id
                                 type: number
                               quantity:
+                                description: quantity
                                 type: string
                             type: object
                           type: array
                         expirationDate:
-                          description: expiration date
+                          description: |-
+                            expiration date
+                            expiration date
                           type: string
                         orderId:
-                          description: order id
+                          description: |-
+                            order id
+                            order id
                           type: number
                       type: object
                     type: array
                   ovhSubsidiary:
-                    description: Ovh Subsidiary
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      Ovh Subsidiary
                     type: string
                   paymentMean:
                     description: Ovh payment mode
                     type: string
                   plan:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   planOption:
-                    description: Product Plan to order
+                    description: |-
+                      Product Plan to order
+                      Product Plan to order
                     items:
                       properties:
                         catalogName:
-                          description: Catalog name
+                          description: |-
+                            Catalog name
+                            Catalog name
                           type: string
                         configuration:
-                          description: Representation of a configuration item for
-                            personalizing product
+                          description: |-
+                            Representation of a configuration item for personalizing product. 2 configurations are required : one for zone and one for template
+                            Representation of a configuration item for personalizing product
                           items:
                             properties:
                               label:
-                                description: Identifier of the resource
+                                description: |-
+                                  Identifier of the resource : zone or template
+                                  Identifier of the resource
                                 type: string
                               value:
-                                description: Path to the resource in API.OVH.COM
+                                description: |-
+                                  For zone, the value is the zone name myzone.example.com. For template, the value can be basic, minimized or redirect which is the same as minimized with additional entries for a redirect configuration.
+                                  Path to the resource in API.OVH.COM
                                 type: string
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: |-
+                            duration
+                            duration
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: |-
+                            Pricing model identifier
+                            Pricing model identifier
                           type: string
                       type: object
                     type: array
                   urn:
+                    description: URN of the DNS Zone to be used inside an IAM policy
                     type: string
                 type: object
               conditions:

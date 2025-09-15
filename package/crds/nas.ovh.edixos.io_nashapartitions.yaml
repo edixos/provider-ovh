@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: NashaPartition is the Schema for the NashaPartitions API. <no
-          value>
+        description: NashaPartition is the Schema for the NashaPartitions API.
         properties:
           apiVersion:
             description: |-
@@ -74,14 +73,20 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: A brief description of the partition
                     type: string
                   name:
+                    description: name of the partition
                     type: string
                   protocol:
+                    description: one of "NFS", "CIFS" or "NFS_CIFS"
                     type: string
                   serviceName:
+                    description: The internal name of your HA-NAS (it has to be ordered
+                      via OVHcloud interface)
                     type: string
                   size:
+                    description: size of the partition in GB
                     type: number
                 type: object
               initProvider:
@@ -98,14 +103,20 @@ spec:
                   autoscaler.
                 properties:
                   description:
+                    description: A brief description of the partition
                     type: string
                   name:
+                    description: name of the partition
                     type: string
                   protocol:
+                    description: one of "NFS", "CIFS" or "NFS_CIFS"
                     type: string
                   serviceName:
+                    description: The internal name of your HA-NAS (it has to be ordered
+                      via OVHcloud interface)
                     type: string
                   size:
+                    description: size of the partition in GB
                     type: number
                 type: object
               managementPolicies:
@@ -298,20 +309,29 @@ spec:
               atProvider:
                 properties:
                   capacity:
+                    description: Percentage of partition space used in %
                     type: number
                   description:
+                    description: A brief description of the partition
                     type: string
                   id:
                     type: string
                   name:
+                    description: name of the partition
                     type: string
                   protocol:
+                    description: one of "NFS", "CIFS" or "NFS_CIFS"
                     type: string
                   serviceName:
+                    description: The internal name of your HA-NAS (it has to be ordered
+                      via OVHcloud interface)
                     type: string
                   size:
+                    description: size of the partition in GB
                     type: number
                   usedBySnapshots:
+                    description: Percentage of partition space used by snapshots in
+                      %
                     type: number
                 type: object
               conditions:

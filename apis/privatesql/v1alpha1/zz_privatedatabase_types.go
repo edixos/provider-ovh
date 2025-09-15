@@ -16,8 +16,10 @@ import (
 type ConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -25,8 +27,10 @@ type ConfigurationInitParameters struct {
 type ConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -34,9 +38,11 @@ type ConfigurationObservation struct {
 type ConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -46,12 +52,17 @@ type DetailsInitParameters struct {
 }
 
 type DetailsObservation struct {
+
+	// Custom description on your privatedatabase order.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
+	// order detail id
 	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
 
@@ -64,14 +75,18 @@ type OrderInitParameters struct {
 type OrderObservation struct {
 
 	// date
+	// date
 	Date *string `json:"date,omitempty" tf:"date,omitempty"`
 
+	// Information about a Bill entry
 	// Information about a Bill entry
 	Details []DetailsObservation `json:"details,omitempty" tf:"details,omitempty"`
 
 	// expiration date
+	// expiration date
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
+	// order id
 	// order id
 	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
@@ -82,17 +97,22 @@ type OrderParameters struct {
 type PlanInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -100,17 +120,22 @@ type PlanInitParameters struct {
 type PlanObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -118,8 +143,10 @@ type PlanObservation struct {
 type PlanOptionConfigurationInitParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -127,8 +154,10 @@ type PlanOptionConfigurationInitParameters struct {
 type PlanOptionConfigurationObservation struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	Label *string `json:"label,omitempty" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
@@ -136,9 +165,11 @@ type PlanOptionConfigurationObservation struct {
 type PlanOptionConfigurationParameters struct {
 
 	// Identifier of the resource
+	// Identifier of the resource
 	// +kubebuilder:validation:Optional
 	Label *string `json:"label" tf:"label,omitempty"`
 
+	// Path to the resource in API.OVH.COM
 	// Path to the resource in API.OVH.COM
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
@@ -147,17 +178,22 @@ type PlanOptionConfigurationParameters struct {
 type PlanOptionInitParameters struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -165,17 +201,22 @@ type PlanOptionInitParameters struct {
 type PlanOptionObservation struct {
 
 	// Catalog name
+	// Catalog name
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
@@ -183,21 +224,26 @@ type PlanOptionObservation struct {
 type PlanOptionParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []PlanOptionConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
@@ -206,21 +252,26 @@ type PlanOptionParameters struct {
 type PlanParameters struct {
 
 	// Catalog name
+	// Catalog name
 	// +kubebuilder:validation:Optional
 	CatalogName *string `json:"catalogName,omitempty" tf:"catalog_name,omitempty"`
 
 	// Representation of a configuration item for personalizing product
+	// Representation of a configuration item for personalizing product
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
+	// duration.
 	// duration
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
+	// Plan code.
 	// Plan code
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
+	// Pricing model identifier
 	// Pricing model identifier
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
@@ -229,11 +280,14 @@ type PlanParameters struct {
 type PrivatedatabaseInitParameters struct {
 
 	// Name displayed in customer panel for your private database
+	// Name displayed in customer panel for your private database
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Details about your Order
 	// Details about an Order
 	Order []OrderInitParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -241,42 +295,55 @@ type PrivatedatabaseInitParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanInitParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// : Product Plan to order
 	// Product Plan to order
 	PlanOption []PlanOptionInitParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// : Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type PrivatedatabaseObservation struct {
 
 	// Number of CPU on your private database
+	// Number of CPU on your private database
 	CPU *float64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
 
+	// Datacenter where this private database is located
 	// Datacenter where this private database is located
 	Datacenter *string `json:"datacenter,omitempty" tf:"datacenter,omitempty"`
 
 	// Name displayed in customer panel for your private database
+	// Name displayed in customer panel for your private database
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Private database hostname
 	// Private database hostname
 	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
 	// Private database FTP hostname
+	// Private database FTP hostname
 	HostnameFtp *string `json:"hostnameFtp,omitempty" tf:"hostname_ftp,omitempty"`
 
+	// Private database id
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Infrastructure where service was stored
 	// Infrastructure where service was stored
 	Infrastructure *string `json:"infrastructure,omitempty" tf:"infrastructure,omitempty"`
 
 	// Type of the private database offer
+	// Type of the private database offer
 	Offer *string `json:"offer,omitempty" tf:"offer,omitempty"`
 
+	// Details about your Order
 	// Details about an Order
 	Order []OrderObservation `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
 
@@ -284,45 +351,60 @@ type PrivatedatabaseObservation struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	Plan []PlanObservation `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// : Product Plan to order
 	// Product Plan to order
 	PlanOption []PlanOptionObservation `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// : Private database service port
 	// Private database service port
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// : Private database FTP port
 	// Private database FTP port
 	PortFtp *float64 `json:"portFtp,omitempty" tf:"port_ftp,omitempty"`
 
+	// : Space allowed (in MB) on your private database
 	// Space allowed (in MB) on your private database
 	QuotaSize *float64 `json:"quotaSize,omitempty" tf:"quota_size,omitempty"`
 
+	// : Sapce used (in MB) on your private database
 	// Sapce used (in MB) on your private database
 	QuotaUsed *float64 `json:"quotaUsed,omitempty" tf:"quota_used,omitempty"`
 
+	// : Amount of ram (in MB) on your private database
 	// Amount of ram (in MB) on your private database
 	RAM *float64 `json:"ram,omitempty" tf:"ram,omitempty"`
 
+	// : Private database server name
 	// Private database server name
 	Server *string `json:"server,omitempty" tf:"server,omitempty"`
 
+	// : Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// : Private database state
 	// Private database state
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 
+	// : Private database type
 	// Private database type
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// URN of the private database, used when writing IAM policies
 	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
 
+	// : Private database available versions
 	// Private database available versions
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 
+	// : Private database version label
 	// Private database version label
 	VersionLabel *string `json:"versionLabel,omitempty" tf:"version_label,omitempty"`
 
+	// : Private database version number
 	// Private database version number
 	VersionNumber *float64 `json:"versionNumber,omitempty" tf:"version_number,omitempty"`
 }
@@ -330,13 +412,16 @@ type PrivatedatabaseObservation struct {
 type PrivatedatabaseParameters struct {
 
 	// Name displayed in customer panel for your private database
+	// Name displayed in customer panel for your private database
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Details about your Order
 	// Details about an Order
 	// +kubebuilder:validation:Optional
 	Order []OrderParameters `json:"order,omitempty" tf:"order,omitempty"`
 
+	// OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
 	// Ovh Subsidiary
 	// +kubebuilder:validation:Optional
 	OvhSubsidiary *string `json:"ovhSubsidiary,omitempty" tf:"ovh_subsidiary,omitempty"`
@@ -346,13 +431,16 @@ type PrivatedatabaseParameters struct {
 	PaymentMean *string `json:"paymentMean,omitempty" tf:"payment_mean,omitempty"`
 
 	// Product Plan to order
+	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	Plan []PlanParameters `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// : Product Plan to order
 	// Product Plan to order
 	// +kubebuilder:validation:Optional
 	PlanOption []PlanOptionParameters `json:"planOption,omitempty" tf:"plan_option,omitempty"`
 
+	// : Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -384,7 +472,7 @@ type PrivatedatabaseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Privatedatabase is the Schema for the Privatedatabases API. <no value>
+// Privatedatabase is the Schema for the Privatedatabases API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

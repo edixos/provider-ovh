@@ -16,14 +16,18 @@ import (
 type LogsOutputOpensearchIndexInitParameters struct {
 
 	// Index description
+	// Index description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Number of shards
 	// Number of shard
 	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
+	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Index suffix
 	// Index suffix
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
 }
@@ -31,40 +35,52 @@ type LogsOutputOpensearchIndexInitParameters struct {
 type LogsOutputOpensearchIndexObservation struct {
 
 	// If set, notify when size is near 80, 90 or 100 % of its maximum capacity
+	// If set, notify when size is near 80, 90 or 100 % of its maximum capacity
 	AlertNotifyEnabled *bool `json:"alertNotifyEnabled,omitempty" tf:"alert_notify_enabled,omitempty"`
 
+	// Index creation
 	// Operation creation
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Current index size (in bytes)
 	// Current Index size (in bytes)
 	CurrentSize *float64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
 
+	// Index description
 	// Index description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Index ID
+	// Index ID
 	IndexID *string `json:"indexId,omitempty" tf:"index_id,omitempty"`
 
+	// Indicates if you are allowed to edit entry
 	// Indicates if you are allowed to edit entry
 	IsEditable *bool `json:"isEditable,omitempty" tf:"is_editable,omitempty"`
 
 	// Maximum index size (in bytes)
+	// Maximum index size (in bytes)
 	MaxSize *float64 `json:"maxSize,omitempty" tf:"max_size,omitempty"`
 
 	// Index name
+	// Index name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Number of shards
 	// Number of shard
 	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
+	// The service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Index suffix
+	// Index suffix
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
 
+	// Index last update
 	// Operation last update
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
@@ -72,17 +88,21 @@ type LogsOutputOpensearchIndexObservation struct {
 type LogsOutputOpensearchIndexParameters struct {
 
 	// Index description
+	// Index description
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Number of shards
 	// Number of shard
 	// +kubebuilder:validation:Optional
 	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
+	// The service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Index suffix
 	// Index suffix
 	// +kubebuilder:validation:Optional
 	Suffix *string `json:"suffix,omitempty" tf:"suffix,omitempty"`
@@ -115,7 +135,7 @@ type LogsOutputOpensearchIndexStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// LogsOutputOpensearchIndex is the Schema for the LogsOutputOpensearchIndexs API. <no value>
+// LogsOutputOpensearchIndex is the Schema for the LogsOutputOpensearchIndexs API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

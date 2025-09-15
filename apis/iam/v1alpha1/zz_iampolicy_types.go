@@ -15,92 +15,120 @@ import (
 
 type IAMPolicyInitParameters struct {
 
+	// List of actions allowed on resources by identities
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// List of actions that will always be denied even if also allowed by this policy or another one.
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Description of the policy
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
+	// List of identities affected by the policy
 	// +listType=set
 	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
 
+	// Name of the policy, must be unique
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Set of permissions groups included in the policy. At evaluation, these permissions groups are each evaluated independently (notably, excepts actions only affect actions in the same permission group).
 	// +listType=set
 	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
 
+	// List of resources affected by the policy
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 }
 
 type IAMPolicyObservation struct {
 
+	// List of actions allowed on resources by identities
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Creation date of this group.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// List of actions that will always be denied even if also allowed by this policy or another one.
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Description of the policy
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of identities affected by the policy
 	// +listType=set
 	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
 
+	// Name of the policy, must be unique
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Owner of the policy.
 	Owner *string `json:"owner,omitempty" tf:"owner,omitempty"`
 
+	// Set of permissions groups included in the policy. At evaluation, these permissions groups are each evaluated independently (notably, excepts actions only affect actions in the same permission group).
 	// +listType=set
 	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
 
+	// Indicates that the policy is a default one.
 	ReadOnly *bool `json:"readOnly,omitempty" tf:"read_only,omitempty"`
 
+	// List of resources affected by the policy
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
 
+	// Date of the last update of this group.
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
 
 type IAMPolicyParameters struct {
 
+	// List of actions allowed on resources by identities
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// List of actions that will always be denied even if also allowed by this policy or another one.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Deny []*string `json:"deny,omitempty" tf:"deny,omitempty"`
 
+	// Description of the policy
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
 
+	// List of identities affected by the policy
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Identities []*string `json:"identities,omitempty" tf:"identities,omitempty"`
 
+	// Name of the policy, must be unique
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Set of permissions groups included in the policy. At evaluation, these permissions groups are each evaluated independently (notably, excepts actions only affect actions in the same permission group).
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	PermissionsGroups []*string `json:"permissionsGroups,omitempty" tf:"permissions_groups,omitempty"`
 
+	// List of resources affected by the policy
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Resources []*string `json:"resources,omitempty" tf:"resources,omitempty"`
@@ -133,7 +161,7 @@ type IAMPolicyStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// IAMPolicy is the Schema for the IAMPolicys API. <no value>
+// IAMPolicy is the Schema for the IAMPolicys API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

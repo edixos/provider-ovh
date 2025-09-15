@@ -15,6 +15,7 @@ import (
 
 type ProjectDatabaseDatabaseInitParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
@@ -27,36 +28,46 @@ type ProjectDatabaseDatabaseInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Name of the database.
 	// Database name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseDatabaseObservation struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	ClusterID *string `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
+	// Defines if the database has been created by default.
 	// Defines if the database has been created by default
 	Default *bool `json:"default,omitempty" tf:"default,omitempty"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// ID of the database.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Name of the database.
 	// Database name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ProjectDatabaseDatabaseParameters struct {
 
+	// Cluster ID.
 	// Id of the database cluster
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/databases/v1alpha1.ProjectDatabase
 	// +kubebuilder:validation:Optional
@@ -70,14 +81,17 @@ type ProjectDatabaseDatabaseParameters struct {
 	// +kubebuilder:validation:Optional
 	ClusterIDSelector *v1.Selector `json:"clusterIdSelector,omitempty" tf:"-"`
 
+	// The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
 	// Name of the engine of the service
 	// +kubebuilder:validation:Optional
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// Name of the database.
 	// Database name
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -109,7 +123,7 @@ type ProjectDatabaseDatabaseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabaseDatabase is the Schema for the ProjectDatabaseDatabases API. <no value>
+// ProjectDatabaseDatabase is the Schema for the ProjectDatabaseDatabases API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -15,12 +15,15 @@ import (
 
 type S3PolicyInitParameters struct {
 
+	// The policy document. This is a JSON formatted string. See examples of policies on public documentation.
 	// The policy document. This is a JSON formatted string.
 	Policy *string `json:"policy,omitempty" tf:"policy,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/cloud/v1alpha1.User
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
@@ -37,26 +40,32 @@ type S3PolicyInitParameters struct {
 type S3PolicyObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The policy document. This is a JSON formatted string. See examples of policies on public documentation.
 	// The policy document. This is a JSON formatted string.
 	Policy *string `json:"policy,omitempty" tf:"policy,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type S3PolicyParameters struct {
 
+	// The policy document. This is a JSON formatted string. See examples of policies on public documentation.
 	// The policy document. This is a JSON formatted string.
 	// +kubebuilder:validation:Optional
 	Policy *string `json:"policy,omitempty" tf:"policy,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the ID of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The ID of a public cloud project's user.
 	// The user ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/cloud/v1alpha1.User
 	// +kubebuilder:validation:Optional
@@ -98,7 +107,7 @@ type S3PolicyStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// S3Policy is the Schema for the S3Policys API. <no value>
+// S3Policy is the Schema for the S3Policys API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

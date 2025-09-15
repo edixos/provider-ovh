@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseIntegration is the Schema for the ProjectDatabaseIntegrations
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,24 +156,36 @@ spec:
                         type: object
                     type: object
                   destinationServiceId:
-                    description: ID of the destination service
+                    description: |-
+                      ID of the destination service.
+                      ID of the destination service
                     type: string
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
+                      Name of the engine of the service
                     type: string
                   parameters:
                     additionalProperties:
                       type: string
-                    description: Parameters for the integration
+                    description: |-
+                      Parameters for the integration.
+                      Parameters for the integration
                     type: object
                     x-kubernetes-map-type: granular
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   sourceServiceId:
-                    description: ID of the source service
+                    description: |-
+                      ID of the source service.
+                      ID of the source service
                     type: string
                   type:
-                    description: Type of the integration
+                    description: |-
+                      Type of the integration. Available types:
+                      Type of the integration
                     type: string
                 type: object
               initProvider:
@@ -188,7 +202,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -267,24 +283,36 @@ spec:
                         type: object
                     type: object
                   destinationServiceId:
-                    description: ID of the destination service
+                    description: |-
+                      ID of the destination service.
+                      ID of the destination service
                     type: string
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
+                      Name of the engine of the service
                     type: string
                   parameters:
                     additionalProperties:
                       type: string
-                    description: Parameters for the integration
+                    description: |-
+                      Parameters for the integration.
+                      Parameters for the integration
                     type: object
                     x-kubernetes-map-type: granular
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   sourceServiceId:
-                    description: ID of the source service
+                    description: |-
+                      ID of the source service.
+                      ID of the source service
                     type: string
                   type:
-                    description: Type of the integration
+                    description: |-
+                      Type of the integration. Available types:
+                      Type of the integration
                     type: string
                 type: object
               managementPolicies:
@@ -478,32 +506,49 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   destinationServiceId:
-                    description: ID of the destination service
+                    description: |-
+                      ID of the destination service.
+                      ID of the destination service
                     type: string
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. All engines available exept mongodb.
+                      Name of the engine of the service
                     type: string
                   id:
+                    description: '- ID of the integration.'
                     type: string
                   parameters:
                     additionalProperties:
                       type: string
-                    description: Parameters for the integration
+                    description: |-
+                      Parameters for the integration.
+                      Parameters for the integration
                     type: object
                     x-kubernetes-map-type: granular
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   sourceServiceId:
-                    description: ID of the source service
+                    description: |-
+                      ID of the source service.
+                      ID of the source service
                     type: string
                   status:
-                    description: Current status of the integration
+                    description: |-
+                      Current status of the integration.
+                      Current status of the integration
                     type: string
                   type:
-                    description: Type of the integration
+                    description: |-
+                      Type of the integration. Available types:
+                      Type of the integration
                     type: string
                 type: object
               conditions:

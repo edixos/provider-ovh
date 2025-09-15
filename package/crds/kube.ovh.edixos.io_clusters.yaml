@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cluster is the Schema for the Clusters API. <no value>
+        description: Cluster is the Schema for the Clusters API.
         properties:
           apiVersion:
             description: |-
@@ -73,19 +73,31 @@ spec:
               forProvider:
                 properties:
                   customization:
+                    description: Deprecated  Use customization_apiserver and customization_kube_proxy
+                      instead. Kubernetes cluster customization
                     items:
                       properties:
                         apiserver:
+                          description: Kubernetes API server customization
                           items:
                             properties:
                               admissionplugins:
+                                description: Kubernetes API server admission plugins
+                                  customization
                                 items:
                                   properties:
                                     disabled:
+                                      description: Array of admission plugins disabled,
+                                        default is [] and only AlwaysPulImages can
+                                        be disabled at this time.
                                       items:
                                         type: string
                                       type: array
                                     enabled:
+                                      description: Array of admission plugins enabled,
+                                        default is ["NodeRestriction","AlwaysPulImages"]
+                                        and only these admission plugins can be enabled
+                                        at this time.
                                       items:
                                         type: string
                                       type: array
@@ -96,16 +108,24 @@ spec:
                       type: object
                     type: array
                   customizationApiserver:
+                    description: Kubernetes API server customization
                     items:
                       properties:
                         admissionplugins:
+                          description: Kubernetes API server admission plugins customization
                           items:
                             properties:
                               disabled:
+                                description: Array of admission plugins disabled,
+                                  default is [] and only AlwaysPulImages can be disabled
+                                  at this time.
                                 items:
                                   type: string
                                 type: array
                               enabled:
+                                description: Array of admission plugins enabled, default
+                                  is ["NodeRestriction","AlwaysPulImages"] and only
+                                  these admission plugins can be enabled at this time.
                                 items:
                                   type: string
                                 type: array
@@ -114,60 +134,187 @@ spec:
                       type: object
                     type: array
                   customizationKubeProxy:
+                    description: Kubernetes kube-proxy customization
                     items:
                       properties:
                         iptables:
+                          description: Kubernetes cluster kube-proxy customization
+                            of iptables specific config (durations format is RFC3339
+                            duration, e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                             type: object
                           type: array
                         ipvs:
+                          description: Kubernetes cluster kube-proxy customization
+                            of IPVS specific config (durations format is RFC3339 duration,
+                            e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               scheduler:
+                                description: IPVS scheduler.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                               tcpFinTimeout:
+                                description: Timeout value used for IPVS TCP sessions
+                                  after receiving a FIN in RFC3339 duration (e.g.
+                                  PT60S). The default value is PT0S, which preserves
+                                  the current timeout value on the system.
                                 type: string
                               tcpTimeout:
+                                description: Timeout value used for idle IPVS TCP
+                                  sessions in RFC3339 duration (e.g. PT60S). The default
+                                  value is PT0S, which preserves the current timeout
+                                  value on the system.
                                 type: string
                               udpTimeout:
+                                description: timeout value used for IPVS UDP packets
+                                  in RFC3339 duration (e.g. PT60S). The default value
+                                  is PT0S, which preserves the current timeout value
+                                  on the system.
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   kubeProxyMode:
+                    description: Selected mode for kube-proxy. Changing this value
+                      recreates the resource, including ETCD user data. Defaults to
+                      iptables.
                     type: string
                   loadBalancersSubnetId:
+                    description: Subnet ID to use for Public Load Balancers, this
+                      subnet must belong to  private_network_id. Defaults to the same
+                      subnet as the nodes (see nodes_subnet_id). Requires private_network_id
+                      to be defined. See more network requirements in the documentation
+                      for more information.
                     type: string
                   name:
+                    description: The name of the kubernetes cluster.
                     type: string
                   nodesSubnetId:
+                    description: Subnet ID to use for nodes, this subnet must belong
+                      to private_network_id. Default uses the first subnet belonging
+                      to the private network with id private_network_id. This attribute
+                      requires private_network_id to be defined. Cannot be updated,
+                      it can only be used at cluster creation or reset.
+                    type: string
+                  nodesSubnetIdRef:
+                    description: Reference to a SubnetV2 in network to populate nodesSubnetId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  nodesSubnetIdSelector:
+                    description: Selector for a SubnetV2 in network to populate nodesSubnetId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  plan:
+                    description: Plan of the MKS cluster free or standard. Default
+                      to free. Migration to another plan is not implemented yet.
                     type: string
                   privateNetworkConfiguration:
+                    description: The private network configuration. If this is set
+                      then the 2 parameters below shall be defined.
                     items:
                       properties:
                         defaultVrackGateway:
-                          description: If defined, all egress traffic will be routed
-                            towards this IP address, which should belong to the private
-                            network. Empty string means disabled.
+                          description: |-
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                           type: string
                         privateNetworkRoutingAsDefault:
-                          description: Defines whether routing should default to using
-                            the nodes' private interface, instead of their public
-                            interface. Default is false.
+                          description: |-
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                           type: boolean
                       type: object
                     type: array
                   privateNetworkId:
+                    description: Private network ID to use. Changing this value recreates
+                      the resource, including ETCD user data. Defaults - not use private
+                      network.
                     type: string
                   privateNetworkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -246,12 +393,23 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: 'a valid OVHcloud public cloud region ID in which
+                      the kubernetes cluster will be available. Ex.: "GRA9". Defaults
+                      to all public cloud regions. Changing this value recreates the
+                      resource.'
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                   updatePolicy:
+                    description: Cluster update policy. Choose between [ALWAYS_UPDATE,
+                      MINIMAL_DOWNTIME, NEVER_UPDATE].
                     type: string
                   version:
+                    description: kubernetes version to use. Changing this value updates
+                      the resource. Defaults to the latest available.
                     type: string
                 type: object
               initProvider:
@@ -268,19 +426,31 @@ spec:
                   autoscaler.
                 properties:
                   customization:
+                    description: Deprecated  Use customization_apiserver and customization_kube_proxy
+                      instead. Kubernetes cluster customization
                     items:
                       properties:
                         apiserver:
+                          description: Kubernetes API server customization
                           items:
                             properties:
                               admissionplugins:
+                                description: Kubernetes API server admission plugins
+                                  customization
                                 items:
                                   properties:
                                     disabled:
+                                      description: Array of admission plugins disabled,
+                                        default is [] and only AlwaysPulImages can
+                                        be disabled at this time.
                                       items:
                                         type: string
                                       type: array
                                     enabled:
+                                      description: Array of admission plugins enabled,
+                                        default is ["NodeRestriction","AlwaysPulImages"]
+                                        and only these admission plugins can be enabled
+                                        at this time.
                                       items:
                                         type: string
                                       type: array
@@ -291,16 +461,24 @@ spec:
                       type: object
                     type: array
                   customizationApiserver:
+                    description: Kubernetes API server customization
                     items:
                       properties:
                         admissionplugins:
+                          description: Kubernetes API server admission plugins customization
                           items:
                             properties:
                               disabled:
+                                description: Array of admission plugins disabled,
+                                  default is [] and only AlwaysPulImages can be disabled
+                                  at this time.
                                 items:
                                   type: string
                                 type: array
                               enabled:
+                                description: Array of admission plugins enabled, default
+                                  is ["NodeRestriction","AlwaysPulImages"] and only
+                                  these admission plugins can be enabled at this time.
                                 items:
                                   type: string
                                 type: array
@@ -309,60 +487,187 @@ spec:
                       type: object
                     type: array
                   customizationKubeProxy:
+                    description: Kubernetes kube-proxy customization
                     items:
                       properties:
                         iptables:
+                          description: Kubernetes cluster kube-proxy customization
+                            of iptables specific config (durations format is RFC3339
+                            duration, e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                             type: object
                           type: array
                         ipvs:
+                          description: Kubernetes cluster kube-proxy customization
+                            of IPVS specific config (durations format is RFC3339 duration,
+                            e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               scheduler:
+                                description: IPVS scheduler.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                               tcpFinTimeout:
+                                description: Timeout value used for IPVS TCP sessions
+                                  after receiving a FIN in RFC3339 duration (e.g.
+                                  PT60S). The default value is PT0S, which preserves
+                                  the current timeout value on the system.
                                 type: string
                               tcpTimeout:
+                                description: Timeout value used for idle IPVS TCP
+                                  sessions in RFC3339 duration (e.g. PT60S). The default
+                                  value is PT0S, which preserves the current timeout
+                                  value on the system.
                                 type: string
                               udpTimeout:
+                                description: timeout value used for IPVS UDP packets
+                                  in RFC3339 duration (e.g. PT60S). The default value
+                                  is PT0S, which preserves the current timeout value
+                                  on the system.
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   kubeProxyMode:
+                    description: Selected mode for kube-proxy. Changing this value
+                      recreates the resource, including ETCD user data. Defaults to
+                      iptables.
                     type: string
                   loadBalancersSubnetId:
+                    description: Subnet ID to use for Public Load Balancers, this
+                      subnet must belong to  private_network_id. Defaults to the same
+                      subnet as the nodes (see nodes_subnet_id). Requires private_network_id
+                      to be defined. See more network requirements in the documentation
+                      for more information.
                     type: string
                   name:
+                    description: The name of the kubernetes cluster.
                     type: string
                   nodesSubnetId:
+                    description: Subnet ID to use for nodes, this subnet must belong
+                      to private_network_id. Default uses the first subnet belonging
+                      to the private network with id private_network_id. This attribute
+                      requires private_network_id to be defined. Cannot be updated,
+                      it can only be used at cluster creation or reset.
+                    type: string
+                  nodesSubnetIdRef:
+                    description: Reference to a SubnetV2 in network to populate nodesSubnetId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  nodesSubnetIdSelector:
+                    description: Selector for a SubnetV2 in network to populate nodesSubnetId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  plan:
+                    description: Plan of the MKS cluster free or standard. Default
+                      to free. Migration to another plan is not implemented yet.
                     type: string
                   privateNetworkConfiguration:
+                    description: The private network configuration. If this is set
+                      then the 2 parameters below shall be defined.
                     items:
                       properties:
                         defaultVrackGateway:
-                          description: If defined, all egress traffic will be routed
-                            towards this IP address, which should belong to the private
-                            network. Empty string means disabled.
+                          description: |-
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                           type: string
                         privateNetworkRoutingAsDefault:
-                          description: Defines whether routing should default to using
-                            the nodes' private interface, instead of their public
-                            interface. Default is false.
+                          description: |-
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                           type: boolean
                       type: object
                     type: array
                   privateNetworkId:
+                    description: Private network ID to use. Changing this value recreates
+                      the resource, including ETCD user data. Defaults - not use private
+                      network.
                     type: string
                   privateNetworkIdRef:
                     description: Reference to a PrivateNetwork in network to populate
@@ -441,12 +746,23 @@ spec:
                         type: object
                     type: object
                   region:
+                    description: 'a valid OVHcloud public cloud region ID in which
+                      the kubernetes cluster will be available. Ex.: "GRA9". Defaults
+                      to all public cloud regions. Changing this value recreates the
+                      resource.'
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                   updatePolicy:
+                    description: Cluster update policy. Choose between [ALWAYS_UPDATE,
+                      MINIMAL_DOWNTIME, NEVER_UPDATE].
                     type: string
                   version:
+                    description: kubernetes version to use. Changing this value updates
+                      the resource. Defaults to the latest available.
                     type: string
                 type: object
               managementPolicies:
@@ -631,21 +947,34 @@ spec:
               atProvider:
                 properties:
                   controlPlaneIsUpToDate:
+                    description: True if control-plane is up-to-date.
                     type: boolean
                   customization:
+                    description: Deprecated  Use customization_apiserver and customization_kube_proxy
+                      instead. Kubernetes cluster customization
                     items:
                       properties:
                         apiserver:
+                          description: Kubernetes API server customization
                           items:
                             properties:
                               admissionplugins:
+                                description: Kubernetes API server admission plugins
+                                  customization
                                 items:
                                   properties:
                                     disabled:
+                                      description: Array of admission plugins disabled,
+                                        default is [] and only AlwaysPulImages can
+                                        be disabled at this time.
                                       items:
                                         type: string
                                       type: array
                                     enabled:
+                                      description: Array of admission plugins enabled,
+                                        default is ["NodeRestriction","AlwaysPulImages"]
+                                        and only these admission plugins can be enabled
+                                        at this time.
                                       items:
                                         type: string
                                       type: array
@@ -656,16 +985,24 @@ spec:
                       type: object
                     type: array
                   customizationApiserver:
+                    description: Kubernetes API server customization
                     items:
                       properties:
                         admissionplugins:
+                          description: Kubernetes API server admission plugins customization
                           items:
                             properties:
                               disabled:
+                                description: Array of admission plugins disabled,
+                                  default is [] and only AlwaysPulImages can be disabled
+                                  at this time.
                                 items:
                                   type: string
                                 type: array
                               enabled:
+                                description: Array of admission plugins enabled, default
+                                  is ["NodeRestriction","AlwaysPulImages"] and only
+                                  these admission plugins can be enabled at this time.
                                 items:
                                   type: string
                                 type: array
@@ -674,83 +1011,153 @@ spec:
                       type: object
                     type: array
                   customizationKubeProxy:
+                    description: Kubernetes kube-proxy customization
                     items:
                       properties:
                         iptables:
+                          description: Kubernetes cluster kube-proxy customization
+                            of iptables specific config (durations format is RFC3339
+                            duration, e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                             type: object
                           type: array
                         ipvs:
+                          description: Kubernetes cluster kube-proxy customization
+                            of IPVS specific config (durations format is RFC3339 duration,
+                            e.g. PT60S)
                           items:
                             properties:
                               minSyncPeriod:
+                                description: Period that iptables rules are refreshed,
+                                  in RFC3339 duration format (e.g. PT60S). Must be
+                                  greater than 0.
                                 type: string
                               scheduler:
+                                description: IPVS scheduler.
                                 type: string
                               syncPeriod:
+                                description: Minimum period that iptables rules are
+                                  refreshed, in RFC3339 duration format (e.g. PT60S).
                                 type: string
                               tcpFinTimeout:
+                                description: Timeout value used for IPVS TCP sessions
+                                  after receiving a FIN in RFC3339 duration (e.g.
+                                  PT60S). The default value is PT0S, which preserves
+                                  the current timeout value on the system.
                                 type: string
                               tcpTimeout:
+                                description: Timeout value used for idle IPVS TCP
+                                  sessions in RFC3339 duration (e.g. PT60S). The default
+                                  value is PT0S, which preserves the current timeout
+                                  value on the system.
                                 type: string
                               udpTimeout:
+                                description: timeout value used for IPVS UDP packets
+                                  in RFC3339 duration (e.g. PT60S). The default value
+                                  is PT0S, which preserves the current timeout value
+                                  on the system.
                                 type: string
                             type: object
                           type: array
                       type: object
                     type: array
                   id:
+                    description: Managed Kubernetes Service ID
                     type: string
                   isUpToDate:
+                    description: True if all nodes and control-plane are up-to-date.
                     type: boolean
                   kubeProxyMode:
+                    description: Selected mode for kube-proxy. Changing this value
+                      recreates the resource, including ETCD user data. Defaults to
+                      iptables.
                     type: string
                   loadBalancersSubnetId:
+                    description: Subnet ID to use for Public Load Balancers, this
+                      subnet must belong to  private_network_id. Defaults to the same
+                      subnet as the nodes (see nodes_subnet_id). Requires private_network_id
+                      to be defined. See more network requirements in the documentation
+                      for more information.
                     type: string
                   name:
+                    description: The name of the kubernetes cluster.
                     type: string
                   nextUpgradeVersions:
+                    description: Kubernetes versions available for upgrade.
                     items:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
                   nodesSubnetId:
+                    description: Subnet ID to use for nodes, this subnet must belong
+                      to private_network_id. Default uses the first subnet belonging
+                      to the private network with id private_network_id. This attribute
+                      requires private_network_id to be defined. Cannot be updated,
+                      it can only be used at cluster creation or reset.
                     type: string
                   nodesUrl:
+                    description: Cluster nodes URL.
+                    type: string
+                  plan:
+                    description: Plan of the MKS cluster free or standard. Default
+                      to free. Migration to another plan is not implemented yet.
                     type: string
                   privateNetworkConfiguration:
+                    description: The private network configuration. If this is set
+                      then the 2 parameters below shall be defined.
                     items:
                       properties:
                         defaultVrackGateway:
-                          description: If defined, all egress traffic will be routed
-                            towards this IP address, which should belong to the private
-                            network. Empty string means disabled.
+                          description: |-
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                           type: string
                         privateNetworkRoutingAsDefault:
-                          description: Defines whether routing should default to using
-                            the nodes' private interface, instead of their public
-                            interface. Default is false.
+                          description: |-
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                            Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                           type: boolean
                       type: object
                     type: array
                   privateNetworkId:
+                    description: Private network ID to use. Changing this value recreates
+                      the resource, including ETCD user data. Defaults - not use private
+                      network.
                     type: string
                   region:
+                    description: 'a valid OVHcloud public cloud region ID in which
+                      the kubernetes cluster will be available. Ex.: "GRA9". Defaults
+                      to all public cloud regions. Changing this value recreates the
+                      resource.'
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing
+                      this value recreates the resource.
                     type: string
                   status:
+                    description: Cluster status. Should be normally set to 'READY'.
                     type: string
                   updatePolicy:
+                    description: Cluster update policy. Choose between [ALWAYS_UPDATE,
+                      MINIMAL_DOWNTIME, NEVER_UPDATE].
                     type: string
                   url:
+                    description: Management URL of your cluster.
                     type: string
                   version:
+                    description: kubernetes version to use. Changing this value updates
+                      the resource. Defaults to the latest available.
                     type: string
                 type: object
               conditions:

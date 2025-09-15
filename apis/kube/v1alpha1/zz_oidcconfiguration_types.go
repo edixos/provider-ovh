@@ -14,10 +14,14 @@ import (
 )
 
 type OIDCConfigurationInitParameters struct {
+
+	// The OIDC client ID.
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
+	// The OIDC issuer url.
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
+	// The ID of the managed kubernetes cluster. Changing this value recreates the resource.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
@@ -29,57 +33,80 @@ type OIDCConfigurationInitParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// Content of the certificate for the CA, in Base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs.
 	OidcCAContent *string `json:"oidcCaContent,omitempty" tf:"oidc_ca_content,omitempty"`
 
+	// Array of JWT claim to use as the user's group. If the claim is present it must be an array of strings.
 	OidcGroupsClaim []*string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// Prefix prepended to group claims to prevent clashes with existing names (such as system:groups). For example, the value oidc: will create group names like oidc:engineering and oidc:infra.
 	OidcGroupsPrefix *string `json:"oidcGroupsPrefix,omitempty" tf:"oidc_groups_prefix,omitempty"`
 
+	// Array of key=value pairs that describe required claims in the ID Token. If set, the claims are verified to be present in the ID Token with a matching value."
 	OidcRequiredClaim []*string `json:"oidcRequiredClaim,omitempty" tf:"oidc_required_claim,omitempty"`
 
+	// Array of signing algorithms accepted. Default is RS256.
 	OidcSigningAlgs []*string `json:"oidcSigningAlgs,omitempty" tf:"oidc_signing_algs,omitempty"`
 
+	// JWT claim to use as the username. By default, sub, which is expected to be a unique identifier of the end user. Admins can choose other claims, such as email or name, depending on their provider. However, claims other than email will be prefixed with the issuer URL to prevent naming clashes with other plugins.
 	OidcUsernameClaim *string `json:"oidcUsernameClaim,omitempty" tf:"oidc_username_claim,omitempty"`
 
+	// Prefix prepended to username claims to prevent clashes with existing names (such as system:users). For example, the value oidc: will create usernames like oidc:jane.doe. If this field isn't set and oidc_username_claim is a value other than email the prefix defaults to issuer_url where issuer_url is the value of issuer_url. The value - can be used to disable all prefixing.
 	OidcUsernamePrefix *string `json:"oidcUsernamePrefix,omitempty" tf:"oidc_username_prefix,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type OIDCConfigurationObservation struct {
+
+	// The OIDC client ID.
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The OIDC issuer url.
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
+	// The ID of the managed kubernetes cluster. Changing this value recreates the resource.
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
+	// Content of the certificate for the CA, in Base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs.
 	OidcCAContent *string `json:"oidcCaContent,omitempty" tf:"oidc_ca_content,omitempty"`
 
+	// Array of JWT claim to use as the user's group. If the claim is present it must be an array of strings.
 	OidcGroupsClaim []*string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// Prefix prepended to group claims to prevent clashes with existing names (such as system:groups). For example, the value oidc: will create group names like oidc:engineering and oidc:infra.
 	OidcGroupsPrefix *string `json:"oidcGroupsPrefix,omitempty" tf:"oidc_groups_prefix,omitempty"`
 
+	// Array of key=value pairs that describe required claims in the ID Token. If set, the claims are verified to be present in the ID Token with a matching value."
 	OidcRequiredClaim []*string `json:"oidcRequiredClaim,omitempty" tf:"oidc_required_claim,omitempty"`
 
+	// Array of signing algorithms accepted. Default is RS256.
 	OidcSigningAlgs []*string `json:"oidcSigningAlgs,omitempty" tf:"oidc_signing_algs,omitempty"`
 
+	// JWT claim to use as the username. By default, sub, which is expected to be a unique identifier of the end user. Admins can choose other claims, such as email or name, depending on their provider. However, claims other than email will be prefixed with the issuer URL to prevent naming clashes with other plugins.
 	OidcUsernameClaim *string `json:"oidcUsernameClaim,omitempty" tf:"oidc_username_claim,omitempty"`
 
+	// Prefix prepended to username claims to prevent clashes with existing names (such as system:users). For example, the value oidc: will create usernames like oidc:jane.doe. If this field isn't set and oidc_username_claim is a value other than email the prefix defaults to issuer_url where issuer_url is the value of issuer_url. The value - can be used to disable all prefixing.
 	OidcUsernamePrefix *string `json:"oidcUsernamePrefix,omitempty" tf:"oidc_username_prefix,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type OIDCConfigurationParameters struct {
 
+	// The OIDC client ID.
 	// +kubebuilder:validation:Optional
 	ClientID *string `json:"clientId,omitempty" tf:"client_id,omitempty"`
 
+	// The OIDC issuer url.
 	// +kubebuilder:validation:Optional
 	IssuerURL *string `json:"issuerUrl,omitempty" tf:"issuer_url,omitempty"`
 
+	// The ID of the managed kubernetes cluster. Changing this value recreates the resource.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
@@ -92,27 +119,35 @@ type OIDCConfigurationParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// Content of the certificate for the CA, in Base64 format, that signed your identity provider's web certificate. Defaults to the host's root CAs.
 	// +kubebuilder:validation:Optional
 	OidcCAContent *string `json:"oidcCaContent,omitempty" tf:"oidc_ca_content,omitempty"`
 
+	// Array of JWT claim to use as the user's group. If the claim is present it must be an array of strings.
 	// +kubebuilder:validation:Optional
 	OidcGroupsClaim []*string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
+	// Prefix prepended to group claims to prevent clashes with existing names (such as system:groups). For example, the value oidc: will create group names like oidc:engineering and oidc:infra.
 	// +kubebuilder:validation:Optional
 	OidcGroupsPrefix *string `json:"oidcGroupsPrefix,omitempty" tf:"oidc_groups_prefix,omitempty"`
 
+	// Array of key=value pairs that describe required claims in the ID Token. If set, the claims are verified to be present in the ID Token with a matching value."
 	// +kubebuilder:validation:Optional
 	OidcRequiredClaim []*string `json:"oidcRequiredClaim,omitempty" tf:"oidc_required_claim,omitempty"`
 
+	// Array of signing algorithms accepted. Default is RS256.
 	// +kubebuilder:validation:Optional
 	OidcSigningAlgs []*string `json:"oidcSigningAlgs,omitempty" tf:"oidc_signing_algs,omitempty"`
 
+	// JWT claim to use as the username. By default, sub, which is expected to be a unique identifier of the end user. Admins can choose other claims, such as email or name, depending on their provider. However, claims other than email will be prefixed with the issuer URL to prevent naming clashes with other plugins.
 	// +kubebuilder:validation:Optional
 	OidcUsernameClaim *string `json:"oidcUsernameClaim,omitempty" tf:"oidc_username_claim,omitempty"`
 
+	// Prefix prepended to username claims to prevent clashes with existing names (such as system:users). For example, the value oidc: will create usernames like oidc:jane.doe. If this field isn't set and oidc_username_claim is a value other than email the prefix defaults to issuer_url where issuer_url is the value of issuer_url. The value - can be used to disable all prefixing.
 	// +kubebuilder:validation:Optional
 	OidcUsernamePrefix *string `json:"oidcUsernamePrefix,omitempty" tf:"oidc_username_prefix,omitempty"`
 
+	// The ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -144,7 +179,7 @@ type OIDCConfigurationStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// OIDCConfiguration is the Schema for the OIDCConfigurations API. <no value>
+// OIDCConfiguration is the Schema for the OIDCConfigurations API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

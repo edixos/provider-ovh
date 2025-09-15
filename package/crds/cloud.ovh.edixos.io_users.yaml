@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: User is the Schema for the Users API. <no value>
+        description: User is the Schema for the Users API.
         properties:
           apiVersion:
             description: |-
@@ -73,21 +73,32 @@ spec:
               forProvider:
                 properties:
                   description:
+                    description: A description associated with the user.
                     type: string
                   openstackRc:
                     additionalProperties:
                       type: string
+                    description: 'a convenient map representing an openstack_rc file.
+                      Note: no password nor sensitive token is set in this map.'
                     type: object
                     x-kubernetes-map-type: granular
+                  passwordReset:
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
+                    type: string
                   roleName:
+                    description: The name of a role. See role_names.
                     type: string
                   roleNames:
+                    description: 'A list of role names. Values can be:'
                     items:
                       type: string
                     type: array
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                 type: object
               initProvider:
@@ -104,21 +115,32 @@ spec:
                   autoscaler.
                 properties:
                   description:
+                    description: A description associated with the user.
                     type: string
                   openstackRc:
                     additionalProperties:
                       type: string
+                    description: 'a convenient map representing an openstack_rc file.
+                      Note: no password nor sensitive token is set in this map.'
                     type: object
                     x-kubernetes-map-type: granular
+                  passwordReset:
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
+                    type: string
                   roleName:
+                    description: The name of a role. See role_names.
                     type: string
                   roleNames:
+                    description: 'A list of role names. Values can be:'
                     items:
                       type: string
                     type: array
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                 type: object
               managementPolicies:
@@ -299,32 +321,49 @@ spec:
               atProvider:
                 properties:
                   creationDate:
+                    description: the date the user was created.
                     type: string
                   description:
+                    description: A description associated with the user.
                     type: string
                   id:
+                    description: id of the role
                     type: string
                   openstackRc:
                     additionalProperties:
                       type: string
+                    description: 'a convenient map representing an openstack_rc file.
+                      Note: no password nor sensitive token is set in this map.'
                     type: object
                     x-kubernetes-map-type: granular
+                  passwordReset:
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
+                    type: string
                   roleName:
+                    description: The name of a role. See role_names.
                     type: string
                   roleNames:
+                    description: 'A list of role names. Values can be:'
                     items:
                       type: string
                     type: array
                   roles:
+                    description: A list of roles associated with the user.
                     items:
                       properties:
                         description:
+                          description: A description associated with the user.
                           type: string
                         id:
+                          description: id of the role
                           type: string
                         name:
+                          description: name of the role
                           type: string
                         permissions:
+                          description: list of permissions associated with the role
                           items:
                             type: string
                           type: array
@@ -332,12 +371,17 @@ spec:
                       type: object
                     type: array
                   serviceName:
-                    description: Service name of the resource representing the id
-                      of the cloud project.
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      Service name of the resource representing the id of the cloud project.
                     type: string
                   status:
+                    description: the status of the user. should be normally set to
+                      'ok'.
                     type: string
                   username:
+                    description: the username generated for the user. This username
+                      can be used with the Openstack API.
                     type: string
                 type: object
               conditions:

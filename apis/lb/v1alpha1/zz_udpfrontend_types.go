@@ -15,83 +15,105 @@ import (
 
 type UDPFrontendInitParameters struct {
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// Only attach frontend on these ip. No restriction if null
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// Default UDP Farm of your frontend
+	// Default UDP Farm of your frontend
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
+	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend
 	// Human readable name for your frontend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	// Zone of your frontend. Use "all" for all owned zone.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type UDPFrontendObservation struct {
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// Only attach frontend on these ip. No restriction if null
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// Default UDP Farm of your frontend
+	// Default UDP Farm of your frontend
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
+	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend
 	// Human readable name for your frontend, this field is for you
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Id of your frontend
 	// Id of your frontend
 	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	// Zone of your frontend. Use "all" for all owned zone.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type UDPFrontendParameters struct {
 
+	// Only attach frontend on these ip. No restriction if null. List of Ip blocks.
 	// Only attach frontend on these ip. No restriction if null
 	// +kubebuilder:validation:Optional
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// Default UDP Farm of your frontend
+	// Default UDP Farm of your frontend
 	// +kubebuilder:validation:Optional
 	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
+	// Disable your frontend. Default: 'false'
 	// +kubebuilder:validation:Optional
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
 
+	// Human readable name for your frontend
 	// Human readable name for your frontend, this field is for you
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range
 	// Port(s) attached to your frontend. Supports single port (numerical value), range (2 dash-delimited increasing ports) and comma-separated list of 'single port' and/or 'range'. Each port must be in the [1;49151] range.
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
 	// The internal name of your IP load balancing
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Zone where the frontend will be defined (ie. gra, bhs also supports all)
 	// Zone of your frontend. Use "all" for all owned zone.
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
@@ -124,7 +146,7 @@ type UDPFrontendStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// UDPFrontend is the Schema for the UDPFrontends API. <no value>
+// UDPFrontend is the Schema for the UDPFrontends API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

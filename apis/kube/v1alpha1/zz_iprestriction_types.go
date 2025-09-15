@@ -15,10 +15,12 @@ import (
 
 type IpRestrictionInitParameters struct {
 
+	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	// List of IP restrictions for the cluster
 	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
+	// The id of the managed Kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
@@ -31,6 +33,7 @@ type IpRestrictionInitParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -38,24 +41,29 @@ type IpRestrictionInitParameters struct {
 type IpRestrictionObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	// List of IP restrictions for the cluster
 	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
+	// The id of the managed Kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	KubeID *string `json:"kubeId,omitempty" tf:"kube_id,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type IpRestrictionParameters struct {
 
+	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	// List of IP restrictions for the cluster
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Ips []*string `json:"ips,omitempty" tf:"ips,omitempty"`
 
+	// The id of the managed Kubernetes cluster. Changing this value recreates the resource.
 	// Kube ID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/kube/v1alpha1.Cluster
 	// +kubebuilder:validation:Optional
@@ -69,6 +77,7 @@ type IpRestrictionParameters struct {
 	// +kubebuilder:validation:Optional
 	KubeIDSelector *v1.Selector `json:"kubeIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -101,7 +110,7 @@ type IpRestrictionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// IpRestriction is the Schema for the IpRestrictions API. <no value>
+// IpRestriction is the Schema for the IpRestrictions API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

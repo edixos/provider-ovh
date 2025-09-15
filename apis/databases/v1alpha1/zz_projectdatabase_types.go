@@ -17,20 +17,29 @@ type EndpointsInitParameters struct {
 }
 
 type EndpointsObservation struct {
+
+	// Type of component the URI relates to.
 	Component *string `json:"component,omitempty" tf:"component,omitempty"`
 
+	// Domain of the cluster.
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
+	// Path of the endpoint.
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
+	// Connection port for the endpoint.
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Defines whether the endpoint uses SSL.
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// SSL mode used to connect to the service if the SSL is enabled.
 	SSLMode *string `json:"sslMode,omitempty" tf:"ssl_mode,omitempty"`
 
+	// Scheme used to generate the URI.
 	Scheme *string `json:"scheme,omitempty" tf:"scheme,omitempty"`
 
+	// URI of the endpoint.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
@@ -39,31 +48,38 @@ type EndpointsParameters struct {
 
 type IPRestrictionsInitParameters struct {
 
+	// Small description of the database service.
 	// Description of the IP restriction
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Authorized IP
 	// Authorized IP
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 }
 
 type IPRestrictionsObservation struct {
 
+	// Small description of the database service.
 	// Description of the IP restriction
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// Authorized IP
+	// Authorized IP
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
+	// Current status of the IP restriction.
 	// Current status of the IP restriction
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type IPRestrictionsParameters struct {
 
+	// Small description of the database service.
 	// Description of the IP restriction
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Authorized IP
 	// Authorized IP
 	// +kubebuilder:validation:Optional
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
@@ -71,38 +87,47 @@ type IPRestrictionsParameters struct {
 
 type NodesInitParameters struct {
 
+	// Private network id in which the node should be deployed. It's the regional openstackId of the private network
 	// Private network ID in which the node is. It's the regional openstackId of the private network.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// Public cloud region in which the node should be deployed. Ex: "GRA'.
 	// Region of the node
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Private subnet ID in which the node is.
 	// Private subnet ID in which the node is
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type NodesObservation struct {
 
+	// Private network id in which the node should be deployed. It's the regional openstackId of the private network
 	// Private network ID in which the node is. It's the regional openstackId of the private network.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// Public cloud region in which the node should be deployed. Ex: "GRA'.
 	// Region of the node
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Private subnet ID in which the node is.
 	// Private subnet ID in which the node is
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
 type NodesParameters struct {
 
+	// Private network id in which the node should be deployed. It's the regional openstackId of the private network
 	// Private network ID in which the node is. It's the regional openstackId of the private network.
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// Public cloud region in which the node should be deployed. Ex: "GRA'.
 	// Region of the node
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region" tf:"region,omitempty"`
 
+	// Private subnet ID in which the node is.
 	// Private subnet ID in which the node is
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
@@ -110,185 +135,239 @@ type NodesParameters struct {
 
 type ProjectDatabaseInitParameters struct {
 
+	// Advanced configuration key / value.
 	// Advanced configuration key / value
 	// +mapType=granular
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
 	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
 	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
 
+	// Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
 	// Time on which backups start every day
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
 
+	// Small description of the database service.
 	// Description of the cluster
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
 	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
+	// The database engine you want to deploy. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
 	// The node flavor used for this cluster
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// IP Blocks authorized to access to the cluster.
 	// IP Blocks authorized to access to the cluster
 	IPRestrictions []IPRestrictionsInitParameters `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// Defines whether the REST API is enabled on a kafka cluster
 	// Defines whether the REST API is enabled on a Kafka cluster
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
 
 	// Defines whether the schema registry is enabled on a Kafka cluster
+	// Defines whether the schema registry is enabled on a Kafka cluster
 	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
+	// Time on which maintenances can start every day.
 	// Time on which maintenances can start every day
 	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
 
+	// List of nodes object. Multi region cluster are not yet available, all node should be identical.
 	// List of nodes composing the service
 	Nodes []NodesInitParameters `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
+	// Defines whether the ACLs are enabled on an OpenSearch cluster
 	// Defines whether the ACLs are enabled on an Opensearch cluster
 	OpensearchAclsEnabled *bool `json:"opensearchAclsEnabled,omitempty" tf:"opensearch_acls_enabled,omitempty"`
 
+	// Plan of the cluster.
 	// Plan of the cluster
 	Plan *string `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The version of the engine in which the service should be deployed
 	// Version of the engine deployed on the cluster
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
 type ProjectDatabaseObservation struct {
 
+	// Advanced configuration key / value.
 	// Advanced configuration key / value
 	// +mapType=granular
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
 	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
 	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
 
+	// Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
 	// Time on which backups start every day
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
 
+	// Date of the creation of the cluster.
 	// Date of the creation of the cluster
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Small description of the database service.
 	// Description of the cluster
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
 	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
+	// Defines the disk type of the database service.
 	// Disk type attributes of the cluster
 	DiskType *string `json:"diskType,omitempty" tf:"disk_type,omitempty"`
 
+	// List of all endpoints objects of the service.
 	// List of all endpoints of the service
 	Endpoints []EndpointsObservation `json:"endpoints,omitempty" tf:"endpoints,omitempty"`
 
+	// The database engine you want to deploy. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
 	// The node flavor used for this cluster
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// Public Cloud Database Service ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// IP Blocks authorized to access to the cluster.
 	// IP Blocks authorized to access to the cluster
 	IPRestrictions []IPRestrictionsObservation `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// Defines whether the REST API is enabled on a kafka cluster
 	// Defines whether the REST API is enabled on a Kafka cluster
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
 
 	// Defines whether the schema registry is enabled on a Kafka cluster
+	// Defines whether the schema registry is enabled on a Kafka cluster
 	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
+	// Time on which maintenances can start every day.
 	// Time on which maintenances can start every day
 	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
 
+	// Type of network of the cluster.
 	// Type of network of the cluster
 	NetworkType *string `json:"networkType,omitempty" tf:"network_type,omitempty"`
 
+	// List of nodes object. Multi region cluster are not yet available, all node should be identical.
 	// List of nodes composing the service
 	Nodes []NodesObservation `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
+	// Defines whether the ACLs are enabled on an OpenSearch cluster
 	// Defines whether the ACLs are enabled on an Opensearch cluster
 	OpensearchAclsEnabled *bool `json:"opensearchAclsEnabled,omitempty" tf:"opensearch_acls_enabled,omitempty"`
 
+	// Plan of the cluster.
 	// Plan of the cluster
 	Plan *string `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Current status of the IP restriction.
 	// Current status of the cluster
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// The version of the engine in which the service should be deployed
 	// Version of the engine deployed on the cluster
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
 type ProjectDatabaseParameters struct {
 
+	// Advanced configuration key / value.
 	// Advanced configuration key / value
 	// +kubebuilder:validation:Optional
 	// +mapType=granular
 	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
 	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+	// List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
 	// +kubebuilder:validation:Optional
 	BackupRegions []*string `json:"backupRegions,omitempty" tf:"backup_regions,omitempty"`
 
+	// Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
 	// Time on which backups start every day
 	// +kubebuilder:validation:Optional
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
 
+	// Small description of the database service.
 	// Description of the cluster
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
 	// +kubebuilder:validation:Optional
 	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
+	// The database engine you want to deploy. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
 	// +kubebuilder:validation:Optional
 	Engine *string `json:"engine,omitempty" tf:"engine,omitempty"`
 
+	// A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
 	// The node flavor used for this cluster
 	// +kubebuilder:validation:Optional
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
+	// IP Blocks authorized to access to the cluster.
 	// IP Blocks authorized to access to the cluster
 	// +kubebuilder:validation:Optional
 	IPRestrictions []IPRestrictionsParameters `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// Defines whether the REST API is enabled on a kafka cluster
 	// Defines whether the REST API is enabled on a Kafka cluster
 	// +kubebuilder:validation:Optional
 	KafkaRestAPI *bool `json:"kafkaRestApi,omitempty" tf:"kafka_rest_api,omitempty"`
 
 	// Defines whether the schema registry is enabled on a Kafka cluster
+	// Defines whether the schema registry is enabled on a Kafka cluster
 	// +kubebuilder:validation:Optional
 	KafkaSchemaRegistry *bool `json:"kafkaSchemaRegistry,omitempty" tf:"kafka_schema_registry,omitempty"`
 
+	// Time on which maintenances can start every day.
 	// Time on which maintenances can start every day
 	// +kubebuilder:validation:Optional
 	MaintenanceTime *string `json:"maintenanceTime,omitempty" tf:"maintenance_time,omitempty"`
 
+	// List of nodes object. Multi region cluster are not yet available, all node should be identical.
 	// List of nodes composing the service
 	// +kubebuilder:validation:Optional
 	Nodes []NodesParameters `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
+	// Defines whether the ACLs are enabled on an OpenSearch cluster
 	// Defines whether the ACLs are enabled on an Opensearch cluster
 	// +kubebuilder:validation:Optional
 	OpensearchAclsEnabled *bool `json:"opensearchAclsEnabled,omitempty" tf:"opensearch_acls_enabled,omitempty"`
 
+	// Plan of the cluster.
 	// Plan of the cluster
 	// +kubebuilder:validation:Optional
 	Plan *string `json:"plan,omitempty" tf:"plan,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// The version of the engine in which the service should be deployed
 	// Version of the engine deployed on the cluster
 	// +kubebuilder:validation:Optional
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
@@ -321,7 +400,7 @@ type ProjectDatabaseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ProjectDatabase is the Schema for the ProjectDatabases API. <no value>
+// ProjectDatabase is the Schema for the ProjectDatabases API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

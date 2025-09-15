@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Move is the Schema for the Moves API. <no value>
+        description: Move is the Schema for the Moves API.
         properties:
           apiVersion:
             description: |-
@@ -73,16 +73,23 @@ spec:
               forProvider:
                 properties:
                   description:
-                    description: Custom description on your ip
+                    description: |-
+                      Description attached to the IP
+                      Custom description on your ip
                     type: string
                   ip:
+                    description: IP block that we want to attach to a different service
                     type: string
                   routedTo:
-                    description: Routage information
+                    description: |-
+                      Service to route the IP to. If null, the IP will be parked instead of moved
+                      Routage information
                     items:
                       properties:
                         serviceName:
-                          description: Service where ip is routed to
+                          description: |-
+                            Name of the service to route the IP to. IP will be parked if this value is an empty string
+                            Service where ip is routed to
                           type: string
                       type: object
                     type: array
@@ -101,16 +108,23 @@ spec:
                   autoscaler.
                 properties:
                   description:
-                    description: Custom description on your ip
+                    description: |-
+                      Description attached to the IP
+                      Custom description on your ip
                     type: string
                   ip:
+                    description: IP block that we want to attach to a different service
                     type: string
                   routedTo:
-                    description: Routage information
+                    description: |-
+                      Service to route the IP to. If null, the IP will be parked instead of moved
+                      Routage information
                     items:
                       properties:
                         serviceName:
-                          description: Service where ip is routed to
+                          description: |-
+                            Name of the service to route the IP to. IP will be parked if this value is an empty string
+                            Service where ip is routed to
                           type: string
                       type: object
                     type: array
@@ -297,40 +311,55 @@ spec:
               atProvider:
                 properties:
                   canBeTerminated:
+                    description: Whether IP service can be terminated
                     type: boolean
                   country:
+                    description: Country
                     type: string
                   description:
-                    description: Custom description on your ip
+                    description: |-
+                      Description attached to the IP
+                      Custom description on your ip
                     type: string
                   id:
                     type: string
                   ip:
+                    description: IP block that we want to attach to a different service
                     type: string
                   organisationId:
+                    description: IP block organisation Id
                     type: string
                   routedTo:
-                    description: Routage information
+                    description: |-
+                      Service to route the IP to. If null, the IP will be parked instead of moved
+                      Routage information
                     items:
                       properties:
                         serviceName:
-                          description: Service where ip is routed to
+                          description: |-
+                            Name of the service to route the IP to. IP will be parked if this value is an empty string
+                            Service where ip is routed to
                           type: string
                       type: object
                     type: array
                   serviceName:
+                    description: Name of the service to route the IP to. IP will be
+                      parked if this value is an empty string
                     type: string
                   taskStartDate:
-                    description: Starting date and time field of the current IP task
-                      that is in charge of changing the service the IP is attached
-                      to
+                    description: |-
+                      Starting date and time field of the current IP task that is in charge of changing the service the IP is attached to
+                      Starting date and time field of the current IP task that is in charge of changing the service the IP is attached to
                     type: string
                   taskStatus:
-                    description: Status field of the current IP task that is in charge
-                      of changing the service the IP is attached to
+                    description: |-
+                      Status field of the current IP task that is in charge of changing the service the IP is attached to
+                      Status field of the current IP task that is in charge of changing the service the IP is attached to
                     type: string
                   type:
-                    description: Possible values for ip type
+                    description: |-
+                      Possible values for ip type
+                      Possible values for ip type
                     type: string
                 type: object
               conditions:

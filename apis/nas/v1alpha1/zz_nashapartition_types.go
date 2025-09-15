@@ -14,49 +14,68 @@ import (
 )
 
 type NashaPartitionInitParameters struct {
+
+	// A brief description of the partition
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// name of the partition
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// one of "NFS", "CIFS" or "NFS_CIFS"
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// size of the partition in GB
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type NashaPartitionObservation struct {
+
+	// Percentage of partition space used in %
 	Capacity *float64 `json:"capacity,omitempty" tf:"capacity,omitempty"`
 
+	// A brief description of the partition
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// name of the partition
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// one of "NFS", "CIFS" or "NFS_CIFS"
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// size of the partition in GB
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// Percentage of partition space used by snapshots in %
 	UsedBySnapshots *float64 `json:"usedBySnapshots,omitempty" tf:"used_by_snapshots,omitempty"`
 }
 
 type NashaPartitionParameters struct {
 
+	// A brief description of the partition
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// name of the partition
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// one of "NFS", "CIFS" or "NFS_CIFS"
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
+	// The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// size of the partition in GB
 	// +kubebuilder:validation:Optional
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
@@ -88,7 +107,7 @@ type NashaPartitionStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// NashaPartition is the Schema for the NashaPartitions API. <no value>
+// NashaPartition is the Schema for the NashaPartitions API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

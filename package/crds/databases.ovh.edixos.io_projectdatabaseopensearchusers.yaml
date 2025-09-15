@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseOpensearchUser is the Schema for the ProjectDatabaseOpensearchUsers
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,19 +75,27 @@ spec:
               forProvider:
                 properties:
                   acls:
-                    description: Acls of the user
+                    description: |-
+                      Acls of the user.
+                      Acls of the user
                     items:
                       properties:
                         pattern:
-                          description: Pattern of the ACL
+                          description: |-
+                            Pattern of the ACL.
+                            Pattern of the ACL
                           type: string
                         permission:
-                          description: Permission of the ACL
+                          description: |-
+                            Permission of the ACL Available permission:
+                            Permission of the ACL
                           type: string
                       type: object
                     type: array
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -166,13 +174,18 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the user
+                    description: |-
+                      Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -189,19 +202,27 @@ spec:
                   autoscaler.
                 properties:
                   acls:
-                    description: Acls of the user
+                    description: |-
+                      Acls of the user.
+                      Acls of the user
                     items:
                       properties:
                         pattern:
-                          description: Pattern of the ACL
+                          description: |-
+                            Pattern of the ACL.
+                            Pattern of the ACL
                           type: string
                         permission:
-                          description: Permission of the ACL
+                          description: |-
+                            Permission of the ACL Available permission:
+                            Permission of the ACL
                           type: string
                       type: object
                     type: array
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -280,13 +301,18 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the user
+                    description: |-
+                      Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -472,36 +498,54 @@ spec:
               atProvider:
                 properties:
                   acls:
-                    description: Acls of the user
+                    description: |-
+                      Acls of the user.
+                      Acls of the user
                     items:
                       properties:
                         pattern:
-                          description: Pattern of the ACL
+                          description: |-
+                            Pattern of the ACL.
+                            Pattern of the ACL
                           type: string
                         permission:
-                          description: Permission of the ACL
+                          description: |-
+                            Permission of the ACL Available permission:
+                            Permission of the ACL
                           type: string
                       type: object
                     type: array
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   createdAt:
-                    description: Date of the creation of the user
+                    description: |-
+                      Date of the creation of the user.
+                      Date of the creation of the user
                     type: string
                   id:
+                    description: ID of the user.
                     type: string
                   name:
-                    description: Name of the user
+                    description: |-
+                      Username affected by this acl. A user named "avnadmin" is mapped with already created admin user and reset his password instead of creating a new user.
+                      Name of the user
                     type: string
                   passwordReset:
-                    description: Arbitrary string to change to trigger a password
-                      update
+                    description: |-
+                      Arbitrary string to change to trigger a password update.
+                      Arbitrary string to change to trigger a password update
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   status:
-                    description: Current status of the user
+                    description: |-
+                      Current status of the user.
+                      Current status of the user
                     type: string
                 type: object
               conditions:

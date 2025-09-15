@@ -16,8 +16,10 @@ import (
 type PrivatedatabaseDatabaseInitParameters struct {
 
 	// Name of your new database
+	// Name of your new database
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -25,10 +27,12 @@ type PrivatedatabaseDatabaseInitParameters struct {
 type PrivatedatabaseDatabaseObservation struct {
 
 	// Name of your new database
+	// Name of your new database
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -36,9 +40,11 @@ type PrivatedatabaseDatabaseObservation struct {
 type PrivatedatabaseDatabaseParameters struct {
 
 	// Name of your new database
+	// Name of your new database
 	// +kubebuilder:validation:Optional
 	DatabaseName *string `json:"databaseName,omitempty" tf:"database_name,omitempty"`
 
+	// The internal name of your private database.
 	// The internal name of your private database
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -71,7 +77,7 @@ type PrivatedatabaseDatabaseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// PrivatedatabaseDatabase is the Schema for the PrivatedatabaseDatabases API. <no value>
+// PrivatedatabaseDatabase is the Schema for the PrivatedatabaseDatabases API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

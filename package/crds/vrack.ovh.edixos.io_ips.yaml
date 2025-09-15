@@ -75,6 +75,9 @@ spec:
                   block:
                     description: Your IP block.
                     type: string
+                  region:
+                    description: Where you want your block announced on the network
+                    type: string
                   serviceName:
                     description: The internal name of your vrack
                     type: string
@@ -94,6 +97,9 @@ spec:
                 properties:
                   block:
                     description: Your IP block.
+                    type: string
+                  region:
+                    description: Where you want your block announced on the network
                     type: string
                   serviceName:
                     description: The internal name of your vrack
@@ -290,6 +296,9 @@ spec:
                     type: string
                   ip:
                     description: Your IP block
+                    type: string
+                  region:
+                    description: Where you want your block announced on the network
                     type: string
                   serviceName:
                     description: The internal name of your vrack

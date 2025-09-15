@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: FirewallRule is the Schema for the FirewallRules API. <no value>
+        description: FirewallRule is the Schema for the FirewallRules API.
         properties:
           apiVersion:
             description: |-
@@ -73,35 +73,54 @@ spec:
               forProvider:
                 properties:
                   action:
-                    description: Possible values for action
+                    description: |-
+                      Possible values for action (deny|permit)
+                      Possible values for action
                     type: string
                   destinationPort:
-                    description: Destination port for your rule. Only with TCP/UDP
-                      protocol
+                    description: |-
+                      Destination port for your rule. Only with TCP/UDP protocol
+                      Destination port for your rule. Only with TCP/UDP protocol
                     type: number
                   fragments:
-                    description: Fragments option
+                    description: |-
+                      Fragments option
+                      Fragments option
                     type: boolean
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   protocol:
-                    description: Possible values for protocol
+                    description: |-
+                      Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
+                      Possible values for protocol
                     type: string
                   sequence:
-                    description: Possible values for action
+                    description: |-
+                      Rule position in the rules array
+                      Possible values for action
                     type: number
                   source:
-                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   sourcePort:
-                    description: Source port for your rule. Only with TCP/UDP protocol
+                    description: |-
+                      Source port for your rule. Only with TCP/UDP protocol
+                      Source port for your rule. Only with TCP/UDP protocol
                     type: number
                   tcpOption:
-                    description: TCP option on your rule
+                    description: |-
+                      TCP option on your rule (syn|established)
+                      TCP option on your rule
                     type: string
                 type: object
               initProvider:
@@ -118,35 +137,54 @@ spec:
                   autoscaler.
                 properties:
                   action:
-                    description: Possible values for action
+                    description: |-
+                      Possible values for action (deny|permit)
+                      Possible values for action
                     type: string
                   destinationPort:
-                    description: Destination port for your rule. Only with TCP/UDP
-                      protocol
+                    description: |-
+                      Destination port for your rule. Only with TCP/UDP protocol
+                      Destination port for your rule. Only with TCP/UDP protocol
                     type: number
                   fragments:
-                    description: Fragments option
+                    description: |-
+                      Fragments option
+                      Fragments option
                     type: boolean
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   protocol:
-                    description: Possible values for protocol
+                    description: |-
+                      Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
+                      Possible values for protocol
                     type: string
                   sequence:
-                    description: Possible values for action
+                    description: |-
+                      Rule position in the rules array
+                      Possible values for action
                     type: number
                   source:
-                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   sourcePort:
-                    description: Source port for your rule. Only with TCP/UDP protocol
+                    description: |-
+                      Source port for your rule. Only with TCP/UDP protocol
+                      Source port for your rule. Only with TCP/UDP protocol
                     type: number
                   tcpOption:
-                    description: TCP option on your rule
+                    description: |-
+                      TCP option on your rule (syn|established)
+                      TCP option on your rule
                     type: string
                 type: object
               managementPolicies:
@@ -343,54 +381,82 @@ spec:
               atProvider:
                 properties:
                   action:
-                    description: Possible values for action
+                    description: |-
+                      Possible values for action (deny|permit)
+                      Possible values for action
                     type: string
                   creationDate:
+                    description: Creation date of the rule
                     type: string
                   destination:
-                    description: Destination ip for your rule
+                    description: |-
+                      Destination IP for your rule
+                      Destination ip for your rule
                     type: string
                   destinationPort:
-                    description: Destination port for your rule. Only with TCP/UDP
-                      protocol
+                    description: |-
+                      Destination port for your rule. Only with TCP/UDP protocol
+                      Destination port for your rule. Only with TCP/UDP protocol
                     type: number
                   destinationPortDesc:
-                    description: Destination port range for your rule. Only with TCP/UDP
-                      protocol
+                    description: |-
+                      String description of field destination_port
+                      Destination port range for your rule. Only with TCP/UDP protocol
                     type: string
                   fragments:
-                    description: Fragments option
+                    description: |-
+                      Fragments option
+                      Fragments option
                     type: boolean
                   id:
                     type: string
                   ip:
-                    description: IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      The IP or the CIDR
+                      IP (v4 or v6) CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   ipOnFirewall:
-                    description: IPv4 address (e.g., 192.0.2.0)
+                    description: |-
+                      IPv4 address
+                      IPv4 address (e.g., 192.0.2.0)
                     type: string
                   protocol:
-                    description: Possible values for protocol
+                    description: |-
+                      Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
+                      Possible values for protocol
                     type: string
                   rule:
+                    description: Description of the rule
                     type: string
                   sequence:
-                    description: Possible values for action
+                    description: |-
+                      Rule position in the rules array
+                      Possible values for action
                     type: number
                   source:
-                    description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                    description: |-
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                      IPv4 CIDR notation (e.g., 192.0.2.0/24)
                     type: string
                   sourcePort:
-                    description: Source port for your rule. Only with TCP/UDP protocol
+                    description: |-
+                      Source port for your rule. Only with TCP/UDP protocol
+                      Source port for your rule. Only with TCP/UDP protocol
                     type: number
                   sourcePortDesc:
-                    description: Source port for your rule. Only with TCP/UDP protocol
+                    description: |-
+                      String description of field source_port
+                      Source port for your rule. Only with TCP/UDP protocol
                     type: string
                   state:
-                    description: Current state of your rule
+                    description: |-
+                      Current state of your rule
+                      Current state of your rule
                     type: string
                   tcpOption:
-                    description: TCP option on your rule
+                    description: |-
+                      TCP option on your rule (syn|established)
+                      TCP option on your rule
                     type: string
                 type: object
               conditions:

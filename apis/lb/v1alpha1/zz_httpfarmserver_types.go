@@ -14,103 +14,142 @@ import (
 )
 
 type HTTPFarmServerInitParameters struct {
+
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// is it a backup server used in case of failure of all the non-backup backends
 	Backup *bool `json:"backup,omitempty" tf:"backup,omitempty"`
 
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Label for the server
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
+	// enable action when backend marked down. (shutdown-sessions)
 	OnMarkedDown *string `json:"onMarkedDown,omitempty" tf:"on_marked_down,omitempty"`
 
+	// Port that backend will respond on
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	Probe *bool `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (v1, v2, v2-ssl, v2-ssl-cn)
 	ProxyProtocolVersion *string `json:"proxyProtocolVersion,omitempty" tf:"proxy_protocol_version,omitempty"`
 
+	// is the connection ciphered with SSL (TLS)
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// used in loadbalancing algorithm
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type HTTPFarmServerObservation struct {
+
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// is it a backup server used in case of failure of all the non-backup backends
 	Backup *bool `json:"backup,omitempty" tf:"backup,omitempty"`
 
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Value of the stickiness cookie used for this backend.
 	Cookie *string `json:"cookie,omitempty" tf:"cookie,omitempty"`
 
+	// Label for the server
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// enable action when backend marked down. (shutdown-sessions)
 	OnMarkedDown *string `json:"onMarkedDown,omitempty" tf:"on_marked_down,omitempty"`
 
+	// Port that backend will respond on
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	Probe *bool `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (v1, v2, v2-ssl, v2-ssl-cn)
 	ProxyProtocolVersion *string `json:"proxyProtocolVersion,omitempty" tf:"proxy_protocol_version,omitempty"`
 
+	// is the connection ciphered with SSL (TLS)
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// used in loadbalancing algorithm
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type HTTPFarmServerParameters struct {
 
+	// Address of the backend server (IP from either internal or OVHcloud network)
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
+	// is it a backup server used in case of failure of all the non-backup backends
 	// +kubebuilder:validation:Optional
 	Backup *bool `json:"backup,omitempty" tf:"backup,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	Chain *string `json:"chain,omitempty" tf:"chain,omitempty"`
 
+	// Label for the server
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// ID of the farm this server is attached to
 	// +kubebuilder:validation:Optional
 	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
+	// enable action when backend marked down. (shutdown-sessions)
 	// +kubebuilder:validation:Optional
 	OnMarkedDown *string `json:"onMarkedDown,omitempty" tf:"on_marked_down,omitempty"`
 
+	// Port that backend will respond on
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	// +kubebuilder:validation:Optional
 	Probe *bool `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (v1, v2, v2-ssl, v2-ssl-cn)
 	// +kubebuilder:validation:Optional
 	ProxyProtocolVersion *string `json:"proxyProtocolVersion,omitempty" tf:"proxy_protocol_version,omitempty"`
 
+	// is the connection ciphered with SSL (TLS)
 	// +kubebuilder:validation:Optional
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// backend status - active or inactive
 	// +kubebuilder:validation:Optional
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
+	// used in loadbalancing algorithm
 	// +kubebuilder:validation:Optional
 	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
@@ -142,7 +181,7 @@ type HTTPFarmServerStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// HTTPFarmServer is the Schema for the HTTPFarmServers API. <no value>
+// HTTPFarmServer is the Schema for the HTTPFarmServers API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

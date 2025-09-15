@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectFailoverIPAttach is the Schema for the ProjectFailoverIPAttachs
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   block:
-                    description: IP block
+                    description: |-
+                      The IP block
+                      IP block
                     type: string
                   continentCode:
                     description: Ip continent
@@ -84,13 +86,19 @@ spec:
                     description: Ip location
                     type: string
                   ip:
-                    description: Ip
+                    description: |-
+                      The failover ip address to attach
+                      Ip
                     type: string
                   routedTo:
-                    description: Instance where ip is routed to
+                    description: |-
+                      The GUID of an instance to which the failover IP address is be attached
+                      Instance where ip is routed to
                     type: string
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      The service name
                     type: string
                 type: object
               initProvider:
@@ -107,7 +115,9 @@ spec:
                   autoscaler.
                 properties:
                   block:
-                    description: IP block
+                    description: |-
+                      The IP block
+                      IP block
                     type: string
                   continentCode:
                     description: Ip continent
@@ -116,13 +126,19 @@ spec:
                     description: Ip location
                     type: string
                   ip:
-                    description: Ip
+                    description: |-
+                      The failover ip address to attach
+                      Ip
                     type: string
                   routedTo:
-                    description: Instance where ip is routed to
+                    description: |-
+                      The GUID of an instance to which the failover IP address is be attached
+                      Instance where ip is routed to
                     type: string
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      The service name
                     type: string
                 type: object
               managementPolicies:
@@ -304,7 +320,9 @@ spec:
               atProvider:
                 properties:
                   block:
-                    description: IP block
+                    description: |-
+                      The IP block
+                      IP block
                     type: string
                   continentCode:
                     description: Ip continent
@@ -313,21 +331,32 @@ spec:
                     description: Ip location
                     type: string
                   id:
+                    description: The Ip id
                     type: string
                   ip:
-                    description: Ip
+                    description: |-
+                      The failover ip address to attach
+                      Ip
                     type: string
                   progress:
-                    description: Current operation progress in percent
+                    description: |-
+                      Current operation progress in percent
+                      Current operation progress in percent
                     type: number
                   routedTo:
-                    description: Instance where ip is routed to
+                    description: |-
+                      The GUID of an instance to which the failover IP address is be attached
+                      Instance where ip is routed to
                     type: string
                   serviceName:
-                    description: The service name
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                      The service name
                     type: string
                   status:
-                    description: Ip status
+                    description: |-
+                      Ip status, can be ok or operationPending
+                      Ip status
                     type: string
                   subType:
                     description: IP sub type

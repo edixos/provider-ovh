@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: PrivatedatabaseWhitelist is the Schema for the PrivatedatabaseWhitelists
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,19 +75,29 @@ spec:
               forProvider:
                 properties:
                   ip:
-                    description: The whitelisted IP in your instance
+                    description: |-
+                      The whitelisted IP in your instance.
+                      The whitelisted IP in your instance
                     type: string
                   name:
-                    description: Custom name for your Whitelisted IP
+                    description: |-
+                      Custom name for your Whitelisted IP.
+                      Custom name for your Whitelisted IP
                     type: string
                   service:
-                    description: Authorize this IP to access service port
+                    description: |-
+                      Authorize this IP to access service port. Values can be true or false
+                      Authorize this IP to access service port
                     type: boolean
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   sftp:
-                    description: Authorize this IP to access SFTP port
+                    description: |-
+                      Authorize this IP to access SFTP port. Values can be true or false
+                      Authorize this IP to access SFTP port
                     type: boolean
                 type: object
               initProvider:
@@ -104,19 +114,29 @@ spec:
                   autoscaler.
                 properties:
                   ip:
-                    description: The whitelisted IP in your instance
+                    description: |-
+                      The whitelisted IP in your instance.
+                      The whitelisted IP in your instance
                     type: string
                   name:
-                    description: Custom name for your Whitelisted IP
+                    description: |-
+                      Custom name for your Whitelisted IP.
+                      Custom name for your Whitelisted IP
                     type: string
                   service:
-                    description: Authorize this IP to access service port
+                    description: |-
+                      Authorize this IP to access service port. Values can be true or false
+                      Authorize this IP to access service port
                     type: boolean
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   sftp:
-                    description: Authorize this IP to access SFTP port
+                    description: |-
+                      Authorize this IP to access SFTP port. Values can be true or false
+                      Authorize this IP to access SFTP port
                     type: boolean
                 type: object
               managementPolicies:
@@ -316,19 +336,29 @@ spec:
                   id:
                     type: string
                   ip:
-                    description: The whitelisted IP in your instance
+                    description: |-
+                      The whitelisted IP in your instance.
+                      The whitelisted IP in your instance
                     type: string
                   name:
-                    description: Custom name for your Whitelisted IP
+                    description: |-
+                      Custom name for your Whitelisted IP.
+                      Custom name for your Whitelisted IP
                     type: string
                   service:
-                    description: Authorize this IP to access service port
+                    description: |-
+                      Authorize this IP to access service port. Values can be true or false
+                      Authorize this IP to access service port
                     type: boolean
                   serviceName:
-                    description: The internal name of your private database
+                    description: |-
+                      The internal name of your private database.
+                      The internal name of your private database
                     type: string
                   sftp:
-                    description: Authorize this IP to access SFTP port
+                    description: |-
+                      Authorize this IP to access SFTP port. Values can be true or false
+                      Authorize this IP to access SFTP port
                     type: boolean
                 type: object
               conditions:

@@ -709,6 +709,11 @@ func (in *IPInitParameters) DeepCopyInto(out *IPInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
+		*out = new(string)
+		**out = **in
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -781,6 +786,11 @@ func (in *IPObservation) DeepCopyInto(out *IPObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
+		*out = new(string)
+		**out = **in
+	}
 	if in.ServiceName != nil {
 		in, out := &in.ServiceName, &out.ServiceName
 		*out = new(string)
@@ -808,6 +818,11 @@ func (in *IPParameters) DeepCopyInto(out *IPParameters) {
 	*out = *in
 	if in.Block != nil {
 		in, out := &in.Block, &out.Block
+		*out = new(string)
+		**out = **in
+	}
+	if in.Region != nil {
+		in, out := &in.Region, &out.Region
 		*out = new(string)
 		**out = **in
 	}

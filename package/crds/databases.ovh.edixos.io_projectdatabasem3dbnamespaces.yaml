@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseM3DbNamespace is the Schema for the ProjectDatabaseM3DbNamespaces
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,39 +156,53 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the namespace
+                    description: |-
+                      Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
+                      Name of the namespace
                     type: string
                   resolution:
-                    description: Resolution for an aggregated namespace
+                    description: |-
+                      Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Resolution for an aggregated namespace
                     type: string
                   retentionBlockDataExpirationDuration:
-                    description: Controls how long we wait before expiring stale data
+                    description: |-
+                      Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long we wait before expiring stale data
                     type: string
                   retentionBlockSizeDuration:
-                    description: Controls how long to keep a block in memory before
-                      flushing to a fileset on disk
+                    description: |-
+                      Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long to keep a block in memory before flushing to a fileset on disk
                     type: string
                   retentionBufferFutureDuration:
-                    description: Controls how far into the future writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the future writes to the namespace will be accepted
                     type: string
                   retentionBufferPastDuration:
-                    description: Controls how far into the past writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the past writes to the namespace will be accepted
                     type: string
                   retentionPeriodDuration:
-                    description: Controls the duration of time that M3DB will retain
-                      data for the namespace
+                    description: |-
+                      Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls the duration of time that M3DB will retain data for the namespace
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   snapshotEnabled:
-                    description: Defines whether M3db will create snapshot files for
-                      this namespace
+                    description: |-
+                      Defines whether M3DB will create snapshot files for this namespace.
+                      Defines whether M3db will create snapshot files for this namespace
                     type: boolean
                   writesToCommitLogEnabled:
-                    description: Defines whether M3db will include writes to this
-                      namespace in the commit log
+                    description: |-
+                      Defines whether M3DB will include writes to this namespace in the commit log.
+                      Defines whether M3db will include writes to this namespace in the commit log
                     type: boolean
                 type: object
               initProvider:
@@ -203,7 +219,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -282,39 +300,53 @@ spec:
                         type: object
                     type: object
                   name:
-                    description: Name of the namespace
+                    description: |-
+                      Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
+                      Name of the namespace
                     type: string
                   resolution:
-                    description: Resolution for an aggregated namespace
+                    description: |-
+                      Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Resolution for an aggregated namespace
                     type: string
                   retentionBlockDataExpirationDuration:
-                    description: Controls how long we wait before expiring stale data
+                    description: |-
+                      Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long we wait before expiring stale data
                     type: string
                   retentionBlockSizeDuration:
-                    description: Controls how long to keep a block in memory before
-                      flushing to a fileset on disk
+                    description: |-
+                      Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long to keep a block in memory before flushing to a fileset on disk
                     type: string
                   retentionBufferFutureDuration:
-                    description: Controls how far into the future writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the future writes to the namespace will be accepted
                     type: string
                   retentionBufferPastDuration:
-                    description: Controls how far into the past writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the past writes to the namespace will be accepted
                     type: string
                   retentionPeriodDuration:
-                    description: Controls the duration of time that M3DB will retain
-                      data for the namespace
+                    description: |-
+                      Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls the duration of time that M3DB will retain data for the namespace
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   snapshotEnabled:
-                    description: Defines whether M3db will create snapshot files for
-                      this namespace
+                    description: |-
+                      Defines whether M3DB will create snapshot files for this namespace.
+                      Defines whether M3db will create snapshot files for this namespace
                     type: boolean
                   writesToCommitLogEnabled:
-                    description: Defines whether M3db will include writes to this
-                      namespace in the commit log
+                    description: |-
+                      Defines whether M3DB will include writes to this namespace in the commit log.
+                      Defines whether M3db will include writes to this namespace in the commit log
                     type: boolean
                 type: object
               managementPolicies:
@@ -504,47 +536,66 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   id:
+                    description: ID of the namespace.
                     type: string
                   name:
-                    description: Name of the namespace
+                    description: |-
+                      Name of the namespace. A namespace named "default" is mapped with already created default namespace instead of creating a new namespace.
+                      Name of the namespace
                     type: string
                   resolution:
-                    description: Resolution for an aggregated namespace
+                    description: |-
+                      Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Resolution for an aggregated namespace
                     type: string
                   retentionBlockDataExpirationDuration:
-                    description: Controls how long we wait before expiring stale data
+                    description: |-
+                      Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long we wait before expiring stale data
                     type: string
                   retentionBlockSizeDuration:
-                    description: Controls how long to keep a block in memory before
-                      flushing to a fileset on disk
+                    description: |-
+                      Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how long to keep a block in memory before flushing to a fileset on disk
                     type: string
                   retentionBufferFutureDuration:
-                    description: Controls how far into the future writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the future writes to the namespace will be accepted
                     type: string
                   retentionBufferPastDuration:
-                    description: Controls how far into the past writes to the namespace
-                      will be accepted
+                    description: |-
+                      Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls how far into the past writes to the namespace will be accepted
                     type: string
                   retentionPeriodDuration:
-                    description: Controls the duration of time that M3DB will retain
-                      data for the namespace
+                    description: |-
+                      Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
+                      Controls the duration of time that M3DB will retain data for the namespace
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                   snapshotEnabled:
-                    description: Defines whether M3db will create snapshot files for
-                      this namespace
+                    description: |-
+                      Defines whether M3DB will create snapshot files for this namespace.
+                      Defines whether M3db will create snapshot files for this namespace
                     type: boolean
                   type:
-                    description: Type of namespace
+                    description: |-
+                      Type of namespace.
+                      Type of namespace
                     type: string
                   writesToCommitLogEnabled:
-                    description: Defines whether M3db will include writes to this
-                      namespace in the commit log
+                    description: |-
+                      Defines whether M3DB will include writes to this namespace in the commit log.
+                      Defines whether M3db will include writes to this namespace in the commit log
                     type: boolean
                 type: object
               conditions:

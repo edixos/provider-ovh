@@ -14,136 +14,191 @@ import (
 )
 
 type TCPFarmInitParameters struct {
+
+	// Load balancing algorithm. roundrobin if null (first, leastconn, roundrobin, source)
 	Balance *string `json:"balance,omitempty" tf:"balance,omitempty"`
 
+	// Readable label for loadbalancer farm
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// define a backend healthcheck probe
 	Probe []TCPFarmProbeInitParameters `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Stickiness type. No stickiness if null (sourceIp)
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
 
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type TCPFarmObservation struct {
+
+	// Load balancing algorithm. roundrobin if null (first, leastconn, roundrobin, source)
 	Balance *string `json:"balance,omitempty" tf:"balance,omitempty"`
 
+	// Readable label for loadbalancer farm
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// define a backend healthcheck probe
 	Probe []TCPFarmProbeObservation `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// The internal name of your IP load balancing
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Stickiness type. No stickiness if null (sourceIp)
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
 
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type TCPFarmParameters struct {
 
+	// Load balancing algorithm. roundrobin if null (first, leastconn, roundrobin, source)
 	// +kubebuilder:validation:Optional
 	Balance *string `json:"balance,omitempty" tf:"balance,omitempty"`
 
+	// Readable label for loadbalancer farm
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// define a backend healthcheck probe
 	// +kubebuilder:validation:Optional
 	Probe []TCPFarmProbeParameters `json:"probe,omitempty" tf:"probe,omitempty"`
 
+	// The internal name of your IP load balancing
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// Stickiness type. No stickiness if null (sourceIp)
 	// +kubebuilder:validation:Optional
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
 
+	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	// +kubebuilder:validation:Optional
 	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
+	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type TCPFarmProbeInitParameters struct {
+
+	// Force use of SSL (TLS)
 	ForceSSL *bool `json:"forceSsl,omitempty" tf:"force_ssl,omitempty"`
 
+	// probe interval, Value between 30 and 3600 seconds, default 30
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
+	// What to match pattern against (contains, default, internal, matches, status)
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// HTTP probe method (GET, HEAD, OPTIONS, internal)
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// Negate probe result
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Pattern to match against match
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// URL for HTTP probe type.
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
 type TCPFarmProbeObservation struct {
+
+	// Force use of SSL (TLS)
 	ForceSSL *bool `json:"forceSsl,omitempty" tf:"force_ssl,omitempty"`
 
+	// probe interval, Value between 30 and 3600 seconds, default 30
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
+	// What to match pattern against (contains, default, internal, matches, status)
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// HTTP probe method (GET, HEAD, OPTIONS, internal)
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// Negate probe result
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Pattern to match against match
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
+	// URL for HTTP probe type.
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
 
 type TCPFarmProbeParameters struct {
 
+	// Force use of SSL (TLS)
 	// +kubebuilder:validation:Optional
 	ForceSSL *bool `json:"forceSsl,omitempty" tf:"force_ssl,omitempty"`
 
+	// probe interval, Value between 30 and 3600 seconds, default 30
 	// +kubebuilder:validation:Optional
 	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
+	// What to match pattern against (contains, default, internal, matches, status)
 	// +kubebuilder:validation:Optional
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// HTTP probe method (GET, HEAD, OPTIONS, internal)
 	// +kubebuilder:validation:Optional
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
 
+	// Negate probe result
 	// +kubebuilder:validation:Optional
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
+	// Pattern to match against match
 	// +kubebuilder:validation:Optional
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
+	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	// +kubebuilder:validation:Optional
 	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
 
+	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	// +kubebuilder:validation:Optional
 	Type *string `json:"type" tf:"type,omitempty"`
 
+	// URL for HTTP probe type.
 	// +kubebuilder:validation:Optional
 	URL *string `json:"url,omitempty" tf:"url,omitempty"`
 }
@@ -175,7 +230,7 @@ type TCPFarmStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// TCPFarm is the Schema for the TCPFarms API. <no value>
+// TCPFarm is the Schema for the TCPFarms API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

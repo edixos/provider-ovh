@@ -17,14 +17,20 @@ type IPPoolsInitParameters struct {
 }
 
 type IPPoolsObservation struct {
+
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to false.
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// Last ip for this region. Changing this value recreates the subnet.
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
+	// Global network in CIDR format. Changing this value recreates the subnet
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// First ip for this region. Changing this value recreates the subnet.
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
@@ -32,13 +38,19 @@ type IPPoolsParameters struct {
 }
 
 type SubnetInitParameters struct {
+
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to false.
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// Last ip for this region. Changing this value recreates the subnet.
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
+	// Global network in CIDR format. Changing this value recreates the subnet
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	// Reference to a PrivateNetwork in network to populate networkId.
@@ -49,55 +61,76 @@ type SubnetInitParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// Set to true if you don't want to set a default gateway IP. Changing this value recreates the resource. Defaults to false.
 	NoGateway *bool `json:"noGateway,omitempty" tf:"no_gateway,omitempty"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// First ip for this region. Changing this value recreates the subnet.
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
 type SubnetObservation struct {
+
+	// Ip Block representing the subnet cidr.
 	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to false.
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// Last ip for this region. Changing this value recreates the subnet.
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
+	// The IP of the gateway
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// List of ip pools allocated in the subnet.
 	IPPools []IPPoolsObservation `json:"ipPools,omitempty" tf:"ip_pools,omitempty"`
 
+	// Global network in CIDR format. Changing this value recreates the subnet
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
+	// Set to true if you don't want to set a default gateway IP. Changing this value recreates the resource. Defaults to false.
 	NoGateway *bool `json:"noGateway,omitempty" tf:"no_gateway,omitempty"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// First ip for this region. Changing this value recreates the subnet.
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
 type SubnetParameters struct {
 
+	// Enable DHCP. Changing this forces a new resource to be created. Defaults to false.
 	// +kubebuilder:validation:Optional
 	DHCP *bool `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 
+	// Last ip for this region. Changing this value recreates the subnet.
 	// +kubebuilder:validation:Optional
 	End *string `json:"end,omitempty" tf:"end,omitempty"`
 
+	// Global network in CIDR format. Changing this value recreates the subnet
 	// +kubebuilder:validation:Optional
 	Network *string `json:"network,omitempty" tf:"network,omitempty"`
 
+	// The id of the network. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
+	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
@@ -109,16 +142,20 @@ type SubnetParameters struct {
 	// +kubebuilder:validation:Optional
 	NetworkIDSelector *v1.Selector `json:"networkIdSelector,omitempty" tf:"-"`
 
+	// Set to true if you don't want to set a default gateway IP. Changing this value recreates the resource. Defaults to false.
 	// +kubebuilder:validation:Optional
 	NoGateway *bool `json:"noGateway,omitempty" tf:"no_gateway,omitempty"`
 
+	// The region in which the network subnet will be created. Ex.: "GRA1". Changing this value recreates the resource.
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name of the resource representing the id of the cloud project.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// First ip for this region. Changing this value recreates the subnet.
 	// +kubebuilder:validation:Optional
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
@@ -150,7 +187,7 @@ type SubnetStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Subnet is the Schema for the Subnets API. <no value>
+// Subnet is the Schema for the Subnets API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

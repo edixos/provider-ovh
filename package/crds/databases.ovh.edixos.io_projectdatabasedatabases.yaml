@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ProjectDatabaseDatabase is the Schema for the ProjectDatabaseDatabases
-          API. <no value>
+          API.
         properties:
           apiVersion:
             description: |-
@@ -75,7 +75,9 @@ spec:
               forProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -154,12 +156,18 @@ spec:
                         type: object
                     type: object
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
+                      Name of the engine of the service
                     type: string
                   name:
-                    description: Database name
+                    description: |-
+                      Name of the database.
+                      Database name
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -176,7 +184,9 @@ spec:
                   autoscaler.
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   clusterIdRef:
                     description: Reference to a ProjectDatabase in databases to populate
@@ -255,12 +265,18 @@ spec:
                         type: object
                     type: object
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
+                      Name of the engine of the service
                     type: string
                   name:
-                    description: Database name
+                    description: |-
+                      Name of the database.
+                      Database name
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -450,20 +466,31 @@ spec:
               atProvider:
                 properties:
                   clusterId:
-                    description: Id of the database cluster
+                    description: |-
+                      Cluster ID.
+                      Id of the database cluster
                     type: string
                   default:
-                    description: Defines if the database has been created by default
+                    description: |-
+                      Defines if the database has been created by default.
+                      Defines if the database has been created by default
                     type: boolean
                   engine:
-                    description: Name of the engine of the service
+                    description: |-
+                      The engine of the database cluster you want to add. You can find the complete list of available engine in the public documentation. Available engines:
+                      Name of the engine of the service
                     type: string
                   id:
+                    description: ID of the database.
                     type: string
                   name:
-                    description: Database name
+                    description: |-
+                      Name of the database.
+                      Database name
                     type: string
                   serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
                     type: string
                 type: object
               conditions:

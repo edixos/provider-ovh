@@ -15,9 +15,11 @@ import (
 
 type ContainerRegistryIPRestrictionsManagementInitParameters struct {
 
+	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
 	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// The id of the Managed Private Registry.
 	// RegistryID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
@@ -30,6 +32,7 @@ type ContainerRegistryIPRestrictionsManagementInitParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -37,22 +40,27 @@ type ContainerRegistryIPRestrictionsManagementInitParameters struct {
 type ContainerRegistryIPRestrictionsManagementObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
 	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// The id of the Managed Private Registry.
 	// RegistryID
 	RegistryID *string `json:"registryId,omitempty" tf:"registry_id,omitempty"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
 type ContainerRegistryIPRestrictionsManagementParameters struct {
 
+	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
 	// +kubebuilder:validation:Optional
 	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
+	// The id of the Managed Private Registry.
 	// RegistryID
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/registry/v1alpha1.ContainerRegistry
 	// +kubebuilder:validation:Optional
@@ -66,6 +74,7 @@ type ContainerRegistryIPRestrictionsManagementParameters struct {
 	// +kubebuilder:validation:Optional
 	RegistryIDSelector *v1.Selector `json:"registryIdSelector,omitempty" tf:"-"`
 
+	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// Service name
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -98,7 +107,7 @@ type ContainerRegistryIPRestrictionsManagementStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ContainerRegistryIPRestrictionsManagement is the Schema for the ContainerRegistryIPRestrictionsManagements API. <no value>
+// ContainerRegistryIPRestrictionsManagement is the Schema for the ContainerRegistryIPRestrictionsManagements API.
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
