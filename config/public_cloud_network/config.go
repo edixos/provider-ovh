@@ -16,7 +16,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Subnet"
 		r.References["network_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
+			Type:      "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
 			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 	})
@@ -24,7 +24,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "SubnetV2"
 		r.References["network_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
+			Type:      "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
 			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 	})

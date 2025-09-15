@@ -13,7 +13,7 @@ func Configure(p *config.Provider) {
 		r.UseAsync = true
 		r.Kind = "Cluster"
 		r.References["private_network_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
+			Type:      "github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork",
 			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 		r.References["nodes_subnet_id"] = config.Reference{
