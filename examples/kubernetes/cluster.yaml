@@ -7,12 +7,9 @@ spec:
     name: default
   forProvider:
     name: "hello-edixos"
-    # privateNetworkId: "71a4376a-6e79-46b5-8476-8f9eb53f9783"
-    # This configuration will not work since the privateNetworkId must be the openstackId
-    # of the network for the chosen region. Need to find out how to extract this information from the
-    # status.atProvider.regionsAttributes[].openstackid
-    # privateNetworkIdRef:
-    #   name: sample-1
+    privateNetworkIdRef:
+      name: sample-1
+    nodesSubnetIdRef:
+      name: subnet-1
     region: DE1
     serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
-    version: "1.28"

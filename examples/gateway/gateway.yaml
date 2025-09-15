@@ -12,11 +12,8 @@ spec:
     model: s
     region: DE1
     serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
-    # networkId is the openstackId but networkIdRef is referencing the externalName which is the ovh api id.
-    # TODO need to find out how to reference the correct openstackId instead.
-    # networkIdRef:
-    #  name: gateway-sample-1
-    networkId: d48274f7-aefe-4f11-9d24-79b7f4aefcd4
+    networkIdRef:
+      name: sample-1
     subnetIdRef:
-      name: gateway-subnet-1
+      name: subnet-1
 
