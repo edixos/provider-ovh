@@ -16,7 +16,7 @@ func Configure(p *config.Provider) {
 			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 		r.References["subnet_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2",
+			Type: "github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet",
 		}
 	})
 }
