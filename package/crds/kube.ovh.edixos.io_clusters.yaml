@@ -217,7 +217,7 @@ spec:
                       it can only be used at cluster creation or reset.
                     type: string
                   nodesSubnetIdRef:
-                    description: Reference to a SubnetV2 in network to populate nodesSubnetId.
+                    description: Reference to a Subnet in network to populate nodesSubnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -251,7 +251,7 @@ spec:
                     - name
                     type: object
                   nodesSubnetIdSelector:
-                    description: Selector for a SubnetV2 in network to populate nodesSubnetId.
+                    description: Selector for a Subnet in network to populate nodesSubnetId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -570,7 +570,7 @@ spec:
                       it can only be used at cluster creation or reset.
                     type: string
                   nodesSubnetIdRef:
-                    description: Reference to a SubnetV2 in network to populate nodesSubnetId.
+                    description: Reference to a Subnet in network to populate nodesSubnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -604,7 +604,7 @@ spec:
                     - name
                     type: object
                   nodesSubnetIdSelector:
-                    description: Selector for a SubnetV2 in network to populate nodesSubnetId.
+                    description: Selector for a Subnet in network to populate nodesSubnetId.
                     properties:
                       matchControllerRef:
                         description: |-

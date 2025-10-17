@@ -82,14 +82,14 @@ type ClusterInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Subnet ID to use for nodes, this subnet must belong to private_network_id. Default uses the first subnet belonging to the private network with id private_network_id. This attribute requires private_network_id to be defined. Cannot be updated, it can only be used at cluster creation or reset.
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
 	NodesSubnetID *string `json:"nodesSubnetId,omitempty" tf:"nodes_subnet_id,omitempty"`
 
-	// Reference to a SubnetV2 in network to populate nodesSubnetId.
+	// Reference to a Subnet in network to populate nodesSubnetId.
 	// +kubebuilder:validation:Optional
 	NodesSubnetIDRef *v1.Reference `json:"nodesSubnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a SubnetV2 in network to populate nodesSubnetId.
+	// Selector for a Subnet in network to populate nodesSubnetId.
 	// +kubebuilder:validation:Optional
 	NodesSubnetIDSelector *v1.Selector `json:"nodesSubnetIdSelector,omitempty" tf:"-"`
 
@@ -219,15 +219,15 @@ type ClusterParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Subnet ID to use for nodes, this subnet must belong to private_network_id. Default uses the first subnet belonging to the private network with id private_network_id. This attribute requires private_network_id to be defined. Cannot be updated, it can only be used at cluster creation or reset.
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
 	// +kubebuilder:validation:Optional
 	NodesSubnetID *string `json:"nodesSubnetId,omitempty" tf:"nodes_subnet_id,omitempty"`
 
-	// Reference to a SubnetV2 in network to populate nodesSubnetId.
+	// Reference to a Subnet in network to populate nodesSubnetId.
 	// +kubebuilder:validation:Optional
 	NodesSubnetIDRef *v1.Reference `json:"nodesSubnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a SubnetV2 in network to populate nodesSubnetId.
+	// Selector for a Subnet in network to populate nodesSubnetId.
 	// +kubebuilder:validation:Optional
 	NodesSubnetIDSelector *v1.Selector `json:"nodesSubnetIdSelector,omitempty" tf:"-"`
 

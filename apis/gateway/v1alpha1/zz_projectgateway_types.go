@@ -93,14 +93,14 @@ type ProjectGatewayInitParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// ID of the subnet.
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a SubnetV2 in network to populate subnetId.
+	// Reference to a Subnet in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a SubnetV2 in network to populate subnetId.
+	// Selector for a Subnet in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }
@@ -175,15 +175,15 @@ type ProjectGatewayParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// ID of the subnet.
-	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.SubnetV2
+	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.Subnet
 	// +kubebuilder:validation:Optional
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 
-	// Reference to a SubnetV2 in network to populate subnetId.
+	// Reference to a Subnet in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDRef *v1.Reference `json:"subnetIdRef,omitempty" tf:"-"`
 
-	// Selector for a SubnetV2 in network to populate subnetId.
+	// Selector for a Subnet in network to populate subnetId.
 	// +kubebuilder:validation:Optional
 	SubnetIDSelector *v1.Selector `json:"subnetIdSelector,omitempty" tf:"-"`
 }

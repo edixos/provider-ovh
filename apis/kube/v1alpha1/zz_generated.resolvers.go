@@ -27,8 +27,8 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.ForProvider.NodesSubnetIDRef,
 		Selector:     mg.Spec.ForProvider.NodesSubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetV2List{},
-			Managed: &v1alpha1.SubnetV2{},
+			List:    &v1alpha1.SubnetList{},
+			Managed: &v1alpha1.Subnet{},
 		},
 	})
 	if err != nil {
@@ -59,8 +59,8 @@ func (mg *Cluster) ResolveReferences(ctx context.Context, c client.Reader) error
 		Reference:    mg.Spec.InitProvider.NodesSubnetIDRef,
 		Selector:     mg.Spec.InitProvider.NodesSubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetV2List{},
-			Managed: &v1alpha1.SubnetV2{},
+			List:    &v1alpha1.SubnetList{},
+			Managed: &v1alpha1.Subnet{},
 		},
 	})
 	if err != nil {

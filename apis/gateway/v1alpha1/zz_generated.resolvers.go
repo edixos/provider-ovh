@@ -43,8 +43,8 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 		Reference:    mg.Spec.ForProvider.SubnetIDRef,
 		Selector:     mg.Spec.ForProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetV2List{},
-			Managed: &v1alpha1.SubnetV2{},
+			List:    &v1alpha1.SubnetList{},
+			Managed: &v1alpha1.Subnet{},
 		},
 	})
 	if err != nil {
@@ -75,8 +75,8 @@ func (mg *ProjectGateway) ResolveReferences(ctx context.Context, c client.Reader
 		Reference:    mg.Spec.InitProvider.SubnetIDRef,
 		Selector:     mg.Spec.InitProvider.SubnetIDSelector,
 		To: reference.To{
-			List:    &v1alpha1.SubnetV2List{},
-			Managed: &v1alpha1.SubnetV2{},
+			List:    &v1alpha1.SubnetList{},
+			Managed: &v1alpha1.Subnet{},
 		},
 	})
 	if err != nil {

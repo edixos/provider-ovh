@@ -50,7 +50,6 @@ type SubnetInitParameters struct {
 
 	// The id of the network. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
-	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	// Reference to a PrivateNetwork in network to populate networkId.
@@ -130,7 +129,6 @@ type SubnetParameters struct {
 
 	// The id of the network. Changing this forces a new resource to be created.
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/network/v1alpha1.PrivateNetwork
-	// +crossplane:generate:reference:extractor=github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()
 	// +kubebuilder:validation:Optional
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 

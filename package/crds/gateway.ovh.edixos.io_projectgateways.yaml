@@ -169,7 +169,7 @@ spec:
                     description: ID of the subnet.
                     type: string
                   subnetIdRef:
-                    description: Reference to a SubnetV2 in network to populate subnetId.
+                    description: Reference to a Subnet in network to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -203,7 +203,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a SubnetV2 in network to populate subnetId.
+                    description: Selector for a Subnet in network to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -353,7 +353,7 @@ spec:
                     description: ID of the subnet.
                     type: string
                   subnetIdRef:
-                    description: Reference to a SubnetV2 in network to populate subnetId.
+                    description: Reference to a Subnet in network to populate subnetId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -387,7 +387,7 @@ spec:
                     - name
                     type: object
                   subnetIdSelector:
-                    description: Selector for a SubnetV2 in network to populate subnetId.
+                    description: Selector for a Subnet in network to populate subnetId.
                     properties:
                       matchControllerRef:
                         description: |-
