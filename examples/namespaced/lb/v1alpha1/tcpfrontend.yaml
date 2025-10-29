@@ -1,0 +1,34 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPFrontend
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcpfrontend
+  labels:
+    testing.upbound.io/example-name: test_frontend
+  name: test-frontend
+  namespace: upbound-system
+spec:
+  forProvider:
+    defaultFarmId: ${ovh_iploadbalancing_tcp_farm.farm80.id}
+    displayName: ingress-8080-gra
+    port: 80,443
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: all
+
+---
+
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPFarm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcpfrontend
+  labels:
+    testing.upbound.io/example-name: farm80
+  name: farm80
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: ingress-8080-gra
+    port: 80
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: all

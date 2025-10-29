@@ -6,8 +6,6 @@ spec:
   credentials:
     source: Secret
     secretRef:
-      name: ovh-creds
+      name: provider-ovh
       namespace: crossplane-system
       key: credentials
-
-

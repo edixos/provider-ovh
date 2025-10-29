@@ -1,0 +1,35 @@
+apiVersion: kube.ovh.m.edixos.io/v1alpha1
+kind: Cluster
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kube/v1alpha1/cluster
+  labels:
+    testing.upbound.io/example-name: my_cluster
+  name: my-cluster
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: my_kube_cluster
+    region: GRA11
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+---
+
+apiVersion: kube.ovh.m.edixos.io/v1alpha1
+kind: NodePool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kube/v1alpha1/cluster
+  labels:
+    testing.upbound.io/example-name: node_pool_1
+  name: node-pool-1
+  namespace: upbound-system
+spec:
+  forProvider:
+    desiredNodes: 3
+    flavorName: b3-8
+    kubeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my_cluster
+    name: my-pool-1
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

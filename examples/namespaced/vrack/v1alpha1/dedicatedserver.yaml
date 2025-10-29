@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: DedicatedServer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/dedicatedserver
+  labels:
+    testing.upbound.io/example-name: vds
+  name: vds
+  namespace: upbound-system
+spec:
+  forProvider:
+    serverId: "67890"
+    serviceName: XXXX

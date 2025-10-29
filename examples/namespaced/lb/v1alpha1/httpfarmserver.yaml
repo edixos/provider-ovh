@@ -1,0 +1,39 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: HTTPFarmServer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/httpfarmserver
+  labels:
+    testing.upbound.io/example-name: backend
+  name: backend
+  namespace: upbound-system
+spec:
+  forProvider:
+    address: 4.5.6.7
+    backup: true
+    displayName: mybackend
+    farmId: ${ovh_iploadbalancing_http_farm.farmname.id}
+    port: 80
+    probe: true
+    proxyProtocolVersion: v2
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    ssl: false
+    status: active
+    weight: 2
+
+---
+
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: HTTPFarm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/httpfarmserver
+  labels:
+    testing.upbound.io/example-name: farmname
+  name: farmname
+  namespace: upbound-system
+spec:
+  forProvider:
+    port: 8080
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: all

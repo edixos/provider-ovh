@@ -1,0 +1,11 @@
+apiVersion: ovh.m.edixos.io/v1beta1
+kind: ClusterProviderConfig
+metadata:
+  name: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: provider-ovh
+      namespace: crossplane-system
+      key: credentials

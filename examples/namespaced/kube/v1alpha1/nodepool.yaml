@@ -1,0 +1,18 @@
+apiVersion: kube.ovh.m.edixos.io/v1alpha1
+kind: NodePool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kube/v1alpha1/nodepool
+  labels:
+    testing.upbound.io/example-name: node_pool
+  name: node-pool
+  namespace: upbound-system
+spec:
+  forProvider:
+    desiredNodes: 3
+    flavorName: b3-8
+    kubeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    name: my-pool-1
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -1,0 +1,17 @@
+apiVersion: vminstances.ovh.m.edixos.io/v1alpha1
+kind: ProjectWorkflowBackup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vminstances/v1alpha1/projectworkflowbackup
+  labels:
+    testing.upbound.io/example-name: my_backup
+  name: my-backup
+  namespace: upbound-system
+spec:
+  forProvider:
+    cron: 50 4 * * *
+    instanceId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx
+    maxExecutionCount: "0"
+    regionName: GRA11
+    rotation: "7"
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

@@ -1,0 +1,19 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseIntegration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaseintegration
+  labels:
+    testing.upbound.io/example-name: integration
+  name: integration
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    destinationServiceId: ${data.ovh_cloud_project_database.db_opensearch.id}
+    engine: ${data.ovh_cloud_project_database.db_postgresql.engine}
+    serviceName: ${data.ovh_cloud_project_database.db_postgresql.service_name}
+    sourceServiceId: ${data.ovh_cloud_project_database.db_postgresql.id}
+    type: opensearchLogs

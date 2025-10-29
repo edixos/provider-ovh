@@ -1,0 +1,17 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/project
+  labels:
+    testing.upbound.io/example-name: my_cloud_project
+  name: my-cloud-project
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my cloud project
+    ovhSubsidiary: ${data.ovh_order_cart.mycart.ovh_subsidiary}
+    plan:
+    - duration: ${data.ovh_order_cart_product_plan.cloud.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.cloud.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.cloud.selected_price.0.pricing_mode}

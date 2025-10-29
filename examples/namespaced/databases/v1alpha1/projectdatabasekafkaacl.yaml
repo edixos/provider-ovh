@@ -1,0 +1,18 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseKafkaACL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasekafkaacl
+  labels:
+    testing.upbound.io/example-name: acl
+  name: acl
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    permission: read
+    serviceName: ${data.ovh_cloud_project_database.kafka.service_name}
+    topic: mytopic
+    username: johndoe

@@ -1,0 +1,22 @@
+apiVersion: privatesql.ovh.m.edixos.io/v1alpha1
+kind: Privatedatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatesql/v1alpha1/privatedatabase
+  labels:
+    testing.upbound.io/example-name: database
+  name: database
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: Postgresql-12
+    ovhSubsidiary: ${data.ovh_order_cart.mycart.ovh_subsidiary}
+    plan:
+    - configuration:
+      - label: dc
+        value: gra3
+      - label: engine
+        value: postgresql_12
+      duration: ${data.ovh_order_cart_product_plan.database.prices[3].duration}
+      planCode: ${data.ovh_order_cart_product_plan.database.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.database.selected_price[0].pricing_mode}
