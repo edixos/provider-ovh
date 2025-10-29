@@ -15,8 +15,8 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/terraform"
 
-	"github.com/edixos/provider-ovh/apis/cluster/v1beta1"
-	"github.com/edixos/provider-ovh/apis/namespaced/v1beta1"
+	clusterv1beta1 "github.com/edixos/provider-ovh/apis/cluster/v1beta1"
+	namespacedv1beta1 "github.com/edixos/provider-ovh/apis/namespaced/v1beta1"
 )
 
 const (
@@ -66,8 +66,8 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 	}
 }
 
-func configureClient(ctx context.Context, pcSpec *v1beta1.ProviderConfig, client client.Client) (map[string]any, error) {
-	data, err := resource.CommonCredentialExtractor(ctx, pc.Spec.Credentials.Source, client, pc.Spec.Credentials.CommonCredentialSelectors)
+func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConfigSpec, client client.Client) (map[string]any, error) {
+	data, err := resource.CommonCredentialExtractor(ctx, pcSpec.Credentials.Source, client, pcSpec.Credentials.CommonCredentialSelectors)
 	if err != nil {
 		return nil, errors.Wrap(err, errExtractCredentials)
 	}
