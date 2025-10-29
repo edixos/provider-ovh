@@ -9,8 +9,11 @@ metadata:
     meta.crossplane.io/source: github.com/edixos/provider-ovh
     meta.crossplane.io/readme: |
       `provider-ovh` is the Crossplane infrastructure provider for [OVH Cloud](https://ovh.com/).
-      
+
       If you encounter an issue please create an issue in
       the
       [edixos/provider-ovh](https://github.com/edixos/provider-ovh)
       repo.
+spec:
+  capabilities:
+    - SafeStart

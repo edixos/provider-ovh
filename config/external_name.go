@@ -8,8 +8,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/crossplane/crossplane-runtime/pkg/errors"
-	"github.com/crossplane/upjet/pkg/config"
+	"github.com/crossplane/crossplane-runtime/v2/pkg/errors"
+	"github.com/crossplane/upjet/v2/pkg/config"
 )
 
 const (
@@ -79,7 +79,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_workflow_backup": config.NameAsIdentifier,
 	"ovh_cloud_project":                 config.IdentifierFromProvider,
 	// The ovh_cloud_project_alerting resource uses a nested type which is not supported yet in upjet.
-	// there is an open issue in upjet regarding this issue: https://github.com/crossplane/upjet/issues/372
+	// there is an open issue in upjet regarding this issue: https://github.com/crossplane/upjet/v2/issues/372
 	// "ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
 	"ovh_cloud_project_user":                        config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_credential":          config.IdentifierFromProvider,
@@ -180,7 +180,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_gateway": config.IdentifierFromProvider,
 	// ovh_okms, ovh_okms_credential, ovh_okms_service_key are not supported yet in upjet. because they uses nested types.
 	// this is an open issue in upjet regarding this issue:
-	// https://github.com/crossplane/upjet/issues/372
+	// https://github.com/crossplane/upjet/v2/issues/372
 	//"ovh_okms":                  config.IdentifierFromProvider,
 	//"ovh_okms_credential":       config.IdentifierFromProvider,
 	//"ovh_okms_service_key":      config.IdentifierFromProvider,

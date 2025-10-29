@@ -12,5 +12,5 @@ spec:
     # c5ddc763-be75-48f7-b7ec-e923ca040bee MEDIUM
     # 0dae73df-6c49-47bf-a9d5-6b866c74ac54 LARGE
     # planId is retrieved from the ovh api https://api.ovh.com/console/#/cloud/project/%7BserviceName%7D/capabilities/containerRegistry~GET
-    # Still waiting this issue: https://github.com/crossplane/upjet/issues/323
+    # Still waiting this issue: https://github.com/crossplane/upjet/v2/issues/323
     planId: "9f728ba5-998b-4401-ab0f-497cd8bc6a89" # SMALL

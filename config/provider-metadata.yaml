@@ -2012,6 +2012,7 @@ resources:
                   "subnet_id": "\u003cmy-imported-gateway-subnet-id\u003e"
                 }
               references:
+                lifecycle.ignore_changes: network_id
                 service_name: ovh_cloud_project_network_private.mypriv.service_name
         argumentDocs:
             external_information: '- List of External Information of the gateway.'
@@ -3827,6 +3828,7 @@ resources:
                   "service_name": "${data.ovh_dedicated_server_boots.rescue.service_name}"
                 }
               references:
+                keepers: ovh_dedicated_server_update.server_on_rescue.boot_id
                 service_name: data.ovh_dedicated_server_boots.rescue.service_name
               dependencies:
                 ovh_dedicated_server_update.server_on_rescue: |-
@@ -4596,6 +4598,9 @@ resources:
                     "${data.ovh_me.account.urn}"
                   ]
                 }
+              references:
+                identities: ovh_me_identity_group.my_group.urn
+                resources: data.ovh_me.account.urn
               dependencies:
                 ovh_me_identity_group.my_group: |-
                     {
