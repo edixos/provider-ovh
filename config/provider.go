@@ -12,15 +12,15 @@ import (
 	kms__namespaced "github.com/edixos/provider-ovh/config/namespaced/kms"
 
 	gateway__cluster "github.com/edixos/provider-ovh/config/cluster/gateway"
-	gateway__namespaced "github.com/edixos/provider-ovh/config/namespaced/gateway"
 	vps__cluster "github.com/edixos/provider-ovh/config/cluster/vps"
+	gateway__namespaced "github.com/edixos/provider-ovh/config/namespaced/gateway"
 	vps__namespaced "github.com/edixos/provider-ovh/config/namespaced/vps"
 
 	cloud__cluster "github.com/edixos/provider-ovh/config/cluster/cloud"
-	cloud__namespaced "github.com/edixos/provider-ovh/config/namespaced/cloud"
 	iam__cluster "github.com/edixos/provider-ovh/config/cluster/iam"
-	iam__namespaced "github.com/edixos/provider-ovh/config/namespaced/iam"
 	me__cluster "github.com/edixos/provider-ovh/config/cluster/me"
+	cloud__namespaced "github.com/edixos/provider-ovh/config/namespaced/cloud"
+	iam__namespaced "github.com/edixos/provider-ovh/config/namespaced/iam"
 	me__namespaced "github.com/edixos/provider-ovh/config/namespaced/me"
 
 	vrack__cluster "github.com/edixos/provider-ovh/config/cluster/vrack"
@@ -60,8 +60,8 @@ import (
 	cloud_disk_array__namespaced "github.com/edixos/provider-ovh/config/namespaced/cloud_disk_array"
 
 	additional_ip__cluster "github.com/edixos/provider-ovh/config/cluster/additional_ip"
-	additional_ip__namespaced "github.com/edixos/provider-ovh/config/namespaced/additional_ip"
 	vm_instances__cluster "github.com/edixos/provider-ovh/config/cluster/vm_instances"
+	additional_ip__namespaced "github.com/edixos/provider-ovh/config/namespaced/additional_ip"
 	vm_instances__namespaced "github.com/edixos/provider-ovh/config/namespaced/vm_instances"
 
 	public_cloud_network__cluster "github.com/edixos/provider-ovh/config/cluster/public_cloud_network"

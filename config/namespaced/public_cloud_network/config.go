@@ -16,7 +16,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Subnet"
 		r.References["network_id"] = config.Reference{
-			Type:      "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.PrivateNetwork",
+			Type: "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.PrivateNetwork",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_network_private_subnet_v2", func(r *config.Resource) {

@@ -181,4 +181,3 @@ func resolveModern(ctx context.Context, crClient client.Client, mg resource.Mode
 	}
 	return &pcSpec, nil
 }
-

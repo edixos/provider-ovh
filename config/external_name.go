@@ -181,9 +181,9 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// ovh_okms, ovh_okms_credential, ovh_okms_service_key are not supported yet in upjet. because they uses nested types.
 	// this is an open issue in upjet regarding this issue:
 	// https://github.com/crossplane/upjet/v2/issues/372
-	//"ovh_okms":                  config.IdentifierFromProvider,
-	//"ovh_okms_credential":       config.IdentifierFromProvider,
-	//"ovh_okms_service_key":      config.IdentifierFromProvider,
+	// "ovh_okms":                  config.IdentifierFromProvider,
+	// "ovh_okms_credential":       config.IdentifierFromProvider,
+	// "ovh_okms_service_key":      config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
