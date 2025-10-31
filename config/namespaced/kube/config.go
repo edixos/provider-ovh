@@ -13,17 +13,17 @@ func Configure(p *config.Provider) {
 		r.UseAsync = true
 		r.Kind = "Cluster"
 		r.References["private_network_id"] = config.Reference{
-			Type:      "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.PrivateNetwork",
-			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
+			TerraformName: "ovh_cloud_project_network_private",
+			Extractor:     "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 		r.References["nodes_subnet_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.Subnet",
+			TerraformName: "ovh_cloud_project_network_private_subnet",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_kube_iprestrictions", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.References["kube_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/kube/v1alpha1.Cluster",
+			TerraformName: "ovh_cloud_project_kube",
 		}
 		r.Kind = "IpRestriction"
 	})
@@ -31,14 +31,14 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.UseAsync = true
 		r.References["kube_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/kube/v1alpha1.Cluster",
+			TerraformName: "ovh_cloud_project_kube",
 		}
 		r.Kind = "NodePool"
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_kube_oidc", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.References["kube_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/kube/v1alpha1.Cluster",
+			TerraformName: "ovh_cloud_project_kube",
 		}
 		r.Kind = "OIDCConfiguration"
 	})

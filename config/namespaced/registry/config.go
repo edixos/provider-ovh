@@ -17,28 +17,28 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistryOIDC"
 		r.References["registry_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/registry/v1alpha1.ContainerRegistry",
+			TerraformName: "ovh_cloud_project_containerregistry",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_ip_restrictions_management", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistryIPRestrictionsManagement"
 		r.References["registry_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/registry/v1alpha1.ContainerRegistry",
+			TerraformName: "ovh_cloud_project_containerregistry",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_ip_restrictions_registry", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistryIPRestrictionsRegistry"
 		r.References["registry_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/registry/v1alpha1.ContainerRegistry",
+			TerraformName: "ovh_cloud_project_containerregistry",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_containerregistry_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ContainerRegistryUser"
 		r.References["registry_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/registry/v1alpha1.ContainerRegistry",
+			TerraformName: "ovh_cloud_project_containerregistry",
 		}
 		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
 			conn := map[string][]byte{}

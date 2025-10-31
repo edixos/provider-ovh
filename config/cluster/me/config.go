@@ -16,7 +16,7 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "User"
 		r.References["group"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/cluster/me/v1alpha1.Group",
+			TerraformName: "ovh_me_identity_group",
 		}
 	})
 	p.AddResourceConfigurator("ovh_me_api_oauth2_client", func(r *config.Resource) {

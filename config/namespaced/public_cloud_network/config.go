@@ -16,15 +16,15 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Subnet"
 		r.References["network_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.PrivateNetwork",
+			TerraformName: "ovh_cloud_project_network_private",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_network_private_subnet_v2", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "SubnetV2"
 		r.References["network_id"] = config.Reference{
-			Type:      "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1.PrivateNetwork",
-			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
+			TerraformName: "ovh_cloud_project_network_private",
+			Extractor:     "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 	})
 }

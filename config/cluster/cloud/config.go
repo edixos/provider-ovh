@@ -29,14 +29,14 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "S3Credentials"
 		r.References["user_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/cluster/cloud/v1alpha1.User",
+			TerraformName: "ovh_cloud_project_user",
 		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_user_s3_policy", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "S3Policy"
 		r.References["user_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/cluster/cloud/v1alpha1.User",
+			TerraformName: "ovh_cloud_project_user",
 		}
 	})
 }

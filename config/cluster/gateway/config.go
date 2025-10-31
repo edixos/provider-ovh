@@ -12,11 +12,11 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ProjectGateway"
 		r.References["network_id"] = config.Reference{
-			Type:      "github.com/edixos/provider-ovh/apis/cluster/network/v1alpha1.PrivateNetwork",
-			Extractor: "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
+			TerraformName: "ovh_cloud_project_network_private",
+			Extractor:     "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 		r.References["subnet_id"] = config.Reference{
-			Type: "github.com/edixos/provider-ovh/apis/cluster/network/v1alpha1.Subnet",
+			TerraformName: "ovh_cloud_project_network_private_subnet",
 		}
 	})
 }
