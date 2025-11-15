@@ -7,4 +7,13 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *Credential) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Okms) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Secret) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ServiceKey) Hub() {}

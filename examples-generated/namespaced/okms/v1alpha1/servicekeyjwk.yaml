@@ -1,0 +1,23 @@
+apiVersion: okms.ovh.m.edixos.io/v1alpha1
+kind: ServiceKeyJwk
+metadata:
+  annotations:
+    meta.upbound.io/example-id: okms/v1alpha1/servicekeyjwk
+  labels:
+    testing.upbound.io/example-name: key_symetric
+  name: key-symetric
+  namespace: upbound-system
+spec:
+  forProvider:
+    keys:
+    - |-
+      ${jsondecode(<<EOT
+            {
+              "k": "Wc7IgEZzWicZf1LTJUtA0w",
+              "key_ops": ["encrypt", "decrypt"],
+              "kty": "oct"
+            }
+          EOT
+        )}
+    name: key_oct
+    okmsId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx

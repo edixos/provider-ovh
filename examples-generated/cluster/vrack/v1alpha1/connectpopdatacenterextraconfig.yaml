@@ -1,0 +1,16 @@
+apiVersion: vrack.ovh.edixos.io/v1alpha1
+kind: ConnectPopDatacenterExtraConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/connectpopdatacenterextraconfig
+  labels:
+    testing.upbound.io/example-name: extra
+  name: extra
+spec:
+  forProvider:
+    configDatacenterId: ${tolist(data.ovh_ovhcloud_connect_config_pop_datacenters.datacenter_cfgs.datacenter_configs)[0].id}
+    configPopId: ${tolist(data.ovh_ovhcloud_connect_config_pops.pop_cfgs.pop_configs)[0].id}
+    nextHop: P.P.P.P
+    serviceName: ${data.ovh_ovhcloud_connect_config_pops.pop_cfgs.service_name}
+    subnet: I.I.I.I/M
+    type: network

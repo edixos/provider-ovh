@@ -1,0 +1,16 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: ConnectPopDatacenterConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/connectpopdatacenterconfig
+  labels:
+    testing.upbound.io/example-name: dc
+  name: dc
+  namespace: upbound-system
+spec:
+  forProvider:
+    configPopId: ${tolist(data.ovh_ovhcloud_connect_config_pops.pop_cfgs.pop_configs)[0].id}
+    datacenterId: ${tolist(data.ovh_ovhcloud_connect_datacenters.dcs)[0].id}
+    ovhBgpArea: 65408
+    serviceName: ${data.ovh_ovhcloud_connect_config_pops.pop_cfgs.service_name}
+    subnet: I.I.I.I/28

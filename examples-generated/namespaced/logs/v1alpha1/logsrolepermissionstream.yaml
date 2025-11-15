@@ -1,0 +1,14 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsRolePermissionStream
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsrolepermissionstream
+  labels:
+    testing.upbound.io/example-name: permission
+  name: permission
+  namespace: upbound-system
+spec:
+  forProvider:
+    roleId: ${ovh_dbaas_logs_role.ro.id}
+    serviceName: ldp-xx-xxxxx
+    streamId: ${ovh_dbaas_logs_output_graylog_stream.mystream.stream_id}

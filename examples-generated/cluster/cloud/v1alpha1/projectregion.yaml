@@ -1,0 +1,12 @@
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: ProjectRegion
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectregion
+  labels:
+    testing.upbound.io/example-name: region
+  name: region
+spec:
+  forProvider:
+    region: EU-WEST-LZ-LUX-A
+    serviceName: <public cloud project ID>

@@ -19,4 +19,10 @@ func (tr *LogsOutputOpensearchAlias) Hub() {}
 func (tr *LogsOutputOpensearchIndex) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *LogsRole) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LogsRolePermissionStream) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *LogsToken) Hub() {}

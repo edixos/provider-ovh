@@ -1,0 +1,16 @@
+apiVersion: dns.ovh.m.edixos.io/v1alpha1
+kind: NameServers
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1alpha1/nameservers
+  labels:
+    testing.upbound.io/example-name: name_servers
+  name: name-servers
+  namespace: upbound-system
+spec:
+  forProvider:
+    domain: mydomain.ovh
+    servers:
+    - host: dns105.ovh.net
+      ip: 213.251.188.144
+    - host: ns105.ovh.net

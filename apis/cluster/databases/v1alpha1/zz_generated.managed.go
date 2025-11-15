@@ -457,6 +457,56 @@ func (mg *ProjectDatabaseM3DbUser) SetWriteConnectionSecretToReference(r *xpv1.S
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectDatabaseMongodbPrometheus.
+func (mg *ProjectDatabaseMongodbPrometheus) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this ProjectDatabaseMongodbUser.
 func (mg *ProjectDatabaseMongodbUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
@@ -707,6 +757,56 @@ func (mg *ProjectDatabasePostgresqlUser) SetWriteConnectionSecretToReference(r *
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectDatabasePrometheus.
+func (mg *ProjectDatabasePrometheus) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this ProjectDatabaseRedisUser.
 func (mg *ProjectDatabaseRedisUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
@@ -804,5 +904,55 @@ func (mg *ProjectDatabaseUser) SetProviderConfigReference(r *xpv1.Reference) {
 
 // SetWriteConnectionSecretToReference of this ProjectDatabaseUser.
 func (mg *ProjectDatabaseUser) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetManagementPolicies of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetManagementPolicies of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectDatabaseValkeyUser.
+func (mg *ProjectDatabaseValkeyUser) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

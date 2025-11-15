@@ -1,0 +1,821 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: vps.ovh.ovh.m.edixos.io
+spec:
+  group: ovh.ovh.m.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: Vps
+    listKind: VpsList
+    plural: vps
+    singular: vps
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Vps is the Schema for the Vpss API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: VpsSpec defines the desired state of Vps
+            properties:
+              forProvider:
+                properties:
+                  displayName:
+                    description: |-
+                      Custom display name
+                      Set the name displayed in Manager for your VPS (max 50 chars)
+                    type: string
+                  imageId:
+                    description: |-
+                      (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
+                      Id of the image to install on the VPS
+                    type: string
+                  keymap:
+                    description: |-
+                      KVM keyboard layout on VPS Cloud
+                      KVM keyboard layout on VPS Cloud
+                    type: string
+                  memoryLimit:
+                    description: RAM of this VPS
+                    type: number
+                  model:
+                    description: Structure describing characteristics of a VPS model
+                    properties:
+                      availableOptions:
+                        description: All options the VPS can have (additionalDisk┃automatedBackup┃cpanel┃ftpbackup┃plesk┃snapshot┃veeam┃windows)
+                        items:
+                          type: string
+                        type: array
+                      datacenter:
+                        description: Datacenters where this model is available
+                        items:
+                          type: string
+                        type: array
+                      disk:
+                        description: Disk capacity of this VPS
+                        type: number
+                      maximumAdditionnalIp:
+                        description: Maximum number of additional IPs
+                        type: number
+                      memory:
+                        description: RAM of the VPS
+                        type: number
+                      name:
+                        description: Plan code of the VPS
+                        type: string
+                      offer:
+                        description: Description of this VPS offer
+                        type: string
+                      vcore:
+                        description: Number of vcores
+                        type: number
+                      version:
+                        description: |-
+                          All versions that VPS can have (2013v1┃2014v1┃2015v1┃2017v1┃2017v2┃2017v3┃2018v1┃2018v2┃2019v1)
+                          All versions that VPS can have
+                        type: string
+                    type: object
+                  monitoringIpBlocks:
+                    description: |-
+                      IP blocks for OVH monitoring servers
+                      Ip blocks for OVH monitoring servers
+                    items:
+                      type: string
+                    type: array
+                  name:
+                    description: Plan code of the VPS
+                    type: string
+                  netbootMode:
+                    description: |-
+                      VPS netboot mode (local┃rescue)
+                      All values a VPS netboot mode can be in
+                    type: string
+                  offerType:
+                    description: |-
+                      All offers a VPS can have (beta-classic┃classic┃cloud┃cloudram┃game-classic┃lowlat┃ssd)
+                      All offers a VPS can have
+                    type: string
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  publicSshKey:
+                    description: |-
+                      (String) Public SSH key to pre-install on your VPS - if set, then image_id must also be set
+                      Public SSH key to pre-install on your VPS
+                    type: string
+                  slaMonitoring:
+                    type: boolean
+                  state:
+                    description: |-
+                      State of the VPS (backuping┃installing┃maintenance┃rebooting┃rescued┃running┃stopped┃stopping┃upgrading)
+                      All states a VPS can be in
+                    type: string
+                  vcore:
+                    description: Number of vcores
+                    type: number
+                  zone:
+                    description: OpenStask region where the VPS is located
+                    type: string
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  displayName:
+                    description: |-
+                      Custom display name
+                      Set the name displayed in Manager for your VPS (max 50 chars)
+                    type: string
+                  imageId:
+                    description: |-
+                      (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
+                      Id of the image to install on the VPS
+                    type: string
+                  keymap:
+                    description: |-
+                      KVM keyboard layout on VPS Cloud
+                      KVM keyboard layout on VPS Cloud
+                    type: string
+                  memoryLimit:
+                    description: RAM of this VPS
+                    type: number
+                  model:
+                    description: Structure describing characteristics of a VPS model
+                    properties:
+                      availableOptions:
+                        description: All options the VPS can have (additionalDisk┃automatedBackup┃cpanel┃ftpbackup┃plesk┃snapshot┃veeam┃windows)
+                        items:
+                          type: string
+                        type: array
+                      datacenter:
+                        description: Datacenters where this model is available
+                        items:
+                          type: string
+                        type: array
+                      disk:
+                        description: Disk capacity of this VPS
+                        type: number
+                      maximumAdditionnalIp:
+                        description: Maximum number of additional IPs
+                        type: number
+                      memory:
+                        description: RAM of the VPS
+                        type: number
+                      name:
+                        description: Plan code of the VPS
+                        type: string
+                      offer:
+                        description: Description of this VPS offer
+                        type: string
+                      vcore:
+                        description: Number of vcores
+                        type: number
+                      version:
+                        description: |-
+                          All versions that VPS can have (2013v1┃2014v1┃2015v1┃2017v1┃2017v2┃2017v3┃2018v1┃2018v2┃2019v1)
+                          All versions that VPS can have
+                        type: string
+                    type: object
+                  monitoringIpBlocks:
+                    description: |-
+                      IP blocks for OVH monitoring servers
+                      Ip blocks for OVH monitoring servers
+                    items:
+                      type: string
+                    type: array
+                  name:
+                    description: Plan code of the VPS
+                    type: string
+                  netbootMode:
+                    description: |-
+                      VPS netboot mode (local┃rescue)
+                      All values a VPS netboot mode can be in
+                    type: string
+                  offerType:
+                    description: |-
+                      All offers a VPS can have (beta-classic┃classic┃cloud┃cloudram┃game-classic┃lowlat┃ssd)
+                      All offers a VPS can have
+                    type: string
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  publicSshKey:
+                    description: |-
+                      (String) Public SSH key to pre-install on your VPS - if set, then image_id must also be set
+                      Public SSH key to pre-install on your VPS
+                    type: string
+                  slaMonitoring:
+                    type: boolean
+                  state:
+                    description: |-
+                      State of the VPS (backuping┃installing┃maintenance┃rebooting┃rescued┃running┃stopped┃stopping┃upgrading)
+                      All states a VPS can be in
+                    type: string
+                  vcore:
+                    description: Number of vcores
+                    type: number
+                  zone:
+                    description: OpenStask region where the VPS is located
+                    type: string
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  kind: ClusterProviderConfig
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  kind:
+                    description: Kind of the referenced object.
+                    type: string
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                required:
+                - kind
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                required:
+                - name
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: VpsStatus defines the observed state of Vps.
+            properties:
+              atProvider:
+                properties:
+                  cluster:
+                    description: VPS cluster
+                    type: string
+                  displayName:
+                    description: |-
+                      Custom display name
+                      Set the name displayed in Manager for your VPS (max 50 chars)
+                    type: string
+                  iam:
+                    description: IAM resource information
+                    properties:
+                      displayName:
+                        description: |-
+                          Custom display name
+                          Resource display name
+                        type: string
+                      id:
+                        description: |-
+                          Unique identifier of the resource in the IAM
+                          Unique identifier of the resource
+                        type: string
+                      tags:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Resource tags. Tags that were internally computed are prefixed with ovh:
+                          Resource tags. Tags that were internally computed are prefixed with ovh:
+                        type: object
+                        x-kubernetes-map-type: granular
+                      urn:
+                        description: |-
+                          URN of the private database, used when writing IAM policies
+                          Unique resource name used in policies
+                        type: string
+                    type: object
+                  id:
+                    description: Unique identifier of the resource in the IAM
+                    type: string
+                  imageId:
+                    description: |-
+                      (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
+                      Id of the image to install on the VPS
+                    type: string
+                  keymap:
+                    description: |-
+                      KVM keyboard layout on VPS Cloud
+                      KVM keyboard layout on VPS Cloud
+                    type: string
+                  memoryLimit:
+                    description: RAM of this VPS
+                    type: number
+                  model:
+                    description: Structure describing characteristics of a VPS model
+                    properties:
+                      availableOptions:
+                        description: All options the VPS can have (additionalDisk┃automatedBackup┃cpanel┃ftpbackup┃plesk┃snapshot┃veeam┃windows)
+                        items:
+                          type: string
+                        type: array
+                      datacenter:
+                        description: Datacenters where this model is available
+                        items:
+                          type: string
+                        type: array
+                      disk:
+                        description: Disk capacity of this VPS
+                        type: number
+                      maximumAdditionnalIp:
+                        description: Maximum number of additional IPs
+                        type: number
+                      memory:
+                        description: RAM of the VPS
+                        type: number
+                      name:
+                        description: Plan code of the VPS
+                        type: string
+                      offer:
+                        description: Description of this VPS offer
+                        type: string
+                      vcore:
+                        description: Number of vcores
+                        type: number
+                      version:
+                        description: |-
+                          All versions that VPS can have (2013v1┃2014v1┃2015v1┃2017v1┃2017v2┃2017v3┃2018v1┃2018v2┃2019v1)
+                          All versions that VPS can have
+                        type: string
+                    type: object
+                  monitoringIpBlocks:
+                    description: |-
+                      IP blocks for OVH monitoring servers
+                      Ip blocks for OVH monitoring servers
+                    items:
+                      type: string
+                    type: array
+                  name:
+                    description: Plan code of the VPS
+                    type: string
+                  netbootMode:
+                    description: |-
+                      VPS netboot mode (local┃rescue)
+                      All values a VPS netboot mode can be in
+                    type: string
+                  offerType:
+                    description: |-
+                      All offers a VPS can have (beta-classic┃classic┃cloud┃cloudram┃game-classic┃lowlat┃ssd)
+                      All offers a VPS can have
+                    type: string
+                  order:
+                    properties:
+                      date:
+                        type: string
+                      details:
+                        items:
+                          properties:
+                            description:
+                              type: string
+                            detailType:
+                              description: Product type of item in order
+                              type: string
+                            domain:
+                              type: string
+                            orderDetailId:
+                              description: Unique identifier of the resource in the
+                                IAM
+                              type: number
+                            quantity:
+                              type: string
+                          type: object
+                        type: array
+                      expirationDate:
+                        type: string
+                      orderId:
+                        description: Unique identifier of the resource in the IAM
+                        type: number
+                    type: object
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item for
+                            personalizing product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in api.ovh.com
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing model identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  publicSshKey:
+                    description: |-
+                      (String) Public SSH key to pre-install on your VPS - if set, then image_id must also be set
+                      Public SSH key to pre-install on your VPS
+                    type: string
+                  serviceName:
+                    description: |-
+                      Plan code of the VPS
+                      The internal name of your VPS offer
+                    type: string
+                  slaMonitoring:
+                    type: boolean
+                  state:
+                    description: |-
+                      State of the VPS (backuping┃installing┃maintenance┃rebooting┃rescued┃running┃stopped┃stopping┃upgrading)
+                      All states a VPS can be in
+                    type: string
+                  vcore:
+                    description: Number of vcores
+                    type: number
+                  zone:
+                    description: OpenStask region where the VPS is located
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

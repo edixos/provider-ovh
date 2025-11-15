@@ -1,0 +1,16 @@
+apiVersion: storage.ovh.m.edixos.io/v1alpha1
+kind: EFSShare
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/efsshare
+  labels:
+    testing.upbound.io/example-name: share
+  name: share
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: My share
+    name: share
+    protocol: NFS
+    serviceName: ${data.ovh_storage_efs.efs.service_name}
+    size: 100

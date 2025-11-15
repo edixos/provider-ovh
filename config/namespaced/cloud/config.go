@@ -39,4 +39,25 @@ func Configure(p *config.Provider) {
 			TerraformName: "ovh_cloud_project_user",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_volume", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_savings_plan", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_instance", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_instance_snapshot", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_rancher", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_ssh_key", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_region", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

@@ -13,29 +13,6 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type IAMInitParameters struct {
-}
-
-type IAMObservation struct {
-
-	// Resource display name
-	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
-
-	// (Number) Version number.
-	// Unique identifier of the resource
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// Resource tags. Tags that were internally computed are prefixed with ovh:
-	// +mapType=granular
-	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
-
-	// Unique resource name used in policies
-	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
-}
-
-type IAMParameters struct {
-}
-
 type MetadataInitParameters struct {
 
 	// (Boolean) If true, the server will enforce optimistic concurrency control by requiring the cas parameter to match the current version number on every write (update) request.
@@ -116,6 +93,29 @@ type MetadataParameters struct {
 	MaxVersions *float64 `json:"maxVersions,omitempty" tf:"max_versions,omitempty"`
 }
 
+type SecretIAMInitParameters struct {
+}
+
+type SecretIAMObservation struct {
+
+	// Resource display name
+	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
+	// (Number) Version number.
+	// Unique identifier of the resource
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Resource tags. Tags that were internally computed are prefixed with ovh:
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// Unique resource name used in policies
+	Urn *string `json:"urn,omitempty" tf:"urn,omitempty"`
+}
+
+type SecretIAMParameters struct {
+}
+
 type SecretInitParameters struct {
 
 	// (Number) Check‑and‑set parameter used only on update (if cas_required metadata is set to true) to enforce optimistic concurrency control: its value must equal the current secret version (metadata.current_version) for the update to succeed. Ignored on create.
@@ -147,7 +147,7 @@ type SecretObservation struct {
 	Cas *float64 `json:"cas,omitempty" tf:"cas,omitempty"`
 
 	// (Block) IAM metadata: display_name, id, tags, urn.
-	IAM *IAMObservation `json:"iam,omitempty" tf:"iam,omitempty"`
+	IAM *SecretIAMObservation `json:"iam,omitempty" tf:"iam,omitempty"`
 
 	// (Number) Version number.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`

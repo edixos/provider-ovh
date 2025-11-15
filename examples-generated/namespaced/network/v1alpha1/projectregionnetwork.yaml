@@ -1,0 +1,19 @@
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: ProjectRegionNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/projectregionnetwork
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: Madrid Network
+    regionName: EU-SOUTH-LZ-MAD-A
+    serviceName: XXXXXX
+    subnet:
+      cidr: 10.0.0.0/24
+      enableDhcp: true
+      enableGatewayIp: false
+      ipVersion: 4

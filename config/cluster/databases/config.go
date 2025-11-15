@@ -101,4 +101,13 @@ func Configure(p *config.Provider) {
 			TerraformName: "ovh_cloud_project_database",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_prometheus", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_mongodb_prometheus", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_valkey_user", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

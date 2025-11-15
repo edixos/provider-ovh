@@ -1,0 +1,17 @@
+apiVersion: kms.ovh.edixos.io/v1alpha1
+kind: ServiceKey
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kms/v1alpha1/servicekey
+  labels:
+    testing.upbound.io/example-name: key_symetric
+  name: key-symetric
+spec:
+  forProvider:
+    name: key_oct
+    okmsId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    operations:
+    - encrypt
+    - decrypt
+    size: 256
+    type: oct

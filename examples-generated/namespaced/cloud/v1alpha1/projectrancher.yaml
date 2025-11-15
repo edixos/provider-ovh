@@ -1,0 +1,15 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: ProjectRancher
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectrancher
+  labels:
+    testing.upbound.io/example-name: rancher
+  name: rancher
+  namespace: upbound-system
+spec:
+  forProvider:
+    projectId: <public cloud project ID>
+    targetSpec:
+      name: MyRancher
+      plan: STANDARD

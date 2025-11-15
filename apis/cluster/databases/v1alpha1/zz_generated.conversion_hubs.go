@@ -34,6 +34,9 @@ func (tr *ProjectDatabaseM3DbNamespace) Hub() {}
 func (tr *ProjectDatabaseM3DbUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectDatabaseMongodbPrometheus) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseMongodbUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -49,7 +52,13 @@ func (tr *ProjectDatabasePostgresqlConnectionPool) Hub() {}
 func (tr *ProjectDatabasePostgresqlUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectDatabasePrometheus) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseRedisUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseUser) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectDatabaseValkeyUser) Hub() {}

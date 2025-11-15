@@ -1,0 +1,15 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: IPv6RoutedSubrange
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/ipv6routedsubrange
+  labels:
+    testing.upbound.io/example-name: vrack_routed_subrange
+  name: vrack-routed-subrange
+  namespace: upbound-system
+spec:
+  forProvider:
+    block: <ipv6 block>
+    nexthop: <nexthop>
+    routedSubrange: <routed subrange>
+    serviceName: <vRack service name>

@@ -1,0 +1,25 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseValkeyUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasevalkeyuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    categories:
+    - +@set
+    - +@sortedset
+    channels:
+    - '*'
+    clusterId: ${data.ovh_cloud_project_database.valkey.id}
+    commands:
+    - +get
+    - -set
+    keys:
+    - data
+    - properties
+    name: johndoe
+    serviceName: ${data.ovh_cloud_project_database.valkey.service_name}

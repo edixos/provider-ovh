@@ -1,0 +1,32 @@
+apiVersion: storage.ovh.edixos.io/v1alpha1
+kind: EFSShareACL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/efsshareacl
+  labels:
+    testing.upbound.io/example-name: acl
+  name: acl
+spec:
+  forProvider:
+    accessLevel: ro
+    accessTo: 10.0.0.1
+    serviceName: ${data.ovh_storage_efs.efs.service_name}
+    shareId: ${ovh_storage_efs_share.share.id}
+
+---
+
+apiVersion: storage.ovh.edixos.io/v1alpha1
+kind: EFSShare
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/efsshareacl
+  labels:
+    testing.upbound.io/example-name: share
+  name: share
+spec:
+  forProvider:
+    description: My share
+    name: share
+    protocol: NFS
+    serviceName: ${data.ovh_storage_efs.efs.service_name}
+    size: 100

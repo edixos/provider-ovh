@@ -1,0 +1,14 @@
+apiVersion: vrack.ovh.edixos.io/v1alpha1
+kind: IPv6
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/ipv6
+  labels:
+    testing.upbound.io/example-name: vrack_block_v6
+  name: vrack-block-v6
+spec:
+  forProvider:
+    block: <ipv6 block>
+    bridgedSubrange:
+    - slaac: <enabled|disabled>
+    serviceName: <vRack service name>

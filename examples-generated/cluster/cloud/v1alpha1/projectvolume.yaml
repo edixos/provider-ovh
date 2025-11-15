@@ -1,0 +1,16 @@
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: ProjectVolume
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectvolume
+  labels:
+    testing.upbound.io/example-name: volume
+  name: volume
+spec:
+  forProvider:
+    description: Terraform volume
+    name: terrformName
+    regionName: xxx
+    serviceName: yyyyy
+    size: 15
+    type: classic

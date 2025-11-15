@@ -1,0 +1,26 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: ProjectLoadbalancer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/projectloadbalancer
+  labels:
+    testing.upbound.io/example-name: lb
+  name: lb
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: My new LB
+    flavorId: <loadbalancer flavor ID>
+    listeners:
+    - port: "34568"
+      protocol: tcp
+    - port: "34569"
+      protocol: udp
+    network:
+      private:
+        network:
+          id: '${element([for region in ovh_cloud_project_network_private.mypriv.regions_attributes:
+            region if "${region.region}" == "GRA9"], 0).openstackid}'
+          subnetId: ${ovh_cloud_project_network_private_subnet.myprivsub.id}
+    regionName: GRA9
+    serviceName: <public cloud project ID>

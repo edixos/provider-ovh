@@ -7,4 +7,13 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *EFSShare) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *EFSShareACL) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *EFSShareSnapshot) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectRegionStoragePresign) Hub() {}

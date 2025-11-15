@@ -43,6 +43,24 @@ func (l *LogsOutputOpensearchIndexList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this LogsRoleList.
+func (l *LogsRoleList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LogsRolePermissionStreamList.
+func (l *LogsRolePermissionStreamList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this LogsTokenList.
 func (l *LogsTokenList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
