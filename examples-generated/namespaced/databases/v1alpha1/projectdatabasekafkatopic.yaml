@@ -1,0 +1,21 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseKafkaTopic
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasekafkatopic
+  labels:
+    testing.upbound.io/example-name: topic
+  name: topic
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    minInsyncReplicas: 1
+    name: mytopic
+    partitions: 3
+    replication: 2
+    retentionBytes: 4
+    retentionHours: 5
+    serviceName: ${data.ovh_cloud_project_database.kafka.service_name}

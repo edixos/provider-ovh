@@ -1,0 +1,41 @@
+apiVersion: additionalip.ovh.m.edixos.io/v1alpha1
+kind: Service
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/service
+  labels:
+    testing.upbound.io/example-name: ipblock
+  name: ipblock
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: ${data.ovh_order_cart.my_cart.description}
+    ovhSubsidiary: ${data.ovh_order_cart.my_cart.ovh_subsidiary}
+    plan:
+    - configuration:
+      - label: country
+        value: FR
+      duration: ${data.ovh_order_cart_product_plan.ipblock.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.ipblock.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.ipblock.selected_price.0.pricing_mode}
+
+---
+
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Vrack
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/service
+  labels:
+    testing.upbound.io/example-name: vrack
+  name: vrack
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: ${data.ovh_order_cart.my_cart.description}
+    name: ${data.ovh_order_cart.my_cart.description}
+    ovhSubsidiary: ${data.ovh_order_cart.my_cart.ovh_subsidiary}
+    plan:
+    - duration: ${data.ovh_order_cart_product_plan.vrack.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.vrack.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.vrack.selected_price.0.pricing_mode}

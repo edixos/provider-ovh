@@ -1,0 +1,13 @@
+apiVersion: logs.ovh.edixos.io/v1alpha1
+kind: LogsOutputOpensearchAlias
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsoutputopensearchalias
+  labels:
+    testing.upbound.io/example-name: alias
+  name: alias
+spec:
+  forProvider:
+    description: my opensearch alias
+    serviceName: '....'
+    suffix: alias

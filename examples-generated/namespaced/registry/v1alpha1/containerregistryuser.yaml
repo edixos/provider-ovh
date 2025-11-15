@@ -1,0 +1,17 @@
+apiVersion: registry.ovh.m.edixos.io/v1alpha1
+kind: ContainerRegistryUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: registry/v1alpha1/containerregistryuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    email: foo@bar.com
+    login: foobar
+    registryIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: registry
+    serviceName: ${ovh_cloud_project_containerregistry.registry.service_name}

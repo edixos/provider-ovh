@@ -1,0 +1,19 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseMongodbUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasemongodbuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    name: johndoe
+    roles:
+    - backup@admin
+    - readAnyDatabase@admin
+    serviceName: ${data.ovh_cloud_project_database.mongodb.service_name}

@@ -1,0 +1,15 @@
+apiVersion: privatesql.ovh.m.edixos.io/v1alpha1
+kind: PrivatedatabaseUserGrant
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatesql/v1alpha1/privatedatabaseusergrant
+  labels:
+    testing.upbound.io/example-name: user_grant
+  name: user-grant
+  namespace: upbound-system
+spec:
+  forProvider:
+    databaseName: ovhcloud
+    grant: admin
+    serviceName: XXXXXX
+    userName: terraform

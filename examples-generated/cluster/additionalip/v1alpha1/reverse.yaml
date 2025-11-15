@@ -1,0 +1,14 @@
+apiVersion: additionalip.ovh.edixos.io/v1alpha1
+kind: Reverse
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/reverse
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    ip: 192.0.2.0/24
+    ipReverse: 192.0.2.1
+    readinessTimeoutDuration: 1m
+    reverse: example.com

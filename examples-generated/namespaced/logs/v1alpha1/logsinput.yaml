@@ -1,0 +1,29 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsInput
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsinput
+  labels:
+    testing.upbound.io/example-name: input
+  name: input
+  namespace: upbound-system
+spec:
+  forProvider:
+    allowedNetworks:
+    - 10.0.0.0/16
+    configuration:
+    - logstash:
+      - inputSection: |2
+            beats {
+              port => 6514
+              ssl_enabled => true
+              ssl_certificate => "/etc/ssl/private/server.crt"
+              ssl_key => "/etc/ssl/private/server.key"
+            }
+    description: ${ovh_dbaas_logs_output_graylog_stream.stream.description}
+    engineId: ${data.ovh_dbaas_logs_input_engine.logstash.id}
+    exposedPort: "6154"
+    nbInstance: 2
+    serviceName: ${ovh_dbaas_logs_output_graylog_stream.stream.service_name}
+    streamId: ${ovh_dbaas_logs_output_graylog_stream.stream.id}
+    title: ${ovh_dbaas_logs_output_graylog_stream.stream.title}

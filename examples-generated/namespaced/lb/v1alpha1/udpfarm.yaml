@@ -1,0 +1,15 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: UDPFarm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/udpfarm
+  labels:
+    testing.upbound.io/example-name: farm_name
+  name: farm-name
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: ingress-8080-gra
+    port: 80
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: gra

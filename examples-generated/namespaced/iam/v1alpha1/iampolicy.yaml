@@ -1,0 +1,40 @@
+apiVersion: iam.ovh.m.edixos.io/v1alpha1
+kind: IAMPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1alpha1/iampolicy
+  labels:
+    testing.upbound.io/example-name: manager
+  name: manager
+  namespace: upbound-system
+spec:
+  forProvider:
+    allow:
+    - account:apiovh:me/get
+    - account:apiovh:me/supportLevel/get
+    - account:apiovh:me/certificates/get
+    - account:apiovh:me/tag/get
+    - account:apiovh:services/get
+    - account:apiovh:*
+    description: Users are allowed to use the OVH manager
+    identities:
+    - ${ovh_me_identity_group.my_group.urn}
+    name: allow_ovh_manager
+    resources:
+    - ${data.ovh_me.account.urn}
+
+---
+
+apiVersion: me.ovh.m.edixos.io/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1alpha1/iampolicy
+  labels:
+    testing.upbound.io/example-name: my_group
+  name: my-group
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my_group created in Terraform
+    name: my_group

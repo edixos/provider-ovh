@@ -1,0 +1,13 @@
+apiVersion: additionalip.ovh.m.edixos.io/v1alpha1
+kind: Mitigation
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/mitigation
+  labels:
+    testing.upbound.io/example-name: mitigation
+  name: mitigation
+  namespace: upbound-system
+spec:
+  forProvider:
+    ip: XXXXXX
+    ipOnMitigation: XXXXXX

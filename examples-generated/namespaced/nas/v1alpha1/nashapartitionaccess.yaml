@@ -1,0 +1,16 @@
+apiVersion: nas.ovh.m.edixos.io/v1alpha1
+kind: NashaPartitionAccess
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nas/v1alpha1/nashapartitionaccess
+  labels:
+    testing.upbound.io/example-name: my_partition
+  name: my-partition
+  namespace: upbound-system
+spec:
+  forProvider:
+    aclDescription: Description of the ACL
+    ip: 123.123.123.123/32
+    partitionName: my-partition
+    serviceName: zpool-12345
+    type: readwrite

@@ -1,0 +1,21 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabase
+  labels:
+    testing.upbound.io/example-name: cassandradb
+  name: cassandradb
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my-first-cassandra
+    engine: cassandra
+    flavor: db1-4
+    nodes:
+    - region: BHS
+    - region: BHS
+    - region: BHS
+    plan: essential
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    version: "4.0"

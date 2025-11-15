@@ -1,0 +1,17 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseOpensearchPattern
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaseopensearchpattern
+  labels:
+    testing.upbound.io/example-name: pattern
+  name: pattern
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    maxIndexCount: 2
+    pattern: logs_*
+    serviceName: ${data.ovh_cloud_project_database.opensearch.service_name}

@@ -1,0 +1,21 @@
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/subnet
+  labels:
+    testing.upbound.io/example-name: subnet
+  name: subnet
+  namespace: upbound-system
+spec:
+  forProvider:
+    dhcp: true
+    end: 192.168.168.200
+    network: 192.168.168.0/24
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    noGateway: false
+    region: GRA1
+    serviceName: xxxxx
+    start: 192.168.168.100

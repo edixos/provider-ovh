@@ -1,0 +1,17 @@
+apiVersion: iam.ovh.m.edixos.io/v1alpha1
+kind: IAMPermissionsGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1alpha1/iampermissionsgroup
+  labels:
+    testing.upbound.io/example-name: read_vps
+  name: read-vps
+  namespace: upbound-system
+spec:
+  forProvider:
+    allow: |-
+      ${[
+          for act in data.ovh_iam_reference_actions.vps.actions : act.action if(contains(act.categories, "READ"))
+        ]}
+    description: Read access to vps
+    name: read_vps

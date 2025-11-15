@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: DedicatedServerInterface
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/dedicatedserverinterface
+  labels:
+    testing.upbound.io/example-name: vdsi
+  name: vdsi
+  namespace: upbound-system
+spec:
+  forProvider:
+    interfaceId: ${data.ovh_dedicated_server.server.enabled_vrack_vnis[0]}
+    serviceName: pn-xxxxxxx

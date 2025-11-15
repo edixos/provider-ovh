@@ -1,0 +1,18 @@
+apiVersion: registry.ovh.m.edixos.io/v1alpha1
+kind: ContainerRegistryIPRestrictionsRegistry
+metadata:
+  annotations:
+    meta.upbound.io/example-id: registry/v1alpha1/containerregistryiprestrictionsregistry
+  labels:
+    testing.upbound.io/example-name: my_registry_iprestrictions
+  name: my-registry-iprestrictions
+  namespace: upbound-system
+spec:
+  forProvider:
+    ipRestrictions:
+    - description: xxxxxxx
+      ip_block: xxx.xxx.xxx.xxx/xx
+    registryIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: registry
+    serviceName: ${ovh_cloud_project_containerregistry.registry.service_name}

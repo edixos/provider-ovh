@@ -1,0 +1,18 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: HTTPRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/httproute
+  labels:
+    testing.upbound.io/example-name: https_redirect
+  name: https-redirect
+  namespace: upbound-system
+spec:
+  forProvider:
+    action:
+    - status: 302
+      target: https://${host}${path}${arguments}
+      type: redirect
+    displayName: Redirect to HTTPS
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+    weight: 1

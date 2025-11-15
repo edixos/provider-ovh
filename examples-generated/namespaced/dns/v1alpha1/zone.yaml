@@ -1,0 +1,21 @@
+apiVersion: dns.ovh.m.edixos.io/v1alpha1
+kind: Zone
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1alpha1/zone
+  labels:
+    testing.upbound.io/example-name: zone
+  name: zone
+  namespace: upbound-system
+spec:
+  forProvider:
+    ovhSubsidiary: ${data.ovh_order_cart.mycart.ovh_subsidiary}
+    plan:
+    - configuration:
+      - label: zone
+        value: myzone.mydomain.com
+      - label: template
+        value: minimized
+      duration: ${data.ovh_order_cart_product_plan.zone.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.zone.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.zone.selected_price.0.pricing_mode}

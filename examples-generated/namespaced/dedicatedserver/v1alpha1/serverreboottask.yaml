@@ -1,0 +1,32 @@
+apiVersion: dedicatedserver.ovh.m.edixos.io/v1alpha1
+kind: ServerRebootTask
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedserver/v1alpha1/serverreboottask
+  labels:
+    testing.upbound.io/example-name: server_reboot
+  name: server-reboot
+  namespace: upbound-system
+spec:
+  forProvider:
+    keepers:
+    - ${ovh_dedicated_server_update.server_on_rescue.boot_id}
+    serviceName: ${data.ovh_dedicated_server_boots.rescue.service_name}
+
+---
+
+apiVersion: dedicatedserver.ovh.m.edixos.io/v1alpha1
+kind: ServerUpdate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedserver/v1alpha1/serverreboottask
+  labels:
+    testing.upbound.io/example-name: server_on_rescue
+  name: server-on-rescue
+  namespace: upbound-system
+spec:
+  forProvider:
+    bootId: ${data.ovh_dedicated_server_boots.rescue.result[0]}
+    monitoring: true
+    serviceName: nsxxxxxxx.ip-xx-xx-xx.eu
+    state: ok

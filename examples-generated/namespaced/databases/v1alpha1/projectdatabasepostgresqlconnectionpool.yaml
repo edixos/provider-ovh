@@ -1,0 +1,83 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabasePostgresqlConnectionPool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasepostgresqlconnectionpool
+  labels:
+    testing.upbound.io/example-name: test_pool
+  name: test-pool
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: db
+    databaseId: ${ovh_cloud_project_database_database.database.id}
+    mode: session
+    name: test_connection_pool
+    serviceName: ${ovh_cloud_project_database.db.service_name}
+    size: 13
+    userId: ${ovh_cloud_project_database_postgresql_user.user.id}
+
+---
+
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasepostgresqlconnectionpool
+  labels:
+    testing.upbound.io/example-name: db
+  name: db
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: test-postgresql-cluster
+    engine: postgresql
+    flavor: db1-4
+    nodes:
+    - region: GRA
+    plan: essential
+    serviceName: XXXX
+    version: "15"
+
+---
+
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseDatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasepostgresqlconnectionpool
+  labels:
+    testing.upbound.io/example-name: database
+  name: database
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: db
+    engine: postgresql
+    name: mydatabase
+    serviceName: XXXX
+
+---
+
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabasePostgresqlUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasepostgresqlconnectionpool
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: db
+    name: johndoe
+    roles:
+    - replication
+    serviceName: XXXX

@@ -1,0 +1,16 @@
+apiVersion: me.ovh.m.edixos.io/v1alpha1
+kind: Oauth2Client
+metadata:
+  annotations:
+    meta.upbound.io/example-id: me/v1alpha1/oauth2client
+  labels:
+    testing.upbound.io/example-name: my_oauth2_client_auth_code
+  name: my-oauth2-client-auth-code
+  namespace: upbound-system
+spec:
+  forProvider:
+    callbackUrls:
+    - https://my-app.com/callback
+    description: An OAuth2 client using the authorization code flow for my-app.com
+    flow: AUTHORIZATION_CODE
+    name: OAuth2 authorization code service account

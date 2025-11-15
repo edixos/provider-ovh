@@ -1,0 +1,16 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseDatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasedatabase
+  labels:
+    testing.upbound.io/example-name: database
+  name: database
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    engine: ${data.ovh_cloud_project_database.db.engine}
+    name: mydatabase
+    serviceName: ${data.ovh_cloud_project_database.db.service_name}

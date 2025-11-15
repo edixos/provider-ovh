@@ -1,0 +1,14 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPFarm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcpfarm
+  labels:
+    testing.upbound.io/example-name: farm_name
+  name: farm-name
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: ingress-8080-gra
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: GRA

@@ -1,0 +1,21 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseOpensearchUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaseopensearchuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    acls:
+    - pattern: logs_*
+      permission: read
+    - pattern: data_*
+      permission: deny
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    name: johndoe
+    serviceName: ${data.ovh_cloud_project_database.opensearch.service_name}

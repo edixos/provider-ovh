@@ -55,6 +55,12 @@ UP_VERSION = v0.41.0
 UP_CHANNEL = stable
 UPTEST_VERSION = v2.0.2
 CRDDIFF_VERSION = v0.12.1
+
+# Default Crossplane chart version used by controlplane.mk. Set here so we don't
+# have to modify the build/ submodule files. This prevents passing an empty
+# value to `--version` in helm which causes the 'flag needs an argument' error.
+CROSSPLANE_VERSION ?= 2.0.2
+
 -include build/makelib/k8s_tools.mk
 
 # ====================================================================================
@@ -90,7 +96,7 @@ fallthrough: submodules
 
 # NOTE(hasheddan): we force image building to happen prior to xpkg build so that
 # we ensure image is present in daemon.
-xpkg.build.provider-ovh: do.build.images
+xpkg.build.provider-ovh: do.build.images $(CROSSPLANE_CLI)
 
 # NOTE(hasheddan): we ensure up is installed prior to running platform-specific
 # build steps in parallel to avoid encountering an installation race condition.
