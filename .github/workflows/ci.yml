@@ -100,9 +100,9 @@ jobs:
       # We could run 'make lint' but we prefer this action because it leaves
       # 'annotations' (i.e. it comments on PRs to point out linter violations).
       - name: Lint
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v4
         with:
-          version: ${{ env.GOLANGCI_VERSION }}
+          version: v2.4.0
 
 #  check-diff:
 #    runs-on: ubuntu-22.04
@@ -306,7 +306,7 @@ jobs:
           BUILD_ARGS: "--load"
 
       - name: Upload Artifacts to GitHub
-        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32 #v3
+        uses: actions/upload-artifact@v4
         with:
           name: output
           path: _output/**
