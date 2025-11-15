@@ -1,0 +1,15 @@
+apiVersion: privatesql.ovh.edixos.io/v1alpha1
+kind: PrivatedatabaseWhitelist
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatesql/v1alpha1/privatedatabasewhitelist
+  labels:
+    testing.upbound.io/example-name: ip
+  name: ip
+spec:
+  forProvider:
+    ip: 1.2.3.4
+    name: A name for your IP address
+    service: true
+    serviceName: XXXXXX
+    sftp: true

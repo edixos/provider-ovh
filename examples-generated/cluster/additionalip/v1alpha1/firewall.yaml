@@ -1,0 +1,12 @@
+apiVersion: additionalip.ovh.edixos.io/v1alpha1
+kind: Firewall
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/firewall
+  labels:
+    testing.upbound.io/example-name: my_firewall
+  name: my-firewall
+spec:
+  forProvider:
+    ip: XXXXXX
+    ipOnFirewall: XXXXXX

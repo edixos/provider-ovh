@@ -1,0 +1,17 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseM3DbNamespace
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasem3dbnamespace
+  labels:
+    testing.upbound.io/example-name: namespace
+  name: namespace
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    name: mynamespace
+    resolution: P2D
+    retentionPeriodDuration: PT48H
+    serviceName: ${data.ovh_cloud_project_database.m3db.service_name}

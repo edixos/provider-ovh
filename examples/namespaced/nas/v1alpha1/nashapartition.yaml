@@ -1,0 +1,15 @@
+apiVersion: nas.ovh.m.edixos.io/v1alpha1
+kind: NashaPartition
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nas/v1alpha1/nashapartition
+  labels:
+    testing.upbound.io/example-name: my_partition
+  name: my-partition
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: my-partition
+    protocol: NFS
+    serviceName: zpool-12345
+    size: 20

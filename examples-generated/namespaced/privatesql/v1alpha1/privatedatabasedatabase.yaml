@@ -1,0 +1,13 @@
+apiVersion: privatesql.ovh.m.edixos.io/v1alpha1
+kind: PrivatedatabaseDatabase
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatesql/v1alpha1/privatedatabasedatabase
+  labels:
+    testing.upbound.io/example-name: database
+  name: database
+  namespace: upbound-system
+spec:
+  forProvider:
+    databaseName: XXXXXX
+    serviceName: XXXXXX

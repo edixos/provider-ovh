@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Cloudproject
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/cloudproject
+  labels:
+    testing.upbound.io/example-name: vcp
+  name: vcp
+  namespace: upbound-system
+spec:
+  forProvider:
+    projectId: "67890"
+    serviceName: "12345"

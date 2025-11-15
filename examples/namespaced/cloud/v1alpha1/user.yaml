@@ -1,0 +1,12 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/user
+  labels:
+    testing.upbound.io/example-name: user1
+  name: user1
+  namespace: upbound-system
+spec:
+  forProvider:
+    serviceName: XXX

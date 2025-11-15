@@ -1,0 +1,809 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: nodepools.kube.ovh.m.edixos.io
+spec:
+  group: kube.ovh.m.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: NodePool
+    listKind: NodePoolList
+    plural: nodepools
+    singular: nodepool
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: NodePool is the Schema for the NodePools API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: NodePoolSpec defines the desired state of NodePool
+            properties:
+              forProvider:
+                properties:
+                  antiAffinity:
+                    description: |-
+                      should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
+                      Enable anti affinity groups for nodes in the pool
+                    type: boolean
+                  autoscale:
+                    description: |-
+                      Enable auto-scaling for the pool. Default to false.
+                      Enable auto-scaling for the pool
+                    type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: |-
+                      scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
+                      scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: |-
+                      scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
+                      scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: |-
+                      scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+                      scaleDownUtilizationThreshold for autoscaling
+                    type: number
+                  availabilityZones:
+                    description: list of availability zones to associate the pool
+                      - mandatory for multi-zone cluster - only one zone is supported
+                      at the moment.
+                    items:
+                      type: string
+                    type: array
+                  desiredNodes:
+                    description: |-
+                      number of nodes to start.
+                      Number of nodes you desire in the pool
+                    type: number
+                  flavorName:
+                    description: |-
+                      a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
+                      Flavor name
+                    type: string
+                  kubeId:
+                    description: |-
+                      The id of the managed kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
+                    type: string
+                  kubeIdRef:
+                    description: Reference to a Cluster in kube to populate kubeId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  kubeIdSelector:
+                    description: Selector for a Cluster in kube to populate kubeId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  maxNodes:
+                    description: |-
+                      maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  minNodes:
+                    description: |-
+                      minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  monthlyBilled:
+                    description: |-
+                      should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
+                      Enable monthly billing on all nodes in the pool
+                    type: boolean
+                  name:
+                    description: |-
+                      The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
+                      NodePool resource name
+                    type: string
+                  serviceName:
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
+                    type: string
+                  template:
+                    description: Node pool template
+                    items:
+                      properties:
+                        metadata:
+                          description: |-
+                            Metadata of each node in the pool
+                            metadata
+                          items:
+                            properties:
+                              annotations:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Annotations to apply to each node
+                                  annotations
+                                type: object
+                                x-kubernetes-map-type: granular
+                              finalizers:
+                                description: |-
+                                  Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
+                                  finalizers
+                                items:
+                                  type: string
+                                type: array
+                              labels:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Labels to apply to each node
+                                  labels
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        spec:
+                          description: |-
+                            Spec of each node in the pool
+                            spec
+                          items:
+                            properties:
+                              taints:
+                                description: |-
+                                  Taints to apply to each node NodeSpec kubernetes documentation
+                                  taints
+                                items:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                type: array
+                              unschedulable:
+                                description: |-
+                                  If true, set nodes as un-schedulable
+                                  unschedulable
+                                type: boolean
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  antiAffinity:
+                    description: |-
+                      should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
+                      Enable anti affinity groups for nodes in the pool
+                    type: boolean
+                  autoscale:
+                    description: |-
+                      Enable auto-scaling for the pool. Default to false.
+                      Enable auto-scaling for the pool
+                    type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: |-
+                      scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
+                      scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: |-
+                      scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
+                      scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: |-
+                      scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+                      scaleDownUtilizationThreshold for autoscaling
+                    type: number
+                  availabilityZones:
+                    description: list of availability zones to associate the pool
+                      - mandatory for multi-zone cluster - only one zone is supported
+                      at the moment.
+                    items:
+                      type: string
+                    type: array
+                  desiredNodes:
+                    description: |-
+                      number of nodes to start.
+                      Number of nodes you desire in the pool
+                    type: number
+                  flavorName:
+                    description: |-
+                      a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
+                      Flavor name
+                    type: string
+                  kubeId:
+                    description: |-
+                      The id of the managed kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
+                    type: string
+                  kubeIdRef:
+                    description: Reference to a Cluster in kube to populate kubeId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  kubeIdSelector:
+                    description: Selector for a Cluster in kube to populate kubeId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  maxNodes:
+                    description: |-
+                      maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  minNodes:
+                    description: |-
+                      minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  monthlyBilled:
+                    description: |-
+                      should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
+                      Enable monthly billing on all nodes in the pool
+                    type: boolean
+                  name:
+                    description: |-
+                      The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
+                      NodePool resource name
+                    type: string
+                  serviceName:
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
+                    type: string
+                  template:
+                    description: Node pool template
+                    items:
+                      properties:
+                        metadata:
+                          description: |-
+                            Metadata of each node in the pool
+                            metadata
+                          items:
+                            properties:
+                              annotations:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Annotations to apply to each node
+                                  annotations
+                                type: object
+                                x-kubernetes-map-type: granular
+                              finalizers:
+                                description: |-
+                                  Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
+                                  finalizers
+                                items:
+                                  type: string
+                                type: array
+                              labels:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Labels to apply to each node
+                                  labels
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        spec:
+                          description: |-
+                            Spec of each node in the pool
+                            spec
+                          items:
+                            properties:
+                              taints:
+                                description: |-
+                                  Taints to apply to each node NodeSpec kubernetes documentation
+                                  taints
+                                items:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                type: array
+                              unschedulable:
+                                description: |-
+                                  If true, set nodes as un-schedulable
+                                  unschedulable
+                                type: boolean
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  kind: ClusterProviderConfig
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  kind:
+                    description: Kind of the referenced object.
+                    type: string
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                required:
+                - kind
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                required:
+                - name
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.flavorName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.flavorName)
+                || (has(self.initProvider) && has(self.initProvider.flavorName))'
+            - message: spec.forProvider.serviceName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
+                || (has(self.initProvider) && has(self.initProvider.serviceName))'
+          status:
+            description: NodePoolStatus defines the observed state of NodePool.
+            properties:
+              atProvider:
+                properties:
+                  antiAffinity:
+                    description: |-
+                      should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
+                      Enable anti affinity groups for nodes in the pool
+                    type: boolean
+                  autoscale:
+                    description: |-
+                      Enable auto-scaling for the pool. Default to false.
+                      Enable auto-scaling for the pool
+                    type: boolean
+                  autoscalingScaleDownUnneededTimeSeconds:
+                    description: |-
+                      scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
+                      scaleDownUnneededTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUnreadyTimeSeconds:
+                    description: |-
+                      scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
+                      scaleDownUnreadyTimeSeconds for autoscaling
+                    type: number
+                  autoscalingScaleDownUtilizationThreshold:
+                    description: |-
+                      scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
+                      scaleDownUtilizationThreshold for autoscaling
+                    type: number
+                  availabilityZones:
+                    description: list of availability zones to associate the pool
+                      - mandatory for multi-zone cluster - only one zone is supported
+                      at the moment.
+                    items:
+                      type: string
+                    type: array
+                  availableNodes:
+                    description: |-
+                      Number of nodes which are actually ready in the pool
+                      Number of nodes which are actually ready in the pool
+                    type: number
+                  createdAt:
+                    description: |-
+                      Creation date
+                      Creation date
+                    type: string
+                  currentNodes:
+                    description: |-
+                      Number of nodes present in the pool
+                      Number of nodes present in the pool
+                    type: number
+                  desiredNodes:
+                    description: |-
+                      number of nodes to start.
+                      Number of nodes you desire in the pool
+                    type: number
+                  flavor:
+                    description: |-
+                      Flavor name
+                      Flavor name
+                    type: string
+                  flavorName:
+                    description: |-
+                      a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
+                      Flavor name
+                    type: string
+                  id:
+                    type: string
+                  kubeId:
+                    description: |-
+                      The id of the managed kubernetes cluster. Changing this value recreates the resource.
+                      Kube ID
+                    type: string
+                  maxNodes:
+                    description: |-
+                      maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  minNodes:
+                    description: |-
+                      minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
+                      Number of nodes you desire in the pool
+                    type: number
+                  monthlyBilled:
+                    description: |-
+                      should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
+                      Enable monthly billing on all nodes in the pool
+                    type: boolean
+                  name:
+                    description: |-
+                      The name of the nodepool. Warning: _ char is not allowed! Changing this value recreates the resource.
+                      NodePool resource name
+                    type: string
+                  projectId:
+                    description: |-
+                      Project id
+                      Project id
+                    type: string
+                  serviceName:
+                    description: |-
+                      The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used. Changing this value recreates the resource.
+                      Service name
+                    type: string
+                  sizeStatus:
+                    description: |-
+                      Status describing the state between number of nodes wanted and available ones
+                      Status describing the state between number of nodes wanted and available ones
+                    type: string
+                  status:
+                    description: |-
+                      Current status
+                      Current status
+                    type: string
+                  template:
+                    description: Node pool template
+                    items:
+                      properties:
+                        metadata:
+                          description: |-
+                            Metadata of each node in the pool
+                            metadata
+                          items:
+                            properties:
+                              annotations:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Annotations to apply to each node
+                                  annotations
+                                type: object
+                                x-kubernetes-map-type: granular
+                              finalizers:
+                                description: |-
+                                  Finalizers to apply to each node. A finalizer name must be fully qualified, e.g. kubernetes.io/pv-protection , where you prefix it with hostname of your service which is related to the controller responsible for the finalizer.
+                                  finalizers
+                                items:
+                                  type: string
+                                type: array
+                              labels:
+                                additionalProperties:
+                                  type: string
+                                description: |-
+                                  Labels to apply to each node
+                                  labels
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        spec:
+                          description: |-
+                            Spec of each node in the pool
+                            spec
+                          items:
+                            properties:
+                              taints:
+                                description: |-
+                                  Taints to apply to each node NodeSpec kubernetes documentation
+                                  taints
+                                items:
+                                  additionalProperties:
+                                    type: string
+                                  type: object
+                                type: array
+                              unschedulable:
+                                description: |-
+                                  If true, set nodes as un-schedulable
+                                  unschedulable
+                                type: boolean
+                            type: object
+                          type: array
+                      type: object
+                    type: array
+                  upToDateNodes:
+                    description: |-
+                      Number of nodes with the latest version installed in the pool
+                      Number of nodes with latest version installed in the pool
+                    type: number
+                  updatedAt:
+                    description: |-
+                      Last update date
+                      Last update date
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

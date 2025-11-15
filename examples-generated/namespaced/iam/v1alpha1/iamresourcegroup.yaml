@@ -1,0 +1,15 @@
+apiVersion: iam.ovh.m.edixos.io/v1alpha1
+kind: IAMResourceGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: iam/v1alpha1/iamresourcegroup
+  labels:
+    testing.upbound.io/example-name: my_resource_group
+  name: my-resource-group
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: my_resource_group
+    resources:
+    - urn:v1:eu:resource:service1:service1-id
+    - urn:v1:eu:resource:service2:service2-id

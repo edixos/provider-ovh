@@ -1,0 +1,27 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseRedisUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaseredisuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    categories:
+    - +@set
+    - +@sortedset
+    channels:
+    - '*'
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    commands:
+    - +get
+    - -set
+    keys:
+    - data
+    - properties
+    name: johndoe
+    serviceName: ${data.ovh_cloud_project_database.redis.service_name}

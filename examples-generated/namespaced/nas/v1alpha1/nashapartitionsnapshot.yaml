@@ -1,0 +1,14 @@
+apiVersion: nas.ovh.m.edixos.io/v1alpha1
+kind: NashaPartitionSnapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nas/v1alpha1/nashapartitionsnapshot
+  labels:
+    testing.upbound.io/example-name: my_partition
+  name: my-partition
+  namespace: upbound-system
+spec:
+  forProvider:
+    partitionName: my-partition
+    serviceName: zpool-12345
+    type: day-3

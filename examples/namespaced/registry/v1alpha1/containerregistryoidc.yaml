@@ -1,0 +1,28 @@
+apiVersion: registry.ovh.m.edixos.io/v1alpha1
+kind: ContainerRegistryOIDC
+metadata:
+  annotations:
+    meta.upbound.io/example-id: registry/v1alpha1/containerregistryoidc
+  labels:
+    testing.upbound.io/example-name: my_oidc
+  name: my-oidc
+  namespace: upbound-system
+spec:
+  forProvider:
+    deleteUsers: false
+    oidcAdminGroup: harbor-admin
+    oidcAutoOnboard: true
+    oidcClientId: xxx
+    oidcClientSecretSecretRef:
+      key: example-key
+      name: example-secret
+    oidcEndpoint: https://xxxx.yyy.com
+    oidcGroupsClaim: groups
+    oidcName: my-oidc-provider
+    oidcScope: openid,profile,email,offline_access
+    oidcUserClaim: preferred_username
+    oidcVerifyCert: true
+    registryIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    serviceName: XXXXXX

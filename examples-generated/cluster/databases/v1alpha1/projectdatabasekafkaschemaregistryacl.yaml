@@ -1,0 +1,17 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseKafkaSchemaregistryacl
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasekafkaschemaregistryacl
+  labels:
+    testing.upbound.io/example-name: schema_registry_acl
+  name: schema-registry-acl
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    permission: schema_registry_read
+    resource: Subject:myResource
+    serviceName: ${data.ovh_cloud_project_database.kafka.service_name}
+    username: johndoe

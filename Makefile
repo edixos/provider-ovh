@@ -8,11 +8,11 @@ export TERRAFORM_VERSION ?= 1.8.1
 
 export TERRAFORM_PROVIDER_SOURCE ?= ovh/ovh
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/ovh/terraform-provider-ovh
-export TERRAFORM_PROVIDER_VERSION ?= 1.1.0
+export TERRAFORM_PROVIDER_VERSION ?= 2.7.0
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-ovh
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://releases.hashicorp.com/$(TERRAFORM_PROVIDER_DOWNLOAD_NAME)/$(TERRAFORM_PROVIDER_VERSION)
-export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v1.1.0
-export TERRAFORM_DOCS_PATH ?= website/docs
+export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v2.7.0
+export TERRAFORM_DOCS_PATH ?= docs/resources
 
 
 PLATFORMS ?= linux_amd64 linux_arm64
@@ -40,8 +40,8 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_REQUIRED_VERSION ?= 1.22
-GOLANGCILINT_VERSION ?= 1.60.1
+GO_REQUIRED_VERSION ?= 1.24
+GOLANGCILINT_VERSION ?= 2.4.0
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis
@@ -50,11 +50,17 @@ GO_SUBDIRS += cmd internal apis
 # ====================================================================================
 # Setup Kubernetes tools
 
-KIND_VERSION = v0.24.0
-UP_VERSION = v0.33.0
+KIND_VERSION = v0.30.0
+UP_VERSION = v0.41.0
 UP_CHANNEL = stable
-UPTEST_VERSION = v1.1.2
-CROSSPLANE_VERSION = v1.17.1
+UPTEST_VERSION ?= v2.2.0
+CRDDIFF_VERSION = v0.12.1
+
+# Default Crossplane chart version used by controlplane.mk. Set here so we don't
+# have to modify the build/ submodule files. This prevents passing an empty
+# value to `--version` in helm which causes the 'flag needs an argument' error.
+CROSSPLANE_VERSION ?= 2.0.2
+
 -include build/makelib/k8s_tools.mk
 
 # ====================================================================================
@@ -90,11 +96,11 @@ fallthrough: submodules
 
 # NOTE(hasheddan): we force image building to happen prior to xpkg build so that
 # we ensure image is present in daemon.
-xpkg.build.provider-ovh: do.build.images
+xpkg.build.provider-ovh: do.build.images $(CROSSPLANE_CLI)
 
 # NOTE(hasheddan): we ensure up is installed prior to running platform-specific
 # build steps in parallel to avoid encountering an installation race condition.
-build.init: $(UP)
+build.init: $(UP) $(CROSSPLANE_CLI)
 
 # ====================================================================================
 # Setup Terraform for fetching provider schema

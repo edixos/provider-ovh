@@ -1,0 +1,14 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsOutputOpensearchIndex
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsoutputopensearchindex
+  labels:
+    testing.upbound.io/example-name: index
+  name: index
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my opensearch index
+    serviceName: '....'
+    suffix: index

@@ -1,0 +1,16 @@
+apiVersion: privatesql.ovh.m.edixos.io/v1alpha1
+kind: PrivatedatabaseUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: privatesql/v1alpha1/privatedatabaseuser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+    serviceName: XXXXXX
+    userName: XXXXXX

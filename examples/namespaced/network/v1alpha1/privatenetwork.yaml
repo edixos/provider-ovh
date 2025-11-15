@@ -1,0 +1,16 @@
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: PrivateNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1alpha1/privatenetwork
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: admin_network
+    regions:
+      - GRA1
+      - BHS1
+    serviceName: XXXXXX

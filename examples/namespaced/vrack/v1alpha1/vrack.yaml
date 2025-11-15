@@ -1,0 +1,18 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Vrack
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/vrack
+  labels:
+    testing.upbound.io/example-name: vrack
+  name: vrack
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my vrack
+    name: my-vrack
+    ovhSubsidiary: ${data.ovh_order_cart.my_cart.ovh_subsidiary}
+    plan:
+    - duration: ${data.ovh_order_cart_product_plan.vrack.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.vrack.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.vrack.selected_price.0.pricing_mode}

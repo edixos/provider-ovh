@@ -1,0 +1,631 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: projectdatabases.databases.ovh.m.edixos.io
+spec:
+  group: databases.ovh.m.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: ProjectDatabase
+    listKind: ProjectDatabaseList
+    plural: projectdatabases
+    singular: projectdatabase
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: ProjectDatabase is the Schema for the ProjectDatabases API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ProjectDatabaseSpec defines the desired state of ProjectDatabase
+            properties:
+              forProvider:
+                properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
+                  backupRegions:
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                    items:
+                      type: string
+                    type: array
+                  backupTime:
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
+                    type: string
+                  description:
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
+                    type: string
+                  diskSize:
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
+                    type: number
+                  engine:
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
+                    type: string
+                  flavor:
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
+                    type: string
+                  ipRestrictions:
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
+                          type: string
+                        ip:
+                          description: |-
+                            Authorized IP
+                            Authorized IP
+                          type: string
+                      type: object
+                    type: array
+                  kafkaRestApi:
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                    type: boolean
+                  maintenanceTime:
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
+                    type: string
+                  nodes:
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
+                    items:
+                      properties:
+                        networkId:
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
+                          type: string
+                        region:
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
+                          type: string
+                        subnetId:
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
+                          type: string
+                      type: object
+                    type: array
+                  opensearchAclsEnabled:
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
+                    type: boolean
+                  plan:
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
+                    type: string
+                  serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                    type: string
+                  version:
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
+                    type: string
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
+                  backupRegions:
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                    items:
+                      type: string
+                    type: array
+                  backupTime:
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
+                    type: string
+                  description:
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
+                    type: string
+                  diskSize:
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
+                    type: number
+                  engine:
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
+                    type: string
+                  flavor:
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
+                    type: string
+                  ipRestrictions:
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
+                          type: string
+                        ip:
+                          description: |-
+                            Authorized IP
+                            Authorized IP
+                          type: string
+                      type: object
+                    type: array
+                  kafkaRestApi:
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                    type: boolean
+                  maintenanceTime:
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
+                    type: string
+                  nodes:
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
+                    items:
+                      properties:
+                        networkId:
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
+                          type: string
+                        region:
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
+                          type: string
+                        subnetId:
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
+                          type: string
+                      type: object
+                    type: array
+                  opensearchAclsEnabled:
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
+                    type: boolean
+                  plan:
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
+                    type: string
+                  serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                    type: string
+                  version:
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
+                    type: string
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  kind: ClusterProviderConfig
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  kind:
+                    description: Kind of the referenced object.
+                    type: string
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                required:
+                - kind
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                required:
+                - name
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.engine is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.engine)
+                || (has(self.initProvider) && has(self.initProvider.engine))'
+            - message: spec.forProvider.flavor is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.flavor)
+                || (has(self.initProvider) && has(self.initProvider.flavor))'
+            - message: spec.forProvider.nodes is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.nodes)
+                || (has(self.initProvider) && has(self.initProvider.nodes))'
+            - message: spec.forProvider.plan is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.plan)
+                || (has(self.initProvider) && has(self.initProvider.plan))'
+            - message: spec.forProvider.serviceName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
+                || (has(self.initProvider) && has(self.initProvider.serviceName))'
+            - message: spec.forProvider.version is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.version)
+                || (has(self.initProvider) && has(self.initProvider.version))'
+          status:
+            description: ProjectDatabaseStatus defines the observed state of ProjectDatabase.
+            properties:
+              atProvider:
+                properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Advanced configuration key / value.
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
+                  backupRegions:
+                    description: |-
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                      List of region where backups are pushed. Not more than 1 regions for MongoDB. Not more than 2 regions for the other engines with one being the same as the nodes[].region field
+                    items:
+                      type: string
+                    type: array
+                  backupTime:
+                    description: |-
+                      Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
+                      Time on which backups start every day
+                    type: string
+                  createdAt:
+                    description: |-
+                      Date of the creation of the cluster.
+                      Date of the creation of the cluster
+                    type: string
+                  description:
+                    description: |-
+                      Small description of the database service.
+                      Description of the cluster
+                    type: string
+                  diskSize:
+                    description: |-
+                      The disk size (in GB) of the database service.
+                      Disk size attributes of the cluster
+                    type: number
+                  diskType:
+                    description: |-
+                      Defines the disk type of the database service.
+                      Disk type attributes of the cluster
+                    type: string
+                  endpoints:
+                    description: |-
+                      List of all endpoints objects of the service.
+                      List of all endpoints of the service
+                    items:
+                      properties:
+                        component:
+                          description: Type of component the URI relates to.
+                          type: string
+                        domain:
+                          description: Domain of the cluster.
+                          type: string
+                        path:
+                          description: Path of the endpoint.
+                          type: string
+                        port:
+                          description: Connection port for the endpoint.
+                          type: number
+                        scheme:
+                          description: Scheme used to generate the URI.
+                          type: string
+                        ssl:
+                          description: Defines whether the endpoint uses SSL.
+                          type: boolean
+                        sslMode:
+                          description: SSL mode used to connect to the service if
+                            the SSL is enabled.
+                          type: string
+                        uri:
+                          description: URI of the endpoint.
+                          type: string
+                      type: object
+                    type: array
+                  engine:
+                    description: |-
+                      The database engine you want to deploy. To get a full list of available engine visit. public documentation.
+                      Name of the engine of the service
+                    type: string
+                  flavor:
+                    description: |-
+                      A valid OVHcloud public cloud database flavor name in which the nodes will be started. Ex: "db1-7". Changing this value upgrade the nodes with the new flavor. You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
+                      The node flavor used for this cluster
+                    type: string
+                  id:
+                    description: Public Cloud Database Service ID
+                    type: string
+                  ipRestrictions:
+                    description: |-
+                      IP Blocks authorized to access to the cluster.
+                      IP Blocks authorized to access to the cluster
+                    items:
+                      properties:
+                        description:
+                          description: |-
+                            Small description of the database service.
+                            Description of the IP restriction
+                          type: string
+                        ip:
+                          description: |-
+                            Authorized IP
+                            Authorized IP
+                          type: string
+                        status:
+                          description: |-
+                            Current status of the IP restriction.
+                            Current status of the IP restriction
+                          type: string
+                      type: object
+                    type: array
+                  kafkaRestApi:
+                    description: |-
+                      Defines whether the REST API is enabled on a kafka cluster
+                      Defines whether the REST API is enabled on a Kafka cluster
+                    type: boolean
+                  kafkaSchemaRegistry:
+                    description: |-
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                      Defines whether the schema registry is enabled on a Kafka cluster
+                    type: boolean
+                  maintenanceTime:
+                    description: |-
+                      Time on which maintenances can start every day.
+                      Time on which maintenances can start every day
+                    type: string
+                  networkType:
+                    description: |-
+                      Type of network of the cluster.
+                      Type of network of the cluster
+                    type: string
+                  nodes:
+                    description: |-
+                      List of nodes object. Multi region cluster are not yet available, all node should be identical.
+                      List of nodes composing the service
+                    items:
+                      properties:
+                        networkId:
+                          description: |-
+                            Private network id in which the node should be deployed. It's the regional openstackId of the private network
+                            Private network ID in which the node is. It's the regional openstackId of the private network.
+                          type: string
+                        region:
+                          description: |-
+                            Public cloud region in which the node should be deployed. Ex: "GRA'.
+                            Region of the node
+                          type: string
+                        subnetId:
+                          description: |-
+                            Private subnet ID in which the node is.
+                            Private subnet ID in which the node is
+                          type: string
+                      type: object
+                    type: array
+                  opensearchAclsEnabled:
+                    description: |-
+                      Defines whether the ACLs are enabled on an OpenSearch cluster
+                      Defines whether the ACLs are enabled on an Opensearch cluster
+                    type: boolean
+                  plan:
+                    description: |-
+                      Plan of the cluster.
+                      Plan of the cluster
+                    type: string
+                  serviceName:
+                    description: The id of the public cloud project. If omitted, the
+                      OVH_CLOUD_PROJECT_SERVICE environment variable is used.
+                    type: string
+                  status:
+                    description: |-
+                      Current status of the IP restriction.
+                      Current status of the cluster
+                    type: string
+                  version:
+                    description: |-
+                      The version of the engine in which the service should be deployed
+                      Version of the engine deployed on the cluster
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

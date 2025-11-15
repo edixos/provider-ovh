@@ -1,0 +1,17 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabaseIPRestriction
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaseiprestriction
+  labels:
+    testing.upbound.io/example-name: ip_restriction
+  name: ip-restriction
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    engine: ${data.ovh_cloud_project_database.db.engine}
+    ip: 178.97.6.0/24
+    serviceName: ${data.ovh_cloud_project_database.db.service_name}

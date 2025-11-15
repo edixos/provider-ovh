@@ -1,0 +1,18 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: SSL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/ssl
+  labels:
+    testing.upbound.io/example-name: sslname
+  name: sslname
+  namespace: upbound-system
+spec:
+  forProvider:
+    certificate: '...'
+    chain: '...'
+    displayName: test
+    keySecretRef:
+      key: example-key
+      name: example-secret
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}

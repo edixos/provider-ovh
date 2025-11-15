@@ -1,0 +1,20 @@
+apiVersion: me.ovh.m.edixos.io/v1alpha1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: me/v1alpha1/user
+  labels:
+    testing.upbound.io/example-name: my_user
+  name: my-user
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: Some custom description
+    email: my_login@example.com
+    groupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    login: my_login
+    passwordSecretRef:
+      key: example-key
+      name: example-secret

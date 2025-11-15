@@ -1,0 +1,16 @@
+apiVersion: additionalip.ovh.m.edixos.io/v1alpha1
+kind: FirewallRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/firewallrule
+  labels:
+    testing.upbound.io/example-name: deny_tcp
+  name: deny-tcp
+  namespace: upbound-system
+spec:
+  forProvider:
+    action: deny
+    ip: XXXXXX
+    ipOnFirewall: XXXXXX
+    protocol: tcp
+    sequence: 0

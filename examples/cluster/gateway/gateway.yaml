@@ -1,0 +1,19 @@
+apiVersion: gateway.ovh.edixos.io/v1alpha1
+kind: ProjectGateway
+metadata:
+  name: gateway-1
+  labels:
+    managed-by: crossplane
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: gateway-1
+    model: s
+    region: DE1
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba
+    networkIdRef:
+      name: sample-1
+    subnetIdRef:
+      name: subnet-1
+

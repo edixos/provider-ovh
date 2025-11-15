@@ -1,0 +1,14 @@
+apiVersion: me.ovh.m.edixos.io/v1alpha1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: me/v1alpha1/group
+  labels:
+    testing.upbound.io/example-name: my_group
+  name: my-group
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: Some custom description
+    name: my_group_name
+    role: NONE

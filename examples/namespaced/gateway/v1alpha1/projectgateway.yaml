@@ -1,0 +1,63 @@
+apiVersion: gateway.ovh.m.edixos.io/v1alpha1
+kind: ProjectGateway
+metadata:
+  annotations:
+    meta.upbound.io/example-id: gateway/v1alpha1/projectgateway
+  labels:
+    testing.upbound.io/example-name: gateway
+  name: gateway
+  namespace: upbound-system
+spec:
+  forProvider:
+    model: s
+    name: my-gateway
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: mypriv
+    region: GRA1
+    serviceName: ${ovh_cloud_project_network_private.mypriv.service_name}
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: myprivsub
+
+---
+
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: PrivateNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: gateway/v1alpha1/projectgateway
+  labels:
+    testing.upbound.io/example-name: mypriv
+  name: mypriv
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: mypriv
+    regions:
+    - GRA9
+    serviceName: xxxxxxxxxx
+    vlanId: "0"
+
+---
+
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: gateway/v1alpha1/projectgateway
+  labels:
+    testing.upbound.io/example-name: myprivsub
+  name: myprivsub
+  namespace: upbound-system
+spec:
+  forProvider:
+    dhcp: true
+    end: 10.0.255.254
+    network: 10.0.0.0/16
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: mypriv
+    region: GRA9
+    serviceName: xxxxxxxxxx
+    start: 10.0.0.2

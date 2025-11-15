@@ -1,0 +1,21 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: Iploadbalancing
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/iploadbalancing
+  labels:
+    testing.upbound.io/example-name: iplb_lb1
+  name: iplb-lb1
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: my ip loadbalancing
+    ovhSubsidiary: ${data.ovh_order_cart.mycart.ovh_subsidiary}
+    plan:
+    - duration: ${data.ovh_order_cart_product_plan.iplb.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_plan.iplb.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_plan.iplb.selected_price.0.pricing_mode}
+    planOption:
+    - duration: ${data.ovh_order_cart_product_options_plan.bhs.selected_price.0.duration}
+      planCode: ${data.ovh_order_cart_product_options_plan.bhs.plan_code}
+      pricingMode: ${data.ovh_order_cart_product_options_plan.bhs.selected_price.0.pricing_mode}

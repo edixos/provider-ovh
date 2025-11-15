@@ -1,0 +1,40 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: HTTPRouteRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/httprouterule
+  labels:
+    testing.upbound.io/example-name: example_rule
+  name: example-rule
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: Match example.com host
+    field: host
+    match: is
+    negate: false
+    pattern: example.com
+    routeId: ${ovh_iploadbalancing_http_route.https_redirect.id}
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+
+---
+
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: HTTPRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/httprouterule
+  labels:
+    testing.upbound.io/example-name: https_redirect
+  name: https-redirect
+  namespace: upbound-system
+spec:
+  forProvider:
+    action:
+    - status: 302
+      target: https://${host}${path}${arguments}
+      type: redirect
+    displayName: Redirect to HTTPS
+    frontendId: 11111
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+    weight: 1

@@ -1,0 +1,14 @@
+apiVersion: clouddiskarray.ovh.m.edixos.io/v1alpha1
+kind: CephACL
+metadata:
+  annotations:
+    meta.upbound.io/example-id: clouddiskarray/v1alpha1/cephacl
+  labels:
+    testing.upbound.io/example-name: my_acl
+  name: my-acl
+  namespace: upbound-system
+spec:
+  forProvider:
+    netmask: 255.255.255.255
+    network: 1.2.3.4
+    serviceName: ${data.ovh_dedicated_ceph.my_ceph.id}

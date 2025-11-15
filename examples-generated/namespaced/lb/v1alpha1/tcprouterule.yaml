@@ -1,0 +1,37 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPRouteRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcprouterule
+  labels:
+    testing.upbound.io/example-name: example_rule
+  name: example-rule
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: Match example.com host
+    field: sni
+    match: is
+    negate: false
+    pattern: example.com
+    routeId: ${ovh_iploadbalancing_tcp_route.reject.id}
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+
+---
+
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcprouterule
+  labels:
+    testing.upbound.io/example-name: reject
+  name: reject
+  namespace: upbound-system
+spec:
+  forProvider:
+    action:
+    - type: reject
+    frontendId: 11111
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+    weight: 1

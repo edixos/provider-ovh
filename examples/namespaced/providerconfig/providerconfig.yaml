@@ -1,0 +1,12 @@
+apiVersion: ovh.m.edixos.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: default
+  namespace: default
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      name: provider-ovh
+      namespace: default
+      key: credentials

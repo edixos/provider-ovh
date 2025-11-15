@@ -1,0 +1,15 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/tcproute
+  labels:
+    testing.upbound.io/example-name: tcp_reject
+  name: tcp-reject
+  namespace: upbound-system
+spec:
+  forProvider:
+    action:
+    - type: reject
+    serviceName: loadbalancer-xxxxxxxxxxxxxxxxxx
+    weight: 1

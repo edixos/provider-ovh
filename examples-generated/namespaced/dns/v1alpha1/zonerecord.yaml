@@ -1,0 +1,16 @@
+apiVersion: dns.ovh.m.edixos.io/v1alpha1
+kind: ZoneRecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1alpha1/zonerecord
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+  namespace: upbound-system
+spec:
+  forProvider:
+    fieldtype: A
+    subdomain: test
+    target: 0.0.0.0
+    ttl: 3600
+    zone: testdemo.ovh

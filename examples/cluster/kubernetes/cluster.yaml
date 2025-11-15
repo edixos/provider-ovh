@@ -1,0 +1,15 @@
+apiVersion: kube.ovh.edixos.io/v1alpha1
+kind: Cluster
+metadata:
+  name: hello-edixos
+spec:
+  providerConfigRef:
+    name: default
+  forProvider:
+    name: "hello-edixos"
+    privateNetworkIdRef:
+      name: sample-1
+    nodesSubnetIdRef:
+      name: subnet-1
+    region: DE1
+    serviceName: 980cbcf06e6a4e6e8a91a7d125b26bba

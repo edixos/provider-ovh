@@ -1,0 +1,51 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: VrackNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/vracknetwork
+  labels:
+    testing.upbound.io/example-name: network
+  name: network
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: mynetwork
+    natIp: 10.0.0.0/27
+    serviceName: ${ovh_vrack_iploadbalancing.vip_lb.ip_loadbalancing}
+    subnet: 10.0.0.0/16
+    vlan: 1
+
+---
+
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: TCPFarm
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/vracknetwork
+  labels:
+    testing.upbound.io/example-name: test_farm
+  name: test-farm
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: mytcpbackends
+    port: 80
+    serviceName: ${data.ovh_iploadbalancing.iplb.service_name}
+    vrackNetworkId: ${ovh_iploadbalancing_vrack_network.network.vrack_network_id}
+    zone: ${tolist(data.ovh_iploadbalancing.iplb.zone)[0]}
+
+---
+
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Iploadbalancing
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/vracknetwork
+  labels:
+    testing.upbound.io/example-name: vip_lb
+  name: vip-lb
+  namespace: upbound-system
+spec:
+  forProvider:
+    ipLoadbalancing: ${data.ovh_iploadbalancing.iplb.service_name}
+    serviceName: xxx

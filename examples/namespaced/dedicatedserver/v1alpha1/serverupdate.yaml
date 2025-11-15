@@ -1,0 +1,16 @@
+apiVersion: dedicatedserver.ovh.m.edixos.io/v1alpha1
+kind: ServerUpdate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicatedserver/v1alpha1/serverupdate
+  labels:
+    testing.upbound.io/example-name: server
+  name: server
+  namespace: upbound-system
+spec:
+  forProvider:
+    bootId: ${data.ovh_dedicated_server_boots.rescue.result[0]}
+    displayName: Some human-readable name
+    monitoring: true
+    serviceName: nsxxxxxxx.ip-xx-xx-xx.eu
+    state: ok

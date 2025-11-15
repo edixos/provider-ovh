@@ -1,0 +1,14 @@
+apiVersion: additionalip.ovh.m.edixos.io/v1alpha1
+kind: ProjectFailoverIPAttach
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/projectfailoveripattach
+  labels:
+    testing.upbound.io/example-name: failover_ip
+  name: failover-ip
+  namespace: upbound-system
+spec:
+  forProvider:
+    ip: XXXXXX
+    routedTo: XXXXXX
+    serviceName: XXXXXX

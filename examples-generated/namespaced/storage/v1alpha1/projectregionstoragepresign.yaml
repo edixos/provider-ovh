@@ -1,0 +1,17 @@
+apiVersion: storage.ovh.m.edixos.io/v1alpha1
+kind: ProjectRegionStoragePresign
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/projectregionstoragepresign
+  labels:
+    testing.upbound.io/example-name: presigned_url
+  name: presigned-url
+  namespace: upbound-system
+spec:
+  forProvider:
+    expire: 3600
+    method: GET
+    name: s3-bucket-name
+    object: an-object-in-the-bucket
+    regionName: GRA
+    serviceName: xxxxxxxxxxxxxxxxx

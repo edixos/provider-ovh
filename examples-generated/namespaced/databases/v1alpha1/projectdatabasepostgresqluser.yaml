@@ -1,0 +1,18 @@
+apiVersion: databases.ovh.m.edixos.io/v1alpha1
+kind: ProjectDatabasePostgresqlUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasepostgresqluser
+  labels:
+    testing.upbound.io/example-name: user
+  name: user
+  namespace: upbound-system
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    name: johndoe
+    roles:
+    - replication
+    serviceName: ${data.ovh_cloud_project_database.postgresql.service_name}

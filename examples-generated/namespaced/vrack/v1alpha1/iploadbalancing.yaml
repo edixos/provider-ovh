@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Iploadbalancing
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/iploadbalancing
+  labels:
+    testing.upbound.io/example-name: viplb
+  name: viplb
+  namespace: upbound-system
+spec:
+  forProvider:
+    ipLoadbalancing: yyy
+    serviceName: xxx

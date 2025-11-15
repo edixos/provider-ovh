@@ -1,0 +1,15 @@
+apiVersion: registry.ovh.m.edixos.io/v1alpha1
+kind: ContainerRegistry
+metadata:
+  annotations:
+    meta.upbound.io/example-id: registry/v1alpha1/containerregistry
+  labels:
+    testing.upbound.io/example-name: my_registry
+  name: my-registry
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: mydockerregistry
+    planId: ${data.ovh_cloud_project_capabilities_containerregistry_filter.regcap.id}
+    region: ${data.ovh_cloud_project_capabilities_containerregistry_filter.regcap.region}
+    serviceName: ${data.ovh_cloud_project_capabilities_containerregistry_filter.regcap.service_name}

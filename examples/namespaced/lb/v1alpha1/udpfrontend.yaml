@@ -1,0 +1,15 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: UDPFrontend
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/udpfrontend
+  labels:
+    testing.upbound.io/example-name: test_frontend
+  name: test-frontend
+  namespace: upbound-system
+spec:
+  forProvider:
+    displayName: ingress-8080-gra
+    port: 10,11
+    serviceName: ${data.ovh_iploadbalancing.lb.service_name}
+    zone: all

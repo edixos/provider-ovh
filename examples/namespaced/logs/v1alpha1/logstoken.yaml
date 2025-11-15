@@ -1,0 +1,13 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsToken
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logstoken
+  labels:
+    testing.upbound.io/example-name: token
+  name: token
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: ExampleToken
+    serviceName: ldp-xx-xxxxx

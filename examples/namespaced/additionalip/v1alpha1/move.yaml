@@ -1,0 +1,14 @@
+apiVersion: additionalip.ovh.m.edixos.io/v1alpha1
+kind: Move
+metadata:
+  annotations:
+    meta.upbound.io/example-id: additionalip/v1alpha1/move
+  labels:
+    testing.upbound.io/example-name: move_ip_to_load_balancer_xxxxx
+  name: move-ip-to-load-balancer-xxxxx
+  namespace: upbound-system
+spec:
+  forProvider:
+    ip: 1.2.3.4
+    routedTo:
+    - serviceName: loadbalancer-XXXXX

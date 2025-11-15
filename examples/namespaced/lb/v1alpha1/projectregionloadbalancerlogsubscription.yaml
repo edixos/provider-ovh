@@ -1,0 +1,16 @@
+apiVersion: lb.ovh.m.edixos.io/v1alpha1
+kind: ProjectRegionLoadbalancerLogSubscription
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1alpha1/projectregionloadbalancerlogsubscription
+  labels:
+    testing.upbound.io/example-name: subscription
+  name: subscription
+  namespace: upbound-system
+spec:
+  forProvider:
+    kind: haproxy
+    loadbalancerId: aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+    regionName: yyyy
+    serviceName: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    streamId: ffffffff-gggg-hhhh-iiii-jjjjjjjjjjjj
