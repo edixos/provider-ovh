@@ -26,4 +26,10 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_dbaas_logs_output_opensearch_alias", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_dbaas_logs_role", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_dbaas_logs_role_permission_stream", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

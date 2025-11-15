@@ -1,0 +1,14 @@
+apiVersion: dns.ovh.m.edixos.io/v1alpha1
+kind: ZoneDynhostRecord
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1alpha1/zonedynhostrecord
+  labels:
+    testing.upbound.io/example-name: dynhost_record
+  name: dynhost-record
+  namespace: upbound-system
+spec:
+  forProvider:
+    ip: 1.2.3.4
+    subDomain: dynhost
+    zoneName: mydomain.ovh

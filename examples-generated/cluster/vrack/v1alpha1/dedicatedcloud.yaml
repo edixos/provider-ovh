@@ -1,0 +1,12 @@
+apiVersion: vrack.ovh.edixos.io/v1alpha1
+kind: DedicatedCloud
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/dedicatedcloud
+  labels:
+    testing.upbound.io/example-name: vrack_dedicated_cloud
+  name: vrack-dedicated-cloud
+spec:
+  forProvider:
+    dedicatedCloud: <Dedicated Cloud service name>
+    serviceName: <vRack service name>

@@ -1,0 +1,17 @@
+apiVersion: dns.ovh.edixos.io/v1alpha1
+kind: ZoneDynhostLogin
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dns/v1alpha1/zonedynhostlogin
+  labels:
+    testing.upbound.io/example-name: dynhost_user
+  name: dynhost-user
+spec:
+  forProvider:
+    loginSuffix: dynhostUser
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    subDomain: dynhost
+    zoneName: mydomain.ovh

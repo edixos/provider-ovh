@@ -20,5 +20,19 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_domain_zone_redirection", func(r *config.Resource) {
 		r.ShortGroup = shortName
 	})
-
+	p.AddResourceConfigurator("ovh_domain_name", func(r *config.Resource) {
+		r.ShortGroup = shortName
+	})
+	p.AddResourceConfigurator("ovh_domain_name_servers", func(r *config.Resource) {
+		r.ShortGroup = shortName
+	})
+	p.AddResourceConfigurator("ovh_domain_ds_records", func(r *config.Resource) {
+		r.ShortGroup = shortName
+	})
+	p.AddResourceConfigurator("ovh_domain_zone_dynhost_login", func(r *config.Resource) {
+		r.ShortGroup = shortName
+	})
+	p.AddResourceConfigurator("ovh_domain_zone_dynhost_record", func(r *config.Resource) {
+		r.ShortGroup = shortName
+	})
 }

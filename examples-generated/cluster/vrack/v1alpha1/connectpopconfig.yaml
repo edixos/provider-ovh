@@ -1,0 +1,16 @@
+apiVersion: vrack.ovh.edixos.io/v1alpha1
+kind: ConnectPopConfig
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/connectpopconfig
+  labels:
+    testing.upbound.io/example-name: pop
+  name: pop
+spec:
+  forProvider:
+    customerBgpArea: 65400
+    interfaceId: ${tolist(data.ovh_ovhcloud_connect.occ.interface_list)[0]}
+    ovhBgpArea: 65401
+    serviceName: ${data.ovh_ovhcloud_connect.occ.service_name}
+    subnet: I.I.I.I/30
+    type: l3

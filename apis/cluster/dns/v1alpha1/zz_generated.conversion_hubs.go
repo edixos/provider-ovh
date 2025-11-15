@@ -7,10 +7,25 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *DsRecords) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Name) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *NameServers) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Zone) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ZoneDNSSEC) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ZoneDynhostLogin) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ZoneDynhostRecord) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ZoneRecord) Hub() {}

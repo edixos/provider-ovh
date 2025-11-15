@@ -27,4 +27,7 @@ func Configure(p *config.Provider) {
 			Extractor:     "github.com/edixos/provider-ovh/config/common.PrivateNetworkOpenStackIdExtractor()",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_region_network", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

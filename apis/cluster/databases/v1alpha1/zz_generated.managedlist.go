@@ -88,6 +88,15 @@ func (l *ProjectDatabaseM3DbUserList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ProjectDatabaseMongodbPrometheusList.
+func (l *ProjectDatabaseMongodbPrometheusList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ProjectDatabaseMongodbUserList.
 func (l *ProjectDatabaseMongodbUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -133,6 +142,15 @@ func (l *ProjectDatabasePostgresqlUserList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ProjectDatabasePrometheusList.
+func (l *ProjectDatabasePrometheusList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ProjectDatabaseRedisUserList.
 func (l *ProjectDatabaseRedisUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -144,6 +162,15 @@ func (l *ProjectDatabaseRedisUserList) GetItems() []resource.Managed {
 
 // GetItems of this ProjectDatabaseUserList.
 func (l *ProjectDatabaseUserList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this ProjectDatabaseValkeyUserList.
+func (l *ProjectDatabaseValkeyUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

@@ -1,0 +1,14 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsRole
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsrole
+  labels:
+    testing.upbound.io/example-name: ro
+  name: ro
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: Devops - RO
+    name: Devops - RO
+    serviceName: ldp-xx-xxxxx

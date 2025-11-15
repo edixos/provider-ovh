@@ -1,0 +1,14 @@
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: ProjectVolumeBackup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectvolumebackup
+  labels:
+    testing.upbound.io/example-name: backup
+  name: backup
+spec:
+  forProvider:
+    name: ExampleBackup
+    regionName: GRA9
+    serviceName: <public cloud project ID>
+    volumeId: <volume ID>

@@ -7,7 +7,37 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *Plan) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Project) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectContainerregistryIAM) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectInstance) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectInstanceSnapshot) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectRancher) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectRegion) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectSSHKey) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectStorage) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectVolume) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectVolumeBackup) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *S3Credentials) Hub() {}

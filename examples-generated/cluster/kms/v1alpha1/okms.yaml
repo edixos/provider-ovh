@@ -1,0 +1,13 @@
+apiVersion: kms.ovh.edixos.io/v1alpha1
+kind: Okms
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kms/v1alpha1/okms
+  labels:
+    testing.upbound.io/example-name: new_kms
+  name: new-kms
+spec:
+  forProvider:
+    displayName: terraformed KMS
+    ovhSubsidiary: FR
+    region: eu-west-rbx

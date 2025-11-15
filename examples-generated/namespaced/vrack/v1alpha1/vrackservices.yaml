@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Vrackservices
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/vrackservices
+  labels:
+    testing.upbound.io/example-name: vrack_vrackservices
+  name: vrack-vrackservices
+  namespace: upbound-system
+spec:
+  forProvider:
+    serviceName: <vRack service name>
+    vrackServices: <vrackServices service name>

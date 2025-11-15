@@ -1,0 +1,23 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: ProjectInstance
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectinstance
+  labels:
+    testing.upbound.io/example-name: instance
+  name: instance
+  namespace: upbound-system
+spec:
+  forProvider:
+    billingPeriod: hourly
+    bootFrom:
+    - imageId: UUID
+    flavor:
+    - flavorId: UUID
+    name: instance name
+    network:
+    - public: true
+    region: RRRR
+    serviceName: XXX
+    sshKey:
+    - name: sshname

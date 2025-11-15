@@ -10,6 +10,21 @@ package v1alpha1
 func (tr *Cloudproject) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ConnectPopConfig) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ConnectPopDatacenterConfig) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ConnectPopDatacenterExtraConfig) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *DedicatedCloud) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *DedicatedCloudDatacenter) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *DedicatedServer) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -22,4 +37,16 @@ func (tr *IP) Hub() {}
 func (tr *Iploadbalancing) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *IPv6) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *IPv6RoutedSubrange) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Ovhcloudconnect) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Vrack) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Vrackservices) Hub() {}

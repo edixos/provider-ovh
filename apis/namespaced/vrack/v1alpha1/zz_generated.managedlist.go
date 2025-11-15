@@ -16,6 +16,51 @@ func (l *CloudprojectList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ConnectPopConfigList.
+func (l *ConnectPopConfigList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this ConnectPopDatacenterConfigList.
+func (l *ConnectPopDatacenterConfigList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this ConnectPopDatacenterExtraConfigList.
+func (l *ConnectPopDatacenterExtraConfigList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this DedicatedCloudDatacenterList.
+func (l *DedicatedCloudDatacenterList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this DedicatedCloudList.
+func (l *DedicatedCloudList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this DedicatedServerInterfaceList.
 func (l *DedicatedServerInterfaceList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -43,6 +88,24 @@ func (l *IPList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this IPv6List.
+func (l *IPv6List) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this IPv6RoutedSubrangeList.
+func (l *IPv6RoutedSubrangeList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this IploadbalancingList.
 func (l *IploadbalancingList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -52,8 +115,26 @@ func (l *IploadbalancingList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this OvhcloudconnectList.
+func (l *OvhcloudconnectList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this VrackList.
 func (l *VrackList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this VrackservicesList.
+func (l *VrackservicesList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

@@ -25,6 +25,9 @@ func (tr *HTTPRouteRule) Hub() {}
 func (tr *Iploadbalancing) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectLoadbalancer) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectRegionLoadbalancerLogSubscription) Hub() {}
 
 // Hub marks this type as a conversion hub.

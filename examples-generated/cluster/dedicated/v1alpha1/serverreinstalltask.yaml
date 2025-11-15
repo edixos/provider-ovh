@@ -1,0 +1,12 @@
+apiVersion: dedicated.ovh.edixos.io/v1alpha1
+kind: ServerReinstallTask
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicated/v1alpha1/serverreinstalltask
+  labels:
+    testing.upbound.io/example-name: server_reinstall
+  name: server-reinstall
+spec:
+  forProvider:
+    os: ${data.ovh_dedicated_installation_template.template.template_name}
+    serviceName: ${data.ovh_dedicated_server.server.service_name}

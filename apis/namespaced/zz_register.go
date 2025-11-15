@@ -14,16 +14,20 @@ import (
 	v1alpha1cloud "github.com/edixos/provider-ovh/apis/namespaced/cloud/v1alpha1"
 	v1alpha1clouddiskarray "github.com/edixos/provider-ovh/apis/namespaced/clouddiskarray/v1alpha1"
 	v1alpha1databases "github.com/edixos/provider-ovh/apis/namespaced/databases/v1alpha1"
+	v1alpha1dedicated "github.com/edixos/provider-ovh/apis/namespaced/dedicated/v1alpha1"
 	v1alpha1dedicatedserver "github.com/edixos/provider-ovh/apis/namespaced/dedicatedserver/v1alpha1"
 	v1alpha1dns "github.com/edixos/provider-ovh/apis/namespaced/dns/v1alpha1"
 	v1alpha1gateway "github.com/edixos/provider-ovh/apis/namespaced/gateway/v1alpha1"
 	v1alpha1iam "github.com/edixos/provider-ovh/apis/namespaced/iam/v1alpha1"
+	v1alpha1kms "github.com/edixos/provider-ovh/apis/namespaced/kms/v1alpha1"
 	v1alpha1kube "github.com/edixos/provider-ovh/apis/namespaced/kube/v1alpha1"
 	v1alpha1lb "github.com/edixos/provider-ovh/apis/namespaced/lb/v1alpha1"
 	v1alpha1logs "github.com/edixos/provider-ovh/apis/namespaced/logs/v1alpha1"
 	v1alpha1me "github.com/edixos/provider-ovh/apis/namespaced/me/v1alpha1"
 	v1alpha1nas "github.com/edixos/provider-ovh/apis/namespaced/nas/v1alpha1"
 	v1alpha1network "github.com/edixos/provider-ovh/apis/namespaced/network/v1alpha1"
+	v1alpha1okms "github.com/edixos/provider-ovh/apis/namespaced/okms/v1alpha1"
+	v1alpha1ovh "github.com/edixos/provider-ovh/apis/namespaced/ovh/v1alpha1"
 	v1alpha1privatesql "github.com/edixos/provider-ovh/apis/namespaced/privatesql/v1alpha1"
 	v1alpha1registry "github.com/edixos/provider-ovh/apis/namespaced/registry/v1alpha1"
 	v1alpha1storage "github.com/edixos/provider-ovh/apis/namespaced/storage/v1alpha1"
@@ -40,16 +44,20 @@ func init() {
 		v1alpha1cloud.SchemeBuilder.AddToScheme,
 		v1alpha1clouddiskarray.SchemeBuilder.AddToScheme,
 		v1alpha1databases.SchemeBuilder.AddToScheme,
+		v1alpha1dedicated.SchemeBuilder.AddToScheme,
 		v1alpha1dedicatedserver.SchemeBuilder.AddToScheme,
 		v1alpha1dns.SchemeBuilder.AddToScheme,
 		v1alpha1gateway.SchemeBuilder.AddToScheme,
 		v1alpha1iam.SchemeBuilder.AddToScheme,
+		v1alpha1kms.SchemeBuilder.AddToScheme,
 		v1alpha1kube.SchemeBuilder.AddToScheme,
 		v1alpha1lb.SchemeBuilder.AddToScheme,
 		v1alpha1logs.SchemeBuilder.AddToScheme,
 		v1alpha1me.SchemeBuilder.AddToScheme,
 		v1alpha1nas.SchemeBuilder.AddToScheme,
 		v1alpha1network.SchemeBuilder.AddToScheme,
+		v1alpha1okms.SchemeBuilder.AddToScheme,
+		v1alpha1ovh.SchemeBuilder.AddToScheme,
 		v1alpha1privatesql.SchemeBuilder.AddToScheme,
 		v1alpha1registry.SchemeBuilder.AddToScheme,
 		v1alpha1storage.SchemeBuilder.AddToScheme,

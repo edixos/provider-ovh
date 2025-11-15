@@ -1,0 +1,13 @@
+apiVersion: cloud.ovh.edixos.io/v1alpha1
+kind: ProjectInstanceSnapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectinstancesnapshot
+  labels:
+    testing.upbound.io/example-name: snapshot
+  name: snapshot
+spec:
+  forProvider:
+    instanceId: <instance ID>
+    name: SnapshotExample
+    serviceName: <public cloud project ID>

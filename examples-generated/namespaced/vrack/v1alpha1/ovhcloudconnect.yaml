@@ -1,0 +1,13 @@
+apiVersion: vrack.ovh.m.edixos.io/v1alpha1
+kind: Ovhcloudconnect
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vrack/v1alpha1/ovhcloudconnect
+  labels:
+    testing.upbound.io/example-name: vrack_ovhcloudconnect
+  name: vrack-ovhcloudconnect
+  namespace: upbound-system
+spec:
+  forProvider:
+    ovhCloudConnect: <OVH Cloud Connect service name>
+    serviceName: <vRack service name>

@@ -62,4 +62,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_iploadbalancing_udp_farm_server", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_loadbalancer", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

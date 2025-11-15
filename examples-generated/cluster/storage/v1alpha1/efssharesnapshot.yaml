@@ -1,0 +1,32 @@
+apiVersion: storage.ovh.edixos.io/v1alpha1
+kind: EFSShareSnapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/efssharesnapshot
+  labels:
+    testing.upbound.io/example-name: snapshot
+  name: snapshot
+spec:
+  forProvider:
+    description: My snapshot
+    name: snapshot
+    serviceName: ${data.ovh_storage_efs.efs.service_name}
+    shareId: ${ovh_storage_efs_share.share.id}
+
+---
+
+apiVersion: storage.ovh.edixos.io/v1alpha1
+kind: EFSShare
+metadata:
+  annotations:
+    meta.upbound.io/example-id: storage/v1alpha1/efssharesnapshot
+  labels:
+    testing.upbound.io/example-name: share
+  name: share
+spec:
+  forProvider:
+    description: My share
+    name: share
+    protocol: NFS
+    serviceName: ${data.ovh_storage_efs.efs.service_name}
+    size: 100

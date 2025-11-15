@@ -92,6 +92,11 @@ spec:
                       Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
                       Time on which backups start every day
                     type: string
+                  deletionProtection:
+                    description: |-
+                      Enable deletion protection
+                      Enable deletion protection
+                    type: boolean
                   description:
                     description: |-
                       Small description of the database service.
@@ -221,6 +226,11 @@ spec:
                       Time on which backups start every day (this parameter is not usable on the following engines: "m3db", "grafana", "kafka", "kafkaconnect", "kafkamirrormaker", "opensearch", "m3aggregator").
                       Time on which backups start every day
                     type: string
+                  deletionProtection:
+                    description: |-
+                      Enable deletion protection
+                      Enable deletion protection
+                    type: boolean
                   description:
                     description: |-
                       Small description of the database service.
@@ -458,6 +468,11 @@ spec:
                       Date of the creation of the cluster.
                       Date of the creation of the cluster
                     type: string
+                  deletionProtection:
+                    description: |-
+                      Enable deletion protection
+                      Enable deletion protection
+                    type: boolean
                   description:
                     description: |-
                       Small description of the database service.

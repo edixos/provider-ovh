@@ -1,0 +1,12 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseMongodbPrometheus
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabasemongodbprometheus
+  labels:
+    testing.upbound.io/example-name: prometheus
+  name: prometheus
+spec:
+  forProvider:
+    clusterId: ${data.ovh_cloud_project_database.mongodb.id}
+    serviceName: ${data.ovh_cloud_project_database.mongodb.service_name}

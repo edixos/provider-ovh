@@ -584,6 +584,7 @@ resources:
             create: '- (Default 20m)'
             created_at: '- Date of the creation of the cluster.'
             delete: '- (Default 20m)'
+            deletion_protection: '- (Optional) Enable deletion protection'
             description: '- (Optional) Small description of the database service.'
             disk_size: '- (Optional) The disk size (in GB) of the database service.'
             disk_type: '- Defines the disk type of the database service.'
@@ -2949,6 +2950,7 @@ resources:
             datetime: (String) Date of the sample
             description: (String) Description of the allowed CIDR block
             egress_cidr_blocks: (List of String) Specifies the CIDR ranges for egress IP addresses used by Rancher. Ensure these ranges are allowed in any IP restrictions for services that Rancher will access.
+            iam_auth_enabled: (Bool) Allows Rancher to use identities managed by OVHcloud IAM (Identity and Access Management) to control access
             id: (String) Unique identifier
             ip_restrictions: (Attributes List) List of allowed CIDR blocks for a managed Rancher service's IP restrictions. When empty, any IP is allowed (see below for nested schema)
             link: (String) Link to the task details
@@ -3260,7 +3262,7 @@ resources:
         name: ovh_cloud_project_volume
         title: ""
         examples:
-            - name: vol
+            - name: volume
               manifest: |-
                 {
                   "description": "Terraform volume",
@@ -3745,6 +3747,7 @@ resources:
             boot_script: '- Boot script of the server'
             catalog_name: '- Catalog name'
             commercial_range: '- Dedicated server commercial range'
+            config_drive_metadata: '- Config Drive MetaData'
             config_drive_user_data: '- Config Drive UserData'
             configuration: '- Representation of a configuration item to personalize product'
             customizations: '- Customization of the OS configuration'
@@ -3791,7 +3794,7 @@ resources:
             prevent_install_on_import: '- Defines whether a reinstallation of the server is allowed after importing it if there is a modification on the installation parameters'
             pricing_mode: '- (Required) Pricing mode identifier'
             professional_use: '- Does this server have professional use option'
-            properties: '- Arbitrary properties to pass to cloud-init''s config drive datasource'
+            properties: '- Deprecated, has no effect'
             rack: '- Rack id of the server'
             raid_level: '- Hardware raid type'
             region: '- Dedicated region localisation'
@@ -3899,21 +3902,19 @@ resources:
                 {
                   "customizations": [
                     {
+                      "config_drive_metadata": {
+                        "foo": "bar",
+                        "hello": "world"
+                      },
                       "config_drive_user_data": "I2Nsb3VkLWNvbmZpZwpzc2hfYXV0aG9yaXplZF9rZXlzOgogIC0gc3NoLXJzYSBBQUFBQjhkallpdz09IG15c2VsZkBteWRvbWFpbi5uZXQKCnVzZXJzOgogIC0gbmFtZTogcGF0aWVudDAKICAgIHN1ZG86IEFMTD0oQUxMKSBOT1BBU1NXRDpBTEwKICAgIGdyb3VwczogdXNlcnMsIHN1ZG8KICAgIHNoZWxsOiAvYmluL2Jhc2gKICAgIGxvY2tfcGFzc3dkOiBmYWxzZQogICAgc3NoX2F1dGhvcml6ZWRfa2V5czoKICAgICAgLSBzc2gtcnNhIEFBQUFCOGRqWWl3PT0gbXlzZWxmQG15ZG9tYWluLm5ldApkaXNhYmxlX3Jvb3Q6IGZhbHNlCnBhY2thZ2VzOgogIC0gdmltCiAgLSB0cmVlCmZpbmFsX21lc3NhZ2U6IFRoZSBzeXN0ZW0gaXMgZmluYWxseSB1cCwgYWZ0ZXIgJFVQVElNRSBzZWNvbmRzCg==",
                       "hostname": "mon-tux",
                       "http_headers": {
                         "Authorization": "Basic bG9naW46cGFzc3dvcmQ="
                       },
-                      "image_check_sum": "367f26c915f39314dde155db3a2b0326803e06975d1f4be04256f8b591e38fd4062d36eb7d50e99da7a50b7f4cd69640e56a4ab93e8e0274e4e478e0f84b5d29",
-                      "image_check_sum_type": "sha512",
                       "image_url": "https://github.com/ashmonger/akution_test/releases/download/0.5-compress/deb11k6.qcow2"
                     }
                   ],
                   "os": "byolinux_64",
-                  "properties": {
-                    "essential": "false",
-                    "role": "webservers"
-                  },
                   "service_name": "${data.ovh_dedicated_server.server.service_name}"
                 }
               references:
@@ -4039,7 +4040,7 @@ resources:
             name: ': Logical volume name'
             os: '- (Required) Operating system to install.'
             partitioning: ': Partitioning configuration'
-            properties: '- Arbitrary properties to pass to cloud-init''s config drive datasource. It supports any key with any string value.'
+            properties: '- Deprecated, has no effect'
             raid_level: ': Hardware raid type (default is 1)'
             scheme_name: ': Partitioning scheme (if applicable with selected operating system)'
             service_name: '- (Required) The service_name of your dedicated server.'
@@ -4645,6 +4646,44 @@ resources:
             updated_at: '- Date of the last modification of the resource group'
             urn: '- URN of the resource group, used when writing policies'
         importStatements: []
+    ovh_iam_resource_tags:
+        subCategory: ""
+        name: ovh_iam_resource_tags
+        title: ""
+        examples:
+            - name: project_tags
+              manifest: |-
+                {
+                  "tags": {
+                    "backup_policy": "daily",
+                    "compliance": "gdpr",
+                    "cost_center": "engineering",
+                    "environment": "staging",
+                    "owner": "team@example.com",
+                    "project": "web-app"
+                  },
+                  "urn": "urn:v1:eu:resource:cloudProject:1234567890abcdef"
+                }
+            - name: project_tags
+              manifest: |-
+                {
+                  "tags": {
+                    "environment": "production",
+                    "managed_by": "terraform",
+                    "team": "platform"
+                  },
+                  "urn": "${data.ovh_cloud_project.my_project.iam.urn}"
+                }
+              references:
+                urn: data.ovh_cloud_project.my_project.iam.urn
+        argumentDocs:
+            /iam/resource/{urn}: 'endpoint with PUT operations to update all tags in a single operation, preserving any unmanaged tags (including ovh: prefixed tags).'
+            id: '- The ID of the resource, which is the same as the urn.'
+            'ovh:': are system-managed and cannot be modified through this resource. They will be visible when reading the resource but attempting to set them will result in a validation error.
+            tags: '- (Optional) A map of tags to apply to the resource. Each tag consists of a key-value pair. Tag keys must match the pattern ^[a-zA-Z0-9_.:/=+@-]{1,128}$ (1-128 characters) and values must match ^[a-zA-Z0-9_.:/=+@-]{0,256}$ (0-256 characters). Both keys and values can contain alphanumeric characters, underscores, dots, colons, slashes, equals signs, plus signs, at signs, and hyphens. Note: Tags with keys prefixed by ovh: are managed by OVH and cannot be set via the API.'
+            tags = {}: in your configuration.
+            urn: '- (Required, ForceNew) The URN (Uniform Resource Name) of the resource to manage tags for. Changing this forces a new resource to be created. The URN format is typically urn:v1:{region}:resource:{resourceType}:{resourceId}.'
+        importStatements: []
     ovh_ip_firewall:
         subCategory: ""
         name: ovh_ip_firewall
@@ -4709,7 +4748,7 @@ resources:
             auto: '- Set on true if the IP is on auto-mitigation'
             ip: '- (Required) The IP or the CIDR'
             ip_on_mitigation: '- (Required) IPv4 address'
-            'permanent ': '- Set on true if the IP is on permanent mitigation'
+            'permanent ': '- Deprecated, has no effect'
             state: '- Current state of the IP on mitigation'
         importStatements: []
     ovh_ip_move:
@@ -5584,6 +5623,7 @@ resources:
             - name: cred_no_csr
               manifest: |-
                 {
+                  "certificate_type": "ECDSA",
                   "description": "Credential without CSR",
                   "identity_urns": [
                     "urn:v1:eu:identity:account:${data.ovh_me.current_account.nichandle}"
@@ -5591,6 +5631,19 @@ resources:
                   "name": "cred",
                   "okms_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                 }
+              dependencies:
+                local_file.credential_certificate: |-
+                    {
+                      "content": "${ovh_okms_credential.cred_no_csr.certificate_pem}",
+                      "file_permission": "0600",
+                      "filename": "${path.module}/certificate.pem"
+                    }
+                local_sensitive_file.credential_private_key: |-
+                    {
+                      "content": "${ovh_okms_credential.cred_no_csr.private_key_pem}",
+                      "file_permission": "0600",
+                      "filename": "${path.module}/private.key"
+                    }
             - name: cred_from_csr
               manifest: |-
                 {
@@ -5602,8 +5655,22 @@ resources:
                   "name": "cred_csr",
                   "okms_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                 }
+              dependencies:
+                local_file.credential_certificate: |-
+                    {
+                      "content": "${ovh_okms_credential.cred_no_csr.certificate_pem}",
+                      "file_permission": "0600",
+                      "filename": "${path.module}/certificate.pem"
+                    }
+                local_sensitive_file.credential_private_key: |-
+                    {
+                      "content": "${ovh_okms_credential.cred_no_csr.private_key_pem}",
+                      "file_permission": "0600",
+                      "filename": "${path.module}/private.key"
+                    }
         argumentDocs:
             certificate_pem: (String) Certificate PEM of the credential.
+            certificate_type: '(String) Type of certificate key. Allowed values: ECDSA, RSA. Default to ECDSA. Changing forces a new credential.'
             created_at: (String) Creation time of the credential
             csr: (String) Certificate Signing Request. The CSR should be encoded in the PEM format. If this argument is not set, the server will generate a CSR for this credential, and the corresponding private key will be returned in the private_key_pem attribute.
             description: (String) Description of the credential (max 200 characters)
@@ -5616,6 +5683,67 @@ resources:
             private_key_pem: (String, Sensitive) Private Key PEM of the credential if no CSR is provided
             status: (String) Status of the credential
             validity: '(Number) Validity in days (default: 365 days, max: 365 days)'
+        importStatements: []
+    ovh_okms_secret:
+        subCategory: ""
+        name: ovh_okms_secret
+        title: ""
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "metadata": {
+                    "cas_required": true,
+                    "custom_metadata": {
+                      "environment": "prod",
+                      "owner": "payments-team"
+                    },
+                    "deactivate_version_after": "0s",
+                    "max_versions": 10
+                  },
+                  "okms_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "path": "app/api_credentials",
+                  "version": {
+                    "data": "${jsonencode({\n\t\t\tapi_key    = var.api_key\n\t\t\tapi_secret = var.api_secret\n\t\t})}"
+                  }
+                }
+            - name: example
+              manifest: |-
+                {
+                  "cas": "${ovh_okms_secret.example.metadata.current_version}",
+                  "metadata": {
+                    "cas_required": true
+                  },
+                  "okms_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                  "path": "app/api_credentials",
+                  "version": {
+                    "data": "${jsonencode({\n\t\t\tapi_key    = var.api_key\n\t\t\tapi_secret = var.new_api_secret  # changed value -\u003e creates new version\n\t\t})}"
+                  }
+                }
+              references:
+                cas: ovh_okms_secret.example.metadata.current_version
+        argumentDocs:
+            cas: '(Number) Check‑and‑set parameter used only on update (if cas_required metadata is set to true) to enforce optimistic concurrency control: its value must equal the current secret version (metadata.current_version) for the update to succeed. Ignored on create.'
+            cas_required: (Boolean) If true, the server will enforce optimistic concurrency control by requiring the cas parameter to match the current version number on every write (update) request.
+            created_at: (String) Creation timestamp of the secret.
+            current_version: (Number) Current (latest) version number.
+            custom_metadata: (Map of String) Arbitrary key/value metadata.
+            data: (String, Sensitive) Secret payload. Commonly set with jsonencode(...) so that Terraform comparisons are stable. Any valid JSON (object, array, string, number, bool) is accepted. Changing data creates a new secret version.
+            deactivate_version_after: (String) Duration (e.g. "24h") after which a version is deactivated. "0s" (default) means never automatically deactivate.
+            deactivated_at: (String) Deactivation timestamp if the version was deactivated.
+            iam: '(Block) IAM metadata: display_name, id, tags, urn.'
+            id: (Number) Version number.
+            max_versions: (Number) Number of versions to retain (default 10). Older versions beyond this limit are pruned.
+            metadata: (Block) Secret metadata configuration (subset of fields are user-settable). See Metadata Block below.
+            metadata.*: computed fields as listed above.
+            okms_id: (String) ID of the OKMS service to create the secret in.
+            oldest_version: (Number) Oldest retained version number.
+            path: (String) Secret path (acts as the secret identifier within the OKMS instance). Immutable after creation.
+            state: (String) Version state (e.g. ACTIVE).
+            updated_at: (String) Last update timestamp.
+            version: (Block) Definition of the version to create/update. See Version Block below. (On updates providing a new version.data creates a new version.)
+            version.*: computed fields as listed above.
+            version.data: performs an API PUT that creates a new version; the previous version remains (subject to max_versions).
         importStatements: []
     ovh_okms_service_key:
         subCategory: ""
@@ -5971,7 +6099,7 @@ resources:
                 {
                   "display_name": "dev_vps",
                   "image_id": "45b2f222-ab10-44ed-863f-720942762b6f",
-                  "ovh_subsidiary": "${data.ovh_order_cart.mycart.ovh_subsidiary}",
+                  "ovh_subsidiary": "${data.ovh_me.my_account.ovh_subsidiary}",
                   "plan": [
                     {
                       "configuration": [
@@ -5981,18 +6109,18 @@ resources:
                         },
                         {
                           "label": "vps_os",
-                          "value": "Debian 10"
+                          "value": "Debian 13"
                         }
                       ],
                       "duration": "P1M",
-                      "plan_code": "${data.ovh_order_cart_product_plan.vps.plan_code}",
+                      "plan_code": "vps-le-2-2-40",
                       "pricing_mode": "default"
                     }
                   ],
                   "public_ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSD76EaLUzJjf70W8W2uU9FzEyl68di67Bd20qtYfBLJpFJuX/RJC9StI1y1RnXXqC1Lf/Yo+yJzvNx0iqLxCX1G7g0XYex74HkgC6a2QeNhp9M56ANZtA3TKKAbkZ1xobfhOPWpq3lEFp7dgJctcILBPL3l6OjKf6NIxHo5yF67Vy4D0nWl5utumNdWhhlX7MtVQooszLyIwPlNO+DzD3ZnJFCt2Z1jdRkhm/Oobtx17CZ+5SN23tgHXS6pLOgM6w30M11zkI510z95IAIHhRT7MbiXICkvG/0qHuSftz1j/CcHFbttNB27dH86vByumfSEgRKaoRkCqrn64IWrSsFr3Smsf7gZWLBlYLliGPyn8Tsr9bT5pRul6yTvVbfZ31RREBr1I0Lp4q++d+fIpa3LtMGRaMb9huJYy8cwW/Vfzbxsqfz9xzjIOFNcYl7J9l4cvz3hgSlai2Jgngw5ShNVlxcIKUdiynZWm09nQudlYNHgor9ID+JACzCfPkUZ8"
                 }
               references:
-                ovh_subsidiary: data.ovh_order_cart.mycart.ovh_subsidiary
+                ovh_subsidiary: data.ovh_me.my_account.ovh_subsidiary
         argumentDocs:
             available_options: '- All options the VPS can have (additionalDisk┃automatedBackup┃cpanel┃ftpbackup┃plesk┃snapshot┃veeam┃windows)'
             cluster: '- VPS cluster'
@@ -6003,7 +6131,7 @@ resources:
             duration: '- (Required) duration'
             iam: '- IAM resource information'
             id: '- Unique identifier of the resource in the IAM'
-            image_id: '- (String) Id of the image to install on the VPS. This attribute is only useful to trigger a VPS reinstallation. The available values can be found using this API call'
+            image_id: '- (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call'
             keymap: '- KVM keyboard layout on VPS Cloud'
             label: '- (Required) Identifier of the resource'
             maximum_additionnal_ip: '- Maximum number of additional IPs'

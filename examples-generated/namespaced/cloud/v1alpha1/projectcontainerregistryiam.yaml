@@ -1,0 +1,14 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: ProjectContainerregistryIAM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectcontainerregistryiam
+  labels:
+    testing.upbound.io/example-name: registry_iam
+  name: registry-iam
+  namespace: upbound-system
+spec:
+  forProvider:
+    deleteUsers: false
+    registryId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx
+    serviceName: XXXXXX
