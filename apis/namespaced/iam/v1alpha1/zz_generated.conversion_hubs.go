@@ -14,3 +14,6 @@ func (tr *IAMPolicy) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *IAMResourceGroup) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *IAMResourceTags) Hub() {}

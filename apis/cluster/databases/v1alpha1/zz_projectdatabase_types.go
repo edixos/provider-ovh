@@ -148,6 +148,10 @@ type ProjectDatabaseInitParameters struct {
 	// Time on which backups start every day
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
 
+	// Enable deletion protection
+	// Enable deletion protection
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
+
 	// Small description of the database service.
 	// Description of the cluster
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -218,6 +222,10 @@ type ProjectDatabaseObservation struct {
 	// Date of the creation of the cluster.
 	// Date of the creation of the cluster
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
+
+	// Enable deletion protection
+	// Enable deletion protection
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
 
 	// Small description of the database service.
 	// Description of the cluster
@@ -307,6 +315,11 @@ type ProjectDatabaseParameters struct {
 	// Time on which backups start every day
 	// +kubebuilder:validation:Optional
 	BackupTime *string `json:"backupTime,omitempty" tf:"backup_time,omitempty"`
+
+	// Enable deletion protection
+	// Enable deletion protection
+	// +kubebuilder:validation:Optional
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
 
 	// Small description of the database service.
 	// Description of the cluster

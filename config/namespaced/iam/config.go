@@ -20,4 +20,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "IAMPermissionsGroup"
 	})
+	p.AddResourceConfigurator("ovh_iam_resource_tags", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "IAMResourceTags"
+	})
 }

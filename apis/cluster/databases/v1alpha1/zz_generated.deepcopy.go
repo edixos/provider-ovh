@@ -878,6 +878,11 @@ func (in *ProjectDatabaseInitParameters) DeepCopyInto(out *ProjectDatabaseInitPa
 		*out = new(string)
 		**out = **in
 	}
+	if in.DeletionProtection != nil {
+		in, out := &in.DeletionProtection, &out.DeletionProtection
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
@@ -2950,6 +2955,11 @@ func (in *ProjectDatabaseObservation) DeepCopyInto(out *ProjectDatabaseObservati
 		*out = new(string)
 		**out = **in
 	}
+	if in.DeletionProtection != nil {
+		in, out := &in.DeletionProtection, &out.DeletionProtection
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)
@@ -3570,6 +3580,11 @@ func (in *ProjectDatabaseParameters) DeepCopyInto(out *ProjectDatabaseParameters
 	if in.BackupTime != nil {
 		in, out := &in.BackupTime, &out.BackupTime
 		*out = new(string)
+		**out = **in
+	}
+	if in.DeletionProtection != nil {
+		in, out := &in.DeletionProtection, &out.DeletionProtection
+		*out = new(bool)
 		**out = **in
 	}
 	if in.Description != nil {

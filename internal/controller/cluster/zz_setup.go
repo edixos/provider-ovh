@@ -48,6 +48,8 @@ import (
 	iampermissionsgroup "github.com/edixos/provider-ovh/internal/controller/cluster/iam/iampermissionsgroup"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/cluster/iam/iampolicy"
 	iamresourcegroup "github.com/edixos/provider-ovh/internal/controller/cluster/iam/iamresourcegroup"
+	iamresourcetags "github.com/edixos/provider-ovh/internal/controller/cluster/iam/iamresourcetags"
+	secret "github.com/edixos/provider-ovh/internal/controller/cluster/kms/secret"
 	cluster "github.com/edixos/provider-ovh/internal/controller/cluster/kube/cluster"
 	iprestriction "github.com/edixos/provider-ovh/internal/controller/cluster/kube/iprestriction"
 	nodepool "github.com/edixos/provider-ovh/internal/controller/cluster/kube/nodepool"
@@ -148,6 +150,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		iampermissionsgroup.Setup,
 		iampolicy.Setup,
 		iamresourcegroup.Setup,
+		iamresourcetags.Setup,
+		secret.Setup,
 		cluster.Setup,
 		iprestriction.Setup,
 		nodepool.Setup,
@@ -254,6 +258,8 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		iampermissionsgroup.SetupGated,
 		iampolicy.SetupGated,
 		iamresourcegroup.SetupGated,
+		iamresourcetags.SetupGated,
+		secret.SetupGated,
 		cluster.SetupGated,
 		iprestriction.SetupGated,
 		nodepool.SetupGated,

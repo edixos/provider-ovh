@@ -17,5 +17,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_okms_credential", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
-
+	p.AddResourceConfigurator("ovh_okms_secret", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

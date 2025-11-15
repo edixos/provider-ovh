@@ -20,5 +20,4 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_domain_zone_redirection", func(r *config.Resource) {
 		r.ShortGroup = shortName
 	})
-
 }

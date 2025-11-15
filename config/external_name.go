@@ -87,6 +87,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_iam_policy":                                config.IdentifierFromProvider,
 	"ovh_iam_resource_group":                        config.IdentifierFromProvider,
 	"ovh_iam_permissions_group":                     config.IdentifierFromProvider,
+	"ovh_iam_resource_tags":                         config.IdentifierFromProvider,
 	"ovh_me_identity_group":                         config.IdentifierFromProvider,
 	"ovh_me_identity_user":                          config.IdentifierFromProvider,
 	"ovh_me_ssh_key":                                config.IdentifierFromProvider,
@@ -184,6 +185,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// "ovh_okms":                  config.IdentifierFromProvider,
 	// "ovh_okms_credential":       config.IdentifierFromProvider,
 	// "ovh_okms_service_key":      config.IdentifierFromProvider,
+	"ovh_okms_secret": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

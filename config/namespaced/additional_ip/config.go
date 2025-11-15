@@ -29,5 +29,4 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_ip_firewall_rule", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
-
 }
