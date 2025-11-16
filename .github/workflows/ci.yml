@@ -347,7 +347,7 @@ jobs:
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Generate SBOM
-        run: syft dir:. -o cyclonedx-json > extensions/sboms/sbom.json
+        run: syft dir:. --name provider-ovh --version "${{ steps.pkgver.outputs.version }}" -o cyclonedx-json > extensions/sboms/sbom.json
 
       - name: Append Marketplace Extension Assets
         if: env.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR != ''
