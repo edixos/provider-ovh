@@ -330,9 +330,18 @@ jobs:
 
       - name: Install up CLI (>= v0.39.0 for alpha append)
         run: |
-          # Install directly into /usr/local/bin so it's on PATH without manual mv.
-          curl -sL https://cli.upbound.io | sh -s -- -b /usr/local/bin
-          up version || (echo "up CLI not found after install" && exit 1)
+          set -euxo pipefail
+          # Download installer script (produces local ./up binary)
+          curl -sL https://cli.upbound.io | sh
+          # Move binary into a PATH location. Use sudo if available; otherwise add $HOME/bin.
+          if command -v sudo >/dev/null 2>&1; then
+            sudo mv up /usr/local/bin/up
+          else
+            mkdir -p "$HOME/bin"
+            mv up "$HOME/bin/up"
+            echo "$HOME/bin" >> "$GITHUB_PATH"
+          fi
+          /usr/local/bin/up version || up version
 
       - name: Install Syft (SBOM generator)
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
