@@ -68,5 +68,45 @@ make build
 For filing bugs, suggesting improvements, or requesting new features, please
 open an [issue](https://github.com/edixos/provider-ovh/issues).
 
+## Marketplace Extension Assets
+
+This repository includes optional Marketplace extension assets under the `extensions/` directory:
+
+```
+extensions/
+  icons/icon.svg          # Provider icon
+  readme/readme.md        # Marketplace readme (concise overview)
+  release-notes/release_notes.md  # Human-authored release notes per version
+  sboms/sbom.json         # CycloneDX SBOM (regenerated in CI)
+```
+
+During CI publish, we run:
+
+```
+up alpha xpkg append --extensions-root=./extensions xpkg.upbound.io/edixos/provider-ovh:<version>
+```
+
+Where `<version>` is read from `_output/version` produced by the build. You can test locally after logging into the Upbound registry:
+
+```bash
+curl -sL https://cli.upbound.io | sh
+VERSION=$(cat _output/version)
+up alpha xpkg append --extensions-root=./extensions xpkg.upbound.io/edixos/provider-ovh:${VERSION}
+```
+
+To update for a new release:
+1. Edit `extensions/release-notes/release_notes.md` adding a section for the new `vX.Y.Z`.
+2. Optionally refine `extensions/readme/readme.md` or update the icon.
+3. Commit changes before tagging the release so CI appends correct assets.
+
+SBOM generation currently uses [Syft](https://github.com/anchore/syft) in CI to regenerate `extensions/sboms/sbom.json`. You can reproduce locally:
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+syft dir:. -o cyclonedx-json > extensions/sboms/sbom.json
+```
+
+This is an alpha feature (requires `up` CLI v0.39.0+).
+
 
 

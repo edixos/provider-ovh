@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - release-*
+      - feat/extensions
     tags:
       - 'v*'
   pull_request: {}
@@ -320,4 +321,41 @@ jobs:
 
       - name: Publish Artifacts
         # Include tags in release branch filter so v* tags trigger publish
-        run: make publish BRANCH_NAME=${GITHUB_REF##*/} RELEASE_BRANCH_FILTER="main master release-% v%"
+        # Added feat/extensions to RELEASE_BRANCH_FILTER so we can test append logic on the feature branch.
+        run: make publish BRANCH_NAME=${GITHUB_REF##*/} RELEASE_BRANCH_FILTER="main master release-% v% feat/extensions"
+
+      - name: Read Package Version
+        id: pkgver
+        run: echo "version=$(cat _output/version)" >> $GITHUB_OUTPUT
+
+      - name: Install up CLI (>= v0.39.0 for alpha append)
+        run: |
+          set -euxo pipefail
+          # Download installer script (produces local ./up binary)
+          curl -sL https://cli.upbound.io | sh
+          # Move binary into a PATH location. Use sudo if available; otherwise add $HOME/bin.
+          if command -v sudo >/dev/null 2>&1; then
+            sudo mv up /usr/local/bin/up
+          else
+            mkdir -p "$HOME/bin"
+            mv up "$HOME/bin/up"
+            echo "$HOME/bin" >> "$GITHUB_PATH"
+          fi
+          /usr/local/bin/up version || up version
+
+      - name: Install Syft (SBOM generator)
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Generate SBOM
+        run: |
+          # syft version on runner does not support --name/--version flags; generate then patch via jq
+          syft dir:. -o cyclonedx-json > extensions/sboms/sbom.tmp.json
+          sudo apt-get update -y && sudo apt-get install -y jq
+          jq --arg name provider-ovh --arg ver "${{ steps.pkgver.outputs.version }}" \
+            '.metadata.component.name=$name | .metadata.component.version=$ver' \
+            extensions/sboms/sbom.tmp.json > extensions/sboms/sbom.json
+          rm extensions/sboms/sbom.tmp.json
+
+      - name: Append Marketplace Extension Assets
+        if: env.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR != ''
+        run: up alpha xpkg append --extensions-root=./extensions xpkg.upbound.io/edixos/provider-ovh:${{ steps.pkgver.outputs.version }}
