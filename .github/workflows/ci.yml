@@ -347,7 +347,14 @@ jobs:
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
 
       - name: Generate SBOM
-        run: syft dir:. --name provider-ovh --version "${{ steps.pkgver.outputs.version }}" -o cyclonedx-json > extensions/sboms/sbom.json
+        run: |
+          # syft version on runner does not support --name/--version flags; generate then patch via jq
+          syft dir:. -o cyclonedx-json > extensions/sboms/sbom.tmp.json
+          sudo apt-get update -y && sudo apt-get install -y jq
+          jq --arg name provider-ovh --arg ver "${{ steps.pkgver.outputs.version }}" \
+            '.metadata.component.name=$name | .metadata.component.version=$ver' \
+            extensions/sboms/sbom.tmp.json > extensions/sboms/sbom.json
+          rm extensions/sboms/sbom.tmp.json
 
       - name: Append Marketplace Extension Assets
         if: env.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR != ''
