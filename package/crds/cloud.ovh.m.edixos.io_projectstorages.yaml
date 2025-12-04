@@ -68,6 +68,11 @@ spec:
                           Encryption algorithm
                         type: string
                     type: object
+                  hideObjects:
+                    description: |-
+                      (Attributes List) Container objects (see below for nested schema)
+                      If true, objects list will not be saved in state (useful for large buckets)
+                    type: boolean
                   limit:
                     description: |-
                       (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
@@ -126,6 +131,10 @@ spec:
                                     (String) Container region
                                     Destination region
                                   type: string
+                                removeOnMainBucketDeletion:
+                                  description: Whether to remove replicated bucket
+                                    when the main bucket is deleted
+                                  type: boolean
                                 storageClass:
                                   description: |-
                                     (String) Destination storage class
@@ -207,6 +216,11 @@ spec:
                           Encryption algorithm
                         type: string
                     type: object
+                  hideObjects:
+                    description: |-
+                      (Attributes List) Container objects (see below for nested schema)
+                      If true, objects list will not be saved in state (useful for large buckets)
+                    type: boolean
                   limit:
                     description: |-
                       (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
@@ -265,6 +279,10 @@ spec:
                                     (String) Container region
                                     Destination region
                                   type: string
+                                removeOnMainBucketDeletion:
+                                  description: Whether to remove replicated bucket
+                                    when the main bucket is deleted
+                                  type: boolean
                                 storageClass:
                                   description: |-
                                     (String) Destination storage class
@@ -414,6 +432,11 @@ spec:
                           Encryption algorithm
                         type: string
                     type: object
+                  hideObjects:
+                    description: |-
+                      (Attributes List) Container objects (see below for nested schema)
+                      If true, objects list will not be saved in state (useful for large buckets)
+                    type: boolean
                   id:
                     description: (String) Rule ID
                     type: string
@@ -537,6 +560,10 @@ spec:
                                     (String) Container region
                                     Destination region
                                   type: string
+                                removeOnMainBucketDeletion:
+                                  description: Whether to remove replicated bucket
+                                    when the main bucket is deleted
+                                  type: boolean
                                 storageClass:
                                   description: |-
                                     (String) Destination storage class

@@ -23,6 +23,9 @@ type DestinationInitParameters struct {
 	// Destination region
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
+	// Whether to remove replicated bucket when the main bucket is deleted
+	RemoveOnMainBucketDeletion *bool `json:"removeOnMainBucketDeletion,omitempty" tf:"remove_on_main_bucket_deletion,omitempty"`
+
 	// (String) Destination storage class
 	// Destination storage class
 	StorageClass *string `json:"storageClass,omitempty" tf:"storage_class,omitempty"`
@@ -37,6 +40,9 @@ type DestinationObservation struct {
 	// (String) Container region
 	// Destination region
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+
+	// Whether to remove replicated bucket when the main bucket is deleted
+	RemoveOnMainBucketDeletion *bool `json:"removeOnMainBucketDeletion,omitempty" tf:"remove_on_main_bucket_deletion,omitempty"`
 
 	// (String) Destination storage class
 	// Destination storage class
@@ -54,6 +60,10 @@ type DestinationParameters struct {
 	// Destination region
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region" tf:"region,omitempty"`
+
+	// Whether to remove replicated bucket when the main bucket is deleted
+	// +kubebuilder:validation:Optional
+	RemoveOnMainBucketDeletion *bool `json:"removeOnMainBucketDeletion,omitempty" tf:"remove_on_main_bucket_deletion,omitempty"`
 
 	// (String) Destination storage class
 	// Destination storage class
@@ -167,6 +177,10 @@ type ProjectStorageInitParameters struct {
 	// (Attributes) Encryption configuration (see below for nested schema)
 	Encryption *EncryptionInitParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
+	// (Attributes List) Container objects (see below for nested schema)
+	// If true, objects list will not be saved in state (useful for large buckets)
+	HideObjects *bool `json:"hideObjects,omitempty" tf:"hide_objects,omitempty"`
+
 	// (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
 	// Limit the number of objects returned (1000 maximum, defaults to 1000)
 	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
@@ -210,6 +224,10 @@ type ProjectStorageObservation struct {
 
 	// (Attributes) Encryption configuration (see below for nested schema)
 	Encryption *EncryptionObservation `json:"encryption,omitempty" tf:"encryption,omitempty"`
+
+	// (Attributes List) Container objects (see below for nested schema)
+	// If true, objects list will not be saved in state (useful for large buckets)
+	HideObjects *bool `json:"hideObjects,omitempty" tf:"hide_objects,omitempty"`
 
 	// (String) Rule ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -273,6 +291,11 @@ type ProjectStorageParameters struct {
 	// (Attributes) Encryption configuration (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Encryption *EncryptionParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
+
+	// (Attributes List) Container objects (see below for nested schema)
+	// If true, objects list will not be saved in state (useful for large buckets)
+	// +kubebuilder:validation:Optional
+	HideObjects *bool `json:"hideObjects,omitempty" tf:"hide_objects,omitempty"`
 
 	// (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
 	// Limit the number of objects returned (1000 maximum, defaults to 1000)
