@@ -9,7 +9,7 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 import (
-	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
+	"github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )
 
@@ -513,6 +513,11 @@ func (in *DestinationInitParameters) DeepCopyInto(out *DestinationInitParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.RemoveOnMainBucketDeletion != nil {
+		in, out := &in.RemoveOnMainBucketDeletion, &out.RemoveOnMainBucketDeletion
+		*out = new(bool)
+		**out = **in
+	}
 	if in.StorageClass != nil {
 		in, out := &in.StorageClass, &out.StorageClass
 		*out = new(string)
@@ -543,6 +548,11 @@ func (in *DestinationObservation) DeepCopyInto(out *DestinationObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.RemoveOnMainBucketDeletion != nil {
+		in, out := &in.RemoveOnMainBucketDeletion, &out.RemoveOnMainBucketDeletion
+		*out = new(bool)
+		**out = **in
+	}
 	if in.StorageClass != nil {
 		in, out := &in.StorageClass, &out.StorageClass
 		*out = new(string)
@@ -571,6 +581,11 @@ func (in *DestinationParameters) DeepCopyInto(out *DestinationParameters) {
 	if in.Region != nil {
 		in, out := &in.Region, &out.Region
 		*out = new(string)
+		**out = **in
+	}
+	if in.RemoveOnMainBucketDeletion != nil {
+		in, out := &in.RemoveOnMainBucketDeletion, &out.RemoveOnMainBucketDeletion
+		*out = new(bool)
 		**out = **in
 	}
 	if in.StorageClass != nil {
@@ -4361,6 +4376,11 @@ func (in *ProjectStorageInitParameters) DeepCopyInto(out *ProjectStorageInitPara
 		*out = new(EncryptionInitParameters)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.HideObjects != nil {
+		in, out := &in.HideObjects, &out.HideObjects
+		*out = new(bool)
+		**out = **in
+	}
 	if in.Limit != nil {
 		in, out := &in.Limit, &out.Limit
 		*out = new(float64)
@@ -4463,6 +4483,11 @@ func (in *ProjectStorageObservation) DeepCopyInto(out *ProjectStorageObservation
 		*out = new(EncryptionObservation)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.HideObjects != nil {
+		in, out := &in.HideObjects, &out.HideObjects
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ID != nil {
 		in, out := &in.ID, &out.ID
 		*out = new(string)
@@ -4559,6 +4584,11 @@ func (in *ProjectStorageParameters) DeepCopyInto(out *ProjectStorageParameters) 
 		in, out := &in.Encryption, &out.Encryption
 		*out = new(EncryptionParameters)
 		(*in).DeepCopyInto(*out)
+	}
+	if in.HideObjects != nil {
+		in, out := &in.HideObjects, &out.HideObjects
+		*out = new(bool)
+		**out = **in
 	}
 	if in.Limit != nil {
 		in, out := &in.Limit, &out.Limit
