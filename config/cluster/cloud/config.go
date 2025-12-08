@@ -31,6 +31,15 @@ func Configure(p *config.Provider) {
 		r.References["user_id"] = config.Reference{
 			TerraformName: "ovh_cloud_project_user",
 		}
+
+		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
+			details := make(map[string][]byte)
+			if accessKey, ok := attr["access_key_id"].(string); ok {
+				details["access_key_id"] = []byte(accessKey)
+			}
+
+			return details, nil
+		}
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_user_s3_policy", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
