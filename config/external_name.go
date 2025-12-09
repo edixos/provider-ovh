@@ -7,6 +7,7 @@ package config
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/crossplane/crossplane-runtime/v2/pkg/errors"
 	"github.com/crossplane/upjet/v2/pkg/config"
@@ -64,6 +65,42 @@ var kubeIdentifierFromProvider = config.ExternalName{
 		}
 
 		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var storageIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	// ID is in format: service_name/region_name/name
+	// Extract just the name (last component) as external name
+	GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+		id, ok := tfstate["id"].(string)
+		if !ok {
+			return "", errors.New("id field not found in tfstate")
+		}
+		// Split by "/" and return the last part (the bucket name)
+		parts := strings.Split(id, "/")
+		if len(parts) != 3 {
+			return "", errors.Errorf("unexpected id format: %s, expected format: service_name/region_name/name", id)
+		}
+		return parts[2], nil
+	},
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		regionName, ok := parameters["region_name"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "region_name")
+		}
+		regionNameStr, ok := regionName.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "region_name")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, regionNameStr, externalName), nil
 	},
 	DisableNameInitializer: true,
 }
@@ -195,7 +232,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_domain_name":                                  config.IdentifierFromProvider,
 	"ovh_domain_name_servers":                          config.IdentifierFromProvider,
 	"ovh_domain_ds_records":                            config.IdentifierFromProvider,
-	"ovh_cloud_project_storage":                        config.IdentifierFromProvider,
+	"ovh_cloud_project_storage":                        storageIdentifierFromProvider,
 	"ovh_cloud_project_loadbalancer":                   config.IdentifierFromProvider,
 	"ovh_cloud_project_volume_backup":                  config.IdentifierFromProvider,
 	"ovh_cloud_project_rancher":                        config.IdentifierFromProvider,

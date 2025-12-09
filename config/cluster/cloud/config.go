@@ -60,4 +60,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_region", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_storage", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }
