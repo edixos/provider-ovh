@@ -358,4 +358,9 @@ jobs:
 
       - name: Append Marketplace Extension Assets
         if: env.UPBOUND_MARKETPLACE_PUSH_ROBOT_USR != ''
-        run: up alpha xpkg append --extensions-root=./extensions xpkg.upbound.io/edixos/provider-ovh:${{ steps.pkgver.outputs.version }}
+        run: |
+          if [ ! -f "_output/publish/extensions-ready" ]; then
+            echo "Skipping marketplace extension append because publish.artifacts did not run."
+            exit 0
+          fi
+          up alpha xpkg append --extensions-root=./extensions xpkg.upbound.io/edixos/provider-ovh:${{ steps.pkgver.outputs.version }}
