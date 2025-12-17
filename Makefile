@@ -249,3 +249,18 @@ crossplane.help:
 help-special: crossplane.help
 
 .PHONY: crossplane.help help-special
+
+PUBLISH_EXTENSIONS_FLAG := $(OUTPUT_DIR)/publish/extensions-ready
+
+publish: version.isdirty
+	@$(MAKE) publish.init
+	@$(MAKE) publish.artifacts
+	@$(MAKE) publish.extensions
+
+.PHONY: publish.extensions
+publish.extensions:
+	@rm -f $(PUBLISH_EXTENSIONS_FLAG)
+ifneq ($(filter $(RELEASE_BRANCH_FILTER),$(BRANCH_NAME)),)
+	@mkdir -p $(dir $(PUBLISH_EXTENSIONS_FLAG))
+	@touch $(PUBLISH_EXTENSIONS_FLAG)
+endif
