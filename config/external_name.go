@@ -105,22 +105,140 @@ var storageIdentifierFromProvider = config.ExternalName{
 	DisableNameInitializer: true,
 }
 
+var privateNetworkIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var subnetIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		networkID, ok := parameters["network_id"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "network_id")
+		}
+		networkIDStr, ok := networkID.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "network_id")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, networkIDStr, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var userIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var s3CredentialsIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		userID, ok := parameters["user_id"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "user_id")
+		}
+		userIDStr, ok := userID.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "user_id")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, userIDStr, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var s3PolicyIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		userID, ok := parameters["user_id"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "user_id")
+		}
+		userIDStr, ok := userID.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "user_id")
+		}
+
+		return fmt.Sprintf("%s/%s", serviceName, userIDStr), nil
+	},
+	DisableNameInitializer: true,
+}
+
+var gatewayIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+
+		region, ok := parameters["region"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "region")
+		}
+		regionStr, ok := region.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "region")
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, regionStr, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"ovh_cloud_project_network_private":           config.IdentifierFromProvider,
-	"ovh_cloud_project_network_private_subnet":    config.IdentifierFromProvider,
-	"ovh_cloud_project_network_private_subnet_v2": config.IdentifierFromProvider,
+	"ovh_cloud_project_network_private":           privateNetworkIdentifierFromProvider,
+	"ovh_cloud_project_network_private_subnet":    subnetIdentifierFromProvider,
+	"ovh_cloud_project_network_private_subnet_v2": subnetIdentifierFromProvider,
 
 	"ovh_cloud_project_workflow_backup": config.NameAsIdentifier,
 	"ovh_cloud_project":                 config.IdentifierFromProvider,
 	// The ovh_cloud_project_alerting resource uses a nested type which is not supported yet in upjet.
 	// there is an open issue in upjet regarding this issue: https://github.com/crossplane/upjet/v2/issues/372
 	// "ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
-	"ovh_cloud_project_user":                        config.IdentifierFromProvider,
-	"ovh_cloud_project_user_s3_credential":          config.IdentifierFromProvider,
-	"ovh_cloud_project_user_s3_policy":              config.IdentifierFromProvider,
+	"ovh_cloud_project_user":                        userIdentifierFromProvider,
+	"ovh_cloud_project_user_s3_credential":          s3CredentialsIdentifierFromProvider,
+	"ovh_cloud_project_user_s3_policy":              s3PolicyIdentifierFromProvider,
 	"ovh_iam_policy":                                config.IdentifierFromProvider,
 	"ovh_iam_resource_group":                        config.IdentifierFromProvider,
 	"ovh_iam_permissions_group":                     config.IdentifierFromProvider,
@@ -215,7 +333,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_vrack_ip":                                                   config.IdentifierFromProvider,
 	"ovh_vrack_iploadbalancing":                                      config.IdentifierFromProvider,
 	"ovh_vps":                                                        config.IdentifierFromProvider,
-	"ovh_cloud_project_gateway":                                      config.IdentifierFromProvider,
+	"ovh_cloud_project_gateway":                                      gatewayIdentifierFromProvider,
 	"ovh_okms":                                                       config.IdentifierFromProvider,
 	"ovh_okms_credential":                                            config.IdentifierFromProvider,
 	"ovh_okms_service_key":                                           config.IdentifierFromProvider,
