@@ -109,6 +109,11 @@ var privateNetworkIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
@@ -122,6 +127,11 @@ var subnetIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
@@ -145,6 +155,11 @@ var userIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
@@ -158,6 +173,11 @@ var s3CredentialsIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
@@ -181,6 +201,10 @@ var s3PolicyIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// S3Policy doesn't use external-name in its ID format, but we still need
+		// to check if required parameters are available. For newly created resources
+		// without an external-name, we should still be able to construct the ID
+		// since it only depends on service_name/user_id.
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
@@ -204,6 +228,11 @@ var gatewayIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
 	GetExternalNameFn:       config.IDAsExternalName,
 	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
 		serviceName, err := serviceName(parameters)
 		if err != nil {
 			return serviceName, err
