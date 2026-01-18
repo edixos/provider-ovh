@@ -3,36 +3,34 @@
 `provider-ovh` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Upjet](https://github.com/crossplane/upjet) code
 generation tools and exposes XRM-conformant managed resources for the
-OVH API.
+OVHcloud API.
 
 ## Prerequisites
 
-* Install [up CLI](https://github.com/upbound/up?tab=readme-ov-file#install)
-* Install [Crossplane in your cluster](https://docs.crossplane.io/latest/software/install/)
+* Install [Crossplane in your cluster](https://docs.crossplane.io/v2.1/get-started/install/)
 
 ## Getting Started
 
 Install the provider by using the following command:
-```
-up ctp provider install edixos/provider-ovh
-```
-
-Alternatively, you can use declarative installation:
-```
+```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: edixos/provider-ovh
+  package: xpkg.upbound.io/edixos/provider-ovh:latest
 EOF
+```
+Or using the CLI:
+```bash
+up ctp provider install edixos/provider-ovh
 ```
 
 If you want to specify a version of the provider, add an image tag
 to the [latest release](https://marketplace.upbound.io/providers/edixos/provider-ovh).
 Example:
-`edixos/provider-ovh:v.0.1.4`
+`xpkg.upbound.io/edixos/provider-ovh:v2.10.1`
 
 Notice that in this example Provider resource is referencing ControllerConfig with debug enabled.
 

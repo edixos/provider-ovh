@@ -3,7 +3,7 @@ kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: xpkg.upbound.io/edixos/provider-ovh:v0.40.0
+  package: xpkg.upbound.io/edixos/provider-ovh:v2.10.1
   runtimeConfigRef:
     name: provider-ovh
 ---
