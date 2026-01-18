@@ -1,9 +1,9 @@
-# Community OVH Cloud Provider
+# Community OVHcloud Provider
 
-`provider-ovh` is a community-maintained Crossplane infrastructure provider for [OVH Cloud](https://ovh.com/), built with [Upjet](https://github.com/crossplane/upjet).
+`provider-ovh` is a community-maintained Crossplane infrastructure provider for [OVHcloud](https://www.ovhcloud.com/), built with [Upjet](https://github.com/crossplane/upjet).
 
 > **⚠️ Community Effort**
-> This provider is **not an official OVH offering**. It’s maintained by volunteers and contributors in the open-source community. OVH has not (yet) published an official Crossplane provider; this project fills that gap so users can manage OVH resources declaratively. Features, coverage, and support are best‑effort—please report issues and consider contributing improvements.
+> This provider is **not an official OVHcloud offering**. It’s maintained by volunteers and contributors in the open-source community. OVHcloud has not (yet) published an official Crossplane provider; this project fills that gap so users can manage OVHcloud resources declaratively. Features, coverage, and support are best‑effort—please report issues and consider contributing improvements.
 
 ## Features
 - Implements a growing subset of OVH Cloud resources as Crossplane Managed Resources.
@@ -11,21 +11,23 @@
 - Rich API reference: https://doc.crds.dev/github.com/edixos/provider-ovh
 
 ## Installation
-```
-up ctp provider install edixos/provider-ovh
-```
-Or declaratively:
-```
+```bash
+cat <<EOF | kubectl apply -f -
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: edixos/provider-ovh
+  package: xpkg.upbound.io/edixos/provider-ovh:latest
+EOF
+```
+Or using the CLI:
+```bash
+up ctp provider install edixos/provider-ovh
 ```
 
 ## Configuration
-Create a `ProviderConfig` with your OVH credentials (application key, application secret, consumer key, and endpoint). See repository examples under `examples/providerconfig/`.
+Create a `ProviderConfig` with your OVH credentials (application key, application secret, consumer key, and endpoint). See examples in our repository under [`examples/cluster/providerconfig/`](https://github.com/edixos/provider-ovh/tree/main/examples/cluster/providerconfig) for Cluster-scopped resource, and [`examples/namespaced/providerconfig/`](https://github.com/edixos/provider-ovh/tree/main/examples/namespaced/providerconfig) for Namespace-scopped resource.
 
 ## Support & Feedback
 File issues and feature requests: https://github.com/edixos/provider-ovh/issues
