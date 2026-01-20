@@ -79,7 +79,8 @@ func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConf
 
 	// Set credentials in Terraform provider configuration.
 	cfg := map[string]any{
-		"endpoint": creds.Endpoint,
+		"endpoint":         creds.Endpoint,
+		"user_agent_extra": "Crossplane/edixos/provider-ovh",
 	}
 
 	if creds.ApplicationKey != "" && creds.ApplicationSecret != "" && creds.ConsumerKey != "" {
