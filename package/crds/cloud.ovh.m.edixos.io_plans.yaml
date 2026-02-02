@@ -63,6 +63,9 @@ spec:
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                     type: boolean
+                  deploymentType:
+                    description: Deployment type of the Savings Plan (1AZ / 3AZ)
+                    type: string
                   displayName:
                     description: |-
                       Custom display name, used in invoices
@@ -107,6 +110,9 @@ spec:
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                     type: boolean
+                  deploymentType:
+                    description: Deployment type of the Savings Plan (1AZ / 3AZ)
+                    type: string
                   displayName:
                     description: |-
                       Custom display name, used in invoices
@@ -222,6 +228,9 @@ spec:
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                       Whether Savings Plan should be renewed at the end of the period (defaults to false)
                     type: boolean
+                  deploymentType:
+                    description: Deployment type of the Savings Plan (1AZ / 3AZ)
+                    type: string
                   displayName:
                     description: |-
                       Custom display name, used in invoices

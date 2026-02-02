@@ -13,11 +13,130 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
+type ConditionConditionInitParameters struct {
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionConditionObservation struct {
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionConditionParameters struct {
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	// +kubebuilder:validation:Optional
+	Operator *string `json:"operator" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionInitParameters struct {
+
+	// A list of nested conditions. This is the recursive part.
+	Condition []ConditionConditionInitParameters `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionObservation struct {
+
+	// A list of nested conditions. This is the recursive part.
+	Condition []ConditionConditionObservation `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionParameters struct {
+
+	// A list of nested conditions. This is the recursive part.
+	// +kubebuilder:validation:Optional
+	Condition []ConditionConditionParameters `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	// +kubebuilder:validation:Optional
+	Operator *string `json:"operator" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionsInitParameters struct {
+
+	// A list of nested conditions. This is the recursive part.
+	Condition []ConditionInitParameters `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionsObservation struct {
+
+	// A list of nested conditions. This is the recursive part.
+	Condition []ConditionObservation `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	Operator *string `json:"operator,omitempty" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
+type ConditionsParameters struct {
+
+	// A list of nested conditions. This is the recursive part.
+	// +kubebuilder:validation:Optional
+	Condition []ConditionParameters `json:"condition,omitempty" tf:"condition,omitempty"`
+
+	// Operator for this condition (MATCH, AND, OR, NOT)
+	// +kubebuilder:validation:Optional
+	Operator *string `json:"operator" tf:"operator,omitempty"`
+
+	// Key-value pairs to match (e.g., resource.Tag(name), date(Europe/Paris).WeekDay, request.IP)
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Values map[string]*string `json:"values,omitempty" tf:"values,omitempty"`
+}
+
 type IAMPolicyInitParameters struct {
 
 	// List of actions allowed on resources by identities
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
+
+	// Conditions restrict permissions following resources, date or customer's information
+	Conditions []ConditionsInitParameters `json:"conditions,omitempty" tf:"conditions,omitempty"`
 
 	// List of actions that will always be denied even if also allowed by this policy or another one.
 	// +listType=set
@@ -29,6 +148,9 @@ type IAMPolicyInitParameters struct {
 	// List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
+
+	// Expiration date of the policy, after this date it will no longer be applied
+	ExpiredAt *string `json:"expiredAt,omitempty" tf:"expired_at,omitempty"`
 
 	// List of identities affected by the policy
 	// +listType=set
@@ -52,6 +174,9 @@ type IAMPolicyObservation struct {
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Conditions restrict permissions following resources, date or customer's information
+	Conditions []ConditionsObservation `json:"conditions,omitempty" tf:"conditions,omitempty"`
+
 	// Creation date of this group.
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
@@ -65,6 +190,9 @@ type IAMPolicyObservation struct {
 	// List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
+
+	// Expiration date of the policy, after this date it will no longer be applied
+	ExpiredAt *string `json:"expiredAt,omitempty" tf:"expired_at,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -100,6 +228,10 @@ type IAMPolicyParameters struct {
 	// +listType=set
 	Allow []*string `json:"allow,omitempty" tf:"allow,omitempty"`
 
+	// Conditions restrict permissions following resources, date or customer's information
+	// +kubebuilder:validation:Optional
+	Conditions []ConditionsParameters `json:"conditions,omitempty" tf:"conditions,omitempty"`
+
 	// List of actions that will always be denied even if also allowed by this policy or another one.
 	// +kubebuilder:validation:Optional
 	// +listType=set
@@ -113,6 +245,10 @@ type IAMPolicyParameters struct {
 	// +kubebuilder:validation:Optional
 	// +listType=set
 	Except []*string `json:"except,omitempty" tf:"except,omitempty"`
+
+	// Expiration date of the policy, after this date it will no longer be applied
+	// +kubebuilder:validation:Optional
+	ExpiredAt *string `json:"expiredAt,omitempty" tf:"expired_at,omitempty"`
 
 	// List of identities affected by the policy
 	// +kubebuilder:validation:Optional

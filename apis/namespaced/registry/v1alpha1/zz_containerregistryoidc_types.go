@@ -34,6 +34,8 @@ type ContainerRegistryOIDCInitParameters struct {
 	// The URL of an OIDC-compliant server.
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
+	OidcGroupFilter *string `json:"oidcGroupFilter,omitempty" tf:"oidc_group_filter,omitempty"`
+
 	// The name of Claim in the ID token whose value is the list of group names.
 	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
@@ -84,6 +86,8 @@ type ContainerRegistryOIDCObservation struct {
 	// The URL of an OIDC-compliant server.
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
 
+	OidcGroupFilter *string `json:"oidcGroupFilter,omitempty" tf:"oidc_group_filter,omitempty"`
+
 	// The name of Claim in the ID token whose value is the list of group names.
 	OidcGroupsClaim *string `json:"oidcGroupsClaim,omitempty" tf:"oidc_groups_claim,omitempty"`
 
@@ -131,6 +135,9 @@ type ContainerRegistryOIDCParameters struct {
 	// The URL of an OIDC-compliant server.
 	// +kubebuilder:validation:Optional
 	OidcEndpoint *string `json:"oidcEndpoint,omitempty" tf:"oidc_endpoint,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	OidcGroupFilter *string `json:"oidcGroupFilter,omitempty" tf:"oidc_group_filter,omitempty"`
 
 	// The name of Claim in the ID token whose value is the list of group names.
 	// +kubebuilder:validation:Optional

@@ -19,6 +19,9 @@ type PlanInitParameters_2 struct {
 	// Whether Savings Plan should be renewed at the end of the period (defaults to false)
 	AutoRenewal *bool `json:"autoRenewal,omitempty" tf:"auto_renewal,omitempty"`
 
+	// Deployment type of the Savings Plan (1AZ / 3AZ)
+	DeploymentType *string `json:"deploymentType,omitempty" tf:"deployment_type,omitempty"`
+
 	// Custom display name, used in invoices
 	// Custom display name, used in invoices
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
@@ -45,6 +48,9 @@ type PlanObservation_2 struct {
 	// Whether Savings Plan should be renewed at the end of the period (defaults to false)
 	// Whether Savings Plan should be renewed at the end of the period (defaults to false)
 	AutoRenewal *bool `json:"autoRenewal,omitempty" tf:"auto_renewal,omitempty"`
+
+	// Deployment type of the Savings Plan (1AZ / 3AZ)
+	DeploymentType *string `json:"deploymentType,omitempty" tf:"deployment_type,omitempty"`
 
 	// Custom display name, used in invoices
 	// Custom display name, used in invoices
@@ -104,6 +110,10 @@ type PlanParameters_2 struct {
 	// Whether Savings Plan should be renewed at the end of the period (defaults to false)
 	// +kubebuilder:validation:Optional
 	AutoRenewal *bool `json:"autoRenewal,omitempty" tf:"auto_renewal,omitempty"`
+
+	// Deployment type of the Savings Plan (1AZ / 3AZ)
+	// +kubebuilder:validation:Optional
+	DeploymentType *string `json:"deploymentType,omitempty" tf:"deployment_type,omitempty"`
 
 	// Custom display name, used in invoices
 	// Custom display name, used in invoices
