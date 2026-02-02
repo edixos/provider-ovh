@@ -93,6 +93,8 @@ spec:
                   oidcEndpoint:
                     description: The URL of an OIDC-compliant server.
                     type: string
+                  oidcGroupFilter:
+                    type: string
                   oidcGroupsClaim:
                     description: The name of Claim in the ID token whose value is
                       the list of group names.
@@ -253,6 +255,8 @@ spec:
                     type: object
                   oidcEndpoint:
                     description: The URL of an OIDC-compliant server.
+                    type: string
+                  oidcGroupFilter:
                     type: string
                   oidcGroupsClaim:
                     description: The name of Claim in the ID token whose value is
@@ -481,6 +485,8 @@ spec:
                     type: string
                   oidcEndpoint:
                     description: The URL of an OIDC-compliant server.
+                    type: string
+                  oidcGroupFilter:
                     type: string
                   oidcGroupsClaim:
                     description: The name of Claim in the ID token whose value is

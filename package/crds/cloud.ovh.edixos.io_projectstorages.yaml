@@ -102,6 +102,24 @@ spec:
                       (String) Container name
                       Container name
                     type: string
+                  objectLock:
+                    properties:
+                      rule:
+                        properties:
+                          mode:
+                            description: Object lock mode
+                            type: string
+                          period:
+                            description: The retention period that the default retention
+                              configuration must apply (e.g., P30D for 30 days)
+                            type: string
+                        type: object
+                      status:
+                        description: |-
+                          (String) Rule status
+                          Object lock status
+                        type: string
+                    type: object
                   ownerId:
                     description: |-
                       (Number) Container owner user ID
@@ -250,6 +268,24 @@ spec:
                       (String) Container name
                       Container name
                     type: string
+                  objectLock:
+                    properties:
+                      rule:
+                        properties:
+                          mode:
+                            description: Object lock mode
+                            type: string
+                          period:
+                            description: The retention period that the default retention
+                              configuration must apply (e.g., P30D for 30 days)
+                            type: string
+                        type: object
+                      status:
+                        description: |-
+                          (String) Rule status
+                          Object lock status
+                        type: string
+                    type: object
                   ownerId:
                     description: |-
                       (Number) Container owner user ID
@@ -497,6 +533,24 @@ spec:
                       (String) Container name
                       Container name
                     type: string
+                  objectLock:
+                    properties:
+                      rule:
+                        properties:
+                          mode:
+                            description: Object lock mode
+                            type: string
+                          period:
+                            description: The retention period that the default retention
+                              configuration must apply (e.g., P30D for 30 days)
+                            type: string
+                        type: object
+                      status:
+                        description: |-
+                          (String) Rule status
+                          Object lock status
+                        type: string
+                    type: object
                   objects:
                     description: (Attributes List) Container objects (see below for
                       nested schema)

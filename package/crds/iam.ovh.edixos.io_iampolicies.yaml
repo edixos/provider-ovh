@@ -78,6 +78,61 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  conditions:
+                    description: Conditions restrict permissions following resources,
+                      date or customer's information
+                    items:
+                      properties:
+                        condition:
+                          description: A list of nested conditions. This is the recursive
+                            part.
+                          items:
+                            properties:
+                              condition:
+                                description: A list of nested conditions. This is
+                                  the recursive part.
+                                items:
+                                  properties:
+                                    operator:
+                                      description: Operator for this condition (MATCH,
+                                        AND, OR, NOT)
+                                      type: string
+                                    values:
+                                      additionalProperties:
+                                        type: string
+                                      description: Key-value pairs to match (e.g.,
+                                        resource.Tag(name), date(Europe/Paris).WeekDay,
+                                        request.IP)
+                                      type: object
+                                      x-kubernetes-map-type: granular
+                                  type: object
+                                type: array
+                              operator:
+                                description: Operator for this condition (MATCH, AND,
+                                  OR, NOT)
+                                type: string
+                              values:
+                                additionalProperties:
+                                  type: string
+                                description: Key-value pairs to match (e.g., resource.Tag(name),
+                                  date(Europe/Paris).WeekDay, request.IP)
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        operator:
+                          description: Operator for this condition (MATCH, AND, OR,
+                            NOT)
+                          type: string
+                        values:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs to match (e.g., resource.Tag(name),
+                            date(Europe/Paris).WeekDay, request.IP)
+                          type: object
+                          x-kubernetes-map-type: granular
+                      type: object
+                    type: array
                   deny:
                     description: List of actions that will always be denied even if
                       also allowed by this policy or another one.
@@ -96,6 +151,10 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  expiredAt:
+                    description: Expiration date of the policy, after this date it
+                      will no longer be applied
+                    type: string
                   identities:
                     description: List of identities affected by the policy
                     items:
@@ -140,6 +199,61 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  conditions:
+                    description: Conditions restrict permissions following resources,
+                      date or customer's information
+                    items:
+                      properties:
+                        condition:
+                          description: A list of nested conditions. This is the recursive
+                            part.
+                          items:
+                            properties:
+                              condition:
+                                description: A list of nested conditions. This is
+                                  the recursive part.
+                                items:
+                                  properties:
+                                    operator:
+                                      description: Operator for this condition (MATCH,
+                                        AND, OR, NOT)
+                                      type: string
+                                    values:
+                                      additionalProperties:
+                                        type: string
+                                      description: Key-value pairs to match (e.g.,
+                                        resource.Tag(name), date(Europe/Paris).WeekDay,
+                                        request.IP)
+                                      type: object
+                                      x-kubernetes-map-type: granular
+                                  type: object
+                                type: array
+                              operator:
+                                description: Operator for this condition (MATCH, AND,
+                                  OR, NOT)
+                                type: string
+                              values:
+                                additionalProperties:
+                                  type: string
+                                description: Key-value pairs to match (e.g., resource.Tag(name),
+                                  date(Europe/Paris).WeekDay, request.IP)
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        operator:
+                          description: Operator for this condition (MATCH, AND, OR,
+                            NOT)
+                          type: string
+                        values:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs to match (e.g., resource.Tag(name),
+                            date(Europe/Paris).WeekDay, request.IP)
+                          type: object
+                          x-kubernetes-map-type: granular
+                      type: object
+                    type: array
                   deny:
                     description: List of actions that will always be denied even if
                       also allowed by this policy or another one.
@@ -158,6 +272,10 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  expiredAt:
+                    description: Expiration date of the policy, after this date it
+                      will no longer be applied
+                    type: string
                   identities:
                     description: List of identities affected by the policy
                     items:
@@ -293,6 +411,61 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  conditions:
+                    description: Conditions restrict permissions following resources,
+                      date or customer's information
+                    items:
+                      properties:
+                        condition:
+                          description: A list of nested conditions. This is the recursive
+                            part.
+                          items:
+                            properties:
+                              condition:
+                                description: A list of nested conditions. This is
+                                  the recursive part.
+                                items:
+                                  properties:
+                                    operator:
+                                      description: Operator for this condition (MATCH,
+                                        AND, OR, NOT)
+                                      type: string
+                                    values:
+                                      additionalProperties:
+                                        type: string
+                                      description: Key-value pairs to match (e.g.,
+                                        resource.Tag(name), date(Europe/Paris).WeekDay,
+                                        request.IP)
+                                      type: object
+                                      x-kubernetes-map-type: granular
+                                  type: object
+                                type: array
+                              operator:
+                                description: Operator for this condition (MATCH, AND,
+                                  OR, NOT)
+                                type: string
+                              values:
+                                additionalProperties:
+                                  type: string
+                                description: Key-value pairs to match (e.g., resource.Tag(name),
+                                  date(Europe/Paris).WeekDay, request.IP)
+                                type: object
+                                x-kubernetes-map-type: granular
+                            type: object
+                          type: array
+                        operator:
+                          description: Operator for this condition (MATCH, AND, OR,
+                            NOT)
+                          type: string
+                        values:
+                          additionalProperties:
+                            type: string
+                          description: Key-value pairs to match (e.g., resource.Tag(name),
+                            date(Europe/Paris).WeekDay, request.IP)
+                          type: object
+                          x-kubernetes-map-type: granular
+                      type: object
+                    type: array
                   createdAt:
                     description: Creation date of this group.
                     type: string
@@ -314,6 +487,10 @@ spec:
                       type: string
                     type: array
                     x-kubernetes-list-type: set
+                  expiredAt:
+                    description: Expiration date of the policy, after this date it
+                      will no longer be applied
+                    type: string
                   id:
                     type: string
                   identities:

@@ -131,6 +131,33 @@ type FilterParameters struct {
 	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
+type ObjectLockInitParameters struct {
+	Rule *RuleInitParameters `json:"rule,omitempty" tf:"rule,omitempty"`
+
+	// (String) Rule status
+	// Object lock status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type ObjectLockObservation struct {
+	Rule *RuleObservation `json:"rule,omitempty" tf:"rule,omitempty"`
+
+	// (String) Rule status
+	// Object lock status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type ObjectLockParameters struct {
+
+	// +kubebuilder:validation:Optional
+	Rule *RuleParameters `json:"rule,omitempty" tf:"rule,omitempty"`
+
+	// (String) Rule status
+	// Object lock status
+	// +kubebuilder:validation:Optional
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
 type ObjectsInitParameters struct {
 }
 
@@ -193,6 +220,8 @@ type ProjectStorageInitParameters struct {
 	// Container name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	ObjectLock *ObjectLockInitParameters `json:"objectLock,omitempty" tf:"object_lock,omitempty"`
+
 	// (Number) Container owner user ID
 	// Container owner user ID
 	OwnerID *float64 `json:"ownerId,omitempty" tf:"owner_id,omitempty"`
@@ -243,6 +272,8 @@ type ProjectStorageObservation struct {
 	// (String) Container name
 	// Container name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+
+	ObjectLock *ObjectLockObservation `json:"objectLock,omitempty" tf:"object_lock,omitempty"`
 
 	// (Attributes List) Container objects (see below for nested schema)
 	Objects []ObjectsObservation `json:"objects,omitempty" tf:"objects,omitempty"`
@@ -312,6 +343,9 @@ type ProjectStorageParameters struct {
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	ObjectLock *ObjectLockParameters `json:"objectLock,omitempty" tf:"object_lock,omitempty"`
+
 	// (Number) Container owner user ID
 	// Container owner user ID
 	// +kubebuilder:validation:Optional
@@ -358,6 +392,35 @@ type ReplicationParameters struct {
 	// (Attributes List) Replication rules (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Rules []RulesParameters `json:"rules,omitempty" tf:"rules,omitempty"`
+}
+
+type RuleInitParameters struct {
+
+	// Object lock mode
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// The retention period that the default retention configuration must apply (e.g., P30D for 30 days)
+	Period *string `json:"period,omitempty" tf:"period,omitempty"`
+}
+
+type RuleObservation struct {
+
+	// Object lock mode
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// The retention period that the default retention configuration must apply (e.g., P30D for 30 days)
+	Period *string `json:"period,omitempty" tf:"period,omitempty"`
+}
+
+type RuleParameters struct {
+
+	// Object lock mode
+	// +kubebuilder:validation:Optional
+	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
+
+	// The retention period that the default retention configuration must apply (e.g., P30D for 30 days)
+	// +kubebuilder:validation:Optional
+	Period *string `json:"period,omitempty" tf:"period,omitempty"`
 }
 
 type RulesInitParameters struct {

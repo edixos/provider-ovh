@@ -13,8 +13,8 @@ on:
 
 env:
   # Common versions
-  GO_VERSION: "1.25.5"
-  GOLANGCI_VERSION: "v2.4.0"
+  GO_VERSION: "1.25.6"
+  GOLANGCI_VERSION: "v2.5.0"
   DOCKER_BUILDX_VERSION: "v0.8.2"
 
   # Common users. We can't run a step 'if secrets.XXX != ""' but we can run a

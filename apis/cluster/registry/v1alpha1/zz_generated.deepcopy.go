@@ -683,6 +683,11 @@ func (in *ContainerRegistryOIDCInitParameters) DeepCopyInto(out *ContainerRegist
 		*out = new(string)
 		**out = **in
 	}
+	if in.OidcGroupFilter != nil {
+		in, out := &in.OidcGroupFilter, &out.OidcGroupFilter
+		*out = new(string)
+		**out = **in
+	}
 	if in.OidcGroupsClaim != nil {
 		in, out := &in.OidcGroupsClaim, &out.OidcGroupsClaim
 		*out = new(string)
@@ -805,6 +810,11 @@ func (in *ContainerRegistryOIDCObservation) DeepCopyInto(out *ContainerRegistryO
 		*out = new(string)
 		**out = **in
 	}
+	if in.OidcGroupFilter != nil {
+		in, out := &in.OidcGroupFilter, &out.OidcGroupFilter
+		*out = new(string)
+		**out = **in
+	}
 	if in.OidcGroupsClaim != nil {
 		in, out := &in.OidcGroupsClaim, &out.OidcGroupsClaim
 		*out = new(string)
@@ -878,6 +888,11 @@ func (in *ContainerRegistryOIDCParameters) DeepCopyInto(out *ContainerRegistryOI
 	in.OidcClientSecretSecretRef.DeepCopyInto(&out.OidcClientSecretSecretRef)
 	if in.OidcEndpoint != nil {
 		in, out := &in.OidcEndpoint, &out.OidcEndpoint
+		*out = new(string)
+		**out = **in
+	}
+	if in.OidcGroupFilter != nil {
+		in, out := &in.OidcGroupFilter, &out.OidcGroupFilter
 		*out = new(string)
 		**out = **in
 	}
