@@ -71,5 +71,8 @@ func Configure(p *config.Provider) {
 	})
 	p.AddResourceConfigurator("ovh_cloud_project_storage", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
+		r.Kind = "ProjectStorage"
+		// UseAsync is needed for resources that may take time to become available
+		r.UseAsync = true
 	})
 }

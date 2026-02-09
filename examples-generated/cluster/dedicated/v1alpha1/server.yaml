@@ -1,0 +1,41 @@
+apiVersion: dedicated.ovh.edixos.io/v1alpha1
+kind: Server
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dedicated/v1alpha1/server
+  labels:
+    testing.upbound.io/example-name: server
+  name: server
+spec:
+  forProvider:
+    displayName: My server display name
+    os: debian12_64
+    ovhSubsidiary: ${data.ovh_me.account.ovh_subsidiary}
+    plan:
+    - configuration:
+      - label: dedicated_datacenter
+        value: bhs
+      - label: dedicated_os
+        value: none_64.en
+      - label: region
+        value: canada
+      duration: P1M
+      planCode: 24rise01
+      pricingMode: default
+    planOption:
+    - duration: P1M
+      planCode: ram-32g-rise13
+      pricingMode: default
+      quantity: 1
+    - duration: P1M
+      planCode: bandwidth-500-included-rise
+      pricingMode: default
+      quantity: 1
+    - duration: P1M
+      planCode: softraid-2x512nvme-rise
+      pricingMode: default
+      quantity: 1
+    - duration: P1M
+      planCode: vrack-bandwidth-100-rise-included
+      pricingMode: default
+      quantity: 1

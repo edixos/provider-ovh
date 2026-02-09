@@ -13,255 +13,90 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type CustomizationsInitParameters struct {
-
-	// Config Drive MetaData
-	// +mapType=granular
-	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
-
-	// Config Drive UserData
-	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
-
-	// EFI bootloader path
-	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
-
-	// Image HTTP Headers
-	// +mapType=granular
-	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
+type ExtrasLvInitParameters struct {
 
 	// : Logical volume name
-	// Custom hostname
-	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
-
-	// Image checksum
-	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
-
-	// Checksum type
-	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
-
-	// Image Type
-	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
-
-	// Image URL
-	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
-
-	// Display Language
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
-
-	// Post-Installation Script
-	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
-
-	// Post-Installation Script File Extension
-	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
-
-	// SSH Public Key
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+	// Logical volume name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type CustomizationsObservation struct {
-
-	// Config Drive MetaData
-	// +mapType=granular
-	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
-
-	// Config Drive UserData
-	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
-
-	// EFI bootloader path
-	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
-
-	// Image HTTP Headers
-	// +mapType=granular
-	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
+type ExtrasLvObservation struct {
 
 	// : Logical volume name
-	// Custom hostname
-	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
-
-	// Image checksum
-	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
-
-	// Checksum type
-	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
-
-	// Image Type
-	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
-
-	// Image URL
-	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
-
-	// Display Language
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
-
-	// Post-Installation Script
-	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
-
-	// Post-Installation Script File Extension
-	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
-
-	// SSH Public Key
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+	// Logical volume name
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type CustomizationsParameters struct {
-
-	// Config Drive MetaData
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
-
-	// Config Drive UserData
-	// +kubebuilder:validation:Optional
-	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
-
-	// EFI bootloader path
-	// +kubebuilder:validation:Optional
-	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
-
-	// Image HTTP Headers
-	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
+type ExtrasLvParameters struct {
 
 	// : Logical volume name
-	// Custom hostname
+	// Logical volume name
 	// +kubebuilder:validation:Optional
-	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
-
-	// Image checksum
-	// +kubebuilder:validation:Optional
-	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
-
-	// Checksum type
-	// +kubebuilder:validation:Optional
-	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
-
-	// Image Type
-	// +kubebuilder:validation:Optional
-	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
-
-	// Image URL
-	// +kubebuilder:validation:Optional
-	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
-
-	// Display Language
-	// +kubebuilder:validation:Optional
-	Language *string `json:"language,omitempty" tf:"language,omitempty"`
-
-	// Post-Installation Script
-	// +kubebuilder:validation:Optional
-	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
-
-	// Post-Installation Script File Extension
-	// +kubebuilder:validation:Optional
-	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
-
-	// SSH Public Key
-	// +kubebuilder:validation:Optional
-	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
-type ExtrasInitParameters struct {
+type ExtrasZpInitParameters struct {
+
+	// : Logical volume name
+	// zpool name (generated automatically if not specified)
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type ExtrasZpObservation struct {
+
+	// : Logical volume name
+	// zpool name (generated automatically if not specified)
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type ExtrasZpParameters struct {
+
+	// : Logical volume name
+	// zpool name (generated automatically if not specified)
+	// +kubebuilder:validation:Optional
+	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+}
+
+type LayoutExtrasInitParameters struct {
 
 	// specific parameters (when applicable)
 	// LVM-specific parameters
-	Lv []LvInitParameters `json:"lv,omitempty" tf:"lv,omitempty"`
+	Lv []ExtrasLvInitParameters `json:"lv,omitempty" tf:"lv,omitempty"`
 
 	// specific parameters (when applicable)
 	// ZFS-specific parameters
-	Zp []ZpInitParameters `json:"zp,omitempty" tf:"zp,omitempty"`
+	Zp []ExtrasZpInitParameters `json:"zp,omitempty" tf:"zp,omitempty"`
 }
 
-type ExtrasObservation struct {
+type LayoutExtrasObservation struct {
 
 	// specific parameters (when applicable)
 	// LVM-specific parameters
-	Lv []LvObservation `json:"lv,omitempty" tf:"lv,omitempty"`
+	Lv []ExtrasLvObservation `json:"lv,omitempty" tf:"lv,omitempty"`
 
 	// specific parameters (when applicable)
 	// ZFS-specific parameters
-	Zp []ZpObservation `json:"zp,omitempty" tf:"zp,omitempty"`
+	Zp []ExtrasZpObservation `json:"zp,omitempty" tf:"zp,omitempty"`
 }
 
-type ExtrasParameters struct {
+type LayoutExtrasParameters struct {
 
 	// specific parameters (when applicable)
 	// LVM-specific parameters
 	// +kubebuilder:validation:Optional
-	Lv []LvParameters `json:"lv,omitempty" tf:"lv,omitempty"`
+	Lv []ExtrasLvParameters `json:"lv,omitempty" tf:"lv,omitempty"`
 
 	// specific parameters (when applicable)
 	// ZFS-specific parameters
 	// +kubebuilder:validation:Optional
-	Zp []ZpParameters `json:"zp,omitempty" tf:"zp,omitempty"`
+	Zp []ExtrasZpParameters `json:"zp,omitempty" tf:"zp,omitempty"`
 }
 
-type HardwareRaidInitParameters struct {
-
-	// : Number of arrays (default is 1)
-	// Number of arrays (default is 1)
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
-
-	// : Hardware raid type (default is 1)
-	// Hardware raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
-
-	// : Number of disks in the disk group involved in the spare (default is 0)
-	// Number of disks in the disk group involved in the spare (default is 0)
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
-}
-
-type HardwareRaidObservation struct {
-
-	// : Number of arrays (default is 1)
-	// Number of arrays (default is 1)
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
-
-	// : Hardware raid type (default is 1)
-	// Hardware raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
-
-	// : Number of disks in the disk group involved in the spare (default is 0)
-	// Number of disks in the disk group involved in the spare (default is 0)
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
-}
-
-type HardwareRaidParameters struct {
-
-	// : Number of arrays (default is 1)
-	// Number of arrays (default is 1)
-	// +kubebuilder:validation:Optional
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// +kubebuilder:validation:Optional
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
-
-	// : Hardware raid type (default is 1)
-	// Hardware raid type (default is 1)
-	// +kubebuilder:validation:Optional
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
-
-	// : Number of disks in the disk group involved in the spare (default is 0)
-	// Number of disks in the disk group involved in the spare (default is 0)
-	// +kubebuilder:validation:Optional
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
-}
-
-type LayoutInitParameters struct {
+type PartitioningLayoutInitParameters struct {
 
 	// : Partition extras parameters (when applicable)
 	// Partition extras parameters
-	Extras []ExtrasInitParameters `json:"extras,omitempty" tf:"extras,omitempty"`
+	Extras []LayoutExtrasInitParameters `json:"extras,omitempty" tf:"extras,omitempty"`
 
 	// : File system type
 	// File system type
@@ -280,11 +115,11 @@ type LayoutInitParameters struct {
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
-type LayoutObservation struct {
+type PartitioningLayoutObservation struct {
 
 	// : Partition extras parameters (when applicable)
 	// Partition extras parameters
-	Extras []ExtrasObservation `json:"extras,omitempty" tf:"extras,omitempty"`
+	Extras []LayoutExtrasObservation `json:"extras,omitempty" tf:"extras,omitempty"`
 
 	// : File system type
 	// File system type
@@ -303,12 +138,12 @@ type LayoutObservation struct {
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
-type LayoutParameters struct {
+type PartitioningLayoutParameters struct {
 
 	// : Partition extras parameters (when applicable)
 	// Partition extras parameters
 	// +kubebuilder:validation:Optional
-	Extras []ExtrasParameters `json:"extras,omitempty" tf:"extras,omitempty"`
+	Extras []LayoutExtrasParameters `json:"extras,omitempty" tf:"extras,omitempty"`
 
 	// : File system type
 	// File system type
@@ -331,74 +166,152 @@ type LayoutParameters struct {
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
-type LvInitParameters struct {
+type ServerReinstallTaskCustomizationsInitParameters struct {
+
+	// Config Drive MetaData
+	// +mapType=granular
+	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
+
+	// Config Drive UserData
+	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
+
+	// EFI bootloader path
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
+
+	// Image HTTP Headers
+	// +mapType=granular
+	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
 
 	// : Logical volume name
-	// Logical volume name
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// Custom hostname
+	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+
+	// Image checksum
+	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
+
+	// Checksum type
+	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
+
+	// Image Type
+	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
+
+	// Image URL
+	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
+
+	// Display Language
+	Language *string `json:"language,omitempty" tf:"language,omitempty"`
+
+	// Post-Installation Script
+	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
+
+	// Post-Installation Script File Extension
+	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
+
+	// SSH Public Key
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
-type LvObservation struct {
+type ServerReinstallTaskCustomizationsObservation struct {
+
+	// Config Drive MetaData
+	// +mapType=granular
+	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
+
+	// Config Drive UserData
+	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
+
+	// EFI bootloader path
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
+
+	// Image HTTP Headers
+	// +mapType=granular
+	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
 
 	// : Logical volume name
-	// Logical volume name
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// Custom hostname
+	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
+
+	// Image checksum
+	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
+
+	// Checksum type
+	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
+
+	// Image Type
+	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
+
+	// Image URL
+	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
+
+	// Display Language
+	Language *string `json:"language,omitempty" tf:"language,omitempty"`
+
+	// Post-Installation Script
+	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
+
+	// Post-Installation Script File Extension
+	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
+
+	// SSH Public Key
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
-type LvParameters struct {
+type ServerReinstallTaskCustomizationsParameters struct {
+
+	// Config Drive MetaData
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
+
+	// Config Drive UserData
+	// +kubebuilder:validation:Optional
+	ConfigDriveUserData *string `json:"configDriveUserData,omitempty" tf:"config_drive_user_data,omitempty"`
+
+	// EFI bootloader path
+	// +kubebuilder:validation:Optional
+	EfiBootloaderPath *string `json:"efiBootloaderPath,omitempty" tf:"efi_bootloader_path,omitempty"`
+
+	// Image HTTP Headers
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	HTTPHeaders map[string]*string `json:"httpHeaders,omitempty" tf:"http_headers,omitempty"`
 
 	// : Logical volume name
-	// Logical volume name
+	// Custom hostname
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-}
+	Hostname *string `json:"hostname,omitempty" tf:"hostname,omitempty"`
 
-type PartitioningInitParameters struct {
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
-
-	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
-	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
-	Layout []LayoutInitParameters `json:"layout,omitempty" tf:"layout,omitempty"`
-
-	// : Partitioning scheme (if applicable with selected operating system)
-	// Partitioning scheme name
-	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
-}
-
-type PartitioningObservation struct {
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
-
-	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
-	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
-	Layout []LayoutObservation `json:"layout,omitempty" tf:"layout,omitempty"`
-
-	// : Partitioning scheme (if applicable with selected operating system)
-	// Partitioning scheme name
-	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
-}
-
-type PartitioningParameters struct {
-
-	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+	// Image checksum
 	// +kubebuilder:validation:Optional
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	ImageCheckSum *string `json:"imageCheckSum,omitempty" tf:"image_check_sum,omitempty"`
 
-	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
-	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
+	// Checksum type
 	// +kubebuilder:validation:Optional
-	Layout []LayoutParameters `json:"layout,omitempty" tf:"layout,omitempty"`
+	ImageCheckSumType *string `json:"imageCheckSumType,omitempty" tf:"image_check_sum_type,omitempty"`
 
-	// : Partitioning scheme (if applicable with selected operating system)
-	// Partitioning scheme name
+	// Image Type
 	// +kubebuilder:validation:Optional
-	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
+	ImageType *string `json:"imageType,omitempty" tf:"image_type,omitempty"`
+
+	// Image URL
+	// +kubebuilder:validation:Optional
+	ImageURL *string `json:"imageUrl,omitempty" tf:"image_url,omitempty"`
+
+	// Display Language
+	// +kubebuilder:validation:Optional
+	Language *string `json:"language,omitempty" tf:"language,omitempty"`
+
+	// Post-Installation Script
+	// +kubebuilder:validation:Optional
+	PostInstallationScript *string `json:"postInstallationScript,omitempty" tf:"post_installation_script,omitempty"`
+
+	// Post-Installation Script File Extension
+	// +kubebuilder:validation:Optional
+	PostInstallationScriptExtension *string `json:"postInstallationScriptExtension,omitempty" tf:"post_installation_script_extension,omitempty"`
+
+	// SSH Public Key
+	// +kubebuilder:validation:Optional
+	SSHKey *string `json:"sshKey,omitempty" tf:"ssh_key,omitempty"`
 }
 
 type ServerReinstallTaskInitParameters struct {
@@ -409,7 +322,7 @@ type ServerReinstallTaskInitParameters struct {
 
 	// Available attributes and their types are OS-dependant. Example: hostname.
 	// OS reinstallation customizations
-	Customizations []CustomizationsInitParameters `json:"customizations,omitempty" tf:"customizations,omitempty"`
+	Customizations []ServerReinstallTaskCustomizationsInitParameters `json:"customizations,omitempty" tf:"customizations,omitempty"`
 
 	// Operating system to install.
 	// Operating System name
@@ -426,7 +339,7 @@ type ServerReinstallTaskInitParameters struct {
 
 	// : OS reinstallation storage configurations. More details about disks, hardware/software RAID and partitioning configuration (do not forget to adapt camel case parameters to snake case parameters).
 	// Storage configuration
-	Storage []StorageInitParameters `json:"storage,omitempty" tf:"storage,omitempty"`
+	Storage []ServerReinstallTaskStorageInitParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 }
 
 type ServerReinstallTaskObservation struct {
@@ -441,7 +354,7 @@ type ServerReinstallTaskObservation struct {
 
 	// Available attributes and their types are OS-dependant. Example: hostname.
 	// OS reinstallation customizations
-	Customizations []CustomizationsObservation `json:"customizations,omitempty" tf:"customizations,omitempty"`
+	Customizations []ServerReinstallTaskCustomizationsObservation `json:"customizations,omitempty" tf:"customizations,omitempty"`
 
 	// Completion date in RFC3339 format.
 	// Completion date
@@ -480,7 +393,7 @@ type ServerReinstallTaskObservation struct {
 
 	// : OS reinstallation storage configurations. More details about disks, hardware/software RAID and partitioning configuration (do not forget to adapt camel case parameters to snake case parameters).
 	// Storage configuration
-	Storage []StorageObservation `json:"storage,omitempty" tf:"storage,omitempty"`
+	Storage []ServerReinstallTaskStorageObservation `json:"storage,omitempty" tf:"storage,omitempty"`
 }
 
 type ServerReinstallTaskParameters struct {
@@ -493,7 +406,7 @@ type ServerReinstallTaskParameters struct {
 	// Available attributes and their types are OS-dependant. Example: hostname.
 	// OS reinstallation customizations
 	// +kubebuilder:validation:Optional
-	Customizations []CustomizationsParameters `json:"customizations,omitempty" tf:"customizations,omitempty"`
+	Customizations []ServerReinstallTaskCustomizationsParameters `json:"customizations,omitempty" tf:"customizations,omitempty"`
 
 	// Operating system to install.
 	// Operating System name
@@ -514,10 +427,10 @@ type ServerReinstallTaskParameters struct {
 	// : OS reinstallation storage configurations. More details about disks, hardware/software RAID and partitioning configuration (do not forget to adapt camel case parameters to snake case parameters).
 	// Storage configuration
 	// +kubebuilder:validation:Optional
-	Storage []StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
+	Storage []ServerReinstallTaskStorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 }
 
-type StorageInitParameters struct {
+type ServerReinstallTaskStorageInitParameters struct {
 
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
@@ -525,14 +438,14 @@ type StorageInitParameters struct {
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
-	HardwareRaid []HardwareRaidInitParameters `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
+	HardwareRaid []StorageHardwareRaidInitParameters `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
 
 	// : Partitioning configuration
 	// Partitioning configuration
-	Partitioning []PartitioningInitParameters `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
+	Partitioning []StoragePartitioningInitParameters `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
 }
 
-type StorageObservation struct {
+type ServerReinstallTaskStorageObservation struct {
 
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
@@ -540,14 +453,14 @@ type StorageObservation struct {
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
-	HardwareRaid []HardwareRaidObservation `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
+	HardwareRaid []StorageHardwareRaidObservation `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
 
 	// : Partitioning configuration
 	// Partitioning configuration
-	Partitioning []PartitioningObservation `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
+	Partitioning []StoragePartitioningObservation `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
 }
 
-type StorageParameters struct {
+type ServerReinstallTaskStorageParameters struct {
 
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
@@ -557,34 +470,121 @@ type StorageParameters struct {
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
 	// +kubebuilder:validation:Optional
-	HardwareRaid []HardwareRaidParameters `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
+	HardwareRaid []StorageHardwareRaidParameters `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
 
 	// : Partitioning configuration
 	// Partitioning configuration
 	// +kubebuilder:validation:Optional
-	Partitioning []PartitioningParameters `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
+	Partitioning []StoragePartitioningParameters `json:"partitioning,omitempty" tf:"partitioning,omitempty"`
 }
 
-type ZpInitParameters struct {
+type StorageHardwareRaidInitParameters struct {
 
-	// : Logical volume name
-	// zpool name (generated automatically if not specified)
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// : Number of arrays (default is 1)
+	// Number of arrays (default is 1)
+	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Hardware raid type (default is 1)
+	// Hardware raid type (default is 1)
+	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+
+	// : Number of disks in the disk group involved in the spare (default is 0)
+	// Number of disks in the disk group involved in the spare (default is 0)
+	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
 }
 
-type ZpObservation struct {
+type StorageHardwareRaidObservation struct {
 
-	// : Logical volume name
-	// zpool name (generated automatically if not specified)
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	// : Number of arrays (default is 1)
+	// Number of arrays (default is 1)
+	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Hardware raid type (default is 1)
+	// Hardware raid type (default is 1)
+	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+
+	// : Number of disks in the disk group involved in the spare (default is 0)
+	// Number of disks in the disk group involved in the spare (default is 0)
+	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
 }
 
-type ZpParameters struct {
+type StorageHardwareRaidParameters struct {
 
-	// : Logical volume name
-	// zpool name (generated automatically if not specified)
+	// : Number of arrays (default is 1)
+	// Number of arrays (default is 1)
 	// +kubebuilder:validation:Optional
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
+	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// +kubebuilder:validation:Optional
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Hardware raid type (default is 1)
+	// Hardware raid type (default is 1)
+	// +kubebuilder:validation:Optional
+	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+
+	// : Number of disks in the disk group involved in the spare (default is 0)
+	// Number of disks in the disk group involved in the spare (default is 0)
+	// +kubebuilder:validation:Optional
+	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
+}
+
+type StoragePartitioningInitParameters struct {
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
+	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
+	Layout []PartitioningLayoutInitParameters `json:"layout,omitempty" tf:"layout,omitempty"`
+
+	// : Partitioning scheme (if applicable with selected operating system)
+	// Partitioning scheme name
+	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
+}
+
+type StoragePartitioningObservation struct {
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
+	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
+	Layout []PartitioningLayoutObservation `json:"layout,omitempty" tf:"layout,omitempty"`
+
+	// : Partitioning scheme (if applicable with selected operating system)
+	// Partitioning scheme name
+	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
+}
+
+type StoragePartitioningParameters struct {
+
+	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+	// +kubebuilder:validation:Optional
+	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+
+	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
+	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
+	// +kubebuilder:validation:Optional
+	Layout []PartitioningLayoutParameters `json:"layout,omitempty" tf:"layout,omitempty"`
+
+	// : Partitioning scheme (if applicable with selected operating system)
+	// Partitioning scheme name
+	// +kubebuilder:validation:Optional
+	SchemeName *string `json:"schemeName,omitempty" tf:"scheme_name,omitempty"`
 }
 
 // ServerReinstallTaskSpec defines the desired state of ServerReinstallTask

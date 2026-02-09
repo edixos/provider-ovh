@@ -87,16 +87,6 @@ spec:
                       (Attributes List) Container objects (see below for nested schema)
                       If true, objects list will not be saved in state (useful for large buckets)
                     type: boolean
-                  limit:
-                    description: |-
-                      (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-                      Limit the number of objects returned (1000 maximum, defaults to 1000)
-                    type: number
-                  marker:
-                    description: |-
-                      (String) Key to start with when listing objects
-                      Key to start with when listing objects
-                    type: string
                   name:
                     description: |-
                       (String) Container name
@@ -125,11 +115,6 @@ spec:
                       (Number) Container owner user ID
                       Container owner user ID
                     type: number
-                  prefix:
-                    description: |-
-                      (String) List objects whose key begins with this prefix
-                      List objects whose key begins with this prefix
-                    type: string
                   regionName:
                     description: |-
                       (String) Region name
@@ -253,16 +238,6 @@ spec:
                       (Attributes List) Container objects (see below for nested schema)
                       If true, objects list will not be saved in state (useful for large buckets)
                     type: boolean
-                  limit:
-                    description: |-
-                      (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-                      Limit the number of objects returned (1000 maximum, defaults to 1000)
-                    type: number
-                  marker:
-                    description: |-
-                      (String) Key to start with when listing objects
-                      Key to start with when listing objects
-                    type: string
                   name:
                     description: |-
                       (String) Container name
@@ -291,11 +266,6 @@ spec:
                       (Number) Container owner user ID
                       Container owner user ID
                     type: number
-                  prefix:
-                    description: |-
-                      (String) List objects whose key begins with this prefix
-                      List objects whose key begins with this prefix
-                    type: string
                   regionName:
                     description: |-
                       (String) Region name
@@ -518,16 +488,6 @@ spec:
                   id:
                     description: (String) Rule ID
                     type: string
-                  limit:
-                    description: |-
-                      (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-                      Limit the number of objects returned (1000 maximum, defaults to 1000)
-                    type: number
-                  marker:
-                    description: |-
-                      (String) Key to start with when listing objects
-                      Key to start with when listing objects
-                    type: string
                   name:
                     description: |-
                       (String) Container name
@@ -613,11 +573,6 @@ spec:
                       (Number) Container owner user ID
                       Container owner user ID
                     type: number
-                  prefix:
-                    description: |-
-                      (String) List objects whose key begins with this prefix
-                      List objects whose key begins with this prefix
-                    type: string
                   region:
                     description: |-
                       (String) Container region

@@ -19,6 +19,7 @@ import (
 	plan "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/plan"
 	project "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/project"
 	projectcontainerregistryiam "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectcontainerregistryiam"
+	projectgatewayinterface "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectgatewayinterface"
 	projectinstance "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectinstance"
 	projectinstancesnapshot "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectinstancesnapshot"
 	projectrancher "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectrancher"
@@ -50,6 +51,7 @@ import (
 	projectdatabaseredisuser "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabaseredisuser"
 	projectdatabaseuser "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabaseuser"
 	projectdatabasevalkeyuser "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabasevalkeyuser"
+	server "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicated/server"
 	serverreinstalltask "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicated/serverreinstalltask"
 	servernetworking "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/servernetworking"
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/serverreboottask"
@@ -63,6 +65,7 @@ import (
 	zonedynhostrecord "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/zonedynhostrecord"
 	zonerecord "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/zonerecord"
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/zoneredirection"
+	zoneimport "github.com/edixos/provider-ovh/internal/controller/namespaced/domain/zoneimport"
 	projectgateway "github.com/edixos/provider-ovh/internal/controller/namespaced/gateway/projectgateway"
 	iampermissionsgroup "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iampermissionsgroup"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iampolicy"
@@ -161,6 +164,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		plan.Setup,
 		project.Setup,
 		projectcontainerregistryiam.Setup,
+		projectgatewayinterface.Setup,
 		projectinstance.Setup,
 		projectinstancesnapshot.Setup,
 		projectrancher.Setup,
@@ -192,6 +196,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabaseredisuser.Setup,
 		projectdatabaseuser.Setup,
 		projectdatabasevalkeyuser.Setup,
+		server.Setup,
 		serverreinstalltask.Setup,
 		servernetworking.Setup,
 		serverreboottask.Setup,
@@ -205,6 +210,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zonedynhostrecord.Setup,
 		zonerecord.Setup,
 		zoneredirection.Setup,
+		zoneimport.Setup,
 		projectgateway.Setup,
 		iampermissionsgroup.Setup,
 		iampolicy.Setup,
@@ -309,6 +315,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		plan.SetupGated,
 		project.SetupGated,
 		projectcontainerregistryiam.SetupGated,
+		projectgatewayinterface.SetupGated,
 		projectinstance.SetupGated,
 		projectinstancesnapshot.SetupGated,
 		projectrancher.SetupGated,
@@ -340,6 +347,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabaseredisuser.SetupGated,
 		projectdatabaseuser.SetupGated,
 		projectdatabasevalkeyuser.SetupGated,
+		server.SetupGated,
 		serverreinstalltask.SetupGated,
 		servernetworking.SetupGated,
 		serverreboottask.SetupGated,
@@ -353,6 +361,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		zonedynhostrecord.SetupGated,
 		zonerecord.SetupGated,
 		zoneredirection.SetupGated,
+		zoneimport.SetupGated,
 		projectgateway.SetupGated,
 		iampermissionsgroup.SetupGated,
 		iampolicy.SetupGated,

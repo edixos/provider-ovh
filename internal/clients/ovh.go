@@ -11,6 +11,7 @@ import (
 
 	"github.com/crossplane/crossplane-runtime/v2/pkg/resource"
 	"github.com/crossplane/upjet/v2/pkg/terraform"
+	"github.com/ovh/terraform-provider-ovh/v2/ovh"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -85,6 +86,10 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		ps.Configuration = cfg
+
+		// For Framework resources, create and configure a new provider instance
+		// The provider will be configured with credentials from cfg
+		ps.FrameworkProvider = &ovh.OvhProvider{}
 
 		return ps, nil
 	}

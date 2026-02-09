@@ -208,14 +208,6 @@ type ProjectStorageInitParameters struct {
 	// If true, objects list will not be saved in state (useful for large buckets)
 	HideObjects *bool `json:"hideObjects,omitempty" tf:"hide_objects,omitempty"`
 
-	// (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-	// Limit the number of objects returned (1000 maximum, defaults to 1000)
-	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
-
-	// (String) Key to start with when listing objects
-	// Key to start with when listing objects
-	Marker *string `json:"marker,omitempty" tf:"marker,omitempty"`
-
 	// (String) Container name
 	// Container name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -225,10 +217,6 @@ type ProjectStorageInitParameters struct {
 	// (Number) Container owner user ID
 	// Container owner user ID
 	OwnerID *float64 `json:"ownerId,omitempty" tf:"owner_id,omitempty"`
-
-	// (String) List objects whose key begins with this prefix
-	// List objects whose key begins with this prefix
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
 	// (String) Region name
 	// Region name
@@ -261,14 +249,6 @@ type ProjectStorageObservation struct {
 	// (String) Rule ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-	// Limit the number of objects returned (1000 maximum, defaults to 1000)
-	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
-
-	// (String) Key to start with when listing objects
-	// Key to start with when listing objects
-	Marker *string `json:"marker,omitempty" tf:"marker,omitempty"`
-
 	// (String) Container name
 	// Container name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -289,10 +269,6 @@ type ProjectStorageObservation struct {
 	// (Number) Container owner user ID
 	// Container owner user ID
 	OwnerID *float64 `json:"ownerId,omitempty" tf:"owner_id,omitempty"`
-
-	// (String) List objects whose key begins with this prefix
-	// List objects whose key begins with this prefix
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
 	// (String) Container region
 	// Container region
@@ -328,16 +304,6 @@ type ProjectStorageParameters struct {
 	// +kubebuilder:validation:Optional
 	HideObjects *bool `json:"hideObjects,omitempty" tf:"hide_objects,omitempty"`
 
-	// (Number) Limit the number of objects returned (1000 maximum, defaults to 1000)
-	// Limit the number of objects returned (1000 maximum, defaults to 1000)
-	// +kubebuilder:validation:Optional
-	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
-
-	// (String) Key to start with when listing objects
-	// Key to start with when listing objects
-	// +kubebuilder:validation:Optional
-	Marker *string `json:"marker,omitempty" tf:"marker,omitempty"`
-
 	// (String) Container name
 	// Container name
 	// +kubebuilder:validation:Optional
@@ -350,11 +316,6 @@ type ProjectStorageParameters struct {
 	// Container owner user ID
 	// +kubebuilder:validation:Optional
 	OwnerID *float64 `json:"ownerId,omitempty" tf:"owner_id,omitempty"`
-
-	// (String) List objects whose key begins with this prefix
-	// List objects whose key begins with this prefix
-	// +kubebuilder:validation:Optional
-	Prefix *string `json:"prefix,omitempty" tf:"prefix,omitempty"`
 
 	// (String) Region name
 	// Region name
