@@ -1,0 +1,103 @@
+apiVersion: cloud.ovh.m.edixos.io/v1alpha1
+kind: ProjectGatewayInterface
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectgatewayinterface
+  labels:
+    testing.upbound.io/example-name: interface
+  name: interface
+  namespace: upbound-system
+spec:
+  forProvider:
+    region: GRA1
+    serviceName: ${ovh_cloud_project_network_private.mypriv.service_name}
+    subnetId: ${ovh_cloud_project_network_private_subnet.my_other_privsub.id}
+
+---
+
+apiVersion: gateway.ovh.m.edixos.io/v1alpha1
+kind: ProjectGateway
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectgatewayinterface
+  labels:
+    testing.upbound.io/example-name: gateway
+  name: gateway
+  namespace: upbound-system
+spec:
+  forProvider:
+    model: s
+    name: my-gateway
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: mypriv
+    region: GRA9
+    serviceName: xxxxxxxxxx
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: my_privsub
+
+---
+
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: PrivateNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectgatewayinterface
+  labels:
+    testing.upbound.io/example-name: mypriv
+  name: mypriv
+  namespace: upbound-system
+spec:
+  forProvider:
+    name: mypriv
+    regions:
+    - GRA9
+    serviceName: xxxxxxxxxx
+    vlanId: "0"
+
+---
+
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectgatewayinterface
+  labels:
+    testing.upbound.io/example-name: my_other_privsub
+  name: my-other-privsub
+  namespace: upbound-system
+spec:
+  forProvider:
+    dhcp: true
+    end: 10.0.1.254
+    network: 10.0.1.0/24
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: mypriv
+    region: GRA9
+    serviceName: xxxxxxxxxx
+    start: 10.0.1.10
+
+---
+
+apiVersion: network.ovh.m.edixos.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloud/v1alpha1/projectgatewayinterface
+  labels:
+    testing.upbound.io/example-name: my_privsub
+  name: my-privsub
+  namespace: upbound-system
+spec:
+  forProvider:
+    dhcp: true
+    end: 10.0.0.8
+    network: 10.0.0.0/24
+    networkIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: mypriv
+    region: GRA9
+    serviceName: xxxxxxxxxx
+    start: 10.0.0.2

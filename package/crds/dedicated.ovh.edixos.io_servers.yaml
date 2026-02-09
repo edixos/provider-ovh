@@ -1,0 +1,1431 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: servers.dedicated.ovh.edixos.io
+spec:
+  group: dedicated.ovh.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: Server
+    listKind: ServerList
+    plural: servers
+    singular: server
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Server is the Schema for the Servers API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ServerSpec defines the desired state of Server
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  bootId:
+                    description: Boot id of the server
+                    type: number
+                  bootScript:
+                    description: |-
+                      Boot script of the server
+                      Ipxe script served on boot
+                    type: string
+                  customizations:
+                    description: Customization of the OS configuration
+                    properties:
+                      configDriveMetadata:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Config Drive MetaData
+                          Config Drive MetaData
+                        type: object
+                        x-kubernetes-map-type: granular
+                      configDriveUserData:
+                        description: |-
+                          Config Drive UserData
+                          Config Drive UserData
+                        type: string
+                      efiBootloaderPath:
+                        description: |-
+                          Path of the EFI bootloader
+                          Path of the EFI bootloader from the OS installed on the server
+                        type: string
+                      hostname:
+                        description: |-
+                          Custom hostname
+                          Custom hostname
+                        type: string
+                      httpHeaders:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Image HTTP Headers
+                          Image HTTP Headers
+                        type: object
+                        x-kubernetes-map-type: granular
+                      imageCheckSum:
+                        description: |-
+                          Image checksum
+                          Image checksum
+                        type: string
+                      imageCheckSumType:
+                        description: |-
+                          Checksum type
+                          Checksum type
+                        type: string
+                      imageType:
+                        description: |-
+                          Image Type
+                          Image Type
+                        type: string
+                      imageUrl:
+                        description: |-
+                          Image URL
+                          Image URL
+                        type: string
+                      language:
+                        description: |-
+                          Display Language
+                          Display Language
+                        type: string
+                      postInstallationScript:
+                        description: |-
+                          Post-Installation Script
+                          Post-Installation Script
+                        type: string
+                      postInstallationScriptExtension:
+                        description: |-
+                          Post-Installation Script File Extension
+                          Post-Installation Script File Extension
+                        type: string
+                      sshKey:
+                        description: |-
+                          SSH Public Key
+                          SSH Public Key
+                        type: string
+                    type: object
+                  displayName:
+                    description: |-
+                      Display name of your dedicated server
+                      The display name of your dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      Path of the EFI bootloader
+                      Path of the EFI bootloader served on boot
+                    type: string
+                  keepServiceAfterDestroy:
+                    description: |-
+                      Avoid termination of the service when deleting the resource (when using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state)
+                      Whether we should avoid terminating the service when destroying the resource
+                    type: boolean
+                  monitoring:
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
+                    type: boolean
+                  noIntervention:
+                    description: |-
+                      Prevent datacenter intervention
+                      Prevent datacenter intervention
+                    type: boolean
+                  os:
+                    description: |-
+                      Operating System to install
+                      Operating system
+                    type: string
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  preventInstallOnCreate:
+                    description: |-
+                      Prevent server installation after it has been delivered
+                      Defines whether the server should not be reinstalled after creating the resource
+                    type: boolean
+                  preventInstallOnImport:
+                    description: |-
+                      Defines whether a reinstallation of the server is allowed after importing it if there is a modification on the installation parameters
+                      Defines whether the server should not be reinstalled when importing the resource
+                    type: boolean
+                  properties:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Deprecated, has no effect
+                      Arbitrary properties to pass to cloud-init's config drive datasource
+                    type: object
+                    x-kubernetes-map-type: granular
+                  range:
+                    description: Range of the dedicated server to order. Can be `standard`
+                      or `eco`. Defaults to `standard`
+                    type: string
+                  rescueMail:
+                    description: |-
+                      Custom email used to receive rescue credentials
+                      Custom email used to receive rescue credentials
+                    type: string
+                  rescueSshKey:
+                    description: |-
+                      Public SSH Key used in the rescue mode
+                      Public SSH Key used in the rescue mode
+                    type: string
+                  rootDevice:
+                    description: Root device of the server
+                    type: string
+                  runActionsBeforeDestroy:
+                    description: |-
+                      (Set of strings) Actions to perform before destroying the server. When using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state. The following actions are available:
+                      Actions to run before destroying the resource
+                    items:
+                      type: string
+                    type: array
+                  serviceName:
+                    description: |-
+                      The service_name of your dedicated server. This field can be used to avoid ordering a dedicated server at creation and just create the resource using an already existing service
+                      The internal name of your dedicated server
+                    type: string
+                  state:
+                    description: |-
+                      All states a Dedicated can in (error, hacked, hackedBlocked, ok)
+                      All states a Dedicated can be in
+                    type: string
+                  storage:
+                    description: Storage customization
+                    items:
+                      properties:
+                        diskGroupId:
+                          description: |-
+                            Disk group id
+                            Disk group id (default is 0, meaning automatic)
+                          type: number
+                        hardwareRaid:
+                          description: Hardware Raid configurations
+                          items:
+                            properties:
+                              arrays:
+                                description: |-
+                                  Number of arrays
+                                  Number of arrays (default is 1)
+                                type: number
+                              disks:
+                                description: |-
+                                  Total number of disks in the disk group involved in the hardware raid configuration
+                                  Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+                                type: number
+                              raidLevel:
+                                description: |-
+                                  Hardware raid type
+                                  Hardware raid type (default is 1)
+                                type: number
+                              spares:
+                                description: |-
+                                  Number of disks in the disk group involved in the spare
+                                  Number of disks in the disk group involved in the spare (default is 0)
+                                type: number
+                            type: object
+                          type: array
+                        partitioning:
+                          description: Partitioning configuration
+                          properties:
+                            disks:
+                              description: |-
+                                Total number of disks in the disk group involved in the hardware raid configuration
+                                Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+                              type: number
+                            layout:
+                              description: Custom partitioning layout
+                              items:
+                                properties:
+                                  extras:
+                                    description: Partition extras parameters
+                                    properties:
+                                      lv:
+                                        description: LVM-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              Logical volume name
+                                            type: string
+                                        type: object
+                                      zp:
+                                        description: ZFS-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              zpool name (generated automatically if not specified, note that multiple ZFS partitions with same zpool names will be configured as multiple datasets belonging to the same zpool if compatible)
+                                            type: string
+                                        type: object
+                                    type: object
+                                  fileSystem:
+                                    description: |-
+                                      File system type
+                                      File system type
+                                    type: string
+                                  mountPoint:
+                                    description: |-
+                                      Mount point
+                                      Mount point
+                                    type: string
+                                  raidLevel:
+                                    description: |-
+                                      Hardware raid type
+                                      Software raid type (default is 1)
+                                    type: number
+                                  size:
+                                    description: |-
+                                      Partition size in MiB
+                                      Partition size in MiB (default value is 0 which means to fill the disk with that partition)
+                                    type: number
+                                type: object
+                              type: array
+                            schemeName:
+                              description: |-
+                                Partitioning scheme (if applicable with selected operating system)
+                                Partitioning scheme (if applicable with selected operating system)
+                              type: string
+                          type: object
+                      type: object
+                    type: array
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  bootId:
+                    description: Boot id of the server
+                    type: number
+                  bootScript:
+                    description: |-
+                      Boot script of the server
+                      Ipxe script served on boot
+                    type: string
+                  customizations:
+                    description: Customization of the OS configuration
+                    properties:
+                      configDriveMetadata:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Config Drive MetaData
+                          Config Drive MetaData
+                        type: object
+                        x-kubernetes-map-type: granular
+                      configDriveUserData:
+                        description: |-
+                          Config Drive UserData
+                          Config Drive UserData
+                        type: string
+                      efiBootloaderPath:
+                        description: |-
+                          Path of the EFI bootloader
+                          Path of the EFI bootloader from the OS installed on the server
+                        type: string
+                      hostname:
+                        description: |-
+                          Custom hostname
+                          Custom hostname
+                        type: string
+                      httpHeaders:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Image HTTP Headers
+                          Image HTTP Headers
+                        type: object
+                        x-kubernetes-map-type: granular
+                      imageCheckSum:
+                        description: |-
+                          Image checksum
+                          Image checksum
+                        type: string
+                      imageCheckSumType:
+                        description: |-
+                          Checksum type
+                          Checksum type
+                        type: string
+                      imageType:
+                        description: |-
+                          Image Type
+                          Image Type
+                        type: string
+                      imageUrl:
+                        description: |-
+                          Image URL
+                          Image URL
+                        type: string
+                      language:
+                        description: |-
+                          Display Language
+                          Display Language
+                        type: string
+                      postInstallationScript:
+                        description: |-
+                          Post-Installation Script
+                          Post-Installation Script
+                        type: string
+                      postInstallationScriptExtension:
+                        description: |-
+                          Post-Installation Script File Extension
+                          Post-Installation Script File Extension
+                        type: string
+                      sshKey:
+                        description: |-
+                          SSH Public Key
+                          SSH Public Key
+                        type: string
+                    type: object
+                  displayName:
+                    description: |-
+                      Display name of your dedicated server
+                      The display name of your dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      Path of the EFI bootloader
+                      Path of the EFI bootloader served on boot
+                    type: string
+                  keepServiceAfterDestroy:
+                    description: |-
+                      Avoid termination of the service when deleting the resource (when using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state)
+                      Whether we should avoid terminating the service when destroying the resource
+                    type: boolean
+                  monitoring:
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
+                    type: boolean
+                  noIntervention:
+                    description: |-
+                      Prevent datacenter intervention
+                      Prevent datacenter intervention
+                    type: boolean
+                  os:
+                    description: |-
+                      Operating System to install
+                      Operating system
+                    type: string
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  preventInstallOnCreate:
+                    description: |-
+                      Prevent server installation after it has been delivered
+                      Defines whether the server should not be reinstalled after creating the resource
+                    type: boolean
+                  preventInstallOnImport:
+                    description: |-
+                      Defines whether a reinstallation of the server is allowed after importing it if there is a modification on the installation parameters
+                      Defines whether the server should not be reinstalled when importing the resource
+                    type: boolean
+                  properties:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Deprecated, has no effect
+                      Arbitrary properties to pass to cloud-init's config drive datasource
+                    type: object
+                    x-kubernetes-map-type: granular
+                  range:
+                    description: Range of the dedicated server to order. Can be `standard`
+                      or `eco`. Defaults to `standard`
+                    type: string
+                  rescueMail:
+                    description: |-
+                      Custom email used to receive rescue credentials
+                      Custom email used to receive rescue credentials
+                    type: string
+                  rescueSshKey:
+                    description: |-
+                      Public SSH Key used in the rescue mode
+                      Public SSH Key used in the rescue mode
+                    type: string
+                  rootDevice:
+                    description: Root device of the server
+                    type: string
+                  runActionsBeforeDestroy:
+                    description: |-
+                      (Set of strings) Actions to perform before destroying the server. When using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state. The following actions are available:
+                      Actions to run before destroying the resource
+                    items:
+                      type: string
+                    type: array
+                  serviceName:
+                    description: |-
+                      The service_name of your dedicated server. This field can be used to avoid ordering a dedicated server at creation and just create the resource using an already existing service
+                      The internal name of your dedicated server
+                    type: string
+                  state:
+                    description: |-
+                      All states a Dedicated can in (error, hacked, hackedBlocked, ok)
+                      All states a Dedicated can be in
+                    type: string
+                  storage:
+                    description: Storage customization
+                    items:
+                      properties:
+                        diskGroupId:
+                          description: |-
+                            Disk group id
+                            Disk group id (default is 0, meaning automatic)
+                          type: number
+                        hardwareRaid:
+                          description: Hardware Raid configurations
+                          items:
+                            properties:
+                              arrays:
+                                description: |-
+                                  Number of arrays
+                                  Number of arrays (default is 1)
+                                type: number
+                              disks:
+                                description: |-
+                                  Total number of disks in the disk group involved in the hardware raid configuration
+                                  Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+                                type: number
+                              raidLevel:
+                                description: |-
+                                  Hardware raid type
+                                  Hardware raid type (default is 1)
+                                type: number
+                              spares:
+                                description: |-
+                                  Number of disks in the disk group involved in the spare
+                                  Number of disks in the disk group involved in the spare (default is 0)
+                                type: number
+                            type: object
+                          type: array
+                        partitioning:
+                          description: Partitioning configuration
+                          properties:
+                            disks:
+                              description: |-
+                                Total number of disks in the disk group involved in the hardware raid configuration
+                                Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+                              type: number
+                            layout:
+                              description: Custom partitioning layout
+                              items:
+                                properties:
+                                  extras:
+                                    description: Partition extras parameters
+                                    properties:
+                                      lv:
+                                        description: LVM-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              Logical volume name
+                                            type: string
+                                        type: object
+                                      zp:
+                                        description: ZFS-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              zpool name (generated automatically if not specified, note that multiple ZFS partitions with same zpool names will be configured as multiple datasets belonging to the same zpool if compatible)
+                                            type: string
+                                        type: object
+                                    type: object
+                                  fileSystem:
+                                    description: |-
+                                      File system type
+                                      File system type
+                                    type: string
+                                  mountPoint:
+                                    description: |-
+                                      Mount point
+                                      Mount point
+                                    type: string
+                                  raidLevel:
+                                    description: |-
+                                      Hardware raid type
+                                      Software raid type (default is 1)
+                                    type: number
+                                  size:
+                                    description: |-
+                                      Partition size in MiB
+                                      Partition size in MiB (default value is 0 which means to fill the disk with that partition)
+                                    type: number
+                                type: object
+                              type: array
+                            schemeName:
+                              description: |-
+                                Partitioning scheme (if applicable with selected operating system)
+                                Partitioning scheme (if applicable with selected operating system)
+                              type: string
+                          type: object
+                      type: object
+                    type: array
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: ServerStatus defines the observed state of Server.
+            properties:
+              atProvider:
+                properties:
+                  availabilityZone:
+                    description: |-
+                      Dedicated AZ localisation
+                      dedicated AZ localisation
+                    type: string
+                  bootId:
+                    description: Boot id of the server
+                    type: number
+                  bootScript:
+                    description: |-
+                      Boot script of the server
+                      Ipxe script served on boot
+                    type: string
+                  commercialRange:
+                    description: |-
+                      Dedicated server commercial range
+                      dedicater server commercial range
+                    type: string
+                  customizations:
+                    description: Customization of the OS configuration
+                    properties:
+                      configDriveMetadata:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Config Drive MetaData
+                          Config Drive MetaData
+                        type: object
+                        x-kubernetes-map-type: granular
+                      configDriveUserData:
+                        description: |-
+                          Config Drive UserData
+                          Config Drive UserData
+                        type: string
+                      efiBootloaderPath:
+                        description: |-
+                          Path of the EFI bootloader
+                          Path of the EFI bootloader from the OS installed on the server
+                        type: string
+                      hostname:
+                        description: |-
+                          Custom hostname
+                          Custom hostname
+                        type: string
+                      httpHeaders:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Image HTTP Headers
+                          Image HTTP Headers
+                        type: object
+                        x-kubernetes-map-type: granular
+                      imageCheckSum:
+                        description: |-
+                          Image checksum
+                          Image checksum
+                        type: string
+                      imageCheckSumType:
+                        description: |-
+                          Checksum type
+                          Checksum type
+                        type: string
+                      imageType:
+                        description: |-
+                          Image Type
+                          Image Type
+                        type: string
+                      imageUrl:
+                        description: |-
+                          Image URL
+                          Image URL
+                        type: string
+                      language:
+                        description: |-
+                          Display Language
+                          Display Language
+                        type: string
+                      postInstallationScript:
+                        description: |-
+                          Post-Installation Script
+                          Post-Installation Script
+                        type: string
+                      postInstallationScriptExtension:
+                        description: |-
+                          Post-Installation Script File Extension
+                          Post-Installation Script File Extension
+                        type: string
+                      sshKey:
+                        description: |-
+                          SSH Public Key
+                          SSH Public Key
+                        type: string
+                    type: object
+                  datacenter:
+                    description: |-
+                      Dedicated datacenter localisation (bhs1,bhs2,...)
+                      dedicated datacenter localisation
+                    type: string
+                  displayName:
+                    description: |-
+                      Display name of your dedicated server
+                      The display name of your dedicated server
+                    type: string
+                  efiBootloaderPath:
+                    description: |-
+                      Path of the EFI bootloader
+                      Path of the EFI bootloader served on boot
+                    type: string
+                  iam:
+                    description: IAM resource information
+                    properties:
+                      displayName:
+                        description: |-
+                          Display name of your dedicated server
+                          Resource display name
+                        type: string
+                      id:
+                        description: |-
+                          Unique identifier of the resource in the IAM
+                          Unique identifier of the resource
+                        type: string
+                      tags:
+                        additionalProperties:
+                          type: string
+                        description: |-
+                          Resource tags. Tags that were internally computed are prefixed with ovh:
+                          Resource tags. Tags that were internally computed are prefixed with ovh:
+                        type: object
+                        x-kubernetes-map-type: granular
+                      urn:
+                        description: |-
+                          URN of the private database, used when writing IAM policies
+                          Unique resource name used in policies
+                        type: string
+                    type: object
+                  id:
+                    description: Unique identifier of the resource in the IAM
+                    type: string
+                  ip:
+                    description: |-
+                      Dedicated server ip (IPv4)
+                      dedicated server ip
+                    type: string
+                  keepServiceAfterDestroy:
+                    description: |-
+                      Avoid termination of the service when deleting the resource (when using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state)
+                      Whether we should avoid terminating the service when destroying the resource
+                    type: boolean
+                  linkSpeed:
+                    description: Link speed of the server
+                    type: number
+                  monitoring:
+                    description: |-
+                      Icmp monitoring state
+                      Icmp monitoring state
+                    type: boolean
+                  name:
+                    description: |-
+                      Dedicated server name
+                      dedicated server name
+                    type: string
+                  newUpgradeSystem:
+                    type: boolean
+                  noIntervention:
+                    description: |-
+                      Prevent datacenter intervention
+                      Prevent datacenter intervention
+                    type: boolean
+                  order:
+                    properties:
+                      date:
+                        type: string
+                      details:
+                        items:
+                          properties:
+                            description:
+                              type: string
+                            detailType:
+                              description: Product type of item in order
+                              type: string
+                            domain:
+                              type: string
+                            orderDetailId:
+                              description: Unique identifier of the resource in the
+                                IAM
+                              type: number
+                            quantity:
+                              type: string
+                          type: object
+                        type: array
+                      expirationDate:
+                        type: string
+                      orderId:
+                        description: Unique identifier of the resource in the IAM
+                        type: number
+                    type: object
+                  os:
+                    description: |-
+                      Operating System to install
+                      Operating system
+                    type: string
+                  ovhSubsidiary:
+                    description: |-
+                      OVHcloud Subsidiary. Country of OVHcloud legal entity you'll be billed by. List of supported subsidiaries available on API at /1.0/me.json under
+                      OVH subsidiaries
+                    type: string
+                  plan:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: |-
+                            Unique identifier of the resource in the IAM
+                            Cart item to be linked
+                          type: number
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    description: Product Plan to order
+                    items:
+                      properties:
+                        configuration:
+                          description: Representation of a configuration item to personalize
+                            product
+                          items:
+                            properties:
+                              label:
+                                description: |-
+                                  Identifier of the resource
+                                  Label for your configuration item
+                                type: string
+                              value:
+                                description: |-
+                                  Path to the resource in API.OVH.COM
+                                  Value or resource URL on API.OVH.COM of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: |-
+                            Duration
+                            Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: |-
+                            Plan code
+                            Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: |-
+                            Pricing mode identifier
+                            Pricing mode selected for the purchase of the product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  powerState:
+                    description: |-
+                      Power state of the server (poweron, poweroff)
+                      Power state of the server
+                    type: string
+                  preventInstallOnCreate:
+                    description: |-
+                      Prevent server installation after it has been delivered
+                      Defines whether the server should not be reinstalled after creating the resource
+                    type: boolean
+                  preventInstallOnImport:
+                    description: |-
+                      Defines whether a reinstallation of the server is allowed after importing it if there is a modification on the installation parameters
+                      Defines whether the server should not be reinstalled when importing the resource
+                    type: boolean
+                  professionalUse:
+                    description: |-
+                      Does this server have professional use option
+                      Does this server have professional use option
+                    type: boolean
+                  properties:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Deprecated, has no effect
+                      Arbitrary properties to pass to cloud-init's config drive datasource
+                    type: object
+                    x-kubernetes-map-type: granular
+                  rack:
+                    description: Rack id of the server
+                    type: string
+                  range:
+                    description: Range of the dedicated server to order. Can be `standard`
+                      or `eco`. Defaults to `standard`
+                    type: string
+                  region:
+                    description: |-
+                      Dedicated region localisation
+                      dedicated region localisation
+                    type: string
+                  rescueMail:
+                    description: |-
+                      Custom email used to receive rescue credentials
+                      Custom email used to receive rescue credentials
+                    type: string
+                  rescueSshKey:
+                    description: |-
+                      Public SSH Key used in the rescue mode
+                      Public SSH Key used in the rescue mode
+                    type: string
+                  reverse:
+                    description: |-
+                      Dedicated server reverse
+                      dedicated server reverse
+                    type: string
+                  rootDevice:
+                    description: Root device of the server
+                    type: string
+                  runActionsBeforeDestroy:
+                    description: |-
+                      (Set of strings) Actions to perform before destroying the server. When using this parameter, make sure to apply your configuration before running the destroy so that the value is set in the state. The following actions are available:
+                      Actions to run before destroying the resource
+                    items:
+                      type: string
+                    type: array
+                  serverId:
+                    description: |-
+                      Server id
+                      Server id
+                    type: number
+                  serviceName:
+                    description: |-
+                      The service_name of your dedicated server. This field can be used to avoid ordering a dedicated server at creation and just create the resource using an already existing service
+                      The internal name of your dedicated server
+                    type: string
+                  state:
+                    description: |-
+                      All states a Dedicated can in (error, hacked, hackedBlocked, ok)
+                      All states a Dedicated can be in
+                    type: string
+                  storage:
+                    description: Storage customization
+                    items:
+                      properties:
+                        diskGroupId:
+                          description: |-
+                            Disk group id
+                            Disk group id (default is 0, meaning automatic)
+                          type: number
+                        hardwareRaid:
+                          description: Hardware Raid configurations
+                          items:
+                            properties:
+                              arrays:
+                                description: |-
+                                  Number of arrays
+                                  Number of arrays (default is 1)
+                                type: number
+                              disks:
+                                description: |-
+                                  Total number of disks in the disk group involved in the hardware raid configuration
+                                  Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
+                                type: number
+                              raidLevel:
+                                description: |-
+                                  Hardware raid type
+                                  Hardware raid type (default is 1)
+                                type: number
+                              spares:
+                                description: |-
+                                  Number of disks in the disk group involved in the spare
+                                  Number of disks in the disk group involved in the spare (default is 0)
+                                type: number
+                            type: object
+                          type: array
+                        partitioning:
+                          description: Partitioning configuration
+                          properties:
+                            disks:
+                              description: |-
+                                Total number of disks in the disk group involved in the hardware raid configuration
+                                Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
+                              type: number
+                            layout:
+                              description: Custom partitioning layout
+                              items:
+                                properties:
+                                  extras:
+                                    description: Partition extras parameters
+                                    properties:
+                                      lv:
+                                        description: LVM-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              Logical volume name
+                                            type: string
+                                        type: object
+                                      zp:
+                                        description: ZFS-specific parameters
+                                        properties:
+                                          name:
+                                            description: |-
+                                              Dedicated server name
+                                              zpool name (generated automatically if not specified, note that multiple ZFS partitions with same zpool names will be configured as multiple datasets belonging to the same zpool if compatible)
+                                            type: string
+                                        type: object
+                                    type: object
+                                  fileSystem:
+                                    description: |-
+                                      File system type
+                                      File system type
+                                    type: string
+                                  mountPoint:
+                                    description: |-
+                                      Mount point
+                                      Mount point
+                                    type: string
+                                  raidLevel:
+                                    description: |-
+                                      Hardware raid type
+                                      Software raid type (default is 1)
+                                    type: number
+                                  size:
+                                    description: |-
+                                      Partition size in MiB
+                                      Partition size in MiB (default value is 0 which means to fill the disk with that partition)
+                                    type: number
+                                type: object
+                              type: array
+                            schemeName:
+                              description: |-
+                                Partitioning scheme (if applicable with selected operating system)
+                                Partitioning scheme (if applicable with selected operating system)
+                              type: string
+                          type: object
+                      type: object
+                    type: array
+                  supportLevel:
+                    description: |-
+                      Dedicated server support level (critical, fastpath, gs, pro)
+                      Dedicated server support level
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

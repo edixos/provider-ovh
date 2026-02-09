@@ -8,6 +8,8 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/ovh/terraform-provider-ovh/v2/ovh"
+
 	kms__cluster "github.com/edixos/provider-ovh/config/cluster/kms"
 	kms__namespaced "github.com/edixos/provider-ovh/config/namespaced/kms"
 
@@ -83,12 +85,20 @@ var providerMetadata string
 
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
+	// Create OVH Framework provider instance for Framework resources with special handling
+	ovhFrameworkProvider := &ovh.OvhProvider{}
+
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("ovh.edixos.io"),
-		ujconfig.WithIncludeList(ExternalNameConfigured()),
+		// SDK resources use CLI mode (Terraform subprocess)
+		ujconfig.WithIncludeList(TerraformPluginSDKResourceList()),
+		// Framework resources use native mode (direct gRPC)
+		ujconfig.WithTerraformPluginFrameworkIncludeList(TerraformPluginFrameworkResourceList()),
+		ujconfig.WithTerraformPluginFrameworkProvider(ovhFrameworkProvider),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithDefaultResourceOptions(
-			ExternalNameConfigurations(),
+			sdkResourceConfigurator(),
+			frameworkResourceConfigurator(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){
@@ -123,12 +133,20 @@ func GetProvider() *ujconfig.Provider {
 }
 
 func GetProviderNamespaced() *ujconfig.Provider {
+	// Create OVH Framework provider instance for Framework resources with special handling
+	ovhFrameworkProvider := &ovh.OvhProvider{}
+
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("ovh.m.edixos.io"),
-		ujconfig.WithIncludeList(ExternalNameConfigured()),
+		// SDK resources use CLI mode (Terraform subprocess)
+		ujconfig.WithIncludeList(TerraformPluginSDKResourceList()),
+		// Framework resources use native mode (direct gRPC)
+		ujconfig.WithTerraformPluginFrameworkIncludeList(TerraformPluginFrameworkResourceList()),
+		ujconfig.WithTerraformPluginFrameworkProvider(ovhFrameworkProvider),
 		ujconfig.WithFeaturesPackage("internal/features"),
 		ujconfig.WithDefaultResourceOptions(
-			ExternalNameConfigurations(),
+			sdkResourceConfigurator(),
+			frameworkResourceConfigurator(),
 		))
 
 	for _, configure := range []func(provider *ujconfig.Provider){

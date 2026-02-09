@@ -1,0 +1,13 @@
+apiVersion: domain.ovh.m.edixos.io/v1alpha1
+kind: ZoneImport
+metadata:
+  annotations:
+    meta.upbound.io/example-id: domain/v1alpha1/zoneimport
+  labels:
+    testing.upbound.io/example-name: import
+  name: import
+  namespace: upbound-system
+spec:
+  forProvider:
+    zoneFile: ${file("./example.zone")}
+    zoneName: mysite.ovh

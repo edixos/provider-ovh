@@ -25,6 +25,15 @@ func (l *ProjectContainerregistryIAMList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ProjectGatewayInterfaceList.
+func (l *ProjectGatewayInterfaceList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ProjectInstanceList.
 func (l *ProjectInstanceList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

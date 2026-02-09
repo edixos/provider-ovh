@@ -16,6 +16,9 @@ func (tr *Project) Hub() {}
 func (tr *ProjectContainerregistryIAM) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectGatewayInterface) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectInstance) Hub() {}
 
 // Hub marks this type as a conversion hub.
