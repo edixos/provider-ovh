@@ -7,13 +7,13 @@ package clients
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"github.com/crossplane/crossplane-runtime/v2/pkg/resource"
+	"github.com/crossplane/upjet/v2/pkg/terraform"
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/types"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-
-	"github.com/crossplane/upjet/v2/pkg/terraform"
 
 	clusterv1beta1 "github.com/edixos/provider-ovh/apis/cluster/v1beta1"
 	namespacedv1beta1 "github.com/edixos/provider-ovh/apis/namespaced/v1beta1"
@@ -38,6 +38,17 @@ type OVHCredentials struct {
 	ClientSecret      string `json:"client_secret,omitempty"`
 }
 
+// buildCacheKey constructs a cache key from ProviderConfig name and secret reference
+func buildCacheKey(providerConfigName string, pcSpec *namespacedv1beta1.ProviderConfigSpec) string {
+	var secretNamespace, secretName string
+	if pcSpec.Credentials.SecretRef != nil {
+		secretNamespace = pcSpec.Credentials.SecretRef.Namespace
+		secretName = pcSpec.Credentials.SecretRef.Name
+	}
+	// Format: providerconfig:namespace/secret
+	return fmt.Sprintf("%s:%s/%s", providerConfigName, secretNamespace, secretName)
+}
+
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
 func TerraformSetupBuilder(version, providerSource, providerVersion string) terraform.SetupFn {
@@ -55,7 +66,20 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return terraform.Setup{}, errors.Wrap(err, "cannot resolve provider config")
 		}
 
-		cfg, err := configureClient(ctx, pcSpec, client)
+		// Build cache key from ProviderConfig reference and secret reference
+		var cacheKey string
+		switch managed := mg.(type) {
+		case resource.LegacyManaged:
+			if ref := managed.GetProviderConfigReference(); ref != nil {
+				cacheKey = buildCacheKey(ref.Name, pcSpec)
+			}
+		case resource.ModernManaged:
+			if ref := managed.GetProviderConfigReference(); ref != nil {
+				cacheKey = buildCacheKey(ref.Name, pcSpec)
+			}
+		}
+
+		cfg, err := configureClient(ctx, pcSpec, cacheKey, client)
 		if err != nil {
 			return ps, err
 		}
@@ -66,7 +90,7 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 	}
 }
 
-func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConfigSpec, client client.Client) (map[string]any, error) {
+func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConfigSpec, cacheKey string, client client.Client) (map[string]any, error) {
 	data, err := resource.CommonCredentialExtractor(ctx, pcSpec.Credentials.Source, client, pcSpec.Credentials.CommonCredentialSelectors)
 	if err != nil {
 		return nil, errors.Wrap(err, errExtractCredentials)
@@ -77,13 +101,15 @@ func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConf
 		return nil, errors.Wrap(err, errUnmarshalCredentials)
 	}
 
-	// Set credentials in Terraform provider configuration.
+	// Base configuration
 	cfg := map[string]any{
 		"endpoint":         creds.Endpoint,
 		"user_agent_extra": "Crossplane/edixos/provider-ovh",
 	}
 
+	// Configure based on credential type
 	if creds.ApplicationKey != "" && creds.ApplicationSecret != "" && creds.ConsumerKey != "" {
+		// Application key authentication (legacy method)
 		cfg["application_key"] = creds.ApplicationKey
 		cfg["application_secret"] = creds.ApplicationSecret
 		cfg["consumer_key"] = creds.ConsumerKey
@@ -91,8 +117,18 @@ func configureClient(ctx context.Context, pcSpec *namespacedv1beta1.ProviderConf
 	}
 
 	if creds.ClientID != "" && creds.ClientSecret != "" {
-		cfg["client_id"] = creds.ClientID
-		cfg["client_secret"] = creds.ClientSecret
+		// OAuth/OIDC authentication with token caching
+		// Exchange credentials for access token (uses cache to avoid repeated exchanges)
+		// cacheKey is based on ProviderConfig name + secret reference, not credential values
+		accessToken, err := getOrExchangeToken(ctx, cacheKey, creds.ClientID, creds.ClientSecret, creds.Endpoint)
+		if err != nil {
+			return nil, errors.Wrap(err, "cannot obtain OAuth access token")
+		}
+
+		// Use the access_token parameter instead of client_id/client_secret
+		// This way the Terraform provider doesn't perform OAuth exchange itself
+		cfg["access_token"] = accessToken
+
 		return cfg, nil
 	}
 
