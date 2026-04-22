@@ -61,6 +61,39 @@ Build binary:
 make build
 ```
 
+## Bumping the Terraform Provider Version
+
+This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.11.0` to `2.13.1`):
+
+1. **Update the Makefile** – change the two version references:
+   ```makefile
+   export TERRAFORM_PROVIDER_VERSION ?= <new_version>
+   export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v<new_version>
+   ```
+
+2. **Update `go.mod`** – bump the dependency:
+   ```
+   github.com/ovh/terraform-provider-ovh/v2 v<new_version>
+   ```
+
+3. **Run `go mod tidy`** – this updates `go.sum` with the new checksums.
+
+4. **Regenerate code** – run the full generation pipeline to refresh the provider schema, API types, deepcopy functions, and CRD manifests:
+   ```console
+   make generate
+   ```
+   This requires the build toolchain (Terraform CLI, crossplane tools, etc.). It will update:
+   - `config/schema.json`
+   - `apis/**/zz_*.go` (generated types and deepcopy)
+   - `package/crds/*.yaml`
+
+5. **Verify the build** – ensure everything compiles:
+   ```console
+   make build
+   ```
+
+6. **Commit all changes** together (Makefile, go.mod, go.sum, and all generated files).
+
 ## Report a Bug
 
 For filing bugs, suggesting improvements, or requesting new features, please
