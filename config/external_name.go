@@ -145,6 +145,24 @@ var subnetIdentifierFromProvider = config.ExternalName{
 	DisableNameInitializer: true,
 }
 
+var userIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet,
+		// so we should return empty string instead of constructing an incomplete ID
+		if externalName == "" {
+			return "", nil
+		}
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
 // TerraformPluginSDKExternalNameConfigs contains all external name
 // configurations for Terraform Plugin SDK resources
 var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
@@ -158,7 +176,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	// The ovh_cloud_project_alerting resource uses a nested type which is not supported yet in upjet.
 	// there is an open issue in upjet regarding this issue: https://github.com/crossplane/upjet/v2/issues/372
 	// "ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
-	"ovh_cloud_project_user":                                         config.IdentifierFromProvider,
+	"ovh_cloud_project_user":                                         userIdentifierFromProvider,
 	"ovh_cloud_project_user_s3_credential":                           config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_policy":                               config.IdentifierFromProvider,
 	"ovh_iam_policy":                                                 config.IdentifierFromProvider,
