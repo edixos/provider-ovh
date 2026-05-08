@@ -147,8 +147,7 @@ func newPostgresqlUserLookupServer(t *testing.T, users map[string]string) *httpt
 		w.Header().Set("Content-Type", "application/json")
 
 		path := strings.TrimPrefix(r.URL.Path, "/1.0")
-		switch path {
-		case "/cloud/project/svc-1/database/postgresql/cluster-1/user":
+		if path == "/cloud/project/svc-1/database/postgresql/cluster-1/user" {
 			ids := make([]string, 0, len(users))
 			for id := range users {
 				ids = append(ids, id)
