@@ -280,6 +280,11 @@ type PlanParameters struct {
 
 type PrivatedatabaseInitParameters struct {
 
+	// Representation of a configuration item for personalizing product
+	// Advanced configuration key / value
+	// +mapType=granular
+	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
+
 	// Name displayed in customer panel for your private database
 	// Name displayed in customer panel for your private database
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
@@ -308,6 +313,11 @@ type PrivatedatabaseInitParameters struct {
 }
 
 type PrivatedatabaseObservation struct {
+
+	// Representation of a configuration item for personalizing product
+	// Advanced configuration key / value
+	// +mapType=granular
+	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
 	// Number of CPU on your private database
 	// Number of CPU on your private database
@@ -411,6 +421,12 @@ type PrivatedatabaseObservation struct {
 }
 
 type PrivatedatabaseParameters struct {
+
+	// Representation of a configuration item for personalizing product
+	// Advanced configuration key / value
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	AdvancedConfiguration map[string]*string `json:"advancedConfiguration,omitempty" tf:"advanced_configuration,omitempty"`
 
 	// Name displayed in customer panel for your private database
 	// Name displayed in customer panel for your private database

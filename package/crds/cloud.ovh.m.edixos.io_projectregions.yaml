@@ -66,7 +66,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -90,7 +90,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -156,10 +156,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
                 || (has(self.initProvider) && has(self.initProvider.region))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
             description: ProjectRegionStatus defines the observed state of ProjectRegion.
             properties:
@@ -214,7 +210,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   services:
                     description: (Attributes List) Details about components status

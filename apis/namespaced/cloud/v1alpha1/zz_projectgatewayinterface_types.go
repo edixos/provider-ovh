@@ -25,7 +25,7 @@ type ProjectGatewayInterfaceInitParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// ID of the cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// ID of the subnet to add
@@ -55,7 +55,7 @@ type ProjectGatewayInterfaceObservation struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// ID of the cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// ID of the subnet to add
@@ -76,7 +76,7 @@ type ProjectGatewayInterfaceParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// ID of the cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -123,7 +123,6 @@ type ProjectGatewayInterface struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.subnetId) || (has(self.initProvider) && has(self.initProvider.subnetId))",message="spec.forProvider.subnetId is a required parameter"
 	Spec   ProjectGatewayInterfaceSpec   `json:"spec"`
 	Status ProjectGatewayInterfaceStatus `json:"status,omitempty"`

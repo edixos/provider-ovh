@@ -279,6 +279,9 @@ type PlanParameters struct {
 
 type ProjectInitParameters struct {
 
+	// Prevent the cloud project from being destroyed. Defaults to false.
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
+
 	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
@@ -304,6 +307,9 @@ type ProjectInitParameters struct {
 
 type ProjectObservation struct {
 	Access *string `json:"access,omitempty" tf:"access,omitempty"`
+
+	// Prevent the cloud project from being destroyed. Defaults to false.
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
 
 	// A description associated with the user.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -343,6 +349,10 @@ type ProjectObservation struct {
 }
 
 type ProjectParameters struct {
+
+	// Prevent the cloud project from being destroyed. Defaults to false.
+	// +kubebuilder:validation:Optional
+	DeletionProtection *bool `json:"deletionProtection,omitempty" tf:"deletion_protection,omitempty"`
 
 	// A description associated with the user.
 	// +kubebuilder:validation:Optional

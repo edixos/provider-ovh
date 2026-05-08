@@ -197,7 +197,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   versioning:
                     description: (Attributes) Versioning configuration (see below
@@ -348,7 +348,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   versioning:
                     description: (Attributes) Versioning configuration (see below
@@ -456,10 +456,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.regionName)
                 || (has(self.initProvider) && has(self.initProvider.regionName))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
             description: ProjectStorageStatus defines the observed state of ProjectStorage.
             properties:
@@ -660,7 +656,7 @@ spec:
                   serviceName:
                     description: |-
                       (String) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   versioning:
                     description: (Attributes) Versioning configuration (see below

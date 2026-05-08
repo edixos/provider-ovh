@@ -36,7 +36,7 @@ type ProjectVolumeInitParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// Required. The id of the public cloud project. Changing this value recreates the resource.
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Size (GB) of the volume
@@ -101,7 +101,7 @@ type ProjectVolumeObservation struct {
 	ResourceID *string `json:"resourceId,omitempty" tf:"resource_id,omitempty"`
 
 	// Required. The id of the public cloud project. Changing this value recreates the resource.
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Size (GB) of the volume
@@ -157,7 +157,7 @@ type ProjectVolumeParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// Required. The id of the public cloud project. Changing this value recreates the resource.
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -236,7 +236,6 @@ type ProjectVolume struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectVolumeSpec   `json:"spec"`
 	Status ProjectVolumeStatus `json:"status,omitempty"`
 }

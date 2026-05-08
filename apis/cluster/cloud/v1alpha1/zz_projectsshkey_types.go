@@ -28,7 +28,7 @@ type ProjectSSHKeyInitParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -58,7 +58,7 @@ type ProjectSSHKeyObservation struct {
 	Regions []*string `json:"regions,omitempty" tf:"regions,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -80,7 +80,7 @@ type ProjectSSHKeyParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -123,7 +123,6 @@ type ProjectSSHKey struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.publicKey) || (has(self.initProvider) && has(self.initProvider.publicKey))",message="spec.forProvider.publicKey is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectSSHKeySpec   `json:"spec"`
 	Status ProjectSSHKeyStatus `json:"status,omitempty"`
 }

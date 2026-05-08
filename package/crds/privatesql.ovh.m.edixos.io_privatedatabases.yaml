@@ -58,6 +58,14 @@ spec:
             properties:
               forProvider:
                 properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Representation of a configuration item for personalizing product
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
                   displayName:
                     description: |-
                       Name displayed in customer panel for your private database
@@ -187,6 +195,14 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Representation of a configuration item for personalizing product
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
                   displayName:
                     description: |-
                       Name displayed in customer panel for your private database
@@ -366,6 +382,14 @@ spec:
             properties:
               atProvider:
                 properties:
+                  advancedConfiguration:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      Representation of a configuration item for personalizing product
+                      Advanced configuration key / value
+                    type: object
+                    x-kubernetes-map-type: granular
                   cpu:
                     description: |-
                       Number of CPU on your private database

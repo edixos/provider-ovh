@@ -20,7 +20,7 @@ type ProjectRegionInitParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -61,7 +61,7 @@ type ProjectRegionObservation struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (Attributes List) Details about components status (see below for nested schema)
@@ -84,7 +84,7 @@ type ProjectRegionParameters struct {
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -147,7 +147,6 @@ type ProjectRegion struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectRegionSpec   `json:"spec"`
 	Status ProjectRegionStatus `json:"status,omitempty"`
 }

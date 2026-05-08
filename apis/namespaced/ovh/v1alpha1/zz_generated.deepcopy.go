@@ -893,6 +893,11 @@ func (in *VpsInitParameters) DeepCopyInto(out *VpsInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DoNotSendPassword != nil {
+		in, out := &in.DoNotSendPassword, &out.DoNotSendPassword
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ImageID != nil {
 		in, out := &in.ImageID, &out.ImageID
 		*out = new(string)
@@ -1040,6 +1045,11 @@ func (in *VpsObservation) DeepCopyInto(out *VpsObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DoNotSendPassword != nil {
+		in, out := &in.DoNotSendPassword, &out.DoNotSendPassword
+		*out = new(bool)
+		**out = **in
+	}
 	if in.IAM != nil {
 		in, out := &in.IAM, &out.IAM
 		*out = new(IAMObservation)
@@ -1168,6 +1178,11 @@ func (in *VpsParameters) DeepCopyInto(out *VpsParameters) {
 	if in.DisplayName != nil {
 		in, out := &in.DisplayName, &out.DisplayName
 		*out = new(string)
+		**out = **in
+	}
+	if in.DoNotSendPassword != nil {
+		in, out := &in.DoNotSendPassword, &out.DoNotSendPassword
+		*out = new(bool)
 		**out = **in
 	}
 	if in.ImageID != nil {

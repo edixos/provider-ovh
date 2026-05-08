@@ -86,7 +86,7 @@ spec:
                   serviceName:
                     description: |-
                       Required. The id of the public cloud project. Changing this value recreates the resource.
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   size:
                     description: |-
@@ -150,7 +150,7 @@ spec:
                   serviceName:
                     description: |-
                       Required. The id of the public cloud project. Changing this value recreates the resource.
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   size:
                     description: |-
@@ -236,10 +236,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.regionName)
                 || (has(self.initProvider) && has(self.initProvider.regionName))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
             description: ProjectVolumeStatus defines the observed state of ProjectVolume.
             properties:
@@ -298,7 +294,7 @@ spec:
                   serviceName:
                     description: |-
                       Required. The id of the public cloud project. Changing this value recreates the resource.
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   size:
                     description: |-

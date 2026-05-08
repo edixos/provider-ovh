@@ -72,7 +72,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnet:
                     description: Parameters to create a subnet
@@ -184,7 +184,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnet:
                     description: Parameters to create a subnet
@@ -337,10 +337,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.regionName)
                 || (has(self.initProvider) && has(self.initProvider.regionName))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
             - message: spec.forProvider.subnet is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.subnet)
@@ -372,7 +368,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnet:
                     description: Parameters to create a subnet

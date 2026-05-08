@@ -63,6 +63,8 @@ spec:
                       Custom display name
                       Set the name displayed in Manager for your VPS (max 50 chars)
                     type: string
+                  doNotSendPassword:
+                    type: boolean
                   imageId:
                     description: |-
                       (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
@@ -262,6 +264,8 @@ spec:
                       Custom display name
                       Set the name displayed in Manager for your VPS (max 50 chars)
                     type: string
+                  doNotSendPassword:
+                    type: boolean
                   imageId:
                     description: |-
                       (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
@@ -514,6 +518,8 @@ spec:
                       Custom display name
                       Set the name displayed in Manager for your VPS (max 50 chars)
                     type: string
+                  doNotSendPassword:
+                    type: boolean
                   iam:
                     description: IAM resource information
                     properties:
