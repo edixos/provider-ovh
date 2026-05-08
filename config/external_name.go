@@ -7,11 +7,13 @@ package config
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"strings"
 
 	"github.com/crossplane/crossplane-runtime/v2/pkg/errors"
 	"github.com/crossplane/upjet/v2/pkg/config"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
+	goovh "github.com/ovh/go-ovh/ovh"
 )
 
 const (
@@ -60,6 +62,104 @@ func serviceName(parameters map[string]any) (string, error) {
 		return "", errors.Errorf(ErrFmtUnexpectedType, "service_name")
 	}
 	return serviceNameStr, nil
+}
+
+func clusterID(parameters map[string]any) (string, error) {
+	clusterID, ok := parameters["cluster_id"]
+	if !ok {
+		return "", errors.Errorf(ErrFmtNoAttribute, "cluster_id")
+	}
+	clusterIDStr, ok := clusterID.(string)
+	if !ok {
+		return "", errors.Errorf(ErrFmtUnexpectedType, "cluster_id")
+	}
+	return clusterIDStr, nil
+}
+
+func databaseUserName(parameters map[string]any) (string, error) {
+	userName, ok := parameters["name"]
+	if !ok {
+		return "", errors.Errorf(ErrFmtNoAttribute, "name")
+	}
+	userNameStr, ok := userName.(string)
+	if !ok {
+		return "", errors.Errorf(ErrFmtUnexpectedType, "name")
+	}
+	return userNameStr, nil
+}
+
+func providerConfigString(providerConfig map[string]any, key string) (string, error) {
+	value, ok := providerConfig[key]
+	if !ok {
+		return "", errors.Errorf(ErrFmtNoAttribute, key)
+	}
+	valueStr, ok := value.(string)
+	if !ok {
+		return "", errors.Errorf(ErrFmtUnexpectedType, key)
+	}
+	return valueStr, nil
+}
+
+func newOVHClient(providerConfig map[string]any) (*goovh.Client, error) {
+	endpoint, err := providerConfigString(providerConfig, "endpoint")
+	if err != nil {
+		return nil, err
+	}
+
+	if accessToken, ok := providerConfig["access_token"].(string); ok && accessToken != "" {
+		return goovh.NewAccessTokenClient(endpoint, accessToken)
+	}
+
+	applicationKey, err := providerConfigString(providerConfig, "application_key")
+	if err != nil {
+		return nil, err
+	}
+	applicationSecret, err := providerConfigString(providerConfig, "application_secret")
+	if err != nil {
+		return nil, err
+	}
+	consumerKey, err := providerConfigString(providerConfig, "consumer_key")
+	if err != nil {
+		return nil, err
+	}
+
+	return goovh.NewClient(endpoint, applicationKey, applicationSecret, consumerKey)
+}
+
+func lookupPostgresqlUserID(ctx context.Context, providerConfig map[string]any, serviceName, clusterID, userName string) (string, error) {
+	client, err := newOVHClient(providerConfig)
+	if err != nil {
+		return "", err
+	}
+
+	listEndpoint := fmt.Sprintf("/cloud/project/%s/database/postgresql/%s/user",
+		url.PathEscape(serviceName),
+		url.PathEscape(clusterID),
+	)
+	ids := make([]string, 0)
+	if err := client.GetWithContext(ctx, listEndpoint, &ids); err != nil {
+		return "", err
+	}
+
+	for _, id := range ids {
+		endpoint := fmt.Sprintf("/cloud/project/%s/database/postgresql/%s/user/%s",
+			url.PathEscape(serviceName),
+			url.PathEscape(clusterID),
+			url.PathEscape(id),
+		)
+		response := struct {
+			ID       string `json:"id"`
+			Username string `json:"username"`
+		}{}
+		if err := client.GetWithContext(ctx, endpoint, &response); err != nil {
+			return "", err
+		}
+		if response.Username == userName {
+			return response.ID, nil
+		}
+	}
+
+	return "", nil
 }
 
 var kubePoolIdentifierFromProvider = config.ExternalName{
@@ -163,6 +263,47 @@ var userIdentifierFromProvider = config.ExternalName{
 	DisableNameInitializer: true,
 }
 
+var postgresqlUserIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		if externalName != "" {
+			serviceName, err := serviceName(parameters)
+			if err != nil {
+				return serviceName, err
+			}
+			clusterID, err := clusterID(parameters)
+			if err != nil {
+				return "", err
+			}
+			return fmt.Sprintf("%s/%s/%s", serviceName, clusterID, externalName), nil
+		}
+
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return "", nil
+		}
+		clusterID, err := clusterID(parameters)
+		if err != nil {
+			return "", nil
+		}
+		userName, err := databaseUserName(parameters)
+		if err != nil {
+			return "", nil
+		}
+
+		// Best-effort orphan recovery: if create failed after the OVH API created
+		// the user, resolve the provider ID by name and import on the next reconcile.
+		resolvedID, err := lookupPostgresqlUserID(ctx, providerConfig, serviceName, clusterID, userName)
+		if err != nil || resolvedID == "" {
+			return "", nil
+		}
+
+		return fmt.Sprintf("%s/%s/%s", serviceName, clusterID, resolvedID), nil
+	},
+	DisableNameInitializer: true,
+}
+
 // TerraformPluginSDKExternalNameConfigs contains all external name
 // configurations for Terraform Plugin SDK resources
 var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
@@ -234,7 +375,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_database_mongodb_user":                        config.IdentifierFromProvider,
 	"ovh_cloud_project_database_opensearch_pattern":                  config.IdentifierFromProvider,
 	"ovh_cloud_project_database_opensearch_user":                     config.IdentifierFromProvider,
-	"ovh_cloud_project_database_postgresql_user":                     config.IdentifierFromProvider,
+	"ovh_cloud_project_database_postgresql_user":                     postgresqlUserIdentifierFromProvider,
 	"ovh_cloud_project_database_postgresql_connection_pool":          config.IdentifierFromProvider,
 	"ovh_cloud_project_database_redis_user":                          config.IdentifierFromProvider,
 	"ovh_cloud_project_database_user":                                config.IdentifierFromProvider,
