@@ -87,7 +87,7 @@ spec:
                   serviceName:
                     description: |-
                       (String, Forces new resource) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -116,7 +116,7 @@ spec:
                   serviceName:
                     description: |-
                       (String, Forces new resource) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -214,10 +214,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
                 || (has(self.initProvider) && has(self.initProvider.name))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
             description: ProjectInstanceSnapshotStatus defines the observed state
               of ProjectInstanceSnapshot.
@@ -270,7 +266,7 @@ spec:
                   serviceName:
                     description: |-
                       (String, Forces new resource) Service name
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   size:
                     description: |-

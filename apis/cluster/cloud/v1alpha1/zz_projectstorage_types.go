@@ -226,7 +226,7 @@ type ProjectStorageInitParameters struct {
 	Replication *ReplicationInitParameters `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (Attributes) Versioning configuration (see below for nested schema)
@@ -282,7 +282,7 @@ type ProjectStorageObservation struct {
 	Replication *ReplicationObservation `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (Attributes) Versioning configuration (see below for nested schema)
@@ -327,7 +327,7 @@ type ProjectStorageParameters struct {
 	Replication *ReplicationParameters `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -525,7 +525,6 @@ type ProjectStorage struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectStorageSpec   `json:"spec"`
 	Status ProjectStorageStatus `json:"status,omitempty"`
 }

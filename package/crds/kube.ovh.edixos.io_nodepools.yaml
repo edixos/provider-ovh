@@ -77,6 +77,16 @@ spec:
                       should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
                       Enable anti affinity groups for nodes in the pool
                     type: boolean
+                  attachFloatingIps:
+                    description: Floating IPs attachment configuration for pool nodes
+                    items:
+                      properties:
+                        enabled:
+                          description: Whether floating IPs attachment is enabled
+                            on nodes of this pool
+                          type: boolean
+                      type: object
+                    type: array
                   autoscale:
                     description: |-
                       Enable auto-scaling for the pool. Default to false.
@@ -296,6 +306,16 @@ spec:
                       should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
                       Enable anti affinity groups for nodes in the pool
                     type: boolean
+                  attachFloatingIps:
+                    description: Floating IPs attachment configuration for pool nodes
+                    items:
+                      properties:
+                        enabled:
+                          description: Whether floating IPs attachment is enabled
+                            on nodes of this pool
+                          type: boolean
+                      type: object
+                    type: array
                   autoscale:
                     description: |-
                       Enable auto-scaling for the pool. Default to false.
@@ -602,6 +622,16 @@ spec:
                       should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
                       Enable anti affinity groups for nodes in the pool
                     type: boolean
+                  attachFloatingIps:
+                    description: Floating IPs attachment configuration for pool nodes
+                    items:
+                      properties:
+                        enabled:
+                          description: Whether floating IPs attachment is enabled
+                            on nodes of this pool
+                          type: boolean
+                      type: object
+                    type: array
                   autoscale:
                     description: |-
                       Enable auto-scaling for the pool. Default to false.

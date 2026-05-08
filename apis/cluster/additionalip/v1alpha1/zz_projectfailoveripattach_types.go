@@ -34,7 +34,7 @@ type ProjectFailoverIPAttachInitParameters struct {
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-	// The service name
+	// The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -66,7 +66,7 @@ type ProjectFailoverIPAttachObservation struct {
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-	// The service name
+	// The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Ip status, can be ok or operationPending
@@ -103,7 +103,7 @@ type ProjectFailoverIPAttachParameters struct {
 	RoutedTo *string `json:"routedTo,omitempty" tf:"routed_to,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-	// The service name
+	// The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }

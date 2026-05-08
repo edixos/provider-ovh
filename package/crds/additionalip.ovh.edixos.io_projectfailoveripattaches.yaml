@@ -98,7 +98,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-                      The service name
+                      The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               initProvider:
@@ -138,7 +138,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-                      The service name
+                      The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                 type: object
               managementPolicies:
@@ -270,7 +270,7 @@ spec:
                   serviceName:
                     description: |-
                       The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
-                      The service name
+                      The service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   status:
                     description: |-

@@ -73,7 +73,7 @@ spec:
                   serviceName:
                     description: |-
                       ID of the cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnetId:
                     description: |-
@@ -107,7 +107,7 @@ spec:
                   serviceName:
                     description: |-
                       ID of the cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnetId:
                     description: |-
@@ -178,10 +178,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
                 || (has(self.initProvider) && has(self.initProvider.region))'
-            - message: spec.forProvider.serviceName is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
-                || (has(self.initProvider) && has(self.initProvider.serviceName))'
             - message: spec.forProvider.subnetId is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.subnetId)
@@ -218,7 +214,7 @@ spec:
                   serviceName:
                     description: |-
                       ID of the cloud project
-                      Service name
+                      Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
                   subnetId:
                     description: |-

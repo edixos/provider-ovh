@@ -14,6 +14,25 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
+type AttachFloatingIpsInitParameters struct {
+
+	// Whether floating IPs attachment is enabled on nodes of this pool
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type AttachFloatingIpsObservation struct {
+
+	// Whether floating IPs attachment is enabled on nodes of this pool
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type AttachFloatingIpsParameters struct {
+
+	// Whether floating IPs attachment is enabled on nodes of this pool
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
 type MetadataInitParameters struct {
 
 	// Annotations to apply to each node
@@ -73,6 +92,9 @@ type NodePoolInitParameters struct {
 	// should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
+
+	// Floating IPs attachment configuration for pool nodes
+	AttachFloatingIps []AttachFloatingIpsInitParameters `json:"attachFloatingIps,omitempty" tf:"attach_floating_ips,omitempty"`
 
 	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool
@@ -143,6 +165,9 @@ type NodePoolObservation struct {
 	// should the pool use the anti-affinity feature. Default to false. Changing this value recreates the resource.
 	// Enable anti affinity groups for nodes in the pool
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
+
+	// Floating IPs attachment configuration for pool nodes
+	AttachFloatingIps []AttachFloatingIpsObservation `json:"attachFloatingIps,omitempty" tf:"attach_floating_ips,omitempty"`
 
 	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool
@@ -243,6 +268,10 @@ type NodePoolParameters struct {
 	// Enable anti affinity groups for nodes in the pool
 	// +kubebuilder:validation:Optional
 	AntiAffinity *bool `json:"antiAffinity,omitempty" tf:"anti_affinity,omitempty"`
+
+	// Floating IPs attachment configuration for pool nodes
+	// +kubebuilder:validation:Optional
+	AttachFloatingIps []AttachFloatingIpsParameters `json:"attachFloatingIps,omitempty" tf:"attach_floating_ips,omitempty"`
 
 	// Enable auto-scaling for the pool. Default to false.
 	// Enable auto-scaling for the pool

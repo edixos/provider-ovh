@@ -24,7 +24,7 @@ type ProjectVolumeBackupInitParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (String) ID of the volume to backup
@@ -54,7 +54,7 @@ type ProjectVolumeBackupObservation struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (Number) Size of the backup in GiB
@@ -83,7 +83,7 @@ type ProjectVolumeBackupParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -130,7 +130,6 @@ type ProjectVolumeBackup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.volumeId) || (has(self.initProvider) && has(self.initProvider.volumeId))",message="spec.forProvider.volumeId is a required parameter"
 	Spec   ProjectVolumeBackupSpec   `json:"spec"`
 	Status ProjectVolumeBackupStatus `json:"status,omitempty"`

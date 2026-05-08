@@ -404,6 +404,8 @@ type VpsInitParameters struct {
 	// Set the name displayed in Manager for your VPS (max 50 chars)
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
+	DoNotSendPassword *bool `json:"doNotSendPassword,omitempty" tf:"do_not_send_password,omitempty"`
+
 	// (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
 	// Id of the image to install on the VPS
 	ImageID *string `json:"imageId,omitempty" tf:"image_id,omitempty"`
@@ -468,6 +470,8 @@ type VpsObservation struct {
 	// Custom display name
 	// Set the name displayed in Manager for your VPS (max 50 chars)
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
+	DoNotSendPassword *bool `json:"doNotSendPassword,omitempty" tf:"do_not_send_password,omitempty"`
 
 	// IAM resource information
 	IAM *IAMObservation `json:"iam,omitempty" tf:"iam,omitempty"`
@@ -543,6 +547,9 @@ type VpsParameters struct {
 	// Set the name displayed in Manager for your VPS (max 50 chars)
 	// +kubebuilder:validation:Optional
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	DoNotSendPassword *bool `json:"doNotSendPassword,omitempty" tf:"do_not_send_password,omitempty"`
 
 	// (String) Id of the image to install on the VPS. This attribute is useful to trigger a VPS reinstallation, and during VPS creation if you want to configure a public_ssh_key. The available values can be found using this API call
 	// Id of the image to install on the VPS

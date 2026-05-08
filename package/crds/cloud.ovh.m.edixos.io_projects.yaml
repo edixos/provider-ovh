@@ -58,6 +58,10 @@ spec:
             properties:
               forProvider:
                 properties:
+                  deletionProtection:
+                    description: Prevent the cloud project from being destroyed. Defaults
+                      to false.
+                    type: boolean
                   description:
                     description: A description associated with the user.
                     type: string
@@ -182,6 +186,10 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  deletionProtection:
+                    description: Prevent the cloud project from being destroyed. Defaults
+                      to false.
+                    type: boolean
                   description:
                     description: A description associated with the user.
                     type: string
@@ -358,6 +366,10 @@ spec:
                 properties:
                   access:
                     type: string
+                  deletionProtection:
+                    description: Prevent the cloud project from being destroyed. Defaults
+                      to false.
+                    type: boolean
                   description:
                     description: A description associated with the user.
                     type: string

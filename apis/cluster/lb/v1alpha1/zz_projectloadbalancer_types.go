@@ -741,7 +741,7 @@ type ProjectLoadbalancerInitParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 
@@ -792,7 +792,7 @@ type ProjectLoadbalancerObservation struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// (String) UTC date and timestamp when the resource was created
@@ -843,7 +843,7 @@ type ProjectLoadbalancerParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (String) Service name
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
@@ -922,7 +922,6 @@ type ProjectLoadbalancer struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.flavorId) || (has(self.initProvider) && has(self.initProvider.flavorId))",message="spec.forProvider.flavorId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	Spec   ProjectLoadbalancerSpec   `json:"spec"`
 	Status ProjectLoadbalancerStatus `json:"status,omitempty"`
 }

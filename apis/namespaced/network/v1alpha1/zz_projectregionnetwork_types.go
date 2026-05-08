@@ -60,7 +60,7 @@ type ProjectRegionNetworkInitParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// The id of the public cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Parameters to create a subnet
@@ -89,7 +89,7 @@ type ProjectRegionNetworkObservation struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// The id of the public cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// Parameters to create a subnet
@@ -117,7 +117,7 @@ type ProjectRegionNetworkParameters struct {
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// The id of the public cloud project
-	// Service name
+	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
@@ -337,7 +337,6 @@ type ProjectRegionNetwork struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.regionName) || (has(self.initProvider) && has(self.initProvider.regionName))",message="spec.forProvider.regionName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.subnet) || (has(self.initProvider) && has(self.initProvider.subnet))",message="spec.forProvider.subnet is a required parameter"
 	Spec   ProjectRegionNetworkSpec   `json:"spec"`
 	Status ProjectRegionNetworkStatus `json:"status,omitempty"`
