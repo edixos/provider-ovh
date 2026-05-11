@@ -96,6 +96,28 @@ func TestPostgresqlUserIdentifierFromProvider(t *testing.T) {
 		})
 		defer server.Close()
 
+		// Use nested "configuration" structure matching production ts.Map() format
+		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
+			"service_name": "svc-1",
+			"cluster_id":   "cluster-1",
+			"name":         "johndoe",
+		}, map[string]any{
+			"configuration": map[string]any{
+				"endpoint":     server.URL,
+				"access_token": "token",
+			},
+		})
+		assertGetID(t, got, err, "svc-1/cluster-1/user-123", "")
+	})
+
+	t.Run("ResolvesMissingExternalNameFromOVH_FlatProviderConfig", func(t *testing.T) {
+		// Also works when providerConfig is flat (e.g. direct unit-test use)
+		server := newPostgresqlUserLookupServer(t, map[string]string{
+			"user-111": "someone-else",
+			"user-123": "johndoe",
+		})
+		defer server.Close()
+
 		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
 			"service_name": "svc-1",
 			"cluster_id":   "cluster-1",
@@ -118,8 +140,10 @@ func TestPostgresqlUserIdentifierFromProvider(t *testing.T) {
 			"cluster_id":   "cluster-1",
 			"name":         "johndoe",
 		}, map[string]any{
-			"endpoint":     server.URL,
-			"access_token": "token",
+			"configuration": map[string]any{
+				"endpoint":     server.URL,
+				"access_token": "token",
+			},
 		})
 		assertGetID(t, got, err, "", "")
 	})

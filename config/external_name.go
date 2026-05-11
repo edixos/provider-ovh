@@ -101,6 +101,12 @@ func providerConfigString(providerConfig map[string]any, key string) (string, er
 }
 
 func newOVHClient(providerConfig map[string]any) (*goovh.Client, error) {
+	// providerConfig comes from terraform.Setup.Map(), which nests
+	// the actual provider credentials under the "configuration" key.
+	if cfg, ok := providerConfig["configuration"].(map[string]any); ok {
+		providerConfig = cfg
+	}
+
 	endpoint, err := providerConfigString(providerConfig, "endpoint")
 	if err != nil {
 		return nil, err
