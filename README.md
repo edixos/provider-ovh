@@ -7,7 +7,7 @@ OVHcloud API.
 
 ## Prerequisites
 
-* Install [Crossplane in your cluster](https://docs.crossplane.io/v2.1/get-started/install/)
+* Install [Crossplane in your cluster](https://docs.crossplane.io/latest/get-started/install/)
 
 ## Getting Started
 
