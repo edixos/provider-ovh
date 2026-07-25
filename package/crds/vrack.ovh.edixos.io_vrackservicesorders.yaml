@@ -1,0 +1,704 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: vrackservicesorders.vrack.ovh.edixos.io
+spec:
+  group: vrack.ovh.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: VrackServicesOrder
+    listKind: VrackServicesOrderList
+    plural: vrackservicesorders
+    singular: vrackservicesorder
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: VrackServicesOrder is the Schema for the VrackServicesOrders
+          API. <no value>
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: VrackServicesOrderSpec defines the desired state of VrackServicesOrder
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: |-
+                  DeletionPolicy specifies what will happen to the underlying external
+                  when this managed resource is deleted - either "Delete" or "Orphan" the
+                  external resource.
+                  This field is planned to be deprecated in favor of the ManagementPolicies
+                  field in a future release. Currently, both could be set independently and
+                  non-default values would be honored if the feature flag is enabled.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  ovhSubsidiary:
+                    description: OVH subsidiaries
+                    type: string
+                  plan:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: Cart item to be linked
+                          type: number
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  targetSpec:
+                    properties:
+                      subnets:
+                        items:
+                          properties:
+                            cidr:
+                              description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                              type: string
+                            displayName:
+                              description: Display name of the subnet. Format must
+                                follow `^[a-zA-Z0-9-_.]{0,40}$`
+                              type: string
+                            serviceEndpoints:
+                              items:
+                                properties:
+                                  managedServiceUrn:
+                                    description: IAM Resource URN of the managed service.
+                                      Managed service Region must match vRack Services
+                                      Region. Compatible managed service types are
+                                      listed by /reference/compatibleManagedServiceType
+                                      call
+                                    type: string
+                                type: object
+                              type: array
+                            serviceRange:
+                              properties:
+                                cidr:
+                                  description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                                  type: string
+                              type: object
+                            vlan:
+                              description: 'Unique inner VLAN that allows subnets
+                                segregation. Authorized values: [2 - 4094] and `null`
+                                (untagged traffic)'
+                              type: number
+                          type: object
+                        type: array
+                    type: object
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  ovhSubsidiary:
+                    description: OVH subsidiaries
+                    type: string
+                  plan:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: Cart item to be linked
+                          type: number
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  targetSpec:
+                    properties:
+                      subnets:
+                        items:
+                          properties:
+                            cidr:
+                              description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                              type: string
+                            displayName:
+                              description: Display name of the subnet. Format must
+                                follow `^[a-zA-Z0-9-_.]{0,40}$`
+                              type: string
+                            serviceEndpoints:
+                              items:
+                                properties:
+                                  managedServiceUrn:
+                                    description: IAM Resource URN of the managed service.
+                                      Managed service Region must match vRack Services
+                                      Region. Compatible managed service types are
+                                      listed by /reference/compatibleManagedServiceType
+                                      call
+                                    type: string
+                                type: object
+                              type: array
+                            serviceRange:
+                              properties:
+                                cidr:
+                                  description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                                  type: string
+                              type: object
+                            vlan:
+                              description: 'Unique inner VLAN that allows subnets
+                                segregation. Authorized values: [2 - 4094] and `null`
+                                (untagged traffic)'
+                              type: number
+                          type: object
+                        type: array
+                    type: object
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  This field is planned to replace the DeletionPolicy field in a future
+                  release. Currently, both could be set independently and non-default
+                  values would be honored if the feature flag is enabled. If both are
+                  custom, the DeletionPolicy field will be ignored.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: |-
+                          Resolution specifies whether resolution of this reference is required.
+                          The default is 'Required', which means the reconcile will fail if the
+                          reference cannot be resolved. 'Optional' means this reference will be
+                          a no-op if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: |-
+                          Resolve specifies when this reference should be resolved. The default
+                          is 'IfNotPresent', which will attempt to resolve the reference only when
+                          the corresponding field is not present. Use 'Always' to resolve the
+                          reference on every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.targetSpec is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.targetSpec)
+                || (has(self.initProvider) && has(self.initProvider.targetSpec))'
+          status:
+            description: VrackServicesOrderStatus defines the observed state of VrackServicesOrder.
+            properties:
+              atProvider:
+                properties:
+                  checksum:
+                    description: Computed hash used to control concurrent modification
+                      requests. Here, it represents the target specification value
+                      the request is based on
+                    type: string
+                  createdAt:
+                    description: Date of the vRack Services delivery
+                    type: string
+                  currentState:
+                    properties:
+                      productStatus:
+                        description: Product status of the vRack Services
+                        type: string
+                      region:
+                        description: Region of the vRack Services. List of compatible
+                          regions can be retrieved from /reference/region
+                        type: string
+                      subnets:
+                        items:
+                          properties:
+                            cidr:
+                              description: IP address range of the subnet in CIDR
+                                format
+                              type: string
+                            displayName:
+                              description: Display name of the subnet
+                              type: string
+                            serviceEndpoints:
+                              items:
+                                properties:
+                                  endpoints:
+                                    items:
+                                      properties:
+                                        description:
+                                          description: IP description defined in the
+                                            managed service
+                                          type: string
+                                        ip:
+                                          description: IP address assigned by OVHcloud
+                                          type: string
+                                      type: object
+                                    type: array
+                                  managedServiceUrn:
+                                    description: IAM Resource URN of the managed service.
+                                      Compatible managed service types are listed
+                                      by /reference/compatibleManagedServiceType call.
+                                    type: string
+                                type: object
+                              type: array
+                            serviceRange:
+                              properties:
+                                cidr:
+                                  description: CIDR dedicated to the subnet's services
+                                  type: string
+                                remainingIps:
+                                  description: Number of remaining IPs in the service
+                                    range
+                                  type: number
+                                reservedIps:
+                                  description: Number of service range IPs reserved
+                                    by OVHcloud
+                                  type: number
+                                usedIps:
+                                  description: Number of service range IPs assigned
+                                    to the managed services
+                                  type: number
+                              type: object
+                            vlan:
+                              description: Unique inner VLAN that allows subnets segregation
+                              type: number
+                          type: object
+                        type: array
+                    type: object
+                  currentTasks:
+                    items:
+                      properties:
+                        id:
+                          description: Identifier of the current task
+                          type: string
+                        link:
+                          description: Link to the related resource
+                          type: string
+                        status:
+                          description: Current global status of the current task
+                          type: string
+                        type:
+                          description: Type of the current task
+                          type: string
+                      type: object
+                    type: array
+                  iam:
+                    properties:
+                      displayName:
+                        description: Resource display name
+                        type: string
+                      id:
+                        description: Unique identifier of the resource
+                        type: string
+                      tags:
+                        additionalProperties:
+                          type: string
+                        description: 'Resource tags. Tags that were internally computed
+                          are prefixed with ovh:'
+                        type: object
+                        x-kubernetes-map-type: granular
+                      urn:
+                        description: Unique resource name used in policies
+                        type: string
+                    type: object
+                  id:
+                    type: string
+                  order:
+                    properties:
+                      date:
+                        type: string
+                      details:
+                        items:
+                          properties:
+                            description:
+                              type: string
+                            detailType:
+                              description: Product type of item in order
+                              type: string
+                            domain:
+                              type: string
+                            orderDetailId:
+                              type: number
+                            quantity:
+                              type: string
+                          type: object
+                        type: array
+                      expirationDate:
+                        type: string
+                      orderId:
+                        type: number
+                    type: object
+                  ovhSubsidiary:
+                    description: OVH subsidiaries
+                    type: string
+                  plan:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        itemId:
+                          description: Cart item to be linked
+                          type: number
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  planOption:
+                    items:
+                      properties:
+                        configuration:
+                          items:
+                            properties:
+                              label:
+                                description: Label for your configuration item
+                                type: string
+                              value:
+                                description: Value or resource URL on API.OVH.COM
+                                  of your configuration item
+                                type: string
+                            type: object
+                          type: array
+                        duration:
+                          description: Duration selected for the purchase of the product
+                          type: string
+                        planCode:
+                          description: Identifier of the option offer
+                          type: string
+                        pricingMode:
+                          description: Pricing mode selected for the purchase of the
+                            product
+                          type: string
+                        quantity:
+                          description: Quantity of product desired
+                          type: number
+                      type: object
+                    type: array
+                  resourceStatus:
+                    description: Reflects the readiness of the vRack Services. A new
+                      target specification request will be accepted only in `READY`
+                      status
+                    type: string
+                  targetSpec:
+                    properties:
+                      subnets:
+                        items:
+                          properties:
+                            cidr:
+                              description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                              type: string
+                            displayName:
+                              description: Display name of the subnet. Format must
+                                follow `^[a-zA-Z0-9-_.]{0,40}$`
+                              type: string
+                            serviceEndpoints:
+                              items:
+                                properties:
+                                  managedServiceUrn:
+                                    description: IAM Resource URN of the managed service.
+                                      Managed service Region must match vRack Services
+                                      Region. Compatible managed service types are
+                                      listed by /reference/compatibleManagedServiceType
+                                      call
+                                    type: string
+                                type: object
+                              type: array
+                            serviceRange:
+                              properties:
+                                cidr:
+                                  description: IPv4 CIDR notation (e.g., 192.0.2.0/24)
+                                  type: string
+                              type: object
+                            vlan:
+                              description: 'Unique inner VLAN that allows subnets
+                                segregation. Authorized values: [2 - 4094] and `null`
+                                (untagged traffic)'
+                              type: number
+                          type: object
+                        type: array
+                    type: object
+                  updatedAt:
+                    description: Date of the Last vRack Services update
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

@@ -10,6 +10,12 @@ package v1alpha1
 func (tr *PrivateNetwork) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *PrivateVrackNetwork) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *PrivateVrackSubnet) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectRegionNetwork) Hub() {}
 
 // Hub marks this type as a conversion hub.

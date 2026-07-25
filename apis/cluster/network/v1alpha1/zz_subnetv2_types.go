@@ -13,27 +13,6 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type AllocationPoolsInitParameters struct {
-	End *string `json:"end,omitempty" tf:"end,omitempty"`
-
-	Start *string `json:"start,omitempty" tf:"start,omitempty"`
-}
-
-type AllocationPoolsObservation struct {
-	End *string `json:"end,omitempty" tf:"end,omitempty"`
-
-	Start *string `json:"start,omitempty" tf:"start,omitempty"`
-}
-
-type AllocationPoolsParameters struct {
-
-	// +kubebuilder:validation:Optional
-	End *string `json:"end" tf:"end,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Start *string `json:"start" tf:"start,omitempty"`
-}
-
 type HostRouteInitParameters struct {
 	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
 
@@ -55,11 +34,32 @@ type HostRouteParameters struct {
 	Nexthop *string `json:"nexthop" tf:"nexthop,omitempty"`
 }
 
+type SubnetV2AllocationPoolsInitParameters struct {
+	End *string `json:"end,omitempty" tf:"end,omitempty"`
+
+	Start *string `json:"start,omitempty" tf:"start,omitempty"`
+}
+
+type SubnetV2AllocationPoolsObservation struct {
+	End *string `json:"end,omitempty" tf:"end,omitempty"`
+
+	Start *string `json:"start,omitempty" tf:"start,omitempty"`
+}
+
+type SubnetV2AllocationPoolsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	End *string `json:"end" tf:"end,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Start *string `json:"start" tf:"start,omitempty"`
+}
+
 type SubnetV2InitParameters struct {
 
 	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
-	AllocationPools []AllocationPoolsInitParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
+	AllocationPools []SubnetV2AllocationPoolsInitParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
 	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet
@@ -120,7 +120,7 @@ type SubnetV2Observation struct {
 
 	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
-	AllocationPools []AllocationPoolsObservation `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
+	AllocationPools []SubnetV2AllocationPoolsObservation `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
 	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet
@@ -174,7 +174,7 @@ type SubnetV2Parameters struct {
 	// List of IP allocation pools Changing this value recreates the resource.
 	// DHCP allocation pools of subnet
 	// +kubebuilder:validation:Optional
-	AllocationPools []AllocationPoolsParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
+	AllocationPools []SubnetV2AllocationPoolsParameters `json:"allocationPools,omitempty" tf:"allocation_pools,omitempty"`
 
 	// IP range of the subnet Changing this value recreates the subnet.
 	// CIDR of subnet

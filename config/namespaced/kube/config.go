@@ -42,4 +42,11 @@ func Configure(p *config.Provider) {
 		}
 		r.Kind = "OIDCConfiguration"
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_kube_log_subscription", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.References["kube_id"] = config.Reference{
+			TerraformName: "ovh_cloud_project_kube",
+		}
+		r.Kind = "LogSubscription"
+	})
 }

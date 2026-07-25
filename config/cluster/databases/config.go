@@ -86,4 +86,16 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_database_valkey_user", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_clickhouse_user", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.References["cluster_id"] = config.Reference{
+			TerraformName: "ovh_cloud_project_database",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_project_database_log_subscription", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.References["cluster_id"] = config.Reference{
+			TerraformName: "ovh_cloud_project_database",
+		}
+	})
 }

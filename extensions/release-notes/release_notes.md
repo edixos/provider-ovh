@@ -3,6 +3,27 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+### Added
+Wired the remaining 31 OVHcloud Terraform resources, bringing managed-resource
+coverage to the provider's full 166-resource schema (134 → 165 generated
+resources per API scope). New CRDs, in both the cluster-scoped and namespaced
+API groups:
+
+- `cloud`: `FloatingIP`, `Quota`, `SecurityGroup`, `SSHKey`
+- `gateway`: `CloudGateway`
+- `network`: `PrivateVrackNetwork`, `PrivateVrackSubnet`
+- `kms`: `KeyManagerContainer`, `KeyManagerContainerConsumer`, `KeyManagerSecret`, `KeyManagerSecretConsumer`
+- `storage`: `EFS`, `BlockVolume`, `BlockVolumeBackup`, `BlockVolumeSnapshot`, `FileShare`, `FileShareNetwork`, `FileShareSnapshot`, `ProjectFileStorageShare`, `ProjectFileStorageShareNetwork`, `ProjectStorageLifecycleConfiguration`, `ProjectStorageReplicationJob`
+- `databases`: `ProjectDatabaseClickhouseUser`, `ProjectDatabaseLogSubscription`
+- `kube`: `LogSubscription`
+- `logs`: `LogsEncryptionKey`, `LogsOutputGraylogStream`
+- `me`: `IdentityUserToken`
+- `email` (new group): `DomainAccount`
+- `vrack`: `PublicRoutingPriority`, `VrackServicesOrder`
+
+`IdentityUserToken` writes its `token` to the connection secret rather than
+status, as the upstream attribute is marked sensitive.
+
 ### Changed
 - Upgrade OVH Terraform provider from 2.13.1 to 2.17.0.
 

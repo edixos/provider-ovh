@@ -1,0 +1,14 @@
+apiVersion: logs.ovh.m.edixos.io/v1alpha1
+kind: LogsOutputGraylogStream
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsoutputgraylogstream
+  labels:
+    testing.upbound.io/example-name: stream
+  name: stream
+  namespace: upbound-system
+spec:
+  forProvider:
+    description: my graylog stream
+    serviceName: '....'
+    title: my stream

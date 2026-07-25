@@ -136,6 +136,50 @@ func (mg *IpRestriction) ResolveReferences(ctx context.Context, c client.Reader)
 	return nil
 }
 
+// ResolveReferences of this LogSubscription.
+func (mg *LogSubscription) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.KubeID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.ForProvider.KubeIDRef,
+		Selector:     mg.Spec.ForProvider.KubeIDSelector,
+		To: reference.To{
+			List:    &ClusterList{},
+			Managed: &Cluster{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.KubeID")
+	}
+	mg.Spec.ForProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.KubeIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.KubeID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.InitProvider.KubeIDRef,
+		Selector:     mg.Spec.InitProvider.KubeIDSelector,
+		To: reference.To{
+			List:    &ClusterList{},
+			Managed: &Cluster{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.KubeID")
+	}
+	mg.Spec.InitProvider.KubeID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.KubeIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this NodePool.
 func (mg *NodePool) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

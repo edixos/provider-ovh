@@ -10,7 +10,13 @@ package v1alpha1
 func (tr *LogsCluster) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *LogsEncryptionKey) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *LogsInput) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LogsOutputGraylogStream) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *LogsOutputOpensearchAlias) Hub() {}

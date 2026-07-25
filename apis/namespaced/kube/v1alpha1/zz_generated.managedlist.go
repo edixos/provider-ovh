@@ -25,6 +25,15 @@ func (l *IpRestrictionList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this LogSubscriptionList.
+func (l *LogSubscriptionList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this NodePoolList.
 func (l *NodePoolList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

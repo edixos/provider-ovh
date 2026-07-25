@@ -30,4 +30,15 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_cloud_project_region_network", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_cloud_network_private_vrack", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "PrivateVrackNetwork"
+	})
+	p.AddResourceConfigurator("ovh_cloud_network_private_vrack_subnet", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "PrivateVrackSubnet"
+		r.References["network_id"] = config.Reference{
+			TerraformName: "ovh_cloud_network_private_vrack",
+		}
+	})
 }

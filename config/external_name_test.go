@@ -50,10 +50,118 @@ func TestUserIdentifierFromProvider(t *testing.T) {
 	}
 }
 
+func TestServiceNameIdentifierFromProvider(t *testing.T) {
+	cases := map[string]struct {
+		externalName string
+		params       map[string]any
+		want         string
+		wantErr      string
+	}{
+		"EmptyExternalNameReturnsEmpty": {
+			externalName: "",
+			params:       map[string]any{"service_name": "svc-1"},
+			want:         "",
+		},
+		"HappyPath": {
+			externalName: "stream-1",
+			params:       map[string]any{"service_name": "svc-1"},
+			want:         "svc-1/stream-1",
+		},
+		"MissingServiceName": {
+			externalName: "stream-1",
+			params:       map[string]any{},
+			wantErr:      "service_name",
+		},
+	}
+
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := serviceNameIdentifierFromProvider.GetIDFn(context.Background(), tc.externalName, tc.params, nil)
+			assertGetID(t, got, err, tc.want, tc.wantErr)
+		})
+	}
+}
+
+func TestDatabaseClusterIdentifierFromProvider(t *testing.T) {
+	cases := map[string]struct {
+		externalName string
+		params       map[string]any
+		want         string
+		wantErr      string
+	}{
+		"EmptyExternalNameReturnsEmpty": {
+			externalName: "",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1"},
+			want:         "",
+		},
+		"HappyPath": {
+			externalName: "user-1",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1"},
+			want:         "svc-1/cluster-1/user-1",
+		},
+		"MissingClusterID": {
+			externalName: "user-1",
+			params:       map[string]any{"service_name": "svc-1"},
+			wantErr:      "cluster_id",
+		},
+	}
+
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := databaseClusterIdentifierFromProvider.GetIDFn(context.Background(), tc.externalName, tc.params, nil)
+			assertGetID(t, got, err, tc.want, tc.wantErr)
+		})
+	}
+}
+
+func TestDatabaseLogSubscriptionIdentifierFromProvider(t *testing.T) {
+	cases := map[string]struct {
+		externalName string
+		params       map[string]any
+		want         string
+		wantErr      string
+	}{
+		"EmptyExternalNameReturnsEmpty": {
+			externalName: "",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1", "engine": "kafka"},
+			want:         "",
+		},
+		"HappyPath": {
+			externalName: "sub-1",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1", "engine": "kafka"},
+			want:         "svc-1/kafka/cluster-1/sub-1",
+		},
+		"MissingEngine": {
+			externalName: "sub-1",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1"},
+			wantErr:      "engine",
+		},
+		"WrongTypeEngine": {
+			externalName: "sub-1",
+			params:       map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1", "engine": 42},
+			wantErr:      "engine",
+		},
+	}
+
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := databaseLogSubscriptionIdentifierFromProvider.GetIDFn(context.Background(), tc.externalName, tc.params, nil)
+			assertGetID(t, got, err, tc.want, tc.wantErr)
+		})
+	}
+}
+
 func TestSDKMapBindingsRestored(t *testing.T) {
 	cases := map[string]string{
 		"ovh_cloud_project_user":                     "svc-1/u",
 		"ovh_cloud_project_database_postgresql_user": "svc-1/cluster-1/u",
+		"ovh_cloud_project_database_clickhouse_user": "svc-1/cluster-1/u",
+		// service_name/engine/cluster_id/id
+		"ovh_cloud_project_database_log_subscription": "svc-1/postgresql/cluster-1/u",
+		// service_name/kube_id/subscription_id
+		"ovh_cloud_project_kube_log_subscription": "svc-1/kube-1/u",
+		// service_name/stream_id
+		"ovh_dbaas_logs_output_graylog_stream": "svc-1/u",
 	}
 
 	params := map[string]any{
@@ -61,6 +169,8 @@ func TestSDKMapBindingsRestored(t *testing.T) {
 		"cluster_id":   "cluster-1",
 		"user_id":      "uid",
 		"region":       "GRA9",
+		"engine":       "postgresql",
+		"kube_id":      "kube-1",
 	}
 
 	for name, want := range cases {

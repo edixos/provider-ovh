@@ -7,6 +7,15 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/v2/pkg/resource"
 
+// GetItems of this FloatingIPList.
+func (l *FloatingIPList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this PlanList.
 func (l *PlanList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -115,6 +124,15 @@ func (l *ProjectVolumeList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this QuotaList.
+func (l *QuotaList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this S3CredentialsList.
 func (l *S3CredentialsList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -126,6 +144,24 @@ func (l *S3CredentialsList) GetItems() []resource.Managed {
 
 // GetItems of this S3PolicyList.
 func (l *S3PolicyList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this SSHKeyList.
+func (l *SSHKeyList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this SecurityGroupList.
+func (l *SecurityGroupList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

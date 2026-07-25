@@ -7,6 +7,18 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *BlockVolume) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *BlockVolumeBackup) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *BlockVolumeSnapshot) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *EFS) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *EFSShare) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -16,4 +28,25 @@ func (tr *EFSShareACL) Hub() {}
 func (tr *EFSShareSnapshot) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *FileShare) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *FileShareNetwork) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *FileShareSnapshot) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectFileStorageShare) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectFileStorageShareNetwork) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectRegionStoragePresign) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectStorageLifecycleConfiguration) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectStorageReplicationJob) Hub() {}

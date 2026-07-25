@@ -47,6 +47,46 @@ func (mg *LogsCluster) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretRe
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetManagementPolicies of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetManagementPolicies of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this LogsEncryptionKey.
+func (mg *LogsEncryptionKey) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this LogsInput.
 func (mg *LogsInput) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
@@ -84,6 +124,46 @@ func (mg *LogsInput) SetProviderConfigReference(r *xpv1.ProviderConfigReference)
 
 // SetWriteConnectionSecretToReference of this LogsInput.
 func (mg *LogsInput) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetManagementPolicies of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetManagementPolicies of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this LogsOutputGraylogStream.
+func (mg *LogsOutputGraylogStream) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 

@@ -13,6 +13,9 @@ func (tr *Cluster) Hub() {}
 func (tr *IpRestriction) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *LogSubscription) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *NodePool) Hub() {}
 
 // Hub marks this type as a conversion hub.

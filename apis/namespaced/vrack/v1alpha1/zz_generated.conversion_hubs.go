@@ -46,7 +46,13 @@ func (tr *IPv6RoutedSubrange) Hub() {}
 func (tr *Ovhcloudconnect) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *PublicRoutingPriority) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Vrack) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *Vrackservices) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *VrackServicesOrder) Hub() {}

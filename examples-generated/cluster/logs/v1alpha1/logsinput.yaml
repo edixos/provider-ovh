@@ -19,10 +19,26 @@ spec:
               ssl_certificate => "/etc/ssl/private/server.crt"
               ssl_key => "/etc/ssl/private/server.key"
             }
-    description: ${ovh_dbaas_logs_output_graylog_stream.stream.description}
+    description: my graylog stream
     engineId: ${data.ovh_dbaas_logs_input_engine.logstash.id}
     exposedPort: "6154"
     nbInstance: 2
     serviceName: ${ovh_dbaas_logs_output_graylog_stream.stream.service_name}
     streamId: ${ovh_dbaas_logs_output_graylog_stream.stream.id}
-    title: ${ovh_dbaas_logs_output_graylog_stream.stream.title}
+    title: my stream
+
+---
+
+apiVersion: logs.ovh.edixos.io/v1alpha1
+kind: LogsOutputGraylogStream
+metadata:
+  annotations:
+    meta.upbound.io/example-id: logs/v1alpha1/logsinput
+  labels:
+    testing.upbound.io/example-name: stream
+  name: stream
+spec:
+  forProvider:
+    description: my graylog stream
+    serviceName: '....'
+    title: my stream

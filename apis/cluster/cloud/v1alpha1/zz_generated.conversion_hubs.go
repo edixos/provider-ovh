@@ -7,6 +7,9 @@ Copyright 2022 Upbound Inc.
 package v1alpha1
 
 // Hub marks this type as a conversion hub.
+func (tr *FloatingIP) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Plan) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -43,10 +46,19 @@ func (tr *ProjectVolume) Hub() {}
 func (tr *ProjectVolumeBackup) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Quota) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *S3Credentials) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *S3Policy) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *SecurityGroup) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *SSHKey) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *User) Hub() {}

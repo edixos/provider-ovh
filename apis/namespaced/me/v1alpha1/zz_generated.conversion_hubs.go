@@ -10,6 +10,9 @@ package v1alpha1
 func (tr *Group) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *IdentityUserToken) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Oauth2Client) Hub() {}
 
 // Hub marks this type as a conversion hub.
