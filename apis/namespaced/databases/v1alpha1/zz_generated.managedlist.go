@@ -16,15 +16,6 @@ func (l *ProjectDatabaseDatabaseList) GetItems() []resource.Managed {
 	return items
 }
 
-// GetItems of this ProjectDatabaseIPRestrictionList.
-func (l *ProjectDatabaseIPRestrictionList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
 // GetItems of this ProjectDatabaseIntegrationList.
 func (l *ProjectDatabaseIntegrationList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -63,24 +54,6 @@ func (l *ProjectDatabaseKafkaTopicList) GetItems() []resource.Managed {
 
 // GetItems of this ProjectDatabaseList.
 func (l *ProjectDatabaseList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this ProjectDatabaseM3DbNamespaceList.
-func (l *ProjectDatabaseM3DbNamespaceList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this ProjectDatabaseM3DbUserList.
-func (l *ProjectDatabaseM3DbUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]
@@ -144,15 +117,6 @@ func (l *ProjectDatabasePostgresqlUserList) GetItems() []resource.Managed {
 
 // GetItems of this ProjectDatabasePrometheusList.
 func (l *ProjectDatabasePrometheusList) GetItems() []resource.Managed {
-	items := make([]resource.Managed, len(l.Items))
-	for i := range l.Items {
-		items[i] = &l.Items[i]
-	}
-	return items
-}
-
-// GetItems of this ProjectDatabaseRedisUserList.
-func (l *ProjectDatabaseRedisUserList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

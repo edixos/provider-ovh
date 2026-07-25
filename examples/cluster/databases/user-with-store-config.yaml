@@ -1,5 +1,5 @@
 apiVersion: databases.ovh.edixos.io/v1alpha1
-kind: ProjectDatabaseRedisUser
+kind: ProjectDatabaseValkeyUser
 metadata:
   name: user-1
   labels:

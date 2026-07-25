@@ -8,8 +8,8 @@ spec:
     name: default
   forProvider:
     serviceName: 21658141411b4c9bb0bf863be8e8c369
-    engine: redis
-    version: "7.0"
+    engine: valkey
+    version: "8.0"
     plan: "essential"
     flavor: db1-4
     nodes:
@@ -17,13 +17,13 @@ spec:
         subnetId: c63562ac-d061-4c8f-b65f-2e72e4db8a25
         region: GRA
   writeConnectionSecretToRef:
-    name: redis-demo-0
+    name: valkey-demo-0
     namespace: default
 #  publishConnectionDetailsTo:
 #    configRef:
 #      # name: staging-01
 #      name: staging-01
-#    name: redis-demo-0
+#    name: valkey-demo-0
 #---
 #apiVersion: ovh.edixos.io/v1alpha1
 #kind: StoreConfig

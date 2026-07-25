@@ -229,6 +229,11 @@ type ProjectStorageInitParameters struct {
 	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// (String to String Map) Tags filter
+	// Container tags
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
 	// (Attributes) Versioning configuration (see below for nested schema)
 	Versioning *VersioningInitParameters `json:"versioning,omitempty" tf:"versioning,omitempty"`
 }
@@ -285,6 +290,11 @@ type ProjectStorageObservation struct {
 	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
+	// (String to String Map) Tags filter
+	// Container tags
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
 	// (Attributes) Versioning configuration (see below for nested schema)
 	Versioning *VersioningObservation `json:"versioning,omitempty" tf:"versioning,omitempty"`
 
@@ -330,6 +340,12 @@ type ProjectStorageParameters struct {
 	// Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
+
+	// (String to String Map) Tags filter
+	// Container tags
+	// +kubebuilder:validation:Optional
+	// +mapType=granular
+	Tags map[string]*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
 	// (Attributes) Versioning configuration (see below for nested schema)
 	// +kubebuilder:validation:Optional

@@ -13,6 +13,35 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
+type APIServerInitParameters struct {
+
+	// If the ServiceType is "NodePort", define on which port the service will be exposed
+	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+
+	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
+	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
+}
+
+type APIServerObservation struct {
+
+	// If the ServiceType is "NodePort", define on which port the service will be exposed
+	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+
+	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
+	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
+}
+
+type APIServerParameters struct {
+
+	// If the ServiceType is "NodePort", define on which port the service will be exposed
+	// +kubebuilder:validation:Optional
+	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+
+	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
+	// +kubebuilder:validation:Optional
+	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
+}
+
 type AdmissionpluginsInitParameters struct {
 
 	// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
@@ -61,6 +90,35 @@ type ApiserverParameters struct {
 	Admissionplugins []AdmissionpluginsParameters `json:"admissionplugins,omitempty" tf:"admissionplugins,omitempty"`
 }
 
+type BackendResourcesInitParameters struct {
+
+	// Define the limits of the Hubble UI Backend
+	Limits []LimitsInitParameters `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Backend
+	Requests []RequestsInitParameters `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
+type BackendResourcesObservation struct {
+
+	// Define the limits of the Hubble UI Backend
+	Limits []LimitsObservation `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Backend
+	Requests []RequestsObservation `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
+type BackendResourcesParameters struct {
+
+	// Define the limits of the Hubble UI Backend
+	// +kubebuilder:validation:Optional
+	Limits []LimitsParameters `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Backend
+	// +kubebuilder:validation:Optional
+	Requests []RequestsParameters `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
 type ClusterInitParameters struct {
 
 	// Deprecated  Use customization_apiserver and customization_kube_proxy instead. Kubernetes cluster customization
@@ -69,8 +127,14 @@ type ClusterInitParameters struct {
 	// Kubernetes API server customization
 	CustomizationApiserver []CustomizationApiserverInitParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
 
+	// Allow the customization of the Cilium deployment
+	CustomizationCilium []CustomizationCiliumInitParameters `json:"customizationCilium,omitempty" tf:"customization_cilium,omitempty"`
+
 	// Kubernetes kube-proxy customization
 	CustomizationKubeProxy []CustomizationKubeProxyInitParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	// IP Allocation policy for the MKS cluster
+	IPAllocationPolicy []IPAllocationPolicyInitParameters `json:"ipAllocationPolicy,omitempty" tf:"ip_allocation_policy,omitempty"`
 
 	// Selected mode for kube-proxy. Changing this value recreates the resource, including ETCD user data. Defaults to iptables.
 	KubeProxyMode *string `json:"kubeProxyMode,omitempty" tf:"kube_proxy_mode,omitempty"`
@@ -125,6 +189,38 @@ type ClusterInitParameters struct {
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
+type ClusterMeshInitParameters struct {
+
+	// Define how the cluster mesh will be exposed
+	APIServer []APIServerInitParameters `json:"apiServer,omitempty" tf:"api_server,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Cilium's Cluster mesh feature
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type ClusterMeshObservation struct {
+
+	// Define how the cluster mesh will be exposed
+	APIServer []APIServerObservation `json:"apiServer,omitempty" tf:"api_server,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Cilium's Cluster mesh feature
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type ClusterMeshParameters struct {
+
+	// Define how the cluster mesh will be exposed
+	// +kubebuilder:validation:Optional
+	APIServer []APIServerParameters `json:"apiServer,omitempty" tf:"api_server,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Cilium's Cluster mesh feature
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
 type ClusterObservation struct {
 
 	// True if control-plane is up-to-date.
@@ -136,11 +232,17 @@ type ClusterObservation struct {
 	// Kubernetes API server customization
 	CustomizationApiserver []CustomizationApiserverObservation `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
 
+	// Allow the customization of the Cilium deployment
+	CustomizationCilium []CustomizationCiliumObservation `json:"customizationCilium,omitempty" tf:"customization_cilium,omitempty"`
+
 	// Kubernetes kube-proxy customization
 	CustomizationKubeProxy []CustomizationKubeProxyObservation `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
 
 	// Managed Kubernetes Service ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// IP Allocation policy for the MKS cluster
+	IPAllocationPolicy []IPAllocationPolicyObservation `json:"ipAllocationPolicy,omitempty" tf:"ip_allocation_policy,omitempty"`
 
 	// True if all nodes and control-plane are up-to-date.
 	IsUpToDate *bool `json:"isUpToDate,omitempty" tf:"is_up_to_date,omitempty"`
@@ -202,9 +304,17 @@ type ClusterParameters struct {
 	// +kubebuilder:validation:Optional
 	CustomizationApiserver []CustomizationApiserverParameters `json:"customizationApiserver,omitempty" tf:"customization_apiserver,omitempty"`
 
+	// Allow the customization of the Cilium deployment
+	// +kubebuilder:validation:Optional
+	CustomizationCilium []CustomizationCiliumParameters `json:"customizationCilium,omitempty" tf:"customization_cilium,omitempty"`
+
 	// Kubernetes kube-proxy customization
 	// +kubebuilder:validation:Optional
 	CustomizationKubeProxy []CustomizationKubeProxyParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	// IP Allocation policy for the MKS cluster
+	// +kubebuilder:validation:Optional
+	IPAllocationPolicy []IPAllocationPolicyParameters `json:"ipAllocationPolicy,omitempty" tf:"ip_allocation_policy,omitempty"`
 
 	// Selected mode for kube-proxy. Changing this value recreates the resource, including ETCD user data. Defaults to iptables.
 	// +kubebuilder:validation:Optional
@@ -318,6 +428,48 @@ type CustomizationApiserverParameters struct {
 	Admissionplugins []CustomizationApiserverAdmissionpluginsParameters `json:"admissionplugins,omitempty" tf:"admissionplugins,omitempty"`
 }
 
+type CustomizationCiliumInitParameters struct {
+
+	// Managed Kubernetes Service ID
+	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Customize Cilium's cluster mesh feature
+	ClusterMesh []ClusterMeshInitParameters `json:"clusterMesh,omitempty" tf:"cluster_mesh,omitempty"`
+
+	// Allow the customization of the Hubble deployment
+	Hubble []HubbleInitParameters `json:"hubble,omitempty" tf:"hubble,omitempty"`
+}
+
+type CustomizationCiliumObservation struct {
+
+	// Managed Kubernetes Service ID
+	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Customize Cilium's cluster mesh feature
+	ClusterMesh []ClusterMeshObservation `json:"clusterMesh,omitempty" tf:"cluster_mesh,omitempty"`
+
+	// Allow the customization of the Hubble deployment
+	Hubble []HubbleObservation `json:"hubble,omitempty" tf:"hubble,omitempty"`
+}
+
+type CustomizationCiliumParameters struct {
+
+	// Managed Kubernetes Service ID
+	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+	// +kubebuilder:validation:Optional
+	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+
+	// Customize Cilium's cluster mesh feature
+	// +kubebuilder:validation:Optional
+	ClusterMesh []ClusterMeshParameters `json:"clusterMesh,omitempty" tf:"cluster_mesh,omitempty"`
+
+	// Allow the customization of the Hubble deployment
+	// +kubebuilder:validation:Optional
+	Hubble []HubbleParameters `json:"hubble,omitempty" tf:"hubble,omitempty"`
+}
+
 type CustomizationInitParameters struct {
 
 	// Kubernetes API server customization
@@ -364,6 +516,148 @@ type CustomizationParameters struct {
 	// Kubernetes API server customization
 	// +kubebuilder:validation:Optional
 	Apiserver []ApiserverParameters `json:"apiserver,omitempty" tf:"apiserver,omitempty"`
+}
+
+type FrontendResourcesInitParameters struct {
+
+	// Define the limits of the Hubble UI Frontend
+	Limits []FrontendResourcesLimitsInitParameters `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Frontend
+	Requests []FrontendResourcesRequestsInitParameters `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
+type FrontendResourcesLimitsInitParameters struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type FrontendResourcesLimitsObservation struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type FrontendResourcesLimitsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type FrontendResourcesObservation struct {
+
+	// Define the limits of the Hubble UI Frontend
+	Limits []FrontendResourcesLimitsObservation `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Frontend
+	Requests []FrontendResourcesRequestsObservation `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
+type FrontendResourcesParameters struct {
+
+	// Define the limits of the Hubble UI Frontend
+	// +kubebuilder:validation:Optional
+	Limits []FrontendResourcesLimitsParameters `json:"limits,omitempty" tf:"limits,omitempty"`
+
+	// Define the requests of the Hubble UI Frontend
+	// +kubebuilder:validation:Optional
+	Requests []FrontendResourcesRequestsParameters `json:"requests,omitempty" tf:"requests,omitempty"`
+}
+
+type FrontendResourcesRequestsInitParameters struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type FrontendResourcesRequestsObservation struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type FrontendResourcesRequestsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type HubbleInitParameters struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Relay deployment
+	Relay []RelayInitParameters `json:"relay,omitempty" tf:"relay,omitempty"`
+
+	// Allow the customization of the Hubble's UI deployment
+	UI []UIInitParameters `json:"ui,omitempty" tf:"ui,omitempty"`
+}
+
+type HubbleObservation struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Relay deployment
+	Relay []RelayObservation `json:"relay,omitempty" tf:"relay,omitempty"`
+
+	// Allow the customization of the Hubble's UI deployment
+	UI []UIObservation `json:"ui,omitempty" tf:"ui,omitempty"`
+}
+
+type HubbleParameters struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble deployment
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Relay deployment
+	// +kubebuilder:validation:Optional
+	Relay []RelayParameters `json:"relay,omitempty" tf:"relay,omitempty"`
+
+	// Allow the customization of the Hubble's UI deployment
+	// +kubebuilder:validation:Optional
+	UI []UIParameters `json:"ui,omitempty" tf:"ui,omitempty"`
+}
+
+type IPAllocationPolicyInitParameters struct {
+
+	// The Kubernetes cluster's pods CIDR
+	PodsIPv4Cidr *string `json:"podsIpv4Cidr,omitempty" tf:"pods_ipv4_cidr,omitempty"`
+
+	// The Kubernetes cluster's services CIDR
+	ServicesIPv4Cidr *string `json:"servicesIpv4Cidr,omitempty" tf:"services_ipv4_cidr,omitempty"`
+}
+
+type IPAllocationPolicyObservation struct {
+
+	// The Kubernetes cluster's pods CIDR
+	PodsIPv4Cidr *string `json:"podsIpv4Cidr,omitempty" tf:"pods_ipv4_cidr,omitempty"`
+
+	// The Kubernetes cluster's services CIDR
+	ServicesIPv4Cidr *string `json:"servicesIpv4Cidr,omitempty" tf:"services_ipv4_cidr,omitempty"`
+}
+
+type IPAllocationPolicyParameters struct {
+
+	// The Kubernetes cluster's pods CIDR
+	// +kubebuilder:validation:Optional
+	PodsIPv4Cidr *string `json:"podsIpv4Cidr,omitempty" tf:"pods_ipv4_cidr,omitempty"`
+
+	// The Kubernetes cluster's services CIDR
+	// +kubebuilder:validation:Optional
+	ServicesIPv4Cidr *string `json:"servicesIpv4Cidr,omitempty" tf:"services_ipv4_cidr,omitempty"`
 }
 
 type IptablesInitParameters struct {
@@ -485,6 +779,27 @@ type KubeconfigAttributesObservation struct {
 type KubeconfigAttributesParameters struct {
 }
 
+type LimitsInitParameters struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type LimitsObservation struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type LimitsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
 type PrivateNetworkConfigurationInitParameters struct {
 
 	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
@@ -518,6 +833,91 @@ type PrivateNetworkConfigurationParameters struct {
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	// +kubebuilder:validation:Optional
 	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault" tf:"private_network_routing_as_default,omitempty"`
+}
+
+type RelayInitParameters struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Relay deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type RelayObservation struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Relay deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type RelayParameters struct {
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Relay deployment
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type RequestsInitParameters struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type RequestsObservation struct {
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type RequestsParameters struct {
+
+	// +kubebuilder:validation:Optional
+	CPU *string `json:"cpu,omitempty" tf:"cpu,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Memory *string `json:"memory,omitempty" tf:"memory,omitempty"`
+}
+
+type UIInitParameters struct {
+
+	// Allow the customization of the Hubble UI Backend
+	BackendResources []BackendResourcesInitParameters `json:"backendResources,omitempty" tf:"backend_resources,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble's UI deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Hubble UI Frontend
+	FrontendResources []FrontendResourcesInitParameters `json:"frontendResources,omitempty" tf:"frontend_resources,omitempty"`
+}
+
+type UIObservation struct {
+
+	// Allow the customization of the Hubble UI Backend
+	BackendResources []BackendResourcesObservation `json:"backendResources,omitempty" tf:"backend_resources,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble's UI deployment
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Hubble UI Frontend
+	FrontendResources []FrontendResourcesObservation `json:"frontendResources,omitempty" tf:"frontend_resources,omitempty"`
+}
+
+type UIParameters struct {
+
+	// Allow the customization of the Hubble UI Backend
+	// +kubebuilder:validation:Optional
+	BackendResources []BackendResourcesParameters `json:"backendResources,omitempty" tf:"backend_resources,omitempty"`
+
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	// Enable or disable the Hubble's UI deployment
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// Allow the customization of the Hubble UI Frontend
+	// +kubebuilder:validation:Optional
+	FrontendResources []FrontendResourcesParameters `json:"frontendResources,omitempty" tf:"frontend_resources,omitempty"`
 }
 
 // ClusterSpec defines the desired state of Cluster

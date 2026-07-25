@@ -16,9 +16,6 @@ func (tr *ProjectDatabaseDatabase) Hub() {}
 func (tr *ProjectDatabaseIntegration) Hub() {}
 
 // Hub marks this type as a conversion hub.
-func (tr *ProjectDatabaseIPRestriction) Hub() {}
-
-// Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseKafkaACL) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -26,12 +23,6 @@ func (tr *ProjectDatabaseKafkaSchemaregistryacl) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseKafkaTopic) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *ProjectDatabaseM3DbNamespace) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *ProjectDatabaseM3DbUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseMongodbPrometheus) Hub() {}
@@ -53,9 +44,6 @@ func (tr *ProjectDatabasePostgresqlUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabasePrometheus) Hub() {}
-
-// Hub marks this type as a conversion hub.
-func (tr *ProjectDatabaseRedisUser) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseUser) Hub() {}

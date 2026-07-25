@@ -11,3 +11,5 @@ cover.out
 .idea/
 
 examples/providerconfig/secret.yaml
+ai-memory.db
+.omc/

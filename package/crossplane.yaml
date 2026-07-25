@@ -14,6 +14,8 @@ metadata:
       the
       [edixos/provider-ovh](https://github.com/edixos/provider-ovh)
       repo.
+
+      Maintained by [Edixos](https://edixos.com).
 spec:
   capabilities:
     - SafeStart

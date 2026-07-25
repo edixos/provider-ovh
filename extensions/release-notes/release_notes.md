@@ -3,6 +3,25 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+### Changed
+- Upgrade OVH Terraform provider from 2.13.1 to 2.17.0.
+
+### Removed (breaking)
+Upstream removed the deprecated `cassandra`, `m3db`, `m3aggregator` and `redis`
+database engines in 2.17.0, along with the `ovh_cloud_project_database_ip_restriction`
+resource. The following managed resources and their CRDs are therefore gone from both
+the cluster-scoped (`databases.ovh.edixos.io`) and namespaced (`databases.m.ovh.edixos.io`)
+API groups:
+- `ProjectDatabaseIPRestriction` — declare IP restrictions directly on `ProjectDatabase` via `ipRestrictions` instead.
+- `ProjectDatabaseM3DbNamespace`
+- `ProjectDatabaseM3DbUser`
+- `ProjectDatabaseRedisUser` — use `ProjectDatabaseValkeyUser` with a `valkey` engine cluster instead.
+
+`ProjectDatabase` now rejects the `cassandra`, `m3db`, `m3aggregator` and `redis`
+engines client-side; supported engines are `clickhouse`, `grafana`, `kafka`,
+`kafkaConnect`, `kafkaMirrorMaker`, `mongodb`, `mysql`, `opensearch`, `postgresql`
+and `valkey`.
+
 - Initial setup of Marketplace extension assets (icon, readme, release notes, SBOM).
 - Added CI step to run `up alpha xpkg append`.
 

@@ -63,7 +63,7 @@ make build
 
 ## Bumping the Terraform Provider Version
 
-This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.11.0` to `2.13.1`):
+This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.13.1` to `2.17.0`):
 
 1. **Update the Makefile** – change the two version references:
    ```makefile
@@ -86,6 +86,15 @@ This provider is built on top of the [OVHcloud Terraform provider](https://githu
    - `config/schema.json`
    - `apis/**/zz_*.go` (generated types and deepcopy)
    - `package/crds/*.yaml`
+
+   Two things trip up this step:
+   - `.work/terraform` holds a `.terraform.lock.hcl` pinned to the previous provider
+     version, and `.work/ovh` is a shallow clone of the previous docs tag. Both are
+     reused as-is, so remove them (`rm -rf .work/terraform .work/ovh`) before regenerating.
+   - When a release **removes** resources, delete the corresponding
+     `apis/**/zz_generated.managed.go` and `zz_generated.managedlist.go` first.
+     `apis/generate.go` deliberately keeps those two files, so they retain methodsets
+     for types that no longer exist and `angryjet` fails with `undefined: <Kind>`.
 
 5. **Verify the build** – ensure everything compiles:
    ```console

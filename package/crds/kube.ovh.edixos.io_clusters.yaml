@@ -133,6 +133,136 @@ spec:
                           type: array
                       type: object
                     type: array
+                  customizationCilium:
+                    description: Allow the customization of the Cilium deployment
+                    items:
+                      properties:
+                        clusterId:
+                          description: |-
+                            Managed Kubernetes Service ID
+                            Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+                          type: number
+                        clusterMesh:
+                          description: Customize Cilium's cluster mesh feature
+                          items:
+                            properties:
+                              apiServer:
+                                description: Define how the cluster mesh will be exposed
+                                items:
+                                  properties:
+                                    nodePort:
+                                      description: If the ServiceType is "NodePort",
+                                        define on which port the service will be exposed
+                                      type: number
+                                    serviceType:
+                                      description: Define if the cluster mesh service
+                                        is exposed by a K8s Service of type NodePort
+                                        or LoadBalancer
+                                      type: string
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Cilium's Cluster mesh feature
+                                type: boolean
+                            type: object
+                          type: array
+                        hubble:
+                          description: Allow the customization of the Hubble deployment
+                          items:
+                            properties:
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Hubble deployment
+                                type: boolean
+                              relay:
+                                description: Allow the customization of the Relay
+                                  deployment
+                                items:
+                                  properties:
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Relay deployment
+                                      type: boolean
+                                  type: object
+                                type: array
+                              ui:
+                                description: Allow the customization of the Hubble's
+                                  UI deployment
+                                items:
+                                  properties:
+                                    backendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Backend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Hubble's UI deployment
+                                      type: boolean
+                                    frontendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Frontend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
                   customizationKubeProxy:
                     description: Kubernetes kube-proxy customization
                     items:
@@ -192,6 +322,18 @@ spec:
                                 type: string
                             type: object
                           type: array
+                      type: object
+                    type: array
+                  ipAllocationPolicy:
+                    description: IP Allocation policy for the MKS cluster
+                    items:
+                      properties:
+                        podsIpv4Cidr:
+                          description: The Kubernetes cluster's pods CIDR
+                          type: string
+                        servicesIpv4Cidr:
+                          description: The Kubernetes cluster's services CIDR
+                          type: string
                       type: object
                     type: array
                   kubeProxyMode:
@@ -486,6 +628,136 @@ spec:
                           type: array
                       type: object
                     type: array
+                  customizationCilium:
+                    description: Allow the customization of the Cilium deployment
+                    items:
+                      properties:
+                        clusterId:
+                          description: |-
+                            Managed Kubernetes Service ID
+                            Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+                          type: number
+                        clusterMesh:
+                          description: Customize Cilium's cluster mesh feature
+                          items:
+                            properties:
+                              apiServer:
+                                description: Define how the cluster mesh will be exposed
+                                items:
+                                  properties:
+                                    nodePort:
+                                      description: If the ServiceType is "NodePort",
+                                        define on which port the service will be exposed
+                                      type: number
+                                    serviceType:
+                                      description: Define if the cluster mesh service
+                                        is exposed by a K8s Service of type NodePort
+                                        or LoadBalancer
+                                      type: string
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Cilium's Cluster mesh feature
+                                type: boolean
+                            type: object
+                          type: array
+                        hubble:
+                          description: Allow the customization of the Hubble deployment
+                          items:
+                            properties:
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Hubble deployment
+                                type: boolean
+                              relay:
+                                description: Allow the customization of the Relay
+                                  deployment
+                                items:
+                                  properties:
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Relay deployment
+                                      type: boolean
+                                  type: object
+                                type: array
+                              ui:
+                                description: Allow the customization of the Hubble's
+                                  UI deployment
+                                items:
+                                  properties:
+                                    backendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Backend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Hubble's UI deployment
+                                      type: boolean
+                                    frontendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Frontend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
                   customizationKubeProxy:
                     description: Kubernetes kube-proxy customization
                     items:
@@ -545,6 +817,18 @@ spec:
                                 type: string
                             type: object
                           type: array
+                      type: object
+                    type: array
+                  ipAllocationPolicy:
+                    description: IP Allocation policy for the MKS cluster
+                    items:
+                      properties:
+                        podsIpv4Cidr:
+                          description: The Kubernetes cluster's pods CIDR
+                          type: string
+                        servicesIpv4Cidr:
+                          description: The Kubernetes cluster's services CIDR
+                          type: string
                       type: object
                     type: array
                   kubeProxyMode:
@@ -929,6 +1213,136 @@ spec:
                           type: array
                       type: object
                     type: array
+                  customizationCilium:
+                    description: Allow the customization of the Cilium deployment
+                    items:
+                      properties:
+                        clusterId:
+                          description: |-
+                            Managed Kubernetes Service ID
+                            Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
+                          type: number
+                        clusterMesh:
+                          description: Customize Cilium's cluster mesh feature
+                          items:
+                            properties:
+                              apiServer:
+                                description: Define how the cluster mesh will be exposed
+                                items:
+                                  properties:
+                                    nodePort:
+                                      description: If the ServiceType is "NodePort",
+                                        define on which port the service will be exposed
+                                      type: number
+                                    serviceType:
+                                      description: Define if the cluster mesh service
+                                        is exposed by a K8s Service of type NodePort
+                                        or LoadBalancer
+                                      type: string
+                                  type: object
+                                type: array
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Cilium's Cluster mesh feature
+                                type: boolean
+                            type: object
+                          type: array
+                        hubble:
+                          description: Allow the customization of the Hubble deployment
+                          items:
+                            properties:
+                              enabled:
+                                description: |-
+                                  Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                  Enable or disable the Hubble deployment
+                                type: boolean
+                              relay:
+                                description: Allow the customization of the Relay
+                                  deployment
+                                items:
+                                  properties:
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Relay deployment
+                                      type: boolean
+                                  type: object
+                                type: array
+                              ui:
+                                description: Allow the customization of the Hubble's
+                                  UI deployment
+                                items:
+                                  properties:
+                                    backendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Backend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Backend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                    enabled:
+                                      description: |-
+                                        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+                                        Enable or disable the Hubble's UI deployment
+                                      type: boolean
+                                    frontendResources:
+                                      description: Allow the customization of the
+                                        Hubble UI Frontend
+                                      items:
+                                        properties:
+                                          limits:
+                                            description: Define the limits of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                          requests:
+                                            description: Define the requests of the
+                                              Hubble UI Frontend
+                                            items:
+                                              properties:
+                                                cpu:
+                                                  type: string
+                                                memory:
+                                                  type: string
+                                              type: object
+                                            type: array
+                                        type: object
+                                      type: array
+                                  type: object
+                                type: array
+                            type: object
+                          type: array
+                      type: object
+                    type: array
                   customizationKubeProxy:
                     description: Kubernetes kube-proxy customization
                     items:
@@ -993,6 +1407,18 @@ spec:
                   id:
                     description: Managed Kubernetes Service ID
                     type: string
+                  ipAllocationPolicy:
+                    description: IP Allocation policy for the MKS cluster
+                    items:
+                      properties:
+                        podsIpv4Cidr:
+                          description: The Kubernetes cluster's pods CIDR
+                          type: string
+                        servicesIpv4Cidr:
+                          description: The Kubernetes cluster's services CIDR
+                          type: string
+                      type: object
+                    type: array
                   isUpToDate:
                     description: True if all nodes and control-plane are up-to-date.
                     type: boolean

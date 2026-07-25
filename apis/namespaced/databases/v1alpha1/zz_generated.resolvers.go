@@ -56,50 +56,6 @@ func (mg *ProjectDatabaseDatabase) ResolveReferences(ctx context.Context, c clie
 	return nil
 }
 
-// ResolveReferences of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPINamespacedResolver(c, mg)
-
-	var rsp reference.NamespacedResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.ForProvider.ClusterIDRef,
-		Selector:     mg.Spec.ForProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterID")
-	}
-	mg.Spec.ForProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.ClusterIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.InitProvider.ClusterIDRef,
-		Selector:     mg.Spec.InitProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.ClusterID")
-	}
-	mg.Spec.InitProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.ClusterIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
 // ResolveReferences of this ProjectDatabaseIntegration.
 func (mg *ProjectDatabaseIntegration) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPINamespacedResolver(c, mg)
@@ -234,94 +190,6 @@ func (mg *ProjectDatabaseKafkaSchemaregistryacl) ResolveReferences(ctx context.C
 
 // ResolveReferences of this ProjectDatabaseKafkaTopic.
 func (mg *ProjectDatabaseKafkaTopic) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPINamespacedResolver(c, mg)
-
-	var rsp reference.NamespacedResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.ForProvider.ClusterIDRef,
-		Selector:     mg.Spec.ForProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterID")
-	}
-	mg.Spec.ForProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.ClusterIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.InitProvider.ClusterIDRef,
-		Selector:     mg.Spec.InitProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.ClusterID")
-	}
-	mg.Spec.InitProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.ClusterIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPINamespacedResolver(c, mg)
-
-	var rsp reference.NamespacedResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.ForProvider.ClusterIDRef,
-		Selector:     mg.Spec.ForProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterID")
-	}
-	mg.Spec.ForProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.ClusterIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.InitProvider.ClusterIDRef,
-		Selector:     mg.Spec.InitProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.ClusterID")
-	}
-	mg.Spec.InitProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.ClusterIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPINamespacedResolver(c, mg)
 
 	var rsp reference.NamespacedResolutionResponse
@@ -542,50 +410,6 @@ func (mg *ProjectDatabasePostgresqlConnectionPool) ResolveReferences(ctx context
 
 // ResolveReferences of this ProjectDatabasePostgresqlUser.
 func (mg *ProjectDatabasePostgresqlUser) ResolveReferences(ctx context.Context, c client.Reader) error {
-	r := reference.NewAPINamespacedResolver(c, mg)
-
-	var rsp reference.NamespacedResolutionResponse
-	var err error
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.ForProvider.ClusterIDRef,
-		Selector:     mg.Spec.ForProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.ClusterID")
-	}
-	mg.Spec.ForProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.ClusterIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ClusterID),
-		Extract:      reference.ExternalName(),
-		Namespace:    mg.GetNamespace(),
-		Reference:    mg.Spec.InitProvider.ClusterIDRef,
-		Selector:     mg.Spec.InitProvider.ClusterIDSelector,
-		To: reference.To{
-			List:    &ProjectDatabaseList{},
-			Managed: &ProjectDatabase{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.InitProvider.ClusterID")
-	}
-	mg.Spec.InitProvider.ClusterID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.InitProvider.ClusterIDRef = rsp.ResolvedReference
-
-	return nil
-}
-
-// ResolveReferences of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPINamespacedResolver(c, mg)
 
 	var rsp reference.NamespacedResolutionResponse

@@ -42,5 +42,8 @@ Community discussions and roadmap proposals are welcome via issues labeled `enha
 ## Contributing
 We welcome PRs! See root `CONTRIBUTING.md` and `build/CONTRIBUTING.md` for detailed guidance (DCO, release process, marketplace assets).
 
+## Maintainers
+Maintained by [Edixos](https://edixos.com) together with the open-source community.
+
 ## License
 Apache-2.0
