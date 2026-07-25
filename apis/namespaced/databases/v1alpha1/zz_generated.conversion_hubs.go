@@ -10,6 +10,9 @@ package v1alpha1
 func (tr *ProjectDatabase) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ProjectDatabaseClickhouseUser) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseDatabase) Hub() {}
 
 // Hub marks this type as a conversion hub.
@@ -23,6 +26,9 @@ func (tr *ProjectDatabaseKafkaSchemaregistryacl) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseKafkaTopic) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ProjectDatabaseLogSubscription) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ProjectDatabaseMongodbPrometheus) Hub() {}

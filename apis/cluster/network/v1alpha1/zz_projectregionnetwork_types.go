@@ -13,41 +13,6 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type HostRoutesInitParameters struct {
-
-	// Host route destination (eg: 192.168.1.0/24)
-	// Host route destination (eg: 192.168.1.0/24)
-	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// Host route next hop (eg: 192.168.1.254)
-	// Host route next hop (eg: 192.168.1.254)
-	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
-}
-
-type HostRoutesObservation struct {
-
-	// Host route destination (eg: 192.168.1.0/24)
-	// Host route destination (eg: 192.168.1.0/24)
-	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// Host route next hop (eg: 192.168.1.254)
-	// Host route next hop (eg: 192.168.1.254)
-	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
-}
-
-type HostRoutesParameters struct {
-
-	// Host route destination (eg: 192.168.1.0/24)
-	// Host route destination (eg: 192.168.1.0/24)
-	// +kubebuilder:validation:Optional
-	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// Host route next hop (eg: 192.168.1.254)
-	// Host route next hop (eg: 192.168.1.254)
-	// +kubebuilder:validation:Optional
-	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
-}
-
 type ProjectRegionNetworkInitParameters struct {
 
 	// Name of the network
@@ -156,7 +121,7 @@ type ProjectRegionNetworkSubnetInitParameters struct {
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
 	// Host routes
-	HostRoutes []HostRoutesInitParameters `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
+	HostRoutes []SubnetHostRoutesInitParameters `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
 
 	// IP version
 	// IP version
@@ -197,7 +162,7 @@ type ProjectRegionNetworkSubnetObservation struct {
 	GatewayIP *string `json:"gatewayIp,omitempty" tf:"gateway_ip,omitempty"`
 
 	// Host routes
-	HostRoutes []HostRoutesObservation `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
+	HostRoutes []SubnetHostRoutesObservation `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
 
 	// IP version
 	// IP version
@@ -245,7 +210,7 @@ type ProjectRegionNetworkSubnetParameters struct {
 
 	// Host routes
 	// +kubebuilder:validation:Optional
-	HostRoutes []HostRoutesParameters `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
+	HostRoutes []SubnetHostRoutesParameters `json:"hostRoutes,omitempty" tf:"host_routes,omitempty"`
 
 	// IP version
 	// IP version
@@ -296,6 +261,41 @@ type SubnetAllocationPoolsParameters struct {
 	// First IP for the pool (eg: 192.168.1.12)
 	// +kubebuilder:validation:Optional
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
+}
+
+type SubnetHostRoutesInitParameters struct {
+
+	// Host route destination (eg: 192.168.1.0/24)
+	// Host route destination (eg: 192.168.1.0/24)
+	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// Host route next hop (eg: 192.168.1.254)
+	// Host route next hop (eg: 192.168.1.254)
+	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
+}
+
+type SubnetHostRoutesObservation struct {
+
+	// Host route destination (eg: 192.168.1.0/24)
+	// Host route destination (eg: 192.168.1.0/24)
+	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// Host route next hop (eg: 192.168.1.254)
+	// Host route next hop (eg: 192.168.1.254)
+	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
+}
+
+type SubnetHostRoutesParameters struct {
+
+	// Host route destination (eg: 192.168.1.0/24)
+	// Host route destination (eg: 192.168.1.0/24)
+	// +kubebuilder:validation:Optional
+	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// Host route next hop (eg: 192.168.1.254)
+	// Host route next hop (eg: 192.168.1.254)
+	// +kubebuilder:validation:Optional
+	NextHop *string `json:"nextHop,omitempty" tf:"next_hop,omitempty"`
 }
 
 // ProjectRegionNetworkSpec defines the desired state of ProjectRegionNetwork

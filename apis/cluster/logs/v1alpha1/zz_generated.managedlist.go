@@ -16,8 +16,26 @@ func (l *LogsClusterList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this LogsEncryptionKeyList.
+func (l *LogsEncryptionKeyList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this LogsInputList.
 func (l *LogsInputList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LogsOutputGraylogStreamList.
+func (l *LogsOutputGraylogStreamList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

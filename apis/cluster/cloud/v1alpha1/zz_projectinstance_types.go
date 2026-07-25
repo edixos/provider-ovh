@@ -154,28 +154,6 @@ type FloatingIPCreateParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 }
 
-type FloatingIPInitParameters struct {
-
-	// Floating IP ID
-	// Floating IP ID
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type FloatingIPObservation struct {
-
-	// Floating IP ID
-	// Floating IP ID
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type FloatingIPParameters struct {
-
-	// Floating IP ID
-	// Floating IP ID
-	// +kubebuilder:validation:Optional
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
 type GatewayCreateInitParameters struct {
 
 	// Gateway model (s | m | l)
@@ -303,46 +281,33 @@ type NetworkCreateParameters struct {
 	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
-type NetworkInitParameters struct {
+type PrivateFloatingIPInitParameters struct {
 
-	// Private network information
-	// Private network information
-	Private []PrivateInitParameters `json:"private,omitempty" tf:"private,omitempty"`
-
-	// Set the new instance as public
-	// Set the new instance as public
-	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+	// Floating IP ID
+	// Floating IP ID
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type NetworkObservation struct {
+type PrivateFloatingIPObservation struct {
 
-	// Private network information
-	// Private network information
-	Private []PrivateObservation `json:"private,omitempty" tf:"private,omitempty"`
-
-	// Set the new instance as public
-	// Set the new instance as public
-	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+	// Floating IP ID
+	// Floating IP ID
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
-type NetworkParameters struct {
+type PrivateFloatingIPParameters struct {
 
-	// Private network information
-	// Private network information
+	// Floating IP ID
+	// Floating IP ID
 	// +kubebuilder:validation:Optional
-	Private []PrivateParameters `json:"private,omitempty" tf:"private,omitempty"`
-
-	// Set the new instance as public
-	// Set the new instance as public
-	// +kubebuilder:validation:Optional
-	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type PrivateInitParameters struct {
 
 	// Existing floating IP
 	// Existing floating IP
-	FloatingIP []FloatingIPInitParameters `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
+	FloatingIP []PrivateFloatingIPInitParameters `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
 
 	// Information to create a new floating IP
 	// Information to create a new floating IP
@@ -408,7 +373,7 @@ type PrivateObservation struct {
 
 	// Existing floating IP
 	// Existing floating IP
-	FloatingIP []FloatingIPObservation `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
+	FloatingIP []PrivateFloatingIPObservation `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
 
 	// Information to create a new floating IP
 	// Information to create a new floating IP
@@ -440,7 +405,7 @@ type PrivateParameters struct {
 	// Existing floating IP
 	// Existing floating IP
 	// +kubebuilder:validation:Optional
-	FloatingIP []FloatingIPParameters `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
+	FloatingIP []PrivateFloatingIPParameters `json:"floatingIp,omitempty" tf:"floating_ip,omitempty"`
 
 	// Information to create a new floating IP
 	// Information to create a new floating IP
@@ -508,7 +473,7 @@ type ProjectInstanceInitParameters struct {
 
 	// Create network interfaces
 	// Network information
-	Network []NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
+	Network []ProjectInstanceNetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// Instance region
 	// Instance region
@@ -529,6 +494,41 @@ type ProjectInstanceInitParameters struct {
 	// Configuration information or scripts to use upon launch
 	// Configuration information or scripts to use upon launch
 	UserData *string `json:"userData,omitempty" tf:"user_data,omitempty"`
+}
+
+type ProjectInstanceNetworkInitParameters struct {
+
+	// Private network information
+	// Private network information
+	Private []PrivateInitParameters `json:"private,omitempty" tf:"private,omitempty"`
+
+	// Set the new instance as public
+	// Set the new instance as public
+	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+}
+
+type ProjectInstanceNetworkObservation struct {
+
+	// Private network information
+	// Private network information
+	Private []PrivateObservation `json:"private,omitempty" tf:"private,omitempty"`
+
+	// Set the new instance as public
+	// Set the new instance as public
+	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
+}
+
+type ProjectInstanceNetworkParameters struct {
+
+	// Private network information
+	// Private network information
+	// +kubebuilder:validation:Optional
+	Private []PrivateParameters `json:"private,omitempty" tf:"private,omitempty"`
+
+	// Set the new instance as public
+	// Set the new instance as public
+	// +kubebuilder:validation:Optional
+	Public *bool `json:"public,omitempty" tf:"public,omitempty"`
 }
 
 type ProjectInstanceObservation struct {
@@ -589,7 +589,7 @@ type ProjectInstanceObservation struct {
 
 	// Create network interfaces
 	// Network information
-	Network []NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
+	Network []ProjectInstanceNetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
 	// Instance region
 	// Instance region
@@ -664,7 +664,7 @@ type ProjectInstanceParameters struct {
 	// Create network interfaces
 	// Network information
 	// +kubebuilder:validation:Optional
-	Network []NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
+	Network []ProjectInstanceNetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// Instance region
 	// Instance region

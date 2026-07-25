@@ -53,4 +53,13 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_ovhcloud_connect_pop_datacenter_extra_config", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_vrack_public_routing_priority", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	// ovh_vrackservices orders the standalone vRack Services product, as
+	// opposed to ovh_vrack_vrackservices which attaches one to a vRack.
+	p.AddResourceConfigurator("ovh_vrackservices", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "VrackServicesOrder"
+	})
 }

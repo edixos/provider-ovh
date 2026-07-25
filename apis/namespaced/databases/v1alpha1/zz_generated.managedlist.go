@@ -7,6 +7,15 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/v2/pkg/resource"
 
+// GetItems of this ProjectDatabaseClickhouseUserList.
+func (l *ProjectDatabaseClickhouseUserList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ProjectDatabaseDatabaseList.
 func (l *ProjectDatabaseDatabaseList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -54,6 +63,15 @@ func (l *ProjectDatabaseKafkaTopicList) GetItems() []resource.Managed {
 
 // GetItems of this ProjectDatabaseList.
 func (l *ProjectDatabaseList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this ProjectDatabaseLogSubscriptionList.
+func (l *ProjectDatabaseLogSubscriptionList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

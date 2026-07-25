@@ -19,4 +19,8 @@ func Configure(p *config.Provider) {
 			TerraformName: "ovh_cloud_project_network_private_subnet",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_gateway", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "CloudGateway"
+	})
 }

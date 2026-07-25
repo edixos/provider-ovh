@@ -13,6 +13,50 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// ResolveReferences of this PrivateVrackSubnet.
+func (mg *PrivateVrackSubnet) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPINamespacedResolver(c, mg)
+
+	var rsp reference.NamespacedResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.NetworkID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.ForProvider.NetworkIDRef,
+		Selector:     mg.Spec.ForProvider.NetworkIDSelector,
+		To: reference.To{
+			List:    &PrivateVrackNetworkList{},
+			Managed: &PrivateVrackNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.NetworkID")
+	}
+	mg.Spec.ForProvider.NetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.NetworkIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.NetworkID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.InitProvider.NetworkIDRef,
+		Selector:     mg.Spec.InitProvider.NetworkIDSelector,
+		To: reference.To{
+			List:    &PrivateVrackNetworkList{},
+			Managed: &PrivateVrackNetwork{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.NetworkID")
+	}
+	mg.Spec.InitProvider.NetworkID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.NetworkIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this Subnet.
 func (mg *Subnet) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPINamespacedResolver(c, mg)

@@ -32,4 +32,10 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_dbaas_logs_role_permission_stream", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_dbaas_logs_encryption_key", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
+	p.AddResourceConfigurator("ovh_dbaas_logs_output_graylog_stream", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

@@ -14,10 +14,40 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type CurrentStateInitParameters struct {
+type IPRestrictionsInitParameters struct {
 }
 
-type CurrentStateObservation struct {
+type IPRestrictionsObservation struct {
+
+	// (String) Allowed CIDR block (/subnet is optional, if unspecified then /32 will be used)
+	// Allowed CIDR block (/subnet is optional, if unspecified then /32 will be used)
+	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
+
+	// (String) Description of the allowed CIDR block
+	// Description of the allowed CIDR block
+	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+}
+
+type IPRestrictionsParameters struct {
+}
+
+type NetworkingInitParameters struct {
+}
+
+type NetworkingObservation struct {
+
+	// (List of String) Specifies the CIDR ranges for egress IP addresses used by Rancher. Ensure these ranges are allowed in any IP restrictions for services that Rancher will access.
+	// Specifies the CIDR ranges for egress IP addresses used by Rancher. Ensure these ranges are allowed in any IP restrictions for services that Rancher will access.
+	EgressCidrBlocks []*string `json:"egressCidrBlocks,omitempty" tf:"egress_cidr_blocks,omitempty"`
+}
+
+type NetworkingParameters struct {
+}
+
+type ProjectRancherCurrentStateInitParameters struct {
+}
+
+type ProjectRancherCurrentStateObservation struct {
 
 	// (Bool) Allows Rancher to use identities managed by OVHcloud IAM (Identity and Access Management) to control access
 	// Allows Rancher to use identities managed by OVHcloud IAM (Identity and Access Management) to control access
@@ -53,13 +83,13 @@ type CurrentStateObservation struct {
 	Version *string `json:"version,omitempty" tf:"version,omitempty"`
 }
 
-type CurrentStateParameters struct {
+type ProjectRancherCurrentStateParameters struct {
 }
 
-type CurrentTasksInitParameters struct {
+type ProjectRancherCurrentTasksInitParameters struct {
 }
 
-type CurrentTasksObservation struct {
+type ProjectRancherCurrentTasksObservation struct {
 
 	// (String) Unique identifier
 	// Identifier of the current task
@@ -78,37 +108,7 @@ type CurrentTasksObservation struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 
-type CurrentTasksParameters struct {
-}
-
-type IPRestrictionsInitParameters struct {
-}
-
-type IPRestrictionsObservation struct {
-
-	// (String) Allowed CIDR block (/subnet is optional, if unspecified then /32 will be used)
-	// Allowed CIDR block (/subnet is optional, if unspecified then /32 will be used)
-	CidrBlock *string `json:"cidrBlock,omitempty" tf:"cidr_block,omitempty"`
-
-	// (String) Description of the allowed CIDR block
-	// Description of the allowed CIDR block
-	Description *string `json:"description,omitempty" tf:"description,omitempty"`
-}
-
-type IPRestrictionsParameters struct {
-}
-
-type NetworkingInitParameters struct {
-}
-
-type NetworkingObservation struct {
-
-	// (List of String) Specifies the CIDR ranges for egress IP addresses used by Rancher. Ensure these ranges are allowed in any IP restrictions for services that Rancher will access.
-	// Specifies the CIDR ranges for egress IP addresses used by Rancher. Ensure these ranges are allowed in any IP restrictions for services that Rancher will access.
-	EgressCidrBlocks []*string `json:"egressCidrBlocks,omitempty" tf:"egress_cidr_blocks,omitempty"`
-}
-
-type NetworkingParameters struct {
+type ProjectRancherCurrentTasksParameters struct {
 }
 
 type ProjectRancherInitParameters struct {
@@ -132,10 +132,10 @@ type ProjectRancherObservation struct {
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// (Attributes) Current configuration applied to the managed Rancher service (see below for nested schema)
-	CurrentState *CurrentStateObservation `json:"currentState,omitempty" tf:"current_state,omitempty"`
+	CurrentState *ProjectRancherCurrentStateObservation `json:"currentState,omitempty" tf:"current_state,omitempty"`
 
 	// (Attributes List) Asynchronous operations ongoing on the managed Rancher service (see below for nested schema)
-	CurrentTasks []CurrentTasksObservation `json:"currentTasks,omitempty" tf:"current_tasks,omitempty"`
+	CurrentTasks []ProjectRancherCurrentTasksObservation `json:"currentTasks,omitempty" tf:"current_tasks,omitempty"`
 
 	// (String) Unique identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`

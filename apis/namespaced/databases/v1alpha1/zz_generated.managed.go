@@ -47,6 +47,46 @@ func (mg *ProjectDatabase) SetWriteConnectionSecretToReference(r *xpv1.LocalSecr
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetManagementPolicies of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetManagementPolicies of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectDatabaseClickhouseUser.
+func (mg *ProjectDatabaseClickhouseUser) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this ProjectDatabaseDatabase.
 func (mg *ProjectDatabaseDatabase) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
@@ -244,6 +284,46 @@ func (mg *ProjectDatabaseKafkaTopic) SetProviderConfigReference(r *xpv1.Provider
 
 // SetWriteConnectionSecretToReference of this ProjectDatabaseKafkaTopic.
 func (mg *ProjectDatabaseKafkaTopic) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
+// GetCondition of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetManagementPolicies of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetManagementPolicies of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this ProjectDatabaseLogSubscription.
+func (mg *ProjectDatabaseLogSubscription) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 

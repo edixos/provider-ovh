@@ -310,6 +310,78 @@ var postgresqlUserIdentifierFromProvider = config.ExternalName{
 	DisableNameInitializer: true,
 }
 
+// serviceNameIdentifierFromProvider builds the "<service_name>/<id>" Terraform
+// identifier used by resources scoped to a single service.
+var serviceNameIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		if externalName == "" {
+			return "", nil
+		}
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+// databaseClusterIdentifierFromProvider builds the
+// "<service_name>/<cluster_id>/<id>" Terraform identifier used by resources
+// that hang off a managed database cluster.
+var databaseClusterIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		if externalName == "" {
+			return "", nil
+		}
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		clusterID, err := clusterID(parameters)
+		if err != nil {
+			return "", err
+		}
+		return fmt.Sprintf("%s/%s/%s", serviceName, clusterID, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
+// databaseLogSubscriptionIdentifierFromProvider builds the
+// "<service_name>/<engine>/<cluster_id>/<id>" Terraform identifier used by
+// ovh_cloud_project_database_log_subscription.
+var databaseLogSubscriptionIdentifierFromProvider = config.ExternalName{
+	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+	GetExternalNameFn:       config.IDAsExternalName,
+	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+		if externalName == "" {
+			return "", nil
+		}
+		serviceName, err := serviceName(parameters)
+		if err != nil {
+			return serviceName, err
+		}
+		clusterID, err := clusterID(parameters)
+		if err != nil {
+			return "", err
+		}
+		engine, ok := parameters["engine"]
+		if !ok {
+			return "", errors.Errorf(ErrFmtNoAttribute, "engine")
+		}
+		engineStr, ok := engine.(string)
+		if !ok {
+			return "", errors.Errorf(ErrFmtUnexpectedType, "engine")
+		}
+		return fmt.Sprintf("%s/%s/%s/%s", serviceName, engineStr, clusterID, externalName), nil
+	},
+	DisableNameInitializer: true,
+}
+
 // TerraformPluginSDKExternalNameConfigs contains all external name
 // configurations for Terraform Plugin SDK resources
 var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
@@ -370,6 +442,8 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_dbaas_logs_output_opensearch_alias":                         config.IdentifierFromProvider,
 	"ovh_dbaas_logs_output_opensearch_index":                         config.IdentifierFromProvider,
 	"ovh_cloud_project_database":                                     config.IdentifierFromProvider,
+	"ovh_cloud_project_database_clickhouse_user":                     databaseClusterIdentifierFromProvider,
+	"ovh_cloud_project_database_log_subscription":                    databaseLogSubscriptionIdentifierFromProvider,
 	"ovh_cloud_project_database_database":                            config.IdentifierFromProvider,
 	"ovh_cloud_project_database_integration":                         config.IdentifierFromProvider,
 	"ovh_cloud_project_database_kafka_acl":                           config.IdentifierFromProvider,
@@ -384,6 +458,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_kube":                                         kubeIdentifierFromProvider,
 	"ovh_cloud_project_kube_iprestrictions":                          kubeIdentifierFromProvider,
 	"ovh_cloud_project_kube_nodepool":                                kubePoolIdentifierFromProvider,
+	"ovh_cloud_project_kube_log_subscription":                        kubePoolIdentifierFromProvider,
 	"ovh_cloud_project_kube_oidc":                                    config.IdentifierFromProvider,
 	"ovh_cloud_project_containerregistry":                            config.IdentifierFromProvider,
 	"ovh_cloud_project_containerregistry_oidc":                       config.IdentifierFromProvider,
@@ -417,6 +492,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	// Framework resources moved to TerraformPluginFrameworkExternalNameConfigs
 	"ovh_dbaas_logs_role":                     config.IdentifierFromProvider,
 	"ovh_dbaas_logs_role_permission_stream":   config.IdentifierFromProvider,
+	"ovh_dbaas_logs_output_graylog_stream":    serviceNameIdentifierFromProvider,
 	"ovh_vrack_ipv6":                          config.IdentifierFromProvider,
 	"ovh_vrack_vrackservices":                 config.IdentifierFromProvider,
 	"ovh_dedicated_server_reinstall_task":     config.IdentifierFromProvider,
@@ -554,6 +630,48 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_vrack_dedicated_cloud_datacenter": config.IdentifierFromProvider,
 	"ovh_vrack_ipv6_routed_subrange":       config.IdentifierFromProvider,
 	"ovh_vrack_ovhcloudconnect":            config.IdentifierFromProvider,
+	"ovh_vrack_public_routing_priority":    config.IdentifierFromProvider,
+	"ovh_vrackservices":                    config.IdentifierFromProvider,
+
+	// Public Cloud Framework resources
+	"ovh_cloud_floating_ip":    config.IdentifierFromProvider,
+	"ovh_cloud_gateway":        config.IdentifierFromProvider,
+	"ovh_cloud_quota":          config.IdentifierFromProvider,
+	"ovh_cloud_security_group": config.IdentifierFromProvider,
+
+	// Public Cloud vRack network Framework resources
+	"ovh_cloud_network_private_vrack":        config.IdentifierFromProvider,
+	"ovh_cloud_network_private_vrack_subnet": config.IdentifierFromProvider,
+
+	// Key Management Service (Key Manager) Framework resources
+	"ovh_cloud_key_manager_container":          config.IdentifierFromProvider,
+	"ovh_cloud_key_manager_container_consumer": config.IdentifierFromProvider,
+	"ovh_cloud_key_manager_secret":             config.IdentifierFromProvider,
+	"ovh_cloud_key_manager_secret_consumer":    config.IdentifierFromProvider,
+
+	// Block and file storage Framework resources
+	"ovh_cloud_storage_block_volume":                                  config.IdentifierFromProvider,
+	"ovh_cloud_storage_block_volume_backup":                           config.IdentifierFromProvider,
+	"ovh_cloud_storage_block_volume_snapshot":                         config.IdentifierFromProvider,
+	"ovh_cloud_storage_file_share":                                    config.IdentifierFromProvider,
+	"ovh_cloud_storage_file_share_network":                            config.IdentifierFromProvider,
+	"ovh_cloud_storage_file_share_snapshot":                           config.IdentifierFromProvider,
+	"ovh_cloud_project_file_storage_share":                            config.IdentifierFromProvider,
+	"ovh_cloud_project_file_storage_share_network":                    config.IdentifierFromProvider,
+	"ovh_cloud_project_storage_object_bucket_lifecycle_configuration": config.IdentifierFromProvider,
+	"ovh_cloud_project_storage_replication_job":                       config.IdentifierFromProvider,
+	"ovh_storage_efs":                                                 config.IdentifierFromProvider,
+
+	// DBaaS Logs Framework resources
+	"ovh_dbaas_logs_encryption_key": config.IdentifierFromProvider,
+
+	// Email domain Framework resources
+	"ovh_email_domain_account": config.IdentifierFromProvider,
+
+	// Framework resources whose schema exposes no "id" attribute; their
+	// Terraform identity is the user-supplied name.
+	"ovh_cloud_ssh_key":          config.NameAsIdentifier,
+	"ovh_me_identity_user_token": config.NameAsIdentifier,
 }
 
 // CLIReconciledExternalNameConfigs contains external name configurations

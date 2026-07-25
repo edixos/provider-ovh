@@ -10,6 +10,18 @@ package v1alpha1
 func (tr *Credential) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *KeyManagerContainer) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *KeyManagerContainerConsumer) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *KeyManagerSecret) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *KeyManagerSecretConsumer) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Okms) Hub() {}
 
 // Hub marks this type as a conversion hub.

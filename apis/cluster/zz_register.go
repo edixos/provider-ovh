@@ -18,6 +18,7 @@ import (
 	v1alpha1dedicatedserver "github.com/edixos/provider-ovh/apis/cluster/dedicatedserver/v1alpha1"
 	v1alpha1dns "github.com/edixos/provider-ovh/apis/cluster/dns/v1alpha1"
 	v1alpha1domain "github.com/edixos/provider-ovh/apis/cluster/domain/v1alpha1"
+	v1alpha1email "github.com/edixos/provider-ovh/apis/cluster/email/v1alpha1"
 	v1alpha1gateway "github.com/edixos/provider-ovh/apis/cluster/gateway/v1alpha1"
 	v1alpha1iam "github.com/edixos/provider-ovh/apis/cluster/iam/v1alpha1"
 	v1alpha1kms "github.com/edixos/provider-ovh/apis/cluster/kms/v1alpha1"
@@ -49,6 +50,7 @@ func init() {
 		v1alpha1dedicatedserver.SchemeBuilder.AddToScheme,
 		v1alpha1dns.SchemeBuilder.AddToScheme,
 		v1alpha1domain.SchemeBuilder.AddToScheme,
+		v1alpha1email.SchemeBuilder.AddToScheme,
 		v1alpha1gateway.SchemeBuilder.AddToScheme,
 		v1alpha1iam.SchemeBuilder.AddToScheme,
 		v1alpha1kms.SchemeBuilder.AddToScheme,

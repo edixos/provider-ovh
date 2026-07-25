@@ -1,0 +1,17 @@
+apiVersion: databases.ovh.edixos.io/v1alpha1
+kind: ProjectDatabaseLogSubscription
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databases/v1alpha1/projectdatabaselogsubscription
+  labels:
+    testing.upbound.io/example-name: subscription
+  name: subscription
+spec:
+  forProvider:
+    clusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ovh_cloud_project_database
+    engine: ${data.ovh_cloud_project_database.db.engine}
+    kind: customer_logs
+    serviceName: ${data.ovh_cloud_project_database.db.service_name}
+    streamId: ${data.ovh_dbaas_logs_output_graylog_stream.stream.id}

@@ -16,6 +16,42 @@ func (l *CredentialList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this KeyManagerContainerConsumerList.
+func (l *KeyManagerContainerConsumerList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this KeyManagerContainerList.
+func (l *KeyManagerContainerList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this KeyManagerSecretConsumerList.
+func (l *KeyManagerSecretConsumerList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this KeyManagerSecretList.
+func (l *KeyManagerSecretList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this OkmsList.
 func (l *OkmsList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
