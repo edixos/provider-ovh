@@ -3,6 +3,8 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+
+## v2.17.0 - 2026-07-25
 ### Added
 Wired the remaining 31 OVHcloud Terraform resources, bringing managed-resource
 coverage to the provider's full 166-resource schema (134 → 165 generated
@@ -43,8 +45,10 @@ engines client-side; supported engines are `clickhouse`, `grafana`, `kafka`,
 `kafkaConnect`, `kafkaMirrorMaker`, `mongodb`, `mysql`, `opensearch`, `postgresql`
 and `valkey`.
 
+### Infrastructure
 - Initial setup of Marketplace extension assets (icon, readme, release notes, SBOM).
 - Added CI step to run `up alpha xpkg append`.
+- Link to Edixos from the marketplace readme and `meta.crossplane.io/readme`.
 
 ## v2.9.1 - 2025-11-16
 ### Changed
