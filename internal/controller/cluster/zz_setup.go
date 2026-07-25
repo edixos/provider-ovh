@@ -35,12 +35,9 @@ import (
 	projectdatabase "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabase"
 	projectdatabasedatabase "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasedatabase"
 	projectdatabaseintegration "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseintegration"
-	projectdatabaseiprestriction "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseiprestriction"
 	projectdatabasekafkaacl "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasekafkaacl"
 	projectdatabasekafkaschemaregistryacl "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasekafkaschemaregistryacl"
 	projectdatabasekafkatopic "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasekafkatopic"
-	projectdatabasem3dbnamespace "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasem3dbnamespace"
-	projectdatabasem3dbuser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasem3dbuser"
 	projectdatabasemongodbprometheus "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasemongodbprometheus"
 	projectdatabasemongodbuser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasemongodbuser"
 	projectdatabaseopensearchpattern "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseopensearchpattern"
@@ -48,7 +45,6 @@ import (
 	projectdatabasepostgresqlconnectionpool "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasepostgresqlconnectionpool"
 	projectdatabasepostgresqluser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasepostgresqluser"
 	projectdatabaseprometheus "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseprometheus"
-	projectdatabaseredisuser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseredisuser"
 	projectdatabaseuser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabaseuser"
 	projectdatabasevalkeyuser "github.com/edixos/provider-ovh/internal/controller/cluster/databases/projectdatabasevalkeyuser"
 	server "github.com/edixos/provider-ovh/internal/controller/cluster/dedicated/server"
@@ -180,12 +176,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabase.Setup,
 		projectdatabasedatabase.Setup,
 		projectdatabaseintegration.Setup,
-		projectdatabaseiprestriction.Setup,
 		projectdatabasekafkaacl.Setup,
 		projectdatabasekafkaschemaregistryacl.Setup,
 		projectdatabasekafkatopic.Setup,
-		projectdatabasem3dbnamespace.Setup,
-		projectdatabasem3dbuser.Setup,
 		projectdatabasemongodbprometheus.Setup,
 		projectdatabasemongodbuser.Setup,
 		projectdatabaseopensearchpattern.Setup,
@@ -193,7 +186,6 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabasepostgresqlconnectionpool.Setup,
 		projectdatabasepostgresqluser.Setup,
 		projectdatabaseprometheus.Setup,
-		projectdatabaseredisuser.Setup,
 		projectdatabaseuser.Setup,
 		projectdatabasevalkeyuser.Setup,
 		server.Setup,
@@ -331,12 +323,9 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabase.SetupGated,
 		projectdatabasedatabase.SetupGated,
 		projectdatabaseintegration.SetupGated,
-		projectdatabaseiprestriction.SetupGated,
 		projectdatabasekafkaacl.SetupGated,
 		projectdatabasekafkaschemaregistryacl.SetupGated,
 		projectdatabasekafkatopic.SetupGated,
-		projectdatabasem3dbnamespace.SetupGated,
-		projectdatabasem3dbuser.SetupGated,
 		projectdatabasemongodbprometheus.SetupGated,
 		projectdatabasemongodbuser.SetupGated,
 		projectdatabaseopensearchpattern.SetupGated,
@@ -344,7 +333,6 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		projectdatabasepostgresqlconnectionpool.SetupGated,
 		projectdatabasepostgresqluser.SetupGated,
 		projectdatabaseprometheus.SetupGated,
-		projectdatabaseredisuser.SetupGated,
 		projectdatabaseuser.SetupGated,
 		projectdatabasevalkeyuser.SetupGated,
 		server.SetupGated,

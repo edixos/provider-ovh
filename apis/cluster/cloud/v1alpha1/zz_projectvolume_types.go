@@ -13,11 +13,77 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
+type KMSInitParameters struct {
+
+	// id of the volume
+	// OKMS domain ID holding the customer managed key
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// id of the volume
+	// OKMS service key ID used to encrypt the volume
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type KMSObservation struct {
+
+	// id of the volume
+	// OKMS domain ID holding the customer managed key
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// id of the volume
+	// OKMS service key ID used to encrypt the volume
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type KMSParameters struct {
+
+	// id of the volume
+	// OKMS domain ID holding the customer managed key
+	// +kubebuilder:validation:Optional
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// id of the volume
+	// OKMS service key ID used to encrypt the volume
+	// +kubebuilder:validation:Optional
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type ProjectVolumeEncryptionInitParameters struct {
+
+	// Create the volume as encrypted (auto-derives a LUKS volume type when set)
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
+	KMS *KMSInitParameters `json:"kms,omitempty" tf:"kms,omitempty"`
+}
+
+type ProjectVolumeEncryptionObservation struct {
+
+	// Create the volume as encrypted (auto-derives a LUKS volume type when set)
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
+	KMS *KMSObservation `json:"kms,omitempty" tf:"kms,omitempty"`
+}
+
+type ProjectVolumeEncryptionParameters struct {
+
+	// Create the volume as encrypted (auto-derives a LUKS volume type when set)
+	// +kubebuilder:validation:Optional
+	Encrypted *bool `json:"encrypted,omitempty" tf:"encrypted,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	KMS *KMSParameters `json:"kms,omitempty" tf:"kms,omitempty"`
+}
+
 type ProjectVolumeInitParameters struct {
+
+	// Availability zone of the volume (required for volumes in a 3AZ region)
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// A description of the volume
 	// Volume description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	Encryption *ProjectVolumeEncryptionInitParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// id of the volume
 	// Image ID
@@ -61,6 +127,9 @@ type ProjectVolumeObservation struct {
 	// The action of the operation
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
+	// Availability zone of the volume (required for volumes in a 3AZ region)
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
+
 	// The completed date of the operation
 	CompletedAt *string `json:"completedAt,omitempty" tf:"completed_at,omitempty"`
 
@@ -70,6 +139,8 @@ type ProjectVolumeObservation struct {
 	// A description of the volume
 	// Volume description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	Encryption *ProjectVolumeEncryptionObservation `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// id of the volume
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -131,10 +202,17 @@ type ProjectVolumeObservation struct {
 
 type ProjectVolumeParameters struct {
 
+	// Availability zone of the volume (required for volumes in a 3AZ region)
+	// +kubebuilder:validation:Optional
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
+
 	// A description of the volume
 	// Volume description
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Encryption *ProjectVolumeEncryptionParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// id of the volume
 	// Image ID

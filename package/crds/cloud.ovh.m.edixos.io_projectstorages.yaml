@@ -185,6 +185,14 @@ spec:
                       (String) Service name
                       Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      (String to String Map) Tags filter
+                      Container tags
+                    type: object
+                    x-kubernetes-map-type: granular
                   versioning:
                     description: (Attributes) Versioning configuration (see below
                       for nested schema)
@@ -336,6 +344,14 @@ spec:
                       (String) Service name
                       Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      (String to String Map) Tags filter
+                      Container tags
+                    type: object
+                    x-kubernetes-map-type: granular
                   versioning:
                     description: (Attributes) Versioning configuration (see below
                       for nested schema)
@@ -616,6 +632,14 @@ spec:
                       (String) Service name
                       Service name. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
                     type: string
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: |-
+                      (String to String Map) Tags filter
+                      Container tags
+                    type: object
+                    x-kubernetes-map-type: granular
                   versioning:
                     description: (Attributes) Versioning configuration (see below
                       for nested schema)

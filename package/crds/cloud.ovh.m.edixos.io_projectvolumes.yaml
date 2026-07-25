@@ -58,11 +58,35 @@ spec:
             properties:
               forProvider:
                 properties:
+                  availabilityZone:
+                    description: Availability zone of the volume (required for volumes
+                      in a 3AZ region)
+                    type: string
                   description:
                     description: |-
                       A description of the volume
                       Volume description
                     type: string
+                  encryption:
+                    properties:
+                      encrypted:
+                        description: Create the volume as encrypted (auto-derives
+                          a LUKS volume type when set)
+                        type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: |-
+                              id of the volume
+                              OKMS domain ID holding the customer managed key
+                            type: string
+                          serviceKeyId:
+                            description: |-
+                              id of the volume
+                              OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
+                    type: object
                   imageId:
                     description: |-
                       id of the volume
@@ -122,11 +146,35 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  availabilityZone:
+                    description: Availability zone of the volume (required for volumes
+                      in a 3AZ region)
+                    type: string
                   description:
                     description: |-
                       A description of the volume
                       Volume description
                     type: string
+                  encryption:
+                    properties:
+                      encrypted:
+                        description: Create the volume as encrypted (auto-derives
+                          a LUKS volume type when set)
+                        type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: |-
+                              id of the volume
+                              OKMS domain ID holding the customer managed key
+                            type: string
+                          serviceKeyId:
+                            description: |-
+                              id of the volume
+                              OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
+                    type: object
                   imageId:
                     description: |-
                       id of the volume
@@ -244,6 +292,10 @@ spec:
                   action:
                     description: The action of the operation
                     type: string
+                  availabilityZone:
+                    description: Availability zone of the volume (required for volumes
+                      in a 3AZ region)
+                    type: string
                   completedAt:
                     description: The completed date of the operation
                     type: string
@@ -255,6 +307,26 @@ spec:
                       A description of the volume
                       Volume description
                     type: string
+                  encryption:
+                    properties:
+                      encrypted:
+                        description: Create the volume as encrypted (auto-derives
+                          a LUKS volume type when set)
+                        type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: |-
+                              id of the volume
+                              OKMS domain ID holding the customer managed key
+                            type: string
+                          serviceKeyId:
+                            description: |-
+                              id of the volume
+                              OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
+                    type: object
                   id:
                     description: id of the volume
                     type: string

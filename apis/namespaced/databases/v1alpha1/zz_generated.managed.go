@@ -87,46 +87,6 @@ func (mg *ProjectDatabaseDatabase) SetWriteConnectionSecretToReference(r *xpv1.L
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
-// GetCondition of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
-	return mg.Status.GetCondition(ct)
-}
-
-// GetManagementPolicies of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) GetManagementPolicies() xpv1.ManagementPolicies {
-	return mg.Spec.ManagementPolicies
-}
-
-// GetProviderConfigReference of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) GetProviderConfigReference() *xpv1.ProviderConfigReference {
-	return mg.Spec.ProviderConfigReference
-}
-
-// GetWriteConnectionSecretToReference of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
-	return mg.Spec.WriteConnectionSecretToReference
-}
-
-// SetConditions of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) SetConditions(c ...xpv1.Condition) {
-	mg.Status.SetConditions(c...)
-}
-
-// SetManagementPolicies of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) SetManagementPolicies(r xpv1.ManagementPolicies) {
-	mg.Spec.ManagementPolicies = r
-}
-
-// SetProviderConfigReference of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
-	mg.Spec.ProviderConfigReference = r
-}
-
-// SetWriteConnectionSecretToReference of this ProjectDatabaseIPRestriction.
-func (mg *ProjectDatabaseIPRestriction) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
-	mg.Spec.WriteConnectionSecretToReference = r
-}
-
 // GetCondition of this ProjectDatabaseIntegration.
 func (mg *ProjectDatabaseIntegration) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
@@ -284,86 +244,6 @@ func (mg *ProjectDatabaseKafkaTopic) SetProviderConfigReference(r *xpv1.Provider
 
 // SetWriteConnectionSecretToReference of this ProjectDatabaseKafkaTopic.
 func (mg *ProjectDatabaseKafkaTopic) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
-	mg.Spec.WriteConnectionSecretToReference = r
-}
-
-// GetCondition of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
-	return mg.Status.GetCondition(ct)
-}
-
-// GetManagementPolicies of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) GetManagementPolicies() xpv1.ManagementPolicies {
-	return mg.Spec.ManagementPolicies
-}
-
-// GetProviderConfigReference of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) GetProviderConfigReference() *xpv1.ProviderConfigReference {
-	return mg.Spec.ProviderConfigReference
-}
-
-// GetWriteConnectionSecretToReference of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
-	return mg.Spec.WriteConnectionSecretToReference
-}
-
-// SetConditions of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) SetConditions(c ...xpv1.Condition) {
-	mg.Status.SetConditions(c...)
-}
-
-// SetManagementPolicies of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) SetManagementPolicies(r xpv1.ManagementPolicies) {
-	mg.Spec.ManagementPolicies = r
-}
-
-// SetProviderConfigReference of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
-	mg.Spec.ProviderConfigReference = r
-}
-
-// SetWriteConnectionSecretToReference of this ProjectDatabaseM3DbNamespace.
-func (mg *ProjectDatabaseM3DbNamespace) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
-	mg.Spec.WriteConnectionSecretToReference = r
-}
-
-// GetCondition of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
-	return mg.Status.GetCondition(ct)
-}
-
-// GetManagementPolicies of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) GetManagementPolicies() xpv1.ManagementPolicies {
-	return mg.Spec.ManagementPolicies
-}
-
-// GetProviderConfigReference of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) GetProviderConfigReference() *xpv1.ProviderConfigReference {
-	return mg.Spec.ProviderConfigReference
-}
-
-// GetWriteConnectionSecretToReference of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
-	return mg.Spec.WriteConnectionSecretToReference
-}
-
-// SetConditions of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) SetConditions(c ...xpv1.Condition) {
-	mg.Status.SetConditions(c...)
-}
-
-// SetManagementPolicies of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
-	mg.Spec.ManagementPolicies = r
-}
-
-// SetProviderConfigReference of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
-	mg.Spec.ProviderConfigReference = r
-}
-
-// SetWriteConnectionSecretToReference of this ProjectDatabaseM3DbUser.
-func (mg *ProjectDatabaseM3DbUser) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
@@ -644,46 +524,6 @@ func (mg *ProjectDatabasePrometheus) SetProviderConfigReference(r *xpv1.Provider
 
 // SetWriteConnectionSecretToReference of this ProjectDatabasePrometheus.
 func (mg *ProjectDatabasePrometheus) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
-	mg.Spec.WriteConnectionSecretToReference = r
-}
-
-// GetCondition of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
-	return mg.Status.GetCondition(ct)
-}
-
-// GetManagementPolicies of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) GetManagementPolicies() xpv1.ManagementPolicies {
-	return mg.Spec.ManagementPolicies
-}
-
-// GetProviderConfigReference of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) GetProviderConfigReference() *xpv1.ProviderConfigReference {
-	return mg.Spec.ProviderConfigReference
-}
-
-// GetWriteConnectionSecretToReference of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
-	return mg.Spec.WriteConnectionSecretToReference
-}
-
-// SetConditions of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) SetConditions(c ...xpv1.Condition) {
-	mg.Status.SetConditions(c...)
-}
-
-// SetManagementPolicies of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) SetManagementPolicies(r xpv1.ManagementPolicies) {
-	mg.Spec.ManagementPolicies = r
-}
-
-// SetProviderConfigReference of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
-	mg.Spec.ProviderConfigReference = r
-}
-
-// SetWriteConnectionSecretToReference of this ProjectDatabaseRedisUser.
-func (mg *ProjectDatabaseRedisUser) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
