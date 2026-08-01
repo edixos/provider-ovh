@@ -14,35 +14,6 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type AccessRulesInitParameters struct {
-
-	// Access level (`READ_WRITE`, `READ_ONLY`)
-	AccessLevel *string `json:"accessLevel,omitempty" tf:"access_level,omitempty"`
-
-	// IP address or CIDR to grant access to
-	AccessTo *string `json:"accessTo,omitempty" tf:"access_to,omitempty"`
-}
-
-type AccessRulesObservation struct {
-
-	// Access level (`READ_WRITE`, `READ_ONLY`)
-	AccessLevel *string `json:"accessLevel,omitempty" tf:"access_level,omitempty"`
-
-	// IP address or CIDR to grant access to
-	AccessTo *string `json:"accessTo,omitempty" tf:"access_to,omitempty"`
-}
-
-type AccessRulesParameters struct {
-
-	// Access level (`READ_WRITE`, `READ_ONLY`)
-	// +kubebuilder:validation:Optional
-	AccessLevel *string `json:"accessLevel" tf:"access_level,omitempty"`
-
-	// IP address or CIDR to grant access to
-	// +kubebuilder:validation:Optional
-	AccessTo *string `json:"accessTo" tf:"access_to,omitempty"`
-}
-
 type CapabilitiesInitParameters struct {
 }
 
@@ -59,30 +30,6 @@ type CapabilitiesObservation struct {
 }
 
 type CapabilitiesParameters struct {
-}
-
-type CurrentStateAccessRulesInitParameters struct {
-}
-
-type CurrentStateAccessRulesObservation struct {
-
-	// Access level
-	AccessLevel *string `json:"accessLevel,omitempty" tf:"access_level,omitempty"`
-
-	// IP address or CIDR
-	AccessTo *string `json:"accessTo,omitempty" tf:"access_to,omitempty"`
-
-	// Access rule creation date
-	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
-
-	// Access rule ID
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// Access rule state
-	State *string `json:"state,omitempty" tf:"state,omitempty"`
-}
-
-type CurrentStateAccessRulesParameters struct {
 }
 
 type ExportLocationsInitParameters struct {
@@ -119,8 +66,6 @@ type FileShareCurrentStateLocationParameters struct {
 }
 
 type FileShareCurrentStateObservation struct {
-	AccessRules []CurrentStateAccessRulesObservation `json:"accessRules,omitempty" tf:"access_rules,omitempty"`
-
 	Capabilities []CapabilitiesObservation `json:"capabilities,omitempty" tf:"capabilities,omitempty"`
 
 	// File share description
@@ -150,7 +95,6 @@ type FileShareCurrentStateParameters struct {
 }
 
 type FileShareInitParameters struct {
-	AccessRules []AccessRulesInitParameters `json:"accessRules,omitempty" tf:"access_rules,omitempty"`
 
 	// The availability zone where the file share will be created
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
@@ -190,7 +134,6 @@ type FileShareInitParameters struct {
 }
 
 type FileShareObservation struct {
-	AccessRules []AccessRulesObservation `json:"accessRules,omitempty" tf:"access_rules,omitempty"`
 
 	// The availability zone where the file share will be created
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
@@ -237,9 +180,6 @@ type FileShareObservation struct {
 }
 
 type FileShareParameters struct {
-
-	// +kubebuilder:validation:Optional
-	AccessRules []AccessRulesParameters `json:"accessRules,omitempty" tf:"access_rules,omitempty"`
 
 	// The availability zone where the file share will be created
 	// +kubebuilder:validation:Optional

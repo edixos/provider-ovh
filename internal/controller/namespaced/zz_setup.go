@@ -150,6 +150,7 @@ import (
 	efsshareacl "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/efsshareacl"
 	efssharesnapshot "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/efssharesnapshot"
 	fileshare "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/fileshare"
+	fileshareacl "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/fileshareacl"
 	filesharenetwork "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/filesharenetwork"
 	filesharesnapshot "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/filesharesnapshot"
 	projectfilestorageshare "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/projectfilestorageshare"
@@ -322,6 +323,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		efsshareacl.Setup,
 		efssharesnapshot.Setup,
 		fileshare.Setup,
+		fileshareacl.Setup,
 		filesharenetwork.Setup,
 		filesharesnapshot.Setup,
 		projectfilestorageshare.Setup,
@@ -500,6 +502,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		efsshareacl.SetupGated,
 		efssharesnapshot.SetupGated,
 		fileshare.SetupGated,
+		fileshareacl.SetupGated,
 		filesharenetwork.SetupGated,
 		filesharesnapshot.SetupGated,
 		projectfilestorageshare.SetupGated,

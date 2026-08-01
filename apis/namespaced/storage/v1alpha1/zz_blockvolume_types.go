@@ -46,6 +46,10 @@ type BlockVolumeEncryptionParameters struct {
 }
 
 type BlockVolumeInitParameters struct {
+
+	// Availability zone where the volume will be created
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
+
 	CreateFrom *CreateFromInitParameters `json:"createFrom,omitempty" tf:"create_from,omitempty"`
 
 	Encryption *BlockVolumeEncryptionInitParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
@@ -67,6 +71,9 @@ type BlockVolumeInitParameters struct {
 }
 
 type BlockVolumeObservation struct {
+
+	// Availability zone where the volume will be created
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// Computed hash representing the current target specification value
 	Checksum *string `json:"checksum,omitempty" tf:"checksum,omitempty"`
@@ -105,6 +112,10 @@ type BlockVolumeObservation struct {
 }
 
 type BlockVolumeParameters struct {
+
+	// Availability zone where the volume will be created
+	// +kubebuilder:validation:Optional
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// +kubebuilder:validation:Optional
 	CreateFrom *CreateFromParameters `json:"createFrom,omitempty" tf:"create_from,omitempty"`
@@ -217,6 +228,9 @@ type LocationInitParameters struct {
 }
 
 type LocationObservation struct {
+
+	// Availability zone
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// Region
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`

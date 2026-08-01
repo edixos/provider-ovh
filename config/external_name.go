@@ -654,6 +654,7 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_cloud_storage_block_volume_backup":                           config.IdentifierFromProvider,
 	"ovh_cloud_storage_block_volume_snapshot":                         config.IdentifierFromProvider,
 	"ovh_cloud_storage_file_share":                                    config.IdentifierFromProvider,
+	"ovh_cloud_storage_file_share_acl":                                config.IdentifierFromProvider,
 	"ovh_cloud_storage_file_share_network":                            config.IdentifierFromProvider,
 	"ovh_cloud_storage_file_share_snapshot":                           config.IdentifierFromProvider,
 	"ovh_cloud_project_file_storage_share":                            config.IdentifierFromProvider,

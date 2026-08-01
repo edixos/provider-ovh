@@ -4,6 +4,66 @@
 
 ## Unreleased
 
+## v2.18.0 - 2026-08-01
+### Added
+- `storage`: `FileShareACL` — new managed resource in both the cluster-scoped
+  (`storage.ovh.edixos.io`) and namespaced (`storage.ovh.m.edixos.io`) API groups,
+  wrapping the new upstream `ovh_cloud_storage_file_share_acl` resource. It grants
+  one IP or CIDR (`accessTo`) either `READ_WRITE` or `READ_ONLY` (`accessLevel`)
+  access to a file share. `shareId` resolves by reference or selector to a
+  `FileShare`. Every configurable field forces replacement, so an ACL is updated
+  by recreating it.
+- `BlockVolume` gains an optional `availabilityZone` field, plus
+  `status.atProvider.currentState.location.availabilityZone`.
+
+### Changed
+- Upgrade OVH Terraform provider from 2.17.0 to 2.18.0.
+- `BlockVolume` no longer replaces the volume when `encryption` is left unchanged —
+  upstream now keeps the value from state instead of treating it as a diff.
+
+### Removed (breaking)
+Upstream removed the inline `access_rules` attribute from
+`ovh_cloud_storage_file_share` in 2.18.0 and replaced it with the standalone
+`ovh_cloud_storage_file_share_acl` resource. Accordingly, `FileShare` loses the
+following fields in both API groups:
+
+- `spec.forProvider.accessRules`
+- `spec.initProvider.accessRules`
+- `status.atProvider.accessRules`
+- `status.atProvider.currentState.accessRules`
+
+**Migration.** Declare one `FileShareACL` per rule that was previously inline.
+Note that `accessRules` is not rejected after the CRDs are upgraded — it is
+silently pruned by the API server, so a `FileShare` manifest left untouched will
+appear to apply cleanly while its rules quietly stop being managed. Rewrite
+manifests before upgrading:
+
+```yaml
+# before (v2.17.0)
+spec:
+  forProvider:
+    accessRules:
+      - accessTo: 10.0.0.0/24
+        accessLevel: READ_WRITE
+
+# after (v2.18.0)
+apiVersion: storage.ovh.edixos.io/v1alpha1
+kind: FileShareACL
+metadata:
+  name: example-acl
+spec:
+  forProvider:
+    serviceName: <service-name>
+    shareIdRef:
+      name: example-share
+    accessTo: 10.0.0.0/24
+    accessLevel: READ_WRITE
+```
+
+Existing access rules already provisioned in OVHcloud are not deleted by this
+upgrade; import them by setting `crossplane.io/external-name` to
+`<serviceName>/<shareId>/<aclId>` on the new `FileShareACL`.
+
 ## v2.17.0 - 2026-07-25
 ### Added
 Wired the remaining 31 OVHcloud Terraform resources, bringing managed-resource

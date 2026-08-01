@@ -58,6 +58,9 @@ spec:
             properties:
               forProvider:
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the volume will be created
+                    type: string
                   createFrom:
                     properties:
                       backupId:
@@ -113,6 +116,9 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the volume will be created
+                    type: string
                   createFrom:
                     properties:
                       backupId:
@@ -231,6 +237,9 @@ spec:
             properties:
               atProvider:
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the volume will be created
+                    type: string
                   checksum:
                     description: Computed hash representing the current target specification
                       value
@@ -276,6 +285,9 @@ spec:
                         type: object
                       location:
                         properties:
+                          availabilityZone:
+                            description: Availability zone
+                            type: string
                           region:
                             description: Region
                             type: string
