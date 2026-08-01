@@ -4,7 +4,7 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.18.0
-  name: fileshares.storage.ovh.m.edixos.io
+  name: fileshareacls.storage.ovh.m.edixos.io
 spec:
   group: storage.ovh.m.edixos.io
   names:
@@ -12,10 +12,10 @@ spec:
     - crossplane
     - managed
     - ovh
-    kind: FileShare
-    listKind: FileShareList
-    plural: fileshares
-    singular: fileshare
+    kind: FileShareACL
+    listKind: FileShareACLList
+    plural: fileshareacls
+    singular: fileshareacl
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: FileShare is the Schema for the FileShares API. <no value>
+        description: FileShareACL is the Schema for the FileShareACLs API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -54,37 +54,27 @@ spec:
           metadata:
             type: object
           spec:
-            description: FileShareSpec defines the desired state of FileShare
+            description: FileShareACLSpec defines the desired state of FileShareACL
             properties:
               forProvider:
                 properties:
-                  availabilityZone:
-                    description: The availability zone where the file share will be
-                      created
+                  accessLevel:
+                    description: Access level granted (`READ_WRITE`, `READ_ONLY`)
                     type: string
-                  description:
-                    description: File share description
-                    type: string
-                  name:
-                    description: File share name
-                    type: string
-                  protocol:
-                    description: File share protocol (`NFS`)
-                    type: string
-                  region:
-                    description: Region where the file share will be created
+                  accessTo:
+                    description: IP address or CIDR allowed to access the file storage
+                      share
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project
                     type: string
-                  shareNetworkId:
-                    description: ID of a pre-existing share network to attach the
-                      file share to
+                  shareId:
+                    description: ID of the file storage share the access rule applies
+                      to
                     type: string
-                  shareNetworkIdRef:
-                    description: Reference to a FileShareNetwork in storage to populate
-                      shareNetworkId.
+                  shareIdRef:
+                    description: Reference to a FileShare in storage to populate shareId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -120,9 +110,8 @@ spec:
                     required:
                     - name
                     type: object
-                  shareNetworkIdSelector:
-                    description: Selector for a FileShareNetwork in storage to populate
-                      shareNetworkId.
+                  shareIdSelector:
+                    description: Selector for a FileShare in storage to populate shareId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -164,12 +153,6 @@ spec:
                             type: string
                         type: object
                     type: object
-                  shareType:
-                    description: File share type (e.g. `STANDARD_1AZ`)
-                    type: string
-                  size:
-                    description: Size of the file share in GB
-                    type: number
                 type: object
               initProvider:
                 description: |-
@@ -184,33 +167,23 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  availabilityZone:
-                    description: The availability zone where the file share will be
-                      created
+                  accessLevel:
+                    description: Access level granted (`READ_WRITE`, `READ_ONLY`)
                     type: string
-                  description:
-                    description: File share description
-                    type: string
-                  name:
-                    description: File share name
-                    type: string
-                  protocol:
-                    description: File share protocol (`NFS`)
-                    type: string
-                  region:
-                    description: Region where the file share will be created
+                  accessTo:
+                    description: IP address or CIDR allowed to access the file storage
+                      share
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project
                     type: string
-                  shareNetworkId:
-                    description: ID of a pre-existing share network to attach the
-                      file share to
+                  shareId:
+                    description: ID of the file storage share the access rule applies
+                      to
                     type: string
-                  shareNetworkIdRef:
-                    description: Reference to a FileShareNetwork in storage to populate
-                      shareNetworkId.
+                  shareIdRef:
+                    description: Reference to a FileShare in storage to populate shareId.
                     properties:
                       name:
                         description: Name of the referenced object.
@@ -246,9 +219,8 @@ spec:
                     required:
                     - name
                     type: object
-                  shareNetworkIdSelector:
-                    description: Selector for a FileShareNetwork in storage to populate
-                      shareNetworkId.
+                  shareIdSelector:
+                    description: Selector for a FileShare in storage to populate shareId.
                     properties:
                       matchControllerRef:
                         description: |-
@@ -290,12 +262,6 @@ spec:
                             type: string
                         type: object
                     type: object
-                  shareType:
-                    description: File share type (e.g. `STANDARD_1AZ`)
-                    type: string
-                  size:
-                    description: Size of the file share in GB
-                    type: number
                 type: object
               managementPolicies:
                 default:
@@ -356,136 +322,70 @@ spec:
             - forProvider
             type: object
             x-kubernetes-validations:
-            - message: spec.forProvider.name is a required parameter
+            - message: spec.forProvider.accessLevel is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
-                || (has(self.initProvider) && has(self.initProvider.name))'
-            - message: spec.forProvider.protocol is a required parameter
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.accessLevel)
+                || (has(self.initProvider) && has(self.initProvider.accessLevel))'
+            - message: spec.forProvider.accessTo is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.protocol)
-                || (has(self.initProvider) && has(self.initProvider.protocol))'
-            - message: spec.forProvider.region is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
-                || (has(self.initProvider) && has(self.initProvider.region))'
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.accessTo)
+                || (has(self.initProvider) && has(self.initProvider.accessTo))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
-            - message: spec.forProvider.shareType is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.shareType)
-                || (has(self.initProvider) && has(self.initProvider.shareType))'
-            - message: spec.forProvider.size is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.size)
-                || (has(self.initProvider) && has(self.initProvider.size))'
           status:
-            description: FileShareStatus defines the observed state of FileShare.
+            description: FileShareACLStatus defines the observed state of FileShareACL.
             properties:
               atProvider:
                 properties:
-                  availabilityZone:
-                    description: The availability zone where the file share will be
-                      created
+                  accessLevel:
+                    description: Access level granted (`READ_WRITE`, `READ_ONLY`)
+                    type: string
+                  accessTo:
+                    description: IP address or CIDR allowed to access the file storage
+                      share
                     type: string
                   checksum:
                     description: Computed hash representing the current target specification
                       value
                     type: string
                   createdAt:
-                    description: Creation date of the file share
+                    description: Creation date of the access rule
                     type: string
                   currentState:
                     properties:
-                      capabilities:
-                        items:
-                          properties:
-                            enabled:
-                              description: Whether the capability is enabled
-                              type: boolean
-                            name:
-                              description: Capability name
-                              type: string
-                            reason:
-                              description: Reason why the capability is disabled
-                              type: string
-                          type: object
-                        type: array
-                      description:
-                        description: File share description
+                      accessLevel:
+                        description: Access level granted
                         type: string
-                      exportLocations:
-                        items:
-                          properties:
-                            path:
-                              description: Export path
-                              type: string
-                            preferred:
-                              description: Whether this is the preferred export location
-                              type: boolean
-                          type: object
-                        type: array
-                      location:
-                        properties:
-                          availabilityZone:
-                            description: Availability zone
-                            type: string
-                          region:
-                            description: Region
-                            type: string
-                        type: object
-                      name:
-                        description: File share name
+                      accessTo:
+                        description: IP address or CIDR allowed to access the file
+                          storage share
                         type: string
-                      protocol:
-                        description: File share protocol
+                      createdAt:
+                        description: Creation date of the access rule
                         type: string
-                      shareNetworkId:
-                        description: ID of the share network the file share is attached
-                          to
+                      state:
+                        description: Current state of the access rule (`ACTIVE`, `APPLYING`,
+                          `DENYING`, `ERROR`)
                         type: string
-                      shareType:
-                        description: File share type
-                        type: string
-                      size:
-                        description: Size of the file share in GB
-                        type: number
                     type: object
-                  description:
-                    description: File share description
-                    type: string
                   id:
                     type: string
-                  name:
-                    description: File share name
-                    type: string
-                  protocol:
-                    description: File share protocol (`NFS`)
-                    type: string
-                  region:
-                    description: Region where the file share will be created
-                    type: string
                   resourceStatus:
-                    description: File share readiness in the system (CREATING, DELETING,
+                    description: Access rule readiness in the system (CREATING, DELETING,
                       ERROR, OUT_OF_SYNC, READY, UPDATING)
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project
                     type: string
-                  shareNetworkId:
-                    description: ID of a pre-existing share network to attach the
-                      file share to
+                  shareId:
+                    description: ID of the file storage share the access rule applies
+                      to
                     type: string
-                  shareType:
-                    description: File share type (e.g. `STANDARD_1AZ`)
-                    type: string
-                  size:
-                    description: Size of the file share in GB
-                    type: number
                   updatedAt:
-                    description: Last update date of the file share
+                    description: Last update date of the access rule
                     type: string
                 type: object
               conditions:

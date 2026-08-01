@@ -63,7 +63,7 @@ make build
 
 ## Bumping the Terraform Provider Version
 
-This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.13.1` to `2.17.0`):
+This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.17.0` to `2.18.0`):
 
 1. **Update the Makefile** – change the two version references:
    ```makefile

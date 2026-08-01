@@ -31,6 +31,9 @@ func (tr *EFSShareSnapshot) Hub() {}
 func (tr *FileShare) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *FileShareACL) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *FileShareNetwork) Hub() {}
 
 // Hub marks this type as a conversion hub.

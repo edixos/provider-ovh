@@ -144,6 +144,50 @@ func (mg *FileShare) ResolveReferences(ctx context.Context, c client.Reader) err
 	return nil
 }
 
+// ResolveReferences of this FileShareACL.
+func (mg *FileShareACL) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ShareID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.ForProvider.ShareIDRef,
+		Selector:     mg.Spec.ForProvider.ShareIDSelector,
+		To: reference.To{
+			List:    &FileShareList{},
+			Managed: &FileShare{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ShareID")
+	}
+	mg.Spec.ForProvider.ShareID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ShareIDRef = rsp.ResolvedReference
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ShareID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.InitProvider.ShareIDRef,
+		Selector:     mg.Spec.InitProvider.ShareIDSelector,
+		To: reference.To{
+			List:    &FileShareList{},
+			Managed: &FileShare{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ShareID")
+	}
+	mg.Spec.InitProvider.ShareID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ShareIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this FileShareSnapshot.
 func (mg *FileShareSnapshot) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

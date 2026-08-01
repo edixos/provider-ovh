@@ -44,6 +44,13 @@ func Configure(p *config.Provider) {
 			TerraformName: "ovh_cloud_storage_file_share_network",
 		}
 	})
+	p.AddResourceConfigurator("ovh_cloud_storage_file_share_acl", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "FileShareACL"
+		r.References["share_id"] = config.Reference{
+			TerraformName: "ovh_cloud_storage_file_share",
+		}
+	})
 	p.AddResourceConfigurator("ovh_cloud_storage_file_share_snapshot", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 		r.Kind = "FileShareSnapshot"
