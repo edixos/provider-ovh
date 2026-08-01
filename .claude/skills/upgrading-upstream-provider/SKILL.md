@@ -70,6 +70,17 @@ go mod vendor
 
 **`go mod vendor` is not optional.** This repo vendors, and `vendor/` is gitignored. Skipping it makes every later `go build` fail with `inconsistent vendoring` — which reads like a code error and is not one.
 
+Then confirm the release actually ships the binary the provider image will download, for **every** platform in `PLATFORMS`:
+
+```bash
+for a in amd64 arm64; do
+  curl -o /dev/null -sIL -w "$a %{http_code}\n" \
+    "https://github.com/ovh/terraform-provider-ovh/releases/download/v<X.Y.Z>/terraform-provider-ovh_<X.Y.Z>_linux_$a.zip"
+done
+```
+
+A 404 here surfaces much later and far less legibly — as a `failed to load cache key: invalid response status 404` in the `local-deploy` job, after lint and tests have already gone green.
+
 ---
 
 ## Step 4 — Wire new resources
@@ -184,6 +195,7 @@ Tag `v<X.Y.Z>` on the merge commit — push the tag, or dispatch the `Tag` workf
 | "Generated files bloat the diff, I'll skip them" | `check-diff` is commented out in CI, so nothing catches it — it becomes someone else's mystery diff. Commit all generated output. |
 | "`make generate` succeeded, so it used the new version" | Check the log line `generating provider schema for ovh/ovh <X.Y.Z>`. A stale `.work/` regenerates the old one just as successfully. |
 | "The changelog can wait until after regeneration" | Then you are reading a thousand-file diff with no hypothesis. Read it first. |
+| "lint and tests are green, so the bump is sound" | Neither builds the provider image. A missing release asset only fails in `local-deploy`, minutes later. |
 
 ## Notes
 
