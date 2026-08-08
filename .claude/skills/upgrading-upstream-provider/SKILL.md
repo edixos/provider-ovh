@@ -169,6 +169,8 @@ gh run view --log-failed   # on failure
 
 **Stop-gate — do not tag until the merge commit is on `main`.**
 
+**Ask before tagging.** Pushing the tag publishes to `xpkg.upbound.io`, which is public and effectively irreversible. Do not infer authorisation from the merge — approval to merge is not approval to release. Ask explicitly, state that the tag triggers the publish, and wait for an answer. Once the answer is yes, create and push the tag yourself; do not hand the commands back for the user to run.
+
 First, `extensions/release-notes/release_notes.md` must carry a `## v<X.Y.Z> - YYYY-MM-DD` section — CI appends this file to the published package, so it is user-facing. Either include it in the upgrade PR or land a separate `release: prepare v<X.Y.Z>` commit (that is the only file the previous release commit touched — there is no version field anywhere else; the package version is purely the git tag). Leave a fresh `## Unreleased` heading above it.
 
 The provider tag mirrors the upstream version exactly. Confirm that against history rather than assuming:
@@ -177,7 +179,44 @@ The provider tag mirrors the upstream version exactly. Confirm that against hist
 git tag --sort=-v:refname | head
 ```
 
-Tag `v<X.Y.Z>` on the merge commit — push the tag, or dispatch the `Tag` workflow (`.github/workflows/tag.yaml`). CI triggers on `v*` tag pushes; its `publish-artifacts` job builds the xpkg, generates the SBOM, and pushes to `xpkg.upbound.io`. Create the GitHub Release, then confirm that job succeeded.
+Tags are **annotated**, not lightweight, and the message follows a fixed shape. Read the previous one rather than inventing it:
+
+```bash
+git for-each-ref refs/tags/v<PREVIOUS> --format='%(contents)'
+```
+
+Subject is the bare `v<X.Y.Z>`. Body is three paragraphs: the upgrade line with the managed-resource count per API scope and the CRD count (`ls package/crds/*.yaml | wc -l`, and the `Generated N resources with scope Cluster` line from `make generate`); what the release adds; then the breaking-change verdict from Step 6 — the migration note, or an explicit "No breaking changes" with the evidence.
+
+Tag `v<X.Y.Z>` on the merge commit — push the tag, or dispatch the `Tag` workflow (`.github/workflows/tag.yaml`). CI triggers on `v*` tag pushes; its `publish-artifacts` job builds the xpkg, generates the SBOM, and pushes to `xpkg.upbound.io`.
+
+Confirm that job actually pushed before calling the release done — a green run is not the same as a published package:
+
+```bash
+gh run view <run-id> --log --job=<publish-artifacts-job-id> | grep -i 'xpkg.upbound.io'
+```
+
+Look for `Pushed package xpkg.upbound.io/edixos/provider-ovh:v<X.Y.Z>` and the `Append Marketplace Extension Assets` step that attaches the release notes.
+
+**Then create the GitHub Release — it is part of this step, not an optional extra.** The single approval from the ask-before-tagging gate covers it; do not ask a second time. Its body is the `## v<X.Y.Z>` section of `extensions/release-notes/release_notes.md`, so extract that rather than rewriting it, and prepend the upstream release URL and the package reference:
+
+```bash
+{
+  echo "Upstream release: https://github.com/ovh/terraform-provider-ovh/releases/tag/v<X.Y.Z>"
+  echo
+  echo "Package: \`xpkg.upbound.io/edixos/provider-ovh:v<X.Y.Z>\`"
+  echo
+  awk '/^## v<X.Y.Z> - /{f=1;next} /^## v/{f=0} f' extensions/release-notes/release_notes.md
+} > /tmp/rel.md
+gh release create v<X.Y.Z> --title "v<X.Y.Z>" --notes-file /tmp/rel.md --verify-tag
+```
+
+The `awk` start pattern consumes the `## v<X.Y.Z>` heading via `next`, and the bare `/^## v/` terminator stops at the previous release's heading — `## Unreleased` sits above and never matches, so the section extracts cleanly whether or not it is the newest one.
+
+`--verify-tag` makes the command fail rather than silently creating the tag itself if the push in the previous paragraph did not land. Finish by confirming the release is real and not a draft:
+
+```bash
+gh release view v<X.Y.Z> --json tagName,isDraft,publishedAt,url
+```
 
 ---
 
@@ -196,6 +235,7 @@ Tag `v<X.Y.Z>` on the merge commit — push the tag, or dispatch the `Tag` workf
 | "`make generate` succeeded, so it used the new version" | Check the log line `generating provider schema for ovh/ovh <X.Y.Z>`. A stale `.work/` regenerates the old one just as successfully. |
 | "The changelog can wait until after regeneration" | Then you are reading a thousand-file diff with no hypothesis. Read it first. |
 | "lint and tests are green, so the bump is sound" | Neither builds the provider image. A missing release asset only fails in `local-deploy`, minutes later. |
+| "CI is green and it's merged, so I'll tag it" | Merging is not releasing. The tag pushes a public, effectively irreversible artifact to `xpkg.upbound.io`. Ask first, then tag it yourself (Step 9). |
 
 ## Notes
 
