@@ -636,6 +636,8 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	// Public Cloud Framework resources
 	"ovh_cloud_floating_ip":    config.IdentifierFromProvider,
 	"ovh_cloud_gateway":        config.IdentifierFromProvider,
+	"ovh_cloud_instance":       config.IdentifierFromProvider,
+	"ovh_cloud_instance_group": config.IdentifierFromProvider,
 	"ovh_cloud_quota":          config.IdentifierFromProvider,
 	"ovh_cloud_security_group": config.IdentifierFromProvider,
 

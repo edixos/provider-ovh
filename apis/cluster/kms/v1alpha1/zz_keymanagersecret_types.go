@@ -61,7 +61,7 @@ type KeyManagerSecretCurrentStateParameters struct {
 
 type KeyManagerSecretInitParameters struct {
 
-	// Algorithm associated with the secret (e.g., `AES`, `RSA`)
+	// Algorithm associated with the secret (e.g., `AES`, `RSA`). The value is normalized to upper case to match the API.
 	Algorithm *string `json:"algorithm,omitempty" tf:"algorithm,omitempty"`
 
 	// Availability zone where the secret will be created
@@ -77,7 +77,7 @@ type KeyManagerSecretInitParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// Mode of the secret algorithm (e.g., `CBC`)
+	// Mode of the secret algorithm (`CBC`, `CTR`). The value is normalized to upper case to match the API.
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
 	// Name of the secret
@@ -92,7 +92,7 @@ type KeyManagerSecretInitParameters struct {
 	// Region where the secret will be created
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`)
+	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized to upper case to match the API.
 	SecretType *string `json:"secretType,omitempty" tf:"secret_type,omitempty"`
 
 	// Service name of the resource representing the id of the cloud project
@@ -101,7 +101,7 @@ type KeyManagerSecretInitParameters struct {
 
 type KeyManagerSecretObservation struct {
 
-	// Algorithm associated with the secret (e.g., `AES`, `RSA`)
+	// Algorithm associated with the secret (e.g., `AES`, `RSA`). The value is normalized to upper case to match the API.
 	Algorithm *string `json:"algorithm,omitempty" tf:"algorithm,omitempty"`
 
 	// Availability zone where the secret will be created
@@ -127,7 +127,7 @@ type KeyManagerSecretObservation struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// Mode of the secret algorithm (e.g., `CBC`)
+	// Mode of the secret algorithm (`CBC`, `CTR`). The value is normalized to upper case to match the API.
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
 	// Name of the secret
@@ -142,7 +142,7 @@ type KeyManagerSecretObservation struct {
 	// Secret readiness status (`CREATING`, `DELETING`, `ERROR`, `OUT_OF_SYNC`, `READY`, `UPDATING`)
 	ResourceStatus *string `json:"resourceStatus,omitempty" tf:"resource_status,omitempty"`
 
-	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`)
+	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized to upper case to match the API.
 	SecretType *string `json:"secretType,omitempty" tf:"secret_type,omitempty"`
 
 	// Service name of the resource representing the id of the cloud project
@@ -154,7 +154,7 @@ type KeyManagerSecretObservation struct {
 
 type KeyManagerSecretParameters struct {
 
-	// Algorithm associated with the secret (e.g., `AES`, `RSA`)
+	// Algorithm associated with the secret (e.g., `AES`, `RSA`). The value is normalized to upper case to match the API.
 	// +kubebuilder:validation:Optional
 	Algorithm *string `json:"algorithm,omitempty" tf:"algorithm,omitempty"`
 
@@ -175,7 +175,7 @@ type KeyManagerSecretParameters struct {
 	// +mapType=granular
 	Metadata map[string]*string `json:"metadata,omitempty" tf:"metadata,omitempty"`
 
-	// Mode of the secret algorithm (e.g., `CBC`)
+	// Mode of the secret algorithm (`CBC`, `CTR`). The value is normalized to upper case to match the API.
 	// +kubebuilder:validation:Optional
 	Mode *string `json:"mode,omitempty" tf:"mode,omitempty"`
 
@@ -195,7 +195,7 @@ type KeyManagerSecretParameters struct {
 	// +kubebuilder:validation:Optional
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 
-	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`)
+	// Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`, `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized to upper case to match the API.
 	// +kubebuilder:validation:Optional
 	SecretType *string `json:"secretType,omitempty" tf:"secret_type,omitempty"`
 

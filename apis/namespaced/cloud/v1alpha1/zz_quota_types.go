@@ -265,6 +265,20 @@ type ListenersParameters struct {
 type LoadbalancerInitParameters struct {
 }
 
+type LoadbalancerMembersInitParameters struct {
+}
+
+type LoadbalancerMembersObservation struct {
+	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
+
+	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
+
+	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
+}
+
+type LoadbalancerMembersParameters struct {
+}
+
 type LoadbalancerObservation struct {
 	HealthMonitors *float64 `json:"healthMonitors,omitempty" tf:"health_monitors,omitempty"`
 
@@ -298,20 +312,6 @@ type LoadbalancersObservation struct {
 type LoadbalancersParameters struct {
 }
 
-type MembersInitParameters struct {
-}
-
-type MembersObservation struct {
-	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
-
-	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
-
-	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
-}
-
-type MembersParameters struct {
-}
-
 type MemoryInitParameters struct {
 }
 
@@ -326,10 +326,10 @@ type MemoryObservation struct {
 type MemoryParameters struct {
 }
 
-type NetworksInitParameters struct {
+type NetworkNetworksInitParameters struct {
 }
 
-type NetworksObservation struct {
+type NetworkNetworksObservation struct {
 	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
 
 	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
@@ -337,7 +337,21 @@ type NetworksObservation struct {
 	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
 }
 
-type NetworksParameters struct {
+type NetworkNetworksParameters struct {
+}
+
+type NetworkSecurityGroupsInitParameters struct {
+}
+
+type NetworkSecurityGroupsObservation struct {
+	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
+
+	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
+
+	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
+}
+
+type NetworkSecurityGroupsParameters struct {
 }
 
 type PerShareSizeInitParameters struct {
@@ -526,7 +540,7 @@ type RegionsLoadbalancerObservation struct {
 
 	Loadbalancers *LoadbalancersObservation `json:"loadbalancers,omitempty" tf:"loadbalancers,omitempty"`
 
-	Members *MembersObservation `json:"members,omitempty" tf:"members,omitempty"`
+	Members *LoadbalancerMembersObservation `json:"members,omitempty" tf:"members,omitempty"`
 
 	Pools *PoolsObservation `json:"pools,omitempty" tf:"pools,omitempty"`
 }
@@ -542,11 +556,11 @@ type RegionsNetworkObservation struct {
 
 	Gateways *GatewaysObservation `json:"gateways,omitempty" tf:"gateways,omitempty"`
 
-	Networks *NetworksObservation `json:"networks,omitempty" tf:"networks,omitempty"`
+	Networks *NetworkNetworksObservation `json:"networks,omitempty" tf:"networks,omitempty"`
 
 	SecurityGroupRules *SecurityGroupRulesObservation `json:"securityGroupRules,omitempty" tf:"security_group_rules,omitempty"`
 
-	SecurityGroups *SecurityGroupsObservation `json:"securityGroups,omitempty" tf:"security_groups,omitempty"`
+	SecurityGroups *NetworkSecurityGroupsObservation `json:"securityGroups,omitempty" tf:"security_groups,omitempty"`
 
 	Subnets *SubnetsObservation `json:"subnets,omitempty" tf:"subnets,omitempty"`
 }
@@ -589,7 +603,7 @@ type RegionsShareObservation struct {
 
 	ShareNetworks *ShareNetworksObservation `json:"shareNetworks,omitempty" tf:"share_networks,omitempty"`
 
-	Shares *SharesObservation `json:"shares,omitempty" tf:"shares,omitempty"`
+	Shares *ShareSharesObservation `json:"shares,omitempty" tf:"shares,omitempty"`
 
 	SizeTotal *SizeTotalObservation `json:"sizeTotal,omitempty" tf:"size_total,omitempty"`
 
@@ -615,7 +629,7 @@ type RegionsVolumeObservation struct {
 
 	Snapshots *VolumeSnapshotsObservation `json:"snapshots,omitempty" tf:"snapshots,omitempty"`
 
-	Volumes *VolumesObservation `json:"volumes,omitempty" tf:"volumes,omitempty"`
+	Volumes *VolumeVolumesObservation `json:"volumes,omitempty" tf:"volumes,omitempty"`
 }
 
 type RegionsVolumeParameters struct {
@@ -647,20 +661,6 @@ type SecurityGroupRulesObservation struct {
 }
 
 type SecurityGroupRulesParameters struct {
-}
-
-type SecurityGroupsInitParameters struct {
-}
-
-type SecurityGroupsObservation struct {
-	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
-
-	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
-
-	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
-}
-
-type SecurityGroupsParameters struct {
 }
 
 type ShareInitParameters struct {
@@ -695,10 +695,10 @@ type ShareObservation struct {
 type ShareParameters struct {
 }
 
-type SharesInitParameters struct {
+type ShareSharesInitParameters struct {
 }
 
-type SharesObservation struct {
+type ShareSharesObservation struct {
 	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
 
 	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
@@ -706,7 +706,7 @@ type SharesObservation struct {
 	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
 }
 
-type SharesParameters struct {
+type ShareSharesParameters struct {
 }
 
 type SizeTotalInitParameters struct {
@@ -839,10 +839,10 @@ type VolumeSnapshotsObservation struct {
 type VolumeSnapshotsParameters struct {
 }
 
-type VolumesInitParameters struct {
+type VolumeVolumesInitParameters struct {
 }
 
-type VolumesObservation struct {
+type VolumeVolumesObservation struct {
 	Limit *float64 `json:"limit,omitempty" tf:"limit,omitempty"`
 
 	Unit *string `json:"unit,omitempty" tf:"unit,omitempty"`
@@ -850,7 +850,7 @@ type VolumesObservation struct {
 	Used *float64 `json:"used,omitempty" tf:"used,omitempty"`
 }
 
-type VolumesParameters struct {
+type VolumeVolumesParameters struct {
 }
 
 // QuotaSpec defines the desired state of Quota

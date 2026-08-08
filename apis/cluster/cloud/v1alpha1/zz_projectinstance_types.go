@@ -13,21 +13,6 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type AddressesInitParameters struct {
-}
-
-type AddressesObservation struct {
-
-	// Instance IP in the private network
-	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
-
-	// IP version
-	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
-}
-
-type AddressesParameters struct {
-}
-
 type AttachedVolumesInitParameters struct {
 }
 
@@ -110,28 +95,6 @@ type BootFromParameters struct {
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
-type FlavorInitParameters struct {
-
-	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
-	// Flavor id
-	FlavorID *string `json:"flavorId,omitempty" tf:"flavor_id,omitempty"`
-}
-
-type FlavorObservation struct {
-
-	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
-	// Flavor id
-	FlavorID *string `json:"flavorId,omitempty" tf:"flavor_id,omitempty"`
-}
-
-type FlavorParameters struct {
-
-	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
-	// Flavor id
-	// +kubebuilder:validation:Optional
-	FlavorID *string `json:"flavorId" tf:"flavor_id,omitempty"`
-}
-
 type FloatingIPCreateInitParameters struct {
 
 	// Floating IP description
@@ -209,28 +172,6 @@ type GatewayParameters struct {
 	// Existing gateway ID
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-}
-
-type GroupInitParameters struct {
-
-	// Group id
-	// Group id
-	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
-}
-
-type GroupObservation struct {
-
-	// Group id
-	// Group id
-	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
-}
-
-type GroupParameters struct {
-
-	// Group id
-	// Group id
-	// +kubebuilder:validation:Optional
-	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
 }
 
 type NetworkCreateInitParameters struct {
@@ -438,6 +379,65 @@ type PrivateParameters struct {
 	NetworkCreate []NetworkCreateParameters `json:"networkCreate,omitempty" tf:"network_create,omitempty"`
 }
 
+type ProjectInstanceAddressesInitParameters struct {
+}
+
+type ProjectInstanceAddressesObservation struct {
+
+	// Instance IP in the private network
+	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
+
+	// IP version
+	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
+}
+
+type ProjectInstanceAddressesParameters struct {
+}
+
+type ProjectInstanceFlavorInitParameters struct {
+
+	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
+	// Flavor id
+	FlavorID *string `json:"flavorId,omitempty" tf:"flavor_id,omitempty"`
+}
+
+type ProjectInstanceFlavorObservation struct {
+
+	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
+	// Flavor id
+	FlavorID *string `json:"flavorId,omitempty" tf:"flavor_id,omitempty"`
+}
+
+type ProjectInstanceFlavorParameters struct {
+
+	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
+	// Flavor id
+	// +kubebuilder:validation:Optional
+	FlavorID *string `json:"flavorId" tf:"flavor_id,omitempty"`
+}
+
+type ProjectInstanceGroupInitParameters struct {
+
+	// Group id
+	// Group id
+	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
+}
+
+type ProjectInstanceGroupObservation struct {
+
+	// Group id
+	// Group id
+	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
+}
+
+type ProjectInstanceGroupParameters struct {
+
+	// Group id
+	// Group id
+	// +kubebuilder:validation:Optional
+	GroupID *string `json:"groupId,omitempty" tf:"group_id,omitempty"`
+}
+
 type ProjectInstanceInitParameters struct {
 
 	// Create an autobackup workflow after instance start up.
@@ -461,11 +461,11 @@ type ProjectInstanceInitParameters struct {
 
 	// Flavor information
 	// Flavor information
-	Flavor []FlavorInitParameters `json:"flavor,omitempty" tf:"flavor,omitempty"`
+	Flavor []ProjectInstanceFlavorInitParameters `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// Start instance in group
 	// Start instance in group
-	Group []GroupInitParameters `json:"group,omitempty" tf:"group,omitempty"`
+	Group []ProjectInstanceGroupInitParameters `json:"group,omitempty" tf:"group,omitempty"`
 
 	// Gateway name
 	// Instance name
@@ -535,7 +535,7 @@ type ProjectInstanceObservation struct {
 
 	// Instance IP addresses
 	// Instance IP addresses
-	Addresses []AddressesObservation `json:"addresses,omitempty" tf:"addresses,omitempty"`
+	Addresses []ProjectInstanceAddressesObservation `json:"addresses,omitempty" tf:"addresses,omitempty"`
 
 	// Volumes attached to the instance
 	// Volumes attached to the instance
@@ -562,7 +562,7 @@ type ProjectInstanceObservation struct {
 
 	// Flavor information
 	// Flavor information
-	Flavor []FlavorObservation `json:"flavor,omitempty" tf:"flavor,omitempty"`
+	Flavor []ProjectInstanceFlavorObservation `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// Flavor ID. Flavors can be retrieved using GET /cloud/project/{serviceName}/flavor
 	// Flavor id
@@ -574,7 +574,7 @@ type ProjectInstanceObservation struct {
 
 	// Start instance in group
 	// Start instance in group
-	Group []GroupObservation `json:"group,omitempty" tf:"group,omitempty"`
+	Group []ProjectInstanceGroupObservation `json:"group,omitempty" tf:"group,omitempty"`
 
 	// Floating IP ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -649,12 +649,12 @@ type ProjectInstanceParameters struct {
 	// Flavor information
 	// Flavor information
 	// +kubebuilder:validation:Optional
-	Flavor []FlavorParameters `json:"flavor,omitempty" tf:"flavor,omitempty"`
+	Flavor []ProjectInstanceFlavorParameters `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// Start instance in group
 	// Start instance in group
 	// +kubebuilder:validation:Optional
-	Group []GroupParameters `json:"group,omitempty" tf:"group,omitempty"`
+	Group []ProjectInstanceGroupParameters `json:"group,omitempty" tf:"group,omitempty"`
 
 	// Gateway name
 	// Instance name

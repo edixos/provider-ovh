@@ -75,4 +75,18 @@ func Configure(p *config.Provider) {
 		// UseAsync is needed for resources that may take time to become available
 		r.UseAsync = true
 	})
+	p.AddResourceConfigurator("ovh_cloud_instance", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "Instance"
+		r.References["group_id"] = config.Reference{
+			TerraformName: "ovh_cloud_instance_group",
+		}
+		r.References["ssh_key_name"] = config.Reference{
+			TerraformName: "ovh_cloud_ssh_key",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_instance_group", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "InstanceGroup"
+	})
 }

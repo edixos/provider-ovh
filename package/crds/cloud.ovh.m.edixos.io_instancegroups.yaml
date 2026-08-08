@@ -4,18 +4,18 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.18.0
-  name: keymanagersecrets.kms.ovh.m.edixos.io
+  name: instancegroups.cloud.ovh.m.edixos.io
 spec:
-  group: kms.ovh.m.edixos.io
+  group: cloud.ovh.m.edixos.io
   names:
     categories:
     - crossplane
     - managed
     - ovh
-    kind: KeyManagerSecret
-    listKind: KeyManagerSecretList
-    plural: keymanagersecrets
-    singular: keymanagersecret
+    kind: InstanceGroup
+    listKind: InstanceGroupList
+    plural: instancegroups
+    singular: instancegroup
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
@@ -34,8 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: KeyManagerSecret is the Schema for the KeyManagerSecrets API.
-          <no value>
+        description: InstanceGroup is the Schema for the InstanceGroups API. <no value>
         properties:
           apiVersion:
             description: |-
@@ -55,61 +54,19 @@ spec:
           metadata:
             type: object
           spec:
-            description: KeyManagerSecretSpec defines the desired state of KeyManagerSecret
+            description: InstanceGroupSpec defines the desired state of InstanceGroup
             properties:
               forProvider:
                 properties:
-                  algorithm:
-                    description: Algorithm associated with the secret (e.g., `AES`,
-                      `RSA`). The value is normalized to upper case to match the API.
-                    type: string
-                  availabilityZone:
-                    description: Availability zone where the secret will be created
-                    type: string
-                  bitLength:
-                    description: Bit length of the secret (e.g., `256`)
-                    type: number
-                  expiration:
-                    description: Expiration date of the secret in RFC3339 format
-                    type: string
-                  metadata:
-                    additionalProperties:
-                      type: string
-                    description: Key-value metadata for the secret. This is the only
-                      mutable field on a secret.
-                    type: object
-                    x-kubernetes-map-type: granular
-                  mode:
-                    description: Mode of the secret algorithm (`CBC`, `CTR`). The
-                      value is normalized to upper case to match the API.
-                    type: string
                   name:
-                    description: Name of the secret
+                    description: Instance group name
                     type: string
-                  payloadContentType:
-                    description: Content type of the secret payload (`TEXT_PLAIN`,
-                      `APPLICATION_OCTET_STREAM`, `APPLICATION_PKIX_CERT`, `APPLICATION_PKCS8`)
+                  policy:
+                    description: Placement policy applied to the group's member instances
+                      (`AFFINITY`, `ANTI_AFFINITY`)
                     type: string
-                  payloadSecretRef:
-                    description: Secret payload data (base64-encoded). Write-only,
-                      never returned in responses. Requires `payload_content_type`.
-                    properties:
-                      key:
-                        type: string
-                      name:
-                        description: Name of the secret.
-                        type: string
-                    required:
-                    - key
-                    - name
-                    type: object
                   region:
-                    description: Region where the secret will be created
-                    type: string
-                  secretType:
-                    description: Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`,
-                      `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized
-                      to upper case to match the API.
+                    description: Region where the instance group will be created
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
@@ -129,57 +86,15 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
-                  algorithm:
-                    description: Algorithm associated with the secret (e.g., `AES`,
-                      `RSA`). The value is normalized to upper case to match the API.
-                    type: string
-                  availabilityZone:
-                    description: Availability zone where the secret will be created
-                    type: string
-                  bitLength:
-                    description: Bit length of the secret (e.g., `256`)
-                    type: number
-                  expiration:
-                    description: Expiration date of the secret in RFC3339 format
-                    type: string
-                  metadata:
-                    additionalProperties:
-                      type: string
-                    description: Key-value metadata for the secret. This is the only
-                      mutable field on a secret.
-                    type: object
-                    x-kubernetes-map-type: granular
-                  mode:
-                    description: Mode of the secret algorithm (`CBC`, `CTR`). The
-                      value is normalized to upper case to match the API.
-                    type: string
                   name:
-                    description: Name of the secret
+                    description: Instance group name
                     type: string
-                  payloadContentType:
-                    description: Content type of the secret payload (`TEXT_PLAIN`,
-                      `APPLICATION_OCTET_STREAM`, `APPLICATION_PKIX_CERT`, `APPLICATION_PKCS8`)
+                  policy:
+                    description: Placement policy applied to the group's member instances
+                      (`AFFINITY`, `ANTI_AFFINITY`)
                     type: string
-                  payloadSecretRef:
-                    description: Secret payload data (base64-encoded). Write-only,
-                      never returned in responses. Requires `payload_content_type`.
-                    properties:
-                      key:
-                        type: string
-                      name:
-                        description: Name of the secret.
-                        type: string
-                    required:
-                    - key
-                    - name
-                    type: object
                   region:
-                    description: Region where the secret will be created
-                    type: string
-                  secretType:
-                    description: Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`,
-                      `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized
-                      to upper case to match the API.
+                    description: Region where the instance group will be created
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
@@ -249,115 +164,75 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
                 || (has(self.initProvider) && has(self.initProvider.name))'
+            - message: spec.forProvider.policy is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.policy)
+                || (has(self.initProvider) && has(self.initProvider.policy))'
             - message: spec.forProvider.region is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
                 || (has(self.initProvider) && has(self.initProvider.region))'
-            - message: spec.forProvider.secretType is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.secretType)
-                || (has(self.initProvider) && has(self.initProvider.secretType))'
             - message: spec.forProvider.serviceName is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
                 || (has(self.initProvider) && has(self.initProvider.serviceName))'
           status:
-            description: KeyManagerSecretStatus defines the observed state of KeyManagerSecret.
+            description: InstanceGroupStatus defines the observed state of InstanceGroup.
             properties:
               atProvider:
                 properties:
-                  algorithm:
-                    description: Algorithm associated with the secret (e.g., `AES`,
-                      `RSA`). The value is normalized to upper case to match the API.
-                    type: string
-                  availabilityZone:
-                    description: Availability zone where the secret will be created
-                    type: string
-                  bitLength:
-                    description: Bit length of the secret (e.g., `256`)
-                    type: number
                   checksum:
-                    description: Computed hash representing the current resource state
+                    description: Computed hash representing the current target specification
+                      value
                     type: string
                   createdAt:
-                    description: Creation date of the secret
+                    description: Creation date of the instance group
                     type: string
                   currentState:
                     properties:
-                      algorithm:
-                        type: string
-                      bitLength:
-                        type: number
-                      expiration:
-                        type: string
                       location:
                         properties:
                           availabilityZone:
                             description: Availability zone
                             type: string
                           region:
-                            description: Region code
+                            description: Region
                             type: string
                         type: object
-                      metadata:
-                        additionalProperties:
-                          type: string
-                        type: object
-                        x-kubernetes-map-type: granular
-                      mode:
-                        type: string
+                      members:
+                        items:
+                          properties:
+                            id:
+                              description: Instance ID
+                              type: string
+                          type: object
+                        type: array
                       name:
+                        description: Instance group name
                         type: string
-                      payloadContentType:
-                        type: string
-                      secretRef:
-                        type: string
-                      secretType:
-                        type: string
-                      status:
+                      policy:
+                        description: Placement policy
                         type: string
                     type: object
-                  expiration:
-                    description: Expiration date of the secret in RFC3339 format
-                    type: string
                   id:
                     type: string
-                  metadata:
-                    additionalProperties:
-                      type: string
-                    description: Key-value metadata for the secret. This is the only
-                      mutable field on a secret.
-                    type: object
-                    x-kubernetes-map-type: granular
-                  mode:
-                    description: Mode of the secret algorithm (`CBC`, `CTR`). The
-                      value is normalized to upper case to match the API.
-                    type: string
                   name:
-                    description: Name of the secret
+                    description: Instance group name
                     type: string
-                  payloadContentType:
-                    description: Content type of the secret payload (`TEXT_PLAIN`,
-                      `APPLICATION_OCTET_STREAM`, `APPLICATION_PKIX_CERT`, `APPLICATION_PKCS8`)
+                  policy:
+                    description: Placement policy applied to the group's member instances
+                      (`AFFINITY`, `ANTI_AFFINITY`)
                     type: string
                   region:
-                    description: Region where the secret will be created
+                    description: Region where the instance group will be created
                     type: string
                   resourceStatus:
-                    description: Secret readiness status (`CREATING`, `DELETING`,
-                      `ERROR`, `OUT_OF_SYNC`, `READY`, `UPDATING`)
-                    type: string
-                  secretType:
-                    description: Type of the secret (`SYMMETRIC`, `PUBLIC`, `PRIVATE`,
-                      `PASSPHRASE`, `CERTIFICATE`, `OPAQUE`). The value is normalized
-                      to upper case to match the API.
+                    description: Instance group readiness in the system (`CREATING`,
+                      `DELETING`, `ERROR`, `OUT_OF_SYNC`, `READY`)
                     type: string
                   serviceName:
                     description: Service name of the resource representing the id
                       of the cloud project
-                    type: string
-                  updatedAt:
-                    description: Last update date of the secret
                     type: string
                 type: object
               conditions:

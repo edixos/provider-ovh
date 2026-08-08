@@ -17,6 +17,8 @@ import (
 	reverse "github.com/edixos/provider-ovh/internal/controller/cluster/additionalip/reverse"
 	service "github.com/edixos/provider-ovh/internal/controller/cluster/additionalip/service"
 	floatingip "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/floatingip"
+	instance "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/instance"
+	instancegroup "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/instancegroup"
 	plan "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/plan"
 	project "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/project"
 	projectcontainerregistryiam "github.com/edixos/provider-ovh/internal/controller/cluster/cloud/projectcontainerregistryiam"
@@ -190,6 +192,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		reverse.Setup,
 		service.Setup,
 		floatingip.Setup,
+		instance.Setup,
+		instancegroup.Setup,
 		plan.Setup,
 		project.Setup,
 		projectcontainerregistryiam.Setup,
@@ -369,6 +373,8 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		reverse.SetupGated,
 		service.SetupGated,
 		floatingip.SetupGated,
+		instance.SetupGated,
+		instancegroup.SetupGated,
 		plan.SetupGated,
 		project.SetupGated,
 		projectcontainerregistryiam.SetupGated,

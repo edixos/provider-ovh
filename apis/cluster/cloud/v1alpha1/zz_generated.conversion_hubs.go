@@ -10,6 +10,12 @@ package v1alpha1
 func (tr *FloatingIP) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *Instance) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *InstanceGroup) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Plan) Hub() {}
 
 // Hub marks this type as a conversion hub.
