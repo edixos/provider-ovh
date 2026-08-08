@@ -1,0 +1,1010 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: instances.cloud.ovh.m.edixos.io
+spec:
+  group: cloud.ovh.m.edixos.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - ovh
+    kind: Instance
+    listKind: InstanceList
+    plural: instances
+    singular: instance
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: Instance is the Schema for the Instances API. <no value>
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: InstanceSpec defines the desired state of Instance
+            properties:
+              forProvider:
+                properties:
+                  availabilityZone:
+                    description: Availability zone of the instance (immutable; assigned
+                      by the platform if omitted)
+                    type: string
+                  flavorId:
+                    description: Flavor ID. Changing it resizes the instance in place
+                    type: string
+                  groupId:
+                    description: ID of the placement group the instance belongs to
+                      (immutable)
+                    type: string
+                  groupIdRef:
+                    description: Reference to a InstanceGroup in cloud to populate
+                      groupId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  groupIdSelector:
+                    description: Selector for a InstanceGroup in cloud to populate
+                      groupId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  imageId:
+                    description: 'Image ID to boot from. Omit for a boot-from-volume
+                      instance. **WARNING**: changing it rebuilds the instance and
+                      **wipes the root disk**'
+                    type: string
+                  name:
+                    description: Instance name
+                    type: string
+                  networks:
+                    items:
+                      properties:
+                        autoAssignPublicIp:
+                          description: Attach a public interface with a public IP
+                            assigned by the platform. Only valid on an entry with
+                            no `network_id` and no `ip`, and on at most one entry
+                          type: boolean
+                        ip:
+                          description: 'IP address of this interface. Without `network_id`:
+                            a public IP the project already owns (additional IP, or
+                            an Ext-Net IP of the project in the instance''s region).
+                            With `network_id` + `subnet_id`: pins the port''s fixed
+                            address when inside the subnet CIDR, otherwise associates
+                            the existing floating IP with that address'
+                          type: string
+                        networkId:
+                          description: Private network ID. Omit for a public interface
+                          type: string
+                        subnetId:
+                          description: Subnet ID within the private network. Required
+                            with `network_id`
+                          type: string
+                      type: object
+                    type: array
+                  powerState:
+                    description: 'Desired power state: `ACTIVE`, `SHUTOFF` or `SHELVED`
+                      (defaults to `ACTIVE`)'
+                    type: string
+                  region:
+                    description: Region where the instance is created
+                    type: string
+                  securityGroupIds:
+                    description: IDs of security groups applied to all interfaces.
+                      Omit it to let the platform apply the project's `default` security
+                      group; set an explicit empty list (`[]`) to apply no security
+                      group at all (the instance then accepts no inbound traffic)
+                    items:
+                      type: string
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project
+                    type: string
+                  shares:
+                    items:
+                      properties:
+                        accessLevel:
+                          description: 'Access level granted to the instance for this
+                            share: `READ_ONLY` or `READ_WRITE`. Omit it to let the
+                            API apply its default (`READ_WRITE`)'
+                          type: string
+                        id:
+                          description: Identifier of the file storage share to attach.
+                            Adding the reference attaches the share to the instance,
+                            removing it detaches it
+                          type: string
+                      type: object
+                    type: array
+                  sshKeyName:
+                    description: Name of the SSH key injected at boot (immutable)
+                    type: string
+                  sshKeyNameRef:
+                    description: Reference to a SSHKey in cloud to populate sshKeyName.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  sshKeyNameSelector:
+                    description: Selector for a SSHKey in cloud to populate sshKeyName.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  volumeIds:
+                    description: IDs of block-storage volumes attached to the instance
+                    items:
+                      type: string
+                    type: array
+                type: object
+              initProvider:
+                description: |-
+                  THIS IS A BETA FIELD. It will be honored
+                  unless the Management Policies feature flag is disabled.
+                  InitProvider holds the same fields as ForProvider, with the exception
+                  of Identifier and other resource reference fields. The fields that are
+                  in InitProvider are merged into ForProvider when the resource is created.
+                  The same fields are also added to the terraform ignore_changes hook, to
+                  avoid updating them after creation. This is useful for fields that are
+                  required on creation, but we do not desire to update them after creation,
+                  for example because of an external controller is managing them, like an
+                  autoscaler.
+                properties:
+                  availabilityZone:
+                    description: Availability zone of the instance (immutable; assigned
+                      by the platform if omitted)
+                    type: string
+                  flavorId:
+                    description: Flavor ID. Changing it resizes the instance in place
+                    type: string
+                  groupId:
+                    description: ID of the placement group the instance belongs to
+                      (immutable)
+                    type: string
+                  groupIdRef:
+                    description: Reference to a InstanceGroup in cloud to populate
+                      groupId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  groupIdSelector:
+                    description: Selector for a InstanceGroup in cloud to populate
+                      groupId.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  imageId:
+                    description: 'Image ID to boot from. Omit for a boot-from-volume
+                      instance. **WARNING**: changing it rebuilds the instance and
+                      **wipes the root disk**'
+                    type: string
+                  name:
+                    description: Instance name
+                    type: string
+                  networks:
+                    items:
+                      properties:
+                        autoAssignPublicIp:
+                          description: Attach a public interface with a public IP
+                            assigned by the platform. Only valid on an entry with
+                            no `network_id` and no `ip`, and on at most one entry
+                          type: boolean
+                        ip:
+                          description: 'IP address of this interface. Without `network_id`:
+                            a public IP the project already owns (additional IP, or
+                            an Ext-Net IP of the project in the instance''s region).
+                            With `network_id` + `subnet_id`: pins the port''s fixed
+                            address when inside the subnet CIDR, otherwise associates
+                            the existing floating IP with that address'
+                          type: string
+                        networkId:
+                          description: Private network ID. Omit for a public interface
+                          type: string
+                        subnetId:
+                          description: Subnet ID within the private network. Required
+                            with `network_id`
+                          type: string
+                      type: object
+                    type: array
+                  powerState:
+                    description: 'Desired power state: `ACTIVE`, `SHUTOFF` or `SHELVED`
+                      (defaults to `ACTIVE`)'
+                    type: string
+                  region:
+                    description: Region where the instance is created
+                    type: string
+                  securityGroupIds:
+                    description: IDs of security groups applied to all interfaces.
+                      Omit it to let the platform apply the project's `default` security
+                      group; set an explicit empty list (`[]`) to apply no security
+                      group at all (the instance then accepts no inbound traffic)
+                    items:
+                      type: string
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project
+                    type: string
+                  shares:
+                    items:
+                      properties:
+                        accessLevel:
+                          description: 'Access level granted to the instance for this
+                            share: `READ_ONLY` or `READ_WRITE`. Omit it to let the
+                            API apply its default (`READ_WRITE`)'
+                          type: string
+                        id:
+                          description: Identifier of the file storage share to attach.
+                            Adding the reference attaches the share to the instance,
+                            removing it detaches it
+                          type: string
+                      type: object
+                    type: array
+                  sshKeyName:
+                    description: Name of the SSH key injected at boot (immutable)
+                    type: string
+                  sshKeyNameRef:
+                    description: Reference to a SSHKey in cloud to populate sshKeyName.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      namespace:
+                        description: Namespace of the referenced object
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  sshKeyNameSelector:
+                    description: Selector for a SSHKey in cloud to populate sshKeyName.
+                    properties:
+                      matchControllerRef:
+                        description: |-
+                          MatchControllerRef ensures an object with the same controller reference
+                          as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      namespace:
+                        description: Namespace for the selector
+                        type: string
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: |-
+                              Resolution specifies whether resolution of this reference is required.
+                              The default is 'Required', which means the reconcile will fail if the
+                              reference cannot be resolved. 'Optional' means this reference will be
+                              a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: |-
+                              Resolve specifies when this reference should be resolved. The default
+                              is 'IfNotPresent', which will attempt to resolve the reference only when
+                              the corresponding field is not present. Use 'Always' to resolve the
+                              reference on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  volumeIds:
+                    description: IDs of block-storage volumes attached to the instance
+                    items:
+                      type: string
+                    type: array
+                type: object
+              managementPolicies:
+                default:
+                - '*'
+                description: |-
+                  THIS IS A BETA FIELD. It is on by default but can be opted out
+                  through a Crossplane feature flag.
+                  ManagementPolicies specify the array of actions Crossplane is allowed to
+                  take on the managed and external resources.
+                  See the design doc for more information: https://github.com/crossplane/crossplane/blob/499895a25d1a1a0ba1604944ef98ac7a1a71f197/design/design-doc-observe-only-resources.md?plain=1#L223
+                  and this one: https://github.com/crossplane/crossplane/blob/444267e84783136daa93568b364a5f01228cacbe/design/one-pager-ignore-changes.md
+                items:
+                  description: |-
+                    A ManagementAction represents an action that the Crossplane controllers
+                    can take on an external resource.
+                  enum:
+                  - Observe
+                  - Create
+                  - Update
+                  - Delete
+                  - LateInitialize
+                  - '*'
+                  type: string
+                type: array
+              providerConfigRef:
+                default:
+                  kind: ClusterProviderConfig
+                  name: default
+                description: |-
+                  ProviderConfigReference specifies how the provider that will be used to
+                  create, observe, update, and delete this managed resource should be
+                  configured.
+                properties:
+                  kind:
+                    description: Kind of the referenced object.
+                    type: string
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                required:
+                - kind
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: |-
+                  WriteConnectionSecretToReference specifies the namespace and name of a
+                  Secret to which any connection details for this managed resource should
+                  be written. Connection details frequently include the endpoint, username,
+                  and password required to connect to the managed resource.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                required:
+                - name
+                type: object
+            required:
+            - forProvider
+            type: object
+            x-kubernetes-validations:
+            - message: spec.forProvider.flavorId is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.flavorId)
+                || (has(self.initProvider) && has(self.initProvider.flavorId))'
+            - message: spec.forProvider.name is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
+                || (has(self.initProvider) && has(self.initProvider.name))'
+            - message: spec.forProvider.region is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.region)
+                || (has(self.initProvider) && has(self.initProvider.region))'
+            - message: spec.forProvider.serviceName is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.serviceName)
+                || (has(self.initProvider) && has(self.initProvider.serviceName))'
+          status:
+            description: InstanceStatus defines the observed state of Instance.
+            properties:
+              atProvider:
+                properties:
+                  availabilityZone:
+                    description: Availability zone of the instance (immutable; assigned
+                      by the platform if omitted)
+                    type: string
+                  checksum:
+                    description: 'Computed hash representing the current target specification
+                      value. It implements optimistic concurrency control: the value
+                      is echoed back on update and the request is rejected when it
+                      no longer matches server-side'
+                    type: string
+                  createdAt:
+                    description: Creation date of the instance, as an RFC 3339 timestamp
+                    type: string
+                  currentState:
+                    properties:
+                      flavor:
+                        properties:
+                          disk:
+                            description: Size of the flavor's local root disk, in
+                              GB
+                            type: number
+                          ephemeral:
+                            description: Size of the flavor's ephemeral disk, in GB
+                            type: number
+                          id:
+                            description: Unique identifier of the flavor
+                            type: string
+                          name:
+                            description: Human-readable flavor name (the commercial
+                              flavor label)
+                            type: string
+                          ram:
+                            description: Amount of RAM provided by the flavor, in
+                              MB
+                            type: number
+                          swap:
+                            description: Size of the flavor's swap space, in MB
+                            type: number
+                          vcpus:
+                            description: Number of virtual CPUs provided by the flavor
+                            type: number
+                        type: object
+                      group:
+                        properties:
+                          id:
+                            description: Identifier of the instance (placement) group
+                            type: string
+                        type: object
+                      hostId:
+                        description: Opaque identifier of the physical host the instance
+                          is running on, as exposed by OpenStack. Null when not available
+                        type: string
+                      image:
+                        properties:
+                          deprecated:
+                            description: Whether the image is flagged as deprecated.
+                              A deprecated image still boots existing instances but
+                              is no longer recommended for new ones
+                            type: boolean
+                          id:
+                            description: Unique identifier of the image
+                            type: string
+                          name:
+                            description: Human-readable image name, null when the
+                              backend does not report it
+                            type: string
+                          size:
+                            description: Size of the image, in bytes. Null when the
+                              backend does not report it
+                            type: number
+                          status:
+                            description: Lifecycle status of the image as reported
+                              by Glance
+                            type: string
+                        type: object
+                      location:
+                        properties:
+                          availabilityZone:
+                            description: Availability zone within the region where
+                              the instance is placed, null in regions that have none
+                            type: string
+                          region:
+                            description: Code of the region where the instance is
+                              provisioned (for example GRA11, BHS5)
+                            type: string
+                        type: object
+                      locked:
+                        description: Whether the instance is locked against modifications.
+                          While locked, mutating actions are refused until it is unlocked
+                        type: boolean
+                      name:
+                        description: Observed display name of the instance
+                        type: string
+                      networks:
+                        items:
+                          properties:
+                            addresses:
+                              items:
+                                properties:
+                                  ip:
+                                    description: IP address assigned to the interface
+                                      (IPv4 or IPv6)
+                                    type: string
+                                  mac:
+                                    description: MAC address of the interface this
+                                      IP is bound to. Null when the backend reports
+                                      no interface for the address, which happens
+                                      for an additional IP routed to an instance whose
+                                      public interface has no visible Ext-Net address
+                                      yet
+                                    type: string
+                                  type:
+                                    description: 'How this address reaches the instance:
+                                      `FIXED` for an address assigned to the interface
+                                      itself, `FLOATING` for a floating IP NAT''d
+                                      onto it, `ADDITIONAL` for an additional IP routed
+                                      to the public interface'
+                                    type: string
+                                  version:
+                                    description: IP version of the address (4 for
+                                      IPv4, 6 for IPv6)
+                                    type: number
+                                type: object
+                              type: array
+                            gatewayId:
+                              description: Identifier of the gateway providing egress
+                                for this interface, null when none applies
+                              type: string
+                            id:
+                              description: Identifier of the network this interface
+                                is attached to, null for the public (Ext-Net) interface
+                              type: string
+                            subnetId:
+                              description: Identifier of the subnet this interface
+                                draws its fixed address from, null for an entry without
+                                a network id
+                              type: string
+                          type: object
+                        type: array
+                      powerState:
+                        description: Observed administrative power state of the instance
+                          as reported by OpenStack. It may transiently differ from
+                          the requested power_state while a power transition is in
+                          progress
+                        type: string
+                      projectId:
+                        description: Identifier of the Public Cloud project the instance
+                          belongs to
+                        type: string
+                      securityGroups:
+                        items:
+                          properties:
+                            id:
+                              description: Security group identifier
+                              type: string
+                          type: object
+                        type: array
+                      shares:
+                        items:
+                          properties:
+                            accessLevel:
+                              description: Observed access level of the access rule
+                                for this instance (`READ_ONLY` or `READ_WRITE`)
+                              type: string
+                            accessTo:
+                              description: 'The instance IP address the Manila access
+                                rule targets: its fixed IPv4 address on the share''s
+                                network'
+                              type: string
+                            id:
+                              description: Identifier of the attached file storage
+                                share
+                              type: string
+                            state:
+                              description: Observed state of the underlying access
+                                rule (`ACTIVE`, `APPLYING`, `DENYING`, `ERROR`). Null
+                                while no state has been reported yet
+                              type: string
+                          type: object
+                        type: array
+                      sshKeyName:
+                        description: Name of the SSH key pair injected into the instance
+                          at boot, null when none was provided
+                        type: string
+                      userId:
+                        description: Identifier of the OpenStack user that owns the
+                          instance
+                        type: string
+                      volumes:
+                        items:
+                          properties:
+                            id:
+                              description: Unique identifier of the attached volume
+                              type: string
+                            name:
+                              description: Display name of the attached volume
+                              type: string
+                            size:
+                              description: Size of the attached volume, in GB
+                              type: number
+                          type: object
+                        type: array
+                    type: object
+                  flavorId:
+                    description: Flavor ID. Changing it resizes the instance in place
+                    type: string
+                  groupId:
+                    description: ID of the placement group the instance belongs to
+                      (immutable)
+                    type: string
+                  id:
+                    type: string
+                  imageId:
+                    description: 'Image ID to boot from. Omit for a boot-from-volume
+                      instance. **WARNING**: changing it rebuilds the instance and
+                      **wipes the root disk**'
+                    type: string
+                  name:
+                    description: Instance name
+                    type: string
+                  networks:
+                    items:
+                      properties:
+                        autoAssignPublicIp:
+                          description: Attach a public interface with a public IP
+                            assigned by the platform. Only valid on an entry with
+                            no `network_id` and no `ip`, and on at most one entry
+                          type: boolean
+                        ip:
+                          description: 'IP address of this interface. Without `network_id`:
+                            a public IP the project already owns (additional IP, or
+                            an Ext-Net IP of the project in the instance''s region).
+                            With `network_id` + `subnet_id`: pins the port''s fixed
+                            address when inside the subnet CIDR, otherwise associates
+                            the existing floating IP with that address'
+                          type: string
+                        networkId:
+                          description: Private network ID. Omit for a public interface
+                          type: string
+                        subnetId:
+                          description: Subnet ID within the private network. Required
+                            with `network_id`
+                          type: string
+                      type: object
+                    type: array
+                  powerState:
+                    description: 'Desired power state: `ACTIVE`, `SHUTOFF` or `SHELVED`
+                      (defaults to `ACTIVE`)'
+                    type: string
+                  region:
+                    description: Region where the instance is created
+                    type: string
+                  resourceStatus:
+                    description: Instance readiness in the system (`CREATING`, `DELETING`,
+                      `ERROR`, `OUT_OF_SYNC`, `READY`, `UPDATING`). Distinct from
+                      `current_state.power_state`, which carries the lower-level OpenStack
+                      administrative power state
+                    type: string
+                  securityGroupIds:
+                    description: IDs of security groups applied to all interfaces.
+                      Omit it to let the platform apply the project's `default` security
+                      group; set an explicit empty list (`[]`) to apply no security
+                      group at all (the instance then accepts no inbound traffic)
+                    items:
+                      type: string
+                    type: array
+                  serviceName:
+                    description: Service name of the resource representing the id
+                      of the cloud project
+                    type: string
+                  shares:
+                    items:
+                      properties:
+                        accessLevel:
+                          description: 'Access level granted to the instance for this
+                            share: `READ_ONLY` or `READ_WRITE`. Omit it to let the
+                            API apply its default (`READ_WRITE`)'
+                          type: string
+                        id:
+                          description: Identifier of the file storage share to attach.
+                            Adding the reference attaches the share to the instance,
+                            removing it detaches it
+                          type: string
+                      type: object
+                    type: array
+                  sshKeyName:
+                    description: Name of the SSH key injected at boot (immutable)
+                    type: string
+                  updatedAt:
+                    description: Last modification date of the instance, as an RFC
+                      3339 timestamp
+                    type: string
+                  volumeIds:
+                    description: IDs of block-storage volumes attached to the instance
+                    items:
+                      type: string
+                    type: array
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        LastTransitionTime is the last time this condition transitioned from one
+                        status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        A Message containing details about this condition's last transition from
+                        one status to another, if any.
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        ObservedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      type: integer
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: |-
+                        Type of this condition. At most one of each condition type may apply to
+                        a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: |-
+                  ObservedGeneration is the latest metadata.generation
+                  which resulted in either a ready state, or stalled due to error
+                  it can not recover from without human intervention.
+                format: int64
+                type: integer
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

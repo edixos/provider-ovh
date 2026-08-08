@@ -4,6 +4,56 @@
 
 ## Unreleased
 
+## v2.19.0 - 2026-08-08
+### Added
+- `cloud`: `Instance` — new managed resource in both the cluster-scoped
+  (`cloud.ovh.edixos.io`) and namespaced (`cloud.ovh.m.edixos.io`) API groups,
+  wrapping the new upstream `ovh_cloud_instance` resource. It covers `flavorId`
+  (resizes in place), `imageId`, `powerState` (`ACTIVE`, `SHUTOFF`, `SHELVED`),
+  `networks` (public Ext-Net auto-assign, or a private `networkId` + `subnetId`),
+  `securityGroupIds`, `volumeIds` and `shares`. `groupId` resolves by reference
+  or selector to an `InstanceGroup`, and `sshKeyName` to an `SSHKey`.
+
+  Note that changing `imageId` rebuilds the instance and **wipes the root disk**,
+  and that `availabilityZone`, `groupId` and `sshKeyName` are immutable.
+  Omitting `securityGroupIds` applies the project's `default` security group;
+  an explicit empty list applies none, so the instance accepts no inbound
+  traffic.
+- `cloud`: `InstanceGroup` — new managed resource in both API groups, wrapping
+  `ovh_cloud_instance_group`. A placement group with an `AFFINITY` or
+  `ANTI_AFFINITY` `policy`. The group is immutable: changing `name`, `region` or
+  `policy` replaces it. Membership is set only through an `Instance`'s `groupId`,
+  never from this resource.
+
+This is the first of the two OVHcloud instance APIs to be exposed here as a
+distinct CRD: the pre-existing `ProjectInstance` (`ovh_cloud_project_instance`)
+is untouched and keeps its own schema.
+
+### Changed
+- Upgrade OVH Terraform provider from 2.18.0 to 2.19.0.
+- `KeyManagerSecret`: upstream now normalizes `secretType`, `algorithm` and
+  `mode` to upper case to match the API, so lower-case values no longer produce
+  a permanent diff. CRD change is documentation-only.
+- `ProjectStorage` accepts `DEEP_ARCHIVE`, `GLACIER`, `GLACIER_IR`,
+  `INTELLIGENT_TIERING` and `ONEZONE_IA` as a replication rule `storageClass`,
+  and `ProjectStorageLifecycleConfiguration` accepts `DEEP_ARCHIVE` and
+  `GLACIER_IR` for a noncurrent version transition. Both are validated upstream,
+  not in the CRD schema, so no CRD change accompanies this.
+- `CloudGateway` reports the failing task reason when a gateway ends in `ERROR`,
+  instead of a generic unexpected-state message.
+- `BlockVolume` keeps unset `createFrom` attributes null rather than `""`, which
+  removes the inconsistent-result errors seen on create.
+- Several generated Go types in the `cloud` API group were renamed by upjet to
+  disambiguate them from the new `Instance`/`InstanceGroup` types — for example
+  `MembersObservation` → `LoadbalancerMembersObservation` and
+  `FlavorParameters` → `ProjectInstanceFlavorParameters`. The JSON field names
+  are unchanged, so the CRD schemas and existing manifests are unaffected; only
+  Go code importing `apis/{cluster,namespaced}/cloud/v1alpha1` directly needs
+  updating.
+
+### Removed (breaking)
+None. No upstream resource or field was removed in 2.19.0.
+
 ## v2.18.0 - 2026-08-01
 ### Added
 - `storage`: `FileShareACL` — new managed resource in both the cluster-scoped

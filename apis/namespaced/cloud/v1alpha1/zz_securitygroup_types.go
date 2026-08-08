@@ -14,18 +14,6 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type CurrentStateLocationInitParameters struct {
-}
-
-type CurrentStateLocationObservation struct {
-
-	// Region code
-	Region *string `json:"region,omitempty" tf:"region,omitempty"`
-}
-
-type CurrentStateLocationParameters struct {
-}
-
 type CurrentStateRulesInitParameters struct {
 }
 
@@ -101,13 +89,25 @@ type DefaultRulesParameters struct {
 type SecurityGroupCurrentStateInitParameters struct {
 }
 
+type SecurityGroupCurrentStateLocationInitParameters struct {
+}
+
+type SecurityGroupCurrentStateLocationObservation struct {
+
+	// Region code
+	Region *string `json:"region,omitempty" tf:"region,omitempty"`
+}
+
+type SecurityGroupCurrentStateLocationParameters struct {
+}
+
 type SecurityGroupCurrentStateObservation struct {
 	DefaultRules []DefaultRulesObservation `json:"defaultRules,omitempty" tf:"default_rules,omitempty"`
 
 	// Description of the security group
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	Location *CurrentStateLocationObservation `json:"location,omitempty" tf:"location,omitempty"`
+	Location *SecurityGroupCurrentStateLocationObservation `json:"location,omitempty" tf:"location,omitempty"`
 
 	// Name of the security group
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`

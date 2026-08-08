@@ -10,7 +10,7 @@ require (
 	github.com/crossplane/upjet/v2 v2.2.0
 	github.com/hashicorp/terraform-plugin-go v0.28.0
 	github.com/ovh/go-ovh v1.9.0
-	github.com/ovh/terraform-provider-ovh/v2 v2.18.0
+	github.com/ovh/terraform-provider-ovh/v2 v2.19.0
 	github.com/pkg/errors v0.9.1
 	golang.org/x/oauth2 v0.36.0
 	google.golang.org/grpc v1.82.1
