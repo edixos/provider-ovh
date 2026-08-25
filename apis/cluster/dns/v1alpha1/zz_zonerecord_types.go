@@ -22,7 +22,7 @@ type ZoneRecordInitParameters struct {
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
 	// The TTL of the record, it shall be >= to 60.
-	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
+	TTL *int64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
 	// The value of the record
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
@@ -43,7 +43,7 @@ type ZoneRecordObservation struct {
 	Subdomain *string `json:"subdomain,omitempty" tf:"subdomain,omitempty"`
 
 	// The TTL of the record, it shall be >= to 60.
-	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
+	TTL *int64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
 	// The value of the record
 	Target *string `json:"target,omitempty" tf:"target,omitempty"`
@@ -64,7 +64,7 @@ type ZoneRecordParameters struct {
 
 	// The TTL of the record, it shall be >= to 60.
 	// +kubebuilder:validation:Optional
-	TTL *float64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
+	TTL *int64 `json:"ttl,omitempty" tf:"ttl,omitempty"`
 
 	// The value of the record
 	// +kubebuilder:validation:Optional

@@ -261,7 +261,8 @@ spec:
                     description: |-
                       Current operation progress in percent
                       Current operation progress in percent
-                    type: number
+                    format: int64
+                    type: integer
                   routedTo:
                     description: |-
                       The GUID of an instance to which the failover IP address is be attached

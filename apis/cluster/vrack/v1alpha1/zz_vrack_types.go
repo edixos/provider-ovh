@@ -54,14 +54,18 @@ type DetailsInitParameters struct {
 type DetailsObservation struct {
 
 	// yourvrackdescription
+	// description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// order detail id
-	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
+	// order detail id
+	OrderDetailID *int64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
@@ -88,7 +92,7 @@ type OrderObservation struct {
 
 	// order id
 	// order id
-	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
+	OrderID *int64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
 
 type OrderParameters struct {

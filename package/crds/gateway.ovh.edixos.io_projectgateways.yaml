@@ -542,19 +542,27 @@ spec:
                     items:
                       properties:
                         ips:
-                          description: List of external ips of the gateway.
+                          description: |-
+                            List of external ips of the gateway.
+                            List of external ips of the gateway
                           items:
                             properties:
                               ip:
-                                description: External IP of the gateway.
+                                description: |-
+                                  External IP of the gateway.
+                                  External IP of the gateway
                                 type: string
                               subnetId:
-                                description: ID of the subnet.
+                                description: |-
+                                  ID of the subnet.
+                                  Subnet ID of the ip
                                 type: string
                             type: object
                           type: array
                         networkId:
-                          description: ID of the private network.
+                          description: |-
+                            ID of the private network.
+                            External network ID of the gateway
                           type: string
                       type: object
                     type: array
@@ -568,16 +576,24 @@ spec:
                     items:
                       properties:
                         id:
-                          description: Identifier of the gateway.
+                          description: |-
+                            Identifier of the gateway.
+                            ID of the interface
                           type: string
                         ip:
-                          description: External IP of the gateway.
+                          description: |-
+                            External IP of the gateway.
+                            IP of the interface
                           type: string
                         networkId:
-                          description: ID of the private network.
+                          description: |-
+                            ID of the private network.
+                            Network ID of the interface
                           type: string
                         subnetId:
-                          description: ID of the subnet.
+                          description: |-
+                            ID of the subnet.
+                            Subnet ID of the interface
                           type: string
                       type: object
                     type: array

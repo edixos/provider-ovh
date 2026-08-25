@@ -19,27 +19,35 @@ type EndpointsInitParameters struct {
 type EndpointsObservation struct {
 
 	// Type of component the URI relates to.
+	// Type of component the URI relates to
 	Component *string `json:"component,omitempty" tf:"component,omitempty"`
 
 	// Domain of the cluster.
+	// Domain of the cluster
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// Path of the endpoint.
+	// Path of the endpoint
 	Path *string `json:"path,omitempty" tf:"path,omitempty"`
 
 	// Connection port for the endpoint.
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	// Connection port for the endpoint
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// Defines whether the endpoint uses SSL.
+	// Defines whether the endpoint uses SSL
 	SSL *bool `json:"ssl,omitempty" tf:"ssl,omitempty"`
 
 	// SSL mode used to connect to the service if the SSL is enabled.
+	// SSL mode used to connect to the service if the SSL is enabled
 	SSLMode *string `json:"sslMode,omitempty" tf:"ssl_mode,omitempty"`
 
 	// Scheme used to generate the URI.
+	// Scheme used to generate the URI
 	Scheme *string `json:"scheme,omitempty" tf:"scheme,omitempty"`
 
 	// URI of the endpoint.
+	// URI of the endpoint
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
@@ -158,7 +166,7 @@ type ProjectDatabaseInitParameters struct {
 
 	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
-	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
+	DiskSize *int64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
 	// The database engine you want to deploy. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service
@@ -233,7 +241,7 @@ type ProjectDatabaseObservation struct {
 
 	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
-	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
+	DiskSize *int64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
 	// Defines the disk type of the database service.
 	// Disk type attributes of the cluster
@@ -329,7 +337,7 @@ type ProjectDatabaseParameters struct {
 	// The disk size (in GB) of the database service.
 	// Disk size attributes of the cluster
 	// +kubebuilder:validation:Optional
-	DiskSize *float64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
+	DiskSize *int64 `json:"diskSize,omitempty" tf:"disk_size,omitempty"`
 
 	// The database engine you want to deploy. To get a full list of available engine visit. public documentation.
 	// Name of the engine of the service

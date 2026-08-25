@@ -30,7 +30,7 @@ type ProjectDatabaseOpensearchPatternInitParameters struct {
 
 	// Maximum number of index for this pattern.
 	// Maximum number of index for this pattern
-	MaxIndexCount *float64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
+	MaxIndexCount *int64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
 
 	// Pattern format.
 	// Pattern format
@@ -51,7 +51,7 @@ type ProjectDatabaseOpensearchPatternObservation struct {
 
 	// Maximum number of index for this pattern.
 	// Maximum number of index for this pattern
-	MaxIndexCount *float64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
+	MaxIndexCount *int64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
 
 	// Pattern format.
 	// Pattern format
@@ -80,7 +80,7 @@ type ProjectDatabaseOpensearchPatternParameters struct {
 	// Maximum number of index for this pattern.
 	// Maximum number of index for this pattern
 	// +kubebuilder:validation:Optional
-	MaxIndexCount *float64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
+	MaxIndexCount *int64 `json:"maxIndexCount,omitempty" tf:"max_index_count,omitempty"`
 
 	// Pattern format.
 	// Pattern format

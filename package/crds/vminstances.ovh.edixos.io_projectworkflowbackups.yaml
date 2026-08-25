@@ -87,7 +87,8 @@ spec:
                     description: The number of times the worflow is run. Default value
                       is 0 which means that the workflow will be scheduled continously
                       until its deletion
-                    type: number
+                    format: int64
+                    type: integer
                   regionName:
                     description: |-
                       (Mandatory) The name of the openstack region.
@@ -95,7 +96,8 @@ spec:
                     type: string
                   rotation:
                     description: (Mandatory) The number of backup that are retained.
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -128,7 +130,8 @@ spec:
                     description: The number of times the worflow is run. Default value
                       is 0 which means that the workflow will be scheduled continously
                       until its deletion
-                    type: number
+                    format: int64
+                    type: integer
                   regionName:
                     description: |-
                       (Mandatory) The name of the openstack region.
@@ -136,7 +139,8 @@ spec:
                     type: string
                   rotation:
                     description: (Mandatory) The number of backup that are retained.
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -273,7 +277,8 @@ spec:
                     description: The number of times the worflow is run. Default value
                       is 0 which means that the workflow will be scheduled continously
                       until its deletion
-                    type: number
+                    format: int64
+                    type: integer
                   regionName:
                     description: |-
                       (Mandatory) The name of the openstack region.
@@ -281,7 +286,8 @@ spec:
                     type: string
                   rotation:
                     description: (Mandatory) The number of backup that are retained.
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.

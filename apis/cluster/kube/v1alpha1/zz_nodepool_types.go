@@ -101,11 +101,11 @@ type NodePoolInitParameters struct {
 
 	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
-	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+	AutoscalingScaleDownUnneededTimeSeconds *int64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
 	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
-	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+	AutoscalingScaleDownUnreadyTimeSeconds *int64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
 	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
@@ -116,7 +116,7 @@ type NodePoolInitParameters struct {
 
 	// number of nodes to start.
 	// Number of nodes you desire in the pool
-	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
+	DesiredNodes *int64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
 	// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
 	// Flavor name
@@ -137,11 +137,11 @@ type NodePoolInitParameters struct {
 
 	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
-	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
+	MaxNodes *int64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
 	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
-	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
+	MinNodes *int64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
 	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
@@ -174,11 +174,11 @@ type NodePoolObservation struct {
 
 	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
-	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+	AutoscalingScaleDownUnneededTimeSeconds *int64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
 	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
-	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+	AutoscalingScaleDownUnreadyTimeSeconds *int64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
 	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
@@ -189,7 +189,7 @@ type NodePoolObservation struct {
 
 	// Number of nodes which are actually ready in the pool
 	// Number of nodes which are actually ready in the pool
-	AvailableNodes *float64 `json:"availableNodes,omitempty" tf:"available_nodes,omitempty"`
+	AvailableNodes *int64 `json:"availableNodes,omitempty" tf:"available_nodes,omitempty"`
 
 	// Creation date
 	// Creation date
@@ -197,11 +197,11 @@ type NodePoolObservation struct {
 
 	// Number of nodes present in the pool
 	// Number of nodes present in the pool
-	CurrentNodes *float64 `json:"currentNodes,omitempty" tf:"current_nodes,omitempty"`
+	CurrentNodes *int64 `json:"currentNodes,omitempty" tf:"current_nodes,omitempty"`
 
 	// number of nodes to start.
 	// Number of nodes you desire in the pool
-	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
+	DesiredNodes *int64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
 	// Flavor name
 	// Flavor name
@@ -219,11 +219,11 @@ type NodePoolObservation struct {
 
 	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
-	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
+	MaxNodes *int64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
 	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
-	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
+	MinNodes *int64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
 	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
@@ -254,7 +254,7 @@ type NodePoolObservation struct {
 
 	// Number of nodes with the latest version installed in the pool
 	// Number of nodes with latest version installed in the pool
-	UpToDateNodes *float64 `json:"upToDateNodes,omitempty" tf:"up_to_date_nodes,omitempty"`
+	UpToDateNodes *int64 `json:"upToDateNodes,omitempty" tf:"up_to_date_nodes,omitempty"`
 
 	// Last update date
 	// Last update date
@@ -280,12 +280,12 @@ type NodePoolParameters struct {
 	// scaleDownUnneededTimeSeconds autoscaling parameter How long a node should be unneeded before it is eligible for scale down
 	// scaleDownUnneededTimeSeconds for autoscaling
 	// +kubebuilder:validation:Optional
-	AutoscalingScaleDownUnneededTimeSeconds *float64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
+	AutoscalingScaleDownUnneededTimeSeconds *int64 `json:"autoscalingScaleDownUnneededTimeSeconds,omitempty" tf:"autoscaling_scale_down_unneeded_time_seconds,omitempty"`
 
 	// scaleDownUnreadyTimeSeconds autoscaling parameter How long an unready node should be unneeded before it is eligible for scale down
 	// scaleDownUnreadyTimeSeconds for autoscaling
 	// +kubebuilder:validation:Optional
-	AutoscalingScaleDownUnreadyTimeSeconds *float64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
+	AutoscalingScaleDownUnreadyTimeSeconds *int64 `json:"autoscalingScaleDownUnreadyTimeSeconds,omitempty" tf:"autoscaling_scale_down_unready_time_seconds,omitempty"`
 
 	// scaleDownUtilizationThreshold autoscaling parameter Node utilization level, defined as sum of requested resources divided by capacity, below which a node can be considered for scale down
 	// scaleDownUtilizationThreshold for autoscaling
@@ -299,7 +299,7 @@ type NodePoolParameters struct {
 	// number of nodes to start.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
-	DesiredNodes *float64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
+	DesiredNodes *int64 `json:"desiredNodes,omitempty" tf:"desired_nodes,omitempty"`
 
 	// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/. Changing this value recreates the resource.
 	// Flavor name
@@ -323,12 +323,12 @@ type NodePoolParameters struct {
 	// maximum number of nodes allowed in the pool. Setting desired_nodes over this value will raise an error.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
-	MaxNodes *float64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
+	MaxNodes *int64 `json:"maxNodes,omitempty" tf:"max_nodes,omitempty"`
 
 	// minimum number of nodes allowed in the pool. Setting desired_nodes under this value will raise an error.
 	// Number of nodes you desire in the pool
 	// +kubebuilder:validation:Optional
-	MinNodes *float64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
+	MinNodes *int64 `json:"minNodes,omitempty" tf:"min_nodes,omitempty"`
 
 	// should the nodes be billed on a monthly basis. Default to false. Changing this value recreates the resource.
 	// Enable monthly billing on all nodes in the pool
@@ -354,7 +354,7 @@ type SpecInitParameters struct {
 
 	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
-	Taints []map[string]*string `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []map[string]string `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// If true, set nodes as un-schedulable
 	// unschedulable
@@ -365,7 +365,7 @@ type SpecObservation struct {
 
 	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
-	Taints []map[string]*string `json:"taints,omitempty" tf:"taints,omitempty"`
+	Taints []map[string]string `json:"taints,omitempty" tf:"taints,omitempty"`
 
 	// If true, set nodes as un-schedulable
 	// unschedulable
@@ -377,7 +377,7 @@ type SpecParameters struct {
 	// Taints to apply to each node NodeSpec kubernetes documentation
 	// taints
 	// +kubebuilder:validation:Optional
-	Taints []map[string]*string `json:"taints" tf:"taints,omitempty"`
+	Taints []map[string]string `json:"taints" tf:"taints,omitempty"`
 
 	// If true, set nodes as un-schedulable
 	// unschedulable

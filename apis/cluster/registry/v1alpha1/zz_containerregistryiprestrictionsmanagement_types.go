@@ -17,7 +17,7 @@ type ContainerRegistryIPRestrictionsManagementInitParameters struct {
 
 	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+	IPRestrictions []map[string]string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
 	// The id of the Managed Private Registry.
 	// RegistryID
@@ -42,7 +42,7 @@ type ContainerRegistryIPRestrictionsManagementObservation struct {
 
 	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+	IPRestrictions []map[string]string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
 	// The id of the Managed Private Registry.
 	// RegistryID
@@ -58,7 +58,7 @@ type ContainerRegistryIPRestrictionsManagementParameters struct {
 	// IP restrictions applied on Harbor UI and API.
 	// List your IP restrictions applied on artifact manager component
 	// +kubebuilder:validation:Optional
-	IPRestrictions []map[string]*string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
+	IPRestrictions []map[string]string `json:"ipRestrictions,omitempty" tf:"ip_restrictions,omitempty"`
 
 	// The id of the Managed Private Registry.
 	// RegistryID

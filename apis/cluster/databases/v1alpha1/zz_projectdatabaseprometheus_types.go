@@ -86,9 +86,12 @@ type TargetsInitParameters struct {
 }
 
 type TargetsObservation struct {
+
+	// Host of the endpoint
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`
 
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	// Connection port for the endpoint
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 }
 
 type TargetsParameters struct {

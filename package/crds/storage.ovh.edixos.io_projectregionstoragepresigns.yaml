@@ -78,7 +78,8 @@ spec:
                     description: |-
                       Define, in seconds, for how long your URL will be valid.
                       How long (in seconds) the URL will be valid
-                    type: number
+                    format: int64
+                    type: integer
                   method:
                     description: The method you want to use to interact with your
                       object. Can be either 'GET' or 'PUT'.
@@ -126,7 +127,8 @@ spec:
                     description: |-
                       Define, in seconds, for how long your URL will be valid.
                       How long (in seconds) the URL will be valid
-                    type: number
+                    format: int64
+                    type: integer
                   method:
                     description: The method you want to use to interact with your
                       object. Can be either 'GET' or 'PUT'.
@@ -278,7 +280,8 @@ spec:
                     description: |-
                       Define, in seconds, for how long your URL will be valid.
                       How long (in seconds) the URL will be valid
-                    type: number
+                    format: int64
+                    type: integer
                   id:
                     type: string
                   method:

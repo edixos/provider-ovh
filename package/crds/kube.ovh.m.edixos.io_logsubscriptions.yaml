@@ -352,8 +352,10 @@ spec:
                     items:
                       properties:
                         name:
+                          description: Name of the subscribed resource.
                           type: string
                         type:
+                          description: Type of the subscribed resource.
                           type: string
                       type: object
                     type: array

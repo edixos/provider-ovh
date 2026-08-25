@@ -30,7 +30,7 @@ type ProjectDatabaseKafkaTopicInitParameters struct {
 
 	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
-	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
+	MinInsyncReplicas *int64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
 	// Name of the topic. No spaces allowed.
 	// Name of the topic
@@ -38,19 +38,19 @@ type ProjectDatabaseKafkaTopicInitParameters struct {
 
 	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
-	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
+	Partitions *int64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
 	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
-	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
+	Replication *int64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
-	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
+	RetentionBytes *int64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
 	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
-	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
+	RetentionHours *int64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -67,7 +67,7 @@ type ProjectDatabaseKafkaTopicObservation struct {
 
 	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
-	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
+	MinInsyncReplicas *int64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
 	// Name of the topic. No spaces allowed.
 	// Name of the topic
@@ -75,19 +75,19 @@ type ProjectDatabaseKafkaTopicObservation struct {
 
 	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
-	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
+	Partitions *int64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
 	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
-	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
+	Replication *int64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
-	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
+	RetentionBytes *int64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
 	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
-	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
+	RetentionHours *int64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -112,7 +112,7 @@ type ProjectDatabaseKafkaTopicParameters struct {
 	// Minimum insync replica accepted for this topic. Should be superior to 0
 	// Minimum insync replica accepted for this topic
 	// +kubebuilder:validation:Optional
-	MinInsyncReplicas *float64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
+	MinInsyncReplicas *int64 `json:"minInsyncReplicas,omitempty" tf:"min_insync_replicas,omitempty"`
 
 	// Name of the topic. No spaces allowed.
 	// Name of the topic
@@ -122,22 +122,22 @@ type ProjectDatabaseKafkaTopicParameters struct {
 	// Number of partitions for this topic. Should be superior to 0
 	// Number of partitions for this topic
 	// +kubebuilder:validation:Optional
-	Partitions *float64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
+	Partitions *int64 `json:"partitions,omitempty" tf:"partitions,omitempty"`
 
 	// Number of replication for this topic. Should be superior to 1
 	// Number of replication for this topic
 	// +kubebuilder:validation:Optional
-	Replication *float64 `json:"replication,omitempty" tf:"replication,omitempty"`
+	Replication *int64 `json:"replication,omitempty" tf:"replication,omitempty"`
 
 	// Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
 	// Number of bytes for the retention of the data for this topic
 	// +kubebuilder:validation:Optional
-	RetentionBytes *float64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
+	RetentionBytes *int64 `json:"retentionBytes,omitempty" tf:"retention_bytes,omitempty"`
 
 	// Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
 	// Number of hours for the retention of the data for this topic
 	// +kubebuilder:validation:Optional
-	RetentionHours *float64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
+	RetentionHours *int64 `json:"retentionHours,omitempty" tf:"retention_hours,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional

@@ -63,7 +63,8 @@ spec:
                     description: |-
                       If set, reboot the server on the specified boot id during destroy phase.
                       If set, reboot the server on the specified boot id during destroy phase
-                    type: number
+                    format: int64
+                    type: integer
                   customizations:
                     description: |-
                       Available attributes and their types are OS-dependant. Example: hostname.
@@ -147,7 +148,8 @@ spec:
                           description: |-
                             : Disk group id to install the OS to (default is 0, meaning automatic).
                             Disk group id (default is 0, meaning automatic)
-                          type: number
+                          format: int64
+                          type: integer
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
@@ -158,22 +160,26 @@ spec:
                                 description: |-
                                   : Number of arrays (default is 1)
                                   Number of arrays (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               disks:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               raidLevel:
                                 description: |-
                                   : Hardware raid type (default is 1)
                                   Hardware raid type (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               spares:
                                 description: |-
                                   : Number of disks in the disk group involved in the spare (default is 0)
                                   Number of disks in the disk group involved in the spare (default is 0)
-                                type: number
+                                format: int64
+                                type: integer
                             type: object
                           type: array
                         partitioning:
@@ -186,7 +192,8 @@ spec:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               layout:
                                 description: |-
                                   : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
@@ -241,12 +248,14 @@ spec:
                                       description: |-
                                         : Hardware raid type (default is 1)
                                         Software raid type (default is 1)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     size:
                                       description: |-
                                         : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
                                         Partition size in MiB (default value is 0)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                               schemeName:
@@ -276,7 +285,8 @@ spec:
                     description: |-
                       If set, reboot the server on the specified boot id during destroy phase.
                       If set, reboot the server on the specified boot id during destroy phase
-                    type: number
+                    format: int64
+                    type: integer
                   customizations:
                     description: |-
                       Available attributes and their types are OS-dependant. Example: hostname.
@@ -360,7 +370,8 @@ spec:
                           description: |-
                             : Disk group id to install the OS to (default is 0, meaning automatic).
                             Disk group id (default is 0, meaning automatic)
-                          type: number
+                          format: int64
+                          type: integer
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
@@ -371,22 +382,26 @@ spec:
                                 description: |-
                                   : Number of arrays (default is 1)
                                   Number of arrays (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               disks:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               raidLevel:
                                 description: |-
                                   : Hardware raid type (default is 1)
                                   Hardware raid type (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               spares:
                                 description: |-
                                   : Number of disks in the disk group involved in the spare (default is 0)
                                   Number of disks in the disk group involved in the spare (default is 0)
-                                type: number
+                                format: int64
+                                type: integer
                             type: object
                           type: array
                         partitioning:
@@ -399,7 +414,8 @@ spec:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               layout:
                                 description: |-
                                   : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
@@ -454,12 +470,14 @@ spec:
                                       description: |-
                                         : Hardware raid type (default is 1)
                                         Software raid type (default is 1)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     size:
                                       description: |-
                                         : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
                                         Partition size in MiB (default value is 0)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                               schemeName:
@@ -548,7 +566,8 @@ spec:
                     description: |-
                       If set, reboot the server on the specified boot id during destroy phase.
                       If set, reboot the server on the specified boot id during destroy phase
-                    type: number
+                    format: int64
+                    type: integer
                   comment:
                     description: |-
                       Details of this task. (should be Install asked)
@@ -663,7 +682,8 @@ spec:
                           description: |-
                             : Disk group id to install the OS to (default is 0, meaning automatic).
                             Disk group id (default is 0, meaning automatic)
-                          type: number
+                          format: int64
+                          type: integer
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
@@ -674,22 +694,26 @@ spec:
                                 description: |-
                                   : Number of arrays (default is 1)
                                   Number of arrays (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               disks:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               raidLevel:
                                 description: |-
                                   : Hardware raid type (default is 1)
                                   Hardware raid type (default is 1)
-                                type: number
+                                format: int64
+                                type: integer
                               spares:
                                 description: |-
                                   : Number of disks in the disk group involved in the spare (default is 0)
                                   Number of disks in the disk group involved in the spare (default is 0)
-                                type: number
+                                format: int64
+                                type: integer
                             type: object
                           type: array
                         partitioning:
@@ -702,7 +726,8 @@ spec:
                                 description: |-
                                   : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
                                   Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-                                type: number
+                                format: int64
+                                type: integer
                               layout:
                                 description: |-
                                   : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
@@ -757,12 +782,14 @@ spec:
                                       description: |-
                                         : Hardware raid type (default is 1)
                                         Software raid type (default is 1)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     size:
                                       description: |-
                                         : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
                                         Partition size in MiB (default value is 0)
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                               schemeName:

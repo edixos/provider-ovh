@@ -25,14 +25,14 @@ type ProjectWorkflowBackupInitParameters struct {
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
 	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
-	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
+	MaxExecutionCount *int64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
 	// (Mandatory) The name of the openstack region.
 	// Region name.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (Mandatory) The number of backup that are retained.
-	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -53,14 +53,14 @@ type ProjectWorkflowBackupObservation struct {
 	InstanceID *string `json:"instanceId,omitempty" tf:"instance_id,omitempty"`
 
 	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
-	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
+	MaxExecutionCount *int64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
 	// (Mandatory) The name of the openstack region.
 	// Region name.
 	RegionName *string `json:"regionName,omitempty" tf:"region_name,omitempty"`
 
 	// (Mandatory) The number of backup that are retained.
-	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -81,7 +81,7 @@ type ProjectWorkflowBackupParameters struct {
 
 	// The number of times the worflow is run. Default value is 0 which means that the workflow will be scheduled continously until its deletion
 	// +kubebuilder:validation:Optional
-	MaxExecutionCount *float64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
+	MaxExecutionCount *int64 `json:"maxExecutionCount,omitempty" tf:"max_execution_count,omitempty"`
 
 	// (Mandatory) The name of the openstack region.
 	// Region name.
@@ -90,7 +90,7 @@ type ProjectWorkflowBackupParameters struct {
 
 	// (Mandatory) The number of backup that are retained.
 	// +kubebuilder:validation:Optional
-	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 
 	// The id of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// +kubebuilder:validation:Optional

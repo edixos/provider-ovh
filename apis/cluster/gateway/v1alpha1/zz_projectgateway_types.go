@@ -19,9 +19,11 @@ type ExternalInformationInitParameters struct {
 type ExternalInformationObservation struct {
 
 	// List of external ips of the gateway.
+	// List of external ips of the gateway
 	Ips []IpsObservation `json:"ips,omitempty" tf:"ips,omitempty"`
 
 	// ID of the private network.
+	// External network ID of the gateway
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 }
 
@@ -34,15 +36,19 @@ type InterfacesInitParameters struct {
 type InterfacesObservation struct {
 
 	// Identifier of the gateway.
+	// ID of the interface
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// External IP of the gateway.
+	// IP of the interface
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	// ID of the private network.
+	// Network ID of the interface
 	NetworkID *string `json:"networkId,omitempty" tf:"network_id,omitempty"`
 
 	// ID of the subnet.
+	// Subnet ID of the interface
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 
@@ -55,9 +61,11 @@ type IpsInitParameters struct {
 type IpsObservation struct {
 
 	// External IP of the gateway.
+	// External IP of the gateway
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	// ID of the subnet.
+	// Subnet ID of the ip
 	SubnetID *string `json:"subnetId,omitempty" tf:"subnet_id,omitempty"`
 }
 

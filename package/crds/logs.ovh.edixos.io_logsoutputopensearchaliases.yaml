@@ -91,12 +91,14 @@ spec:
                     description: |-
                       Number of indices linked
                       Number of index
-                    type: number
+                    format: int64
+                    type: integer
                   nbStream:
                     description: |-
                       Number of streams linked
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name
@@ -146,12 +148,14 @@ spec:
                     description: |-
                       Number of indices linked
                       Number of index
-                    type: number
+                    format: int64
+                    type: integer
                   nbStream:
                     description: |-
                       Number of streams linked
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name
@@ -288,7 +292,8 @@ spec:
                     type: string
                   currentSize:
                     description: Current alias size (in bytes)
-                    type: number
+                    format: int64
+                    type: integer
                   description:
                     description: |-
                       Index description
@@ -318,12 +323,14 @@ spec:
                     description: |-
                       Number of indices linked
                       Number of index
-                    type: number
+                    format: int64
+                    type: integer
                   nbStream:
                     description: |-
                       Number of streams linked
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name

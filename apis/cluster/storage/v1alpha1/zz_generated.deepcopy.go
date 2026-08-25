@@ -5818,7 +5818,7 @@ func (in *ProjectRegionStoragePresignInitParameters) DeepCopyInto(out *ProjectRe
 	*out = *in
 	if in.Expire != nil {
 		in, out := &in.Expire, &out.Expire
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Method != nil {
@@ -5900,7 +5900,7 @@ func (in *ProjectRegionStoragePresignObservation) DeepCopyInto(out *ProjectRegio
 	*out = *in
 	if in.Expire != nil {
 		in, out := &in.Expire, &out.Expire
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -5976,7 +5976,7 @@ func (in *ProjectRegionStoragePresignParameters) DeepCopyInto(out *ProjectRegion
 	*out = *in
 	if in.Expire != nil {
 		in, out := &in.Expire, &out.Expire
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Method != nil {

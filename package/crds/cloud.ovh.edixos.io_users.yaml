@@ -81,7 +81,6 @@ spec:
                     description: 'a convenient map representing an openstack_rc file.
                       Note: no password nor sensitive token is set in this map.'
                     type: object
-                    x-kubernetes-map-type: granular
                   passwordReset:
                     description: |-
                       Arbitrary string to change to trigger a password update.
@@ -123,7 +122,6 @@ spec:
                     description: 'a convenient map representing an openstack_rc file.
                       Note: no password nor sensitive token is set in this map.'
                     type: object
-                    x-kubernetes-map-type: granular
                   passwordReset:
                     description: |-
                       Arbitrary string to change to trigger a password update.
@@ -254,7 +252,6 @@ spec:
                     description: 'a convenient map representing an openstack_rc file.
                       Note: no password nor sensitive token is set in this map.'
                     type: object
-                    x-kubernetes-map-type: granular
                   passwordReset:
                     description: |-
                       Arbitrary string to change to trigger a password update.

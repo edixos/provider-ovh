@@ -60,7 +60,7 @@ type TCPRouteInitParameters struct {
 
 	// Route traffic for this frontend
 	// Route traffic for this frontend
-	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
+	FrontendID *int64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
@@ -68,7 +68,7 @@ type TCPRouteInitParameters struct {
 
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type TCPRouteObservation struct {
@@ -83,7 +83,7 @@ type TCPRouteObservation struct {
 
 	// Route traffic for this frontend
 	// Route traffic for this frontend
-	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
+	FrontendID *int64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -101,7 +101,7 @@ type TCPRouteObservation struct {
 
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type TCPRouteParameters struct {
@@ -119,7 +119,7 @@ type TCPRouteParameters struct {
 	// Route traffic for this frontend
 	// Route traffic for this frontend
 	// +kubebuilder:validation:Optional
-	FrontendID *float64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
+	FrontendID *int64 `json:"frontendId,omitempty" tf:"frontend_id,omitempty"`
 
 	// The internal name of your IP load balancing
 	// The internal name of your IP load balancing
@@ -129,7 +129,7 @@ type TCPRouteParameters struct {
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
 	// Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
 	// +kubebuilder:validation:Optional
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type TCPRouteRulesInitParameters struct {
@@ -138,20 +138,26 @@ type TCPRouteRulesInitParameters struct {
 type TCPRouteRulesObservation struct {
 
 	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
+	// Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field *string `json:"field,omitempty" tf:"field,omitempty"`
 
 	// Matching operator. Not all operators are available for all fields. See "availableRules"
+	// Matching operator. Not all operators are available for all fields. See "/availableRules"
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
 
+	// Invert the matching operator effect
 	// Invert the matching operator effect
 	Negate *bool `json:"negate,omitempty" tf:"negate,omitempty"`
 
 	// Value to match against this match. Interpretation if this field depends on the match and field
+	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
 	// Id of your rule
-	RuleID *float64 `json:"ruleId,omitempty" tf:"rule_id,omitempty"`
+	// Id of your rule
+	RuleID *int64 `json:"ruleId,omitempty" tf:"rule_id,omitempty"`
 
+	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	// Name of sub-field, if applicable. This may be a Cookie or Header name for instance
 	SubField *string `json:"subField,omitempty" tf:"sub_field,omitempty"`
 }

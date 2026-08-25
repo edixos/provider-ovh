@@ -88,10 +88,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   deniedSource:
                     description: Deny IP Load Balancing access to these ip block.
                       No restriction if null. You cannot specify both allowed_source
@@ -153,10 +155,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   deniedSource:
                     description: Deny IP Load Balancing access to these ip block.
                       No restriction if null. You cannot specify both allowed_source
@@ -309,10 +313,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   deniedSource:
                     description: Deny IP Load Balancing access to these ip block.
                       No restriction if null. You cannot specify both allowed_source

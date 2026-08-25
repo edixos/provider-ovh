@@ -73,7 +73,8 @@ spec:
                           description: |-
                             Number of backup to keep
                             Number of backup to keep
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   availabilityZone:
@@ -106,7 +107,8 @@ spec:
                     type: array
                   bulk:
                     description: Create multiple instances
-                    type: number
+                    format: int64
+                    type: integer
                   flavor:
                     description: |-
                       Flavor information
@@ -259,14 +261,16 @@ spec:
                                             description: |-
                                               IP version
                                               IP version
-                                            type: number
+                                            format: int64
+                                            type: integer
                                         type: object
                                       type: array
                                     vlanId:
                                       description: |-
                                         Network vlan ID
                                         Network vlan ID
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                             type: object
@@ -353,7 +357,8 @@ spec:
                           description: |-
                             Number of backup to keep
                             Number of backup to keep
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   availabilityZone:
@@ -386,7 +391,8 @@ spec:
                     type: array
                   bulk:
                     description: Create multiple instances
-                    type: number
+                    format: int64
+                    type: integer
                   flavor:
                     description: |-
                       Flavor information
@@ -539,14 +545,16 @@ spec:
                                             description: |-
                                               IP version
                                               IP version
-                                            type: number
+                                            format: int64
+                                            type: integer
                                         type: object
                                       type: array
                                     vlanId:
                                       description: |-
                                         Network vlan ID
                                         Network vlan ID
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                             type: object
@@ -704,11 +712,16 @@ spec:
                     items:
                       properties:
                         ip:
-                          description: Instance IP in the private network
+                          description: |-
+                            Instance IP in the private network
+                            IP address
                           type: string
                         version:
-                          description: IP version
-                          type: number
+                          description: |-
+                            IP version
+                            IP version
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   attachedVolumes:
@@ -718,7 +731,9 @@ spec:
                     items:
                       properties:
                         id:
-                          description: Floating IP ID
+                          description: |-
+                            Floating IP ID
+                            Volume id
                           type: string
                       type: object
                     type: array
@@ -737,7 +752,8 @@ spec:
                           description: |-
                             Number of backup to keep
                             Number of backup to keep
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   availabilityZone:
@@ -770,7 +786,8 @@ spec:
                     type: array
                   bulk:
                     description: Create multiple instances
-                    type: number
+                    format: int64
+                    type: integer
                   flavor:
                     description: |-
                       Flavor information
@@ -941,14 +958,16 @@ spec:
                                             description: |-
                                               IP version
                                               IP version
-                                            type: number
+                                            format: int64
+                                            type: integer
                                         type: object
                                       type: array
                                     vlanId:
                                       description: |-
                                         Network vlan ID
                                         Network vlan ID
-                                      type: number
+                                      format: int64
+                                      type: integer
                                   type: object
                                 type: array
                             type: object

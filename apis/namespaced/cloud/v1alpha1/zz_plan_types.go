@@ -41,7 +41,7 @@ type PlanInitParameters_2 struct {
 
 	// Size of the Savings Plan
 	// Size of the Savings Plan
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type PlanObservation_2 struct {
@@ -86,7 +86,7 @@ type PlanObservation_2 struct {
 
 	// Billing ID of the service
 	// ID of the service
-	ServiceID *float64 `json:"serviceId,omitempty" tf:"service_id,omitempty"`
+	ServiceID *int64 `json:"serviceId,omitempty" tf:"service_id,omitempty"`
 
 	// ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
 	// ID of the public cloud project
@@ -94,7 +94,7 @@ type PlanObservation_2 struct {
 
 	// Size of the Savings Plan
 	// Size of the Savings Plan
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Start date of the Savings Plan
 	// Start date of the Savings Plan
@@ -139,7 +139,7 @@ type PlanParameters_2 struct {
 	// Size of the Savings Plan
 	// Size of the Savings Plan
 	// +kubebuilder:validation:Optional
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 // PlanSpec defines the desired state of Plan

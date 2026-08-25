@@ -65,10 +65,9 @@ make build
 
 This provider is built on top of the [OVHcloud Terraform provider](https://github.com/ovh/terraform-provider-ovh). To upgrade to a new version (e.g. from `2.17.0` to `2.18.0`):
 
-1. **Update the Makefile** – change the two version references:
+1. **Update the Makefile** – change the version reference:
    ```makefile
    export TERRAFORM_PROVIDER_VERSION ?= <new_version>
-   export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-ovh_v<new_version>
    ```
 
 2. **Update `go.mod`** – bump the dependency:

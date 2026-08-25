@@ -27,11 +27,11 @@ type LogsOutputOpensearchAliasInitParameters struct {
 
 	// Number of indices linked
 	// Number of index
-	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
+	NbIndex *int64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
 	// Number of streams linked
 	// Number of shard
-	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
+	NbStream *int64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
 	// The service name
@@ -58,7 +58,7 @@ type LogsOutputOpensearchAliasObservation struct {
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
 	// Current alias size (in bytes)
-	CurrentSize *float64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
+	CurrentSize *int64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
 
 	// Index description
 	// Alias description
@@ -81,11 +81,11 @@ type LogsOutputOpensearchAliasObservation struct {
 
 	// Number of indices linked
 	// Number of index
-	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
+	NbIndex *int64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
 	// Number of streams linked
 	// Number of shard
-	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
+	NbStream *int64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
 	// The service name
@@ -121,12 +121,12 @@ type LogsOutputOpensearchAliasParameters struct {
 	// Number of indices linked
 	// Number of index
 	// +kubebuilder:validation:Optional
-	NbIndex *float64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
+	NbIndex *int64 `json:"nbIndex,omitempty" tf:"nb_index,omitempty"`
 
 	// Number of streams linked
 	// Number of shard
 	// +kubebuilder:validation:Optional
-	NbStream *float64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
+	NbStream *int64 `json:"nbStream,omitempty" tf:"nb_stream,omitempty"`
 
 	// The service name
 	// The service name

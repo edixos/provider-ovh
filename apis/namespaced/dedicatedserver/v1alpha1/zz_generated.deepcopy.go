@@ -549,7 +549,7 @@ func (in *ServerUpdateInitParameters) DeepCopyInto(out *ServerUpdateInitParamete
 	*out = *in
 	if in.BootID != nil {
 		in, out := &in.BootID, &out.BootID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.BootScript != nil {
@@ -631,7 +631,7 @@ func (in *ServerUpdateObservation) DeepCopyInto(out *ServerUpdateObservation) {
 	*out = *in
 	if in.BootID != nil {
 		in, out := &in.BootID, &out.BootID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.BootScript != nil {
@@ -686,7 +686,7 @@ func (in *ServerUpdateParameters) DeepCopyInto(out *ServerUpdateParameters) {
 	*out = *in
 	if in.BootID != nil {
 		in, out := &in.BootID, &out.BootID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.BootScript != nil {

@@ -393,16 +393,25 @@ spec:
                           items:
                             properties:
                               description:
-                                description: A description associated with the user.
+                                description: |-
+                                  A description associated with the user.
+                                  description
                                 type: string
                               domain:
-                                description: expiration date
+                                description: |-
+                                  expiration date
+                                  expiration date
                                 type: string
                               orderDetailId:
-                                description: order detail id
-                                type: number
+                                description: |-
+                                  order detail id
+                                  order detail id
+                                format: int64
+                                type: integer
                               quantity:
-                                description: quantity
+                                description: |-
+                                  quantity
+                                  quantity
                                 type: string
                             type: object
                           type: array
@@ -415,7 +424,8 @@ spec:
                           description: |-
                             order id, the same as the id
                             order id
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   ovhSubsidiary:

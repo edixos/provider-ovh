@@ -102,7 +102,8 @@ spec:
                           description: |-
                             The record tag
                             Tag of the DNSSEC key
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                 type: object
@@ -149,7 +150,8 @@ spec:
                           description: |-
                             The record tag
                             Tag of the DNSSEC key
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                 type: object
@@ -283,7 +285,8 @@ spec:
                           description: |-
                             The record tag
                             Tag of the DNSSEC key
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   id:

@@ -62,7 +62,8 @@ spec:
                     description: |-
                       boot id of the server
                       The boot id of your dedicated server.
-                    type: number
+                    format: int64
+                    type: integer
                   bootScript:
                     description: |-
                       boot script of the server
@@ -111,7 +112,8 @@ spec:
                     description: |-
                       boot id of the server
                       The boot id of your dedicated server.
-                    type: number
+                    format: int64
+                    type: integer
                   bootScript:
                     description: |-
                       boot script of the server
@@ -215,7 +217,8 @@ spec:
                     description: |-
                       boot id of the server
                       The boot id of your dedicated server.
-                    type: number
+                    format: int64
+                    type: integer
                   bootScript:
                     description: |-
                       boot script of the server

@@ -84,7 +84,8 @@ spec:
                     description: |-
                       Cold storage retention in year
                       Cold storage retention in year
-                    type: number
+                    format: int64
+                    type: integer
                   coldStorageTarget:
                     description: |-
                       ColdStorage destination. One of "PCA", "PCS"
@@ -111,7 +112,8 @@ spec:
                     description: |-
                       Maximum indexing size (in GB)
                       Maximum indexing size (in GB)
-                    type: number
+                    format: int64
+                    type: integer
                   indexingNotifyEnabled:
                     description: |-
                       If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
@@ -185,7 +187,8 @@ spec:
                     description: |-
                       Cold storage retention in year
                       Cold storage retention in year
-                    type: number
+                    format: int64
+                    type: integer
                   coldStorageTarget:
                     description: |-
                       ColdStorage destination. One of "PCA", "PCS"
@@ -212,7 +215,8 @@ spec:
                     description: |-
                       Maximum indexing size (in GB)
                       Maximum indexing size (in GB)
-                    type: number
+                    format: int64
+                    type: integer
                   indexingNotifyEnabled:
                     description: |-
                       If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
@@ -355,7 +359,8 @@ spec:
                     description: |-
                       Cold storage retention in year
                       Cold storage retention in year
-                    type: number
+                    format: int64
+                    type: integer
                   coldStorageTarget:
                     description: |-
                       ColdStorage destination. One of "PCA", "PCS"
@@ -389,7 +394,8 @@ spec:
                     description: |-
                       Maximum indexing size (in GB)
                       Maximum indexing size (in GB)
-                    type: number
+                    format: int64
+                    type: integer
                   indexingNotifyEnabled:
                     description: |-
                       If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
@@ -409,12 +415,14 @@ spec:
                     description: |-
                       Number of alert condition
                       Number of alert condition
-                    type: number
+                    format: int64
+                    type: integer
                   nbArchive:
                     description: |-
                       Number of coldstored archivesr
                       Number of coldstored archives
-                    type: number
+                    format: int64
+                    type: integer
                   parentStreamId:
                     description: |-
                       Parent stream ID

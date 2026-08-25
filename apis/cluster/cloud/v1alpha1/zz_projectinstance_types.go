@@ -19,6 +19,7 @@ type AttachedVolumesInitParameters struct {
 type AttachedVolumesObservation struct {
 
 	// Floating IP ID
+	// Volume id
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
@@ -33,7 +34,7 @@ type AutoBackupInitParameters struct {
 
 	// Number of backup to keep
 	// Number of backup to keep
-	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 }
 
 type AutoBackupObservation struct {
@@ -44,7 +45,7 @@ type AutoBackupObservation struct {
 
 	// Number of backup to keep
 	// Number of backup to keep
-	Rotation *float64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation,omitempty" tf:"rotation,omitempty"`
 }
 
 type AutoBackupParameters struct {
@@ -57,7 +58,7 @@ type AutoBackupParameters struct {
 	// Number of backup to keep
 	// Number of backup to keep
 	// +kubebuilder:validation:Optional
-	Rotation *float64 `json:"rotation" tf:"rotation,omitempty"`
+	Rotation *int64 `json:"rotation" tf:"rotation,omitempty"`
 }
 
 type BootFromInitParameters struct {
@@ -186,7 +187,7 @@ type NetworkCreateInitParameters struct {
 
 	// Network vlan ID
 	// Network vlan ID
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type NetworkCreateObservation struct {
@@ -201,7 +202,7 @@ type NetworkCreateObservation struct {
 
 	// Network vlan ID
 	// Network vlan ID
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type NetworkCreateParameters struct {
@@ -219,7 +220,7 @@ type NetworkCreateParameters struct {
 	// Network vlan ID
 	// Network vlan ID
 	// +kubebuilder:validation:Optional
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type PrivateFloatingIPInitParameters struct {
@@ -385,10 +386,12 @@ type ProjectInstanceAddressesInitParameters struct {
 type ProjectInstanceAddressesObservation struct {
 
 	// Instance IP in the private network
+	// IP address
 	IP *string `json:"ip,omitempty" tf:"ip,omitempty"`
 
 	// IP version
-	Version *float64 `json:"version,omitempty" tf:"version,omitempty"`
+	// IP version
+	Version *int64 `json:"version,omitempty" tf:"version,omitempty"`
 }
 
 type ProjectInstanceAddressesParameters struct {
@@ -457,7 +460,7 @@ type ProjectInstanceInitParameters struct {
 	BootFrom []BootFromInitParameters `json:"bootFrom,omitempty" tf:"boot_from,omitempty"`
 
 	// Create multiple instances
-	Bulk *float64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
+	Bulk *int64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
 
 	// Flavor information
 	// Flavor information
@@ -558,7 +561,7 @@ type ProjectInstanceObservation struct {
 	BootFrom []BootFromObservation `json:"bootFrom,omitempty" tf:"boot_from,omitempty"`
 
 	// Create multiple instances
-	Bulk *float64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
+	Bulk *int64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
 
 	// Flavor information
 	// Flavor information
@@ -644,7 +647,7 @@ type ProjectInstanceParameters struct {
 
 	// Create multiple instances
 	// +kubebuilder:validation:Optional
-	Bulk *float64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
+	Bulk *int64 `json:"bulk,omitempty" tf:"bulk,omitempty"`
 
 	// Flavor information
 	// Flavor information
@@ -760,7 +763,7 @@ type SubnetInitParameters struct {
 
 	// IP version
 	// IP version
-	IPVersion *float64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
+	IPVersion *int64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
 }
 
 type SubnetObservation struct {
@@ -774,7 +777,7 @@ type SubnetObservation struct {
 
 	// IP version
 	// IP version
-	IPVersion *float64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
+	IPVersion *int64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
 }
 
 type SubnetParameters struct {
@@ -791,7 +794,7 @@ type SubnetParameters struct {
 	// IP version
 	// IP version
 	// +kubebuilder:validation:Optional
-	IPVersion *float64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
+	IPVersion *int64 `json:"ipVersion,omitempty" tf:"ip_version,omitempty"`
 }
 
 // ProjectInstanceSpec defines the desired state of ProjectInstance

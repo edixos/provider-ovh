@@ -151,7 +151,8 @@ spec:
                     description: |-
                       Minimum insync replica accepted for this topic. Should be superior to 0
                       Minimum insync replica accepted for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   name:
                     description: |-
                       Name of the topic. No spaces allowed.
@@ -161,22 +162,26 @@ spec:
                     description: |-
                       Number of partitions for this topic. Should be superior to 0
                       Number of partitions for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   replication:
                     description: |-
                       Number of replication for this topic. Should be superior to 1
                       Number of replication for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionBytes:
                     description: |-
                       Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
                       Number of bytes for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionHours:
                     description: |-
                       Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
                       Number of hours for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -286,7 +291,8 @@ spec:
                     description: |-
                       Minimum insync replica accepted for this topic. Should be superior to 0
                       Minimum insync replica accepted for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   name:
                     description: |-
                       Name of the topic. No spaces allowed.
@@ -296,22 +302,26 @@ spec:
                     description: |-
                       Number of partitions for this topic. Should be superior to 0
                       Number of partitions for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   replication:
                     description: |-
                       Number of replication for this topic. Should be superior to 1
                       Number of replication for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionBytes:
                     description: |-
                       Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
                       Number of bytes for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionHours:
                     description: |-
                       Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
                       Number of hours for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -402,7 +412,8 @@ spec:
                     description: |-
                       Minimum insync replica accepted for this topic. Should be superior to 0
                       Minimum insync replica accepted for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   name:
                     description: |-
                       Name of the topic. No spaces allowed.
@@ -412,22 +423,26 @@ spec:
                     description: |-
                       Number of partitions for this topic. Should be superior to 0
                       Number of partitions for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   replication:
                     description: |-
                       Number of replication for this topic. Should be superior to 1
                       Number of replication for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionBytes:
                     description: |-
                       Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
                       Number of bytes for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   retentionHours:
                     description: |-
                       Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
                       Number of hours for the retention of the data for this topic
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.

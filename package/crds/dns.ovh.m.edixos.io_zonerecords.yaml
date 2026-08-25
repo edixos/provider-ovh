@@ -69,7 +69,8 @@ spec:
                     type: string
                   ttl:
                     description: The TTL of the record, it shall be >= to 60.
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: The domain to add the record to
                     type: string
@@ -98,7 +99,8 @@ spec:
                     type: string
                   ttl:
                     description: The TTL of the record, it shall be >= to 60.
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: The domain to add the record to
                     type: string
@@ -193,7 +195,8 @@ spec:
                     type: string
                   ttl:
                     description: The TTL of the record, it shall be >= to 60.
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: The domain to add the record to
                     type: string

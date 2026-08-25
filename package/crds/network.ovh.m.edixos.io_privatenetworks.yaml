@@ -77,7 +77,8 @@ spec:
                   vlanId:
                     description: a vlan id to associate with the network. Changing
                       this value recreates the resource. Defaults to 0.
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -111,7 +112,8 @@ spec:
                   vlanId:
                     description: a vlan id to associate with the network. Changing
                       this value recreates the resource. Defaults to 0.
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -220,7 +222,6 @@ spec:
                     description: A map with region name as key, and region-specific
                       openstack id as value
                     type: object
-                    x-kubernetes-map-type: granular
                   regionsStatus:
                     description: (Deprecated) A map representing the status of the
                       network per region.
@@ -249,7 +250,8 @@ spec:
                   vlanId:
                     description: a vlan id to associate with the network. Changing
                       this value recreates the resource. Defaults to 0.
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               conditions:
                 description: Conditions of the resource.

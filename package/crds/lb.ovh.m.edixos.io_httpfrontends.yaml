@@ -74,10 +74,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   disabled:
                     description: 'Disable your frontend. Default: ''false'''
                     type: boolean
@@ -142,10 +144,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   disabled:
                     description: 'Disable your frontend. Default: ''false'''
                     type: boolean
@@ -273,10 +277,12 @@ spec:
                     x-kubernetes-list-type: set
                   defaultFarmId:
                     description: Default TCP Farm of your frontend
-                    type: number
+                    format: int64
+                    type: integer
                   defaultSslId:
                     description: Default ssl served to your customer
-                    type: number
+                    format: int64
+                    type: integer
                   disabled:
                     description: 'Disable your frontend. Default: ''false'''
                     type: boolean

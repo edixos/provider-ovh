@@ -60,7 +60,7 @@ type ProjectFailoverIPAttachObservation struct {
 
 	// Current operation progress in percent
 	// Current operation progress in percent
-	Progress *float64 `json:"progress,omitempty" tf:"progress,omitempty"`
+	Progress *int64 `json:"progress,omitempty" tf:"progress,omitempty"`
 
 	// The GUID of an instance to which the failover IP address is be attached
 	// Instance where ip is routed to

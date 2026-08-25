@@ -22,7 +22,7 @@ type HTTPFarmInitParameters struct {
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// define a backend healthcheck probe
 	Probe []ProbeInitParameters `json:"probe,omitempty" tf:"probe,omitempty"`
@@ -34,7 +34,7 @@ type HTTPFarmInitParameters struct {
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
-	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
+	VrackNetworkID *int64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
 	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
@@ -51,7 +51,7 @@ type HTTPFarmObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// define a backend healthcheck probe
 	Probe []ProbeObservation `json:"probe,omitempty" tf:"probe,omitempty"`
@@ -63,7 +63,7 @@ type HTTPFarmObservation struct {
 	Stickiness *string `json:"stickiness,omitempty" tf:"stickiness,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
-	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
+	VrackNetworkID *int64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
 	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
@@ -81,7 +81,7 @@ type HTTPFarmParameters struct {
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	// +kubebuilder:validation:Optional
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// define a backend healthcheck probe
 	// +kubebuilder:validation:Optional
@@ -97,7 +97,7 @@ type HTTPFarmParameters struct {
 
 	// Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
 	// +kubebuilder:validation:Optional
-	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
+	VrackNetworkID *int64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 
 	// Zone where the farm will be defined (ie. GRA, BHS also supports ALL)
 	// +kubebuilder:validation:Optional
@@ -110,7 +110,7 @@ type ProbeInitParameters struct {
 	ForceSSL *bool `json:"forceSsl,omitempty" tf:"force_ssl,omitempty"`
 
 	// probe interval, Value between 30 and 3600 seconds, default 30
-	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
+	Interval *int64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// What to match pattern against (contains, default, internal, matches, status)
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
@@ -125,7 +125,7 @@ type ProbeInitParameters struct {
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -140,7 +140,7 @@ type ProbeObservation struct {
 	ForceSSL *bool `json:"forceSsl,omitempty" tf:"force_ssl,omitempty"`
 
 	// probe interval, Value between 30 and 3600 seconds, default 30
-	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
+	Interval *int64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// What to match pattern against (contains, default, internal, matches, status)
 	Match *string `json:"match,omitempty" tf:"match,omitempty"`
@@ -155,7 +155,7 @@ type ProbeObservation struct {
 	Pattern *string `json:"pattern,omitempty" tf:"pattern,omitempty"`
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
@@ -172,7 +172,7 @@ type ProbeParameters struct {
 
 	// probe interval, Value between 30 and 3600 seconds, default 30
 	// +kubebuilder:validation:Optional
-	Interval *float64 `json:"interval,omitempty" tf:"interval,omitempty"`
+	Interval *int64 `json:"interval,omitempty" tf:"interval,omitempty"`
 
 	// What to match pattern against (contains, default, internal, matches, status)
 	// +kubebuilder:validation:Optional
@@ -192,7 +192,7 @@ type ProbeParameters struct {
 
 	// Port attached to your farm ([1..49151]). Inherited from frontend if null
 	// +kubebuilder:validation:Optional
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// Valid values : http, internal, mysql, oco, pgsql, smtp, tcp
 	// +kubebuilder:validation:Optional

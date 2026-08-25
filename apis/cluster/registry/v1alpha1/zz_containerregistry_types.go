@@ -69,7 +69,7 @@ type ContainerRegistryObservation struct {
 
 	// Current size of the registry (bytes)
 	// Current size of the registry (bytes)
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Registry status
 	// Registry status
@@ -116,6 +116,7 @@ type FeaturesInitParameters struct {
 type FeaturesObservation struct {
 
 	// Vulnerability scanning
+	// Vulnerability scanning
 	Vulnerability *bool `json:"vulnerability,omitempty" tf:"vulnerability,omitempty"`
 }
 
@@ -128,23 +129,30 @@ type PlanInitParameters struct {
 type PlanObservation struct {
 
 	// Plan code from the catalog
+	// Plan code from catalog
 	Code *string `json:"code,omitempty" tf:"code,omitempty"`
 
 	// Registry creation date
+	// Plan creation date
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
+	// Features of the plan
 	// Features of the plan
 	Features []FeaturesObservation `json:"features,omitempty" tf:"features,omitempty"`
 
 	// Registry ID
+	// Plan ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Registry name
+	// Plan name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// Container registry limits
+	// Container registry limits
 	RegistryLimits []RegistryLimitsObservation `json:"registryLimits,omitempty" tf:"registry_limits,omitempty"`
 
+	// Plan last update date
 	// Plan last update date
 	UpdatedAt *string `json:"updatedAt,omitempty" tf:"updated_at,omitempty"`
 }
@@ -158,10 +166,12 @@ type RegistryLimitsInitParameters struct {
 type RegistryLimitsObservation struct {
 
 	// Docker image storage limits in bytes
-	ImageStorage *float64 `json:"imageStorage,omitempty" tf:"image_storage,omitempty"`
+	// Docker image storage limits in bytes
+	ImageStorage *int64 `json:"imageStorage,omitempty" tf:"image_storage,omitempty"`
 
 	// Parallel requests on Docker image API (/v2 Docker registry API)
-	ParallelRequest *float64 `json:"parallelRequest,omitempty" tf:"parallel_request,omitempty"`
+	// Parallel requests on Docker image API (/v2 Docker registry API)
+	ParallelRequest *int64 `json:"parallelRequest,omitempty" tf:"parallel_request,omitempty"`
 }
 
 type RegistryLimitsParameters struct {

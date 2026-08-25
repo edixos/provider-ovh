@@ -17,7 +17,7 @@ func (in *ActionInitParameters) DeepCopyInto(out *ActionInitParameters) {
 	*out = *in
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {
@@ -47,7 +47,7 @@ func (in *ActionObservation) DeepCopyInto(out *ActionObservation) {
 	*out = *in
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {
@@ -77,7 +77,7 @@ func (in *ActionParameters) DeepCopyInto(out *ActionParameters) {
 	*out = *in
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {
@@ -207,7 +207,7 @@ func (in *DetailsObservation) DeepCopyInto(out *DetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -654,7 +654,7 @@ func (in *HTTPFarmInitParameters) DeepCopyInto(out *HTTPFarmInitParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -676,7 +676,7 @@ func (in *HTTPFarmInitParameters) DeepCopyInto(out *HTTPFarmInitParameters) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -748,7 +748,7 @@ func (in *HTTPFarmObservation) DeepCopyInto(out *HTTPFarmObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -770,7 +770,7 @@ func (in *HTTPFarmObservation) DeepCopyInto(out *HTTPFarmObservation) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -805,7 +805,7 @@ func (in *HTTPFarmParameters) DeepCopyInto(out *HTTPFarmParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -827,7 +827,7 @@ func (in *HTTPFarmParameters) DeepCopyInto(out *HTTPFarmParameters) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -899,7 +899,7 @@ func (in *HTTPFarmServerInitParameters) DeepCopyInto(out *HTTPFarmServerInitPara
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.OnMarkedDown != nil {
@@ -909,7 +909,7 @@ func (in *HTTPFarmServerInitParameters) DeepCopyInto(out *HTTPFarmServerInitPara
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -939,7 +939,7 @@ func (in *HTTPFarmServerInitParameters) DeepCopyInto(out *HTTPFarmServerInitPara
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1016,7 +1016,7 @@ func (in *HTTPFarmServerObservation) DeepCopyInto(out *HTTPFarmServerObservation
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -1031,7 +1031,7 @@ func (in *HTTPFarmServerObservation) DeepCopyInto(out *HTTPFarmServerObservation
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -1061,7 +1061,7 @@ func (in *HTTPFarmServerObservation) DeepCopyInto(out *HTTPFarmServerObservation
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1101,7 +1101,7 @@ func (in *HTTPFarmServerParameters) DeepCopyInto(out *HTTPFarmServerParameters) 
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.OnMarkedDown != nil {
@@ -1111,7 +1111,7 @@ func (in *HTTPFarmServerParameters) DeepCopyInto(out *HTTPFarmServerParameters) 
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -1141,7 +1141,7 @@ func (in *HTTPFarmServerParameters) DeepCopyInto(out *HTTPFarmServerParameters) 
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1280,12 +1280,12 @@ func (in *HTTPFrontendInitParameters) DeepCopyInto(out *HTTPFrontendInitParamete
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disabled != nil {
@@ -1410,12 +1410,12 @@ func (in *HTTPFrontendObservation) DeepCopyInto(out *HTTPFrontendObservation) {
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disabled != nil {
@@ -1513,12 +1513,12 @@ func (in *HTTPFrontendParameters) DeepCopyInto(out *HTTPFrontendParameters) {
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disabled != nil {
@@ -1663,7 +1663,7 @@ func (in *HTTPRouteInitParameters) DeepCopyInto(out *HTTPRouteInitParameters) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1673,7 +1673,7 @@ func (in *HTTPRouteInitParameters) DeepCopyInto(out *HTTPRouteInitParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1737,7 +1737,7 @@ func (in *HTTPRouteObservation) DeepCopyInto(out *HTTPRouteObservation) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -1764,7 +1764,7 @@ func (in *HTTPRouteObservation) DeepCopyInto(out *HTTPRouteObservation) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1796,7 +1796,7 @@ func (in *HTTPRouteParameters) DeepCopyInto(out *HTTPRouteParameters) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1806,7 +1806,7 @@ func (in *HTTPRouteParameters) DeepCopyInto(out *HTTPRouteParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3059,7 +3059,7 @@ func (in *OrderObservation) DeepCopyInto(out *OrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3877,7 +3877,7 @@ func (in *ProbeInitParameters) DeepCopyInto(out *ProbeInitParameters) {
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -3902,7 +3902,7 @@ func (in *ProbeInitParameters) DeepCopyInto(out *ProbeInitParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -3937,7 +3937,7 @@ func (in *ProbeObservation) DeepCopyInto(out *ProbeObservation) {
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -3962,7 +3962,7 @@ func (in *ProbeObservation) DeepCopyInto(out *ProbeObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -3997,7 +3997,7 @@ func (in *ProbeParameters) DeepCopyInto(out *ProbeParameters) {
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -4022,7 +4022,7 @@ func (in *ProbeParameters) DeepCopyInto(out *ProbeParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -4833,7 +4833,7 @@ func (in *RulesObservation) DeepCopyInto(out *RulesObservation) {
 	}
 	if in.RuleID != nil {
 		in, out := &in.RuleID, &out.RuleID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.SubField != nil {
@@ -5227,7 +5227,7 @@ func (in *TCPFarmInitParameters) DeepCopyInto(out *TCPFarmInitParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5249,7 +5249,7 @@ func (in *TCPFarmInitParameters) DeepCopyInto(out *TCPFarmInitParameters) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -5321,7 +5321,7 @@ func (in *TCPFarmObservation) DeepCopyInto(out *TCPFarmObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5343,7 +5343,7 @@ func (in *TCPFarmObservation) DeepCopyInto(out *TCPFarmObservation) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -5378,7 +5378,7 @@ func (in *TCPFarmParameters) DeepCopyInto(out *TCPFarmParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5400,7 +5400,7 @@ func (in *TCPFarmParameters) DeepCopyInto(out *TCPFarmParameters) {
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Zone != nil {
@@ -5430,7 +5430,7 @@ func (in *TCPFarmProbeInitParameters) DeepCopyInto(out *TCPFarmProbeInitParamete
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -5455,7 +5455,7 @@ func (in *TCPFarmProbeInitParameters) DeepCopyInto(out *TCPFarmProbeInitParamete
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -5490,7 +5490,7 @@ func (in *TCPFarmProbeObservation) DeepCopyInto(out *TCPFarmProbeObservation) {
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -5515,7 +5515,7 @@ func (in *TCPFarmProbeObservation) DeepCopyInto(out *TCPFarmProbeObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -5550,7 +5550,7 @@ func (in *TCPFarmProbeParameters) DeepCopyInto(out *TCPFarmProbeParameters) {
 	}
 	if in.Interval != nil {
 		in, out := &in.Interval, &out.Interval
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Match != nil {
@@ -5575,7 +5575,7 @@ func (in *TCPFarmProbeParameters) DeepCopyInto(out *TCPFarmProbeParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Type != nil {
@@ -5652,7 +5652,7 @@ func (in *TCPFarmServerInitParameters) DeepCopyInto(out *TCPFarmServerInitParame
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.OnMarkedDown != nil {
@@ -5662,7 +5662,7 @@ func (in *TCPFarmServerInitParameters) DeepCopyInto(out *TCPFarmServerInitParame
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5692,7 +5692,7 @@ func (in *TCPFarmServerInitParameters) DeepCopyInto(out *TCPFarmServerInitParame
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -5764,7 +5764,7 @@ func (in *TCPFarmServerObservation) DeepCopyInto(out *TCPFarmServerObservation) 
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -5779,7 +5779,7 @@ func (in *TCPFarmServerObservation) DeepCopyInto(out *TCPFarmServerObservation) 
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5809,7 +5809,7 @@ func (in *TCPFarmServerObservation) DeepCopyInto(out *TCPFarmServerObservation) 
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -5849,7 +5849,7 @@ func (in *TCPFarmServerParameters) DeepCopyInto(out *TCPFarmServerParameters) {
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.OnMarkedDown != nil {
@@ -5859,7 +5859,7 @@ func (in *TCPFarmServerParameters) DeepCopyInto(out *TCPFarmServerParameters) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Probe != nil {
@@ -5889,7 +5889,7 @@ func (in *TCPFarmServerParameters) DeepCopyInto(out *TCPFarmServerParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6028,12 +6028,12 @@ func (in *TCPFrontendInitParameters) DeepCopyInto(out *TCPFrontendInitParameters
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DeniedSource != nil {
@@ -6148,12 +6148,12 @@ func (in *TCPFrontendObservation) DeepCopyInto(out *TCPFrontendObservation) {
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DeniedSource != nil {
@@ -6241,12 +6241,12 @@ func (in *TCPFrontendParameters) DeepCopyInto(out *TCPFrontendParameters) {
 	}
 	if in.DefaultFarmID != nil {
 		in, out := &in.DefaultFarmID, &out.DefaultFarmID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DefaultSSLID != nil {
 		in, out := &in.DefaultSSLID, &out.DefaultSSLID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DeniedSource != nil {
@@ -6456,7 +6456,7 @@ func (in *TCPRouteInitParameters) DeepCopyInto(out *TCPRouteInitParameters) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -6466,7 +6466,7 @@ func (in *TCPRouteInitParameters) DeepCopyInto(out *TCPRouteInitParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6530,7 +6530,7 @@ func (in *TCPRouteObservation) DeepCopyInto(out *TCPRouteObservation) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ID != nil {
@@ -6557,7 +6557,7 @@ func (in *TCPRouteObservation) DeepCopyInto(out *TCPRouteObservation) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6589,7 +6589,7 @@ func (in *TCPRouteParameters) DeepCopyInto(out *TCPRouteParameters) {
 	}
 	if in.FrontendID != nil {
 		in, out := &in.FrontendID, &out.FrontendID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -6599,7 +6599,7 @@ func (in *TCPRouteParameters) DeepCopyInto(out *TCPRouteParameters) {
 	}
 	if in.Weight != nil {
 		in, out := &in.Weight, &out.Weight
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6918,7 +6918,7 @@ func (in *TCPRouteRulesObservation) DeepCopyInto(out *TCPRouteRulesObservation) 
 	}
 	if in.RuleID != nil {
 		in, out := &in.RuleID, &out.RuleID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.SubField != nil {
@@ -7765,11 +7765,11 @@ func (in *VrackNetworkInitParameters) DeepCopyInto(out *VrackNetworkInitParamete
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = make([]*float64, len(*in))
+		*out = make([]*int64, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = new(float64)
+				*out = new(int64)
 				**out = **in
 			}
 		}
@@ -7791,7 +7791,7 @@ func (in *VrackNetworkInitParameters) DeepCopyInto(out *VrackNetworkInitParamete
 	}
 	if in.Vlan != nil {
 		in, out := &in.Vlan, &out.Vlan
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -7848,11 +7848,11 @@ func (in *VrackNetworkObservation) DeepCopyInto(out *VrackNetworkObservation) {
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = make([]*float64, len(*in))
+		*out = make([]*int64, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = new(float64)
+				*out = new(int64)
 				**out = **in
 			}
 		}
@@ -7879,12 +7879,12 @@ func (in *VrackNetworkObservation) DeepCopyInto(out *VrackNetworkObservation) {
 	}
 	if in.Vlan != nil {
 		in, out := &in.Vlan, &out.Vlan
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.VrackNetworkID != nil {
 		in, out := &in.VrackNetworkID, &out.VrackNetworkID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -7909,11 +7909,11 @@ func (in *VrackNetworkParameters) DeepCopyInto(out *VrackNetworkParameters) {
 	}
 	if in.FarmID != nil {
 		in, out := &in.FarmID, &out.FarmID
-		*out = make([]*float64, len(*in))
+		*out = make([]*int64, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = new(float64)
+				*out = new(int64)
 				**out = **in
 			}
 		}
@@ -7935,7 +7935,7 @@ func (in *VrackNetworkParameters) DeepCopyInto(out *VrackNetworkParameters) {
 	}
 	if in.Vlan != nil {
 		in, out := &in.Vlan, &out.Vlan
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }

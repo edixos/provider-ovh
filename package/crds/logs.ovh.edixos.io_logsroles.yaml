@@ -240,12 +240,14 @@ spec:
                     description: |-
                       number of member for the role
                       Number of members in the role
-                    type: number
+                    format: int64
+                    type: integer
                   nbPermission:
                     description: |-
                       number of configured permission for the role
                       Number of permissions assigned to the role
-                    type: number
+                    format: int64
+                    type: integer
                   roleId:
                     description: Role identifier
                     type: string

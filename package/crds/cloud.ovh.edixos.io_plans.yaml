@@ -104,7 +104,8 @@ spec:
                     description: |-
                       Size of the Savings Plan
                       Size of the Savings Plan
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -151,7 +152,8 @@ spec:
                     description: |-
                       Size of the Savings Plan
                       Size of the Savings Plan
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -315,7 +317,8 @@ spec:
                     description: |-
                       Billing ID of the service
                       ID of the service
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -325,7 +328,8 @@ spec:
                     description: |-
                       Size of the Savings Plan
                       Size of the Savings Plan
-                    type: number
+                    format: int64
+                    type: integer
                   startDate:
                     description: |-
                       Start date of the Savings Plan

@@ -24,10 +24,10 @@ type HTTPFrontendInitParameters struct {
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// Default TCP Farm of your frontend
-	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
+	DefaultFarmID *int64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Default ssl served to your customer
-	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+	DefaultSSLID *int64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
@@ -68,10 +68,10 @@ type HTTPFrontendObservation struct {
 	DedicatedIpfo []*string `json:"dedicatedIpfo,omitempty" tf:"dedicated_ipfo,omitempty"`
 
 	// Default TCP Farm of your frontend
-	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
+	DefaultFarmID *int64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Default ssl served to your customer
-	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+	DefaultSSLID *int64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
 	Disabled *bool `json:"disabled,omitempty" tf:"disabled,omitempty"`
@@ -118,11 +118,11 @@ type HTTPFrontendParameters struct {
 
 	// Default TCP Farm of your frontend
 	// +kubebuilder:validation:Optional
-	DefaultFarmID *float64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
+	DefaultFarmID *int64 `json:"defaultFarmId,omitempty" tf:"default_farm_id,omitempty"`
 
 	// Default ssl served to your customer
 	// +kubebuilder:validation:Optional
-	DefaultSSLID *float64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
+	DefaultSSLID *int64 `json:"defaultSslId,omitempty" tf:"default_ssl_id,omitempty"`
 
 	// Disable your frontend. Default: 'false'
 	// +kubebuilder:validation:Optional

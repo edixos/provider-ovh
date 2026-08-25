@@ -193,7 +193,7 @@ func (in *AutoBackupInitParameters) DeepCopyInto(out *AutoBackupInitParameters) 
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -218,7 +218,7 @@ func (in *AutoBackupObservation) DeepCopyInto(out *AutoBackupObservation) {
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -243,7 +243,7 @@ func (in *AutoBackupParameters) DeepCopyInto(out *AutoBackupParameters) {
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1390,7 +1390,7 @@ func (in *DetailsObservation) DeepCopyInto(out *DetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -4477,7 +4477,7 @@ func (in *NetworkCreateInitParameters) DeepCopyInto(out *NetworkCreateInitParame
 	}
 	if in.VlanID != nil {
 		in, out := &in.VlanID, &out.VlanID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -4509,7 +4509,7 @@ func (in *NetworkCreateObservation) DeepCopyInto(out *NetworkCreateObservation) 
 	}
 	if in.VlanID != nil {
 		in, out := &in.VlanID, &out.VlanID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -4541,7 +4541,7 @@ func (in *NetworkCreateParameters) DeepCopyInto(out *NetworkCreateParameters) {
 	}
 	if in.VlanID != nil {
 		in, out := &in.VlanID, &out.VlanID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -5046,7 +5046,7 @@ func (in *OrderObservation) DeepCopyInto(out *OrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -5290,7 +5290,7 @@ func (in *PlanInitParameters_2) DeepCopyInto(out *PlanInitParameters_2) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -5434,7 +5434,7 @@ func (in *PlanObservation_2) DeepCopyInto(out *PlanObservation_2) {
 	}
 	if in.ServiceID != nil {
 		in, out := &in.ServiceID, &out.ServiceID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -5444,7 +5444,7 @@ func (in *PlanObservation_2) DeepCopyInto(out *PlanObservation_2) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.StartDate != nil {
@@ -5747,7 +5747,7 @@ func (in *PlanParameters_2) DeepCopyInto(out *PlanParameters_2) {
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6719,7 +6719,7 @@ func (in *ProjectInstanceAddressesObservation) DeepCopyInto(out *ProjectInstance
 	}
 	if in.Version != nil {
 		in, out := &in.Version, &out.Version
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -6898,7 +6898,7 @@ func (in *ProjectInstanceInitParameters) DeepCopyInto(out *ProjectInstanceInitPa
 	}
 	if in.Bulk != nil {
 		in, out := &in.Bulk, &out.Bulk
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Flavor != nil {
@@ -7124,7 +7124,7 @@ func (in *ProjectInstanceObservation) DeepCopyInto(out *ProjectInstanceObservati
 	}
 	if in.Bulk != nil {
 		in, out := &in.Bulk, &out.Bulk
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Flavor != nil {
@@ -7253,7 +7253,7 @@ func (in *ProjectInstanceParameters) DeepCopyInto(out *ProjectInstanceParameters
 	}
 	if in.Bulk != nil {
 		in, out := &in.Bulk, &out.Bulk
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Flavor != nil {
@@ -12968,7 +12968,7 @@ func (in *SubnetInitParameters) DeepCopyInto(out *SubnetInitParameters) {
 	}
 	if in.IPVersion != nil {
 		in, out := &in.IPVersion, &out.IPVersion
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -12998,7 +12998,7 @@ func (in *SubnetObservation) DeepCopyInto(out *SubnetObservation) {
 	}
 	if in.IPVersion != nil {
 		in, out := &in.IPVersion, &out.IPVersion
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -13028,7 +13028,7 @@ func (in *SubnetParameters) DeepCopyInto(out *SubnetParameters) {
 	}
 	if in.IPVersion != nil {
 		in, out := &in.IPVersion, &out.IPVersion
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -13396,18 +13396,9 @@ func (in *UserInitParameters) DeepCopyInto(out *UserInitParameters) {
 	}
 	if in.OpenstackRc != nil {
 		in, out := &in.OpenstackRc, &out.OpenstackRc
-		*out = make(map[string]*string, len(*in))
+		*out = make(map[string]string, len(*in))
 		for key, val := range *in {
-			var outVal *string
-			if val == nil {
-				(*out)[key] = nil
-			} else {
-				inVal := (*in)[key]
-				in, out := &inVal, &outVal
-				*out = new(string)
-				**out = **in
-			}
-			(*out)[key] = outVal
+			(*out)[key] = val
 		}
 	}
 	if in.PasswordReset != nil {
@@ -13500,18 +13491,9 @@ func (in *UserObservation) DeepCopyInto(out *UserObservation) {
 	}
 	if in.OpenstackRc != nil {
 		in, out := &in.OpenstackRc, &out.OpenstackRc
-		*out = make(map[string]*string, len(*in))
+		*out = make(map[string]string, len(*in))
 		for key, val := range *in {
-			var outVal *string
-			if val == nil {
-				(*out)[key] = nil
-			} else {
-				inVal := (*in)[key]
-				in, out := &inVal, &outVal
-				*out = new(string)
-				**out = **in
-			}
-			(*out)[key] = outVal
+			(*out)[key] = val
 		}
 	}
 	if in.PasswordReset != nil {
@@ -13579,18 +13561,9 @@ func (in *UserParameters) DeepCopyInto(out *UserParameters) {
 	}
 	if in.OpenstackRc != nil {
 		in, out := &in.OpenstackRc, &out.OpenstackRc
-		*out = make(map[string]*string, len(*in))
+		*out = make(map[string]string, len(*in))
 		for key, val := range *in {
-			var outVal *string
-			if val == nil {
-				(*out)[key] = nil
-			} else {
-				inVal := (*in)[key]
-				in, out := &inVal, &outVal
-				*out = new(string)
-				**out = **in
-			}
-			(*out)[key] = outVal
+			(*out)[key] = val
 		}
 	}
 	if in.PasswordReset != nil {

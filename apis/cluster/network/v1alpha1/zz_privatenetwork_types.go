@@ -27,7 +27,7 @@ type PrivateNetworkInitParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type PrivateNetworkObservation struct {
@@ -46,8 +46,7 @@ type PrivateNetworkObservation struct {
 	RegionsAttributes []RegionsAttributesObservation `json:"regionsAttributes,omitempty" tf:"regions_attributes,omitempty"`
 
 	// A map with region name as key, and region-specific openstack id as value
-	// +mapType=granular
-	RegionsOpenstackIds map[string]*string `json:"regionsOpenstackIds,omitempty" tf:"regions_openstack_ids,omitempty"`
+	RegionsOpenstackIds map[string]string `json:"regionsOpenstackIds,omitempty" tf:"regions_openstack_ids,omitempty"`
 
 	// (Deprecated) A map representing the status of the network per region.
 	RegionsStatus []RegionsStatusObservation `json:"regionsStatus,omitempty" tf:"regions_status,omitempty"`
@@ -63,7 +62,7 @@ type PrivateNetworkObservation struct {
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type PrivateNetworkParameters struct {
@@ -84,10 +83,13 @@ type PrivateNetworkParameters struct {
 
 	// a vlan id to associate with the network. Changing this value recreates the resource. Defaults to 0.
 	// +kubebuilder:validation:Optional
-	VlanID *float64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
+	VlanID *int64 `json:"vlanId,omitempty" tf:"vlan_id,omitempty"`
 }
 
 type RegionsAttributesInitParameters struct {
+
+	// the status of the network. should be normally set to 'ACTIVE'.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type RegionsAttributesObservation struct {
@@ -102,9 +104,16 @@ type RegionsAttributesObservation struct {
 }
 
 type RegionsAttributesParameters struct {
+
+	// the status of the network. should be normally set to 'ACTIVE'.
+	// +kubebuilder:validation:Optional
+	Status *string `json:"status" tf:"status,omitempty"`
 }
 
 type RegionsStatusInitParameters struct {
+
+	// the status of the network. should be normally set to 'ACTIVE'.
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type RegionsStatusObservation struct {
@@ -115,6 +124,10 @@ type RegionsStatusObservation struct {
 }
 
 type RegionsStatusParameters struct {
+
+	// the status of the network. should be normally set to 'ACTIVE'.
+	// +kubebuilder:validation:Optional
+	Status *string `json:"status" tf:"status,omitempty"`
 }
 
 // PrivateNetworkSpec defines the desired state of PrivateNetwork
