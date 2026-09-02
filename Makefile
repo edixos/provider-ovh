@@ -4,7 +4,7 @@
 PROJECT_NAME ?= provider-ovh
 PROJECT_REPO ?= github.com/edixos/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION ?= 1.8.1
+export TERRAFORM_VERSION ?= 1.15.9
 
 export TERRAFORM_PROVIDER_SOURCE ?= ovh/ovh
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/ovh/terraform-provider-ovh
@@ -37,7 +37,7 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_REQUIRED_VERSION ?= 1.25.6
+GO_REQUIRED_VERSION ?= 1.25.13
 GOLANGCILINT_VERSION ?= 2.5.0
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
