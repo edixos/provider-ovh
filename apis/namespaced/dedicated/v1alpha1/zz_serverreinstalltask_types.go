@@ -109,11 +109,11 @@ type PartitioningLayoutInitParameters struct {
 
 	// : Hardware raid type (default is 1)
 	// Software raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
 	// Partition size in MiB (default value is 0)
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type PartitioningLayoutObservation struct {
@@ -132,11 +132,11 @@ type PartitioningLayoutObservation struct {
 
 	// : Hardware raid type (default is 1)
 	// Software raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
 	// Partition size in MiB (default value is 0)
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type PartitioningLayoutParameters struct {
@@ -159,12 +159,12 @@ type PartitioningLayoutParameters struct {
 	// : Hardware raid type (default is 1)
 	// Software raid type (default is 1)
 	// +kubebuilder:validation:Optional
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Partition size in MiB (default value is 0 which means to fill the disk with that partition)
 	// Partition size in MiB (default value is 0)
 	// +kubebuilder:validation:Optional
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type ServerReinstallTaskCustomizationsInitParameters struct {
@@ -319,7 +319,7 @@ type ServerReinstallTaskInitParameters struct {
 
 	// If set, reboot the server on the specified boot id during destroy phase.
 	// If set, reboot the server on the specified boot id during destroy phase
-	BootidOnDestroy *float64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
+	BootidOnDestroy *int64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
 
 	// Available attributes and their types are OS-dependant. Example: hostname.
 	// OS reinstallation customizations
@@ -347,7 +347,7 @@ type ServerReinstallTaskObservation struct {
 
 	// If set, reboot the server on the specified boot id during destroy phase.
 	// If set, reboot the server on the specified boot id during destroy phase
-	BootidOnDestroy *float64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
+	BootidOnDestroy *int64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
 
 	// Details of this task. (should be Install asked)
 	// Details of this task
@@ -402,7 +402,7 @@ type ServerReinstallTaskParameters struct {
 	// If set, reboot the server on the specified boot id during destroy phase.
 	// If set, reboot the server on the specified boot id during destroy phase
 	// +kubebuilder:validation:Optional
-	BootidOnDestroy *float64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
+	BootidOnDestroy *int64 `json:"bootidOnDestroy,omitempty" tf:"bootid_on_destroy,omitempty"`
 
 	// Available attributes and their types are OS-dependant. Example: hostname.
 	// OS reinstallation customizations
@@ -435,7 +435,7 @@ type ServerReinstallTaskStorageInitParameters struct {
 
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
-	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
+	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
@@ -450,7 +450,7 @@ type ServerReinstallTaskStorageObservation struct {
 
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
-	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
+	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
@@ -466,7 +466,7 @@ type ServerReinstallTaskStorageParameters struct {
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
 	// +kubebuilder:validation:Optional
-	DiskGroupID *float64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
+	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
@@ -483,38 +483,38 @@ type StorageHardwareRaidInitParameters struct {
 
 	// : Number of arrays (default is 1)
 	// Number of arrays (default is 1)
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+	Arrays *int64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
 
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Hardware raid type (default is 1)
 	// Hardware raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Number of disks in the disk group involved in the spare (default is 0)
 	// Number of disks in the disk group involved in the spare (default is 0)
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
+	Spares *int64 `json:"spares,omitempty" tf:"spares,omitempty"`
 }
 
 type StorageHardwareRaidObservation struct {
 
 	// : Number of arrays (default is 1)
 	// Number of arrays (default is 1)
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+	Arrays *int64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
 
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Hardware raid type (default is 1)
 	// Hardware raid type (default is 1)
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Number of disks in the disk group involved in the spare (default is 0)
 	// Number of disks in the disk group involved in the spare (default is 0)
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
+	Spares *int64 `json:"spares,omitempty" tf:"spares,omitempty"`
 }
 
 type StorageHardwareRaidParameters struct {
@@ -522,29 +522,29 @@ type StorageHardwareRaidParameters struct {
 	// : Number of arrays (default is 1)
 	// Number of arrays (default is 1)
 	// +kubebuilder:validation:Optional
-	Arrays *float64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
+	Arrays *int64 `json:"arrays,omitempty" tf:"arrays,omitempty"`
 
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// +kubebuilder:validation:Optional
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Hardware raid type (default is 1)
 	// Hardware raid type (default is 1)
 	// +kubebuilder:validation:Optional
-	RaidLevel *float64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
+	RaidLevel *int64 `json:"raidLevel,omitempty" tf:"raid_level,omitempty"`
 
 	// : Number of disks in the disk group involved in the spare (default is 0)
 	// Number of disks in the disk group involved in the spare (default is 0)
 	// +kubebuilder:validation:Optional
-	Spares *float64 `json:"spares,omitempty" tf:"spares,omitempty"`
+	Spares *int64 `json:"spares,omitempty" tf:"spares,omitempty"`
 }
 
 type StoragePartitioningInitParameters struct {
 
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
 	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
@@ -559,7 +559,7 @@ type StoragePartitioningObservation struct {
 
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
 	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)
@@ -575,7 +575,7 @@ type StoragePartitioningParameters struct {
 	// : Total number of disks in the disk group involved in the hardware raid configuration (all disks of the disk group by default)
 	// Total number of disks in the disk group involved in the partitioning configuration (all disks of the disk group by default)
 	// +kubebuilder:validation:Optional
-	Disks *float64 `json:"disks,omitempty" tf:"disks,omitempty"`
+	Disks *int64 `json:"disks,omitempty" tf:"disks,omitempty"`
 
 	// : Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme). Accept multiple values (multiple partitions):
 	// Custom partitioning layout (default is the default layout of the operating system's default partitioning scheme)

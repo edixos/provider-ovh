@@ -77,21 +77,27 @@ controller sets against the same manager, sharing one `OperationTrackerStore`.
 Any change to a resource configurator must be applied to both trees, and the new
 `Configure` function must be added to *both* lists in `config/provider.go`.
 
-### Two reconciliation architectures
+### Two reconciliation architectures — both in-process, no Terraform CLI
 
 Upstream OVH resources are split between the Terraform Plugin SDK and the Plugin
-Framework, and this provider drives each differently — see `config/external_name.go`:
+Framework. Both are reconciled **in-process** against the compiled-in Go provider;
+the container image ships no Terraform CLI and no native provider binary — see
+`config/external_name.go`:
 
-- `TerraformPluginSDKExternalNameConfigs` — SDK resources, reconciled through the
-  Terraform CLI / SDK path.
+- `TerraformPluginSDKExternalNameConfigs` — SDKv2 resources, reconciled natively
+  against `ovh.Provider()` (via `WithTerraformProvider`). Their API types and CRD
+  schemas are generated from the Go schema, not `config/schema.json`.
 - `TerraformPluginFrameworkExternalNameConfigs` — Framework resources, reconciled
   natively over gRPC against an in-process `ovh.OvhProvider{}` instance.
-- `CLIReconciledExternalNameConfigs` — currently empty.
+- `CLIReconciledExternalNameConfigs` — currently empty. `WithIncludeList` must
+  still be passed this (empty) list: omitting it leaves upjet's catch-all `".+"`
+  default in place, which makes every resource match two include lists and panics
+  the generator.
 
 **These maps are also the include list.** `TerraformPluginSDKResourceList()` and
 `TerraformPluginFrameworkResourceList()` derive the regexes passed to
-`WithIncludeList` / `WithTerraformPluginFrameworkIncludeList`. A Terraform
-resource absent from both maps produces no CRD, no types, no controller.
+`WithTerraformPluginSDKIncludeList` / `WithTerraformPluginFrameworkIncludeList`.
+A Terraform resource absent from both maps produces no CRD, no types, no controller.
 
 ### External names
 
@@ -163,8 +169,8 @@ is committed as-is.
 
 ## Bumping the Terraform provider
 
-Change both `TERRAFORM_PROVIDER_VERSION` and `TERRAFORM_NATIVE_PROVIDER_BINARY`
-in the `Makefile`, bump `github.com/ovh/terraform-provider-ovh/v2` in `go.mod`,
+Change `TERRAFORM_PROVIDER_VERSION` in the `Makefile`, bump
+`github.com/ovh/terraform-provider-ovh/v2` in `go.mod`,
 `go mod tidy`, then `make generate` and `make build`. CI runs `make crddiff`
 (breaking CRD schema changes) and `make schema-version-diff` (native state schema
 version changes) on PRs — expect to react to their output.

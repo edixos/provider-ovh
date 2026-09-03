@@ -254,41 +254,62 @@ spec:
                     items:
                       properties:
                         code:
-                          description: Plan code from the catalog
+                          description: |-
+                            Plan code from the catalog
+                            Plan code from catalog
                           type: string
                         createdAt:
-                          description: Registry creation date
+                          description: |-
+                            Registry creation date
+                            Plan creation date
                           type: string
                         features:
-                          description: Features of the plan
+                          description: |-
+                            Features of the plan
+                            Features of the plan
                           items:
                             properties:
                               vulnerability:
-                                description: Vulnerability scanning
+                                description: |-
+                                  Vulnerability scanning
+                                  Vulnerability scanning
                                 type: boolean
                             type: object
                           type: array
                         id:
-                          description: Registry ID
+                          description: |-
+                            Registry ID
+                            Plan ID
                           type: string
                         name:
-                          description: Registry name
+                          description: |-
+                            Registry name
+                            Plan name
                           type: string
                         registryLimits:
-                          description: Container registry limits
+                          description: |-
+                            Container registry limits
+                            Container registry limits
                           items:
                             properties:
                               imageStorage:
-                                description: Docker image storage limits in bytes
-                                type: number
+                                description: |-
+                                  Docker image storage limits in bytes
+                                  Docker image storage limits in bytes
+                                format: int64
+                                type: integer
                               parallelRequest:
-                                description: Parallel requests on Docker image API
-                                  (/v2 Docker registry API)
-                                type: number
+                                description: |-
+                                  Parallel requests on Docker image API (/v2 Docker registry API)
+                                  Parallel requests on Docker image API (/v2 Docker registry API)
+                                format: int64
+                                type: integer
                             type: object
                           type: array
                         updatedAt:
-                          description: Plan last update date
+                          description: |-
+                            Plan last update date
+                            Plan last update date
                           type: string
                       type: object
                     type: array
@@ -315,7 +336,8 @@ spec:
                     description: |-
                       Current size of the registry (bytes)
                       Current size of the registry (bytes)
-                    type: number
+                    format: int64
+                    type: integer
                   status:
                     description: |-
                       Registry status

@@ -28,13 +28,13 @@ type TCPFarmServerInitParameters struct {
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// ID of the farm this server is attached to
-	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID *int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// enable action when backend marked down. (shutdown-sessions)
 	OnMarkedDown *string `json:"onMarkedDown,omitempty" tf:"on_marked_down,omitempty"`
 
 	// Port that backend will respond on
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	Probe *bool `json:"probe,omitempty" tf:"probe,omitempty"`
@@ -52,7 +52,7 @@ type TCPFarmServerInitParameters struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// used in loadbalancing algorithm
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type TCPFarmServerObservation struct {
@@ -69,7 +69,7 @@ type TCPFarmServerObservation struct {
 	DisplayName *string `json:"displayName,omitempty" tf:"display_name,omitempty"`
 
 	// ID of the farm this server is attached to
-	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID *int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -77,7 +77,7 @@ type TCPFarmServerObservation struct {
 	OnMarkedDown *string `json:"onMarkedDown,omitempty" tf:"on_marked_down,omitempty"`
 
 	// Port that backend will respond on
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	Probe *bool `json:"probe,omitempty" tf:"probe,omitempty"`
@@ -95,7 +95,7 @@ type TCPFarmServerObservation struct {
 	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 
 	// used in loadbalancing algorithm
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 type TCPFarmServerParameters struct {
@@ -117,7 +117,7 @@ type TCPFarmServerParameters struct {
 
 	// ID of the farm this server is attached to
 	// +kubebuilder:validation:Optional
-	FarmID *float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID *int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// enable action when backend marked down. (shutdown-sessions)
 	// +kubebuilder:validation:Optional
@@ -125,7 +125,7 @@ type TCPFarmServerParameters struct {
 
 	// Port that backend will respond on
 	// +kubebuilder:validation:Optional
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
 	// +kubebuilder:validation:Optional
@@ -149,7 +149,7 @@ type TCPFarmServerParameters struct {
 
 	// used in loadbalancing algorithm
 	// +kubebuilder:validation:Optional
-	Weight *float64 `json:"weight,omitempty" tf:"weight,omitempty"`
+	Weight *int64 `json:"weight,omitempty" tf:"weight,omitempty"`
 }
 
 // TCPFarmServerSpec defines the desired state of TCPFarmServer

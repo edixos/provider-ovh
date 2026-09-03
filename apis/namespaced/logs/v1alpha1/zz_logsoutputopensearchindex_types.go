@@ -22,7 +22,7 @@ type LogsOutputOpensearchIndexInitParameters struct {
 
 	// Number of shards
 	// Number of shard
-	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
+	NbShard *int64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
 	// The service name
@@ -45,7 +45,7 @@ type LogsOutputOpensearchIndexObservation struct {
 
 	// Current index size (in bytes)
 	// Current Index size (in bytes)
-	CurrentSize *float64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
+	CurrentSize *int64 `json:"currentSize,omitempty" tf:"current_size,omitempty"`
 
 	// Index description
 	// Index description
@@ -63,7 +63,7 @@ type LogsOutputOpensearchIndexObservation struct {
 
 	// Maximum index size (in bytes)
 	// Maximum index size (in bytes)
-	MaxSize *float64 `json:"maxSize,omitempty" tf:"max_size,omitempty"`
+	MaxSize *int64 `json:"maxSize,omitempty" tf:"max_size,omitempty"`
 
 	// Index name
 	// Index name
@@ -71,7 +71,7 @@ type LogsOutputOpensearchIndexObservation struct {
 
 	// Number of shards
 	// Number of shard
-	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
+	NbShard *int64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
 	// The service name
@@ -96,7 +96,7 @@ type LogsOutputOpensearchIndexParameters struct {
 	// Number of shards
 	// Number of shard
 	// +kubebuilder:validation:Optional
-	NbShard *float64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
+	NbShard *int64 `json:"nbShard,omitempty" tf:"nb_shard,omitempty"`
 
 	// The service name
 	// The service name

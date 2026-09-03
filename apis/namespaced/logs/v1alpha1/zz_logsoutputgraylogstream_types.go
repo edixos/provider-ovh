@@ -34,7 +34,7 @@ type LogsOutputGraylogStreamInitParameters struct {
 
 	// Cold storage retention in year
 	// Cold storage retention in year
-	ColdStorageRetention *float64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
+	ColdStorageRetention *int64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
 
 	// ColdStorage destination. One of "PCA", "PCS"
 	// ColdStorage destination
@@ -54,7 +54,7 @@ type LogsOutputGraylogStreamInitParameters struct {
 
 	// Maximum indexing size (in GB)
 	// Maximum indexing size (in GB)
-	IndexingMaxSize *float64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
+	IndexingMaxSize *int64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
 
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
@@ -109,7 +109,7 @@ type LogsOutputGraylogStreamObservation struct {
 
 	// Cold storage retention in year
 	// Cold storage retention in year
-	ColdStorageRetention *float64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
+	ColdStorageRetention *int64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
 
 	// ColdStorage destination. One of "PCA", "PCS"
 	// ColdStorage destination
@@ -135,7 +135,7 @@ type LogsOutputGraylogStreamObservation struct {
 
 	// Maximum indexing size (in GB)
 	// Maximum indexing size (in GB)
-	IndexingMaxSize *float64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
+	IndexingMaxSize *int64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
 
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
@@ -151,11 +151,11 @@ type LogsOutputGraylogStreamObservation struct {
 
 	// Number of alert condition
 	// Number of alert condition
-	NbAlertCondition *float64 `json:"nbAlertCondition,omitempty" tf:"nb_alert_condition,omitempty"`
+	NbAlertCondition *int64 `json:"nbAlertCondition,omitempty" tf:"nb_alert_condition,omitempty"`
 
 	// Number of coldstored archivesr
 	// Number of coldstored archives
-	NbArchive *float64 `json:"nbArchive,omitempty" tf:"nb_archive,omitempty"`
+	NbArchive *int64 `json:"nbArchive,omitempty" tf:"nb_archive,omitempty"`
 
 	// Parent stream ID
 	// Parent stream ID
@@ -215,7 +215,7 @@ type LogsOutputGraylogStreamParameters struct {
 	// Cold storage retention in year
 	// Cold storage retention in year
 	// +kubebuilder:validation:Optional
-	ColdStorageRetention *float64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
+	ColdStorageRetention *int64 `json:"coldStorageRetention,omitempty" tf:"cold_storage_retention,omitempty"`
 
 	// ColdStorage destination. One of "PCA", "PCS"
 	// ColdStorage destination
@@ -240,7 +240,7 @@ type LogsOutputGraylogStreamParameters struct {
 	// Maximum indexing size (in GB)
 	// Maximum indexing size (in GB)
 	// +kubebuilder:validation:Optional
-	IndexingMaxSize *float64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
+	IndexingMaxSize *int64 `json:"indexingMaxSize,omitempty" tf:"indexing_max_size,omitempty"`
 
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
 	// If set, notify when size is near 80, 90 or 100 % of the maximum configured setting

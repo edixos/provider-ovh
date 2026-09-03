@@ -354,12 +354,17 @@ spec:
                           items:
                             properties:
                               description:
+                                description: description
                                 type: string
                               domain:
+                                description: expiration date
                                 type: string
                               orderDetailId:
-                                type: number
+                                description: order detail id
+                                format: int64
+                                type: integer
                               quantity:
+                                description: quantity
                                 type: string
                             type: object
                           type: array
@@ -368,7 +373,8 @@ spec:
                           type: string
                         orderId:
                           description: order id
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   organisationId:
@@ -446,7 +452,9 @@ spec:
                     items:
                       properties:
                         serviceName:
-                          description: The internal name of your vrack
+                          description: |-
+                            The internal name of your vrack
+                            Service where ip is routed to
                           type: string
                       type: object
                     type: array

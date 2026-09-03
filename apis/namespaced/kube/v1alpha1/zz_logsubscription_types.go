@@ -99,8 +99,11 @@ type ResourceInitParameters struct {
 }
 
 type ResourceObservation struct {
+
+	// Name of the subscribed resource.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Type of the subscribed resource.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 }
 

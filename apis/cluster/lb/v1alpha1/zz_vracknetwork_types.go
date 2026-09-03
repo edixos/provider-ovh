@@ -21,7 +21,7 @@ type VrackNetworkInitParameters struct {
 
 	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
-	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID []*int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
@@ -37,7 +37,7 @@ type VrackNetworkInitParameters struct {
 
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
-	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
+	Vlan *int64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
 }
 
 type VrackNetworkObservation struct {
@@ -48,7 +48,7 @@ type VrackNetworkObservation struct {
 
 	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
-	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID []*int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -66,11 +66,11 @@ type VrackNetworkObservation struct {
 
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
-	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
+	Vlan *int64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
 
 	// Internal Load Balancer identifier of the vRack private network
 	// Internal Load Balancer identifier of the vRack private network
-	VrackNetworkID *float64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
+	VrackNetworkID *int64 `json:"vrackNetworkId,omitempty" tf:"vrack_network_id,omitempty"`
 }
 
 type VrackNetworkParameters struct {
@@ -83,7 +83,7 @@ type VrackNetworkParameters struct {
 	// This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
 	// This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
 	// +kubebuilder:validation:Optional
-	FarmID []*float64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
+	FarmID []*int64 `json:"farmId,omitempty" tf:"farm_id,omitempty"`
 
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
 	// An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
@@ -103,7 +103,7 @@ type VrackNetworkParameters struct {
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
 	// +kubebuilder:validation:Optional
-	Vlan *float64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
+	Vlan *int64 `json:"vlan,omitempty" tf:"vlan,omitempty"`
 }
 
 // VrackNetworkSpec defines the desired state of VrackNetwork

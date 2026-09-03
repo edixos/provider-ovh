@@ -522,7 +522,7 @@ func (in *DsRecordsDsRecordsInitParameters) DeepCopyInto(out *DsRecordsDsRecords
 	}
 	if in.Tag != nil {
 		in, out := &in.Tag, &out.Tag
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -557,7 +557,7 @@ func (in *DsRecordsDsRecordsObservation) DeepCopyInto(out *DsRecordsDsRecordsObs
 	}
 	if in.Tag != nil {
 		in, out := &in.Tag, &out.Tag
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -592,7 +592,7 @@ func (in *DsRecordsDsRecordsParameters) DeepCopyInto(out *DsRecordsDsRecordsPara
 	}
 	if in.Tag != nil {
 		in, out := &in.Tag, &out.Tag
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1384,7 +1384,7 @@ func (in *OrderDetailsObservation) DeepCopyInto(out *OrderDetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -2895,7 +2895,7 @@ func (in *ZoneOrderObservation) DeepCopyInto(out *ZoneOrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3338,7 +3338,7 @@ func (in *ZoneRecordInitParameters) DeepCopyInto(out *ZoneRecordInitParameters) 
 	}
 	if in.TTL != nil {
 		in, out := &in.TTL, &out.TTL
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {
@@ -3415,7 +3415,7 @@ func (in *ZoneRecordObservation) DeepCopyInto(out *ZoneRecordObservation) {
 	}
 	if in.TTL != nil {
 		in, out := &in.TTL, &out.TTL
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {
@@ -3455,7 +3455,7 @@ func (in *ZoneRecordParameters) DeepCopyInto(out *ZoneRecordParameters) {
 	}
 	if in.TTL != nil {
 		in, out := &in.TTL, &out.TTL
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Target != nil {

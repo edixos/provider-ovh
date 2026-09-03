@@ -748,17 +748,17 @@ func (in *LogsInputInitParameters) DeepCopyInto(out *LogsInputInitParameters) {
 	}
 	if in.MaxScaleInstance != nil {
 		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.MinScaleInstance != nil {
 		in, out := &in.MinScaleInstance, &out.MinScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
 		in, out := &in.NbInstance, &out.NbInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -853,7 +853,7 @@ func (in *LogsInputObservation) DeepCopyInto(out *LogsInputObservation) {
 	}
 	if in.CurrentNbInstance != nil {
 		in, out := &in.CurrentNbInstance, &out.CurrentNbInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Description != nil {
@@ -893,17 +893,17 @@ func (in *LogsInputObservation) DeepCopyInto(out *LogsInputObservation) {
 	}
 	if in.MaxScaleInstance != nil {
 		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.MinScaleInstance != nil {
 		in, out := &in.MinScaleInstance, &out.MinScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
 		in, out := &in.NbInstance, &out.NbInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.PublicAddress != nil {
@@ -991,17 +991,17 @@ func (in *LogsInputParameters) DeepCopyInto(out *LogsInputParameters) {
 	}
 	if in.MaxScaleInstance != nil {
 		in, out := &in.MaxScaleInstance, &out.MaxScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.MinScaleInstance != nil {
 		in, out := &in.MinScaleInstance, &out.MinScaleInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbInstance != nil {
 		in, out := &in.NbInstance, &out.NbInstance
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1118,7 +1118,7 @@ func (in *LogsOutputGraylogStreamInitParameters) DeepCopyInto(out *LogsOutputGra
 	}
 	if in.ColdStorageRetention != nil {
 		in, out := &in.ColdStorageRetention, &out.ColdStorageRetention
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ColdStorageTarget != nil {
@@ -1149,7 +1149,7 @@ func (in *LogsOutputGraylogStreamInitParameters) DeepCopyInto(out *LogsOutputGra
 	}
 	if in.IndexingMaxSize != nil {
 		in, out := &in.IndexingMaxSize, &out.IndexingMaxSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.IndexingNotifyEnabled != nil {
@@ -1261,7 +1261,7 @@ func (in *LogsOutputGraylogStreamObservation) DeepCopyInto(out *LogsOutputGraylo
 	}
 	if in.ColdStorageRetention != nil {
 		in, out := &in.ColdStorageRetention, &out.ColdStorageRetention
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ColdStorageTarget != nil {
@@ -1302,7 +1302,7 @@ func (in *LogsOutputGraylogStreamObservation) DeepCopyInto(out *LogsOutputGraylo
 	}
 	if in.IndexingMaxSize != nil {
 		in, out := &in.IndexingMaxSize, &out.IndexingMaxSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.IndexingNotifyEnabled != nil {
@@ -1322,12 +1322,12 @@ func (in *LogsOutputGraylogStreamObservation) DeepCopyInto(out *LogsOutputGraylo
 	}
 	if in.NbAlertCondition != nil {
 		in, out := &in.NbAlertCondition, &out.NbAlertCondition
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbArchive != nil {
 		in, out := &in.NbArchive, &out.NbArchive
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ParentStreamID != nil {
@@ -1407,7 +1407,7 @@ func (in *LogsOutputGraylogStreamParameters) DeepCopyInto(out *LogsOutputGraylog
 	}
 	if in.ColdStorageRetention != nil {
 		in, out := &in.ColdStorageRetention, &out.ColdStorageRetention
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ColdStorageTarget != nil {
@@ -1438,7 +1438,7 @@ func (in *LogsOutputGraylogStreamParameters) DeepCopyInto(out *LogsOutputGraylog
 	}
 	if in.IndexingMaxSize != nil {
 		in, out := &in.IndexingMaxSize, &out.IndexingMaxSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.IndexingNotifyEnabled != nil {
@@ -1571,12 +1571,12 @@ func (in *LogsOutputOpensearchAliasInitParameters) DeepCopyInto(out *LogsOutputO
 	}
 	if in.NbIndex != nil {
 		in, out := &in.NbIndex, &out.NbIndex
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbStream != nil {
 		in, out := &in.NbStream, &out.NbStream
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1659,7 +1659,7 @@ func (in *LogsOutputOpensearchAliasObservation) DeepCopyInto(out *LogsOutputOpen
 	}
 	if in.CurrentSize != nil {
 		in, out := &in.CurrentSize, &out.CurrentSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Description != nil {
@@ -1695,12 +1695,12 @@ func (in *LogsOutputOpensearchAliasObservation) DeepCopyInto(out *LogsOutputOpen
 	}
 	if in.NbIndex != nil {
 		in, out := &in.NbIndex, &out.NbIndex
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbStream != nil {
 		in, out := &in.NbStream, &out.NbStream
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1762,12 +1762,12 @@ func (in *LogsOutputOpensearchAliasParameters) DeepCopyInto(out *LogsOutputOpens
 	}
 	if in.NbIndex != nil {
 		in, out := &in.NbIndex, &out.NbIndex
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbStream != nil {
 		in, out := &in.NbStream, &out.NbStream
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1875,7 +1875,7 @@ func (in *LogsOutputOpensearchIndexInitParameters) DeepCopyInto(out *LogsOutputO
 	}
 	if in.NbShard != nil {
 		in, out := &in.NbShard, &out.NbShard
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1947,7 +1947,7 @@ func (in *LogsOutputOpensearchIndexObservation) DeepCopyInto(out *LogsOutputOpen
 	}
 	if in.CurrentSize != nil {
 		in, out := &in.CurrentSize, &out.CurrentSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Description != nil {
@@ -1972,7 +1972,7 @@ func (in *LogsOutputOpensearchIndexObservation) DeepCopyInto(out *LogsOutputOpen
 	}
 	if in.MaxSize != nil {
 		in, out := &in.MaxSize, &out.MaxSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Name != nil {
@@ -1982,7 +1982,7 @@ func (in *LogsOutputOpensearchIndexObservation) DeepCopyInto(out *LogsOutputOpen
 	}
 	if in.NbShard != nil {
 		in, out := &in.NbShard, &out.NbShard
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -2022,7 +2022,7 @@ func (in *LogsOutputOpensearchIndexParameters) DeepCopyInto(out *LogsOutputOpens
 	}
 	if in.NbShard != nil {
 		in, out := &in.NbShard, &out.NbShard
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -2196,12 +2196,12 @@ func (in *LogsRoleObservation) DeepCopyInto(out *LogsRoleObservation) {
 	}
 	if in.NbMember != nil {
 		in, out := &in.NbMember, &out.NbMember
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.NbPermission != nil {
 		in, out := &in.NbPermission, &out.NbPermission
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RoleID != nil {

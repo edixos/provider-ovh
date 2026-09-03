@@ -82,7 +82,8 @@ spec:
                   port:
                     description: Port attached to your farm ([1..49151]). Inherited
                       from frontend if null
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: define a backend healthcheck probe
                     items:
@@ -93,7 +94,8 @@ spec:
                         interval:
                           description: probe interval, Value between 30 and 3600 seconds,
                             default 30
-                          type: number
+                          format: int64
+                          type: integer
                         match:
                           description: What to match pattern against (contains, default,
                             internal, matches, status)
@@ -110,7 +112,8 @@ spec:
                         port:
                           description: Port attached to your farm ([1..49151]). Inherited
                             from frontend if null
-                          type: number
+                          format: int64
+                          type: integer
                         type:
                           description: 'Valid values : http, internal, mysql, oco,
                             pgsql, smtp, tcp'
@@ -131,7 +134,8 @@ spec:
                     description: Internal Load Balancer identifier of the vRack private
                       network to attach to your farm, mandatory when your Load Balancer
                       is attached to a vRack
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: Zone where the farm will be defined (ie. GRA, BHS
                       also supports ALL)
@@ -160,7 +164,8 @@ spec:
                   port:
                     description: Port attached to your farm ([1..49151]). Inherited
                       from frontend if null
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: define a backend healthcheck probe
                     items:
@@ -171,7 +176,8 @@ spec:
                         interval:
                           description: probe interval, Value between 30 and 3600 seconds,
                             default 30
-                          type: number
+                          format: int64
+                          type: integer
                         match:
                           description: What to match pattern against (contains, default,
                             internal, matches, status)
@@ -188,7 +194,8 @@ spec:
                         port:
                           description: Port attached to your farm ([1..49151]). Inherited
                             from frontend if null
-                          type: number
+                          format: int64
+                          type: integer
                         type:
                           description: 'Valid values : http, internal, mysql, oco,
                             pgsql, smtp, tcp'
@@ -209,7 +216,8 @@ spec:
                     description: Internal Load Balancer identifier of the vRack private
                       network to attach to your farm, mandatory when your Load Balancer
                       is attached to a vRack
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: Zone where the farm will be defined (ie. GRA, BHS
                       also supports ALL)
@@ -327,7 +335,8 @@ spec:
                   port:
                     description: Port attached to your farm ([1..49151]). Inherited
                       from frontend if null
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: define a backend healthcheck probe
                     items:
@@ -338,7 +347,8 @@ spec:
                         interval:
                           description: probe interval, Value between 30 and 3600 seconds,
                             default 30
-                          type: number
+                          format: int64
+                          type: integer
                         match:
                           description: What to match pattern against (contains, default,
                             internal, matches, status)
@@ -355,7 +365,8 @@ spec:
                         port:
                           description: Port attached to your farm ([1..49151]). Inherited
                             from frontend if null
-                          type: number
+                          format: int64
+                          type: integer
                         type:
                           description: 'Valid values : http, internal, mysql, oco,
                             pgsql, smtp, tcp'
@@ -376,7 +387,8 @@ spec:
                     description: Internal Load Balancer identifier of the vRack private
                       network to attach to your farm, mandatory when your Load Balancer
                       is attached to a vRack
-                    type: number
+                    format: int64
+                    type: integer
                   zone:
                     description: Zone where the farm will be defined (ie. GRA, BHS
                       also supports ALL)

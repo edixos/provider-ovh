@@ -106,7 +106,8 @@ spec:
                     description: |-
                       The disk size (in GB) of the database service.
                       Disk size attributes of the cluster
-                    type: number
+                    format: int64
+                    type: integer
                   engine:
                     description: |-
                       The database engine you want to deploy. To get a full list of available engine visit. public documentation.
@@ -240,7 +241,8 @@ spec:
                     description: |-
                       The disk size (in GB) of the database service.
                       Disk size attributes of the cluster
-                    type: number
+                    format: int64
+                    type: integer
                   engine:
                     description: |-
                       The database engine you want to deploy. To get a full list of available engine visit. public documentation.
@@ -482,7 +484,8 @@ spec:
                     description: |-
                       The disk size (in GB) of the database service.
                       Disk size attributes of the cluster
-                    type: number
+                    format: int64
+                    type: integer
                   diskType:
                     description: |-
                       Defines the disk type of the database service.
@@ -495,29 +498,45 @@ spec:
                     items:
                       properties:
                         component:
-                          description: Type of component the URI relates to.
+                          description: |-
+                            Type of component the URI relates to.
+                            Type of component the URI relates to
                           type: string
                         domain:
-                          description: Domain of the cluster.
+                          description: |-
+                            Domain of the cluster.
+                            Domain of the cluster
                           type: string
                         path:
-                          description: Path of the endpoint.
+                          description: |-
+                            Path of the endpoint.
+                            Path of the endpoint
                           type: string
                         port:
-                          description: Connection port for the endpoint.
-                          type: number
+                          description: |-
+                            Connection port for the endpoint.
+                            Connection port for the endpoint
+                          format: int64
+                          type: integer
                         scheme:
-                          description: Scheme used to generate the URI.
+                          description: |-
+                            Scheme used to generate the URI.
+                            Scheme used to generate the URI
                           type: string
                         ssl:
-                          description: Defines whether the endpoint uses SSL.
+                          description: |-
+                            Defines whether the endpoint uses SSL.
+                            Defines whether the endpoint uses SSL
                           type: boolean
                         sslMode:
-                          description: SSL mode used to connect to the service if
-                            the SSL is enabled.
+                          description: |-
+                            SSL mode used to connect to the service if the SSL is enabled.
+                            SSL mode used to connect to the service if the SSL is enabled
                           type: string
                         uri:
-                          description: URI of the endpoint.
+                          description: |-
+                            URI of the endpoint.
+                            URI of the endpoint
                           type: string
                       type: object
                     type: array

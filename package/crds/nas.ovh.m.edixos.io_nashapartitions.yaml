@@ -73,7 +73,8 @@ spec:
                     type: string
                   size:
                     description: size of the partition in GB
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -103,7 +104,8 @@ spec:
                     type: string
                   size:
                     description: size of the partition in GB
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -187,7 +189,8 @@ spec:
                 properties:
                   capacity:
                     description: Percentage of partition space used in %
-                    type: number
+                    format: int64
+                    type: integer
                   description:
                     description: A brief description of the partition
                     type: string
@@ -205,11 +208,13 @@ spec:
                     type: string
                   size:
                     description: size of the partition in GB
-                    type: number
+                    format: int64
+                    type: integer
                   usedBySnapshots:
                     description: Percentage of partition space used by snapshots in
                       %
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               conditions:
                 description: Conditions of the resource.

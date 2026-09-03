@@ -20,7 +20,6 @@ Every artifact carrying the upstream version. All must agree.
 | Artifact | Location | Exact form |
 |---|---|---|
 | Schema + docs pin | `Makefile`, `export TERRAFORM_PROVIDER_VERSION ?=` | `<X.Y.Z>` — **no** leading `v` |
-| Native provider binary | `Makefile`, `export TERRAFORM_NATIVE_PROVIDER_BINARY ?=` | `terraform-provider-ovh_v<X.Y.Z>` — **leading `v`** |
 | Go dependency | `go.mod`, `github.com/ovh/terraform-provider-ovh/v2` | `v<X.Y.Z>` — leading `v` |
 | Branch | git | `upgrade/terraform-provider-ovh-v<X.Y.Z>` |
 | Release tag | git | `v<X.Y.Z>` — mirrors upstream exactly |
@@ -31,7 +30,7 @@ Every artifact carrying the upstream version. All must agree.
 
 ```bash
 gh api repos/ovh/terraform-provider-ovh/releases --jq '.[0].tag_name'
-grep -n 'TERRAFORM_PROVIDER_VERSION\|TERRAFORM_NATIVE_PROVIDER_BINARY' Makefile
+grep -n 'TERRAFORM_PROVIDER_VERSION' Makefile
 ```
 
 The second command gives the current pin. Confirm the target if none was named.

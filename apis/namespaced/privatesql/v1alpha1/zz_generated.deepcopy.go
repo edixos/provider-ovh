@@ -117,7 +117,7 @@ func (in *DetailsObservation) DeepCopyInto(out *DetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -189,7 +189,7 @@ func (in *OrderObservation) DeepCopyInto(out *OrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -870,7 +870,7 @@ func (in *PrivatedatabaseObservation) DeepCopyInto(out *PrivatedatabaseObservati
 	}
 	if in.CPU != nil {
 		in, out := &in.CPU, &out.CPU
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Datacenter != nil {
@@ -941,27 +941,27 @@ func (in *PrivatedatabaseObservation) DeepCopyInto(out *PrivatedatabaseObservati
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.PortFtp != nil {
 		in, out := &in.PortFtp, &out.PortFtp
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.QuotaSize != nil {
 		in, out := &in.QuotaSize, &out.QuotaSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.QuotaUsed != nil {
 		in, out := &in.QuotaUsed, &out.QuotaUsed
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RAM != nil {
 		in, out := &in.RAM, &out.RAM
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Server != nil {

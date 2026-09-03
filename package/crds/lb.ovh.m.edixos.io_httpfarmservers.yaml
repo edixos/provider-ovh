@@ -73,13 +73,15 @@ spec:
                     type: string
                   farmId:
                     description: ID of the farm this server is attached to
-                    type: number
+                    format: int64
+                    type: integer
                   onMarkedDown:
                     description: enable action when backend marked down. (shutdown-sessions)
                     type: string
                   port:
                     description: Port that backend will respond on
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: defines if backend will be probed to determine health
                       and keep as active in farm if healthy
@@ -100,7 +102,8 @@ spec:
                     type: string
                   weight:
                     description: used in loadbalancing algorithm
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -130,13 +133,15 @@ spec:
                     type: string
                   farmId:
                     description: ID of the farm this server is attached to
-                    type: number
+                    format: int64
+                    type: integer
                   onMarkedDown:
                     description: enable action when backend marked down. (shutdown-sessions)
                     type: string
                   port:
                     description: Port that backend will respond on
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: defines if backend will be probed to determine health
                       and keep as active in farm if healthy
@@ -157,7 +162,8 @@ spec:
                     type: string
                   weight:
                     description: used in loadbalancing algorithm
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -257,7 +263,8 @@ spec:
                     type: string
                   farmId:
                     description: ID of the farm this server is attached to
-                    type: number
+                    format: int64
+                    type: integer
                   id:
                     type: string
                   onMarkedDown:
@@ -265,7 +272,8 @@ spec:
                     type: string
                   port:
                     description: Port that backend will respond on
-                    type: number
+                    format: int64
+                    type: integer
                   probe:
                     description: defines if backend will be probed to determine health
                       and keep as active in farm if healthy
@@ -286,7 +294,8 @@ spec:
                     type: string
                   weight:
                     description: used in loadbalancing algorithm
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               conditions:
                 description: Conditions of the resource.

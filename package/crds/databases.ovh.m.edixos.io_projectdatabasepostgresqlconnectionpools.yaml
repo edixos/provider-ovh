@@ -170,7 +170,8 @@ spec:
                     description: |-
                       Size of the connection pool.
                       Size of the connection pool
-                    type: number
+                    format: int64
+                    type: integer
                   userId:
                     description: |-
                       Database user authorized to connect to the pool, if none all the users are allowed.
@@ -300,7 +301,8 @@ spec:
                     description: |-
                       Size of the connection pool.
                       Size of the connection pool
-                    type: number
+                    format: int64
+                    type: integer
                   userId:
                     description: |-
                       Database user authorized to connect to the pool, if none all the users are allowed.
@@ -418,7 +420,8 @@ spec:
                     description: |-
                       Port of the connection pool.
                       Port of the connection pool
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: The id of the public cloud project. If omitted, the
                       OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -427,7 +430,8 @@ spec:
                     description: |-
                       Size of the connection pool.
                       Size of the connection pool
-                    type: number
+                    format: int64
+                    type: integer
                   sslMode:
                     description: |-
                       Ssl connection mode for the pool.

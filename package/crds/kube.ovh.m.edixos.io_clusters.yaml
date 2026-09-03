@@ -127,7 +127,8 @@ spec:
                           description: |-
                             Managed Kubernetes Service ID
                             Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
-                          type: number
+                          format: int64
+                          type: integer
                         clusterMesh:
                           description: Customize Cilium's cluster mesh feature
                           items:
@@ -139,7 +140,8 @@ spec:
                                     nodePort:
                                       description: If the ServiceType is "NodePort",
                                         define on which port the service will be exposed
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     serviceType:
                                       description: Define if the cluster mesh service
                                         is exposed by a K8s Service of type NodePort
@@ -634,7 +636,8 @@ spec:
                           description: |-
                             Managed Kubernetes Service ID
                             Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
-                          type: number
+                          format: int64
+                          type: integer
                         clusterMesh:
                           description: Customize Cilium's cluster mesh feature
                           items:
@@ -646,7 +649,8 @@ spec:
                                     nodePort:
                                       description: If the ServiceType is "NodePort",
                                         define on which port the service will be exposed
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     serviceType:
                                       description: Define if the cluster mesh service
                                         is exposed by a K8s Service of type NodePort
@@ -1203,7 +1207,8 @@ spec:
                           description: |-
                             Managed Kubernetes Service ID
                             Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
-                          type: number
+                          format: int64
+                          type: integer
                         clusterMesh:
                           description: Customize Cilium's cluster mesh feature
                           items:
@@ -1215,7 +1220,8 @@ spec:
                                     nodePort:
                                       description: If the ServiceType is "NodePort",
                                         define on which port the service will be exposed
-                                      type: number
+                                      format: int64
+                                      type: integer
                                     serviceType:
                                       description: Define if the cluster mesh service
                                         is exposed by a K8s Service of type NodePort

@@ -69,7 +69,8 @@ spec:
                     description: |-
                       Number of shards
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name
@@ -103,7 +104,8 @@ spec:
                     description: |-
                       Number of shards
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name
@@ -210,7 +212,8 @@ spec:
                     description: |-
                       Current index size (in bytes)
                       Current Index size (in bytes)
-                    type: number
+                    format: int64
+                    type: integer
                   description:
                     description: |-
                       Index description
@@ -232,7 +235,8 @@ spec:
                     description: |-
                       Maximum index size (in bytes)
                       Maximum index size (in bytes)
-                    type: number
+                    format: int64
+                    type: integer
                   name:
                     description: |-
                       Index name
@@ -242,7 +246,8 @@ spec:
                     description: |-
                       Number of shards
                       Number of shard
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The service name

@@ -41,8 +41,7 @@ type UserInitParameters struct {
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
 	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
-	// +mapType=granular
-	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
+	OpenstackRc map[string]string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
 	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
@@ -71,8 +70,7 @@ type UserObservation struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
-	// +mapType=granular
-	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
+	OpenstackRc map[string]string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
 	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update
@@ -106,8 +104,7 @@ type UserParameters struct {
 
 	// a convenient map representing an openstack_rc file. Note: no password nor sensitive token is set in this map.
 	// +kubebuilder:validation:Optional
-	// +mapType=granular
-	OpenstackRc map[string]*string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
+	OpenstackRc map[string]string `json:"openstackRc,omitempty" tf:"openstack_rc,omitempty"`
 
 	// Arbitrary string to change to trigger a password update.
 	// Arbitrary string to change to trigger a password update

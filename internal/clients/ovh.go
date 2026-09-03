@@ -91,6 +91,17 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		// The provider will be configured with credentials from cfg
 		ps.FrameworkProvider = &ovh.OvhProvider{}
 
+		// For SDKv2 resources, upjet passes ps.Meta straight through as the
+		// provider meta to Diff/RefreshWithoutUpgrade/Apply, and never populates
+		// it itself. Every OVH SDKv2 resource starts with meta.(*Config), so
+		// leaving this nil panics on the first Observe. Cached per effective
+		// configuration, since configuring the provider calls the OVH API.
+		meta, err := configuredProviderMeta(ctx, cacheKey, cfg)
+		if err != nil {
+			return ps, err
+		}
+		ps.Meta = meta
+
 		return ps, nil
 	}
 }

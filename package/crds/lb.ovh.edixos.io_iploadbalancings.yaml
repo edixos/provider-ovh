@@ -457,16 +457,25 @@ spec:
                           items:
                             properties:
                               description:
-                                description: description
+                                description: |-
+                                  description
+                                  description
                                 type: string
                               domain:
-                                description: expiration date
+                                description: |-
+                                  expiration date
+                                  expiration date
                                 type: string
                               orderDetailId:
-                                description: order detail id
-                                type: number
+                                description: |-
+                                  order detail id
+                                  order detail id
+                                format: int64
+                                type: integer
                               quantity:
-                                description: quantity
+                                description: |-
+                                  quantity
+                                  quantity
                                 type: string
                             type: object
                           type: array
@@ -479,7 +488,8 @@ spec:
                           description: |-
                             order id
                             order id
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   orderableZone:
@@ -489,10 +499,14 @@ spec:
                     items:
                       properties:
                         name:
-                          description: The zone three letter code
+                          description: |-
+                            The zone three letter code
+                            The zone three letter code
                           type: string
                         planCode:
-                          description: Plan code
+                          description: |-
+                            Plan code
+                            The billing planCode for this zone
                           type: string
                       type: object
                     type: array

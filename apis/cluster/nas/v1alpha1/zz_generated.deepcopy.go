@@ -283,7 +283,7 @@ func (in *NashaPartitionInitParameters) DeepCopyInto(out *NashaPartitionInitPara
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -335,7 +335,7 @@ func (in *NashaPartitionObservation) DeepCopyInto(out *NashaPartitionObservation
 	*out = *in
 	if in.Capacity != nil {
 		in, out := &in.Capacity, &out.Capacity
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Description != nil {
@@ -365,12 +365,12 @@ func (in *NashaPartitionObservation) DeepCopyInto(out *NashaPartitionObservation
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.UsedBySnapshots != nil {
 		in, out := &in.UsedBySnapshots, &out.UsedBySnapshots
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -410,7 +410,7 @@ func (in *NashaPartitionParameters) DeepCopyInto(out *NashaPartitionParameters) 
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }

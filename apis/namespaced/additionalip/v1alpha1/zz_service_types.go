@@ -47,12 +47,17 @@ type DetailsInitParameters struct {
 }
 
 type DetailsObservation struct {
+
+	// description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
-	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
+	// order detail id
+	OrderDetailID *int64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
 
@@ -74,7 +79,7 @@ type OrderObservation struct {
 	ExpirationDate *string `json:"expirationDate,omitempty" tf:"expiration_date,omitempty"`
 
 	// order id
-	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
+	OrderID *int64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
 
 type OrderParameters struct {
@@ -321,6 +326,7 @@ type ServiceRoutedToInitParameters struct {
 type ServiceRoutedToObservation struct {
 
 	// The internal name of your vrack
+	// Service where ip is routed to
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 }
 

@@ -17,7 +17,7 @@ import (
 type APIServerInitParameters struct {
 
 	// If the ServiceType is "NodePort", define on which port the service will be exposed
-	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+	NodePort *int64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
 
 	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
 	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
@@ -26,7 +26,7 @@ type APIServerInitParameters struct {
 type APIServerObservation struct {
 
 	// If the ServiceType is "NodePort", define on which port the service will be exposed
-	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+	NodePort *int64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
 
 	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
 	ServiceType *string `json:"serviceType,omitempty" tf:"service_type,omitempty"`
@@ -36,7 +36,7 @@ type APIServerParameters struct {
 
 	// If the ServiceType is "NodePort", define on which port the service will be exposed
 	// +kubebuilder:validation:Optional
-	NodePort *float64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
+	NodePort *int64 `json:"nodePort,omitempty" tf:"node_port,omitempty"`
 
 	// Define if the cluster mesh service is exposed by a K8s Service of type NodePort or LoadBalancer
 	// +kubebuilder:validation:Optional
@@ -433,7 +433,7 @@ type CustomizationCiliumInitParameters struct {
 
 	// Managed Kubernetes Service ID
 	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
-	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+	ClusterID *int64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Customize Cilium's cluster mesh feature
 	ClusterMesh []ClusterMeshInitParameters `json:"clusterMesh,omitempty" tf:"cluster_mesh,omitempty"`
@@ -446,7 +446,7 @@ type CustomizationCiliumObservation struct {
 
 	// Managed Kubernetes Service ID
 	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
-	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+	ClusterID *int64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Customize Cilium's cluster mesh feature
 	ClusterMesh []ClusterMeshObservation `json:"clusterMesh,omitempty" tf:"cluster_mesh,omitempty"`
@@ -460,7 +460,7 @@ type CustomizationCiliumParameters struct {
 	// Managed Kubernetes Service ID
 	// Cilium cluster ID of this MKS cluster. Must be between 1 and 255 when using the ClusterMesh feature.
 	// +kubebuilder:validation:Optional
-	ClusterID *float64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
+	ClusterID *int64 `json:"clusterId,omitempty" tf:"cluster_id,omitempty"`
 
 	// Customize Cilium's cluster mesh feature
 	// +kubebuilder:validation:Optional
@@ -763,15 +763,6 @@ type KubeconfigAttributesInitParameters struct {
 }
 
 type KubeconfigAttributesObservation struct {
-
-	// The kubernetes API server client certificate.
-	ClientCertificate *string `json:"clientCertificate,omitempty" tf:"client_certificate,omitempty"`
-
-	// The kubernetes API server client key.
-	ClientKey *string `json:"clientKey,omitempty" tf:"client_key,omitempty"`
-
-	// The kubernetes API server CA certificate.
-	ClusterCACertificate *string `json:"clusterCaCertificate,omitempty" tf:"cluster_ca_certificate,omitempty"`
 
 	// The kubernetes API server URL.
 	Host *string `json:"host,omitempty" tf:"host,omitempty"`

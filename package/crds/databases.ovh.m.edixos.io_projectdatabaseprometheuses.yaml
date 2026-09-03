@@ -219,9 +219,12 @@ spec:
                     items:
                       properties:
                         host:
+                          description: Host of the endpoint
                           type: string
                         port:
-                          type: number
+                          description: Connection port for the endpoint
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   username:

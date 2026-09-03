@@ -30,7 +30,7 @@ type DsRecordsDsRecordsInitParameters struct {
 
 	// The record tag
 	// Tag of the DNSSEC key
-	Tag *float64 `json:"tag,omitempty" tf:"tag,omitempty"`
+	Tag *int64 `json:"tag,omitempty" tf:"tag,omitempty"`
 }
 
 type DsRecordsDsRecordsObservation struct {
@@ -49,7 +49,7 @@ type DsRecordsDsRecordsObservation struct {
 
 	// The record tag
 	// Tag of the DNSSEC key
-	Tag *float64 `json:"tag,omitempty" tf:"tag,omitempty"`
+	Tag *int64 `json:"tag,omitempty" tf:"tag,omitempty"`
 }
 
 type DsRecordsDsRecordsParameters struct {
@@ -72,7 +72,7 @@ type DsRecordsDsRecordsParameters struct {
 	// The record tag
 	// Tag of the DNSSEC key
 	// +kubebuilder:validation:Optional
-	Tag *float64 `json:"tag" tf:"tag,omitempty"`
+	Tag *int64 `json:"tag" tf:"tag,omitempty"`
 }
 
 type DsRecordsInitParameters struct {

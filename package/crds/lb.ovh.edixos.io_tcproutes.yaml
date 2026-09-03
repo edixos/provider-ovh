@@ -99,7 +99,8 @@ spec:
                     description: |-
                       Route traffic for this frontend
                       Route traffic for this frontend
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The internal name of your IP load balancing
@@ -109,7 +110,8 @@ spec:
                     description: |-
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -151,7 +153,8 @@ spec:
                     description: |-
                       Route traffic for this frontend
                       Route traffic for this frontend
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: |-
                       The internal name of your IP load balancing
@@ -161,7 +164,8 @@ spec:
                     description: |-
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -290,7 +294,8 @@ spec:
                     description: |-
                       Route traffic for this frontend
                       Route traffic for this frontend
-                    type: number
+                    format: int64
+                    type: integer
                   id:
                     type: string
                   rules:
@@ -300,27 +305,35 @@ spec:
                     items:
                       properties:
                         field:
-                          description: Name of the field to match like "protocol"
-                            or "host" "/ipLoadbalancing/{serviceName}/route/availableRules"
-                            for a list of available rules
+                          description: |-
+                            Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
+                            Name of the field to match like "protocol" or "host". See "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
                           type: string
                         match:
-                          description: Matching operator. Not all operators are available
-                            for all fields. See "availableRules"
+                          description: |-
+                            Matching operator. Not all operators are available for all fields. See "availableRules"
+                            Matching operator. Not all operators are available for all fields. See "/availableRules"
                           type: string
                         negate:
-                          description: Invert the matching operator effect
+                          description: |-
+                            Invert the matching operator effect
+                            Invert the matching operator effect
                           type: boolean
                         pattern:
-                          description: Value to match against this match. Interpretation
-                            if this field depends on the match and field
+                          description: |-
+                            Value to match against this match. Interpretation if this field depends on the match and field
+                            Value to match against this match. Interpretation if this field depends on the match and field
                           type: string
                         ruleId:
-                          description: Id of your rule
-                          type: number
+                          description: |-
+                            Id of your rule
+                            Id of your rule
+                          format: int64
+                          type: integer
                         subField:
-                          description: Name of sub-field, if applicable. This may
-                            be a Cookie or Header name for instance
+                          description: |-
+                            Name of sub-field, if applicable. This may be a Cookie or Header name for instance
+                            Name of sub-field, if applicable. This may be a Cookie or Header name for instance
                           type: string
                       type: object
                     type: array
@@ -338,7 +351,8 @@ spec:
                     description: |-
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
                       Route priority ([0..255]). 0 if null. Highest priority routes are evaluated last. Only the first matching route will trigger an action
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               conditions:
                 description: Conditions of the resource.

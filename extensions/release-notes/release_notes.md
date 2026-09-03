@@ -4,6 +4,46 @@
 
 ## Unreleased
 
+### Changed (breaking)
+- SDK-backed resources now reconcile in-process instead of shelling out to the
+  Terraform CLI, and the CLI and the bundled native provider are no longer
+  present in the image. Reconciliation no longer writes a workspace to disk or
+  runs `terraform init`, so the provider needs neither a writable working
+  directory nor registry network access at runtime.
+- Integer-valued fields are now declared as `type: integer` in the CRD schemas
+  rather than `type: number`, across 506 properties. `terraform providers
+  schema -json` renders Terraform's `TypeInt` as `number`, which is what the
+  generated schemas previously carried; none of the affected fields are ever
+  fractional, so this is a correction rather than a behaviour change. The real
+  break is in the generated Go types, where the corresponding fields move from
+  `*float64` to `*int64` — only code importing `apis/{cluster,namespaced}/...`
+  directly needs updating; manifests and stored objects are unaffected.
+- `x-kubernetes-map-type: granular` is no longer set on the string maps
+  `User.openstackRc` (`cloud`, in `forProvider`, `initProvider` and
+  `atProvider`) and `PrivateNetwork.regionsOpenstackIds` (`network`), in both
+  the cluster-scoped and namespaced API groups — 8 paths in total. Those maps
+  are now atomic for server-side apply: a client that applies the map takes
+  ownership of it whole, so two appliers can no longer each own individual keys
+  and a partial apply replaces the map rather than merging into it.
+- `vrack`: `CloudProject` now carries a CEL validation rule making
+  `spec.forProvider.projectId` required whenever `managementPolicies` includes
+  `Create`, `Update` or `*`. Existing objects that do not set `projectId` (or
+  `spec.initProvider.projectId`) and have either policy will be rejected on
+  their next update until the field is filled in.
+
+### Fixed
+- SDKv2 resources now receive a configured provider meta. upjet passes
+  `terraform.Setup`'s `Meta` straight through to the resource CRUD functions on
+  the SDKv2 path and never populates it itself, unlike the Framework path where
+  it configures the provider from `Setup.Configuration`. Every OVH SDKv2
+  resource begins with `meta.(*Config)`, so without this all SDK-backed
+  resources fail their first `Observe`. Configured metas are cached per
+  ProviderConfig and effective configuration, because configuring the provider
+  runs `Config.loadAndValidate` and calls `GET /auth/details`; caching keeps
+  that to one call rather than one per `Connect`. A rotated OAuth access token
+  produces a new cache key, so a cached meta is never reused with credentials
+  that have since changed.
+
 ## v2.19.0 - 2026-08-08
 ### Added
 - `cloud`: `Instance` — new managed resource in both the cluster-scoped

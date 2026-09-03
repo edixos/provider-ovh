@@ -28,13 +28,13 @@ type NashaPartitionInitParameters struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// size of the partition in GB
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 type NashaPartitionObservation struct {
 
 	// Percentage of partition space used in %
-	Capacity *float64 `json:"capacity,omitempty" tf:"capacity,omitempty"`
+	Capacity *int64 `json:"capacity,omitempty" tf:"capacity,omitempty"`
 
 	// A brief description of the partition
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -51,10 +51,10 @@ type NashaPartitionObservation struct {
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
 	// size of the partition in GB
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Percentage of partition space used by snapshots in %
-	UsedBySnapshots *float64 `json:"usedBySnapshots,omitempty" tf:"used_by_snapshots,omitempty"`
+	UsedBySnapshots *int64 `json:"usedBySnapshots,omitempty" tf:"used_by_snapshots,omitempty"`
 }
 
 type NashaPartitionParameters struct {
@@ -77,7 +77,7 @@ type NashaPartitionParameters struct {
 
 	// size of the partition in GB
 	// +kubebuilder:validation:Optional
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
 // NashaPartitionSpec defines the desired state of NashaPartition

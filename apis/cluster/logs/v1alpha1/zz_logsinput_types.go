@@ -112,15 +112,15 @@ type LogsInputInitParameters struct {
 
 	// Maximum number of instances in auto-scaled mode
 	// Maximum number of instances in auto-scaled mode
-	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+	MaxScaleInstance *int64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
 
 	// Minimum number of instances in auto-scaled mode
 	// Minimum number of instances in auto-scaled mode
-	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
+	MinScaleInstance *int64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running (input, mutually exclusive with parameter autoscale)
 	// Number of instance running
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+	NbInstance *int64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
 	// service name
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
@@ -155,7 +155,7 @@ type LogsInputObservation struct {
 
 	// Number of instance running (returned by the API)
 	// Number of instance running (returned by the API)
-	CurrentNbInstance *float64 `json:"currentNbInstance,omitempty" tf:"current_nb_instance,omitempty"`
+	CurrentNbInstance *int64 `json:"currentNbInstance,omitempty" tf:"current_nb_instance,omitempty"`
 
 	// Input description
 	// Input description
@@ -185,15 +185,15 @@ type LogsInputObservation struct {
 
 	// Maximum number of instances in auto-scaled mode
 	// Maximum number of instances in auto-scaled mode
-	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+	MaxScaleInstance *int64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
 
 	// Minimum number of instances in auto-scaled mode
 	// Minimum number of instances in auto-scaled mode
-	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
+	MinScaleInstance *int64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running (input, mutually exclusive with parameter autoscale)
 	// Number of instance running
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+	NbInstance *int64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
 	// Input IP address
 	// Input IP address
@@ -255,17 +255,17 @@ type LogsInputParameters struct {
 	// Maximum number of instances in auto-scaled mode
 	// Maximum number of instances in auto-scaled mode
 	// +kubebuilder:validation:Optional
-	MaxScaleInstance *float64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
+	MaxScaleInstance *int64 `json:"maxScaleInstance,omitempty" tf:"max_scale_instance,omitempty"`
 
 	// Minimum number of instances in auto-scaled mode
 	// Minimum number of instances in auto-scaled mode
 	// +kubebuilder:validation:Optional
-	MinScaleInstance *float64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
+	MinScaleInstance *int64 `json:"minScaleInstance,omitempty" tf:"min_scale_instance,omitempty"`
 
 	// Number of instance running (input, mutually exclusive with parameter autoscale)
 	// Number of instance running
 	// +kubebuilder:validation:Optional
-	NbInstance *float64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
+	NbInstance *int64 `json:"nbInstance,omitempty" tf:"nb_instance,omitempty"`
 
 	// service name
 	// +kubebuilder:validation:Optional

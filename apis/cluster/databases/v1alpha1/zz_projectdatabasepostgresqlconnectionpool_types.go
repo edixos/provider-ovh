@@ -45,7 +45,7 @@ type ProjectDatabasePostgresqlConnectionPoolInitParameters struct {
 
 	// Size of the connection pool.
 	// Size of the connection pool
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Database user authorized to connect to the pool, if none all the users are allowed.
 	// Database user authorized to connect to the pool, if none all the users are allowed
@@ -74,7 +74,7 @@ type ProjectDatabasePostgresqlConnectionPoolObservation struct {
 
 	// Port of the connection pool.
 	// Port of the connection pool
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// Ssl connection mode for the pool.
 	// SSL connection mode for the pool
@@ -85,7 +85,7 @@ type ProjectDatabasePostgresqlConnectionPoolObservation struct {
 
 	// Size of the connection pool.
 	// Size of the connection pool
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Connection URI to the pool.
 	// Connection URI to the pool
@@ -134,7 +134,7 @@ type ProjectDatabasePostgresqlConnectionPoolParameters struct {
 	// Size of the connection pool.
 	// Size of the connection pool
 	// +kubebuilder:validation:Optional
-	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
+	Size *int64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Database user authorized to connect to the pool, if none all the users are allowed.
 	// Database user authorized to connect to the pool, if none all the users are allowed

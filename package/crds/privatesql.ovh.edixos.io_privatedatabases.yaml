@@ -436,7 +436,8 @@ spec:
                     description: |-
                       Number of CPU on your private database
                       Number of CPU on your private database
-                    type: number
+                    format: int64
+                    type: integer
                   datacenter:
                     description: |-
                       Datacenter where this private database is located
@@ -488,17 +489,25 @@ spec:
                           items:
                             properties:
                               description:
-                                description: Custom description on your privatedatabase
-                                  order.
+                                description: |-
+                                  Custom description on your privatedatabase order.
+                                  description
                                 type: string
                               domain:
-                                description: expiration date
+                                description: |-
+                                  expiration date
+                                  expiration date
                                 type: string
                               orderDetailId:
-                                description: order detail id
-                                type: number
+                                description: |-
+                                  order detail id
+                                  order detail id
+                                format: int64
+                                type: integer
                               quantity:
-                                description: quantity
+                                description: |-
+                                  quantity
+                                  quantity
                                 type: string
                             type: object
                           type: array
@@ -511,7 +520,8 @@ spec:
                           description: |-
                             order id
                             order id
-                          type: number
+                          format: int64
+                          type: integer
                       type: object
                     type: array
                   ovhSubsidiary:
@@ -618,27 +628,32 @@ spec:
                     description: |-
                       : Private database service port
                       Private database service port
-                    type: number
+                    format: int64
+                    type: integer
                   portFtp:
                     description: |-
                       : Private database FTP port
                       Private database FTP port
-                    type: number
+                    format: int64
+                    type: integer
                   quotaSize:
                     description: |-
                       : Space allowed (in MB) on your private database
                       Space allowed (in MB) on your private database
-                    type: number
+                    format: int64
+                    type: integer
                   quotaUsed:
                     description: |-
                       : Sapce used (in MB) on your private database
                       Sapce used (in MB) on your private database
-                    type: number
+                    format: int64
+                    type: integer
                   ram:
                     description: |-
                       : Amount of ram (in MB) on your private database
                       Amount of ram (in MB) on your private database
-                    type: number
+                    format: int64
+                    type: integer
                   server:
                     description: |-
                       : Private database server name

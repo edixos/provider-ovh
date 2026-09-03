@@ -45,11 +45,11 @@ type LogsRoleObservation struct {
 
 	// number of member for the role
 	// Number of members in the role
-	NbMember *float64 `json:"nbMember,omitempty" tf:"nb_member,omitempty"`
+	NbMember *int64 `json:"nbMember,omitempty" tf:"nb_member,omitempty"`
 
 	// number of configured permission for the role
 	// Number of permissions assigned to the role
-	NbPermission *float64 `json:"nbPermission,omitempty" tf:"nb_permission,omitempty"`
+	NbPermission *int64 `json:"nbPermission,omitempty" tf:"nb_permission,omitempty"`
 
 	// Role identifier
 	RoleID *string `json:"roleId,omitempty" tf:"role_id,omitempty"`

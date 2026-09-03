@@ -59,7 +59,7 @@ func (in *ProjectWorkflowBackupInitParameters) DeepCopyInto(out *ProjectWorkflow
 	}
 	if in.MaxExecutionCount != nil {
 		in, out := &in.MaxExecutionCount, &out.MaxExecutionCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RegionName != nil {
@@ -69,7 +69,7 @@ func (in *ProjectWorkflowBackupInitParameters) DeepCopyInto(out *ProjectWorkflow
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -151,7 +151,7 @@ func (in *ProjectWorkflowBackupObservation) DeepCopyInto(out *ProjectWorkflowBac
 	}
 	if in.MaxExecutionCount != nil {
 		in, out := &in.MaxExecutionCount, &out.MaxExecutionCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RegionName != nil {
@@ -161,7 +161,7 @@ func (in *ProjectWorkflowBackupObservation) DeepCopyInto(out *ProjectWorkflowBac
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -201,7 +201,7 @@ func (in *ProjectWorkflowBackupParameters) DeepCopyInto(out *ProjectWorkflowBack
 	}
 	if in.MaxExecutionCount != nil {
 		in, out := &in.MaxExecutionCount, &out.MaxExecutionCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RegionName != nil {
@@ -211,7 +211,7 @@ func (in *ProjectWorkflowBackupParameters) DeepCopyInto(out *ProjectWorkflowBack
 	}
 	if in.Rotation != nil {
 		in, out := &in.Rotation, &out.Rotation
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {

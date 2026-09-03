@@ -18,7 +18,7 @@ type ProjectRegionStoragePresignInitParameters struct {
 
 	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
-	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
+	Expire *int64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	// The method you want to use to interact with your object. Can be either 'GET' or 'PUT'.
 	Method *string `json:"method,omitempty" tf:"method,omitempty"`
@@ -48,7 +48,7 @@ type ProjectRegionStoragePresignObservation struct {
 
 	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
-	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
+	Expire *int64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -90,7 +90,7 @@ type ProjectRegionStoragePresignParameters struct {
 	// Define, in seconds, for how long your URL will be valid.
 	// How long (in seconds) the URL will be valid
 	// +kubebuilder:validation:Optional
-	Expire *float64 `json:"expire,omitempty" tf:"expire,omitempty"`
+	Expire *int64 `json:"expire,omitempty" tf:"expire,omitempty"`
 
 	// The method you want to use to interact with your object. Can be either 'GET' or 'PUT'.
 	// +kubebuilder:validation:Optional

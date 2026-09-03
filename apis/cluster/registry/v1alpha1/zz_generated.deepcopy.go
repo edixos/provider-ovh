@@ -72,22 +72,13 @@ func (in *ContainerRegistryIPRestrictionsManagementInitParameters) DeepCopyInto(
 	*out = *in
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -166,22 +157,13 @@ func (in *ContainerRegistryIPRestrictionsManagementObservation) DeepCopyInto(out
 	}
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -213,22 +195,13 @@ func (in *ContainerRegistryIPRestrictionsManagementParameters) DeepCopyInto(out 
 	*out = *in
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -332,22 +305,13 @@ func (in *ContainerRegistryIPRestrictionsRegistryInitParameters) DeepCopyInto(ou
 	*out = *in
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -426,22 +390,13 @@ func (in *ContainerRegistryIPRestrictionsRegistryObservation) DeepCopyInto(out *
 	}
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -473,22 +428,13 @@ func (in *ContainerRegistryIPRestrictionsRegistryParameters) DeepCopyInto(out *C
 	*out = *in
 	if in.IPRestrictions != nil {
 		in, out := &in.IPRestrictions, &out.IPRestrictions
-		*out = make([]map[string]*string, len(*in))
+		*out = make([]map[string]string, len(*in))
 		for i := range *in {
 			if (*in)[i] != nil {
 				in, out := &(*in)[i], &(*out)[i]
-				*out = make(map[string]*string, len(*in))
+				*out = make(map[string]string, len(*in))
 				for key, val := range *in {
-					var outVal *string
-					if val == nil {
-						(*out)[key] = nil
-					} else {
-						inVal := (*in)[key]
-						in, out := &inVal, &outVal
-						*out = new(string)
-						**out = **in
-					}
-					(*out)[key] = outVal
+					(*out)[key] = val
 				}
 			}
 		}
@@ -1040,7 +986,7 @@ func (in *ContainerRegistryObservation) DeepCopyInto(out *ContainerRegistryObser
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Status != nil {
@@ -1528,12 +1474,12 @@ func (in *RegistryLimitsObservation) DeepCopyInto(out *RegistryLimitsObservation
 	*out = *in
 	if in.ImageStorage != nil {
 		in, out := &in.ImageStorage, &out.ImageStorage
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ParallelRequest != nil {
 		in, out := &in.ParallelRequest, &out.ParallelRequest
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }

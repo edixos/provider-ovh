@@ -17,7 +17,7 @@ type ServerUpdateInitParameters struct {
 
 	// boot id of the server
 	// The boot id of your dedicated server.
-	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
+	BootID *int64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
 	// boot script of the server
 	// The boot script of your dedicated server.
@@ -48,7 +48,7 @@ type ServerUpdateObservation struct {
 
 	// boot id of the server
 	// The boot id of your dedicated server.
-	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
+	BootID *int64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
 	// boot script of the server
 	// The boot script of your dedicated server.
@@ -82,7 +82,7 @@ type ServerUpdateParameters struct {
 	// boot id of the server
 	// The boot id of your dedicated server.
 	// +kubebuilder:validation:Optional
-	BootID *float64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
+	BootID *int64 `json:"bootId,omitempty" tf:"boot_id,omitempty"`
 
 	// boot script of the server
 	// The boot script of your dedicated server.

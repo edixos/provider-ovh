@@ -54,14 +54,18 @@ type DetailsInitParameters struct {
 type DetailsObservation struct {
 
 	// Custom description on your privatedatabase order.
+	// description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// expiration date
 	// expiration date
 	Domain *string `json:"domain,omitempty" tf:"domain,omitempty"`
 
 	// order detail id
-	OrderDetailID *float64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
+	// order detail id
+	OrderDetailID *int64 `json:"orderDetailId,omitempty" tf:"order_detail_id,omitempty"`
 
+	// quantity
 	// quantity
 	Quantity *string `json:"quantity,omitempty" tf:"quantity,omitempty"`
 }
@@ -88,7 +92,7 @@ type OrderObservation struct {
 
 	// order id
 	// order id
-	OrderID *float64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
+	OrderID *int64 `json:"orderId,omitempty" tf:"order_id,omitempty"`
 }
 
 type OrderParameters struct {
@@ -320,7 +324,7 @@ type PrivatedatabaseObservation struct {
 
 	// Number of CPU on your private database
 	// Number of CPU on your private database
-	CPU *float64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
+	CPU *int64 `json:"cpu,omitempty" tf:"cpu,omitempty"`
 
 	// Datacenter where this private database is located
 	// Datacenter where this private database is located
@@ -370,23 +374,23 @@ type PrivatedatabaseObservation struct {
 
 	// : Private database service port
 	// Private database service port
-	Port *float64 `json:"port,omitempty" tf:"port,omitempty"`
+	Port *int64 `json:"port,omitempty" tf:"port,omitempty"`
 
 	// : Private database FTP port
 	// Private database FTP port
-	PortFtp *float64 `json:"portFtp,omitempty" tf:"port_ftp,omitempty"`
+	PortFtp *int64 `json:"portFtp,omitempty" tf:"port_ftp,omitempty"`
 
 	// : Space allowed (in MB) on your private database
 	// Space allowed (in MB) on your private database
-	QuotaSize *float64 `json:"quotaSize,omitempty" tf:"quota_size,omitempty"`
+	QuotaSize *int64 `json:"quotaSize,omitempty" tf:"quota_size,omitempty"`
 
 	// : Sapce used (in MB) on your private database
 	// Sapce used (in MB) on your private database
-	QuotaUsed *float64 `json:"quotaUsed,omitempty" tf:"quota_used,omitempty"`
+	QuotaUsed *int64 `json:"quotaUsed,omitempty" tf:"quota_used,omitempty"`
 
 	// : Amount of ram (in MB) on your private database
 	// Amount of ram (in MB) on your private database
-	RAM *float64 `json:"ram,omitempty" tf:"ram,omitempty"`
+	RAM *int64 `json:"ram,omitempty" tf:"ram,omitempty"`
 
 	// : Private database server name
 	// Private database server name

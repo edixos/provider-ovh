@@ -123,7 +123,7 @@ func (in *EndpointsObservation) DeepCopyInto(out *EndpointsObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.SSL != nil {
@@ -891,7 +891,7 @@ func (in *ProjectDatabaseInitParameters) DeepCopyInto(out *ProjectDatabaseInitPa
 	}
 	if in.DiskSize != nil {
 		in, out := &in.DiskSize, &out.DiskSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Engine != nil {
@@ -1797,7 +1797,7 @@ func (in *ProjectDatabaseKafkaTopicInitParameters) DeepCopyInto(out *ProjectData
 	}
 	if in.MinInsyncReplicas != nil {
 		in, out := &in.MinInsyncReplicas, &out.MinInsyncReplicas
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Name != nil {
@@ -1807,22 +1807,22 @@ func (in *ProjectDatabaseKafkaTopicInitParameters) DeepCopyInto(out *ProjectData
 	}
 	if in.Partitions != nil {
 		in, out := &in.Partitions, &out.Partitions
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Replication != nil {
 		in, out := &in.Replication, &out.Replication
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionBytes != nil {
 		in, out := &in.RetentionBytes, &out.RetentionBytes
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionHours != nil {
 		in, out := &in.RetentionHours, &out.RetentionHours
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1889,7 +1889,7 @@ func (in *ProjectDatabaseKafkaTopicObservation) DeepCopyInto(out *ProjectDatabas
 	}
 	if in.MinInsyncReplicas != nil {
 		in, out := &in.MinInsyncReplicas, &out.MinInsyncReplicas
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Name != nil {
@@ -1899,22 +1899,22 @@ func (in *ProjectDatabaseKafkaTopicObservation) DeepCopyInto(out *ProjectDatabas
 	}
 	if in.Partitions != nil {
 		in, out := &in.Partitions, &out.Partitions
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Replication != nil {
 		in, out := &in.Replication, &out.Replication
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionBytes != nil {
 		in, out := &in.RetentionBytes, &out.RetentionBytes
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionHours != nil {
 		in, out := &in.RetentionHours, &out.RetentionHours
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -1954,7 +1954,7 @@ func (in *ProjectDatabaseKafkaTopicParameters) DeepCopyInto(out *ProjectDatabase
 	}
 	if in.MinInsyncReplicas != nil {
 		in, out := &in.MinInsyncReplicas, &out.MinInsyncReplicas
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Name != nil {
@@ -1964,22 +1964,22 @@ func (in *ProjectDatabaseKafkaTopicParameters) DeepCopyInto(out *ProjectDatabase
 	}
 	if in.Partitions != nil {
 		in, out := &in.Partitions, &out.Partitions
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Replication != nil {
 		in, out := &in.Replication, &out.Replication
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionBytes != nil {
 		in, out := &in.RetentionBytes, &out.RetentionBytes
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RetentionHours != nil {
 		in, out := &in.RetentionHours, &out.RetentionHours
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.ServiceName != nil {
@@ -2848,7 +2848,7 @@ func (in *ProjectDatabaseObservation) DeepCopyInto(out *ProjectDatabaseObservati
 	}
 	if in.DiskSize != nil {
 		in, out := &in.DiskSize, &out.DiskSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.DiskType != nil {
@@ -2996,7 +2996,7 @@ func (in *ProjectDatabaseOpensearchPatternInitParameters) DeepCopyInto(out *Proj
 	}
 	if in.MaxIndexCount != nil {
 		in, out := &in.MaxIndexCount, &out.MaxIndexCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Pattern != nil {
@@ -3068,7 +3068,7 @@ func (in *ProjectDatabaseOpensearchPatternObservation) DeepCopyInto(out *Project
 	}
 	if in.MaxIndexCount != nil {
 		in, out := &in.MaxIndexCount, &out.MaxIndexCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Pattern != nil {
@@ -3113,7 +3113,7 @@ func (in *ProjectDatabaseOpensearchPatternParameters) DeepCopyInto(out *ProjectD
 	}
 	if in.MaxIndexCount != nil {
 		in, out := &in.MaxIndexCount, &out.MaxIndexCount
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Pattern != nil {
@@ -3475,7 +3475,7 @@ func (in *ProjectDatabaseParameters) DeepCopyInto(out *ProjectDatabaseParameters
 	}
 	if in.DiskSize != nil {
 		in, out := &in.DiskSize, &out.DiskSize
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Engine != nil {
@@ -3616,7 +3616,7 @@ func (in *ProjectDatabasePostgresqlConnectionPoolInitParameters) DeepCopyInto(ou
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.UserID != nil {
@@ -3698,7 +3698,7 @@ func (in *ProjectDatabasePostgresqlConnectionPoolObservation) DeepCopyInto(out *
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.SSLMode != nil {
@@ -3713,7 +3713,7 @@ func (in *ProjectDatabasePostgresqlConnectionPoolObservation) DeepCopyInto(out *
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.URI != nil {
@@ -3778,7 +3778,7 @@ func (in *ProjectDatabasePostgresqlConnectionPoolParameters) DeepCopyInto(out *P
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.UserID != nil {
@@ -4971,7 +4971,7 @@ func (in *TargetsObservation) DeepCopyInto(out *TargetsObservation) {
 	}
 	if in.Port != nil {
 		in, out := &in.Port, &out.Port
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }

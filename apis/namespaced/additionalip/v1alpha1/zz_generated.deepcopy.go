@@ -117,7 +117,7 @@ func (in *DetailsObservation) DeepCopyInto(out *DetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -1136,7 +1136,7 @@ func (in *OrderObservation) DeepCopyInto(out *OrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1627,7 +1627,7 @@ func (in *ProjectFailoverIPAttachObservation) DeepCopyInto(out *ProjectFailoverI
 	}
 	if in.Progress != nil {
 		in, out := &in.Progress, &out.Progress
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RoutedTo != nil {

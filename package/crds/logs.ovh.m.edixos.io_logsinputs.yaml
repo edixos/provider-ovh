@@ -139,17 +139,20 @@ spec:
                     description: |-
                       Maximum number of instances in auto-scaled mode
                       Maximum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   minScaleInstance:
                     description: |-
                       Minimum number of instances in auto-scaled mode
                       Minimum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   nbInstance:
                     description: |-
                       Number of instance running (input, mutually exclusive with parameter autoscale)
                       Number of instance running
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: service name
                     type: string
@@ -258,17 +261,20 @@ spec:
                     description: |-
                       Maximum number of instances in auto-scaled mode
                       Maximum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   minScaleInstance:
                     description: |-
                       Minimum number of instances in auto-scaled mode
                       Minimum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   nbInstance:
                     description: |-
                       Number of instance running (input, mutually exclusive with parameter autoscale)
                       Number of instance running
-                    type: number
+                    format: int64
+                    type: integer
                   serviceName:
                     description: service name
                     type: string
@@ -442,7 +448,8 @@ spec:
                     description: |-
                       Number of instance running (returned by the API)
                       Number of instance running (returned by the API)
-                    type: number
+                    format: int64
+                    type: integer
                   description:
                     description: |-
                       Input description
@@ -479,17 +486,20 @@ spec:
                     description: |-
                       Maximum number of instances in auto-scaled mode
                       Maximum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   minScaleInstance:
                     description: |-
                       Minimum number of instances in auto-scaled mode
                       Minimum number of instances in auto-scaled mode
-                    type: number
+                    format: int64
+                    type: integer
                   nbInstance:
                     description: |-
                       Number of instance running (input, mutually exclusive with parameter autoscale)
                       Number of instance running
-                    type: number
+                    format: int64
+                    type: integer
                   publicAddress:
                     description: |-
                       Input IP address

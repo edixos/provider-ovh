@@ -90,8 +90,12 @@ func GetProvider() *ujconfig.Provider {
 
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("ovh.edixos.io"),
-		// SDK resources use CLI mode (Terraform subprocess)
-		ujconfig.WithIncludeList(TerraformPluginSDKResourceList()),
+		// No resources are reconciled through the Terraform CLI; this overrides
+		// upjet's catch-all default include list.
+		ujconfig.WithIncludeList(CLIReconciledResourceList()),
+		// SDK resources use native mode (in-process SDKv2, no Terraform CLI)
+		ujconfig.WithTerraformPluginSDKIncludeList(TerraformPluginSDKResourceList()),
+		ujconfig.WithTerraformProvider(ovh.Provider()),
 		// Framework resources use native mode (direct gRPC)
 		ujconfig.WithTerraformPluginFrameworkIncludeList(TerraformPluginFrameworkResourceList()),
 		ujconfig.WithTerraformPluginFrameworkProvider(ovhFrameworkProvider),
@@ -138,8 +142,12 @@ func GetProviderNamespaced() *ujconfig.Provider {
 
 	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
 		ujconfig.WithRootGroup("ovh.m.edixos.io"),
-		// SDK resources use CLI mode (Terraform subprocess)
-		ujconfig.WithIncludeList(TerraformPluginSDKResourceList()),
+		// No resources are reconciled through the Terraform CLI; this overrides
+		// upjet's catch-all default include list.
+		ujconfig.WithIncludeList(CLIReconciledResourceList()),
+		// SDK resources use native mode (in-process SDKv2, no Terraform CLI)
+		ujconfig.WithTerraformPluginSDKIncludeList(TerraformPluginSDKResourceList()),
+		ujconfig.WithTerraformProvider(ovh.Provider()),
 		// Framework resources use native mode (direct gRPC)
 		ujconfig.WithTerraformPluginFrameworkIncludeList(TerraformPluginFrameworkResourceList()),
 		ujconfig.WithTerraformPluginFrameworkProvider(ovhFrameworkProvider),

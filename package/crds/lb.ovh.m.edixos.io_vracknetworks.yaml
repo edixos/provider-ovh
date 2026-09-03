@@ -68,7 +68,8 @@ spec:
                       This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
                       This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
                     items:
-                      type: number
+                      format: int64
+                      type: integer
                     type: array
                   natIp:
                     description: |-
@@ -89,7 +90,8 @@ spec:
                     description: |-
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               initProvider:
                 description: |-
@@ -114,7 +116,8 @@ spec:
                       This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
                       This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
                     items:
-                      type: number
+                      format: int64
+                      type: integer
                     type: array
                   natIp:
                     description: |-
@@ -135,7 +138,8 @@ spec:
                     description: |-
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               managementPolicies:
                 default:
@@ -223,7 +227,8 @@ spec:
                       This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms vrack_network_id attribute
                       This attribute is there for documentation purpose only and isnt passed to the OVH API as it may conflicts with http/tcp farms `vrack_network_id` attribute
                     items:
-                      type: number
+                      format: int64
+                      type: integer
                     type: array
                   id:
                     type: string
@@ -246,12 +251,14 @@ spec:
                     description: |-
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
                       VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
-                    type: number
+                    format: int64
+                    type: integer
                   vrackNetworkId:
                     description: |-
                       Internal Load Balancer identifier of the vRack private network
                       Internal Load Balancer identifier of the vRack private network
-                    type: number
+                    format: int64
+                    type: integer
                 type: object
               conditions:
                 description: Conditions of the resource.

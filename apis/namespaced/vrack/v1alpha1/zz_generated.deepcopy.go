@@ -2001,7 +2001,7 @@ func (in *DetailsObservation) DeepCopyInto(out *DetailsObservation) {
 	}
 	if in.OrderDetailID != nil {
 		in, out := &in.OrderDetailID, &out.OrderDetailID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Quantity != nil {
@@ -3061,7 +3061,7 @@ func (in *OrderObservation) DeepCopyInto(out *OrderObservation) {
 	}
 	if in.OrderID != nil {
 		in, out := &in.OrderID, &out.OrderID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }

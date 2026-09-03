@@ -159,7 +159,8 @@ spec:
                     description: |-
                       Maximum number of index for this pattern.
                       Maximum number of index for this pattern
-                    type: number
+                    format: int64
+                    type: integer
                   pattern:
                     description: |-
                       Pattern format.
@@ -268,7 +269,8 @@ spec:
                     description: |-
                       Maximum number of index for this pattern.
                       Maximum number of index for this pattern
-                    type: number
+                    format: int64
+                    type: integer
                   pattern:
                     description: |-
                       Pattern format.
@@ -392,7 +394,8 @@ spec:
                     description: |-
                       Maximum number of index for this pattern.
                       Maximum number of index for this pattern
-                    type: number
+                    format: int64
+                    type: integer
                   pattern:
                     description: |-
                       Pattern format.

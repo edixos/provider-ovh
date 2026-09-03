@@ -1227,12 +1227,12 @@ func (in *PartitioningLayoutInitParameters) DeepCopyInto(out *PartitioningLayout
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1269,12 +1269,12 @@ func (in *PartitioningLayoutObservation) DeepCopyInto(out *PartitioningLayoutObs
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -1311,12 +1311,12 @@ func (in *PartitioningLayoutParameters) DeepCopyInto(out *PartitioningLayoutPara
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Size != nil {
 		in, out := &in.Size, &out.Size
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -2678,7 +2678,7 @@ func (in *ServerReinstallTaskInitParameters) DeepCopyInto(out *ServerReinstallTa
 	*out = *in
 	if in.BootidOnDestroy != nil {
 		in, out := &in.BootidOnDestroy, &out.BootidOnDestroy
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Customizations != nil {
@@ -2770,7 +2770,7 @@ func (in *ServerReinstallTaskObservation) DeepCopyInto(out *ServerReinstallTaskO
 	*out = *in
 	if in.BootidOnDestroy != nil {
 		in, out := &in.BootidOnDestroy, &out.BootidOnDestroy
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Comment != nil {
@@ -2865,7 +2865,7 @@ func (in *ServerReinstallTaskParameters) DeepCopyInto(out *ServerReinstallTaskPa
 	*out = *in
 	if in.BootidOnDestroy != nil {
 		in, out := &in.BootidOnDestroy, &out.BootidOnDestroy
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Customizations != nil {
@@ -2960,7 +2960,7 @@ func (in *ServerReinstallTaskStorageInitParameters) DeepCopyInto(out *ServerRein
 	*out = *in
 	if in.DiskGroupID != nil {
 		in, out := &in.DiskGroupID, &out.DiskGroupID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.HardwareRaid != nil {
@@ -2994,7 +2994,7 @@ func (in *ServerReinstallTaskStorageObservation) DeepCopyInto(out *ServerReinsta
 	*out = *in
 	if in.DiskGroupID != nil {
 		in, out := &in.DiskGroupID, &out.DiskGroupID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.HardwareRaid != nil {
@@ -3028,7 +3028,7 @@ func (in *ServerReinstallTaskStorageParameters) DeepCopyInto(out *ServerReinstal
 	*out = *in
 	if in.DiskGroupID != nil {
 		in, out := &in.DiskGroupID, &out.DiskGroupID
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.HardwareRaid != nil {
@@ -3097,22 +3097,22 @@ func (in *StorageHardwareRaidInitParameters) DeepCopyInto(out *StorageHardwareRa
 	*out = *in
 	if in.Arrays != nil {
 		in, out := &in.Arrays, &out.Arrays
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Spares != nil {
 		in, out := &in.Spares, &out.Spares
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3132,22 +3132,22 @@ func (in *StorageHardwareRaidObservation) DeepCopyInto(out *StorageHardwareRaidO
 	*out = *in
 	if in.Arrays != nil {
 		in, out := &in.Arrays, &out.Arrays
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Spares != nil {
 		in, out := &in.Spares, &out.Spares
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3167,22 +3167,22 @@ func (in *StorageHardwareRaidParameters) DeepCopyInto(out *StorageHardwareRaidPa
 	*out = *in
 	if in.Arrays != nil {
 		in, out := &in.Arrays, &out.Arrays
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.RaidLevel != nil {
 		in, out := &in.RaidLevel, &out.RaidLevel
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Spares != nil {
 		in, out := &in.Spares, &out.Spares
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 }
@@ -3298,7 +3298,7 @@ func (in *StoragePartitioningInitParameters) DeepCopyInto(out *StoragePartitioni
 	*out = *in
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Layout != nil {
@@ -3330,7 +3330,7 @@ func (in *StoragePartitioningObservation) DeepCopyInto(out *StoragePartitioningO
 	*out = *in
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Layout != nil {
@@ -3362,7 +3362,7 @@ func (in *StoragePartitioningParameters) DeepCopyInto(out *StoragePartitioningPa
 	*out = *in
 	if in.Disks != nil {
 		in, out := &in.Disks, &out.Disks
-		*out = new(float64)
+		*out = new(int64)
 		**out = **in
 	}
 	if in.Layout != nil {
