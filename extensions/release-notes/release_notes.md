@@ -6,11 +6,12 @@
 
 ## v2.19.1 - 2026-09-03
 
-Tracks the same upstream OVHcloud Terraform provider as v2.19.0. Despite the
-patch version, this release contains breaking CRD schema changes; read the
-section below before upgrading.
+> [!WARNING]
+> Tracks the same upstream OVHcloud Terraform provider as v2.19.0. Despite the
+> patch version, this release contains breaking CRD schema changes. Read the
+> section below before upgrading.
 
-### Changed (breaking)
+### ⚠️ Changed (breaking)
 - SDK-backed resources now reconcile in-process instead of shelling out to the
   Terraform CLI, and the CLI and the bundled native provider are no longer
   present in the image. Reconciliation no longer writes a workspace to disk or
@@ -22,8 +23,9 @@ section below before upgrading.
   generated schemas previously carried; none of the affected fields are ever
   fractional, so this is a correction rather than a behaviour change. The real
   break is in the generated Go types, where the corresponding fields move from
-  `*float64` to `*int64` — only code importing `apis/{cluster,namespaced}/...`
-  directly needs updating; manifests and stored objects are unaffected.
+  `*float64` to `*int64`. ⚠️ **Action required** only if you import
+  `apis/{cluster,namespaced}/...` directly; manifests and stored objects are
+  unaffected.
 - `x-kubernetes-map-type: granular` is no longer set on the string maps
   `User.openstackRc` (`cloud`, in `forProvider`, `initProvider` and
   `atProvider`) and `PrivateNetwork.regionsOpenstackIds` (`network`), in both
@@ -33,9 +35,24 @@ section below before upgrading.
   and a partial apply replaces the map rather than merging into it.
 - `vrack`: `CloudProject` now carries a CEL validation rule making
   `spec.forProvider.projectId` required whenever `managementPolicies` includes
-  `Create`, `Update` or `*`. Existing objects that do not set `projectId` (or
-  `spec.initProvider.projectId`) and have either policy will be rejected on
-  their next update until the field is filled in.
+  `Create`, `Update` or `*`. ⚠️ **Action required:** existing objects that do
+  not set `projectId` (or `spec.initProvider.projectId`) and have either policy
+  will be rejected on their next update until the field is filled in. Find
+  affected objects before upgrading:
+
+  ```bash
+  # cluster-scoped
+  kubectl get cloudprojects.vrack.ovh.edixos.io -o json \
+    | jq -r '.items[]
+        | select((.spec.forProvider.projectId // .spec.initProvider.projectId) == null)
+        | .metadata.name'
+
+  # namespaced
+  kubectl get cloudprojects.vrack.ovh.m.edixos.io -A -o json \
+    | jq -r '.items[]
+        | select((.spec.forProvider.projectId // .spec.initProvider.projectId) == null)
+        | "\(.metadata.namespace)/\(.metadata.name)"'
+  ```
 
 ### Fixed
 - SDKv2 resources now receive a configured provider meta. upjet passes
@@ -64,6 +81,18 @@ section below before upgrading.
   The build-time Terraform pin moves from 1.8.1 to 1.15.9. It is used only to
   generate `config/schema.json` and is not shipped; regenerating with 1.15.9
   produces byte-identical output, so no CRD changes follow from it.
+
+### Thanks
+Both of the changes in this release came from the community.
+
+- 🎉 **@VeSeWe** made their **first contribution** in
+  [#63](https://github.com/edixos/provider-ovh/pull/63), the security
+  remediation — Go, Alpine and dependency updates that take the image to zero
+  HIGH and CRITICAL Trivy findings. Welcome, and thank you.
+- **@ekarlso** contributed [#65](https://github.com/edixos/provider-ovh/pull/65),
+  the move to in-process reconciliation and the removal of the Terraform CLI
+  from the image, and followed up with the SDKv2 provider meta fix and its
+  cache. Thanks as always.
 
 ## v2.19.0 - 2026-08-08
 ### Added
