@@ -4,6 +4,12 @@
 
 ## Unreleased
 
+## v2.19.1 - 2026-09-03
+
+Tracks the same upstream OVHcloud Terraform provider as v2.19.0. Despite the
+patch version, this release contains breaking CRD schema changes; read the
+section below before upgrading.
+
 ### Changed (breaking)
 - SDK-backed resources now reconcile in-process instead of shelling out to the
   Terraform CLI, and the CLI and the bundled native provider are no longer
@@ -43,6 +49,21 @@
   that to one call rather than one per `Connect`. A rotated OAuth access token
   produces a new cache key, so a cached meta is never reused with credentials
   that have since changed.
+
+### Security
+- Remediated the vulnerabilities Trivy reported against the v2.19.0 image. Go
+  moves from 1.25.6 to 1.25.13, the Alpine runtime from 3.17.1 (end of life) to
+  3.24.1, and the affected Go dependencies to patched versions. A Trivy scan of
+  the resulting image reports no HIGH or CRITICAL findings, and `govulncheck`
+  reports the provider code as affected by none.
+
+  `golang.org/x/crypto/openpgp` is still flagged module-wide as GO-2026-5932.
+  There is no fixed version, and the affected package is neither imported nor
+  called by this provider.
+
+  The build-time Terraform pin moves from 1.8.1 to 1.15.9. It is used only to
+  generate `config/schema.json` and is not shipped; regenerating with 1.15.9
+  produces byte-identical output, so no CRD changes follow from it.
 
 ## v2.19.0 - 2026-08-08
 ### Added
