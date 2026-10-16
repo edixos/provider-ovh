@@ -28,17 +28,32 @@ func TestUserIdentifierFromProvider(t *testing.T) {
 		"HappyPath": {
 			externalName: "user-123",
 			params:       map[string]any{"service_name": "svc-1"},
-			want:         "svc-1/user-123",
+			want:         "user-123",
 		},
-		"MissingServiceName": {
+		"IgnoresMissingServiceName": {
 			externalName: "user-123",
 			params:       map[string]any{},
-			wantErr:      "service_name",
+			want:         "user-123",
 		},
-		"WrongTypeServiceName": {
+		"IgnoresWrongTypeServiceName": {
 			externalName: "user-123",
 			params:       map[string]any{"service_name": 42},
-			wantErr:      "service_name",
+			want:         "user-123",
+		},
+		"LegacyCompositeExternalName": {
+			externalName: "svc-1/user-123",
+			params:       map[string]any{"service_name": "svc-1"},
+			want:         "user-123",
+		},
+		"EmptyUserID": {
+			externalName: "svc-1/",
+			params:       map[string]any{"service_name": "svc-1"},
+			wantErr:      "is not <user_id> or <service_name>/<user_id>",
+		},
+		"TrailingSlash": {
+			externalName: "svc-1/user-123/",
+			params:       map[string]any{"service_name": "svc-1"},
+			wantErr:      "is not <user_id> or <service_name>/<user_id>",
 		},
 	}
 
@@ -46,6 +61,39 @@ func TestUserIdentifierFromProvider(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			got, err := userIdentifierFromProvider.GetIDFn(context.Background(), tc.externalName, tc.params, nil)
 			assertGetID(t, got, err, tc.want, tc.wantErr)
+		})
+	}
+}
+
+func TestUserExternalNameFromState(t *testing.T) {
+	cases := map[string]struct {
+		tfstate map[string]any
+		want    string
+		wantErr bool
+	}{
+		"BareID": {
+			tfstate: map[string]any{"id": "user-123"},
+			want:    "user-123",
+		},
+		"LegacyComposite": {
+			tfstate: map[string]any{"id": "svc-1/user-123"},
+			want:    "user-123",
+		},
+		"MissingID": {
+			tfstate: map[string]any{},
+			wantErr: true,
+		},
+	}
+
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := userIdentifierFromProvider.GetExternalNameFn(tc.tfstate)
+			if (err != nil) != tc.wantErr {
+				t.Fatalf("GetExternalNameFn() error = %v, wantErr %v", err, tc.wantErr)
+			}
+			if got != tc.want {
+				t.Errorf("GetExternalNameFn() = %q, want %q", got, tc.want)
+			}
 		})
 	}
 }
@@ -153,7 +201,7 @@ func TestDatabaseLogSubscriptionIdentifierFromProvider(t *testing.T) {
 
 func TestSDKMapBindingsRestored(t *testing.T) {
 	cases := map[string]string{
-		"ovh_cloud_project_user":                     "svc-1/u",
+		"ovh_cloud_project_user":                     "u",
 		"ovh_cloud_project_database_postgresql_user": "svc-1/cluster-1/u",
 		"ovh_cloud_project_database_clickhouse_user": "svc-1/cluster-1/u",
 		// service_name/engine/cluster_id/id

@@ -4,6 +4,11 @@
 
 ## Unreleased
 
+### Fixed
+- `User` (`cloud`) uses the bare user ID as external-name and Terraform ID, so
+  imported users observe and created users survive a provider restart. Legacy
+  `service_name/user_id` external-names are normalized.
+
 ## v2.19.1 - 2026-09-03
 
 > [!WARNING]

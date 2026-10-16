@@ -253,20 +253,33 @@ var subnetIdentifierFromProvider = config.ExternalName{
 
 var userIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
-	GetExternalNameFn:       config.IDAsExternalName,
-	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
+	GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+		id, err := config.IDAsExternalName(tfstate)
+		if err != nil {
+			return "", err
+		}
+		return userID(id)
+	},
+	GetIDFn: func(_ context.Context, externalName string, _ map[string]any, _ map[string]any) (string, error) {
 		// If external-name is empty, the resource hasn't been created yet,
 		// so we should return empty string instead of constructing an incomplete ID
 		if externalName == "" {
 			return "", nil
 		}
-		serviceName, err := serviceName(parameters)
-		if err != nil {
-			return serviceName, err
-		}
-		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+		return userID(externalName)
 	},
 	DisableNameInitializer: true,
+}
+
+func userID(externalName string) (string, error) {
+	id := externalName
+	if parts := strings.SplitN(id, "/", 2); len(parts) == 2 {
+		id = parts[1]
+	}
+	if id == "" || strings.Contains(id, "/") {
+		return "", errors.Errorf("user external-name %q is not <user_id> or <service_name>/<user_id>", externalName)
+	}
+	return id, nil
 }
 
 var postgresqlUserIdentifierFromProvider = config.ExternalName{
