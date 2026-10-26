@@ -167,6 +167,46 @@ func (mg *PrivatedatabaseUserGrant) SetWriteConnectionSecretToReference(r *xpv1.
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetManagementPolicies of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) GetManagementPolicies() xpv1.ManagementPolicies {
+	return mg.Spec.ManagementPolicies
+}
+
+// GetProviderConfigReference of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+	return mg.Spec.ProviderConfigReference
+}
+
+// GetWriteConnectionSecretToReference of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetManagementPolicies of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) SetManagementPolicies(r xpv1.ManagementPolicies) {
+	mg.Spec.ManagementPolicies = r
+}
+
+// SetProviderConfigReference of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+// SetWriteConnectionSecretToReference of this PrivatedatabaseWebhostingNetwork.
+func (mg *PrivatedatabaseWebhostingNetwork) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this PrivatedatabaseWhitelist.
 func (mg *PrivatedatabaseWhitelist) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

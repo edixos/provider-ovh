@@ -89,4 +89,55 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "InstanceGroup"
 	})
+	p.AddResourceConfigurator("ovh_cloud_instance_snapshot", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "InstanceSnapshot"
+		r.References["instance_id"] = config.Reference{
+			TerraformName: "ovh_cloud_instance",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_loadbalancer", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "Loadbalancer"
+	})
+	p.AddResourceConfigurator("ovh_cloud_loadbalancer_listener", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "LoadbalancerListener"
+		r.References["loadbalancer_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer",
+		}
+		r.References["default_pool_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer_pool",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_loadbalancer_pool", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "LoadbalancerPool"
+		r.References["loadbalancer_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_loadbalancer_pool_member", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "LoadbalancerPoolMember"
+		r.References["loadbalancer_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer",
+		}
+		r.References["pool_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer_pool",
+		}
+	})
+	p.AddResourceConfigurator("ovh_cloud_loadbalancer_l7policy", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "LoadbalancerL7Policy"
+		r.References["loadbalancer_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer",
+		}
+		r.References["listener_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer_listener",
+		}
+		r.References["redirect_pool_id"] = config.Reference{
+			TerraformName: "ovh_cloud_loadbalancer_pool",
+		}
+	})
 }

@@ -106,6 +106,15 @@ func (l *FileShareSnapshotList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this ObjectBucketList.
+func (l *ObjectBucketList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this ProjectFileStorageShareList.
 func (l *ProjectFileStorageShareList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

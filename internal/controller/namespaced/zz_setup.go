@@ -19,6 +19,12 @@ import (
 	floatingip "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/floatingip"
 	instance "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/instance"
 	instancegroup "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/instancegroup"
+	instancesnapshot "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/instancesnapshot"
+	loadbalancer "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/loadbalancer"
+	loadbalancerl7policy "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/loadbalancerl7policy"
+	loadbalancerlistener "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/loadbalancerlistener"
+	loadbalancerpool "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/loadbalancerpool"
+	loadbalancerpoolmember "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/loadbalancerpoolmember"
 	plan "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/plan"
 	project "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/project"
 	projectcontainerregistryiam "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/projectcontainerregistryiam"
@@ -38,6 +44,8 @@ import (
 	sshkey "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/sshkey"
 	user "github.com/edixos/provider-ovh/internal/controller/namespaced/cloud/user"
 	cephacl "github.com/edixos/provider-ovh/internal/controller/namespaced/clouddiskarray/cephacl"
+	cephpool "github.com/edixos/provider-ovh/internal/controller/namespaced/clouddiskarray/cephpool"
+	cephuser "github.com/edixos/provider-ovh/internal/controller/namespaced/clouddiskarray/cephuser"
 	projectdatabase "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabase"
 	projectdatabaseclickhouseuser "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabaseclickhouseuser"
 	projectdatabasedatabase "github.com/edixos/provider-ovh/internal/controller/namespaced/databases/projectdatabasedatabase"
@@ -60,6 +68,7 @@ import (
 	servernetworking "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/servernetworking"
 	serverreboottask "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/serverreboottask"
 	serverupdate "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/serverupdate"
+	servervirtualmac "github.com/edixos/provider-ovh/internal/controller/namespaced/dedicatedserver/servervirtualmac"
 	dsrecords "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/dsrecords"
 	name "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/name"
 	nameservers "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/nameservers"
@@ -71,8 +80,11 @@ import (
 	zoneredirection "github.com/edixos/provider-ovh/internal/controller/namespaced/dns/zoneredirection"
 	zoneimport "github.com/edixos/provider-ovh/internal/controller/namespaced/domain/zoneimport"
 	domainaccount "github.com/edixos/provider-ovh/internal/controller/namespaced/email/domainaccount"
+	domaindkim "github.com/edixos/provider-ovh/internal/controller/namespaced/email/domaindkim"
+	domainredirection "github.com/edixos/provider-ovh/internal/controller/namespaced/email/domainredirection"
 	cloudgateway "github.com/edixos/provider-ovh/internal/controller/namespaced/gateway/cloudgateway"
 	projectgateway "github.com/edixos/provider-ovh/internal/controller/namespaced/gateway/projectgateway"
+	iamlogsubscription "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iamlogsubscription"
 	iampermissionsgroup "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iampermissionsgroup"
 	iampolicy "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iampolicy"
 	iamresourcegroup "github.com/edixos/provider-ovh/internal/controller/namespaced/iam/iamresourcegroup"
@@ -118,6 +130,8 @@ import (
 	logsrole "github.com/edixos/provider-ovh/internal/controller/namespaced/logs/logsrole"
 	logsrolepermissionstream "github.com/edixos/provider-ovh/internal/controller/namespaced/logs/logsrolepermissionstream"
 	logstoken "github.com/edixos/provider-ovh/internal/controller/namespaced/logs/logstoken"
+	apilogsubscription "github.com/edixos/provider-ovh/internal/controller/namespaced/me/apilogsubscription"
+	auditlogsubscription "github.com/edixos/provider-ovh/internal/controller/namespaced/me/auditlogsubscription"
 	group "github.com/edixos/provider-ovh/internal/controller/namespaced/me/group"
 	identityusertoken "github.com/edixos/provider-ovh/internal/controller/namespaced/me/identityusertoken"
 	oauth2client "github.com/edixos/provider-ovh/internal/controller/namespaced/me/oauth2client"
@@ -137,6 +151,7 @@ import (
 	privatedatabasedatabase "github.com/edixos/provider-ovh/internal/controller/namespaced/privatesql/privatedatabasedatabase"
 	privatedatabaseuser "github.com/edixos/provider-ovh/internal/controller/namespaced/privatesql/privatedatabaseuser"
 	privatedatabaseusergrant "github.com/edixos/provider-ovh/internal/controller/namespaced/privatesql/privatedatabaseusergrant"
+	privatedatabasewebhostingnetwork "github.com/edixos/provider-ovh/internal/controller/namespaced/privatesql/privatedatabasewebhostingnetwork"
 	privatedatabasewhitelist "github.com/edixos/provider-ovh/internal/controller/namespaced/privatesql/privatedatabasewhitelist"
 	providerconfig "github.com/edixos/provider-ovh/internal/controller/namespaced/providerconfig"
 	containerregistry "github.com/edixos/provider-ovh/internal/controller/namespaced/registry/containerregistry"
@@ -155,6 +170,7 @@ import (
 	fileshareacl "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/fileshareacl"
 	filesharenetwork "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/filesharenetwork"
 	filesharesnapshot "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/filesharesnapshot"
+	objectbucket "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/objectbucket"
 	projectfilestorageshare "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/projectfilestorageshare"
 	projectfilestoragesharenetwork "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/projectfilestoragesharenetwork"
 	projectregionstoragepresign "github.com/edixos/provider-ovh/internal/controller/namespaced/storage/projectregionstoragepresign"
@@ -194,6 +210,12 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		floatingip.Setup,
 		instance.Setup,
 		instancegroup.Setup,
+		instancesnapshot.Setup,
+		loadbalancer.Setup,
+		loadbalancerl7policy.Setup,
+		loadbalancerlistener.Setup,
+		loadbalancerpool.Setup,
+		loadbalancerpoolmember.Setup,
 		plan.Setup,
 		project.Setup,
 		projectcontainerregistryiam.Setup,
@@ -213,6 +235,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		sshkey.Setup,
 		user.Setup,
 		cephacl.Setup,
+		cephpool.Setup,
+		cephuser.Setup,
 		projectdatabase.Setup,
 		projectdatabaseclickhouseuser.Setup,
 		projectdatabasedatabase.Setup,
@@ -235,6 +259,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		servernetworking.Setup,
 		serverreboottask.Setup,
 		serverupdate.Setup,
+		servervirtualmac.Setup,
 		dsrecords.Setup,
 		name.Setup,
 		nameservers.Setup,
@@ -246,8 +271,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		zoneredirection.Setup,
 		zoneimport.Setup,
 		domainaccount.Setup,
+		domaindkim.Setup,
+		domainredirection.Setup,
 		cloudgateway.Setup,
 		projectgateway.Setup,
+		iamlogsubscription.Setup,
 		iampermissionsgroup.Setup,
 		iampolicy.Setup,
 		iamresourcegroup.Setup,
@@ -293,6 +321,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		logsrole.Setup,
 		logsrolepermissionstream.Setup,
 		logstoken.Setup,
+		apilogsubscription.Setup,
+		auditlogsubscription.Setup,
 		group.Setup,
 		identityusertoken.Setup,
 		oauth2client.Setup,
@@ -312,6 +342,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		privatedatabasedatabase.Setup,
 		privatedatabaseuser.Setup,
 		privatedatabaseusergrant.Setup,
+		privatedatabasewebhostingnetwork.Setup,
 		privatedatabasewhitelist.Setup,
 		providerconfig.Setup,
 		containerregistry.Setup,
@@ -330,6 +361,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		fileshareacl.Setup,
 		filesharenetwork.Setup,
 		filesharesnapshot.Setup,
+		objectbucket.Setup,
 		projectfilestorageshare.Setup,
 		projectfilestoragesharenetwork.Setup,
 		projectregionstoragepresign.Setup,
@@ -375,6 +407,12 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		floatingip.SetupGated,
 		instance.SetupGated,
 		instancegroup.SetupGated,
+		instancesnapshot.SetupGated,
+		loadbalancer.SetupGated,
+		loadbalancerl7policy.SetupGated,
+		loadbalancerlistener.SetupGated,
+		loadbalancerpool.SetupGated,
+		loadbalancerpoolmember.SetupGated,
 		plan.SetupGated,
 		project.SetupGated,
 		projectcontainerregistryiam.SetupGated,
@@ -394,6 +432,8 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		sshkey.SetupGated,
 		user.SetupGated,
 		cephacl.SetupGated,
+		cephpool.SetupGated,
+		cephuser.SetupGated,
 		projectdatabase.SetupGated,
 		projectdatabaseclickhouseuser.SetupGated,
 		projectdatabasedatabase.SetupGated,
@@ -416,6 +456,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		servernetworking.SetupGated,
 		serverreboottask.SetupGated,
 		serverupdate.SetupGated,
+		servervirtualmac.SetupGated,
 		dsrecords.SetupGated,
 		name.SetupGated,
 		nameservers.SetupGated,
@@ -427,8 +468,11 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		zoneredirection.SetupGated,
 		zoneimport.SetupGated,
 		domainaccount.SetupGated,
+		domaindkim.SetupGated,
+		domainredirection.SetupGated,
 		cloudgateway.SetupGated,
 		projectgateway.SetupGated,
+		iamlogsubscription.SetupGated,
 		iampermissionsgroup.SetupGated,
 		iampolicy.SetupGated,
 		iamresourcegroup.SetupGated,
@@ -474,6 +518,8 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		logsrole.SetupGated,
 		logsrolepermissionstream.SetupGated,
 		logstoken.SetupGated,
+		apilogsubscription.SetupGated,
+		auditlogsubscription.SetupGated,
 		group.SetupGated,
 		identityusertoken.SetupGated,
 		oauth2client.SetupGated,
@@ -493,6 +539,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		privatedatabasedatabase.SetupGated,
 		privatedatabaseuser.SetupGated,
 		privatedatabaseusergrant.SetupGated,
+		privatedatabasewebhostingnetwork.SetupGated,
 		privatedatabasewhitelist.SetupGated,
 		providerconfig.SetupGated,
 		containerregistry.SetupGated,
@@ -511,6 +558,7 @@ func SetupGated(mgr ctrl.Manager, o controller.Options) error {
 		fileshareacl.SetupGated,
 		filesharenetwork.SetupGated,
 		filesharesnapshot.SetupGated,
+		objectbucket.SetupGated,
 		projectfilestorageshare.SetupGated,
 		projectfilestoragesharenetwork.SetupGated,
 		projectregionstoragepresign.SetupGated,

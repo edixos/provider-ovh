@@ -14,18 +14,49 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
+type DestinationPortRangeInitParameters struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	From *float64 `json:"from,omitempty" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	To *float64 `json:"to,omitempty" tf:"to,omitempty"`
+}
+
+type DestinationPortRangeObservation struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	From *float64 `json:"from,omitempty" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	To *float64 `json:"to,omitempty" tf:"to,omitempty"`
+}
+
+type DestinationPortRangeParameters struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	// +kubebuilder:validation:Optional
+	From *float64 `json:"from" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	// +kubebuilder:validation:Optional
+	To *float64 `json:"to" tf:"to,omitempty"`
+}
+
 type FirewallRuleInitParameters struct {
 
 	// Possible values for action (deny|permit)
-	// Possible values for action
+	// Possible values for action: `deny` or `permit`
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// Destination port for your rule. Only with TCP/UDP protocol
 	// Destination port for your rule. Only with TCP/UDP protocol
 	DestinationPort *float64 `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 
+	DestinationPortRange *DestinationPortRangeInitParameters `json:"destinationPortRange,omitempty" tf:"destination_port_range,omitempty"`
+
 	// Fragments option
-	// Fragments option
+	// Fragments option. Only with TCP protocol
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
 	// The IP or the CIDR
@@ -37,7 +68,7 @@ type FirewallRuleInitParameters struct {
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
 	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
-	// Possible values for protocol
+	// Possible values for protocol: `ah`, `esp`, `gre`, `icmp`, `ipv4`, `tcp` or `udp`
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	// Rule position in the rules array
@@ -52,22 +83,24 @@ type FirewallRuleInitParameters struct {
 	// Source port for your rule. Only with TCP/UDP protocol
 	SourcePort *float64 `json:"sourcePort,omitempty" tf:"source_port,omitempty"`
 
+	SourcePortRange *SourcePortRangeInitParameters `json:"sourcePortRange,omitempty" tf:"source_port_range,omitempty"`
+
 	// TCP option on your rule (syn|established)
-	// TCP option on your rule
+	// TCP option on your rule. Possible values: `established` or `syn`. Only with TCP protocol
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
 }
 
 type FirewallRuleObservation struct {
 
 	// Possible values for action (deny|permit)
-	// Possible values for action
+	// Possible values for action: `deny` or `permit`
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
 	// Creation date of the rule
 	CreationDate *string `json:"creationDate,omitempty" tf:"creation_date,omitempty"`
 
 	// Destination IP for your rule
-	// Destination ip for your rule
+	// Destination IP of your rule, set by the API from `ip_on_firewall`
 	Destination *string `json:"destination,omitempty" tf:"destination,omitempty"`
 
 	// Destination port for your rule. Only with TCP/UDP protocol
@@ -78,8 +111,10 @@ type FirewallRuleObservation struct {
 	// Destination port range for your rule. Only with TCP/UDP protocol
 	DestinationPortDesc *string `json:"destinationPortDesc,omitempty" tf:"destination_port_desc,omitempty"`
 
+	DestinationPortRange *DestinationPortRangeObservation `json:"destinationPortRange,omitempty" tf:"destination_port_range,omitempty"`
+
 	// Fragments option
-	// Fragments option
+	// Fragments option. Only with TCP protocol
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -93,7 +128,7 @@ type FirewallRuleObservation struct {
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
 	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
-	// Possible values for protocol
+	// Possible values for protocol: `ah`, `esp`, `gre`, `icmp`, `ipv4`, `tcp` or `udp`
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
 	// Description of the rule
@@ -115,19 +150,21 @@ type FirewallRuleObservation struct {
 	// Source port for your rule. Only with TCP/UDP protocol
 	SourcePortDesc *string `json:"sourcePortDesc,omitempty" tf:"source_port_desc,omitempty"`
 
+	SourcePortRange *SourcePortRangeObservation `json:"sourcePortRange,omitempty" tf:"source_port_range,omitempty"`
+
 	// Current state of your rule
 	// Current state of your rule
 	State *string `json:"state,omitempty" tf:"state,omitempty"`
 
 	// TCP option on your rule (syn|established)
-	// TCP option on your rule
+	// TCP option on your rule. Possible values: `established` or `syn`. Only with TCP protocol
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
 }
 
 type FirewallRuleParameters struct {
 
 	// Possible values for action (deny|permit)
-	// Possible values for action
+	// Possible values for action: `deny` or `permit`
 	// +kubebuilder:validation:Optional
 	Action *string `json:"action,omitempty" tf:"action,omitempty"`
 
@@ -136,8 +173,11 @@ type FirewallRuleParameters struct {
 	// +kubebuilder:validation:Optional
 	DestinationPort *float64 `json:"destinationPort,omitempty" tf:"destination_port,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	DestinationPortRange *DestinationPortRangeParameters `json:"destinationPortRange,omitempty" tf:"destination_port_range,omitempty"`
+
 	// Fragments option
-	// Fragments option
+	// Fragments option. Only with TCP protocol
 	// +kubebuilder:validation:Optional
 	Fragments *bool `json:"fragments,omitempty" tf:"fragments,omitempty"`
 
@@ -152,7 +192,7 @@ type FirewallRuleParameters struct {
 	IPOnFirewall *string `json:"ipOnFirewall,omitempty" tf:"ip_on_firewall,omitempty"`
 
 	// Possible values for protocol (ah|esp|gre|icmp|ipv4|tcp|udp)
-	// Possible values for protocol
+	// Possible values for protocol: `ah`, `esp`, `gre`, `icmp`, `ipv4`, `tcp` or `udp`
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
@@ -171,10 +211,42 @@ type FirewallRuleParameters struct {
 	// +kubebuilder:validation:Optional
 	SourcePort *float64 `json:"sourcePort,omitempty" tf:"source_port,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	SourcePortRange *SourcePortRangeParameters `json:"sourcePortRange,omitempty" tf:"source_port_range,omitempty"`
+
 	// TCP option on your rule (syn|established)
-	// TCP option on your rule
+	// TCP option on your rule. Possible values: `established` or `syn`. Only with TCP protocol
 	// +kubebuilder:validation:Optional
 	TCPOption *string `json:"tcpOption,omitempty" tf:"tcp_option,omitempty"`
+}
+
+type SourcePortRangeInitParameters struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	From *float64 `json:"from,omitempty" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	To *float64 `json:"to,omitempty" tf:"to,omitempty"`
+}
+
+type SourcePortRangeObservation struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	From *float64 `json:"from,omitempty" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	To *float64 `json:"to,omitempty" tf:"to,omitempty"`
+}
+
+type SourcePortRangeParameters struct {
+
+	// Start of the port range. Must be higher than 0, and lower than the attribute `to`.
+	// +kubebuilder:validation:Optional
+	From *float64 `json:"from" tf:"from,omitempty"`
+
+	// End of the port range. Must be at most 65535, and higher than the attribute `From`.
+	// +kubebuilder:validation:Optional
+	To *float64 `json:"to" tf:"to,omitempty"`
 }
 
 // FirewallRuleSpec defines the desired state of FirewallRule

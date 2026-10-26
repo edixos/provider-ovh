@@ -26,6 +26,9 @@ type InterfacesInitParameters struct {
 
 type InterfacesObservation struct {
 
+	// Mac address of the LACP fallback interface
+	AggregationFallback *string `json:"aggregationFallback,omitempty" tf:"aggregation_fallback,omitempty"`
+
 	// Interface Mac address
 	// +listType=set
 	Macs []*string `json:"macs,omitempty" tf:"macs,omitempty"`

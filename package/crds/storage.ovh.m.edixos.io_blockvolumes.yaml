@@ -83,6 +83,15 @@ spec:
                         description: Whether the volume is encrypted at rest with
                           LUKS
                         type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: OKMS domain ID owning the service key
+                            type: string
+                          serviceKeyId:
+                            description: OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
                     type: object
                   name:
                     description: Volume name
@@ -141,6 +150,15 @@ spec:
                         description: Whether the volume is encrypted at rest with
                           LUKS
                         type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: OKMS domain ID owning the service key
+                            type: string
+                          serviceKeyId:
+                            description: OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
                     type: object
                   name:
                     description: Volume name
@@ -282,6 +300,16 @@ spec:
                             description: Whether the volume is encrypted at rest with
                               LUKS
                             type: boolean
+                          kms:
+                            properties:
+                              domainId:
+                                description: OKMS domain ID owning the service key
+                                type: string
+                              serviceKeyId:
+                                description: OKMS service key ID used to encrypt the
+                                  volume
+                                type: string
+                            type: object
                         type: object
                       location:
                         properties:
@@ -314,6 +342,15 @@ spec:
                         description: Whether the volume is encrypted at rest with
                           LUKS
                         type: boolean
+                      kms:
+                        properties:
+                          domainId:
+                            description: OKMS domain ID owning the service key
+                            type: string
+                          serviceKeyId:
+                            description: OKMS service key ID used to encrypt the volume
+                            type: string
+                        type: object
                     type: object
                   id:
                     type: string

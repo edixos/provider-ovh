@@ -85,6 +85,9 @@ spec:
                       OS reinstallation customizations
                     items:
                       properties:
+                        appToInstall:
+                          description: Application to install with the auto installer
+                          type: string
                         configDriveMetadata:
                           additionalProperties:
                             type: string
@@ -164,6 +167,11 @@ spec:
                             Disk group id (default is 0, meaning automatic)
                           format: int64
                           type: integer
+                        erase:
+                          description: Whether to erase this disk group's data (default
+                            is true). Set to false to keep existing data on a disk
+                            group not used for the OS installation.
+                          type: boolean
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
@@ -307,6 +315,9 @@ spec:
                       OS reinstallation customizations
                     items:
                       properties:
+                        appToInstall:
+                          description: Application to install with the auto installer
+                          type: string
                         configDriveMetadata:
                           additionalProperties:
                             type: string
@@ -386,6 +397,11 @@ spec:
                             Disk group id (default is 0, meaning automatic)
                           format: int64
                           type: integer
+                        erase:
+                          description: Whether to erase this disk group's data (default
+                            is true). Set to false to keep existing data on a disk
+                            group not used for the OS installation.
+                          type: boolean
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
@@ -621,6 +637,9 @@ spec:
                       OS reinstallation customizations
                     items:
                       properties:
+                        appToInstall:
+                          description: Application to install with the auto installer
+                          type: string
                         configDriveMetadata:
                           additionalProperties:
                             type: string
@@ -726,6 +745,11 @@ spec:
                             Disk group id (default is 0, meaning automatic)
                           format: int64
                           type: integer
+                        erase:
+                          description: Whether to erase this disk group's data (default
+                            is true). Set to false to keep existing data on a disk
+                            group not used for the OS installation.
+                          type: boolean
                         hardwareRaid:
                           description: |-
                             : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).

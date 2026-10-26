@@ -23,4 +23,12 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "Oauth2Client"
 	})
+	p.AddResourceConfigurator("ovh_me_api_log_subscription", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "APILogSubscription"
+	})
+	p.AddResourceConfigurator("ovh_me_logs_audit_log_subscription", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "AuditLogSubscription"
+	})
 }

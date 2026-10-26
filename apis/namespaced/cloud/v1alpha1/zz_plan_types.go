@@ -32,7 +32,7 @@ type PlanInitParameters_2 struct {
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// Periodicity of the Savings Plan
-	// Periodicity of the Savings Plan
+	// Periodicity of the Savings Plan (P1Y or P3Y)
 	Period *string `json:"period,omitempty" tf:"period,omitempty"`
 
 	// ID of the public cloud project. If omitted, the OVH_CLOUD_PROJECT_SERVICE environment variable is used.
@@ -69,7 +69,7 @@ type PlanObservation_2 struct {
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
 	// Periodicity of the Savings Plan
-	// Periodicity of the Savings Plan
+	// Periodicity of the Savings Plan (P1Y or P3Y)
 	Period *string `json:"period,omitempty" tf:"period,omitempty"`
 
 	// Action performed when reaching the end of the period (controles by the auto_renewal parameter)
@@ -127,7 +127,7 @@ type PlanParameters_2 struct {
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// Periodicity of the Savings Plan
-	// Periodicity of the Savings Plan
+	// Periodicity of the Savings Plan (P1Y or P3Y)
 	// +kubebuilder:validation:Optional
 	Period *string `json:"period,omitempty" tf:"period,omitempty"`
 

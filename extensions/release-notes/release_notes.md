@@ -4,10 +4,70 @@
 
 ## Unreleased
 
+## v2.23.0 - 2026-10-26
+### Added
+Sixteen new managed resources, each in both the cluster-scoped
+(`*.ovh.edixos.io`) and namespaced (`*.ovh.m.edixos.io`) API groups, wrapping
+the resources upstream added between 2.20.0 and 2.23.0:
+
+- `cloud`: `InstanceSnapshot` (`ovh_cloud_instance_snapshot`); `instanceId`
+  resolves by reference or selector to an `Instance`.
+- `cloud`: the new Octavia load balancer API — `Loadbalancer`,
+  `LoadbalancerListener`, `LoadbalancerPool`, `LoadbalancerPoolMember` and
+  `LoadbalancerL7Policy` (`ovh_cloud_loadbalancer*`). `loadbalancerId`,
+  `listenerId`, `poolId`, `defaultPoolId` and `redirectPoolId` resolve by
+  reference or selector to the matching kind. The pre-existing
+  `ProjectLoadbalancer` (`lb`) is untouched.
+- `storage`: `ObjectBucket` (`ovh_cloud_storage_object_bucket`).
+- `clouddiskarray`: `CephPool` and `CephUser` (`ovh_dedicated_ceph_pool`,
+  `ovh_dedicated_ceph_user`).
+- `dedicatedserver`: `ServerVirtualMac` (`ovh_dedicated_server_virtual_mac`).
+- `email`: `DomainDKIM` and `DomainRedirection` (`ovh_email_domain_dkim`,
+  `ovh_email_domain_redirection`).
+- `iam`: `IAMLogSubscription` (`ovh_iam_log_subscription`).
+- `me`: `APILogSubscription` and `AuditLogSubscription`
+  (`ovh_me_api_log_subscription`, `ovh_me_logs_audit_log_subscription`).
+- `privatesql`: `PrivatedatabaseWebhostingNetwork`
+  (`ovh_hosting_privatedatabase_webhosting_network`).
+
+### Changed
+- Upgrade OVH Terraform provider from 2.19.0 to 2.23.0. See the upstream
+  release notes for
+  [2.20.0](https://github.com/ovh/terraform-provider-ovh/releases/tag/v2.20.0),
+  [2.21.0](https://github.com/ovh/terraform-provider-ovh/releases/tag/v2.21.0),
+  [2.22.0](https://github.com/ovh/terraform-provider-ovh/releases/tag/v2.22.0) and
+  [2.23.0](https://github.com/ovh/terraform-provider-ovh/releases/tag/v2.23.0).
+- New optional fields on existing kinds, among them `BlockVolume`
+  `encryption.kms` (customer-managed key), `FileShare` `encryption` and
+  `createFrom.snapshotId`, `Instance` `userData`, `Oauth2Client`
+  `discardClientSecret`, `Cluster` (`kube`) `disablePublicNetworking`,
+  `FirewallRule` `destinationPortRange`/`sourcePortRange` and
+  `ServerReinstallTask` `customizations.appToInstall`/`storage.erase`.
+- `FileShare`: `shareType` and `size` are no longer required, since a share
+  created from a snapshot inherits them.
+- Behaviour fixes inherited from upstream, notably: `Instance` updates send
+  every mutable field, so they no longer detach networks, volumes and shares;
+  `ProjectDatabase` switches `networkId`/`subnetId` in place; Kafka topic
+  settings update in place; `ProjectDatabase` no longer shows a permanent
+  `advancedConfiguration` diff.
+- Go moves from 1.25.13 to 1.27.3, as required by the upstream provider, and
+  golangci-lint from 2.5.0 to 2.15.0.
+- upjet renamed a few generated Go types to disambiguate them from the new
+  kinds — in the `cloud` API group, `ProjectStorage`'s `RulesParameters`
+  becomes `ReplicationRulesParameters`, and `Quota`'s `LoadbalancerParameters`
+  becomes `AvailableProfilesLoadbalancerParameters` (`LoadbalancerParameters`
+  now belongs to the new `Loadbalancer` kind). JSON field names are unchanged,
+  so CRD schemas and existing manifests are unaffected; only Go code importing
+  `apis/{cluster,namespaced}/...` directly needs updating.
+
 ### Fixed
 - `User` (`cloud`) uses the bare user ID as external-name and Terraform ID, so
   imported users observe and created users survive a provider restart. Legacy
   `service_name/user_id` external-names are normalized.
+
+### Removed (breaking)
+None. No upstream resource or field was removed between 2.19.0 and 2.23.0, and
+no resource bumped its state schema version.
 
 ## v2.19.1 - 2026-09-03
 

@@ -84,6 +84,9 @@ spec:
                       OAuth2 client description.
                       A description of your oauth2 client.
                     type: string
+                  discardClientSecret:
+                    description: Client secret of the created service account
+                    type: boolean
                   flow:
                     description: |-
                       The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
@@ -118,6 +121,9 @@ spec:
                       OAuth2 client description.
                       A description of your oauth2 client.
                     type: string
+                  discardClientSecret:
+                    description: Client secret of the created service account
+                    type: boolean
                   flow:
                     description: |-
                       The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
@@ -248,6 +254,9 @@ spec:
                       OAuth2 client description.
                       A description of your oauth2 client.
                     type: string
+                  discardClientSecret:
+                    description: Client secret of the created service account
+                    type: boolean
                   flow:
                     description: |-
                       The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.

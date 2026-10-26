@@ -433,6 +433,7 @@ var TerraformPluginSDKExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_me_installation_template_partition_scheme_partition":        config.IdentifierFromProvider,
 	"ovh_me_ipxe_script":                                             config.IdentifierFromProvider,
 	"ovh_dedicated_server_networking":                                config.IdentifierFromProvider,
+	"ovh_dedicated_server_virtual_mac":                               config.IdentifierFromProvider,
 	"ovh_domain_zone":                                                config.IdentifierFromProvider,
 	"ovh_domain_zone_record":                                         config.IdentifierFromProvider,
 	"ovh_domain_zone_redirection":                                    config.IdentifierFromProvider,
@@ -647,12 +648,18 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_vrackservices":                    config.IdentifierFromProvider,
 
 	// Public Cloud Framework resources
-	"ovh_cloud_floating_ip":    config.IdentifierFromProvider,
-	"ovh_cloud_gateway":        config.IdentifierFromProvider,
-	"ovh_cloud_instance":       config.IdentifierFromProvider,
-	"ovh_cloud_instance_group": config.IdentifierFromProvider,
-	"ovh_cloud_quota":          config.IdentifierFromProvider,
-	"ovh_cloud_security_group": config.IdentifierFromProvider,
+	"ovh_cloud_floating_ip":              config.IdentifierFromProvider,
+	"ovh_cloud_gateway":                  config.IdentifierFromProvider,
+	"ovh_cloud_instance":                 config.IdentifierFromProvider,
+	"ovh_cloud_instance_group":           config.IdentifierFromProvider,
+	"ovh_cloud_instance_snapshot":        config.IdentifierFromProvider,
+	"ovh_cloud_loadbalancer":             config.IdentifierFromProvider,
+	"ovh_cloud_loadbalancer_l7policy":    config.IdentifierFromProvider,
+	"ovh_cloud_loadbalancer_listener":    config.IdentifierFromProvider,
+	"ovh_cloud_loadbalancer_pool":        config.IdentifierFromProvider,
+	"ovh_cloud_loadbalancer_pool_member": config.IdentifierFromProvider,
+	"ovh_cloud_quota":                    config.IdentifierFromProvider,
+	"ovh_cloud_security_group":           config.IdentifierFromProvider,
 
 	// Public Cloud vRack network Framework resources
 	"ovh_cloud_network_private_vrack":        config.IdentifierFromProvider,
@@ -672,6 +679,7 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_cloud_storage_file_share_acl":                                config.IdentifierFromProvider,
 	"ovh_cloud_storage_file_share_network":                            config.IdentifierFromProvider,
 	"ovh_cloud_storage_file_share_snapshot":                           config.IdentifierFromProvider,
+	"ovh_cloud_storage_object_bucket":                                 config.IdentifierFromProvider,
 	"ovh_cloud_project_file_storage_share":                            config.IdentifierFromProvider,
 	"ovh_cloud_project_file_storage_share_network":                    config.IdentifierFromProvider,
 	"ovh_cloud_project_storage_object_bucket_lifecycle_configuration": config.IdentifierFromProvider,
@@ -682,7 +690,21 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_dbaas_logs_encryption_key": config.IdentifierFromProvider,
 
 	// Email domain Framework resources
-	"ovh_email_domain_account": config.IdentifierFromProvider,
+	"ovh_email_domain_account":     config.IdentifierFromProvider,
+	"ovh_email_domain_dkim":        config.IdentifierFromProvider,
+	"ovh_email_domain_redirection": config.IdentifierFromProvider,
+
+	// Cloud Disk Array (dedicated Ceph) Framework resources
+	"ovh_dedicated_ceph_pool": config.IdentifierFromProvider,
+	"ovh_dedicated_ceph_user": config.IdentifierFromProvider,
+
+	// Web Cloud private database Framework resources
+	"ovh_hosting_privatedatabase_webhosting_network": config.IdentifierFromProvider,
+
+	// Account log subscription Framework resources
+	"ovh_iam_log_subscription":           config.IdentifierFromProvider,
+	"ovh_me_api_log_subscription":        config.IdentifierFromProvider,
+	"ovh_me_logs_audit_log_subscription": config.IdentifierFromProvider,
 
 	// Framework resources whose schema exposes no "id" attribute; their
 	// Terraform identity is the user-supplied name.

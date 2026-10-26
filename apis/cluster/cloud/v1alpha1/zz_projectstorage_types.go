@@ -355,20 +355,101 @@ type ProjectStorageParameters struct {
 type ReplicationInitParameters struct {
 
 	// (Attributes List) Replication rules (see below for nested schema)
-	Rules []RulesInitParameters `json:"rules,omitempty" tf:"rules,omitempty"`
+	Rules []ReplicationRulesInitParameters `json:"rules,omitempty" tf:"rules,omitempty"`
 }
 
 type ReplicationObservation struct {
 
 	// (Attributes List) Replication rules (see below for nested schema)
-	Rules []RulesObservation `json:"rules,omitempty" tf:"rules,omitempty"`
+	Rules []ReplicationRulesObservation `json:"rules,omitempty" tf:"rules,omitempty"`
 }
 
 type ReplicationParameters struct {
 
 	// (Attributes List) Replication rules (see below for nested schema)
 	// +kubebuilder:validation:Optional
-	Rules []RulesParameters `json:"rules,omitempty" tf:"rules,omitempty"`
+	Rules []ReplicationRulesParameters `json:"rules,omitempty" tf:"rules,omitempty"`
+}
+
+type ReplicationRulesInitParameters struct {
+
+	// (String) Delete marker replication
+	// Delete marker replication
+	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
+
+	// (Attributes) Rule destination configuration (see below for nested schema)
+	Destination *DestinationInitParameters `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// (Attributes) Rule filters (see below for nested schema)
+	Filter *FilterInitParameters `json:"filter,omitempty" tf:"filter,omitempty"`
+
+	// (String) Rule ID
+	// Rule ID
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// (Number) Rule priority
+	// Rule priority
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
+
+	// (String) Rule status
+	// Rule status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type ReplicationRulesObservation struct {
+
+	// (String) Delete marker replication
+	// Delete marker replication
+	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
+
+	// (Attributes) Rule destination configuration (see below for nested schema)
+	Destination *DestinationObservation `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// (Attributes) Rule filters (see below for nested schema)
+	Filter *FilterObservation `json:"filter,omitempty" tf:"filter,omitempty"`
+
+	// (String) Rule ID
+	// Rule ID
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// (Number) Rule priority
+	// Rule priority
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
+
+	// (String) Rule status
+	// Rule status
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+}
+
+type ReplicationRulesParameters struct {
+
+	// (String) Delete marker replication
+	// Delete marker replication
+	// +kubebuilder:validation:Optional
+	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
+
+	// (Attributes) Rule destination configuration (see below for nested schema)
+	// +kubebuilder:validation:Optional
+	Destination *DestinationParameters `json:"destination,omitempty" tf:"destination,omitempty"`
+
+	// (Attributes) Rule filters (see below for nested schema)
+	// +kubebuilder:validation:Optional
+	Filter *FilterParameters `json:"filter,omitempty" tf:"filter,omitempty"`
+
+	// (String) Rule ID
+	// Rule ID
+	// +kubebuilder:validation:Optional
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// (Number) Rule priority
+	// Rule priority
+	// +kubebuilder:validation:Optional
+	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
+
+	// (String) Rule status
+	// Rule status
+	// +kubebuilder:validation:Optional
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type RuleInitParameters struct {
@@ -398,87 +479,6 @@ type RuleParameters struct {
 	// The retention period that the default retention configuration must apply (e.g., P30D for 30 days)
 	// +kubebuilder:validation:Optional
 	Period *string `json:"period,omitempty" tf:"period,omitempty"`
-}
-
-type RulesInitParameters struct {
-
-	// (String) Delete marker replication
-	// Delete marker replication
-	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
-
-	// (Attributes) Rule destination configuration (see below for nested schema)
-	Destination *DestinationInitParameters `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// (Attributes) Rule filters (see below for nested schema)
-	Filter *FilterInitParameters `json:"filter,omitempty" tf:"filter,omitempty"`
-
-	// (String) Rule ID
-	// Rule ID
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// (Number) Rule priority
-	// Rule priority
-	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
-
-	// (String) Rule status
-	// Rule status
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
-}
-
-type RulesObservation struct {
-
-	// (String) Delete marker replication
-	// Delete marker replication
-	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
-
-	// (Attributes) Rule destination configuration (see below for nested schema)
-	Destination *DestinationObservation `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// (Attributes) Rule filters (see below for nested schema)
-	Filter *FilterObservation `json:"filter,omitempty" tf:"filter,omitempty"`
-
-	// (String) Rule ID
-	// Rule ID
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// (Number) Rule priority
-	// Rule priority
-	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
-
-	// (String) Rule status
-	// Rule status
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
-}
-
-type RulesParameters struct {
-
-	// (String) Delete marker replication
-	// Delete marker replication
-	// +kubebuilder:validation:Optional
-	DeleteMarkerReplication *string `json:"deleteMarkerReplication,omitempty" tf:"delete_marker_replication,omitempty"`
-
-	// (Attributes) Rule destination configuration (see below for nested schema)
-	// +kubebuilder:validation:Optional
-	Destination *DestinationParameters `json:"destination,omitempty" tf:"destination,omitempty"`
-
-	// (Attributes) Rule filters (see below for nested schema)
-	// +kubebuilder:validation:Optional
-	Filter *FilterParameters `json:"filter,omitempty" tf:"filter,omitempty"`
-
-	// (String) Rule ID
-	// Rule ID
-	// +kubebuilder:validation:Optional
-	ID *string `json:"id,omitempty" tf:"id,omitempty"`
-
-	// (Number) Rule priority
-	// Rule priority
-	// +kubebuilder:validation:Optional
-	Priority *float64 `json:"priority,omitempty" tf:"priority,omitempty"`
-
-	// (String) Rule status
-	// Rule status
-	// +kubebuilder:validation:Optional
-	Status *string `json:"status,omitempty" tf:"status,omitempty"`
 }
 
 type VersioningInitParameters struct {

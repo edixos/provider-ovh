@@ -215,6 +215,9 @@ type InstanceInitParameters struct {
 
 	Shares []InstanceSharesInitParameters `json:"shares,omitempty" tf:"shares,omitempty"`
 
+	// Cloud-init user data injected at boot, base64-encoded (standard encoding, 65535 bytes max). Pass it through `base64encode()`. **WARNING**: changing this value to another non-empty one **reinstalls the instance** (rebuild on the current image — the root disk is wiped); setting it to `""` is an explicit clear and **also reinstalls the instance**; removing the argument from the configuration only drops it from state, the instance keeps the user data it booted with and is **not** rebuilt
+	UserDataSecretRef *v1.LocalSecretKeySelector `json:"userDataSecretRef,omitempty" tf:"-"`
+
 	// IDs of block-storage volumes attached to the instance
 	VolumeIds []*string `json:"volumeIds,omitempty" tf:"volume_ids,omitempty"`
 }
@@ -389,6 +392,10 @@ type InstanceParameters struct {
 
 	// +kubebuilder:validation:Optional
 	Shares []InstanceSharesParameters `json:"shares,omitempty" tf:"shares,omitempty"`
+
+	// Cloud-init user data injected at boot, base64-encoded (standard encoding, 65535 bytes max). Pass it through `base64encode()`. **WARNING**: changing this value to another non-empty one **reinstalls the instance** (rebuild on the current image — the root disk is wiped); setting it to `""` is an explicit clear and **also reinstalls the instance**; removing the argument from the configuration only drops it from state, the instance keeps the user data it booted with and is **not** rebuilt
+	// +kubebuilder:validation:Optional
+	UserDataSecretRef *v1.LocalSecretKeySelector `json:"userDataSecretRef,omitempty" tf:"-"`
 
 	// IDs of block-storage volumes attached to the instance
 	// +kubebuilder:validation:Optional

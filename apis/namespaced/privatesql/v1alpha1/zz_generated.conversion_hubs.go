@@ -19,4 +19,7 @@ func (tr *PrivatedatabaseUser) Hub() {}
 func (tr *PrivatedatabaseUserGrant) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *PrivatedatabaseWebhostingNetwork) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *PrivatedatabaseWhitelist) Hub() {}

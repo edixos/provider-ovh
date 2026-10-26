@@ -40,6 +40,9 @@ func (tr *FileShareNetwork) Hub() {}
 func (tr *FileShareSnapshot) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *ObjectBucket) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *ProjectFileStorageShare) Hub() {}
 
 // Hub marks this type as a conversion hub.

@@ -8,7 +8,7 @@ export TERRAFORM_VERSION ?= 1.15.9
 
 export TERRAFORM_PROVIDER_SOURCE ?= ovh/ovh
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/ovh/terraform-provider-ovh
-export TERRAFORM_PROVIDER_VERSION ?= 2.19.0
+export TERRAFORM_PROVIDER_VERSION ?= 2.23.0
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
 
@@ -37,8 +37,8 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_REQUIRED_VERSION ?= 1.25.13
-GOLANGCILINT_VERSION ?= 2.5.0
+GO_REQUIRED_VERSION ?= 1.27.3
+GOLANGCILINT_VERSION ?= 2.15.0
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis

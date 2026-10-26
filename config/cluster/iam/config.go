@@ -24,4 +24,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "IAMResourceTags"
 	})
+	p.AddResourceConfigurator("ovh_iam_log_subscription", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "IAMLogSubscription"
+	})
 }

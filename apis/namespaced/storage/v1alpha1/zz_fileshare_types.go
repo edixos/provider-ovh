@@ -32,6 +32,18 @@ type CapabilitiesObservation struct {
 type CapabilitiesParameters struct {
 }
 
+type CurrentStateEncryptionInitParameters struct {
+}
+
+type CurrentStateEncryptionObservation struct {
+
+	// Whether the file share is encrypted at rest with LUKS
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type CurrentStateEncryptionParameters struct {
+}
+
 type ExportLocationsInitParameters struct {
 }
 
@@ -45,6 +57,25 @@ type ExportLocationsObservation struct {
 }
 
 type ExportLocationsParameters struct {
+}
+
+type FileShareCreateFromInitParameters struct {
+
+	// Identifier of an available file share snapshot of the same project and region to create the file share from
+	SnapshotID *string `json:"snapshotId,omitempty" tf:"snapshot_id,omitempty"`
+}
+
+type FileShareCreateFromObservation struct {
+
+	// Identifier of an available file share snapshot of the same project and region to create the file share from
+	SnapshotID *string `json:"snapshotId,omitempty" tf:"snapshot_id,omitempty"`
+}
+
+type FileShareCreateFromParameters struct {
+
+	// Identifier of an available file share snapshot of the same project and region to create the file share from
+	// +kubebuilder:validation:Optional
+	SnapshotID *string `json:"snapshotId" tf:"snapshot_id,omitempty"`
 }
 
 type FileShareCurrentStateInitParameters struct {
@@ -71,6 +102,8 @@ type FileShareCurrentStateObservation struct {
 	// File share description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	Encryption *CurrentStateEncryptionObservation `json:"encryption,omitempty" tf:"encryption,omitempty"`
+
 	ExportLocations []ExportLocationsObservation `json:"exportLocations,omitempty" tf:"export_locations,omitempty"`
 
 	Location *FileShareCurrentStateLocationObservation `json:"location,omitempty" tf:"location,omitempty"`
@@ -94,13 +127,36 @@ type FileShareCurrentStateObservation struct {
 type FileShareCurrentStateParameters struct {
 }
 
+type FileShareEncryptionInitParameters struct {
+
+	// Whether the file share is encrypted at rest with LUKS
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type FileShareEncryptionObservation struct {
+
+	// Whether the file share is encrypted at rest with LUKS
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
+type FileShareEncryptionParameters struct {
+
+	// Whether the file share is encrypted at rest with LUKS
+	// +kubebuilder:validation:Optional
+	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+}
+
 type FileShareInitParameters struct {
 
 	// The availability zone where the file share will be created
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
+	CreateFrom *FileShareCreateFromInitParameters `json:"createFrom,omitempty" tf:"create_from,omitempty"`
+
 	// File share description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	Encryption *FileShareEncryptionInitParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// File share name
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
@@ -114,7 +170,7 @@ type FileShareInitParameters struct {
 	// Service name of the resource representing the id of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// ID of a pre-existing share network to attach the file share to
+	// ID of a pre-existing share network to attach the file share to. Required unless `create_from` is set; when omitted with `create_from`, the share network of the snapshot's source file share is used
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/namespaced/storage/v1alpha1.FileShareNetwork
 	ShareNetworkID *string `json:"shareNetworkId,omitempty" tf:"share_network_id,omitempty"`
 
@@ -126,10 +182,10 @@ type FileShareInitParameters struct {
 	// +kubebuilder:validation:Optional
 	ShareNetworkIDSelector *v1.NamespacedSelector `json:"shareNetworkIdSelector,omitempty" tf:"-"`
 
-	// File share type (e.g. `STANDARD_1AZ`)
+	// File share type (e.g. `STANDARD_1AZ`). Required unless `create_from` is set; with `create_from`, the type of the snapshot's source file share is used
 	ShareType *string `json:"shareType,omitempty" tf:"share_type,omitempty"`
 
-	// Size of the file share in GB
+	// Size of the file share in GB. Required unless `create_from` is set; when omitted with `create_from`, the snapshot size is used
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
 
@@ -141,6 +197,8 @@ type FileShareObservation struct {
 	// Computed hash representing the current target specification value
 	Checksum *string `json:"checksum,omitempty" tf:"checksum,omitempty"`
 
+	CreateFrom *FileShareCreateFromObservation `json:"createFrom,omitempty" tf:"create_from,omitempty"`
+
 	// Creation date of the file share
 	CreatedAt *string `json:"createdAt,omitempty" tf:"created_at,omitempty"`
 
@@ -148,6 +206,8 @@ type FileShareObservation struct {
 
 	// File share description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	Encryption *FileShareEncryptionObservation `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -166,13 +226,13 @@ type FileShareObservation struct {
 	// Service name of the resource representing the id of the cloud project
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// ID of a pre-existing share network to attach the file share to
+	// ID of a pre-existing share network to attach the file share to. Required unless `create_from` is set; when omitted with `create_from`, the share network of the snapshot's source file share is used
 	ShareNetworkID *string `json:"shareNetworkId,omitempty" tf:"share_network_id,omitempty"`
 
-	// File share type (e.g. `STANDARD_1AZ`)
+	// File share type (e.g. `STANDARD_1AZ`). Required unless `create_from` is set; with `create_from`, the type of the snapshot's source file share is used
 	ShareType *string `json:"shareType,omitempty" tf:"share_type,omitempty"`
 
-	// Size of the file share in GB
+	// Size of the file share in GB. Required unless `create_from` is set; when omitted with `create_from`, the snapshot size is used
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
 	// Last update date of the file share
@@ -185,9 +245,15 @@ type FileShareParameters struct {
 	// +kubebuilder:validation:Optional
 	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	CreateFrom *FileShareCreateFromParameters `json:"createFrom,omitempty" tf:"create_from,omitempty"`
+
 	// File share description
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Encryption *FileShareEncryptionParameters `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
 	// File share name
 	// +kubebuilder:validation:Optional
@@ -205,7 +271,7 @@ type FileShareParameters struct {
 	// +kubebuilder:validation:Optional
 	ServiceName *string `json:"serviceName,omitempty" tf:"service_name,omitempty"`
 
-	// ID of a pre-existing share network to attach the file share to
+	// ID of a pre-existing share network to attach the file share to. Required unless `create_from` is set; when omitted with `create_from`, the share network of the snapshot's source file share is used
 	// +crossplane:generate:reference:type=github.com/edixos/provider-ovh/apis/namespaced/storage/v1alpha1.FileShareNetwork
 	// +kubebuilder:validation:Optional
 	ShareNetworkID *string `json:"shareNetworkId,omitempty" tf:"share_network_id,omitempty"`
@@ -218,11 +284,11 @@ type FileShareParameters struct {
 	// +kubebuilder:validation:Optional
 	ShareNetworkIDSelector *v1.NamespacedSelector `json:"shareNetworkIdSelector,omitempty" tf:"-"`
 
-	// File share type (e.g. `STANDARD_1AZ`)
+	// File share type (e.g. `STANDARD_1AZ`). Required unless `create_from` is set; with `create_from`, the type of the snapshot's source file share is used
 	// +kubebuilder:validation:Optional
 	ShareType *string `json:"shareType,omitempty" tf:"share_type,omitempty"`
 
-	// Size of the file share in GB
+	// Size of the file share in GB. Required unless `create_from` is set; when omitted with `create_from`, the snapshot size is used
 	// +kubebuilder:validation:Optional
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 }
@@ -267,8 +333,6 @@ type FileShare struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.protocol) || (has(self.initProvider) && has(self.initProvider.protocol))",message="spec.forProvider.protocol is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.region) || (has(self.initProvider) && has(self.initProvider.region))",message="spec.forProvider.region is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.serviceName) || (has(self.initProvider) && has(self.initProvider.serviceName))",message="spec.forProvider.serviceName is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.shareType) || (has(self.initProvider) && has(self.initProvider.shareType))",message="spec.forProvider.shareType is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.size) || (has(self.initProvider) && has(self.initProvider.size))",message="spec.forProvider.size is a required parameter"
 	Spec   FileShareSpec   `json:"spec"`
 	Status FileShareStatus `json:"status,omitempty"`
 }

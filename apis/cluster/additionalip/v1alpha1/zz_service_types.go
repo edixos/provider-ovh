@@ -92,13 +92,13 @@ type PlanInitParameters struct {
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
 
@@ -110,13 +110,13 @@ type PlanObservation struct {
 	// Representation of a configuration item for personalizing product
 	Configuration []ConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
 
@@ -157,13 +157,13 @@ type PlanOptionInitParameters struct {
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationInitParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
 
@@ -175,13 +175,13 @@ type PlanOptionObservation struct {
 	// Representation of a configuration item for personalizing product
 	Configuration []PlanOptionConfigurationObservation `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	Duration *string `json:"duration,omitempty" tf:"duration,omitempty"`
 
 	// Plan code
 	PlanCode *string `json:"planCode,omitempty" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	PricingMode *string `json:"pricingMode,omitempty" tf:"pricing_mode,omitempty"`
 }
 
@@ -195,7 +195,7 @@ type PlanOptionParameters struct {
 	// +kubebuilder:validation:Optional
 	Configuration []PlanOptionConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
@@ -203,7 +203,7 @@ type PlanOptionParameters struct {
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
 }
@@ -218,7 +218,7 @@ type PlanParameters struct {
 	// +kubebuilder:validation:Optional
 	Configuration []ConfigurationParameters `json:"configuration,omitempty" tf:"configuration,omitempty"`
 
-	// duration
+	// Duration of the subscription, in ISO 8601 format (e.g. P1M, P1Y)
 	// +kubebuilder:validation:Optional
 	Duration *string `json:"duration" tf:"duration,omitempty"`
 
@@ -226,7 +226,7 @@ type PlanParameters struct {
 	// +kubebuilder:validation:Optional
 	PlanCode *string `json:"planCode" tf:"plan_code,omitempty"`
 
-	// Pricing model identifier
+	// Pricing mode (e.g. default), from the same price as the duration
 	// +kubebuilder:validation:Optional
 	PricingMode *string `json:"pricingMode" tf:"pricing_mode,omitempty"`
 }

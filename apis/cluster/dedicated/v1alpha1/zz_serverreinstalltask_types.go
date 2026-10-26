@@ -168,6 +168,9 @@ type PartitioningLayoutParameters struct {
 
 type ServerReinstallTaskCustomizationsInitParameters struct {
 
+	// Application to install with the auto installer
+	AppToInstall *string `json:"appToInstall,omitempty" tf:"app_to_install,omitempty"`
+
 	// Config Drive MetaData
 	// +mapType=granular
 	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
@@ -213,6 +216,9 @@ type ServerReinstallTaskCustomizationsInitParameters struct {
 
 type ServerReinstallTaskCustomizationsObservation struct {
 
+	// Application to install with the auto installer
+	AppToInstall *string `json:"appToInstall,omitempty" tf:"app_to_install,omitempty"`
+
 	// Config Drive MetaData
 	// +mapType=granular
 	ConfigDriveMetadata map[string]*string `json:"configDriveMetadata,omitempty" tf:"config_drive_metadata,omitempty"`
@@ -257,6 +263,10 @@ type ServerReinstallTaskCustomizationsObservation struct {
 }
 
 type ServerReinstallTaskCustomizationsParameters struct {
+
+	// Application to install with the auto installer
+	// +kubebuilder:validation:Optional
+	AppToInstall *string `json:"appToInstall,omitempty" tf:"app_to_install,omitempty"`
 
 	// Config Drive MetaData
 	// +kubebuilder:validation:Optional
@@ -436,6 +446,9 @@ type ServerReinstallTaskStorageInitParameters struct {
 	// Disk group id (default is 0, meaning automatic)
 	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
 
+	// Whether to erase this disk group's data (default is true). Set to false to keep existing data on a disk group not used for the OS installation.
+	Erase *bool `json:"erase,omitempty" tf:"erase,omitempty"`
+
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
 	HardwareRaid []StorageHardwareRaidInitParameters `json:"hardwareRaid,omitempty" tf:"hardware_raid,omitempty"`
@@ -450,6 +463,9 @@ type ServerReinstallTaskStorageObservation struct {
 	// : Disk group id to install the OS to (default is 0, meaning automatic).
 	// Disk group id (default is 0, meaning automatic)
 	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
+
+	// Whether to erase this disk group's data (default is true). Set to false to keep existing data on a disk group not used for the OS installation.
+	Erase *bool `json:"erase,omitempty" tf:"erase,omitempty"`
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
@@ -466,6 +482,10 @@ type ServerReinstallTaskStorageParameters struct {
 	// Disk group id (default is 0, meaning automatic)
 	// +kubebuilder:validation:Optional
 	DiskGroupID *int64 `json:"diskGroupId,omitempty" tf:"disk_group_id,omitempty"`
+
+	// Whether to erase this disk group's data (default is true). Set to false to keep existing data on a disk group not used for the OS installation.
+	// +kubebuilder:validation:Optional
+	Erase *bool `json:"erase,omitempty" tf:"erase,omitempty"`
 
 	// : Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode).
 	// Hardware Raid configurations (if not specified, all disks of the chosen disk group id will be configured in JBOD mode)
