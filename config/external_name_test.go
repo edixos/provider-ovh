@@ -6,11 +6,10 @@ package config
 
 import (
 	"context"
-	"encoding/json"
-	"net/http"
-	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
 )
 
 func TestUserIdentifierFromProvider(t *testing.T) {
@@ -202,7 +201,7 @@ func TestDatabaseLogSubscriptionIdentifierFromProvider(t *testing.T) {
 func TestSDKMapBindingsRestored(t *testing.T) {
 	cases := map[string]string{
 		"ovh_cloud_project_user":                     "u",
-		"ovh_cloud_project_database_postgresql_user": "svc-1/cluster-1/u",
+		"ovh_cloud_project_database_postgresql_user": "u",
 		"ovh_cloud_project_database_clickhouse_user": "svc-1/cluster-1/u",
 		// service_name/engine/cluster_id/id
 		"ovh_cloud_project_database_log_subscription": "svc-1/postgresql/cluster-1/u",
@@ -239,123 +238,142 @@ func TestSDKMapBindingsRestored(t *testing.T) {
 }
 
 func TestPostgresqlUserIdentifierFromProvider(t *testing.T) {
-	t.Run("UsesExternalNameWhenPresent", func(t *testing.T) {
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "user-123", map[string]any{
-			"service_name": "svc-1",
-			"cluster_id":   "cluster-1",
-		}, nil)
-		assertGetID(t, got, err, "svc-1/cluster-1/user-123", "")
-	})
+	params := map[string]any{"service_name": "svc-1", "cluster_id": "cluster-1", "name": "johndoe"}
+	cases := map[string]struct {
+		externalName string
+		want         string
+		wantErr      string
+	}{
+		"EmptyExternalNameReturnsEmpty": {
+			externalName: "",
+			want:         "",
+		},
+		"BareID": {
+			externalName: "user-123",
+			want:         "user-123",
+		},
+		"LegacyCompositeExternalName": {
+			externalName: "svc-1/cluster-1/user-123",
+			want:         "user-123",
+		},
+		"EmptyUserID": {
+			externalName: "svc-1/cluster-1/",
+			wantErr:      "is not <user_id> or <service_name>/<cluster_id>/<user_id>",
+		},
+		"TrailingSlash": {
+			externalName: "svc-1/cluster-1/user-123/",
+			wantErr:      "is not <user_id> or <service_name>/<cluster_id>/<user_id>",
+		},
+	}
 
-	t.Run("ResolvesMissingExternalNameFromOVH", func(t *testing.T) {
-		server := newPostgresqlUserLookupServer(t, map[string]string{
-			"user-111": "someone-else",
-			"user-123": "johndoe",
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), tc.externalName, params, nil)
+			assertGetID(t, got, err, tc.want, tc.wantErr)
 		})
-		defer server.Close()
-
-		// Use nested "configuration" structure matching production ts.Map() format
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
-			"service_name": "svc-1",
-			"cluster_id":   "cluster-1",
-			"name":         "johndoe",
-		}, map[string]any{
-			"configuration": map[string]any{
-				"endpoint":     server.URL,
-				"access_token": "token",
-			},
-		})
-		assertGetID(t, got, err, "svc-1/cluster-1/user-123", "")
-	})
-
-	t.Run("ResolvesMissingExternalNameFromOVH_FlatProviderConfig", func(t *testing.T) {
-		// Also works when providerConfig is flat (e.g. direct unit-test use)
-		server := newPostgresqlUserLookupServer(t, map[string]string{
-			"user-111": "someone-else",
-			"user-123": "johndoe",
-		})
-		defer server.Close()
-
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
-			"service_name": "svc-1",
-			"cluster_id":   "cluster-1",
-			"name":         "johndoe",
-		}, map[string]any{
-			"endpoint":     server.URL,
-			"access_token": "token",
-		})
-		assertGetID(t, got, err, "svc-1/cluster-1/user-123", "")
-	})
-
-	t.Run("LookupMissReturnsEmpty", func(t *testing.T) {
-		server := newPostgresqlUserLookupServer(t, map[string]string{
-			"user-111": "someone-else",
-		})
-		defer server.Close()
-
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
-			"service_name": "svc-1",
-			"cluster_id":   "cluster-1",
-			"name":         "johndoe",
-		}, map[string]any{
-			"configuration": map[string]any{
-				"endpoint":     server.URL,
-				"access_token": "token",
-			},
-		})
-		assertGetID(t, got, err, "", "")
-	})
-
-	t.Run("MissingClusterIDWithoutExternalNameReturnsEmpty", func(t *testing.T) {
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "", map[string]any{
-			"service_name": "svc-1",
-			"name":         "johndoe",
-		}, nil)
-		assertGetID(t, got, err, "", "")
-	})
-
-	t.Run("MissingClusterID", func(t *testing.T) {
-		got, err := postgresqlUserIdentifierFromProvider.GetIDFn(context.Background(), "user-123", map[string]any{
-			"service_name": "svc-1",
-		}, nil)
-		assertGetID(t, got, err, "", "cluster_id")
-	})
+	}
 }
 
-func newPostgresqlUserLookupServer(t *testing.T, users map[string]string) *httptest.Server {
-	t.Helper()
+func TestPostgresqlUserExternalNameFromState(t *testing.T) {
+	cases := map[string]struct {
+		tfstate map[string]any
+		want    string
+		wantErr bool
+	}{
+		"BareID": {
+			tfstate: map[string]any{"id": "user-123"},
+			want:    "user-123",
+		},
+		"LegacyComposite": {
+			tfstate: map[string]any{"id": "svc-1/cluster-1/user-123"},
+			want:    "user-123",
+		},
+		"MissingID": {
+			tfstate: map[string]any{},
+			wantErr: true,
+		},
+	}
 
-	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
+	for name, tc := range cases {
+		t.Run(name, func(t *testing.T) {
+			got, err := postgresqlUserIdentifierFromProvider.GetExternalNameFn(tc.tfstate)
+			if (err != nil) != tc.wantErr {
+				t.Fatalf("GetExternalNameFn() error = %v, wantErr %v", err, tc.wantErr)
+			}
+			if got != tc.want {
+				t.Errorf("GetExternalNameFn() = %q, want %q", got, tc.want)
+			}
+		})
+	}
+}
 
-		path := strings.TrimPrefix(r.URL.Path, "/1.0")
-		if path == "/cloud/project/svc-1/database/postgresql/cluster-1/user" {
-			ids := make([]string, 0, len(users))
-			for id := range users {
-				ids = append(ids, id)
-			}
-			if err := json.NewEncoder(w).Encode(ids); err != nil {
-				t.Fatalf("encode ids: %v", err)
-			}
-			return
+func TestIPFirewallIdentifier(t *testing.T) {
+	firewall := TerraformPluginFrameworkExternalNameConfigs["ovh_ip_firewall"]
+	rule := TerraformPluginFrameworkExternalNameConfigs["ovh_ip_firewall_rule"]
+
+	t.Run("FirewallIDFromParameters", func(t *testing.T) {
+		got, err := firewall.GetIDFn(context.Background(), "", map[string]any{
+			"ip":             "192.0.2.10/32",
+			"ip_on_firewall": "192.0.2.10",
+		}, nil)
+		assertGetID(t, got, err, "192.0.2.10/32/192.0.2.10", "")
+	})
+
+	t.Run("FirewallMissingIPOnFirewall", func(t *testing.T) {
+		got, err := firewall.GetIDFn(context.Background(), "", map[string]any{"ip": "192.0.2.10"}, nil)
+		assertGetID(t, got, err, "", "ip_on_firewall")
+	})
+
+	t.Run("FirewallExternalNameFromStateWithoutID", func(t *testing.T) {
+		got, err := firewall.GetExternalNameFn(map[string]any{
+			"id":             "",
+			"ip":             "192.0.2.10",
+			"ip_on_firewall": "192.0.2.10",
+		})
+		assertGetID(t, got, err, "192.0.2.10/192.0.2.10", "")
+	})
+
+	t.Run("RuleIDFromParameters", func(t *testing.T) {
+		// spec.forProvider numbers decode as float64
+		got, err := rule.GetIDFn(context.Background(), "", map[string]any{
+			"ip":             "192.0.2.10",
+			"ip_on_firewall": "192.0.2.10",
+			"sequence":       float64(0),
+		}, nil)
+		assertGetID(t, got, err, "192.0.2.10/192.0.2.10/0", "")
+	})
+
+	t.Run("RuleExternalNameFromState", func(t *testing.T) {
+		// Framework state integers convert to int64
+		got, err := rule.GetExternalNameFn(map[string]any{
+			"ip":             "192.0.2.10",
+			"ip_on_firewall": "192.0.2.10",
+			"sequence":       int64(18),
+		})
+		assertGetID(t, got, err, "192.0.2.10/192.0.2.10/18", "")
+	})
+
+	t.Run("RuleMissingSequence", func(t *testing.T) {
+		got, err := rule.GetIDFn(context.Background(), "", map[string]any{
+			"ip":             "192.0.2.10",
+			"ip_on_firewall": "192.0.2.10",
+		}, nil)
+		assertGetID(t, got, err, "", "sequence")
+	})
+
+	t.Run("NotFoundDiagnosticTreatedAsMissing", func(t *testing.T) {
+		diags := []*tfprotov6.Diagnostic{{
+			Severity: tfprotov6.DiagnosticSeverityError,
+			Summary:  "Error calling Get /ip/192.0.2.10/firewall/192.0.2.10/rule/0",
+			Detail:   `OVHcloud API error (status code 404): Client::NotFound: "The requested object (sequence = 0) does not exist"`,
+		}}
+		if !firewall.IsNotFoundDiagnosticFn(diags) {
+			t.Error("firewall: 404 diagnostic not treated as resource not found")
 		}
-
-		prefix := "/cloud/project/svc-1/database/postgresql/cluster-1/user/"
-		if strings.HasPrefix(path, prefix) {
-			id := strings.TrimPrefix(path, prefix)
-			username, ok := users[id]
-			if !ok {
-				w.WriteHeader(http.StatusNotFound)
-				return
-			}
-			if err := json.NewEncoder(w).Encode(map[string]string{"id": id, "username": username}); err != nil {
-				t.Fatalf("encode user: %v", err)
-			}
-			return
+		if !rule.IsNotFoundDiagnosticFn(diags) {
+			t.Error("rule: 404 diagnostic not treated as resource not found")
 		}
-
-		w.WriteHeader(http.StatusNotFound)
-	}))
+	})
 }
 
 func assertGetID(t *testing.T, got string, err error, want, wantErr string) {
