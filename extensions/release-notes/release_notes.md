@@ -3,6 +3,8 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+
+## v2.23.1 - 2026-10-26
 ### Fixed
 - `ProjectDatabasePostgresqlUser`: refresh no longer fails with
   `[userId] Given data (...) is not valid for type uuid`. The Terraform ID
