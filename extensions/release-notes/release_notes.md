@@ -3,6 +3,19 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+### Fixed
+- `ProjectDatabasePostgresqlUser`: refresh no longer fails with
+  `[userId] Given data (...) is not valid for type uuid`. The Terraform ID
+  is now the bare user id expected by the upstream Read; existing
+  `<service_name>/<cluster_id>/<user_id>` external-names keep working and are
+  rewritten to the bare id on the next observe. The provider-side orphan
+  lookup is removed: since 2.23.0 the upstream create recovers a user left by
+  a 409/500 by name (#53).
+- `Firewall` and `FirewallRule` (`additionalip`): a 404 from OVH on the
+  first observe now means "does not exist", so Create proceeds instead of
+  failing forever. The identity is rebuilt from `ip`/`ipOnFirewall`
+  (`/sequence` for rules), which fixes `cannot find id in tfstate` when
+  adopting an existing firewall (#66).
 
 ## v2.23.0 - 2026-10-26
 ### Added

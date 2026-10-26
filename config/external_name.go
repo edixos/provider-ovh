@@ -7,13 +7,11 @@ package config
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"strings"
 
 	"github.com/crossplane/crossplane-runtime/v2/pkg/errors"
 	"github.com/crossplane/upjet/v2/pkg/config"
 	"github.com/hashicorp/terraform-plugin-go/tfprotov6"
-	goovh "github.com/ovh/go-ovh/ovh"
 )
 
 const (
@@ -74,98 +72,6 @@ func clusterID(parameters map[string]any) (string, error) {
 		return "", errors.Errorf(ErrFmtUnexpectedType, "cluster_id")
 	}
 	return clusterIDStr, nil
-}
-
-func databaseUserName(parameters map[string]any) (string, error) {
-	userName, ok := parameters["name"]
-	if !ok {
-		return "", errors.Errorf(ErrFmtNoAttribute, "name")
-	}
-	userNameStr, ok := userName.(string)
-	if !ok {
-		return "", errors.Errorf(ErrFmtUnexpectedType, "name")
-	}
-	return userNameStr, nil
-}
-
-func providerConfigString(providerConfig map[string]any, key string) (string, error) {
-	value, ok := providerConfig[key]
-	if !ok {
-		return "", errors.Errorf(ErrFmtNoAttribute, key)
-	}
-	valueStr, ok := value.(string)
-	if !ok {
-		return "", errors.Errorf(ErrFmtUnexpectedType, key)
-	}
-	return valueStr, nil
-}
-
-func newOVHClient(providerConfig map[string]any) (*goovh.Client, error) {
-	// providerConfig comes from terraform.Setup.Map(), which nests
-	// the actual provider credentials under the "configuration" key.
-	if cfg, ok := providerConfig["configuration"].(map[string]any); ok {
-		providerConfig = cfg
-	}
-
-	endpoint, err := providerConfigString(providerConfig, "endpoint")
-	if err != nil {
-		return nil, err
-	}
-
-	if accessToken, ok := providerConfig["access_token"].(string); ok && accessToken != "" {
-		return goovh.NewAccessTokenClient(endpoint, accessToken)
-	}
-
-	applicationKey, err := providerConfigString(providerConfig, "application_key")
-	if err != nil {
-		return nil, err
-	}
-	applicationSecret, err := providerConfigString(providerConfig, "application_secret")
-	if err != nil {
-		return nil, err
-	}
-	consumerKey, err := providerConfigString(providerConfig, "consumer_key")
-	if err != nil {
-		return nil, err
-	}
-
-	return goovh.NewClient(endpoint, applicationKey, applicationSecret, consumerKey)
-}
-
-func lookupPostgresqlUserID(ctx context.Context, providerConfig map[string]any, serviceName, clusterID, userName string) (string, error) {
-	client, err := newOVHClient(providerConfig)
-	if err != nil {
-		return "", err
-	}
-
-	listEndpoint := fmt.Sprintf("/cloud/project/%s/database/postgresql/%s/user",
-		url.PathEscape(serviceName),
-		url.PathEscape(clusterID),
-	)
-	ids := make([]string, 0)
-	if err := client.GetWithContext(ctx, listEndpoint, &ids); err != nil {
-		return "", err
-	}
-
-	for _, id := range ids {
-		endpoint := fmt.Sprintf("/cloud/project/%s/database/postgresql/%s/user/%s",
-			url.PathEscape(serviceName),
-			url.PathEscape(clusterID),
-			url.PathEscape(id),
-		)
-		response := struct {
-			ID       string `json:"id"`
-			Username string `json:"username"`
-		}{}
-		if err := client.GetWithContext(ctx, endpoint, &response); err != nil {
-			return "", err
-		}
-		if response.Username == userName {
-			return response.ID, nil
-		}
-	}
-
-	return "", nil
 }
 
 var kubePoolIdentifierFromProvider = config.ExternalName{
@@ -284,43 +190,82 @@ func userID(externalName string) (string, error) {
 
 var postgresqlUserIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
-	GetExternalNameFn:       config.IDAsExternalName,
-	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
-		if externalName != "" {
-			serviceName, err := serviceName(parameters)
-			if err != nil {
-				return serviceName, err
-			}
-			clusterID, err := clusterID(parameters)
-			if err != nil {
-				return "", err
-			}
-			return fmt.Sprintf("%s/%s/%s", serviceName, clusterID, externalName), nil
-		}
-
-		serviceName, err := serviceName(parameters)
+	GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+		id, err := config.IDAsExternalName(tfstate)
 		if err != nil {
+			return "", err
+		}
+		return postgresqlUserID(id)
+	},
+	// The upstream Read puts the Terraform ID straight into the request path,
+	// so it must be the bare user id. Orphans left by a create that failed
+	// with 409/500 are recovered by name in the upstream create since 2.23.0.
+	GetIDFn: func(_ context.Context, externalName string, _ map[string]any, _ map[string]any) (string, error) {
+		if externalName == "" {
 			return "", nil
 		}
-		clusterID, err := clusterID(parameters)
-		if err != nil {
-			return "", nil
-		}
-		userName, err := databaseUserName(parameters)
-		if err != nil {
-			return "", nil
-		}
-
-		// Best-effort orphan recovery: if create failed after the OVH API created
-		// the user, resolve the provider ID by name and import on the next reconcile.
-		resolvedID, err := lookupPostgresqlUserID(ctx, providerConfig, serviceName, clusterID, userName)
-		if err != nil || resolvedID == "" {
-			return "", nil
-		}
-
-		return fmt.Sprintf("%s/%s/%s", serviceName, clusterID, resolvedID), nil
+		return postgresqlUserID(externalName)
 	},
 	DisableNameInitializer: true,
+}
+
+// postgresqlUserID accepts the bare user id or the legacy
+// <service_name>/<cluster_id>/<user_id> external-name and returns the user id.
+func postgresqlUserID(externalName string) (string, error) {
+	id := externalName
+	if parts := strings.SplitN(id, "/", 3); len(parts) == 3 {
+		id = parts[2]
+	}
+	if id == "" || strings.Contains(id, "/") {
+		return "", errors.Errorf("postgresql user external-name %q is not <user_id> or <service_name>/<cluster_id>/<user_id>", externalName)
+	}
+	return id, nil
+}
+
+// ipFirewallID builds the deterministic <ip>/<ip_on_firewall> identity of an
+// ovh_ip_firewall, or <ip>/<ip_on_firewall>/<sequence> of an
+// ovh_ip_firewall_rule when withSequence is set.
+func ipFirewallID(attrs map[string]any, withSequence bool) (string, error) {
+	ip, ok := attrs["ip"].(string)
+	if !ok || ip == "" {
+		return "", errors.Errorf(ErrFmtNoAttribute, "ip")
+	}
+	ipOnFirewall, ok := attrs["ip_on_firewall"].(string)
+	if !ok || ipOnFirewall == "" {
+		return "", errors.Errorf(ErrFmtNoAttribute, "ip_on_firewall")
+	}
+	if !withSequence {
+		return fmt.Sprintf("%s/%s", ip, ipOnFirewall), nil
+	}
+	// spec.forProvider decodes numbers as float64; the Framework state as int64.
+	var sequence int64
+	switch v := attrs["sequence"].(type) {
+	case float64:
+		sequence = int64(v)
+	case int64:
+		sequence = v
+	default:
+		return "", errors.Errorf(ErrFmtNoAttribute, "sequence")
+	}
+	return fmt.Sprintf("%s/%s/%d", ip, ipOnFirewall, sequence), nil
+}
+
+// ipFirewallIdentifier is shared by ovh_ip_firewall and ovh_ip_firewall_rule.
+// Their upstream Read returns an error on a 404 and does not set the id when
+// adopting an existing object, so the identity is rebuilt from the arguments
+// and a 404 is reported as "resource does not exist" to let Create proceed.
+func ipFirewallIdentifier(withSequence bool) config.ExternalName {
+	return config.ExternalName{
+		SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
+		GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+			return ipFirewallID(tfstate, withSequence)
+		},
+		GetIDFn: func(_ context.Context, _ string, parameters map[string]any, _ map[string]any) (string, error) {
+			return ipFirewallID(parameters, withSequence)
+		},
+		DisableNameInitializer: true,
+		IsNotFoundDiagnosticFn: isOVHNotFoundError,
+	}
 }
 
 // serviceNameIdentifierFromProvider builds the "<service_name>/<id>" Terraform
@@ -609,8 +554,8 @@ var TerraformPluginFrameworkExternalNameConfigs = map[string]config.ExternalName
 	"ovh_domain_zone_import":         config.IdentifierFromProvider,
 
 	// IP Framework resources
-	"ovh_ip_firewall":      config.IdentifierFromProvider,
-	"ovh_ip_firewall_rule": config.IdentifierFromProvider,
+	"ovh_ip_firewall":      ipFirewallIdentifier(false),
+	"ovh_ip_firewall_rule": ipFirewallIdentifier(true),
 	"ovh_ip_mitigation":    config.IdentifierFromProvider,
 
 	// IP Load Balancing Framework resources
