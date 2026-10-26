@@ -326,6 +326,11 @@ spec:
                           type: array
                       type: object
                     type: array
+                  disablePublicNetworking:
+                    description: Disable public connectivity. Node pools of such a
+                      cluster cannot attach floating IPs. Only available on the standard
+                      plan. Can only be set at cluster creation.
+                    type: boolean
                   ipAllocationPolicy:
                     description: IP Allocation policy for the MKS cluster
                     items:
@@ -446,12 +451,20 @@ spec:
                         defaultVrackGateway:
                           description: |-
                             If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
                           type: string
                         privateNetworkRoutingAsDefault:
                           description: |-
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                          type: boolean
+                        useUserGateway:
+                          description: When enabled, skips the prerequisite check
+                            for a router/gateway on the OpenStack subnet/network.
+                            By default (value false or not set), an OpenStack router/gateway
+                            is mandatory. Setting this attribute requires disable_public_networking
+                            to be true. Only available on the standard plan. Can only
+                            be set at cluster creation.
                           type: boolean
                       type: object
                     type: array
@@ -823,6 +836,11 @@ spec:
                           type: array
                       type: object
                     type: array
+                  disablePublicNetworking:
+                    description: Disable public connectivity. Node pools of such a
+                      cluster cannot attach floating IPs. Only available on the standard
+                      plan. Can only be set at cluster creation.
+                    type: boolean
                   ipAllocationPolicy:
                     description: IP Allocation policy for the MKS cluster
                     items:
@@ -943,12 +961,20 @@ spec:
                         defaultVrackGateway:
                           description: |-
                             If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
                           type: string
                         privateNetworkRoutingAsDefault:
                           description: |-
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                          type: boolean
+                        useUserGateway:
+                          description: When enabled, skips the prerequisite check
+                            for a router/gateway on the OpenStack subnet/network.
+                            By default (value false or not set), an OpenStack router/gateway
+                            is mandatory. Setting this attribute requires disable_public_networking
+                            to be true. Only available on the standard plan. Can only
+                            be set at cluster creation.
                           type: boolean
                       type: object
                     type: array
@@ -1410,6 +1436,11 @@ spec:
                           type: array
                       type: object
                     type: array
+                  disablePublicNetworking:
+                    description: Disable public connectivity. Node pools of such a
+                      cluster cannot attach floating IPs. Only available on the standard
+                      plan. Can only be set at cluster creation.
+                    type: boolean
                   id:
                     description: Managed Kubernetes Service ID
                     type: string
@@ -1471,12 +1502,20 @@ spec:
                         defaultVrackGateway:
                           description: |-
                             If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+                            If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
                           type: string
                         privateNetworkRoutingAsDefault:
                           description: |-
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
                             Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+                          type: boolean
+                        useUserGateway:
+                          description: When enabled, skips the prerequisite check
+                            for a router/gateway on the OpenStack subnet/network.
+                            By default (value false or not set), an OpenStack router/gateway
+                            is mandatory. Setting this attribute requires disable_public_networking
+                            to be true. Only available on the standard plan. Can only
+                            be set at cluster creation.
                           type: boolean
                       type: object
                     type: array

@@ -29,12 +29,16 @@ type BlockVolumeEncryptionInitParameters struct {
 
 	// Whether the volume is encrypted at rest with LUKS
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	KMS *EncryptionKMSInitParameters `json:"kms,omitempty" tf:"kms,omitempty"`
 }
 
 type BlockVolumeEncryptionObservation struct {
 
 	// Whether the volume is encrypted at rest with LUKS
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	KMS *EncryptionKMSObservation `json:"kms,omitempty" tf:"kms,omitempty"`
 }
 
 type BlockVolumeEncryptionParameters struct {
@@ -42,6 +46,9 @@ type BlockVolumeEncryptionParameters struct {
 	// Whether the volume is encrypted at rest with LUKS
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	KMS *EncryptionKMSParameters `json:"kms,omitempty" tf:"kms,omitempty"`
 }
 
 type BlockVolumeInitParameters struct {
@@ -214,13 +221,59 @@ type CurrentStateParameters struct {
 type EncryptionInitParameters struct {
 }
 
+type EncryptionKMSInitParameters struct {
+
+	// OKMS domain ID owning the service key
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// OKMS service key ID used to encrypt the volume
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type EncryptionKMSObservation struct {
+
+	// OKMS domain ID owning the service key
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// OKMS service key ID used to encrypt the volume
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type EncryptionKMSParameters struct {
+
+	// OKMS domain ID owning the service key
+	// +kubebuilder:validation:Optional
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// OKMS service key ID used to encrypt the volume
+	// +kubebuilder:validation:Optional
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
 type EncryptionObservation struct {
 
 	// Whether the volume is encrypted at rest with LUKS
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
+
+	KMS *KMSObservation `json:"kms,omitempty" tf:"kms,omitempty"`
 }
 
 type EncryptionParameters struct {
+}
+
+type KMSInitParameters struct {
+}
+
+type KMSObservation struct {
+
+	// OKMS domain ID owning the service key
+	DomainID *string `json:"domainId,omitempty" tf:"domain_id,omitempty"`
+
+	// OKMS service key ID used to encrypt the volume
+	ServiceKeyID *string `json:"serviceKeyId,omitempty" tf:"service_key_id,omitempty"`
+}
+
+type KMSParameters struct {
 }
 
 type LocationInitParameters struct {

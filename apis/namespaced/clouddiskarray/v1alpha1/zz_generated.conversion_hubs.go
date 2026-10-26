@@ -8,3 +8,9 @@ package v1alpha1
 
 // Hub marks this type as a conversion hub.
 func (tr *CephACL) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *CephPool) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *CephUser) Hub() {}

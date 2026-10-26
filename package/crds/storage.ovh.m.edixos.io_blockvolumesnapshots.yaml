@@ -59,6 +59,9 @@ spec:
             properties:
               forProvider:
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the snapshot will be created
+                    type: string
                   description:
                     description: Snapshot description
                     type: string
@@ -172,6 +175,9 @@ spec:
                   for example because of an external controller is managing them, like an
                   autoscaler.
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the snapshot will be created
+                    type: string
                   description:
                     description: Snapshot description
                     type: string
@@ -344,6 +350,9 @@ spec:
             properties:
               atProvider:
                 properties:
+                  availabilityZone:
+                    description: Availability zone where the snapshot will be created
+                    type: string
                   checksum:
                     description: Computed hash representing the current target specification
                       value
@@ -358,6 +367,9 @@ spec:
                         type: string
                       location:
                         properties:
+                          availabilityZone:
+                            description: Availability zone
+                            type: string
                           region:
                             description: Region
                             type: string
@@ -368,6 +380,11 @@ spec:
                       size:
                         description: Size of the snapshot in GB
                         type: number
+                      status:
+                        description: Snapshot status (`AVAILABLE`, `BACKING_UP`, `CREATING`,
+                          `DELETED`, `DELETING`, `ERROR`, `ERROR_DELETING`, `RESTORING`,
+                          `UNMANAGING`, `UPDATING`)
+                        type: string
                       volumeId:
                         description: ID of the snapshotted volume
                         type: string

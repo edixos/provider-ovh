@@ -43,4 +43,8 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_dedicated_server_networking", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+
+	p.AddResourceConfigurator("ovh_dedicated_server_virtual_mac", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

@@ -191,6 +191,9 @@ spec:
                     description: Interface or interfaces aggregation.
                     items:
                       properties:
+                        aggregationFallback:
+                          description: Mac address of the LACP fallback interface
+                          type: string
                         macs:
                           description: Interface Mac address
                           items:

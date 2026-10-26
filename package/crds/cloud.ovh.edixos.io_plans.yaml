@@ -93,7 +93,7 @@ spec:
                   period:
                     description: |-
                       Periodicity of the Savings Plan
-                      Periodicity of the Savings Plan
+                      Periodicity of the Savings Plan (P1Y or P3Y)
                     type: string
                   serviceName:
                     description: |-
@@ -141,7 +141,7 @@ spec:
                   period:
                     description: |-
                       Periodicity of the Savings Plan
-                      Periodicity of the Savings Plan
+                      Periodicity of the Savings Plan (P1Y or P3Y)
                     type: string
                   serviceName:
                     description: |-
@@ -296,7 +296,7 @@ spec:
                   period:
                     description: |-
                       Periodicity of the Savings Plan
-                      Periodicity of the Savings Plan
+                      Periodicity of the Savings Plan (P1Y or P3Y)
                     type: string
                   periodEndAction:
                     description: |-

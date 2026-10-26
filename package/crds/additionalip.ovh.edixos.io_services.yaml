@@ -107,13 +107,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array
@@ -138,13 +140,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array
@@ -197,13 +201,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array
@@ -228,13 +234,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array
@@ -406,13 +414,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array
@@ -437,13 +447,15 @@ spec:
                             type: object
                           type: array
                         duration:
-                          description: duration
+                          description: Duration of the subscription, in ISO 8601 format
+                            (e.g. P1M, P1Y)
                           type: string
                         planCode:
                           description: Plan code
                           type: string
                         pricingMode:
-                          description: Pricing model identifier
+                          description: Pricing mode (e.g. default), from the same
+                            price as the duration
                           type: string
                       type: object
                     type: array

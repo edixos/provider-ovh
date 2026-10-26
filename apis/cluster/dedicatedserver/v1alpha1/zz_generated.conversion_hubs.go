@@ -14,3 +14,6 @@ func (tr *ServerRebootTask) Hub() {}
 
 // Hub marks this type as a conversion hub.
 func (tr *ServerUpdate) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *ServerVirtualMac) Hub() {}

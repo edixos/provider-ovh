@@ -17,6 +17,28 @@ import (
 type AvailableProfilesInitParameters struct {
 }
 
+type AvailableProfilesLoadbalancerInitParameters struct {
+}
+
+type AvailableProfilesLoadbalancerObservation struct {
+	HealthMonitors *float64 `json:"healthMonitors,omitempty" tf:"health_monitors,omitempty"`
+
+	L7Policies *float64 `json:"l7Policies,omitempty" tf:"l7_policies,omitempty"`
+
+	L7Rules *float64 `json:"l7Rules,omitempty" tf:"l7_rules,omitempty"`
+
+	Listeners *float64 `json:"listeners,omitempty" tf:"listeners,omitempty"`
+
+	Loadbalancers *float64 `json:"loadbalancers,omitempty" tf:"loadbalancers,omitempty"`
+
+	Members *float64 `json:"members,omitempty" tf:"members,omitempty"`
+
+	Pools *float64 `json:"pools,omitempty" tf:"pools,omitempty"`
+}
+
+type AvailableProfilesLoadbalancerParameters struct {
+}
+
 type AvailableProfilesNetworkInitParameters struct {
 }
 
@@ -44,7 +66,7 @@ type AvailableProfilesObservation struct {
 
 	Keypair *KeypairObservation `json:"keypair,omitempty" tf:"keypair,omitempty"`
 
-	Loadbalancer *LoadbalancerObservation `json:"loadbalancer,omitempty" tf:"loadbalancer,omitempty"`
+	Loadbalancer *AvailableProfilesLoadbalancerObservation `json:"loadbalancer,omitempty" tf:"loadbalancer,omitempty"`
 
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -262,9 +284,6 @@ type ListenersObservation struct {
 type ListenersParameters struct {
 }
 
-type LoadbalancerInitParameters struct {
-}
-
 type LoadbalancerMembersInitParameters struct {
 }
 
@@ -277,25 +296,6 @@ type LoadbalancerMembersObservation struct {
 }
 
 type LoadbalancerMembersParameters struct {
-}
-
-type LoadbalancerObservation struct {
-	HealthMonitors *float64 `json:"healthMonitors,omitempty" tf:"health_monitors,omitempty"`
-
-	L7Policies *float64 `json:"l7Policies,omitempty" tf:"l7_policies,omitempty"`
-
-	L7Rules *float64 `json:"l7Rules,omitempty" tf:"l7_rules,omitempty"`
-
-	Listeners *float64 `json:"listeners,omitempty" tf:"listeners,omitempty"`
-
-	Loadbalancers *float64 `json:"loadbalancers,omitempty" tf:"loadbalancers,omitempty"`
-
-	Members *float64 `json:"members,omitempty" tf:"members,omitempty"`
-
-	Pools *float64 `json:"pools,omitempty" tf:"pools,omitempty"`
-}
-
-type LoadbalancerParameters struct {
 }
 
 type LoadbalancersInitParameters struct {

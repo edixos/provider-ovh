@@ -301,6 +301,25 @@ spec:
                             type: string
                         type: object
                     type: object
+                  userDataSecretRef:
+                    description: 'Cloud-init user data injected at boot, base64-encoded
+                      (standard encoding, 65535 bytes max). Pass it through `base64encode()`.
+                      **WARNING**: changing this value to another non-empty one **reinstalls
+                      the instance** (rebuild on the current image — the root disk
+                      is wiped); setting it to `""` is an explicit clear and **also
+                      reinstalls the instance**; removing the argument from the configuration
+                      only drops it from state, the instance keeps the user data it
+                      booted with and is **not** rebuilt'
+                    properties:
+                      key:
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    type: object
                   volumeIds:
                     description: IDs of block-storage volumes attached to the instance
                     items:
@@ -562,6 +581,25 @@ spec:
                             - IfNotPresent
                             type: string
                         type: object
+                    type: object
+                  userDataSecretRef:
+                    description: 'Cloud-init user data injected at boot, base64-encoded
+                      (standard encoding, 65535 bytes max). Pass it through `base64encode()`.
+                      **WARNING**: changing this value to another non-empty one **reinstalls
+                      the instance** (rebuild on the current image — the root disk
+                      is wiped); setting it to `""` is an explicit clear and **also
+                      reinstalls the instance**; removing the argument from the configuration
+                      only drops it from state, the instance keeps the user data it
+                      booted with and is **not** rebuilt'
+                    properties:
+                      key:
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
                     type: object
                   volumeIds:
                     description: IDs of block-storage volumes attached to the instance

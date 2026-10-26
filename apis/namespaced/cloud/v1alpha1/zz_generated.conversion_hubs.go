@@ -16,6 +16,24 @@ func (tr *Instance) Hub() {}
 func (tr *InstanceGroup) Hub() {}
 
 // Hub marks this type as a conversion hub.
+func (tr *InstanceSnapshot) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *Loadbalancer) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LoadbalancerL7Policy) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LoadbalancerListener) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LoadbalancerPool) Hub() {}
+
+// Hub marks this type as a conversion hub.
+func (tr *LoadbalancerPoolMember) Hub() {}
+
+// Hub marks this type as a conversion hub.
 func (tr *Plan) Hub() {}
 
 // Hub marks this type as a conversion hub.

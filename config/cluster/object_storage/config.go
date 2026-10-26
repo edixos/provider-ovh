@@ -77,4 +77,8 @@ func Configure(p *config.Provider) {
 		r.ShortGroup = shortGroup
 		r.Kind = "ProjectStorageReplicationJob"
 	})
+	p.AddResourceConfigurator("ovh_cloud_storage_object_bucket", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+		r.Kind = "ObjectBucket"
+	})
 }

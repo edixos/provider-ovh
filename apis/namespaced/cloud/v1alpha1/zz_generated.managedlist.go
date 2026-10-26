@@ -34,6 +34,60 @@ func (l *InstanceList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this InstanceSnapshotList.
+func (l *InstanceSnapshotList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LoadbalancerL7PolicyList.
+func (l *LoadbalancerL7PolicyList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LoadbalancerList.
+func (l *LoadbalancerList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LoadbalancerListenerList.
+func (l *LoadbalancerListenerList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LoadbalancerPoolList.
+func (l *LoadbalancerPoolList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this LoadbalancerPoolMemberList.
+func (l *LoadbalancerPoolMemberList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this PlanList.
 func (l *PlanList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))

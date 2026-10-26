@@ -23,4 +23,7 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("ovh_hosting_privatedatabase_whitelist", func(r *config.Resource) {
 		r.ShortGroup = shortGroup
 	})
+	p.AddResourceConfigurator("ovh_hosting_privatedatabase_webhosting_network", func(r *config.Resource) {
+		r.ShortGroup = shortGroup
+	})
 }

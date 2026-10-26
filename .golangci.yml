@@ -58,6 +58,9 @@ linters:
     goconst:
       min-len: 3
       min-occurrences: 5
+      # Terraform resource names are identifiers, not magic strings.
+      ignore-string-values:
+        - ^ovh_
     gocritic:
       enabled-tags:
         - performance
@@ -84,6 +87,7 @@ linters:
       - linters:
           - dupl
           - errcheck
+          - goconst
           - gocyclo
           - gosec
           - scopelint

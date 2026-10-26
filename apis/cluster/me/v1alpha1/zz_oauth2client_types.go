@@ -23,6 +23,9 @@ type Oauth2ClientInitParameters struct {
 	// A description of your oauth2 client.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
+	// Client secret of the created service account
+	DiscardClientSecret *bool `json:"discardClientSecret,omitempty" tf:"discard_client_secret,omitempty"`
+
 	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
 	Flow *string `json:"flow,omitempty" tf:"flow,omitempty"`
@@ -44,6 +47,9 @@ type Oauth2ClientObservation struct {
 	// OAuth2 client description.
 	// A description of your oauth2 client.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// Client secret of the created service account
+	DiscardClientSecret *bool `json:"discardClientSecret,omitempty" tf:"discard_client_secret,omitempty"`
 
 	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS
@@ -70,6 +76,10 @@ type Oauth2ClientParameters struct {
 	// A description of your oauth2 client.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
+
+	// Client secret of the created service account
+	// +kubebuilder:validation:Optional
+	DiscardClientSecret *bool `json:"discardClientSecret,omitempty" tf:"discard_client_secret,omitempty"`
 
 	// The OAuth2 flow to use. AUTHORIZATION_CODE or CLIENT_CREDENTIALS are supported at the moment.
 	// OAuth2 flow type implemented for this oauth2 client. Can be either AUTHORIZATION_CODE or CLIENT_CREDENTIALS

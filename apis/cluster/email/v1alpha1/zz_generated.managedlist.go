@@ -15,3 +15,21 @@ func (l *DomainAccountList) GetItems() []resource.Managed {
 	}
 	return items
 }
+
+// GetItems of this DomainDKIMList.
+func (l *DomainDKIMList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this DomainRedirectionList.
+func (l *DomainRedirectionList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}

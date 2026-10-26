@@ -133,6 +133,9 @@ type ClusterInitParameters struct {
 	// Kubernetes kube-proxy customization
 	CustomizationKubeProxy []CustomizationKubeProxyInitParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
 
+	// Disable public connectivity. Node pools of such a cluster cannot attach floating IPs. Only available on the standard plan. Can only be set at cluster creation.
+	DisablePublicNetworking *bool `json:"disablePublicNetworking,omitempty" tf:"disable_public_networking,omitempty"`
+
 	// IP Allocation policy for the MKS cluster
 	IPAllocationPolicy []IPAllocationPolicyInitParameters `json:"ipAllocationPolicy,omitempty" tf:"ip_allocation_policy,omitempty"`
 
@@ -238,6 +241,9 @@ type ClusterObservation struct {
 	// Kubernetes kube-proxy customization
 	CustomizationKubeProxy []CustomizationKubeProxyObservation `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
 
+	// Disable public connectivity. Node pools of such a cluster cannot attach floating IPs. Only available on the standard plan. Can only be set at cluster creation.
+	DisablePublicNetworking *bool `json:"disablePublicNetworking,omitempty" tf:"disable_public_networking,omitempty"`
+
 	// Managed Kubernetes Service ID
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
@@ -311,6 +317,10 @@ type ClusterParameters struct {
 	// Kubernetes kube-proxy customization
 	// +kubebuilder:validation:Optional
 	CustomizationKubeProxy []CustomizationKubeProxyParameters `json:"customizationKubeProxy,omitempty" tf:"customization_kube_proxy,omitempty"`
+
+	// Disable public connectivity. Node pools of such a cluster cannot attach floating IPs. Only available on the standard plan. Can only be set at cluster creation.
+	// +kubebuilder:validation:Optional
+	DisablePublicNetworking *bool `json:"disablePublicNetworking,omitempty" tf:"disable_public_networking,omitempty"`
 
 	// IP Allocation policy for the MKS cluster
 	// +kubebuilder:validation:Optional
@@ -794,36 +804,46 @@ type LimitsParameters struct {
 type PrivateNetworkConfigurationInitParameters struct {
 
 	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
 	DefaultVrackGateway *string `json:"defaultVrackGateway,omitempty" tf:"default_vrack_gateway,omitempty"`
 
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault,omitempty" tf:"private_network_routing_as_default,omitempty"`
+
+	// When enabled, skips the prerequisite check for a router/gateway on the OpenStack subnet/network. By default (value false or not set), an OpenStack router/gateway is mandatory. Setting this attribute requires disable_public_networking to be true. Only available on the standard plan. Can only be set at cluster creation.
+	UseUserGateway *bool `json:"useUserGateway,omitempty" tf:"use_user_gateway,omitempty"`
 }
 
 type PrivateNetworkConfigurationObservation struct {
 
 	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
 	DefaultVrackGateway *string `json:"defaultVrackGateway,omitempty" tf:"default_vrack_gateway,omitempty"`
 
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault,omitempty" tf:"private_network_routing_as_default,omitempty"`
+
+	// When enabled, skips the prerequisite check for a router/gateway on the OpenStack subnet/network. By default (value false or not set), an OpenStack router/gateway is mandatory. Setting this attribute requires disable_public_networking to be true. Only available on the standard plan. Can only be set at cluster creation.
+	UseUserGateway *bool `json:"useUserGateway,omitempty" tf:"use_user_gateway,omitempty"`
 }
 
 type PrivateNetworkConfigurationParameters struct {
 
 	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled. Default is empty.
 	// +kubebuilder:validation:Optional
-	DefaultVrackGateway *string `json:"defaultVrackGateway" tf:"default_vrack_gateway,omitempty"`
+	DefaultVrackGateway *string `json:"defaultVrackGateway,omitempty" tf:"default_vrack_gateway,omitempty"`
 
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	// +kubebuilder:validation:Optional
-	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault" tf:"private_network_routing_as_default,omitempty"`
+	PrivateNetworkRoutingAsDefault *bool `json:"privateNetworkRoutingAsDefault,omitempty" tf:"private_network_routing_as_default,omitempty"`
+
+	// When enabled, skips the prerequisite check for a router/gateway on the OpenStack subnet/network. By default (value false or not set), an OpenStack router/gateway is mandatory. Setting this attribute requires disable_public_networking to be true. Only available on the standard plan. Can only be set at cluster creation.
+	// +kubebuilder:validation:Optional
+	UseUserGateway *bool `json:"useUserGateway,omitempty" tf:"use_user_gateway,omitempty"`
 }
 
 type RelayInitParameters struct {

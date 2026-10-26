@@ -22,6 +22,9 @@ type BlockVolumeSnapshotCurrentStateLocationInitParameters struct {
 
 type BlockVolumeSnapshotCurrentStateLocationObservation struct {
 
+	// Availability zone
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
+
 	// Region
 	Region *string `json:"region,omitempty" tf:"region,omitempty"`
 }
@@ -42,6 +45,9 @@ type BlockVolumeSnapshotCurrentStateObservation struct {
 	// Size of the snapshot in GB
 	Size *float64 `json:"size,omitempty" tf:"size,omitempty"`
 
+	// Snapshot status (`AVAILABLE`, `BACKING_UP`, `CREATING`, `DELETED`, `DELETING`, `ERROR`, `ERROR_DELETING`, `RESTORING`, `UNMANAGING`, `UPDATING`)
+	Status *string `json:"status,omitempty" tf:"status,omitempty"`
+
 	// ID of the snapshotted volume
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
@@ -50,6 +56,9 @@ type BlockVolumeSnapshotCurrentStateParameters struct {
 }
 
 type BlockVolumeSnapshotInitParameters struct {
+
+	// Availability zone where the snapshot will be created
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// Snapshot description
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
@@ -77,6 +86,9 @@ type BlockVolumeSnapshotInitParameters struct {
 }
 
 type BlockVolumeSnapshotObservation struct {
+
+	// Availability zone where the snapshot will be created
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// Computed hash representing the current target specification value
 	Checksum *string `json:"checksum,omitempty" tf:"checksum,omitempty"`
@@ -111,6 +123,10 @@ type BlockVolumeSnapshotObservation struct {
 }
 
 type BlockVolumeSnapshotParameters struct {
+
+	// Availability zone where the snapshot will be created
+	// +kubebuilder:validation:Optional
+	AvailabilityZone *string `json:"availabilityZone,omitempty" tf:"availability_zone,omitempty"`
 
 	// Snapshot description
 	// +kubebuilder:validation:Optional
