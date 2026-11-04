@@ -7,6 +7,7 @@ package main
 import (
 	"context"
 	"fmt"
+	stdlog "log"
 	"os"
 	"path/filepath"
 	"time"
@@ -89,6 +90,11 @@ func main() {
 
 	zl := zap.New(zap.UseDevMode(*debug))
 	log := logging.NewLogrLogger(zl.WithName("upjet-provider-template"))
+	// The in-process OVH Terraform provider logs through the standard library
+	// logger with "[LEVEL] " prefixes. Route it through our logger so its
+	// [DEBUG] lines only appear with --debug.
+	stdlog.SetFlags(0)
+	stdlog.SetOutput(stdLogWriter{log: log.WithValues("source", "terraform-provider-ovh")})
 	if *debug {
 		// The controller-runtime runs with a no-op logger by default. It is
 		// *very* verbose even at info level, so we only provide it a real

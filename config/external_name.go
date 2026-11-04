@@ -23,30 +23,18 @@ const (
 
 // isOVHNotFoundError checks if the diagnostic is an OVH 404 error
 func isOVHNotFoundError(diags []*tfprotov6.Diagnostic) bool {
-	fmt.Printf("isOVHNotFoundError called with %d diagnostics\n", len(diags))
-	for i, d := range diags {
-		if d == nil {
-			fmt.Printf("Diagnostic %d is nil\n", i)
+	for _, d := range diags {
+		if d == nil || d.Severity != tfprotov6.DiagnosticSeverityError {
 			continue
 		}
-		fmt.Printf("Diagnostic %d - Severity: %v\n", i, d.Severity)
-		if d.Severity == tfprotov6.DiagnosticSeverityError {
-			summary := d.Summary
-			detail := d.Detail
-
-			fmt.Printf("SUMMARY: %s\n", summary)
-			fmt.Printf("DETAIL: %s\n", detail)
-			// Check if it's an OVH 404 error
-			if strings.Contains(summary, "Error calling Get") &&
-				(strings.Contains(detail, "status code 404") ||
-					strings.Contains(detail, "Client::NotFound") ||
-					strings.Contains(detail, "not found: NotFound")) {
-				fmt.Printf("DETECTED 404 ERROR - returning true\n")
-				return true
-			}
+		// Check if it's an OVH 404 error
+		if strings.Contains(d.Summary, "Error calling Get") &&
+			(strings.Contains(d.Detail, "status code 404") ||
+				strings.Contains(d.Detail, "Client::NotFound") ||
+				strings.Contains(d.Detail, "not found: NotFound")) {
+			return true
 		}
 	}
-	fmt.Printf("No 404 error detected - returning false\n")
 	return false
 }
 
