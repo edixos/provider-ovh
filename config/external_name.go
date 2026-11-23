@@ -62,41 +62,63 @@ func clusterID(parameters map[string]any) (string, error) {
 	return clusterIDStr, nil
 }
 
+// kubePoolIdentifierFromProvider is used by resources that live under a kube cluster
+// (node pools, log subscriptions). Their Terraform Read builds the path from the
+// service_name and kube_id parameters and uses d.Id() only as the last segment, so the
+// Terraform ID must be the bare <id>. The <service_name>/<kube_id>/<id> form was only
+// accepted by Terraform's importer, which is not run since resources are reconciled
+// in-process. Existing composite external-names keep working.
 var kubePoolIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
-	GetExternalNameFn:       config.IDAsExternalName,
-	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
-		serviceName, err := serviceName(parameters)
+	GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+		id, err := config.IDAsExternalName(tfstate)
 		if err != nil {
-			return serviceName, err
+			return "", err
 		}
-
-		kubeID, ok := parameters["kube_id"]
-		if !ok {
-			return "", errors.Errorf(ErrFmtNoAttribute, "kube_id")
+		return bareID("kube child resource", id, 3)
+	},
+	GetIDFn: func(_ context.Context, externalName string, _ map[string]any, _ map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet
+		if externalName == "" {
+			return "", nil
 		}
-		kubeIDStr, ok := kubeID.(string)
-		if !ok {
-			return "", errors.Errorf(ErrFmtUnexpectedType, "kube_id")
-		}
-
-		return fmt.Sprintf("%s/%s/%s", serviceName, kubeIDStr, externalName), nil
+		return bareID("kube child resource", externalName, 3)
 	},
 	DisableNameInitializer: true,
 }
 
+// kubeIdentifierFromProvider is used by kube clusters and their IP restrictions. Their
+// Terraform Read uses d.Id() as the cluster ID (or only reads kube_id), so the Terraform
+// ID must be the bare <kube_id>, not <service_name>/<kube_id>. Existing composite
+// external-names keep working.
 var kubeIdentifierFromProvider = config.ExternalName{
 	SetIdentifierArgumentFn: config.NopSetIdentifierArgument,
-	GetExternalNameFn:       config.IDAsExternalName,
-	GetIDFn: func(ctx context.Context, externalName string, parameters map[string]any, providerConfig map[string]any) (string, error) {
-		serviceName, err := serviceName(parameters)
+	GetExternalNameFn: func(tfstate map[string]any) (string, error) {
+		id, err := config.IDAsExternalName(tfstate)
 		if err != nil {
-			return serviceName, err
+			return "", err
 		}
-
-		return fmt.Sprintf("%s/%s", serviceName, externalName), nil
+		return bareID("kube", id, 2)
+	},
+	GetIDFn: func(_ context.Context, externalName string, _ map[string]any, _ map[string]any) (string, error) {
+		// If external-name is empty, the resource hasn't been created yet
+		if externalName == "" {
+			return "", nil
+		}
+		return bareID("kube", externalName, 2)
 	},
 	DisableNameInitializer: true,
+}
+
+// bareID returns the last "/"-separated segment of an external-name: "<id>" or a
+// composite "<prefix>/.../<id>" form with at most maxParts segments.
+func bareID(kind, externalName string, maxParts int) (string, error) {
+	parts := strings.Split(externalName, "/")
+	id := parts[len(parts)-1]
+	if id == "" || len(parts) > maxParts {
+		return "", errors.Errorf("%s external-name %q is not <id> or its <service_name>/.../<id> form", kind, externalName)
+	}
+	return id, nil
 }
 
 var privateNetworkIdentifierFromProvider = config.ExternalName{

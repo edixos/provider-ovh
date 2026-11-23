@@ -3,6 +3,14 @@
 > IMPORTANT: Update this file for each tagged release before (or as part of) CI so it accurately reflects changes delivered in that version. The CI workflow will append this file along with other extension assets to the published package.
 
 ## Unreleased
+### Fixed
+- `Cluster`, `NodePool`, `IpRestriction` and `LogSubscription` (`kube`): observe
+  no longer reports `external resource does not exist` for resources that
+  exist. The Terraform ID is now the bare cluster, node pool or subscription id
+  expected by the upstream Read; `<service_name>/<kube_id>` was only accepted by
+  the importer, which is skipped since resources are reconciled in-process.
+  Existing `<service_name>/...` external-names keep working and are rewritten to
+  the bare id on the next observe.
 
 ## v2.23.1 - 2026-10-26
 ### Fixed
